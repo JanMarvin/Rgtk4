@@ -1,0 +1,25 @@
+Package: Rgtk4
+Type: Package
+Title: R Bindings for GTK4
+Version: 0.1.0
+Authors@R: c(
+    person("Jan Marvin", "Garbuszus", email = "jan.garbuszus@ruhr-uni-bochum.de", role = c("aut", "cre")),
+    person("RGtk2 Team", role = "ctb", comment = "Conceptual foundation and inspiration"))
+Description: Complete R bindings for GTK4 (GIMP Toolkit version 4) automatically 
+    generated from GObject Introspection metadata. Provides access to GTK4, GLib, 
+    GObject, Gio, Pango, GdkPixbuf, and Cairo libraries with meaningful parameter 
+    names, platform-specific function filtering, and native R event loop integration.
+    Includes macOS-specific integrations for dock icon management and keyboard shortcuts.
+License: GPL-2 | GPL-3
+Encoding: UTF-8
+SystemRequirements: GTK4 (>= 4.0.0), GObject-Introspection (>= 1.0.0), pkg-config
+Depends: R (>= 4.0.0)
+Imports: utils
+Suggests: 
+    knitr,
+    later,
+    rmarkdown
+VignetteBuilder: knitr
+URL: https://github.com/JanMarvin/Rgtk4
+BugReports: https://github.com/JanMarvin/Rgtk4/issues
+RoxygenNote: 7.3.3
