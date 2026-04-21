@@ -35,6 +35,33 @@ SEXP make_gobject_ptr(gpointer obj) {
 }
 
 // ============================================================================
+// Boxed Structs (GtkTextIter, etc.)
+// ============================================================================
+
+// Finalizer for heap-allocated structs
+static void boxed_struct_finalizer(SEXP ext_ptr) {
+  void *ptr = R_ExternalPtrAddr(ext_ptr);
+  if (ptr) {
+    g_free(ptr); // Structs are allocated with g_malloc/g_new
+    R_ClearExternalPtr(ext_ptr);
+  }
+}
+
+// Helper to copy a stack struct to the heap and wrap it for R
+SEXP make_boxed_struct(const void *src, size_t size) {
+  if (!src) return R_NilValue;
+
+  // Allocate persistent memory on the heap
+  void *dest = g_malloc0(size);
+  memcpy(dest, src, size);
+
+  SEXP ptr = PROTECT(R_MakeExternalPtr(dest, R_NilValue, R_NilValue));
+  R_RegisterCFinalizerEx(ptr, boxed_struct_finalizer, TRUE);
+  UNPROTECT(1);
+  return ptr;
+}
+
+// ============================================================================
 // Keyboard Shortcuts
 // ============================================================================
 
@@ -233,3 +260,22 @@ SEXP R_gtk_string_list_new_from_vector(SEXP s_strings) {
   // Use our helper to create external pointer with proper refcounting
   return make_gobject_ptr(list);
 }
+
+SEXP R_gtk_text_buffer_create_tag_simple(SEXP s_buffer, SEXP s_tag_name) {
+  GtkTextBuffer* buffer = (GtkTextBuffer*)R_ExternalPtrAddr(s_buffer);
+  const char* tag_name = (s_tag_name == R_NilValue) ? NULL : CHAR(STRING_ELT(s_tag_name, 0));
+  GtkTextTag* tag = gtk_text_buffer_create_tag(buffer, tag_name, NULL);
+  return R_MakeExternalPtr((void*)tag, R_NilValue, R_NilValue);
+}
+
+SEXP R_g_object_set_string(SEXP s1, SEXP s2, SEXP s3) {
+  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1));
+  const char* property_name = (const char*)(CHAR(STRING_ELT(s2,0)));
+  const char* value = (const char*)(CHAR(STRING_ELT(s3,0)));
+
+  // Use g_object_set which handles the string-to-GValue conversion for you
+  g_object_set(v1, property_name, value, NULL);
+
+  return R_NilValue;
+}
+

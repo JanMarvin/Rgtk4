@@ -300,3 +300,22 @@ gtkWindowPresentAndProcess <- function(window) {
 gApplicationRunSimple <- function(app) {
   .Call('R_g_application_run_simple', app)
 }
+
+# varadic template function that is not generated
+#' @export
+gtkTextBufferCreateTag <- function(buffer, tag_name = NULL, ...) {
+  tag <- .Call("R_gtk_text_buffer_create_tag_simple", buffer, tag_name)
+  if (is.null(tag)) return(NULL)
+  props <- list(...)
+  if (length(props) > 0) {
+    for (p in names(props)) {
+      gObjectSetProperty(tag, p, props[[p]])
+    }
+  }
+  tag
+}
+
+#' @export
+gObjectSetString <- function(s1, s2, s3) {
+  .Call('R_g_object_set_string', s1, s2, s3)
+}

@@ -7244,6 +7244,8 @@ extern SEXP R_gtk_main_iteration_do(SEXP s_blocking);
 extern SEXP R_gtk_window_add_close_shortcut(SEXP s_window);
 extern SEXP R_gtk_get_ui_state(SEXP s_widgets);
 extern SEXP R_gtk_string_list_new_from_vector(SEXP s_strings);
+extern SEXP R_gtk_text_buffer_create_tag_simple(SEXP s_buffer, SEXP s_tag_name);
+extern SEXP R_g_object_set_string(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun);
 extern SEXP R_g_signal_connect_r_boolean(SEXP s_obj, SEXP s_signal, SEXP s_fun);
 
@@ -14489,6 +14491,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_window_add_close_shortcut", (DL_FUNC) &R_gtk_window_add_close_shortcut, 1},
     {"R_gtk_get_ui_state", (DL_FUNC) &R_gtk_get_ui_state, 1},
     {"R_gtk_string_list_new_from_vector", (DL_FUNC) &R_gtk_string_list_new_from_vector, 1},
+    {"R_gtk_text_buffer_create_tag_simple", (DL_FUNC) &R_gtk_text_buffer_create_tag_simple, 2},
+    {"R_g_object_set_string", (DL_FUNC) &R_g_object_set_string, 3},
     {"R_g_signal_connect_r", (DL_FUNC) &R_g_signal_connect_r, 3},
     {"R_g_signal_connect_r_boolean", (DL_FUNC) &R_g_signal_connect_r_boolean, 3},
     {NULL, NULL, 0}
