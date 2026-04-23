@@ -31,15 +31,20 @@ static SEXP _box_GStrv(char **strv) {
 /* Helper to add an S3 class to an external pointer for easier debugging */
 static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
-
+  
   void *obj = R_ExternalPtrAddr(ptr);
-  const char *type_name = fallback_name;
 
-  if (obj && G_IS_OBJECT(obj)) {
-    type_name = G_OBJECT_TYPE_NAME(obj);
+  // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
+  if ((uintptr_t)obj < 0x1000) {
+    Rf_setAttrib(ptr, R_ClassSymbol, Rf_mkString(fallback_name));
+    return ptr;
   }
 
-  Rf_setAttrib(ptr, R_ClassSymbol, Rf_mkString(type_name));
+  if (G_IS_OBJECT(obj)) {
+    Rf_setAttrib(ptr, R_ClassSymbol, Rf_mkString(G_OBJECT_TYPE_NAME(obj)));
+  } else {
+    Rf_setAttrib(ptr, R_ClassSymbol, Rf_mkString(fallback_name));
+  }
   return ptr;
 }
 
