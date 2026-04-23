@@ -1281,37 +1281,6 @@
 \alias{gDrivePollForMediaFinish}
 \alias{gDriveStartFinish}
 \alias{gDriveStopFinish}
-\alias{gDtlsClientConnectionNew}
-\alias{gDtlsClientConnectionGetAcceptedCas}
-\alias{gDtlsClientConnectionGetServerIdentity}
-\alias{gDtlsClientConnectionGetValidationFlags}
-\alias{gDtlsClientConnectionSetServerIdentity}
-\alias{gDtlsClientConnectionSetValidationFlags}
-\alias{gDtlsConnectionClose}
-\alias{gDtlsConnectionCloseFinish}
-\alias{gDtlsConnectionEmitAcceptCertificate}
-\alias{gDtlsConnectionGetCertificate}
-\alias{gDtlsConnectionGetChannelBindingData}
-\alias{gDtlsConnectionGetCiphersuiteName}
-\alias{gDtlsConnectionGetDatabase}
-\alias{gDtlsConnectionGetInteraction}
-\alias{gDtlsConnectionGetNegotiatedProtocol}
-\alias{gDtlsConnectionGetPeerCertificate}
-\alias{gDtlsConnectionGetPeerCertificateErrors}
-\alias{gDtlsConnectionGetProtocolVersion}
-\alias{gDtlsConnectionGetRehandshakeMode}
-\alias{gDtlsConnectionGetRequireCloseNotify}
-\alias{gDtlsConnectionHandshake}
-\alias{gDtlsConnectionHandshakeFinish}
-\alias{gDtlsConnectionSetAdvertisedProtocols}
-\alias{gDtlsConnectionSetCertificate}
-\alias{gDtlsConnectionSetDatabase}
-\alias{gDtlsConnectionSetInteraction}
-\alias{gDtlsConnectionSetRehandshakeMode}
-\alias{gDtlsConnectionSetRequireCloseNotify}
-\alias{gDtlsConnectionShutdown}
-\alias{gDtlsConnectionShutdownFinish}
-\alias{gDtlsServerConnectionNew}
 \alias{gEmblemNew}
 \alias{gEmblemNewWithOrigin}
 \alias{gEmblemGetIcon}
@@ -1824,92 +1793,6 @@
 \alias{gThemedIconGetNames}
 \alias{gThemedIconPrependName}
 \alias{gThreadedSocketServiceNew}
-\alias{gTlsBackendGetDefault}
-\alias{gTlsBackendGetCertificateType}
-\alias{gTlsBackendGetClientConnectionType}
-\alias{gTlsBackendGetDefaultDatabase}
-\alias{gTlsBackendGetDtlsClientConnectionType}
-\alias{gTlsBackendGetDtlsServerConnectionType}
-\alias{gTlsBackendGetFileDatabaseType}
-\alias{gTlsBackendGetServerConnectionType}
-\alias{gTlsBackendSetDefaultDatabase}
-\alias{gTlsBackendSupportsDtls}
-\alias{gTlsBackendSupportsTls}
-\alias{gTlsCertificateNewFromFile}
-\alias{gTlsCertificateNewFromFileWithPassword}
-\alias{gTlsCertificateNewFromFiles}
-\alias{gTlsCertificateNewFromPem}
-\alias{gTlsCertificateNewFromPkcs11Uris}
-\alias{gTlsCertificateNewFromPkcs12}
-\alias{gTlsCertificateListNewFromFile}
-\alias{gTlsCertificateGetDnsNames}
-\alias{gTlsCertificateGetIpAddresses}
-\alias{gTlsCertificateGetIssuer}
-\alias{gTlsCertificateGetIssuerName}
-\alias{gTlsCertificateGetNotValidAfter}
-\alias{gTlsCertificateGetNotValidBefore}
-\alias{gTlsCertificateGetSubjectName}
-\alias{gTlsCertificateIsSame}
-\alias{gTlsCertificateVerify}
-\alias{gTlsChannelBindingErrorQuark}
-\alias{gTlsClientConnectionNew}
-\alias{gTlsClientConnectionCopySessionState}
-\alias{gTlsClientConnectionGetAcceptedCas}
-\alias{gTlsClientConnectionGetServerIdentity}
-\alias{gTlsClientConnectionGetUseSsl3}
-\alias{gTlsClientConnectionGetValidationFlags}
-\alias{gTlsClientConnectionSetServerIdentity}
-\alias{gTlsClientConnectionSetUseSsl3}
-\alias{gTlsClientConnectionSetValidationFlags}
-\alias{gTlsConnectionEmitAcceptCertificate}
-\alias{gTlsConnectionGetCertificate}
-\alias{gTlsConnectionGetChannelBindingData}
-\alias{gTlsConnectionGetCiphersuiteName}
-\alias{gTlsConnectionGetDatabase}
-\alias{gTlsConnectionGetInteraction}
-\alias{gTlsConnectionGetNegotiatedProtocol}
-\alias{gTlsConnectionGetPeerCertificate}
-\alias{gTlsConnectionGetPeerCertificateErrors}
-\alias{gTlsConnectionGetProtocolVersion}
-\alias{gTlsConnectionGetRehandshakeMode}
-\alias{gTlsConnectionGetRequireCloseNotify}
-\alias{gTlsConnectionGetUseSystemCertdb}
-\alias{gTlsConnectionHandshake}
-\alias{gTlsConnectionHandshakeFinish}
-\alias{gTlsConnectionSetAdvertisedProtocols}
-\alias{gTlsConnectionSetCertificate}
-\alias{gTlsConnectionSetDatabase}
-\alias{gTlsConnectionSetInteraction}
-\alias{gTlsConnectionSetRehandshakeMode}
-\alias{gTlsConnectionSetRequireCloseNotify}
-\alias{gTlsConnectionSetUseSystemCertdb}
-\alias{gTlsDatabaseCreateCertificateHandle}
-\alias{gTlsDatabaseLookupCertificateForHandle}
-\alias{gTlsDatabaseLookupCertificateForHandleFinish}
-\alias{gTlsDatabaseLookupCertificateIssuer}
-\alias{gTlsDatabaseLookupCertificateIssuerFinish}
-\alias{gTlsDatabaseLookupCertificatesIssuedBy}
-\alias{gTlsDatabaseLookupCertificatesIssuedByFinish}
-\alias{gTlsDatabaseVerifyChain}
-\alias{gTlsDatabaseVerifyChainFinish}
-\alias{gTlsErrorQuark}
-\alias{gTlsFileDatabaseNew}
-\alias{gTlsInteractionAskPassword}
-\alias{gTlsInteractionAskPasswordFinish}
-\alias{gTlsInteractionInvokeAskPassword}
-\alias{gTlsInteractionInvokeRequestCertificate}
-\alias{gTlsInteractionRequestCertificate}
-\alias{gTlsInteractionRequestCertificateFinish}
-\alias{gTlsPasswordNew}
-\alias{gTlsPasswordGetDescription}
-\alias{gTlsPasswordGetFlags}
-\alias{gTlsPasswordGetValue}
-\alias{gTlsPasswordGetWarning}
-\alias{gTlsPasswordSetDescription}
-\alias{gTlsPasswordSetFlags}
-\alias{gTlsPasswordSetValue}
-\alias{gTlsPasswordSetWarning}
-\alias{gTlsServerConnectionNew}
 \alias{gVfsGetDefault}
 \alias{gVfsGetLocal}
 \alias{gVfsGetFileForPath}
@@ -4808,68 +4691,6 @@ gDriveStartFinish(drive, result)
 
 gDriveStopFinish(drive, result)
 
-gDtlsClientConnectionNew(base_socket, server_identity)
-
-gDtlsClientConnectionGetAcceptedCas(conn)
-
-gDtlsClientConnectionGetServerIdentity(conn)
-
-gDtlsClientConnectionGetValidationFlags(conn)
-
-gDtlsClientConnectionSetServerIdentity(conn, identity)
-
-gDtlsClientConnectionSetValidationFlags(conn, flags)
-
-gDtlsConnectionClose(conn, cancellable)
-
-gDtlsConnectionCloseFinish(conn, result)
-
-gDtlsConnectionEmitAcceptCertificate(conn, peer_cert, errors)
-
-gDtlsConnectionGetCertificate(conn)
-
-gDtlsConnectionGetChannelBindingData(conn, type)
-
-gDtlsConnectionGetCiphersuiteName(conn)
-
-gDtlsConnectionGetDatabase(conn)
-
-gDtlsConnectionGetInteraction(conn)
-
-gDtlsConnectionGetNegotiatedProtocol(conn)
-
-gDtlsConnectionGetPeerCertificate(conn)
-
-gDtlsConnectionGetPeerCertificateErrors(conn)
-
-gDtlsConnectionGetProtocolVersion(conn)
-
-gDtlsConnectionGetRehandshakeMode(conn)
-
-gDtlsConnectionGetRequireCloseNotify(conn)
-
-gDtlsConnectionHandshake(conn, cancellable)
-
-gDtlsConnectionHandshakeFinish(conn, result)
-
-gDtlsConnectionSetAdvertisedProtocols(conn, protocols)
-
-gDtlsConnectionSetCertificate(conn, certificate)
-
-gDtlsConnectionSetDatabase(conn, database)
-
-gDtlsConnectionSetInteraction(conn, interaction)
-
-gDtlsConnectionSetRehandshakeMode(conn, mode)
-
-gDtlsConnectionSetRequireCloseNotify(conn, require_close_notify)
-
-gDtlsConnectionShutdown(conn, shutdown_read, shutdown_write, cancellable)
-
-gDtlsConnectionShutdownFinish(conn, result)
-
-gDtlsServerConnectionNew(base_socket, certificate)
-
 gEmblemNew(icon)
 
 gEmblemNewWithOrigin(icon, origin)
@@ -5931,209 +5752,6 @@ gThemedIconPrependName(icon, iconname)
 
 gThreadedSocketServiceNew(max_threads)
 
-gTlsBackendGetDefault()
-
-gTlsBackendGetCertificateType(backend)
-
-gTlsBackendGetClientConnectionType(backend)
-
-gTlsBackendGetDefaultDatabase(backend)
-
-gTlsBackendGetDtlsClientConnectionType(backend)
-
-gTlsBackendGetDtlsServerConnectionType(backend)
-
-gTlsBackendGetFileDatabaseType(backend)
-
-gTlsBackendGetServerConnectionType(backend)
-
-gTlsBackendSetDefaultDatabase(backend, database)
-
-gTlsBackendSupportsDtls(backend)
-
-gTlsBackendSupportsTls(backend)
-
-gTlsCertificateNewFromFile(file)
-
-gTlsCertificateNewFromFileWithPassword(file, password)
-
-gTlsCertificateNewFromFiles(cert_file, key_file)
-
-gTlsCertificateNewFromPem(data, length)
-
-gTlsCertificateNewFromPkcs11Uris(pkcs11_uri, private_key_pkcs11_uri)
-
-gTlsCertificateNewFromPkcs12(data, length, password)
-
-gTlsCertificateListNewFromFile(file)
-
-gTlsCertificateGetDnsNames(cert)
-
-gTlsCertificateGetIpAddresses(cert)
-
-gTlsCertificateGetIssuer(cert)
-
-gTlsCertificateGetIssuerName(cert)
-
-gTlsCertificateGetNotValidAfter(cert)
-
-gTlsCertificateGetNotValidBefore(cert)
-
-gTlsCertificateGetSubjectName(cert)
-
-gTlsCertificateIsSame(cert_one, cert_two)
-
-gTlsCertificateVerify(cert, identity, trusted_ca)
-
-gTlsChannelBindingErrorQuark()
-
-gTlsClientConnectionNew(base_io_stream, server_identity)
-
-gTlsClientConnectionCopySessionState(conn, source)
-
-gTlsClientConnectionGetAcceptedCas(conn)
-
-gTlsClientConnectionGetServerIdentity(conn)
-
-gTlsClientConnectionGetUseSsl3(conn)
-
-gTlsClientConnectionGetValidationFlags(conn)
-
-gTlsClientConnectionSetServerIdentity(conn, identity)
-
-gTlsClientConnectionSetUseSsl3(conn, use_ssl3)
-
-gTlsClientConnectionSetValidationFlags(conn, flags)
-
-gTlsConnectionEmitAcceptCertificate(conn, peer_cert, errors)
-
-gTlsConnectionGetCertificate(conn)
-
-gTlsConnectionGetChannelBindingData(conn, type)
-
-gTlsConnectionGetCiphersuiteName(conn)
-
-gTlsConnectionGetDatabase(conn)
-
-gTlsConnectionGetInteraction(conn)
-
-gTlsConnectionGetNegotiatedProtocol(conn)
-
-gTlsConnectionGetPeerCertificate(conn)
-
-gTlsConnectionGetPeerCertificateErrors(conn)
-
-gTlsConnectionGetProtocolVersion(conn)
-
-gTlsConnectionGetRehandshakeMode(conn)
-
-gTlsConnectionGetRequireCloseNotify(conn)
-
-gTlsConnectionGetUseSystemCertdb(conn)
-
-gTlsConnectionHandshake(conn, cancellable)
-
-gTlsConnectionHandshakeFinish(conn, result)
-
-gTlsConnectionSetAdvertisedProtocols(conn, protocols)
-
-gTlsConnectionSetCertificate(conn, certificate)
-
-gTlsConnectionSetDatabase(conn, database)
-
-gTlsConnectionSetInteraction(conn, interaction)
-
-gTlsConnectionSetRehandshakeMode(conn, mode)
-
-gTlsConnectionSetRequireCloseNotify(conn, require_close_notify)
-
-gTlsConnectionSetUseSystemCertdb(conn, use_system_certdb)
-
-gTlsDatabaseCreateCertificateHandle(self, certificate)
-
-gTlsDatabaseLookupCertificateForHandle(
-  self,
-  handle,
-  interaction,
-  flags,
-  cancellable
-)
-
-gTlsDatabaseLookupCertificateForHandleFinish(self, result)
-
-gTlsDatabaseLookupCertificateIssuer(
-  self,
-  certificate,
-  interaction,
-  flags,
-  cancellable
-)
-
-gTlsDatabaseLookupCertificateIssuerFinish(self, result)
-
-gTlsDatabaseLookupCertificatesIssuedBy(
-  self,
-  issuer_raw_dn,
-  interaction,
-  flags,
-  cancellable
-)
-
-gTlsDatabaseLookupCertificatesIssuedByFinish(self, result)
-
-gTlsDatabaseVerifyChain(
-  self,
-  chain,
-  purpose,
-  identity,
-  interaction,
-  flags,
-  cancellable
-)
-
-gTlsDatabaseVerifyChainFinish(self, result)
-
-gTlsErrorQuark()
-
-gTlsFileDatabaseNew(anchors)
-
-gTlsInteractionAskPassword(interaction, password, cancellable)
-
-gTlsInteractionAskPasswordFinish(interaction, result)
-
-gTlsInteractionInvokeAskPassword(interaction, password, cancellable)
-
-gTlsInteractionInvokeRequestCertificate(
-  interaction,
-  connection,
-  flags,
-  cancellable
-)
-
-gTlsInteractionRequestCertificate(interaction, connection, flags, cancellable)
-
-gTlsInteractionRequestCertificateFinish(interaction, result)
-
-gTlsPasswordNew(flags, description)
-
-gTlsPasswordGetDescription(password)
-
-gTlsPasswordGetFlags(password)
-
-gTlsPasswordGetValue(password)
-
-gTlsPasswordGetWarning(password)
-
-gTlsPasswordSetDescription(password, description)
-
-gTlsPasswordSetFlags(password, flags)
-
-gTlsPasswordSetValue(password, value, length)
-
-gTlsPasswordSetWarning(password, warning)
-
-gTlsServerConnectionNew(base_io_stream, certificate)
-
 gVfsGetDefault()
 
 gVfsGetLocal()
@@ -6334,9 +5952,9 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{group}{InetAddress}
 
-\item{length}{gssize}
+\item{length}{guint}
 
-\item{file}{filename}
+\item{file}{utf8}
 
 \item{filename}{utf8}
 
@@ -6370,7 +5988,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{key}{utf8}
 
-\item{value}{guint8}
+\item{value}{filename}
 
 \item{checksum_type}{ChecksumType}
 
@@ -6474,7 +6092,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{marshal_data}{gpointer}
 
-\item{key_file}{filename}
+\item{key_file}{KeyFile}
 
 \item{group_name}{utf8}
 
@@ -6694,7 +6312,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{user}{utf8}
 
-\item{password}{TlsPassword}
+\item{password}{utf8}
 
 \item{auth_params}{utf8}
 
@@ -6720,7 +6338,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{escaped_string_end}{utf8}
 
-\item{mode}{TlsRehandshakeMode}
+\item{mode}{NormalizeMode}
 
 \item{n_blocks}{gsize}
 
@@ -6916,7 +6534,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{substitutor}{gchar}
 
-\item{source}{TlsClientConnection}
+\item{source}{GObject.Object}
 
 \item{delimiters}{utf8}
 
@@ -6992,7 +6610,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{binding}{Binding}
 
-\item{self}{TlsDatabase}
+\item{self}{TestDBus}
 
 \item{source_property}{utf8}
 
@@ -7274,32 +6892,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{kind}{utf8}
 
-\item{base_socket}{DatagramBased}
-
-\item{server_identity}{SocketConnectable}
-
-\item{conn}{TlsConnection}
-
-\item{identity}{SocketConnectable}
-
-\item{peer_cert}{TlsCertificate}
-
-\item{errors}{TlsCertificateFlags}
-
-\item{protocols}{utf8}
-
-\item{certificate}{TlsCertificate}
-
-\item{database}{TlsDatabase}
-
-\item{interaction}{TlsInteraction}
-
-\item{require_close_notify}{gboolean}
-
-\item{shutdown_read}{gboolean}
-
-\item{shutdown_write}{gboolean}
-
 \item{icon}{ThemedIcon}
 
 \item{origin}{EmblemOrigin}
@@ -7502,6 +7094,10 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{ttl}{guint}
 
+\item{shutdown_read}{gboolean}
+
+\item{shutdown_write}{gboolean}
+
 \item{destlen}{gsize}
 
 \item{enumerator}{SocketAddressEnumerator}
@@ -7550,41 +7146,11 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{base_io_stream}{IOStream}
 
+\item{conn}{TcpWrapperConnection}
+
 \item{iconname}{utf8}
 
 \item{iconnames}{utf8}
-
-\item{backend}{TlsBackend}
-
-\item{cert_file}{filename}
-
-\item{pkcs11_uri}{utf8}
-
-\item{private_key_pkcs11_uri}{utf8}
-
-\item{cert}{TlsCertificate}
-
-\item{cert_one}{TlsCertificate}
-
-\item{cert_two}{TlsCertificate}
-
-\item{trusted_ca}{TlsCertificate}
-
-\item{use_ssl3}{gboolean}
-
-\item{use_system_certdb}{gboolean}
-
-\item{handle}{utf8}
-
-\item{issuer_raw_dn}{guint8}
-
-\item{chain}{TlsCertificate}
-
-\item{purpose}{utf8}
-
-\item{anchors}{filename}
-
-\item{warning}{utf8}
 
 \item{vfs}{Vfs}
 
@@ -10197,68 +9763,6 @@ gboolean
 
 gboolean
 
-DtlsClientConnection
-
-GLib.List
-
-SocketConnectable
-
-TlsCertificateFlags
-
-Return value from C function
-
-Return value from C function
-
-gboolean
-
-gboolean
-
-gboolean
-
-TlsCertificate
-
-gboolean
-
-utf8
-
-TlsDatabase
-
-TlsInteraction
-
-utf8
-
-TlsCertificate
-
-TlsCertificateFlags
-
-TlsProtocolVersion
-
-TlsRehandshakeMode
-
-gboolean
-
-gboolean
-
-gboolean
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-gboolean
-
-gboolean
-
-DtlsServerConnection
-
 Emblem
 
 Emblem
@@ -11282,178 +10786,6 @@ utf8
 Return value from C function
 
 SocketService
-
-TlsBackend
-
-GType
-
-GType
-
-TlsDatabase
-
-GType
-
-GType
-
-GType
-
-GType
-
-Return value from C function
-
-gboolean
-
-gboolean
-
-TlsCertificate
-
-TlsCertificate
-
-TlsCertificate
-
-TlsCertificate
-
-TlsCertificate
-
-TlsCertificate
-
-GLib.List
-
-GLib.Bytes
-
-InetAddress
-
-TlsCertificate
-
-utf8
-
-GLib.DateTime
-
-GLib.DateTime
-
-utf8
-
-gboolean
-
-TlsCertificateFlags
-
-GLib.Quark
-
-TlsClientConnection
-
-Return value from C function
-
-GLib.List
-
-SocketConnectable
-
-gboolean
-
-TlsCertificateFlags
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-gboolean
-
-TlsCertificate
-
-gboolean
-
-utf8
-
-TlsDatabase
-
-TlsInteraction
-
-utf8
-
-TlsCertificate
-
-TlsCertificateFlags
-
-TlsProtocolVersion
-
-TlsRehandshakeMode
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-utf8
-
-TlsCertificate
-
-TlsCertificate
-
-TlsCertificate
-
-TlsCertificate
-
-GLib.List
-
-GLib.List
-
-TlsCertificateFlags
-
-TlsCertificateFlags
-
-GLib.Quark
-
-TlsFileDatabase
-
-TlsInteractionResult
-
-TlsInteractionResult
-
-TlsInteractionResult
-
-TlsInteractionResult
-
-TlsInteractionResult
-
-TlsInteractionResult
-
-TlsPassword
-
-utf8
-
-TlsPasswordFlags
-
-guint8
-
-utf8
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-TlsServerConnection
 
 Vfs
 
@@ -14166,68 +13498,6 @@ gDriveStartFinish
 
 gDriveStopFinish
 
-gDtlsClientConnectionNew
-
-gDtlsClientConnectionGetAcceptedCas
-
-gDtlsClientConnectionGetServerIdentity
-
-gDtlsClientConnectionGetValidationFlags
-
-gDtlsClientConnectionSetServerIdentity
-
-gDtlsClientConnectionSetValidationFlags
-
-gDtlsConnectionClose
-
-gDtlsConnectionCloseFinish
-
-gDtlsConnectionEmitAcceptCertificate
-
-gDtlsConnectionGetCertificate
-
-gDtlsConnectionGetChannelBindingData
-
-gDtlsConnectionGetCiphersuiteName
-
-gDtlsConnectionGetDatabase
-
-gDtlsConnectionGetInteraction
-
-gDtlsConnectionGetNegotiatedProtocol
-
-gDtlsConnectionGetPeerCertificate
-
-gDtlsConnectionGetPeerCertificateErrors
-
-gDtlsConnectionGetProtocolVersion
-
-gDtlsConnectionGetRehandshakeMode
-
-gDtlsConnectionGetRequireCloseNotify
-
-gDtlsConnectionHandshake
-
-gDtlsConnectionHandshakeFinish
-
-gDtlsConnectionSetAdvertisedProtocols
-
-gDtlsConnectionSetCertificate
-
-gDtlsConnectionSetDatabase
-
-gDtlsConnectionSetInteraction
-
-gDtlsConnectionSetRehandshakeMode
-
-gDtlsConnectionSetRequireCloseNotify
-
-gDtlsConnectionShutdown
-
-gDtlsConnectionShutdownFinish
-
-gDtlsServerConnectionNew
-
 gEmblemNew
 
 gEmblemNewWithOrigin
@@ -15251,178 +14521,6 @@ gThemedIconGetNames
 gThemedIconPrependName
 
 gThreadedSocketServiceNew
-
-gTlsBackendGetDefault
-
-gTlsBackendGetCertificateType
-
-gTlsBackendGetClientConnectionType
-
-gTlsBackendGetDefaultDatabase
-
-gTlsBackendGetDtlsClientConnectionType
-
-gTlsBackendGetDtlsServerConnectionType
-
-gTlsBackendGetFileDatabaseType
-
-gTlsBackendGetServerConnectionType
-
-gTlsBackendSetDefaultDatabase
-
-gTlsBackendSupportsDtls
-
-gTlsBackendSupportsTls
-
-gTlsCertificateNewFromFile
-
-gTlsCertificateNewFromFileWithPassword
-
-gTlsCertificateNewFromFiles
-
-gTlsCertificateNewFromPem
-
-gTlsCertificateNewFromPkcs11Uris
-
-gTlsCertificateNewFromPkcs12
-
-gTlsCertificateListNewFromFile
-
-gTlsCertificateGetDnsNames
-
-gTlsCertificateGetIpAddresses
-
-gTlsCertificateGetIssuer
-
-gTlsCertificateGetIssuerName
-
-gTlsCertificateGetNotValidAfter
-
-gTlsCertificateGetNotValidBefore
-
-gTlsCertificateGetSubjectName
-
-gTlsCertificateIsSame
-
-gTlsCertificateVerify
-
-gTlsChannelBindingErrorQuark
-
-gTlsClientConnectionNew
-
-gTlsClientConnectionCopySessionState
-
-gTlsClientConnectionGetAcceptedCas
-
-gTlsClientConnectionGetServerIdentity
-
-gTlsClientConnectionGetUseSsl3
-
-gTlsClientConnectionGetValidationFlags
-
-gTlsClientConnectionSetServerIdentity
-
-gTlsClientConnectionSetUseSsl3
-
-gTlsClientConnectionSetValidationFlags
-
-gTlsConnectionEmitAcceptCertificate
-
-gTlsConnectionGetCertificate
-
-gTlsConnectionGetChannelBindingData
-
-gTlsConnectionGetCiphersuiteName
-
-gTlsConnectionGetDatabase
-
-gTlsConnectionGetInteraction
-
-gTlsConnectionGetNegotiatedProtocol
-
-gTlsConnectionGetPeerCertificate
-
-gTlsConnectionGetPeerCertificateErrors
-
-gTlsConnectionGetProtocolVersion
-
-gTlsConnectionGetRehandshakeMode
-
-gTlsConnectionGetRequireCloseNotify
-
-gTlsConnectionGetUseSystemCertdb
-
-gTlsConnectionHandshake
-
-gTlsConnectionHandshakeFinish
-
-gTlsConnectionSetAdvertisedProtocols
-
-gTlsConnectionSetCertificate
-
-gTlsConnectionSetDatabase
-
-gTlsConnectionSetInteraction
-
-gTlsConnectionSetRehandshakeMode
-
-gTlsConnectionSetRequireCloseNotify
-
-gTlsConnectionSetUseSystemCertdb
-
-gTlsDatabaseCreateCertificateHandle
-
-gTlsDatabaseLookupCertificateForHandle
-
-gTlsDatabaseLookupCertificateForHandleFinish
-
-gTlsDatabaseLookupCertificateIssuer
-
-gTlsDatabaseLookupCertificateIssuerFinish
-
-gTlsDatabaseLookupCertificatesIssuedBy
-
-gTlsDatabaseLookupCertificatesIssuedByFinish
-
-gTlsDatabaseVerifyChain
-
-gTlsDatabaseVerifyChainFinish
-
-gTlsErrorQuark
-
-gTlsFileDatabaseNew
-
-gTlsInteractionAskPassword
-
-gTlsInteractionAskPasswordFinish
-
-gTlsInteractionInvokeAskPassword
-
-gTlsInteractionInvokeRequestCertificate
-
-gTlsInteractionRequestCertificate
-
-gTlsInteractionRequestCertificateFinish
-
-gTlsPasswordNew
-
-gTlsPasswordGetDescription
-
-gTlsPasswordGetFlags
-
-gTlsPasswordGetValue
-
-gTlsPasswordGetWarning
-
-gTlsPasswordSetDescription
-
-gTlsPasswordSetFlags
-
-gTlsPasswordSetValue
-
-gTlsPasswordSetWarning
-
-gTlsServerConnectionNew
 
 gVfsGetDefault
 

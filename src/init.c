@@ -24,12 +24,17 @@ extern SEXP R_gdk_clipboard_get_content(SEXP s1);
 extern SEXP R_gdk_clipboard_get_display(SEXP s1);
 extern SEXP R_gdk_clipboard_get_formats(SEXP s1);
 extern SEXP R_gdk_clipboard_is_local(SEXP s1);
+extern SEXP R_gdk_clipboard_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gdk_clipboard_read_finish(SEXP s1, SEXP s2);
+extern SEXP R_gdk_clipboard_read_text_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_clipboard_read_text_finish(SEXP s1, SEXP s2);
+extern SEXP R_gdk_clipboard_read_texture_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_clipboard_read_texture_finish(SEXP s1, SEXP s2);
+extern SEXP R_gdk_clipboard_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gdk_clipboard_read_value_finish(SEXP s1, SEXP s2);
 extern SEXP R_gdk_clipboard_set_content(SEXP s1, SEXP s2);
 extern SEXP R_gdk_clipboard_set_value(SEXP s1, SEXP s2);
+extern SEXP R_gdk_clipboard_store_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gdk_clipboard_store_finish(SEXP s1, SEXP s2);
 extern SEXP R_gdk_color_state_create_cicp_params(SEXP s1);
 extern SEXP R_gdk_color_state_equal(SEXP s1, SEXP s2);
@@ -52,6 +57,7 @@ extern SEXP R_gdk_content_deserializer_get_user_data(SEXP s1);
 extern SEXP R_gdk_content_deserializer_get_value(SEXP s1);
 extern SEXP R_gdk_content_deserializer_return_error(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_deserializer_return_success(SEXP s1);
+extern SEXP R_gdk_content_deserializer_set_task_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_content_formats_new(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_formats_new_for_gtype(SEXP s1);
 extern SEXP R_gdk_content_formats_contain_gtype(SEXP s1, SEXP s2);
@@ -83,8 +89,10 @@ extern SEXP R_gdk_content_provider_new_for_bytes(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_provider_new_for_value(SEXP s1);
 extern SEXP R_gdk_content_provider_new_union(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_provider_content_changed(SEXP s1);
+extern SEXP R_gdk_content_provider_get_value(SEXP s1);
 extern SEXP R_gdk_content_provider_ref_formats(SEXP s1);
 extern SEXP R_gdk_content_provider_ref_storable_formats(SEXP s1);
+extern SEXP R_gdk_content_provider_write_mime_type_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gdk_content_provider_write_mime_type_finish(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_serializer_get_cancellable(SEXP s1);
 extern SEXP R_gdk_content_serializer_get_gtype(SEXP s1);
@@ -96,9 +104,11 @@ extern SEXP R_gdk_content_serializer_get_user_data(SEXP s1);
 extern SEXP R_gdk_content_serializer_get_value(SEXP s1);
 extern SEXP R_gdk_content_serializer_return_error(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_serializer_return_success(SEXP s1);
+extern SEXP R_gdk_content_serializer_set_task_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_crossing_event_get_detail(SEXP s1);
 extern SEXP R_gdk_crossing_event_get_focus(SEXP s1);
 extern SEXP R_gdk_crossing_event_get_mode(SEXP s1);
+extern SEXP R_gdk_cursor_new_from_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_cursor_new_from_name(SEXP s1, SEXP s2);
 extern SEXP R_gdk_cursor_new_from_texture(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_cursor_get_fallback(SEXP s1);
@@ -163,6 +173,7 @@ extern SEXP R_gdk_display_put_event(SEXP s1, SEXP s2);
 extern SEXP R_gdk_display_supports_input_shapes(SEXP s1);
 extern SEXP R_gdk_display_supports_shadow_width(SEXP s1);
 extern SEXP R_gdk_display_sync(SEXP s1);
+extern SEXP R_gdk_display_translate_key(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_display_manager_get(void);
 extern SEXP R_gdk_display_manager_get_default_display(SEXP s1);
 extern SEXP R_gdk_display_manager_list_displays(SEXP s1);
@@ -176,6 +187,7 @@ extern SEXP R_gdk_dmabuf_formats_get_n_formats(SEXP s1);
 extern SEXP R_gdk_dmabuf_formats_ref(SEXP s1);
 extern SEXP R_gdk_dmabuf_formats_unref(SEXP s1);
 extern SEXP R_gdk_dmabuf_texture_builder_new(void);
+extern SEXP R_gdk_dmabuf_texture_builder_build(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_dmabuf_texture_builder_get_color_state(SEXP s1);
 extern SEXP R_gdk_dmabuf_texture_builder_get_display(SEXP s1);
 extern SEXP R_gdk_dmabuf_texture_builder_get_fd(SEXP s1, SEXP s2);
@@ -229,7 +241,9 @@ extern SEXP R_gdk_drop_get_display(SEXP s1);
 extern SEXP R_gdk_drop_get_drag(SEXP s1);
 extern SEXP R_gdk_drop_get_formats(SEXP s1);
 extern SEXP R_gdk_drop_get_surface(SEXP s1);
+extern SEXP R_gdk_drop_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gdk_drop_read_finish(SEXP s1, SEXP s2);
+extern SEXP R_gdk_drop_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gdk_drop_read_value_finish(SEXP s1, SEXP s2);
 extern SEXP R_gdk_drop_status(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_event_get_axes(SEXP s1);
@@ -293,8 +307,10 @@ extern SEXP R_gdk_gl_context_set_forward_compatible(SEXP s1, SEXP s2);
 extern SEXP R_gdk_gl_context_set_required_version(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_gl_context_set_use_es(SEXP s1, SEXP s2);
 extern SEXP R_gdk_gl_error_quark(void);
+extern SEXP R_gdk_gl_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gdk_gl_texture_release(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_new(void);
+extern SEXP R_gdk_gl_texture_builder_build(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_gl_texture_builder_get_color_state(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_get_context(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_get_format(SEXP s1);
@@ -322,6 +338,7 @@ extern SEXP R_gdk_key_event_get_keycode(SEXP s1);
 extern SEXP R_gdk_key_event_get_keyval(SEXP s1);
 extern SEXP R_gdk_key_event_get_layout(SEXP s1);
 extern SEXP R_gdk_key_event_get_level(SEXP s1);
+extern SEXP R_gdk_key_event_get_match(SEXP s1);
 extern SEXP R_gdk_key_event_is_modifier(SEXP s1);
 extern SEXP R_gdk_key_event_matches(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_memory_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
@@ -431,6 +448,7 @@ extern SEXP R_gdk_surface_create_vulkan_context(SEXP s1);
 extern SEXP R_gdk_surface_destroy(SEXP s1);
 extern SEXP R_gdk_surface_get_cursor(SEXP s1);
 extern SEXP R_gdk_surface_get_device_cursor(SEXP s1, SEXP s2);
+extern SEXP R_gdk_surface_get_device_position(SEXP s1, SEXP s2);
 extern SEXP R_gdk_surface_get_display(SEXP s1);
 extern SEXP R_gdk_surface_get_frame_clock(SEXP s1);
 extern SEXP R_gdk_surface_get_height(SEXP s1);
@@ -464,6 +482,7 @@ extern SEXP R_gdk_texture_save_to_tiff_bytes(SEXP s1);
 extern SEXP R_gdk_texture_downloader_new(SEXP s1);
 extern SEXP R_gdk_texture_downloader_copy(SEXP s1);
 extern SEXP R_gdk_texture_downloader_download_bytes(SEXP s1);
+extern SEXP R_gdk_texture_downloader_download_bytes_with_planes(SEXP s1);
 extern SEXP R_gdk_texture_downloader_download_into(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_texture_downloader_free(SEXP s1);
 extern SEXP R_gdk_texture_downloader_get_color_state(SEXP s1);
@@ -524,6 +543,11 @@ extern SEXP R_gdk_cairo_region(SEXP s1, SEXP s2);
 extern SEXP R_gdk_cairo_region_create_from_surface(SEXP s1);
 extern SEXP R_gdk_cairo_set_source_pixbuf(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_cairo_set_source_rgba(SEXP s1, SEXP s2);
+extern SEXP R_gdk_content_deserialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_gdk_content_deserialize_finish(SEXP s1);
+extern SEXP R_gdk_content_register_deserializer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gdk_content_register_serializer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gdk_content_serialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gdk_content_serialize_finish(SEXP s1);
 extern SEXP R_gdk_intern_mime_type(SEXP s1);
 extern SEXP R_gdk_keyval_convert_case(SEXP s1);
@@ -572,12 +596,15 @@ extern SEXP R_g_app_info_create_from_commandline(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_app_info_get_all(void);
 extern SEXP R_g_app_info_get_all_for_type(SEXP s1);
 extern SEXP R_g_app_info_get_default_for_type(SEXP s1, SEXP s2);
+extern SEXP R_g_app_info_get_default_for_type_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_app_info_get_default_for_type_finish(SEXP s1);
 extern SEXP R_g_app_info_get_default_for_uri_scheme(SEXP s1);
+extern SEXP R_g_app_info_get_default_for_uri_scheme_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_app_info_get_default_for_uri_scheme_finish(SEXP s1);
 extern SEXP R_g_app_info_get_fallback_for_type(SEXP s1);
 extern SEXP R_g_app_info_get_recommended_for_type(SEXP s1);
 extern SEXP R_g_app_info_launch_default_for_uri(SEXP s1, SEXP s2);
+extern SEXP R_g_app_info_launch_default_for_uri_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_app_info_launch_default_for_uri_finish(SEXP s1);
 extern SEXP R_g_app_info_reset_type_associations(SEXP s1);
 extern SEXP R_g_app_info_add_supports_type(SEXP s1, SEXP s2);
@@ -596,6 +623,7 @@ extern SEXP R_g_app_info_get_name(SEXP s1);
 extern SEXP R_g_app_info_get_supported_types(SEXP s1);
 extern SEXP R_g_app_info_launch(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_app_info_launch_uris(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_app_info_launch_uris_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_app_info_launch_uris_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_app_info_remove_supports_type(SEXP s1, SEXP s2);
 extern SEXP R_g_app_info_set_as_default_for_extension(SEXP s1, SEXP s2);
@@ -665,6 +693,8 @@ extern SEXP R_g_application_command_line_getenv(SEXP s1, SEXP s2);
 extern SEXP R_g_application_command_line_print_literal(SEXP s1, SEXP s2);
 extern SEXP R_g_application_command_line_printerr_literal(SEXP s1, SEXP s2);
 extern SEXP R_g_application_command_line_set_exit_status(SEXP s1, SEXP s2);
+extern SEXP R_g_async_initable_newv_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_g_async_initable_init_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_async_initable_init_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_async_initable_new_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_async_result_get_source_object(SEXP s1);
@@ -674,6 +704,7 @@ extern SEXP R_g_async_result_legacy_propagate_error(SEXP s1);
 extern SEXP R_g_buffered_input_stream_new(SEXP s1);
 extern SEXP R_g_buffered_input_stream_new_sized(SEXP s1, SEXP s2);
 extern SEXP R_g_buffered_input_stream_fill(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_buffered_input_stream_fill_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_buffered_input_stream_fill_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_buffered_input_stream_get_available(SEXP s1);
 extern SEXP R_g_buffered_input_stream_get_buffer_size(SEXP s1);
@@ -692,9 +723,11 @@ extern SEXP R_g_bytes_icon_get_bytes(SEXP s1);
 extern SEXP R_g_cancellable_new(void);
 extern SEXP R_g_cancellable_get_current(void);
 extern SEXP R_g_cancellable_cancel(SEXP s1);
+extern SEXP R_g_cancellable_connect(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_cancellable_disconnect(SEXP s1, SEXP s2);
 extern SEXP R_g_cancellable_get_fd(SEXP s1);
 extern SEXP R_g_cancellable_is_cancelled(SEXP s1);
+extern SEXP R_g_cancellable_make_pollfd(SEXP s1, SEXP s2);
 extern SEXP R_g_cancellable_pop_current(SEXP s1);
 extern SEXP R_g_cancellable_push_current(SEXP s1);
 extern SEXP R_g_cancellable_release_fd(SEXP s1);
@@ -732,15 +765,22 @@ extern SEXP R_g_dbus_connection_new_finish(SEXP s1);
 extern SEXP R_g_dbus_connection_new_for_address_finish(SEXP s1);
 extern SEXP R_g_dbus_connection_new_for_address_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_dbus_connection_new_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_dbus_connection_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_g_dbus_connection_new_for_address(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_dbus_connection_add_filter(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_dbus_connection_call(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12);
 extern SEXP R_g_dbus_connection_call_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_connection_call_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
+extern SEXP R_g_dbus_connection_call_with_unix_fd_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12, SEXP s13);
 extern SEXP R_g_dbus_connection_call_with_unix_fd_list_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_connection_call_with_unix_fd_list_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11);
+extern SEXP R_g_dbus_connection_close(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_dbus_connection_close_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_connection_close_sync(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_connection_emit_signal(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_dbus_connection_export_action_group(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_dbus_connection_export_menu_model(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_dbus_connection_flush(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_dbus_connection_flush_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_connection_flush_sync(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_connection_get_capabilities(SEXP s1);
@@ -752,11 +792,17 @@ extern SEXP R_g_dbus_connection_get_peer_credentials(SEXP s1);
 extern SEXP R_g_dbus_connection_get_stream(SEXP s1);
 extern SEXP R_g_dbus_connection_get_unique_name(SEXP s1);
 extern SEXP R_g_dbus_connection_is_closed(SEXP s1);
+extern SEXP R_g_dbus_connection_register_object(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_dbus_connection_register_object_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_dbus_connection_register_object_with_closures2(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_dbus_connection_register_subtree(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_dbus_connection_remove_filter(SEXP s1, SEXP s2);
+extern SEXP R_g_dbus_connection_send_message(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_dbus_connection_send_message_with_reply(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_dbus_connection_send_message_with_reply_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_dbus_connection_send_message_with_reply_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_dbus_connection_set_exit_on_close(SEXP s1, SEXP s2);
+extern SEXP R_g_dbus_connection_signal_subscribe(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
 extern SEXP R_g_dbus_connection_signal_unsubscribe(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_connection_start_message_processing(SEXP s1);
 extern SEXP R_g_dbus_connection_unexport_action_group(SEXP s1, SEXP s2);
@@ -769,6 +815,7 @@ extern SEXP R_g_dbus_error_is_remote_error(SEXP s1);
 extern SEXP R_g_dbus_error_new_for_dbus_error(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_error_quark(void);
 extern SEXP R_g_dbus_error_register_error(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_dbus_error_register_error_domain(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_dbus_error_strip_remote_error(SEXP s1);
 extern SEXP R_g_dbus_error_unregister_error(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_dbus_interface_dup_object(SEXP s1);
@@ -874,6 +921,10 @@ extern SEXP R_g_dbus_object_manager_get_object_path(SEXP s1);
 extern SEXP R_g_dbus_object_manager_get_objects(SEXP s1);
 extern SEXP R_g_dbus_object_manager_client_new_finish(SEXP s1);
 extern SEXP R_g_dbus_object_manager_client_new_for_bus_finish(SEXP s1);
+extern SEXP R_g_dbus_object_manager_client_new_for_bus_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_g_dbus_object_manager_client_new_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_g_dbus_object_manager_client_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
+extern SEXP R_g_dbus_object_manager_client_new_for_bus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
 extern SEXP R_g_dbus_object_manager_client_get_connection(SEXP s1);
 extern SEXP R_g_dbus_object_manager_client_get_flags(SEXP s1);
 extern SEXP R_g_dbus_object_manager_client_get_name(SEXP s1);
@@ -899,8 +950,12 @@ extern SEXP R_g_dbus_proxy_new_finish(SEXP s1);
 extern SEXP R_g_dbus_proxy_new_for_bus_finish(SEXP s1);
 extern SEXP R_g_dbus_proxy_new_for_bus_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_dbus_proxy_new_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_g_dbus_proxy_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
+extern SEXP R_g_dbus_proxy_new_for_bus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
+extern SEXP R_g_dbus_proxy_call(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_g_dbus_proxy_call_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_proxy_call_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_dbus_proxy_call_with_unix_fd_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_g_dbus_proxy_call_with_unix_fd_list_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_proxy_call_with_unix_fd_list_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_dbus_proxy_get_cached_property(SEXP s1, SEXP s2);
@@ -933,6 +988,7 @@ extern SEXP R_g_data_input_stream_read_int16(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_int32(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_int64(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_line(SEXP s1, SEXP s2);
+extern SEXP R_g_data_input_stream_read_line_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_data_input_stream_read_line_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_line_finish_utf8(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_line_utf8(SEXP s1, SEXP s2);
@@ -940,8 +996,10 @@ extern SEXP R_g_data_input_stream_read_uint16(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_uint32(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_uint64(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_until(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_data_input_stream_read_until_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_data_input_stream_read_until_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_read_upto(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_data_input_stream_read_upto_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_data_input_stream_read_upto_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_set_byte_order(SEXP s1, SEXP s2);
 extern SEXP R_g_data_input_stream_set_newline_type(SEXP s1, SEXP s2);
@@ -970,7 +1028,9 @@ extern SEXP R_g_drive_can_poll_for_media(SEXP s1);
 extern SEXP R_g_drive_can_start(SEXP s1);
 extern SEXP R_g_drive_can_start_degraded(SEXP s1);
 extern SEXP R_g_drive_can_stop(SEXP s1);
+extern SEXP R_g_drive_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_drive_eject_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_drive_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_drive_eject_with_operation_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_drive_enumerate_identifiers(SEXP s1);
 extern SEXP R_g_drive_get_icon(SEXP s1);
@@ -985,39 +1045,12 @@ extern SEXP R_g_drive_has_volumes(SEXP s1);
 extern SEXP R_g_drive_is_media_check_automatic(SEXP s1);
 extern SEXP R_g_drive_is_media_removable(SEXP s1);
 extern SEXP R_g_drive_is_removable(SEXP s1);
+extern SEXP R_g_drive_poll_for_media(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_drive_poll_for_media_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_drive_start(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_drive_start_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_drive_stop(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_drive_stop_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_client_connection_new(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_client_connection_get_accepted_cas(SEXP s1);
-extern SEXP R_g_dtls_client_connection_get_server_identity(SEXP s1);
-extern SEXP R_g_dtls_client_connection_get_validation_flags(SEXP s1);
-extern SEXP R_g_dtls_client_connection_set_server_identity(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_client_connection_set_validation_flags(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_close(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_close_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_emit_accept_certificate(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dtls_connection_get_certificate(SEXP s1);
-extern SEXP R_g_dtls_connection_get_ciphersuite_name(SEXP s1);
-extern SEXP R_g_dtls_connection_get_database(SEXP s1);
-extern SEXP R_g_dtls_connection_get_interaction(SEXP s1);
-extern SEXP R_g_dtls_connection_get_negotiated_protocol(SEXP s1);
-extern SEXP R_g_dtls_connection_get_peer_certificate(SEXP s1);
-extern SEXP R_g_dtls_connection_get_peer_certificate_errors(SEXP s1);
-extern SEXP R_g_dtls_connection_get_protocol_version(SEXP s1);
-extern SEXP R_g_dtls_connection_get_rehandshake_mode(SEXP s1);
-extern SEXP R_g_dtls_connection_get_require_close_notify(SEXP s1);
-extern SEXP R_g_dtls_connection_handshake(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_handshake_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_set_advertised_protocols(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_set_certificate(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_set_database(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_set_interaction(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_set_rehandshake_mode(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_set_require_close_notify(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_connection_shutdown(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_dtls_connection_shutdown_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dtls_server_connection_new(SEXP s1, SEXP s2);
 extern SEXP R_g_emblem_new(SEXP s1);
 extern SEXP R_g_emblem_new_with_origin(SEXP s1, SEXP s2);
 extern SEXP R_g_emblem_get_icon(SEXP s1);
@@ -1033,28 +1066,40 @@ extern SEXP R_g_file_new_for_commandline_arg_and_cwd(SEXP s1, SEXP s2);
 extern SEXP R_g_file_new_for_path(SEXP s1);
 extern SEXP R_g_file_new_for_uri(SEXP s1);
 extern SEXP R_g_file_new_tmp(SEXP s1);
+extern SEXP R_g_file_new_tmp_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_file_new_tmp_dir_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_new_tmp_dir_finish(SEXP s1);
 extern SEXP R_g_file_new_tmp_finish(SEXP s1);
 extern SEXP R_g_file_parse_name(SEXP s1);
 extern SEXP R_g_file_append_to(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_append_to_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_append_to_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_build_attribute_list_for_copy(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_copy(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_file_copy_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_g_file_copy_async_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_file_copy_attributes(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_file_copy_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_create(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_create_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_create_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_create_readwrite(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_create_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_create_readwrite_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_delete(SEXP s1, SEXP s2);
+extern SEXP R_g_file_delete_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_delete_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_dup(SEXP s1);
+extern SEXP R_g_file_eject_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_eject_mountable_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_file_eject_mountable_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_eject_mountable_with_operation_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_enumerate_children(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_file_enumerate_children_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_file_enumerate_children_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_file_find_enclosing_mount(SEXP s1, SEXP s2);
+extern SEXP R_g_file_find_enclosing_mount_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_find_enclosing_mount_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_get_basename(SEXP s1);
 extern SEXP R_g_file_get_child(SEXP s1, SEXP s2);
@@ -1071,44 +1116,63 @@ extern SEXP R_g_file_has_uri_scheme(SEXP s1, SEXP s2);
 extern SEXP R_g_file_hash(SEXP s1);
 extern SEXP R_g_file_is_native(SEXP s1);
 extern SEXP R_g_file_load_bytes(SEXP s1, SEXP s2);
+extern SEXP R_g_file_load_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_file_load_bytes_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_load_contents(SEXP s1, SEXP s2);
+extern SEXP R_g_file_load_contents_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_file_load_contents_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_load_partial_contents_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_make_directory(SEXP s1, SEXP s2);
+extern SEXP R_g_file_make_directory_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_make_directory_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_make_directory_with_parents(SEXP s1, SEXP s2);
 extern SEXP R_g_file_make_symbolic_link(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_make_symbolic_link_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_make_symbolic_link_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_file_measure_disk_usage(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_measure_disk_usage_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_monitor(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_monitor_directory(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_monitor_file(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_mount_enclosing_volume(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_mount_enclosing_volume_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_file_mount_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_mount_mountable_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_file_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_file_move_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_g_file_move_async_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_file_move_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_open_readwrite(SEXP s1, SEXP s2);
+extern SEXP R_g_file_open_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_open_readwrite_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_peek_path(SEXP s1);
+extern SEXP R_g_file_poll_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_file_poll_mountable_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_default_handler(SEXP s1, SEXP s2);
+extern SEXP R_g_file_query_default_handler_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_query_default_handler_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_exists(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_file_type(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_query_filesystem_info(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_query_filesystem_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_query_filesystem_info_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_file_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_file_query_info_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_settable_attributes(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_writable_namespaces(SEXP s1, SEXP s2);
 extern SEXP R_g_file_read(SEXP s1, SEXP s2);
+extern SEXP R_g_file_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_read_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_replace(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_file_replace_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_g_file_replace_contents(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_g_file_replace_contents_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
+extern SEXP R_g_file_replace_contents_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_g_file_replace_contents_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_replace_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_replace_readwrite(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_file_replace_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_g_file_replace_readwrite_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_resolve_relative_path(SEXP s1, SEXP s2);
 extern SEXP R_g_file_set_attribute(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
@@ -1118,16 +1182,23 @@ extern SEXP R_g_file_set_attribute_int64(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
 extern SEXP R_g_file_set_attribute_string(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_set_attribute_uint32(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_set_attribute_uint64(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_file_set_attributes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_file_set_attributes_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_set_attributes_from_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_file_set_display_name(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_set_display_name_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_set_display_name_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_file_start_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_start_mountable_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_file_stop_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_stop_mountable_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_supports_thread_contexts(SEXP s1);
 extern SEXP R_g_file_trash(SEXP s1, SEXP s2);
+extern SEXP R_g_file_trash_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_trash_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_file_unmount_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_unmount_mountable_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_file_unmount_mountable_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_unmount_mountable_with_operation_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_attribute_info_list_new(void);
 extern SEXP R_g_file_attribute_info_list_add(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -1145,6 +1216,7 @@ extern SEXP R_g_file_attribute_matcher_subtract(SEXP s1, SEXP s2);
 extern SEXP R_g_file_attribute_matcher_to_string(SEXP s1);
 extern SEXP R_g_file_attribute_matcher_unref(SEXP s1);
 extern SEXP R_g_file_enumerator_close(SEXP s1, SEXP s2);
+extern SEXP R_g_file_enumerator_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_enumerator_close_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_enumerator_get_child(SEXP s1, SEXP s2);
 extern SEXP R_g_file_enumerator_get_container(SEXP s1);
@@ -1152,10 +1224,12 @@ extern SEXP R_g_file_enumerator_has_pending(SEXP s1);
 extern SEXP R_g_file_enumerator_is_closed(SEXP s1);
 extern SEXP R_g_file_enumerator_iterate(SEXP s1, SEXP s2);
 extern SEXP R_g_file_enumerator_next_file(SEXP s1, SEXP s2);
+extern SEXP R_g_file_enumerator_next_files_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_enumerator_next_files_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_enumerator_set_pending(SEXP s1, SEXP s2);
 extern SEXP R_g_file_io_stream_get_etag(SEXP s1);
 extern SEXP R_g_file_io_stream_query_info(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_io_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_io_stream_query_info_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_icon_new(SEXP s1);
 extern SEXP R_g_file_icon_get_file(SEXP s1);
@@ -1167,6 +1241,7 @@ extern SEXP R_g_file_info_get_access_date_time(SEXP s1);
 extern SEXP R_g_file_info_get_attribute_as_string(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_boolean(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_byte_string(SEXP s1, SEXP s2);
+extern SEXP R_g_file_info_get_attribute_data(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_file_path(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_int32(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_int64(SEXP s1, SEXP s2);
@@ -1230,6 +1305,7 @@ extern SEXP R_g_file_info_set_symbolic_icon(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_symlink_target(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_unset_attribute_mask(SEXP s1);
 extern SEXP R_g_file_input_stream_query_info(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_input_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_input_stream_query_info_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_monitor_cancel(SEXP s1);
 extern SEXP R_g_file_monitor_emit_event(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -1237,6 +1313,7 @@ extern SEXP R_g_file_monitor_is_cancelled(SEXP s1);
 extern SEXP R_g_file_monitor_set_rate_limit(SEXP s1, SEXP s2);
 extern SEXP R_g_file_output_stream_get_etag(SEXP s1);
 extern SEXP R_g_file_output_stream_query_info(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_file_output_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_output_stream_query_info_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_filename_completer_new(void);
 extern SEXP R_g_filename_completer_get_completion_suffix(SEXP s1, SEXP s2);
@@ -1258,15 +1335,19 @@ extern SEXP R_g_io_extension_point_set_required_type(SEXP s1, SEXP s2);
 extern SEXP R_g_io_extension_point_implement(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_io_extension_point_lookup(SEXP s1);
 extern SEXP R_g_io_extension_point_register(SEXP s1);
+extern SEXP R_g_io_scheduler_job_send_to_mainloop(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_io_scheduler_job_send_to_mainloop_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_io_stream_splice_finish(SEXP s1);
 extern SEXP R_g_io_stream_clear_pending(SEXP s1);
 extern SEXP R_g_io_stream_close(SEXP s1, SEXP s2);
+extern SEXP R_g_io_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_io_stream_close_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_io_stream_get_input_stream(SEXP s1);
 extern SEXP R_g_io_stream_get_output_stream(SEXP s1);
 extern SEXP R_g_io_stream_has_pending(SEXP s1);
 extern SEXP R_g_io_stream_is_closed(SEXP s1);
 extern SEXP R_g_io_stream_set_pending(SEXP s1);
+extern SEXP R_g_io_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_ip_tos_message_new(SEXP s1, SEXP s2);
 extern SEXP R_g_ip_tos_message_get_dscp(SEXP s1);
 extern SEXP R_g_ip_tos_message_get_ecn(SEXP s1);
@@ -1318,15 +1399,22 @@ extern SEXP R_g_initable_newv(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_initable_init(SEXP s1, SEXP s2);
 extern SEXP R_g_input_stream_clear_pending(SEXP s1);
 extern SEXP R_g_input_stream_close(SEXP s1, SEXP s2);
+extern SEXP R_g_input_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_input_stream_close_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_input_stream_has_pending(SEXP s1);
 extern SEXP R_g_input_stream_is_closed(SEXP s1);
+extern SEXP R_g_input_stream_read(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_input_stream_read_all(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_input_stream_read_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_input_stream_read_all_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_input_stream_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_input_stream_read_bytes(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_input_stream_read_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_input_stream_read_bytes_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_input_stream_read_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_input_stream_set_pending(SEXP s1);
 extern SEXP R_g_input_stream_skip(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_input_stream_skip_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_input_stream_skip_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_list_model_get_item_type(SEXP s1);
 extern SEXP R_g_list_model_get_n_items(SEXP s1);
@@ -1335,16 +1423,22 @@ extern SEXP R_g_list_model_items_changed(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_list_store_new(SEXP s1);
 extern SEXP R_g_list_store_append(SEXP s1, SEXP s2);
 extern SEXP R_g_list_store_find(SEXP s1, SEXP s2);
+extern SEXP R_g_list_store_find_with_equal_func(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_list_store_find_with_equal_func_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_list_store_insert(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_list_store_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_list_store_remove(SEXP s1, SEXP s2);
 extern SEXP R_g_list_store_remove_all(SEXP s1);
+extern SEXP R_g_list_store_sort(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_list_store_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_loadable_icon_load(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_loadable_icon_load_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_loadable_icon_load_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_memory_input_stream_new(void);
 extern SEXP R_g_memory_input_stream_new_from_bytes(SEXP s1);
+extern SEXP R_g_memory_input_stream_new_from_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_memory_input_stream_add_bytes(SEXP s1, SEXP s2);
+extern SEXP R_g_memory_input_stream_add_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_memory_monitor_dup_default(void);
 extern SEXP R_g_memory_output_stream_new_resizable(void);
 extern SEXP R_g_memory_output_stream_get_data(SEXP s1);
@@ -1399,7 +1493,9 @@ extern SEXP R_g_menu_model_iterate_item_attributes(SEXP s1, SEXP s2);
 extern SEXP R_g_menu_model_iterate_item_links(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_can_eject(SEXP s1);
 extern SEXP R_g_mount_can_unmount(SEXP s1);
+extern SEXP R_g_mount_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_mount_eject_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_mount_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_mount_eject_with_operation_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_get_default_location(SEXP s1);
 extern SEXP R_g_mount_get_drive(SEXP s1);
@@ -1410,12 +1506,16 @@ extern SEXP R_g_mount_get_sort_key(SEXP s1);
 extern SEXP R_g_mount_get_symbolic_icon(SEXP s1);
 extern SEXP R_g_mount_get_uuid(SEXP s1);
 extern SEXP R_g_mount_get_volume(SEXP s1);
+extern SEXP R_g_mount_guess_content_type(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_mount_guess_content_type_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_guess_content_type_sync(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_mount_is_shadowed(SEXP s1);
+extern SEXP R_g_mount_remount(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_mount_remount_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_shadow(SEXP s1);
+extern SEXP R_g_mount_unmount(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_mount_unmount_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_mount_unmount_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_mount_unmount_with_operation_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_unshadow(SEXP s1);
 extern SEXP R_g_mount_operation_new(void);
@@ -1448,6 +1548,7 @@ extern SEXP R_g_network_address_get_port(SEXP s1);
 extern SEXP R_g_network_address_get_scheme(SEXP s1);
 extern SEXP R_g_network_monitor_get_default(void);
 extern SEXP R_g_network_monitor_can_reach(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_network_monitor_can_reach_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_network_monitor_can_reach_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_network_monitor_get_connectivity(SEXP s1);
 extern SEXP R_g_network_monitor_get_network_available(SEXP s1);
@@ -1471,36 +1572,47 @@ extern SEXP R_g_notification_set_title(SEXP s1, SEXP s2);
 extern SEXP R_g_notification_set_urgent(SEXP s1, SEXP s2);
 extern SEXP R_g_output_stream_clear_pending(SEXP s1);
 extern SEXP R_g_output_stream_close(SEXP s1, SEXP s2);
+extern SEXP R_g_output_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_output_stream_close_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_output_stream_flush(SEXP s1, SEXP s2);
+extern SEXP R_g_output_stream_flush_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_output_stream_flush_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_output_stream_has_pending(SEXP s1);
 extern SEXP R_g_output_stream_is_closed(SEXP s1);
 extern SEXP R_g_output_stream_is_closing(SEXP s1);
 extern SEXP R_g_output_stream_set_pending(SEXP s1);
 extern SEXP R_g_output_stream_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_output_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_output_stream_splice_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_output_stream_write(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_output_stream_write_all(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_output_stream_write_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_output_stream_write_all_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_output_stream_write_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_output_stream_write_bytes(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_output_stream_write_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_output_stream_write_bytes_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_output_stream_write_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_output_stream_writev(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_output_stream_writev_all(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_output_stream_writev_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_output_stream_writev_all_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_output_stream_writev_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_output_stream_writev_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_permission_acquire(SEXP s1, SEXP s2);
+extern SEXP R_g_permission_acquire_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_permission_acquire_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_permission_get_allowed(SEXP s1);
 extern SEXP R_g_permission_get_can_acquire(SEXP s1);
 extern SEXP R_g_permission_get_can_release(SEXP s1);
 extern SEXP R_g_permission_impl_update(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_permission_release(SEXP s1, SEXP s2);
+extern SEXP R_g_permission_release_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_permission_release_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_pollable_input_stream_can_poll(SEXP s1);
 extern SEXP R_g_pollable_input_stream_create_source(SEXP s1, SEXP s2);
 extern SEXP R_g_pollable_input_stream_is_readable(SEXP s1);
+extern SEXP R_g_pollable_input_stream_read_nonblocking(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_pollable_output_stream_can_poll(SEXP s1);
 extern SEXP R_g_pollable_output_stream_create_source(SEXP s1, SEXP s2);
 extern SEXP R_g_pollable_output_stream_is_writable(SEXP s1);
@@ -1511,6 +1623,7 @@ extern SEXP R_g_power_profile_monitor_get_power_saver_enabled(SEXP s1);
 extern SEXP R_g_property_action_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_proxy_get_default_for_protocol(SEXP s1);
 extern SEXP R_g_proxy_connect(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_proxy_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_proxy_connect_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_proxy_supports_hostname(SEXP s1);
 extern SEXP R_g_proxy_address_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
@@ -1524,20 +1637,26 @@ extern SEXP R_g_proxy_address_get_username(SEXP s1);
 extern SEXP R_g_proxy_resolver_get_default(void);
 extern SEXP R_g_proxy_resolver_is_supported(SEXP s1);
 extern SEXP R_g_proxy_resolver_lookup(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_proxy_resolver_lookup_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_proxy_resolver_lookup_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_remote_action_group_activate_action_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_remote_action_group_change_action_state_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_resolver_get_default(void);
 extern SEXP R_g_resolver_get_timeout(SEXP s1);
 extern SEXP R_g_resolver_lookup_by_address(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_resolver_lookup_by_address_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_resolver_lookup_by_address_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_lookup_by_name(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_resolver_lookup_by_name_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_resolver_lookup_by_name_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_lookup_by_name_with_flags(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_resolver_lookup_by_name_with_flags_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_resolver_lookup_by_name_with_flags_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_lookup_records(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_resolver_lookup_records_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_resolver_lookup_records_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_lookup_service(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_resolver_lookup_service_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_resolver_lookup_service_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_set_default(SEXP s1);
 extern SEXP R_g_resolver_set_timeout(SEXP s1, SEXP s2);
@@ -1647,6 +1766,8 @@ extern SEXP R_g_simple_action_group_add_entries(SEXP s1, SEXP s2, SEXP s3, SEXP 
 extern SEXP R_g_simple_action_group_insert(SEXP s1, SEXP s2);
 extern SEXP R_g_simple_action_group_lookup(SEXP s1, SEXP s2);
 extern SEXP R_g_simple_action_group_remove(SEXP s1, SEXP s2);
+extern SEXP R_g_simple_async_result_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_simple_async_result_new_from_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_simple_async_result_is_valid(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_simple_async_result_complete(SEXP s1);
 extern SEXP R_g_simple_async_result_complete_in_idle(SEXP s1);
@@ -1728,16 +1849,21 @@ extern SEXP R_g_socket_address_get_family(SEXP s1);
 extern SEXP R_g_socket_address_get_native_size(SEXP s1);
 extern SEXP R_g_socket_address_to_native(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_socket_address_enumerator_next(SEXP s1, SEXP s2);
+extern SEXP R_g_socket_address_enumerator_next_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_address_enumerator_next_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_client_new(void);
 extern SEXP R_g_socket_client_add_application_proxy(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_client_connect(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_socket_client_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_socket_client_connect_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_client_connect_to_host(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_socket_client_connect_to_host_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_socket_client_connect_to_host_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_client_connect_to_service(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_socket_client_connect_to_service_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_socket_client_connect_to_service_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_client_connect_to_uri(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_socket_client_connect_to_uri_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_socket_client_connect_to_uri_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_client_get_enable_proxy(SEXP s1);
 extern SEXP R_g_socket_client_get_family(SEXP s1);
@@ -1763,6 +1889,7 @@ extern SEXP R_g_socket_connectable_to_string(SEXP s1);
 extern SEXP R_g_socket_connection_factory_lookup_type(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_socket_connection_factory_register_type(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_connection_connect(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_socket_connection_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_socket_connection_connect_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_connection_get_local_address(SEXP s1);
 extern SEXP R_g_socket_connection_get_remote_address(SEXP s1);
@@ -1775,8 +1902,10 @@ extern SEXP R_g_socket_control_message_get_size(SEXP s1);
 extern SEXP R_g_socket_control_message_serialize(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_listener_new(void);
 extern SEXP R_g_socket_listener_accept(SEXP s1, SEXP s2);
+extern SEXP R_g_socket_listener_accept_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_listener_accept_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_listener_accept_socket(SEXP s1, SEXP s2);
+extern SEXP R_g_socket_listener_accept_socket_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_listener_accept_socket_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_socket_listener_add_address(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_socket_listener_add_any_inet_port(SEXP s1, SEXP s2);
@@ -1800,8 +1929,10 @@ extern SEXP R_g_static_resource_get_resource(SEXP s1);
 extern SEXP R_g_static_resource_init(SEXP s1);
 extern SEXP R_g_subprocess_newv(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_communicate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_subprocess_communicate_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_subprocess_communicate_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_communicate_utf8(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_subprocess_communicate_utf8_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_subprocess_communicate_utf8_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_force_exit(SEXP s1);
 extern SEXP R_g_subprocess_get_exit_status(SEXP s1);
@@ -1816,7 +1947,9 @@ extern SEXP R_g_subprocess_get_successful(SEXP s1);
 extern SEXP R_g_subprocess_get_term_sig(SEXP s1);
 extern SEXP R_g_subprocess_send_signal(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_wait(SEXP s1, SEXP s2);
+extern SEXP R_g_subprocess_wait_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_subprocess_wait_check(SEXP s1, SEXP s2);
+extern SEXP R_g_subprocess_wait_check_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_subprocess_wait_check_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_wait_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_launcher_new(SEXP s1);
@@ -1835,7 +1968,9 @@ extern SEXP R_g_subprocess_launcher_take_stderr_fd(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_launcher_take_stdin_fd(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_launcher_take_stdout_fd(SEXP s1, SEXP s2);
 extern SEXP R_g_subprocess_launcher_unsetenv(SEXP s1, SEXP s2);
+extern SEXP R_g_task_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_task_is_valid(SEXP s1, SEXP s2);
+extern SEXP R_g_task_report_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_task_get_cancellable(SEXP s1);
 extern SEXP R_g_task_get_check_cancellable(SEXP s1);
 extern SEXP R_g_task_get_completed(SEXP s1);
@@ -1850,18 +1985,23 @@ extern SEXP R_g_task_had_error(SEXP s1);
 extern SEXP R_g_task_propagate_boolean(SEXP s1);
 extern SEXP R_g_task_propagate_int(SEXP s1);
 extern SEXP R_g_task_propagate_pointer(SEXP s1);
+extern SEXP R_g_task_propagate_value(SEXP s1);
 extern SEXP R_g_task_return_boolean(SEXP s1, SEXP s2);
 extern SEXP R_g_task_return_error(SEXP s1, SEXP s2);
 extern SEXP R_g_task_return_error_if_cancelled(SEXP s1);
 extern SEXP R_g_task_return_int(SEXP s1, SEXP s2);
 extern SEXP R_g_task_return_new_error_literal(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_task_return_pointer(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_task_return_value(SEXP s1, SEXP s2);
+extern SEXP R_g_task_run_in_thread(SEXP s1, SEXP s2);
+extern SEXP R_g_task_run_in_thread_sync(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_check_cancellable(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_name(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_priority(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_return_on_cancel(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_source_tag(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_static_name(SEXP s1, SEXP s2);
+extern SEXP R_g_task_set_task_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tcp_connection_get_graceful_disconnect(SEXP s1);
 extern SEXP R_g_tcp_connection_set_graceful_disconnect(SEXP s1, SEXP s2);
 extern SEXP R_g_tcp_wrapper_connection_new(SEXP s1, SEXP s2);
@@ -1881,116 +2021,6 @@ extern SEXP R_g_themed_icon_append_name(SEXP s1, SEXP s2);
 extern SEXP R_g_themed_icon_get_names(SEXP s1);
 extern SEXP R_g_themed_icon_prepend_name(SEXP s1, SEXP s2);
 extern SEXP R_g_threaded_socket_service_new(SEXP s1);
-extern SEXP R_g_tls_backend_get_default(void);
-extern SEXP R_g_tls_backend_get_certificate_type(SEXP s1);
-extern SEXP R_g_tls_backend_get_client_connection_type(SEXP s1);
-extern SEXP R_g_tls_backend_get_default_database(SEXP s1);
-extern SEXP R_g_tls_backend_get_dtls_client_connection_type(SEXP s1);
-extern SEXP R_g_tls_backend_get_dtls_server_connection_type(SEXP s1);
-extern SEXP R_g_tls_backend_get_file_database_type(SEXP s1);
-extern SEXP R_g_tls_backend_get_server_connection_type(SEXP s1);
-extern SEXP R_g_tls_backend_set_default_database(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_backend_supports_dtls(SEXP s1);
-extern SEXP R_g_tls_backend_supports_tls(SEXP s1);
-extern SEXP R_g_tls_certificate_new_from_file(SEXP s1);
-extern SEXP R_g_tls_certificate_new_from_file_with_password(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_certificate_new_from_files(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_certificate_new_from_pem(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_certificate_new_from_pkcs11_uris(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_certificate_new_from_pkcs12(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tls_certificate_list_new_from_file(SEXP s1);
-extern SEXP R_g_tls_certificate_get_dns_names(SEXP s1);
-extern SEXP R_g_tls_certificate_get_ip_addresses(SEXP s1);
-extern SEXP R_g_tls_certificate_get_issuer(SEXP s1);
-extern SEXP R_g_tls_certificate_get_issuer_name(SEXP s1);
-extern SEXP R_g_tls_certificate_get_not_valid_after(SEXP s1);
-extern SEXP R_g_tls_certificate_get_not_valid_before(SEXP s1);
-extern SEXP R_g_tls_certificate_get_subject_name(SEXP s1);
-extern SEXP R_g_tls_certificate_is_same(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_certificate_verify(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tls_channel_binding_error_quark(void);
-extern SEXP R_g_tls_client_connection_new(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_client_connection_copy_session_state(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_client_connection_get_accepted_cas(SEXP s1);
-extern SEXP R_g_tls_client_connection_get_server_identity(SEXP s1);
-extern SEXP R_g_tls_client_connection_get_use_ssl3(SEXP s1);
-extern SEXP R_g_tls_client_connection_get_validation_flags(SEXP s1);
-extern SEXP R_g_tls_client_connection_set_server_identity(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_client_connection_set_use_ssl3(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_client_connection_set_validation_flags(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_emit_accept_certificate(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tls_connection_get_certificate(SEXP s1);
-extern SEXP R_g_tls_connection_get_ciphersuite_name(SEXP s1);
-extern SEXP R_g_tls_connection_get_database(SEXP s1);
-extern SEXP R_g_tls_connection_get_interaction(SEXP s1);
-extern SEXP R_g_tls_connection_get_negotiated_protocol(SEXP s1);
-extern SEXP R_g_tls_connection_get_peer_certificate(SEXP s1);
-extern SEXP R_g_tls_connection_get_peer_certificate_errors(SEXP s1);
-extern SEXP R_g_tls_connection_get_protocol_version(SEXP s1);
-extern SEXP R_g_tls_connection_get_rehandshake_mode(SEXP s1);
-extern SEXP R_g_tls_connection_get_require_close_notify(SEXP s1);
-extern SEXP R_g_tls_connection_get_use_system_certdb(SEXP s1);
-extern SEXP R_g_tls_connection_handshake(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_handshake_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_set_advertised_protocols(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_set_certificate(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_set_database(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_set_interaction(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_set_rehandshake_mode(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_set_require_close_notify(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_connection_set_use_system_certdb(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_database_create_certificate_handle(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_database_lookup_certificate_for_handle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_tls_database_lookup_certificate_for_handle_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_database_lookup_certificate_issuer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_tls_database_lookup_certificate_issuer_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_database_lookup_certificates_issued_by(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_tls_database_lookup_certificates_issued_by_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_database_verify_chain(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_tls_database_verify_chain_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_error_quark(void);
-extern SEXP R_g_tls_file_database_new(SEXP s1);
-extern SEXP R_g_tls_interaction_ask_password(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tls_interaction_ask_password_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_interaction_invoke_ask_password(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tls_interaction_invoke_request_certificate(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_tls_interaction_request_certificate(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_tls_interaction_request_certificate_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_password_new(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_password_get_description(SEXP s1);
-extern SEXP R_g_tls_password_get_flags(SEXP s1);
-extern SEXP R_g_tls_password_get_value(SEXP s1);
-extern SEXP R_g_tls_password_get_warning(SEXP s1);
-extern SEXP R_g_tls_password_set_description(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_password_set_flags(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_password_set_value(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tls_password_set_warning(SEXP s1, SEXP s2);
-extern SEXP R_g_tls_server_connection_new(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_connection_receive_credentials(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_connection_receive_credentials_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_connection_receive_fd(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_connection_send_credentials(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_connection_send_credentials_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_connection_send_fd(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_unix_credentials_message_new(void);
-extern SEXP R_g_unix_credentials_message_new_with_credentials(SEXP s1);
-extern SEXP R_g_unix_credentials_message_is_supported(void);
-extern SEXP R_g_unix_credentials_message_get_credentials(SEXP s1);
-extern SEXP R_g_unix_fd_list_new(void);
-extern SEXP R_g_unix_fd_list_new_from_array(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_fd_list_append(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_fd_list_get(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_fd_list_get_length(SEXP s1);
-extern SEXP R_g_unix_fd_list_peek_fds(SEXP s1);
-extern SEXP R_g_unix_fd_list_steal_fds(SEXP s1);
-extern SEXP R_g_unix_socket_address_new(SEXP s1);
-extern SEXP R_g_unix_socket_address_new_abstract(SEXP s1, SEXP s2);
-extern SEXP R_g_unix_socket_address_new_with_type(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_unix_socket_address_abstract_names_supported(void);
-extern SEXP R_g_unix_socket_address_get_address_type(SEXP s1);
-extern SEXP R_g_unix_socket_address_get_is_abstract(SEXP s1);
-extern SEXP R_g_unix_socket_address_get_path(SEXP s1);
-extern SEXP R_g_unix_socket_address_get_path_len(SEXP s1);
 extern SEXP R_g_vfs_get_default(void);
 extern SEXP R_g_vfs_get_local(void);
 extern SEXP R_g_vfs_get_file_for_path(SEXP s1, SEXP s2);
@@ -1998,10 +2028,13 @@ extern SEXP R_g_vfs_get_file_for_uri(SEXP s1, SEXP s2);
 extern SEXP R_g_vfs_get_supported_uri_schemes(SEXP s1);
 extern SEXP R_g_vfs_is_active(SEXP s1);
 extern SEXP R_g_vfs_parse_name(SEXP s1, SEXP s2);
+extern SEXP R_g_vfs_register_uri_scheme(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_g_vfs_unregister_uri_scheme(SEXP s1, SEXP s2);
 extern SEXP R_g_volume_can_eject(SEXP s1);
 extern SEXP R_g_volume_can_mount(SEXP s1);
+extern SEXP R_g_volume_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_volume_eject_finish(SEXP s1, SEXP s2);
+extern SEXP R_g_volume_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_volume_eject_with_operation_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_volume_enumerate_identifiers(SEXP s1);
 extern SEXP R_g_volume_get_activation_root(SEXP s1);
@@ -2013,6 +2046,7 @@ extern SEXP R_g_volume_get_name(SEXP s1);
 extern SEXP R_g_volume_get_sort_key(SEXP s1);
 extern SEXP R_g_volume_get_symbolic_icon(SEXP s1);
 extern SEXP R_g_volume_get_uuid(SEXP s1);
+extern SEXP R_g_volume_mount(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_volume_mount_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_volume_should_automount(SEXP s1);
 extern SEXP R_g_volume_monitor_adopt_orphan_mount(SEXP s1);
@@ -2029,12 +2063,17 @@ extern SEXP R_g_zlib_compressor_set_file_info(SEXP s1, SEXP s2);
 extern SEXP R_g_zlib_compressor_set_os(SEXP s1, SEXP s2);
 extern SEXP R_g_zlib_decompressor_new(SEXP s1);
 extern SEXP R_g_zlib_decompressor_get_file_info(SEXP s1);
+extern SEXP R_g_bus_get(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_bus_get_finish(SEXP s1);
 extern SEXP R_g_bus_get_sync(SEXP s1, SEXP s2);
+extern SEXP R_g_bus_own_name(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_g_bus_own_name_on_connection(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_bus_own_name_on_connection_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_bus_own_name_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_bus_unown_name(SEXP s1);
 extern SEXP R_g_bus_unwatch_name(SEXP s1);
+extern SEXP R_g_bus_watch_name(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_g_bus_watch_name_on_connection(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_bus_watch_name_on_connection_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_bus_watch_name_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_content_type_can_be_executable(SEXP s1);
@@ -2055,12 +2094,14 @@ extern SEXP R_g_content_type_set_mime_dirs(SEXP s1);
 extern SEXP R_g_content_types_get_registered(void);
 extern SEXP R_g_dbus_address_escape_value(SEXP s1);
 extern SEXP R_g_dbus_address_get_for_bus_sync(SEXP s1, SEXP s2);
+extern SEXP R_g_dbus_address_get_stream(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_dbus_address_get_stream_finish(SEXP s1);
 extern SEXP R_g_dbus_address_get_stream_sync(SEXP s1, SEXP s2);
 extern SEXP R_g_dbus_escape_object_path(SEXP s1);
 extern SEXP R_g_dbus_escape_object_path_bytestring(SEXP s1);
 extern SEXP R_g_dbus_generate_guid(void);
 extern SEXP R_g_dbus_gvalue_to_gvariant(SEXP s1, SEXP s2);
+extern SEXP R_g_dbus_gvariant_to_gvalue(SEXP s1);
 extern SEXP R_g_dbus_is_address(SEXP s1);
 extern SEXP R_g_dbus_is_error_name(SEXP s1);
 extern SEXP R_g_dbus_is_guid(SEXP s1);
@@ -2078,6 +2119,7 @@ extern SEXP R_g_io_modules_load_all_in_directory_with_scope(SEXP s1, SEXP s2);
 extern SEXP R_g_io_modules_scan_all_in_directory(SEXP s1);
 extern SEXP R_g_io_modules_scan_all_in_directory_with_scope(SEXP s1, SEXP s2);
 extern SEXP R_g_io_scheduler_cancel_all_jobs(void);
+extern SEXP R_g_io_scheduler_push_job(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_keyfile_settings_backend_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_memory_settings_backend_new(void);
 extern SEXP R_g_networking_init(void);
@@ -2092,6 +2134,7 @@ extern SEXP R_g_resources_get_info(SEXP s1, SEXP s2);
 extern SEXP R_g_resources_has_children(SEXP s1);
 extern SEXP R_g_resources_lookup_data(SEXP s1, SEXP s2);
 extern SEXP R_g_resources_open_stream(SEXP s1, SEXP s2);
+extern SEXP R_g_simple_async_report_gerror_in_idle(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_allocator_free(SEXP s1);
 extern SEXP R_g_async_queue_length(SEXP s1);
 extern SEXP R_g_async_queue_length_unlocked(SEXP s1);
@@ -2101,11 +2144,15 @@ extern SEXP R_g_async_queue_pop_unlocked(SEXP s1);
 extern SEXP R_g_async_queue_push(SEXP s1, SEXP s2);
 extern SEXP R_g_async_queue_push_front(SEXP s1, SEXP s2);
 extern SEXP R_g_async_queue_push_front_unlocked(SEXP s1, SEXP s2);
+extern SEXP R_g_async_queue_push_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_async_queue_push_sorted_unlocked(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_async_queue_push_unlocked(SEXP s1, SEXP s2);
 extern SEXP R_g_async_queue_ref(SEXP s1);
 extern SEXP R_g_async_queue_ref_unlocked(SEXP s1);
 extern SEXP R_g_async_queue_remove(SEXP s1, SEXP s2);
 extern SEXP R_g_async_queue_remove_unlocked(SEXP s1, SEXP s2);
+extern SEXP R_g_async_queue_sort(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_async_queue_sort_unlocked(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_async_queue_timed_pop(SEXP s1, SEXP s2);
 extern SEXP R_g_async_queue_timed_pop_unlocked(SEXP s1, SEXP s2);
 extern SEXP R_g_async_queue_timeout_pop(SEXP s1, SEXP s2);
@@ -2116,6 +2163,7 @@ extern SEXP R_g_async_queue_unlock(SEXP s1);
 extern SEXP R_g_async_queue_unref(SEXP s1);
 extern SEXP R_g_async_queue_unref_and_unlock(SEXP s1);
 extern SEXP R_g_async_queue_new(void);
+extern SEXP R_g_async_queue_new_full(SEXP s1);
 extern SEXP R_g_bookmark_file_new(void);
 extern SEXP R_g_bookmark_file_add_application(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_bookmark_file_add_group(SEXP s1, SEXP s2, SEXP s3);
@@ -2123,6 +2171,8 @@ extern SEXP R_g_bookmark_file_copy(SEXP s1);
 extern SEXP R_g_bookmark_file_free(SEXP s1);
 extern SEXP R_g_bookmark_file_get_added(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_added_date_time(SEXP s1, SEXP s2);
+extern SEXP R_g_bookmark_file_get_app_info(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_bookmark_file_get_application_info(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_get_applications(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_description(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_groups(SEXP s1, SEXP s2);
@@ -2175,6 +2225,8 @@ extern SEXP R_g_byte_array_remove_index_fast(SEXP s1, SEXP s2);
 extern SEXP R_g_byte_array_remove_range(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_byte_array_set_size(SEXP s1, SEXP s2);
 extern SEXP R_g_byte_array_sized_new(SEXP s1);
+extern SEXP R_g_byte_array_sort(SEXP s1, SEXP s2);
+extern SEXP R_g_byte_array_sort_with_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_byte_array_steal(SEXP s1);
 extern SEXP R_g_byte_array_unref(SEXP s1);
 extern SEXP R_g_bytes_new(SEXP s1, SEXP s2);
@@ -2192,7 +2244,9 @@ extern SEXP R_g_bytes_unref_to_array(SEXP s1);
 extern SEXP R_g_bytes_unref_to_data(SEXP s1);
 extern SEXP R_g_cache_destroy(SEXP s1);
 extern SEXP R_g_cache_insert(SEXP s1, SEXP s2);
+extern SEXP R_g_cache_key_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_cache_remove(SEXP s1, SEXP s2);
+extern SEXP R_g_cache_value_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_checksum_new(SEXP s1);
 extern SEXP R_g_checksum_copy(SEXP s1);
 extern SEXP R_g_checksum_free(SEXP s1);
@@ -2201,6 +2255,7 @@ extern SEXP R_g_checksum_reset(SEXP s1);
 extern SEXP R_g_checksum_update(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_checksum_type_get_length(SEXP s1);
 extern SEXP R_g_completion_clear_items(SEXP s1);
+extern SEXP R_g_completion_complete_utf8(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_completion_free(SEXP s1);
 extern SEXP R_g_cond_broadcast(SEXP s1);
 extern SEXP R_g_cond_clear(SEXP s1);
@@ -2245,6 +2300,7 @@ extern SEXP R_g_date_set_year(SEXP s1, SEXP s2);
 extern SEXP R_g_date_subtract_days(SEXP s1, SEXP s2);
 extern SEXP R_g_date_subtract_months(SEXP s1, SEXP s2);
 extern SEXP R_g_date_subtract_years(SEXP s1, SEXP s2);
+extern SEXP R_g_date_to_struct_tm(SEXP s1, SEXP s2);
 extern SEXP R_g_date_valid(SEXP s1);
 extern SEXP R_g_date_get_days_in_month(SEXP s1, SEXP s2);
 extern SEXP R_g_date_get_monday_weeks_in_year(SEXP s1);
@@ -2322,9 +2378,15 @@ extern SEXP R_g_error_new_literal(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_error_copy(SEXP s1);
 extern SEXP R_g_error_free(SEXP s1);
 extern SEXP R_g_error_matches(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_error_domain_register(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_error_domain_register_static(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_hash_table_add(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_contains(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_destroy(SEXP s1);
+extern SEXP R_g_hash_table_find(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_hash_table_foreach(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_hash_table_foreach_remove(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_hash_table_foreach_steal(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_hash_table_insert(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_hash_table_lookup(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_lookup_extended(SEXP s1, SEXP s2);
@@ -2356,12 +2418,15 @@ extern SEXP R_g_hook_destroy(SEXP s1, SEXP s2);
 extern SEXP R_g_hook_destroy_link(SEXP s1, SEXP s2);
 extern SEXP R_g_hook_free(SEXP s1, SEXP s2);
 extern SEXP R_g_hook_insert_before(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_hook_insert_sorted(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_hook_prepend(SEXP s1, SEXP s2);
 extern SEXP R_g_hook_unref(SEXP s1, SEXP s2);
 extern SEXP R_g_hook_list_clear(SEXP s1);
 extern SEXP R_g_hook_list_init(SEXP s1, SEXP s2);
 extern SEXP R_g_hook_list_invoke(SEXP s1, SEXP s2);
 extern SEXP R_g_hook_list_invoke_check(SEXP s1, SEXP s2);
+extern SEXP R_g_hook_list_marshal(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_hook_list_marshal_check(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_io_channel_new_file(SEXP s1, SEXP s2);
 extern SEXP R_g_io_channel_unix_new(SEXP s1);
 extern SEXP R_g_io_channel_close(SEXP s1);
@@ -2449,10 +2514,13 @@ extern SEXP R_g_list_push_allocator(SEXP s1);
 extern SEXP R_g_main_context_new(void);
 extern SEXP R_g_main_context_new_with_flags(SEXP s1);
 extern SEXP R_g_main_context_acquire(SEXP s1);
+extern SEXP R_g_main_context_add_poll(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_main_context_check(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_main_context_dispatch(SEXP s1);
 extern SEXP R_g_main_context_find_source_by_funcs_user_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_main_context_find_source_by_id(SEXP s1, SEXP s2);
 extern SEXP R_g_main_context_find_source_by_user_data(SEXP s1, SEXP s2);
+extern SEXP R_g_main_context_invoke_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_main_context_is_owner(SEXP s1);
 extern SEXP R_g_main_context_iteration(SEXP s1, SEXP s2);
 extern SEXP R_g_main_context_pending(SEXP s1);
@@ -2460,8 +2528,10 @@ extern SEXP R_g_main_context_pop_thread_default(SEXP s1);
 extern SEXP R_g_main_context_prepare(SEXP s1);
 extern SEXP R_g_main_context_push_thread_default(SEXP s1);
 extern SEXP R_g_main_context_pusher_new(SEXP s1);
+extern SEXP R_g_main_context_query(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_main_context_ref(SEXP s1);
 extern SEXP R_g_main_context_release(SEXP s1);
+extern SEXP R_g_main_context_remove_poll(SEXP s1, SEXP s2);
 extern SEXP R_g_main_context_unref(SEXP s1);
 extern SEXP R_g_main_context_wait(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_main_context_wakeup(SEXP s1);
@@ -2483,6 +2553,7 @@ extern SEXP R_g_mapped_file_get_contents(SEXP s1);
 extern SEXP R_g_mapped_file_get_length(SEXP s1);
 extern SEXP R_g_mapped_file_ref(SEXP s1);
 extern SEXP R_g_mapped_file_unref(SEXP s1);
+extern SEXP R_g_markup_parse_context_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_markup_parse_context_end_parse(SEXP s1);
 extern SEXP R_g_markup_parse_context_free(SEXP s1);
 extern SEXP R_g_markup_parse_context_get_element(SEXP s1);
@@ -2526,6 +2597,7 @@ extern SEXP R_g_mutex_trylock(SEXP s1);
 extern SEXP R_g_mutex_unlock(SEXP s1);
 extern SEXP R_g_node_child_index(SEXP s1, SEXP s2);
 extern SEXP R_g_node_child_position(SEXP s1, SEXP s2);
+extern SEXP R_g_node_children_foreach(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_node_depth(SEXP s1);
 extern SEXP R_g_node_destroy(SEXP s1);
 extern SEXP R_g_node_is_ancestor(SEXP s1, SEXP s2);
@@ -2533,6 +2605,7 @@ extern SEXP R_g_node_max_height(SEXP s1);
 extern SEXP R_g_node_n_children(SEXP s1);
 extern SEXP R_g_node_n_nodes(SEXP s1, SEXP s2);
 extern SEXP R_g_node_reverse_children(SEXP s1);
+extern SEXP R_g_node_traverse(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_node_unlink(SEXP s1);
 extern SEXP R_g_node_pop_allocator(void);
 extern SEXP R_g_node_push_allocator(SEXP s1);
@@ -2554,10 +2627,13 @@ extern SEXP R_g_option_context_set_ignore_unknown_options(SEXP s1, SEXP s2);
 extern SEXP R_g_option_context_set_main_group(SEXP s1, SEXP s2);
 extern SEXP R_g_option_context_set_strict_posix(SEXP s1, SEXP s2);
 extern SEXP R_g_option_context_set_summary(SEXP s1, SEXP s2);
+extern SEXP R_g_option_context_set_translate_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_option_context_set_translation_domain(SEXP s1, SEXP s2);
+extern SEXP R_g_option_group_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_option_group_add_entries(SEXP s1, SEXP s2);
 extern SEXP R_g_option_group_free(SEXP s1);
 extern SEXP R_g_option_group_ref(SEXP s1);
+extern SEXP R_g_option_group_set_translate_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_option_group_set_translation_domain(SEXP s1, SEXP s2);
 extern SEXP R_g_option_group_unref(SEXP s1);
 extern SEXP R_g_path_buf_clear(SEXP s1);
@@ -2582,10 +2658,14 @@ extern SEXP R_g_private_get(SEXP s1);
 extern SEXP R_g_private_replace(SEXP s1, SEXP s2);
 extern SEXP R_g_private_set(SEXP s1, SEXP s2);
 extern SEXP R_g_queue_clear(SEXP s1);
+extern SEXP R_g_queue_clear_full(SEXP s1, SEXP s2);
+extern SEXP R_g_queue_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_queue_free(SEXP s1);
+extern SEXP R_g_queue_free_full(SEXP s1, SEXP s2);
 extern SEXP R_g_queue_get_length(SEXP s1);
 extern SEXP R_g_queue_index(SEXP s1, SEXP s2);
 extern SEXP R_g_queue_init(SEXP s1);
+extern SEXP R_g_queue_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_queue_is_empty(SEXP s1);
 extern SEXP R_g_queue_peek_head(SEXP s1);
 extern SEXP R_g_queue_peek_nth(SEXP s1, SEXP s2);
@@ -2599,6 +2679,7 @@ extern SEXP R_g_queue_push_tail(SEXP s1, SEXP s2);
 extern SEXP R_g_queue_remove(SEXP s1, SEXP s2);
 extern SEXP R_g_queue_remove_all(SEXP s1, SEXP s2);
 extern SEXP R_g_queue_reverse(SEXP s1);
+extern SEXP R_g_queue_sort(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_rw_lock_clear(SEXP s1);
 extern SEXP R_g_rw_lock_init(SEXP s1);
 extern SEXP R_g_rw_lock_reader_lock(SEXP s1);
@@ -2638,6 +2719,7 @@ extern SEXP R_g_regex_match_all_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
 extern SEXP R_g_regex_match_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_regex_ref(SEXP s1);
 extern SEXP R_g_regex_replace(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_regex_replace_eval(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_regex_replace_literal(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_regex_split(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_regex_split_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
@@ -2665,19 +2747,30 @@ extern SEXP R_g_scanner_input_text(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_scanner_lookup_symbol(SEXP s1, SEXP s2);
 extern SEXP R_g_scanner_peek_next_token(SEXP s1);
 extern SEXP R_g_scanner_scope_add_symbol(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_scanner_scope_foreach_symbol(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_scanner_scope_lookup_symbol(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_scanner_scope_remove_symbol(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_scanner_set_scope(SEXP s1, SEXP s2);
 extern SEXP R_g_scanner_sync_file_offset(SEXP s1);
 extern SEXP R_g_scanner_unexp_token(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_sequence_append(SEXP s1, SEXP s2);
+extern SEXP R_g_sequence_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_sequence_free(SEXP s1);
 extern SEXP R_g_sequence_get_begin_iter(SEXP s1);
 extern SEXP R_g_sequence_get_end_iter(SEXP s1);
 extern SEXP R_g_sequence_get_iter_at_pos(SEXP s1, SEXP s2);
 extern SEXP R_g_sequence_get_length(SEXP s1);
+extern SEXP R_g_sequence_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_sequence_insert_sorted_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_sequence_is_empty(SEXP s1);
+extern SEXP R_g_sequence_lookup(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_sequence_lookup_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_sequence_prepend(SEXP s1, SEXP s2);
+extern SEXP R_g_sequence_search(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_sequence_search_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_sequence_sort(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_sequence_sort_iter(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_sequence_foreach_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_sequence_get(SEXP s1);
 extern SEXP R_g_sequence_insert_before(SEXP s1, SEXP s2);
 extern SEXP R_g_sequence_move(SEXP s1, SEXP s2);
@@ -2686,6 +2779,8 @@ extern SEXP R_g_sequence_range_get_midpoint(SEXP s1, SEXP s2);
 extern SEXP R_g_sequence_remove(SEXP s1);
 extern SEXP R_g_sequence_remove_range(SEXP s1, SEXP s2);
 extern SEXP R_g_sequence_set(SEXP s1, SEXP s2);
+extern SEXP R_g_sequence_sort_changed(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_sequence_sort_changed_iter(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_sequence_swap(SEXP s1, SEXP s2);
 extern SEXP R_g_sequence_iter_compare(SEXP s1, SEXP s2);
 extern SEXP R_g_sequence_iter_get_position(SEXP s1);
@@ -2697,6 +2792,7 @@ extern SEXP R_g_sequence_iter_next(SEXP s1);
 extern SEXP R_g_sequence_iter_prev(SEXP s1);
 extern SEXP R_g_source_new(SEXP s1, SEXP s2);
 extern SEXP R_g_source_add_child_source(SEXP s1, SEXP s2);
+extern SEXP R_g_source_add_poll(SEXP s1, SEXP s2);
 extern SEXP R_g_source_add_unix_fd(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_source_attach(SEXP s1, SEXP s2);
 extern SEXP R_g_source_destroy(SEXP s1);
@@ -2714,7 +2810,9 @@ extern SEXP R_g_source_modify_unix_fd(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_source_query_unix_fd(SEXP s1, SEXP s2);
 extern SEXP R_g_source_ref(SEXP s1);
 extern SEXP R_g_source_remove_child_source(SEXP s1, SEXP s2);
+extern SEXP R_g_source_remove_poll(SEXP s1, SEXP s2);
 extern SEXP R_g_source_remove_unix_fd(SEXP s1, SEXP s2);
+extern SEXP R_g_source_set_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_source_set_callback_indirect(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_source_set_can_recurse(SEXP s1, SEXP s2);
 extern SEXP R_g_source_set_funcs(SEXP s1, SEXP s2);
@@ -2782,6 +2880,8 @@ extern SEXP R_g_test_log_msg_free(SEXP s1);
 extern SEXP R_g_test_suite_add(SEXP s1, SEXP s2);
 extern SEXP R_g_test_suite_add_suite(SEXP s1, SEXP s2);
 extern SEXP R_g_test_suite_free(SEXP s1);
+extern SEXP R_g_thread_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_thread_try_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_thread_get_name(SEXP s1);
 extern SEXP R_g_thread_join(SEXP s1);
 extern SEXP R_g_thread_ref(SEXP s1);
@@ -2826,7 +2926,14 @@ extern SEXP R_g_timer_is_active(SEXP s1);
 extern SEXP R_g_timer_reset(SEXP s1);
 extern SEXP R_g_timer_start(SEXP s1);
 extern SEXP R_g_timer_stop(SEXP s1);
+extern SEXP R_g_trash_stack_height(SEXP s1);
+extern SEXP R_g_trash_stack_peek(SEXP s1);
+extern SEXP R_g_trash_stack_pop(SEXP s1);
+extern SEXP R_g_trash_stack_push(SEXP s1, SEXP s2);
+extern SEXP R_g_tree_new_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_tree_destroy(SEXP s1);
+extern SEXP R_g_tree_foreach(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_tree_foreach_node(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tree_height(SEXP s1);
 extern SEXP R_g_tree_insert(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tree_insert_node(SEXP s1, SEXP s2, SEXP s3);
@@ -2842,7 +2949,10 @@ extern SEXP R_g_tree_remove(SEXP s1, SEXP s2);
 extern SEXP R_g_tree_remove_all(SEXP s1);
 extern SEXP R_g_tree_replace(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tree_replace_node(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_tree_search(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_tree_search_node(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tree_steal(SEXP s1, SEXP s2);
+extern SEXP R_g_tree_traverse(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_tree_unref(SEXP s1);
 extern SEXP R_g_tree_upper_bound(SEXP s1, SEXP s2);
 extern SEXP R_g_tree_node_key(SEXP s1);
@@ -2898,6 +3008,7 @@ extern SEXP R_g_variant_new_dict_entry(SEXP s1, SEXP s2);
 extern SEXP R_g_variant_new_double(SEXP s1);
 extern SEXP R_g_variant_new_fixed_array(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_variant_new_from_bytes(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_variant_new_from_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_variant_new_handle(SEXP s1);
 extern SEXP R_g_variant_new_int16(SEXP s1);
 extern SEXP R_g_variant_new_int32(SEXP s1);
@@ -2962,6 +3073,7 @@ extern SEXP R_g_variant_take_ref(SEXP s1);
 extern SEXP R_g_variant_unref(SEXP s1);
 extern SEXP R_g_variant_is_object_path(SEXP s1);
 extern SEXP R_g_variant_is_signature(SEXP s1);
+extern SEXP R_g_variant_parse(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_variant_parse_error_print_context(SEXP s1, SEXP s2);
 extern SEXP R_g_variant_parse_error_quark(void);
 extern SEXP R_g_variant_parser_get_error_quark(void);
@@ -3038,17 +3150,22 @@ extern SEXP R_g_assert_warning(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_assertion_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_assertion_message_cmpint(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_g_assertion_message_cmpstr(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_g_assertion_message_cmpstrv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_g_assertion_message_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_g_atexit(SEXP s1);
 extern SEXP R_g_base64_decode(SEXP s1);
 extern SEXP R_g_base64_decode_inplace(void);
 extern SEXP R_g_base64_encode(SEXP s1, SEXP s2);
 extern SEXP R_g_base64_encode_close(SEXP s1);
 extern SEXP R_g_base64_encode_step(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_basename(SEXP s1);
+extern SEXP R_g_bit_lock(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_lock_and_get(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_nth_lsf(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_nth_msf(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_storage(SEXP s1);
+extern SEXP R_g_bit_trylock(SEXP s1, SEXP s2);
+extern SEXP R_g_bit_unlock(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_unlock_and_set(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_blow_chunks(void);
 extern SEXP R_g_build_filenamev(SEXP s1);
@@ -3056,6 +3173,7 @@ extern SEXP R_g_build_pathv(SEXP s1, SEXP s2);
 extern SEXP R_g_canonicalize_filename(SEXP s1, SEXP s2);
 extern SEXP R_g_chdir(SEXP s1);
 extern SEXP R_glib_check_version(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_child_watch_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_child_watch_source_new(SEXP s1);
 extern SEXP R_g_chmod(SEXP s1, SEXP s2);
 extern SEXP R_g_clear_error(void);
@@ -3070,7 +3188,15 @@ extern SEXP R_g_convert(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_convert_error_quark(void);
 extern SEXP R_g_convert_with_fallback(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_creat(SEXP s1, SEXP s2);
+extern SEXP R_g_datalist_foreach(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_datalist_get_data(SEXP s1, SEXP s2);
+extern SEXP R_g_datalist_get_flags(SEXP s1);
+extern SEXP R_g_datalist_id_get_data(SEXP s1, SEXP s2);
+extern SEXP R_g_datalist_id_remove_multiple(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_datalist_set_flags(SEXP s1, SEXP s2);
+extern SEXP R_g_datalist_unset_flags(SEXP s1, SEXP s2);
 extern SEXP R_g_dataset_destroy(SEXP s1);
+extern SEXP R_g_dataset_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_dataset_id_get_data(SEXP s1, SEXP s2);
 extern SEXP R_g_dcgettext(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_dgettext(SEXP s1, SEXP s2);
@@ -3143,6 +3269,7 @@ extern SEXP R_g_hostname_is_ip_address(SEXP s1);
 extern SEXP R_g_hostname_is_non_ascii(SEXP s1);
 extern SEXP R_g_hostname_to_ascii(SEXP s1);
 extern SEXP R_g_hostname_to_unicode(SEXP s1);
+extern SEXP R_g_idle_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_idle_remove_by_data(SEXP s1);
 extern SEXP R_g_idle_source_new(void);
 extern SEXP R_g_int64_equal(SEXP s1, SEXP s2);
@@ -3151,6 +3278,7 @@ extern SEXP R_g_int_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_int_hash(SEXP s1);
 extern SEXP R_g_intern_static_string(SEXP s1);
 extern SEXP R_g_intern_string(SEXP s1);
+extern SEXP R_g_io_add_watch_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_io_create_watch(SEXP s1, SEXP s2);
 extern SEXP R_g_listenv(void);
 extern SEXP R_g_locale_from_utf8(SEXP s1, SEXP s2);
@@ -3162,9 +3290,12 @@ extern SEXP R_g_log_remove_handler(SEXP s1, SEXP s2);
 extern SEXP R_g_log_set_always_fatal(SEXP s1);
 extern SEXP R_g_log_set_debug_enabled(SEXP s1);
 extern SEXP R_g_log_set_fatal_mask(SEXP s1, SEXP s2);
+extern SEXP R_g_log_set_handler_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_log_set_writer_func(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_log_structured_array(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_log_variant(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_log_writer_default(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_log_writer_default_set_debug_domains(SEXP s1);
 extern SEXP R_g_log_writer_default_set_use_stderr(SEXP s1);
 extern SEXP R_g_log_writer_default_would_drop(SEXP s1, SEXP s2);
 extern SEXP R_g_log_writer_format_fields(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -3201,8 +3332,10 @@ extern SEXP R_g_path_get_dirname(SEXP s1);
 extern SEXP R_g_path_is_absolute(SEXP s1);
 extern SEXP R_g_path_skip_root(SEXP s1);
 extern SEXP R_g_pattern_match_simple(SEXP s1, SEXP s2);
+extern SEXP R_g_poll(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_prefix_error_literal(SEXP s1);
 extern SEXP R_g_propagate_error(SEXP s1);
+extern SEXP R_g_qsort_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_quark_from_static_string(SEXP s1);
 extern SEXP R_g_quark_from_string(SEXP s1);
 extern SEXP R_g_quark_to_string(SEXP s1);
@@ -3218,9 +3351,13 @@ extern SEXP R_g_rc_box_alloc0(SEXP s1);
 extern SEXP R_g_rc_box_dup(SEXP s1, SEXP s2);
 extern SEXP R_g_rc_box_get_size(SEXP s1);
 extern SEXP R_g_rc_box_release(SEXP s1);
+extern SEXP R_g_rc_box_release_full(SEXP s1, SEXP s2);
 extern SEXP R_g_realloc(SEXP s1, SEXP s2);
 extern SEXP R_g_realloc_n(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_ref_count_compare(SEXP s1, SEXP s2);
+extern SEXP R_g_ref_count_dec(void);
+extern SEXP R_g_ref_count_inc(void);
+extern SEXP R_g_ref_count_init(void);
 extern SEXP R_g_ref_string_acquire(SEXP s1);
 extern SEXP R_g_ref_string_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_ref_string_length(SEXP s1);
@@ -3249,6 +3386,10 @@ extern SEXP R_g_slice_get_config(SEXP s1);
 extern SEXP R_g_slice_get_config_state(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_slice_set_config(SEXP s1, SEXP s2);
 extern SEXP R_g_spaced_primes_closest(SEXP s1);
+extern SEXP R_g_spawn_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_spawn_async_with_fds(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
+extern SEXP R_g_spawn_async_with_pipes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_spawn_async_with_pipes_and_fds(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12);
 extern SEXP R_g_spawn_check_exit_status(SEXP s1);
 extern SEXP R_g_spawn_check_wait_status(SEXP s1);
 extern SEXP R_g_spawn_close_pid(SEXP s1);
@@ -3256,6 +3397,7 @@ extern SEXP R_g_spawn_command_line_async(SEXP s1);
 extern SEXP R_g_spawn_command_line_sync(SEXP s1);
 extern SEXP R_g_spawn_error_quark(void);
 extern SEXP R_g_spawn_exit_error_quark(void);
+extern SEXP R_g_spawn_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_stat(SEXP s1, SEXP s2);
 extern SEXP R_g_stpcpy(SEXP s1, SEXP s2);
 extern SEXP R_g_str_equal(SEXP s1, SEXP s2);
@@ -3299,6 +3441,9 @@ extern SEXP R_g_strv_contains(SEXP s1, SEXP s2);
 extern SEXP R_g_strv_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_strv_get_type(void);
 extern SEXP R_g_strv_length(SEXP s1);
+extern SEXP R_g_test_add_data_func(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_test_add_data_func_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_test_add_func(SEXP s1, SEXP s2);
 extern SEXP R_g_test_assert_expected_messages_internal(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_test_bug(SEXP s1);
 extern SEXP R_g_test_bug_base(SEXP s1);
@@ -3310,6 +3455,7 @@ extern SEXP R_g_test_get_dir(SEXP s1);
 extern SEXP R_g_test_get_path(void);
 extern SEXP R_g_test_incomplete(SEXP s1);
 extern SEXP R_g_test_log_type_name(SEXP s1);
+extern SEXP R_g_test_queue_destroy(SEXP s1, SEXP s2);
 extern SEXP R_g_test_queue_free(SEXP s1);
 extern SEXP R_g_test_rand_double(void);
 extern SEXP R_g_test_rand_double_range(SEXP s1, SEXP s2);
@@ -3331,6 +3477,8 @@ extern SEXP R_g_test_trap_has_skipped(void);
 extern SEXP R_g_test_trap_reached_timeout(void);
 extern SEXP R_g_test_trap_subprocess(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_test_trap_subprocess_with_envp(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_timeout_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_timeout_add_seconds_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_timeout_source_new(SEXP s1);
 extern SEXP R_g_timeout_source_new_seconds(SEXP s1);
 extern SEXP R_g_try_malloc(SEXP s1);
@@ -3407,6 +3555,7 @@ extern SEXP R_g_utf8_to_utf16(SEXP s1, SEXP s2);
 extern SEXP R_g_utf8_truncate_middle(SEXP s1, SEXP s2);
 extern SEXP R_g_utf8_validate(SEXP s1, SEXP s2);
 extern SEXP R_g_utf8_validate_len(SEXP s1, SEXP s2);
+extern SEXP R_g_utime(SEXP s1, SEXP s2);
 extern SEXP R_g_uuid_string_is_valid(SEXP s1);
 extern SEXP R_g_uuid_string_random(void);
 extern SEXP R_g_variant_get_gtype(void);
@@ -3420,6 +3569,7 @@ extern SEXP R_g_binding_get_target_property(SEXP s1);
 extern SEXP R_g_binding_unbind(SEXP s1);
 extern SEXP R_g_binding_group_new(void);
 extern SEXP R_g_binding_group_bind(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_binding_group_bind_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_g_binding_group_bind_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_binding_group_dup_source(SEXP s1);
 extern SEXP R_g_binding_group_set_source(SEXP s1, SEXP s2);
@@ -3449,6 +3599,7 @@ extern SEXP R_g_cclosure_marshal_generic(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
 extern SEXP R_g_closure_new_object(SEXP s1, SEXP s2);
 extern SEXP R_g_closure_new_simple(SEXP s1, SEXP s2);
 extern SEXP R_g_closure_invalidate(SEXP s1);
+extern SEXP R_g_closure_invoke(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_closure_ref(SEXP s1);
 extern SEXP R_g_closure_sink(SEXP s1);
 extern SEXP R_g_closure_unref(SEXP s1);
@@ -3458,6 +3609,7 @@ extern SEXP R_g_object_interface_find_property(SEXP s1, SEXP s2);
 extern SEXP R_g_object_interface_install_property(SEXP s1, SEXP s2);
 extern SEXP R_g_object_interface_list_properties(SEXP s1);
 extern SEXP R_g_object_bind_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_object_bind_property_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_g_object_bind_property_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_object_force_floating(SEXP s1);
 extern SEXP R_g_object_freeze_notify(SEXP s1);
@@ -3503,6 +3655,8 @@ extern SEXP R_g_param_spec_pool_remove(SEXP s1, SEXP s2);
 extern SEXP R_g_signal_group_new(SEXP s1);
 extern SEXP R_g_signal_group_block(SEXP s1);
 extern SEXP R_g_signal_group_connect_closure(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_signal_group_connect_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_g_signal_group_connect_swapped(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_signal_group_dup_target(SEXP s1);
 extern SEXP R_g_signal_group_set_target(SEXP s1, SEXP s2);
 extern SEXP R_g_signal_group_unblock(SEXP s1);
@@ -3607,14 +3761,19 @@ extern SEXP R_g_value_array_get_nth(SEXP s1, SEXP s2);
 extern SEXP R_g_value_array_insert(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_value_array_prepend(SEXP s1, SEXP s2);
 extern SEXP R_g_value_array_remove(SEXP s1, SEXP s2);
+extern SEXP R_g_value_array_sort(SEXP s1, SEXP s2);
+extern SEXP R_g_value_array_sort_with_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_boxed_copy(SEXP s1, SEXP s2);
 extern SEXP R_g_boxed_free(SEXP s1, SEXP s2);
+extern SEXP R_g_boxed_type_register_static(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_clear_signal_handler(SEXP s1, SEXP s2);
+extern SEXP R_g_enum_complete_type_info(SEXP s1, SEXP s2);
 extern SEXP R_g_enum_get_value(SEXP s1, SEXP s2);
 extern SEXP R_g_enum_get_value_by_name(SEXP s1, SEXP s2);
 extern SEXP R_g_enum_get_value_by_nick(SEXP s1, SEXP s2);
 extern SEXP R_g_enum_register_static(SEXP s1, SEXP s2);
 extern SEXP R_g_enum_to_string(SEXP s1, SEXP s2);
+extern SEXP R_g_flags_complete_type_info(SEXP s1, SEXP s2);
 extern SEXP R_g_flags_get_first_value(SEXP s1, SEXP s2);
 extern SEXP R_g_flags_get_value_by_name(SEXP s1, SEXP s2);
 extern SEXP R_g_flags_get_value_by_nick(SEXP s1, SEXP s2);
@@ -3652,9 +3811,11 @@ extern SEXP R_g_param_values_cmp(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_pointer_type_register_static(SEXP s1);
 extern SEXP R_g_signal_accumulator_first_wins(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_signal_accumulator_true_handled(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_g_signal_add_emission_hook(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_signal_chain_from_overridden(SEXP s1, SEXP s2);
 extern SEXP R_g_signal_connect_closure(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_signal_connect_closure_by_id(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_g_signal_emitv(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_signal_get_invocation_hint(SEXP s1);
 extern SEXP R_g_signal_handler_block(SEXP s1, SEXP s2);
 extern SEXP R_g_signal_handler_disconnect(SEXP s1, SEXP s2);
@@ -3671,7 +3832,9 @@ extern SEXP R_g_signal_list_ids(SEXP s1);
 extern SEXP R_g_signal_lookup(SEXP s1, SEXP s2);
 extern SEXP R_g_signal_name(SEXP s1);
 extern SEXP R_g_signal_override_class_closure(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_signal_override_class_handler(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_signal_parse_name(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_signal_query(SEXP s1);
 extern SEXP R_g_signal_remove_emission_hook(SEXP s1, SEXP s2);
 extern SEXP R_g_signal_stop_emission(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_signal_stop_emission_by_name(SEXP s1, SEXP s2);
@@ -3713,6 +3876,7 @@ extern SEXP R_g_type_name_from_instance(SEXP s1);
 extern SEXP R_g_type_next_base(SEXP s1, SEXP s2);
 extern SEXP R_g_type_parent(SEXP s1);
 extern SEXP R_g_type_qname(SEXP s1);
+extern SEXP R_g_type_query(SEXP s1);
 extern SEXP R_g_type_register_dynamic(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_type_register_fundamental(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_type_register_static(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -3814,6 +3978,7 @@ extern SEXP R_gtk_adjustment_set_page_size(SEXP s1, SEXP s2);
 extern SEXP R_gtk_adjustment_set_step_increment(SEXP s1, SEXP s2);
 extern SEXP R_gtk_adjustment_set_upper(SEXP s1, SEXP s2);
 extern SEXP R_gtk_adjustment_set_value(SEXP s1, SEXP s2);
+extern SEXP R_gtk_alert_dialog_choose(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_alert_dialog_choose_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_alert_dialog_get_buttons(SEXP s1);
 extern SEXP R_gtk_alert_dialog_get_cancel_button(SEXP s1);
@@ -3916,6 +4081,7 @@ extern SEXP R_gtk_assistant_previous_page(SEXP s1);
 extern SEXP R_gtk_assistant_remove_action_widget(SEXP s1, SEXP s2);
 extern SEXP R_gtk_assistant_remove_page(SEXP s1, SEXP s2);
 extern SEXP R_gtk_assistant_set_current_page(SEXP s1, SEXP s2);
+extern SEXP R_gtk_assistant_set_forward_page_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_assistant_set_page_complete(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_assistant_set_page_title(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_assistant_set_page_type(SEXP s1, SEXP s2, SEXP s3);
@@ -3955,6 +4121,9 @@ extern SEXP R_gtk_bitset_iter_get_value(SEXP s1);
 extern SEXP R_gtk_bitset_iter_is_valid(SEXP s1);
 extern SEXP R_gtk_bitset_iter_next(SEXP s1);
 extern SEXP R_gtk_bitset_iter_previous(SEXP s1);
+extern SEXP R_gtk_bitset_iter_init_at(SEXP s1, SEXP s2);
+extern SEXP R_gtk_bitset_iter_init_first(SEXP s1);
+extern SEXP R_gtk_bitset_iter_init_last(SEXP s1);
 extern SEXP R_gtk_bookmark_list_new(SEXP s1, SEXP s2);
 extern SEXP R_gtk_bookmark_list_get_attributes(SEXP s1);
 extern SEXP R_gtk_bookmark_list_get_filename(SEXP s1);
@@ -4021,7 +4190,10 @@ extern SEXP R_gtk_builder_get_type_from_name(SEXP s1, SEXP s2);
 extern SEXP R_gtk_builder_set_current_object(SEXP s1, SEXP s2);
 extern SEXP R_gtk_builder_set_scope(SEXP s1, SEXP s2);
 extern SEXP R_gtk_builder_set_translation_domain(SEXP s1, SEXP s2);
+extern SEXP R_gtk_builder_value_from_string(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_builder_value_from_string_type(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_builder_cscope_new(void);
+extern SEXP R_gtk_builder_cscope_add_callback_symbol(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_builder_error_quark(void);
 extern SEXP R_gtk_builder_list_item_factory_new_from_bytes(SEXP s1, SEXP s2);
 extern SEXP R_gtk_builder_list_item_factory_new_from_resource(SEXP s1, SEXP s2);
@@ -4044,6 +4216,7 @@ extern SEXP R_gtk_button_set_has_frame(SEXP s1, SEXP s2);
 extern SEXP R_gtk_button_set_icon_name(SEXP s1, SEXP s2);
 extern SEXP R_gtk_button_set_label(SEXP s1, SEXP s2);
 extern SEXP R_gtk_button_set_use_underline(SEXP s1, SEXP s2);
+extern SEXP R_gtk_cclosure_expression_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gtk_calendar_new(void);
 extern SEXP R_gtk_calendar_clear_marks(SEXP s1);
 extern SEXP R_gtk_calendar_get_date(SEXP s1);
@@ -4064,6 +4237,7 @@ extern SEXP R_gtk_calendar_set_show_heading(SEXP s1, SEXP s2);
 extern SEXP R_gtk_calendar_set_show_week_numbers(SEXP s1, SEXP s2);
 extern SEXP R_gtk_calendar_set_year(SEXP s1, SEXP s2);
 extern SEXP R_gtk_calendar_unmark_day(SEXP s1, SEXP s2);
+extern SEXP R_gtk_callback_action_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_cell_area_activate(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_cell_area_activate_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_cell_area_add(SEXP s1, SEXP s2);
@@ -4078,6 +4252,8 @@ extern SEXP R_gtk_cell_area_copy_context(SEXP s1, SEXP s2);
 extern SEXP R_gtk_cell_area_create_context(SEXP s1);
 extern SEXP R_gtk_cell_area_event(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_cell_area_focus(SEXP s1, SEXP s2);
+extern SEXP R_gtk_cell_area_foreach(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_cell_area_foreach_alloc(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gtk_cell_area_get_cell_allocation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_cell_area_get_cell_at_position(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_cell_area_get_current_path_string(SEXP s1);
@@ -4130,6 +4306,7 @@ extern SEXP R_gtk_cell_layout_get_cells(SEXP s1);
 extern SEXP R_gtk_cell_layout_pack_end(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_cell_layout_pack_start(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_cell_layout_reorder(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_cell_layout_set_cell_data_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_cell_renderer_activate(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gtk_cell_renderer_get_aligned_area(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_cell_renderer_get_alignment(SEXP s1);
@@ -4139,6 +4316,7 @@ extern SEXP R_gtk_cell_renderer_get_is_expander(SEXP s1);
 extern SEXP R_gtk_cell_renderer_get_padding(SEXP s1);
 extern SEXP R_gtk_cell_renderer_get_preferred_height(SEXP s1, SEXP s2);
 extern SEXP R_gtk_cell_renderer_get_preferred_height_for_width(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_cell_renderer_get_preferred_size(SEXP s1, SEXP s2);
 extern SEXP R_gtk_cell_renderer_get_preferred_width(SEXP s1, SEXP s2);
 extern SEXP R_gtk_cell_renderer_get_preferred_width_for_height(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_cell_renderer_get_request_mode(SEXP s1);
@@ -4237,6 +4415,7 @@ extern SEXP R_gtk_color_chooser_set_use_alpha(SEXP s1, SEXP s2);
 extern SEXP R_gtk_color_chooser_dialog_new(SEXP s1, SEXP s2);
 extern SEXP R_gtk_color_chooser_widget_new(void);
 extern SEXP R_gtk_color_dialog_new(void);
+extern SEXP R_gtk_color_dialog_choose_rgba(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_color_dialog_choose_rgba_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_color_dialog_get_modal(SEXP s1);
 extern SEXP R_gtk_color_dialog_get_title(SEXP s1);
@@ -4316,6 +4495,7 @@ extern SEXP R_gtk_column_view_row_set_activatable(SEXP s1, SEXP s2);
 extern SEXP R_gtk_column_view_row_set_focusable(SEXP s1, SEXP s2);
 extern SEXP R_gtk_column_view_row_set_selectable(SEXP s1, SEXP s2);
 extern SEXP R_gtk_column_view_sorter_get_n_sort_columns(SEXP s1);
+extern SEXP R_gtk_column_view_sorter_get_nth_sort_column(SEXP s1, SEXP s2);
 extern SEXP R_gtk_column_view_sorter_get_primary_sort_column(SEXP s1);
 extern SEXP R_gtk_column_view_sorter_get_primary_sort_order(SEXP s1);
 extern SEXP R_gtk_combo_box_new(void);
@@ -4324,6 +4504,7 @@ extern SEXP R_gtk_combo_box_new_with_model(SEXP s1);
 extern SEXP R_gtk_combo_box_new_with_model_and_entry(SEXP s1);
 extern SEXP R_gtk_combo_box_get_active(SEXP s1);
 extern SEXP R_gtk_combo_box_get_active_id(SEXP s1);
+extern SEXP R_gtk_combo_box_get_active_iter(SEXP s1);
 extern SEXP R_gtk_combo_box_get_button_sensitivity(SEXP s1);
 extern SEXP R_gtk_combo_box_get_child(SEXP s1);
 extern SEXP R_gtk_combo_box_get_entry_text_column(SEXP s1);
@@ -4343,6 +4524,7 @@ extern SEXP R_gtk_combo_box_set_entry_text_column(SEXP s1, SEXP s2);
 extern SEXP R_gtk_combo_box_set_id_column(SEXP s1, SEXP s2);
 extern SEXP R_gtk_combo_box_set_model(SEXP s1, SEXP s2);
 extern SEXP R_gtk_combo_box_set_popup_fixed_width(SEXP s1, SEXP s2);
+extern SEXP R_gtk_combo_box_set_row_separator_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_combo_box_text_new(void);
 extern SEXP R_gtk_combo_box_text_new_with_entry(void);
 extern SEXP R_gtk_combo_box_text_append(SEXP s1, SEXP s2, SEXP s3);
@@ -4410,6 +4592,11 @@ extern SEXP R_gtk_css_section_print(SEXP s1, SEXP s2);
 extern SEXP R_gtk_css_section_ref(SEXP s1);
 extern SEXP R_gtk_css_section_to_string(SEXP s1);
 extern SEXP R_gtk_css_section_unref(SEXP s1);
+extern SEXP R_gtk_custom_filter_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_custom_filter_set_filter_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gtk_custom_layout_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_custom_sorter_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_custom_sorter_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_dialog_new(void);
 extern SEXP R_gtk_dialog_add_action_widget(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_dialog_add_button(SEXP s1, SEXP s2, SEXP s3);
@@ -4450,6 +4637,7 @@ extern SEXP R_gtk_drawing_area_get_content_height(SEXP s1);
 extern SEXP R_gtk_drawing_area_get_content_width(SEXP s1);
 extern SEXP R_gtk_drawing_area_set_content_height(SEXP s1, SEXP s2);
 extern SEXP R_gtk_drawing_area_set_content_width(SEXP s1, SEXP s2);
+extern SEXP R_gtk_drawing_area_set_draw_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_drop_controller_motion_new(void);
 extern SEXP R_gtk_drop_controller_motion_contains_pointer(SEXP s1);
 extern SEXP R_gtk_drop_controller_motion_get_drop(SEXP s1);
@@ -4615,6 +4803,7 @@ extern SEXP R_gtk_entry_completion_get_text_column(SEXP s1);
 extern SEXP R_gtk_entry_completion_insert_prefix(SEXP s1);
 extern SEXP R_gtk_entry_completion_set_inline_completion(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_completion_set_inline_selection(SEXP s1, SEXP s2);
+extern SEXP R_gtk_entry_completion_set_match_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_entry_completion_set_minimum_key_length(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_completion_set_model(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_completion_set_popup_completion(SEXP s1, SEXP s2);
@@ -4673,6 +4862,7 @@ extern SEXP R_gtk_expression_get_value_type(SEXP s1);
 extern SEXP R_gtk_expression_is_static(SEXP s1);
 extern SEXP R_gtk_expression_ref(SEXP s1);
 extern SEXP R_gtk_expression_unref(SEXP s1);
+extern SEXP R_gtk_expression_watch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_expression_watch_evaluate(SEXP s1, SEXP s2);
 extern SEXP R_gtk_expression_watch_ref(SEXP s1);
 extern SEXP R_gtk_expression_watch_unref(SEXP s1);
@@ -4718,13 +4908,21 @@ extern SEXP R_gtk_file_dialog_get_initial_folder(SEXP s1);
 extern SEXP R_gtk_file_dialog_get_initial_name(SEXP s1);
 extern SEXP R_gtk_file_dialog_get_modal(SEXP s1);
 extern SEXP R_gtk_file_dialog_get_title(SEXP s1);
+extern SEXP R_gtk_file_dialog_open(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_open_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_file_dialog_open_multiple(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_open_multiple_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_file_dialog_open_multiple_text_files(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_open_multiple_text_files_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_file_dialog_open_text_file(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_open_text_file_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_file_dialog_save(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_save_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_file_dialog_save_text_file(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_save_text_file_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_file_dialog_select_folder(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_select_folder_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_file_dialog_select_multiple_folders(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_select_multiple_folders_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_dialog_set_accept_label(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_dialog_set_default_filter(SEXP s1, SEXP s2);
@@ -4749,7 +4947,9 @@ extern SEXP R_gtk_file_launcher_new(SEXP s1);
 extern SEXP R_gtk_file_launcher_get_always_ask(SEXP s1);
 extern SEXP R_gtk_file_launcher_get_file(SEXP s1);
 extern SEXP R_gtk_file_launcher_get_writable(SEXP s1);
+extern SEXP R_gtk_file_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_launcher_launch_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_file_launcher_open_containing_folder(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_launcher_open_containing_folder_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_launcher_set_always_ask(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_launcher_set_file(SEXP s1, SEXP s2);
@@ -4783,6 +4983,7 @@ extern SEXP R_gtk_flatten_list_model_get_model_for_item(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flatten_list_model_set_model(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_new(void);
 extern SEXP R_gtk_flow_box_append(SEXP s1, SEXP s2);
+extern SEXP R_gtk_flow_box_bind_model(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_flow_box_get_activate_on_single_click(SEXP s1);
 extern SEXP R_gtk_flow_box_get_child_at_index(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_get_child_at_pos(SEXP s1, SEXP s2, SEXP s3);
@@ -4801,14 +5002,17 @@ extern SEXP R_gtk_flow_box_remove(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_remove_all(SEXP s1);
 extern SEXP R_gtk_flow_box_select_all(SEXP s1);
 extern SEXP R_gtk_flow_box_select_child(SEXP s1, SEXP s2);
+extern SEXP R_gtk_flow_box_selected_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_flow_box_set_activate_on_single_click(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_set_column_spacing(SEXP s1, SEXP s2);
+extern SEXP R_gtk_flow_box_set_filter_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_flow_box_set_hadjustment(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_set_homogeneous(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_set_max_children_per_line(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_set_min_children_per_line(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_set_row_spacing(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_set_selection_mode(SEXP s1, SEXP s2);
+extern SEXP R_gtk_flow_box_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_flow_box_set_vadjustment(SEXP s1, SEXP s2);
 extern SEXP R_gtk_flow_box_unselect_all(SEXP s1);
 extern SEXP R_gtk_flow_box_unselect_child(SEXP s1, SEXP s2);
@@ -4839,6 +5043,7 @@ extern SEXP R_gtk_font_chooser_get_language(SEXP s1);
 extern SEXP R_gtk_font_chooser_get_level(SEXP s1);
 extern SEXP R_gtk_font_chooser_get_preview_text(SEXP s1);
 extern SEXP R_gtk_font_chooser_get_show_preview_entry(SEXP s1);
+extern SEXP R_gtk_font_chooser_set_filter_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_font_chooser_set_font(SEXP s1, SEXP s2);
 extern SEXP R_gtk_font_chooser_set_font_desc(SEXP s1, SEXP s2);
 extern SEXP R_gtk_font_chooser_set_font_map(SEXP s1, SEXP s2);
@@ -4849,8 +5054,12 @@ extern SEXP R_gtk_font_chooser_set_show_preview_entry(SEXP s1, SEXP s2);
 extern SEXP R_gtk_font_chooser_dialog_new(SEXP s1, SEXP s2);
 extern SEXP R_gtk_font_chooser_widget_new(void);
 extern SEXP R_gtk_font_dialog_new(void);
+extern SEXP R_gtk_font_dialog_choose_face(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_font_dialog_choose_face_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_font_dialog_choose_family(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_font_dialog_choose_family_finish(SEXP s1, SEXP s2);
+extern SEXP R_gtk_font_dialog_choose_font(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gtk_font_dialog_choose_font_and_features(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_font_dialog_choose_font_and_features_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_font_dialog_choose_font_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_font_dialog_get_filter(SEXP s1);
@@ -5087,6 +5296,8 @@ extern SEXP R_gtk_icon_view_get_cell_rect(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_icon_view_get_column_spacing(SEXP s1);
 extern SEXP R_gtk_icon_view_get_columns(SEXP s1);
 extern SEXP R_gtk_icon_view_get_cursor(SEXP s1);
+extern SEXP R_gtk_icon_view_get_dest_item_at_pos(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_icon_view_get_drag_dest_item(SEXP s1);
 extern SEXP R_gtk_icon_view_get_item_at_pos(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_icon_view_get_item_column(SEXP s1, SEXP s2);
 extern SEXP R_gtk_icon_view_get_item_orientation(SEXP s1);
@@ -5105,12 +5316,14 @@ extern SEXP R_gtk_icon_view_get_selection_mode(SEXP s1);
 extern SEXP R_gtk_icon_view_get_spacing(SEXP s1);
 extern SEXP R_gtk_icon_view_get_text_column(SEXP s1);
 extern SEXP R_gtk_icon_view_get_tooltip_column(SEXP s1);
+extern SEXP R_gtk_icon_view_get_tooltip_context(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_icon_view_get_visible_range(SEXP s1);
 extern SEXP R_gtk_icon_view_item_activated(SEXP s1, SEXP s2);
 extern SEXP R_gtk_icon_view_path_is_selected(SEXP s1, SEXP s2);
 extern SEXP R_gtk_icon_view_scroll_to_path(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_icon_view_select_all(SEXP s1);
 extern SEXP R_gtk_icon_view_select_path(SEXP s1, SEXP s2);
+extern SEXP R_gtk_icon_view_selected_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_icon_view_set_activate_on_single_click(SEXP s1, SEXP s2);
 extern SEXP R_gtk_icon_view_set_column_spacing(SEXP s1, SEXP s2);
 extern SEXP R_gtk_icon_view_set_columns(SEXP s1, SEXP s2);
@@ -5279,6 +5492,7 @@ extern SEXP R_gtk_link_button_set_uri(SEXP s1, SEXP s2);
 extern SEXP R_gtk_link_button_set_visited(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_new(void);
 extern SEXP R_gtk_list_box_append(SEXP s1, SEXP s2);
+extern SEXP R_gtk_list_box_bind_model(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_list_box_drag_highlight_row(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_drag_unhighlight_row(SEXP s1);
 extern SEXP R_gtk_list_box_get_activate_on_single_click(SEXP s1);
@@ -5299,11 +5513,15 @@ extern SEXP R_gtk_list_box_remove(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_remove_all(SEXP s1);
 extern SEXP R_gtk_list_box_select_all(SEXP s1);
 extern SEXP R_gtk_list_box_select_row(SEXP s1, SEXP s2);
+extern SEXP R_gtk_list_box_selected_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_list_box_set_activate_on_single_click(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_set_adjustment(SEXP s1, SEXP s2);
+extern SEXP R_gtk_list_box_set_filter_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gtk_list_box_set_header_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_list_box_set_placeholder(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_set_selection_mode(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_set_show_separators(SEXP s1, SEXP s2);
+extern SEXP R_gtk_list_box_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_list_box_set_tab_behavior(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_unselect_all(SEXP s1);
 extern SEXP R_gtk_list_box_unselect_row(SEXP s1, SEXP s2);
@@ -5341,10 +5559,16 @@ extern SEXP R_gtk_list_item_set_child(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_item_set_focusable(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_item_set_selectable(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_store_newv(SEXP s1, SEXP s2);
+extern SEXP R_gtk_list_store_append(SEXP s1);
 extern SEXP R_gtk_list_store_clear(SEXP s1);
+extern SEXP R_gtk_list_store_insert(SEXP s1, SEXP s2);
+extern SEXP R_gtk_list_store_insert_after(SEXP s1, SEXP s2);
+extern SEXP R_gtk_list_store_insert_before(SEXP s1, SEXP s2);
+extern SEXP R_gtk_list_store_insert_with_valuesv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_list_store_iter_is_valid(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_store_move_after(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_list_store_move_before(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_list_store_prepend(SEXP s1);
 extern SEXP R_gtk_list_store_remove(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_store_reorder(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_store_set_column_types(SEXP s1, SEXP s2, SEXP s3);
@@ -5370,8 +5594,10 @@ extern SEXP R_gtk_list_view_set_tab_behavior(SEXP s1, SEXP s2);
 extern SEXP R_gtk_lock_button_new(SEXP s1);
 extern SEXP R_gtk_lock_button_get_permission(SEXP s1);
 extern SEXP R_gtk_lock_button_set_permission(SEXP s1, SEXP s2);
+extern SEXP R_gtk_map_list_model_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_map_list_model_get_model(SEXP s1);
 extern SEXP R_gtk_map_list_model_has_map(SEXP s1);
+extern SEXP R_gtk_map_list_model_set_map_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_map_list_model_set_model(SEXP s1, SEXP s2);
 extern SEXP R_gtk_media_controls_new(SEXP s1);
 extern SEXP R_gtk_media_controls_get_media_stream(SEXP s1);
@@ -5436,6 +5662,7 @@ extern SEXP R_gtk_menu_button_set_active(SEXP s1, SEXP s2);
 extern SEXP R_gtk_menu_button_set_always_show_arrow(SEXP s1, SEXP s2);
 extern SEXP R_gtk_menu_button_set_can_shrink(SEXP s1, SEXP s2);
 extern SEXP R_gtk_menu_button_set_child(SEXP s1, SEXP s2);
+extern SEXP R_gtk_menu_button_set_create_popup_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_menu_button_set_direction(SEXP s1, SEXP s2);
 extern SEXP R_gtk_menu_button_set_has_frame(SEXP s1, SEXP s2);
 extern SEXP R_gtk_menu_button_set_icon_name(SEXP s1, SEXP s2);
@@ -5558,33 +5785,6 @@ extern SEXP R_gtk_overlay_layout_child_set_measure(SEXP s1, SEXP s2);
 extern SEXP R_gtk_pad_controller_new(SEXP s1, SEXP s2);
 extern SEXP R_gtk_pad_controller_set_action(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_pad_controller_set_action_entries(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_page_setup_new(void);
-extern SEXP R_gtk_page_setup_new_from_file(SEXP s1);
-extern SEXP R_gtk_page_setup_new_from_gvariant(SEXP s1);
-extern SEXP R_gtk_page_setup_new_from_key_file(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_copy(SEXP s1);
-extern SEXP R_gtk_page_setup_get_bottom_margin(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_get_left_margin(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_get_orientation(SEXP s1);
-extern SEXP R_gtk_page_setup_get_page_height(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_get_page_width(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_get_paper_height(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_get_paper_size(SEXP s1);
-extern SEXP R_gtk_page_setup_get_paper_width(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_get_right_margin(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_get_top_margin(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_load_file(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_load_key_file(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_page_setup_set_bottom_margin(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_page_setup_set_left_margin(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_page_setup_set_orientation(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_set_paper_size(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_set_paper_size_and_default_margins(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_set_right_margin(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_page_setup_set_top_margin(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_page_setup_to_file(SEXP s1, SEXP s2);
-extern SEXP R_gtk_page_setup_to_gvariant(SEXP s1);
-extern SEXP R_gtk_page_setup_to_key_file(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_paned_new(SEXP s1);
 extern SEXP R_gtk_paned_get_end_child(SEXP s1);
 extern SEXP R_gtk_paned_get_position(SEXP s1);
@@ -5701,144 +5901,6 @@ extern SEXP R_gtk_popover_menu_bar_add_child(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_popover_menu_bar_get_menu_model(SEXP s1);
 extern SEXP R_gtk_popover_menu_bar_remove_child(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_menu_bar_set_menu_model(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_context_create_pango_context(SEXP s1);
-extern SEXP R_gtk_print_context_create_pango_layout(SEXP s1);
-extern SEXP R_gtk_print_context_get_cairo_context(SEXP s1);
-extern SEXP R_gtk_print_context_get_dpi_x(SEXP s1);
-extern SEXP R_gtk_print_context_get_dpi_y(SEXP s1);
-extern SEXP R_gtk_print_context_get_hard_margins(SEXP s1);
-extern SEXP R_gtk_print_context_get_height(SEXP s1);
-extern SEXP R_gtk_print_context_get_page_setup(SEXP s1);
-extern SEXP R_gtk_print_context_get_pango_fontmap(SEXP s1);
-extern SEXP R_gtk_print_context_get_width(SEXP s1);
-extern SEXP R_gtk_print_context_set_cairo_context(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_print_dialog_new(void);
-extern SEXP R_gtk_print_dialog_get_accept_label(SEXP s1);
-extern SEXP R_gtk_print_dialog_get_modal(SEXP s1);
-extern SEXP R_gtk_print_dialog_get_page_setup(SEXP s1);
-extern SEXP R_gtk_print_dialog_get_print_settings(SEXP s1);
-extern SEXP R_gtk_print_dialog_get_title(SEXP s1);
-extern SEXP R_gtk_print_dialog_print_file_finish(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_dialog_print_finish(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_dialog_set_accept_label(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_dialog_set_modal(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_dialog_set_page_setup(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_dialog_set_print_settings(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_dialog_set_title(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_dialog_setup_finish(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_error_quark(void);
-extern SEXP R_gtk_print_operation_new(void);
-extern SEXP R_gtk_print_operation_cancel(SEXP s1);
-extern SEXP R_gtk_print_operation_draw_page_finish(SEXP s1);
-extern SEXP R_gtk_print_operation_get_default_page_setup(SEXP s1);
-extern SEXP R_gtk_print_operation_get_embed_page_setup(SEXP s1);
-extern SEXP R_gtk_print_operation_get_error(SEXP s1);
-extern SEXP R_gtk_print_operation_get_has_selection(SEXP s1);
-extern SEXP R_gtk_print_operation_get_n_pages_to_print(SEXP s1);
-extern SEXP R_gtk_print_operation_get_print_settings(SEXP s1);
-extern SEXP R_gtk_print_operation_get_status(SEXP s1);
-extern SEXP R_gtk_print_operation_get_status_string(SEXP s1);
-extern SEXP R_gtk_print_operation_get_support_selection(SEXP s1);
-extern SEXP R_gtk_print_operation_is_finished(SEXP s1);
-extern SEXP R_gtk_print_operation_run(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_operation_set_allow_async(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_current_page(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_custom_tab_label(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_default_page_setup(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_defer_drawing(SEXP s1);
-extern SEXP R_gtk_print_operation_set_embed_page_setup(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_export_filename(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_has_selection(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_job_name(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_n_pages(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_print_settings(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_show_progress(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_support_selection(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_track_print_status(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_unit(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_set_use_full_page(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_preview_end_preview(SEXP s1);
-extern SEXP R_gtk_print_operation_preview_is_selected(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_operation_preview_render_page(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_new(void);
-extern SEXP R_gtk_print_settings_new_from_file(SEXP s1);
-extern SEXP R_gtk_print_settings_new_from_gvariant(SEXP s1);
-extern SEXP R_gtk_print_settings_new_from_key_file(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_copy(SEXP s1);
-extern SEXP R_gtk_print_settings_get(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_get_bool(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_get_collate(SEXP s1);
-extern SEXP R_gtk_print_settings_get_default_source(SEXP s1);
-extern SEXP R_gtk_print_settings_get_dither(SEXP s1);
-extern SEXP R_gtk_print_settings_get_double(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_get_double_with_default(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_get_duplex(SEXP s1);
-extern SEXP R_gtk_print_settings_get_finishings(SEXP s1);
-extern SEXP R_gtk_print_settings_get_int(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_get_int_with_default(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_get_length(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_get_media_type(SEXP s1);
-extern SEXP R_gtk_print_settings_get_n_copies(SEXP s1);
-extern SEXP R_gtk_print_settings_get_number_up(SEXP s1);
-extern SEXP R_gtk_print_settings_get_number_up_layout(SEXP s1);
-extern SEXP R_gtk_print_settings_get_orientation(SEXP s1);
-extern SEXP R_gtk_print_settings_get_output_bin(SEXP s1);
-extern SEXP R_gtk_print_settings_get_page_ranges(SEXP s1);
-extern SEXP R_gtk_print_settings_get_page_set(SEXP s1);
-extern SEXP R_gtk_print_settings_get_paper_height(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_get_paper_size(SEXP s1);
-extern SEXP R_gtk_print_settings_get_paper_width(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_get_print_pages(SEXP s1);
-extern SEXP R_gtk_print_settings_get_printer(SEXP s1);
-extern SEXP R_gtk_print_settings_get_printer_lpi(SEXP s1);
-extern SEXP R_gtk_print_settings_get_quality(SEXP s1);
-extern SEXP R_gtk_print_settings_get_resolution(SEXP s1);
-extern SEXP R_gtk_print_settings_get_resolution_x(SEXP s1);
-extern SEXP R_gtk_print_settings_get_resolution_y(SEXP s1);
-extern SEXP R_gtk_print_settings_get_reverse(SEXP s1);
-extern SEXP R_gtk_print_settings_get_scale(SEXP s1);
-extern SEXP R_gtk_print_settings_get_use_color(SEXP s1);
-extern SEXP R_gtk_print_settings_has_key(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_load_file(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_load_key_file(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set_bool(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set_collate(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_default_source(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_dither(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_double(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set_duplex(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_finishings(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_int(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set_length(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_print_settings_set_media_type(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_n_copies(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_number_up(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_number_up_layout(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_orientation(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_output_bin(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_page_ranges(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set_page_set(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_paper_height(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set_paper_size(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_paper_width(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set_print_pages(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_printer(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_printer_lpi(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_quality(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_resolution(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_resolution_xy(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_set_reverse(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_scale(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_set_use_color(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_to_file(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_settings_to_gvariant(SEXP s1);
-extern SEXP R_gtk_print_settings_to_key_file(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_print_settings_unset(SEXP s1, SEXP s2);
-extern SEXP R_gtk_print_setup_get_page_setup(SEXP s1);
-extern SEXP R_gtk_print_setup_get_print_settings(SEXP s1);
-extern SEXP R_gtk_print_setup_ref(SEXP s1);
-extern SEXP R_gtk_print_setup_unref(SEXP s1);
 extern SEXP R_gtk_progress_bar_new(void);
 extern SEXP R_gtk_progress_bar_get_ellipsize(SEXP s1);
 extern SEXP R_gtk_progress_bar_get_fraction(SEXP s1);
@@ -5942,6 +6004,7 @@ extern SEXP R_gtk_scale_get_layout_offsets(SEXP s1);
 extern SEXP R_gtk_scale_get_value_pos(SEXP s1);
 extern SEXP R_gtk_scale_set_digits(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scale_set_draw_value(SEXP s1, SEXP s2);
+extern SEXP R_gtk_scale_set_format_value_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_scale_set_has_origin(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scale_set_value_pos(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scale_button_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -5963,6 +6026,7 @@ extern SEXP R_gtk_scroll_info_ref(SEXP s1);
 extern SEXP R_gtk_scroll_info_set_enable_horizontal(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scroll_info_set_enable_vertical(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scroll_info_unref(SEXP s1);
+extern SEXP R_gtk_scrollable_get_border(SEXP s1);
 extern SEXP R_gtk_scrollable_get_hadjustment(SEXP s1);
 extern SEXP R_gtk_scrollable_get_hscroll_policy(SEXP s1);
 extern SEXP R_gtk_scrollable_get_vadjustment(SEXP s1);
@@ -5986,6 +6050,7 @@ extern SEXP R_gtk_scrolled_window_get_min_content_height(SEXP s1);
 extern SEXP R_gtk_scrolled_window_get_min_content_width(SEXP s1);
 extern SEXP R_gtk_scrolled_window_get_overlay_scrolling(SEXP s1);
 extern SEXP R_gtk_scrolled_window_get_placement(SEXP s1);
+extern SEXP R_gtk_scrolled_window_get_policy(SEXP s1);
 extern SEXP R_gtk_scrolled_window_get_propagate_natural_height(SEXP s1);
 extern SEXP R_gtk_scrolled_window_get_propagate_natural_width(SEXP s1);
 extern SEXP R_gtk_scrolled_window_get_vadjustment(SEXP s1);
@@ -6287,8 +6352,11 @@ extern SEXP R_gtk_style_context_add_provider_for_display(SEXP s1, SEXP s2, SEXP 
 extern SEXP R_gtk_style_context_remove_provider_for_display(SEXP s1, SEXP s2);
 extern SEXP R_gtk_style_context_add_class(SEXP s1, SEXP s2);
 extern SEXP R_gtk_style_context_add_provider(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_style_context_get_border(SEXP s1);
 extern SEXP R_gtk_style_context_get_color(SEXP s1);
 extern SEXP R_gtk_style_context_get_display(SEXP s1);
+extern SEXP R_gtk_style_context_get_margin(SEXP s1);
+extern SEXP R_gtk_style_context_get_padding(SEXP s1);
 extern SEXP R_gtk_style_context_get_scale(SEXP s1);
 extern SEXP R_gtk_style_context_get_state(SEXP s1);
 extern SEXP R_gtk_style_context_has_class(SEXP s1, SEXP s2);
@@ -6306,6 +6374,7 @@ extern SEXP R_gtk_svg_new_from_bytes(SEXP s1);
 extern SEXP R_gtk_svg_new_from_resource(SEXP s1);
 extern SEXP R_gtk_svg_get_features(SEXP s1);
 extern SEXP R_gtk_svg_get_state(SEXP s1);
+extern SEXP R_gtk_svg_get_state_names(SEXP s1);
 extern SEXP R_gtk_svg_get_weight(SEXP s1);
 extern SEXP R_gtk_svg_load_from_bytes(SEXP s1, SEXP s2);
 extern SEXP R_gtk_svg_load_from_resource(SEXP s1, SEXP s2);
@@ -6366,6 +6435,7 @@ extern SEXP R_gtk_text_set_truncate_multiline(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_set_visibility(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_unset_invisible_char(SEXP s1);
 extern SEXP R_gtk_text_buffer_new(SEXP s1);
+extern SEXP R_gtk_text_buffer_add_commit_notify(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_text_buffer_add_mark(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_text_buffer_add_selection_clipboard(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_buffer_apply_tag(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -6652,6 +6722,7 @@ extern SEXP R_gtk_tree_expander_set_indent_for_icon(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_expander_set_list_row(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_iter_copy(SEXP s1);
 extern SEXP R_gtk_tree_iter_free(SEXP s1);
+extern SEXP R_gtk_tree_list_model_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_tree_list_model_get_autoexpand(SEXP s1);
 extern SEXP R_gtk_tree_list_model_get_child_row(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_list_model_get_model(SEXP s1);
@@ -6671,14 +6742,22 @@ extern SEXP R_gtk_tree_list_row_sorter_new(SEXP s1);
 extern SEXP R_gtk_tree_list_row_sorter_get_sorter(SEXP s1);
 extern SEXP R_gtk_tree_list_row_sorter_set_sorter(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_filter_new(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_model_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_model_get_column_type(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_get_flags(SEXP s1);
+extern SEXP R_gtk_tree_model_get_iter(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_model_get_iter_first(SEXP s1);
+extern SEXP R_gtk_tree_model_get_iter_from_string(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_get_n_columns(SEXP s1);
 extern SEXP R_gtk_tree_model_get_path(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_get_string_from_iter(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_model_get_value(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_model_iter_children(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_iter_has_child(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_iter_n_children(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_iter_next(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_model_iter_nth_child(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_model_iter_parent(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_iter_previous(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_ref_node(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_row_changed(SEXP s1, SEXP s2, SEXP s3);
@@ -6688,14 +6767,20 @@ extern SEXP R_gtk_tree_model_row_inserted(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_model_rows_reordered_with_length(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_tree_model_unref_node(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_filter_clear_cache(SEXP s1);
+extern SEXP R_gtk_tree_model_filter_convert_child_iter_to_iter(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_filter_convert_child_path_to_path(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_model_filter_convert_iter_to_child_iter(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_filter_convert_path_to_child_path(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_filter_get_model(SEXP s1);
 extern SEXP R_gtk_tree_model_filter_refilter(SEXP s1);
+extern SEXP R_gtk_tree_model_filter_set_modify_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_tree_model_filter_set_visible_column(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_model_filter_set_visible_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_tree_model_sort_new_with_model(SEXP s1);
 extern SEXP R_gtk_tree_model_sort_clear_cache(SEXP s1);
+extern SEXP R_gtk_tree_model_sort_convert_child_iter_to_iter(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_sort_convert_child_path_to_path(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_model_sort_convert_iter_to_child_iter(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_sort_convert_path_to_child_path(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_model_sort_get_model(SEXP s1);
 extern SEXP R_gtk_tree_model_sort_iter_is_valid(SEXP s1, SEXP s2);
@@ -6729,6 +6814,7 @@ extern SEXP R_gtk_tree_row_reference_deleted(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_row_reference_inserted(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_selection_count_selected_rows(SEXP s1);
 extern SEXP R_gtk_tree_selection_get_mode(SEXP s1);
+extern SEXP R_gtk_tree_selection_get_selected(SEXP s1);
 extern SEXP R_gtk_tree_selection_get_selected_rows(SEXP s1);
 extern SEXP R_gtk_tree_selection_get_tree_view(SEXP s1);
 extern SEXP R_gtk_tree_selection_iter_is_selected(SEXP s1, SEXP s2);
@@ -6737,21 +6823,32 @@ extern SEXP R_gtk_tree_selection_select_all(SEXP s1);
 extern SEXP R_gtk_tree_selection_select_iter(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_selection_select_path(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_selection_select_range(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_selection_selected_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_selection_set_mode(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_selection_set_select_function(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_tree_selection_unselect_all(SEXP s1);
 extern SEXP R_gtk_tree_selection_unselect_iter(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_selection_unselect_path(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_selection_unselect_range(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_sortable_get_sort_column_id(SEXP s1);
 extern SEXP R_gtk_tree_sortable_has_default_sort_func(SEXP s1);
+extern SEXP R_gtk_tree_sortable_set_default_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_tree_sortable_set_sort_column_id(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_sortable_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_tree_sortable_sort_column_changed(SEXP s1);
 extern SEXP R_gtk_tree_store_newv(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_store_append(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_store_clear(SEXP s1);
+extern SEXP R_gtk_tree_store_insert(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_store_insert_after(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_store_insert_before(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_store_insert_with_valuesv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_tree_store_is_ancestor(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_store_iter_depth(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_store_iter_is_valid(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_store_move_after(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_store_move_before(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_store_prepend(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_store_remove(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_store_set_column_types(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_store_set_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -6781,6 +6878,8 @@ extern SEXP R_gtk_tree_view_get_cell_area(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_view_get_column(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_get_columns(SEXP s1);
 extern SEXP R_gtk_tree_view_get_cursor(SEXP s1);
+extern SEXP R_gtk_tree_view_get_dest_row_at_pos(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_view_get_drag_dest_row(SEXP s1);
 extern SEXP R_gtk_tree_view_get_enable_search(SEXP s1);
 extern SEXP R_gtk_tree_view_get_enable_tree_lines(SEXP s1);
 extern SEXP R_gtk_tree_view_get_expander_column(SEXP s1);
@@ -6801,11 +6900,14 @@ extern SEXP R_gtk_tree_view_get_search_entry(SEXP s1);
 extern SEXP R_gtk_tree_view_get_selection(SEXP s1);
 extern SEXP R_gtk_tree_view_get_show_expanders(SEXP s1);
 extern SEXP R_gtk_tree_view_get_tooltip_column(SEXP s1);
+extern SEXP R_gtk_tree_view_get_tooltip_context(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_tree_view_get_visible_range(SEXP s1);
 extern SEXP R_gtk_tree_view_get_visible_rect(SEXP s1);
 extern SEXP R_gtk_tree_view_insert_column(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_tree_view_insert_column_with_data_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gtk_tree_view_is_blank_at_pos(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_view_is_rubber_banding_active(SEXP s1);
+extern SEXP R_gtk_tree_view_map_expanded_rows(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_view_move_column_after(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_view_remove_column(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_row_activated(SEXP s1, SEXP s2, SEXP s3);
@@ -6813,6 +6915,7 @@ extern SEXP R_gtk_tree_view_row_expanded(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_scroll_to_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_tree_view_scroll_to_point(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_view_set_activate_on_single_click(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_view_set_column_drag_function(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_tree_view_set_cursor(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_tree_view_set_cursor_on_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_tree_view_set_drag_dest_row(SEXP s1, SEXP s2, SEXP s3);
@@ -6828,9 +6931,11 @@ extern SEXP R_gtk_tree_view_set_hover_selection(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_set_level_indentation(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_set_model(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_set_reorderable(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_view_set_row_separator_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_tree_view_set_rubber_banding(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_set_search_column(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_set_search_entry(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_view_set_search_equal_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_tree_view_set_show_expanders(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_set_tooltip_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_tree_view_set_tooltip_column(SEXP s1, SEXP s2);
@@ -6872,6 +6977,7 @@ extern SEXP R_gtk_tree_view_column_pack_end(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_view_column_pack_start(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_tree_view_column_queue_resize(SEXP s1);
 extern SEXP R_gtk_tree_view_column_set_alignment(SEXP s1, SEXP s2);
+extern SEXP R_gtk_tree_view_column_set_cell_data_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_tree_view_column_set_clickable(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_column_set_expand(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_column_set_fixed_width(SEXP s1, SEXP s2);
@@ -6891,6 +6997,7 @@ extern SEXP R_gtk_try_expression_new(SEXP s1, SEXP s2);
 extern SEXP R_gtk_uri_launcher_new(SEXP s1);
 extern SEXP R_gtk_uri_launcher_can_launch(SEXP s1, SEXP s2);
 extern SEXP R_gtk_uri_launcher_get_uri(SEXP s1);
+extern SEXP R_gtk_uri_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_uri_launcher_launch_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_uri_launcher_set_uri(SEXP s1, SEXP s2);
 extern SEXP R_gtk_video_new(void);
@@ -6926,11 +7033,13 @@ extern SEXP R_gtk_widget_activate_default(SEXP s1);
 extern SEXP R_gtk_widget_add_controller(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_add_css_class(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_add_mnemonic_label(SEXP s1, SEXP s2);
+extern SEXP R_gtk_widget_add_tick_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_widget_allocate(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_widget_child_focus(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_compute_bounds(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_compute_expand(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_compute_point(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_widget_compute_transform(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_contains(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_widget_create_pango_context(SEXP s1);
 extern SEXP R_gtk_widget_create_pango_layout(SEXP s1, SEXP s2);
@@ -6940,6 +7049,7 @@ extern SEXP R_gtk_widget_error_bell(SEXP s1);
 extern SEXP R_gtk_widget_get_allocated_baseline(SEXP s1);
 extern SEXP R_gtk_widget_get_allocated_height(SEXP s1);
 extern SEXP R_gtk_widget_get_allocated_width(SEXP s1);
+extern SEXP R_gtk_widget_get_allocation(SEXP s1);
 extern SEXP R_gtk_widget_get_ancestor(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_get_baseline(SEXP s1);
 extern SEXP R_gtk_widget_get_can_focus(SEXP s1);
@@ -6979,6 +7089,7 @@ extern SEXP R_gtk_widget_get_opacity(SEXP s1);
 extern SEXP R_gtk_widget_get_overflow(SEXP s1);
 extern SEXP R_gtk_widget_get_pango_context(SEXP s1);
 extern SEXP R_gtk_widget_get_parent(SEXP s1);
+extern SEXP R_gtk_widget_get_preferred_size(SEXP s1);
 extern SEXP R_gtk_widget_get_prev_sibling(SEXP s1);
 extern SEXP R_gtk_widget_get_primary_clipboard(SEXP s1);
 extern SEXP R_gtk_widget_get_realized(SEXP s1);
@@ -7079,11 +7190,13 @@ extern SEXP R_gtk_widget_unparent(SEXP s1);
 extern SEXP R_gtk_widget_unrealize(SEXP s1);
 extern SEXP R_gtk_widget_unset_state_flags(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_class_add_shortcut(SEXP s1, SEXP s2);
+extern SEXP R_gtk_widget_class_bind_template_callback_full(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_widget_class_bind_template_child_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_widget_class_get_accessible_role(SEXP s1);
 extern SEXP R_gtk_widget_class_get_activate_signal(SEXP s1);
 extern SEXP R_gtk_widget_class_get_css_name(SEXP s1);
 extern SEXP R_gtk_widget_class_get_layout_manager_type(SEXP s1);
+extern SEXP R_gtk_widget_class_install_action(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_widget_class_install_property_action(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_widget_class_query_action(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_class_set_accessible_role(SEXP s1, SEXP s2);
@@ -7182,6 +7295,8 @@ extern SEXP R_gtk_accelerator_get_label(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accelerator_get_label_with_keycode(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_accelerator_name(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accelerator_name_with_keycode(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gtk_accelerator_parse(SEXP s1);
+extern SEXP R_gtk_accelerator_parse_with_keycode(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accelerator_valid(SEXP s1, SEXP s2);
 extern SEXP R_gtk_check_version(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_css_parser_error_quark(void);
@@ -7203,7 +7318,6 @@ extern SEXP R_gtk_init(void);
 extern SEXP R_gtk_init_check(void);
 extern SEXP R_gtk_is_initialized(void);
 extern SEXP R_gtk_param_spec_expression(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_print_run_page_setup_dialog(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_render_activity(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_render_arrow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_render_background(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
@@ -7219,6 +7333,7 @@ extern SEXP R_gtk_render_option(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEX
 extern SEXP R_gtk_rgb_to_hsv(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_set_debug_flags(SEXP s1);
 extern SEXP R_gtk_show_uri(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gtk_show_uri_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_show_uri_full_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_test_accessible_assertion_message_role(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_gtk_test_accessible_has_property(SEXP s1, SEXP s2);
@@ -7271,12 +7386,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_clipboard_get_display", (DL_FUNC) &R_gdk_clipboard_get_display, 1},
     {"R_gdk_clipboard_get_formats", (DL_FUNC) &R_gdk_clipboard_get_formats, 1},
     {"R_gdk_clipboard_is_local", (DL_FUNC) &R_gdk_clipboard_is_local, 1},
+    {"R_gdk_clipboard_read_async", (DL_FUNC) &R_gdk_clipboard_read_async, 6},
     {"R_gdk_clipboard_read_finish", (DL_FUNC) &R_gdk_clipboard_read_finish, 2},
+    {"R_gdk_clipboard_read_text_async", (DL_FUNC) &R_gdk_clipboard_read_text_async, 4},
     {"R_gdk_clipboard_read_text_finish", (DL_FUNC) &R_gdk_clipboard_read_text_finish, 2},
+    {"R_gdk_clipboard_read_texture_async", (DL_FUNC) &R_gdk_clipboard_read_texture_async, 4},
     {"R_gdk_clipboard_read_texture_finish", (DL_FUNC) &R_gdk_clipboard_read_texture_finish, 2},
+    {"R_gdk_clipboard_read_value_async", (DL_FUNC) &R_gdk_clipboard_read_value_async, 6},
     {"R_gdk_clipboard_read_value_finish", (DL_FUNC) &R_gdk_clipboard_read_value_finish, 2},
     {"R_gdk_clipboard_set_content", (DL_FUNC) &R_gdk_clipboard_set_content, 2},
     {"R_gdk_clipboard_set_value", (DL_FUNC) &R_gdk_clipboard_set_value, 2},
+    {"R_gdk_clipboard_store_async", (DL_FUNC) &R_gdk_clipboard_store_async, 5},
     {"R_gdk_clipboard_store_finish", (DL_FUNC) &R_gdk_clipboard_store_finish, 2},
     {"R_gdk_color_state_create_cicp_params", (DL_FUNC) &R_gdk_color_state_create_cicp_params, 1},
     {"R_gdk_color_state_equal", (DL_FUNC) &R_gdk_color_state_equal, 2},
@@ -7299,6 +7419,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_content_deserializer_get_value", (DL_FUNC) &R_gdk_content_deserializer_get_value, 1},
     {"R_gdk_content_deserializer_return_error", (DL_FUNC) &R_gdk_content_deserializer_return_error, 2},
     {"R_gdk_content_deserializer_return_success", (DL_FUNC) &R_gdk_content_deserializer_return_success, 1},
+    {"R_gdk_content_deserializer_set_task_data", (DL_FUNC) &R_gdk_content_deserializer_set_task_data, 3},
     {"R_gdk_content_formats_new", (DL_FUNC) &R_gdk_content_formats_new, 2},
     {"R_gdk_content_formats_new_for_gtype", (DL_FUNC) &R_gdk_content_formats_new_for_gtype, 1},
     {"R_gdk_content_formats_contain_gtype", (DL_FUNC) &R_gdk_content_formats_contain_gtype, 2},
@@ -7330,8 +7451,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_content_provider_new_for_value", (DL_FUNC) &R_gdk_content_provider_new_for_value, 1},
     {"R_gdk_content_provider_new_union", (DL_FUNC) &R_gdk_content_provider_new_union, 2},
     {"R_gdk_content_provider_content_changed", (DL_FUNC) &R_gdk_content_provider_content_changed, 1},
+    {"R_gdk_content_provider_get_value", (DL_FUNC) &R_gdk_content_provider_get_value, 1},
     {"R_gdk_content_provider_ref_formats", (DL_FUNC) &R_gdk_content_provider_ref_formats, 1},
     {"R_gdk_content_provider_ref_storable_formats", (DL_FUNC) &R_gdk_content_provider_ref_storable_formats, 1},
+    {"R_gdk_content_provider_write_mime_type_async", (DL_FUNC) &R_gdk_content_provider_write_mime_type_async, 7},
     {"R_gdk_content_provider_write_mime_type_finish", (DL_FUNC) &R_gdk_content_provider_write_mime_type_finish, 2},
     {"R_gdk_content_serializer_get_cancellable", (DL_FUNC) &R_gdk_content_serializer_get_cancellable, 1},
     {"R_gdk_content_serializer_get_gtype", (DL_FUNC) &R_gdk_content_serializer_get_gtype, 1},
@@ -7343,9 +7466,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_content_serializer_get_value", (DL_FUNC) &R_gdk_content_serializer_get_value, 1},
     {"R_gdk_content_serializer_return_error", (DL_FUNC) &R_gdk_content_serializer_return_error, 2},
     {"R_gdk_content_serializer_return_success", (DL_FUNC) &R_gdk_content_serializer_return_success, 1},
+    {"R_gdk_content_serializer_set_task_data", (DL_FUNC) &R_gdk_content_serializer_set_task_data, 3},
     {"R_gdk_crossing_event_get_detail", (DL_FUNC) &R_gdk_crossing_event_get_detail, 1},
     {"R_gdk_crossing_event_get_focus", (DL_FUNC) &R_gdk_crossing_event_get_focus, 1},
     {"R_gdk_crossing_event_get_mode", (DL_FUNC) &R_gdk_crossing_event_get_mode, 1},
+    {"R_gdk_cursor_new_from_callback", (DL_FUNC) &R_gdk_cursor_new_from_callback, 4},
     {"R_gdk_cursor_new_from_name", (DL_FUNC) &R_gdk_cursor_new_from_name, 2},
     {"R_gdk_cursor_new_from_texture", (DL_FUNC) &R_gdk_cursor_new_from_texture, 4},
     {"R_gdk_cursor_get_fallback", (DL_FUNC) &R_gdk_cursor_get_fallback, 1},
@@ -7410,6 +7535,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_display_supports_input_shapes", (DL_FUNC) &R_gdk_display_supports_input_shapes, 1},
     {"R_gdk_display_supports_shadow_width", (DL_FUNC) &R_gdk_display_supports_shadow_width, 1},
     {"R_gdk_display_sync", (DL_FUNC) &R_gdk_display_sync, 1},
+    {"R_gdk_display_translate_key", (DL_FUNC) &R_gdk_display_translate_key, 4},
     {"R_gdk_display_manager_get", (DL_FUNC) &R_gdk_display_manager_get, 0},
     {"R_gdk_display_manager_get_default_display", (DL_FUNC) &R_gdk_display_manager_get_default_display, 1},
     {"R_gdk_display_manager_list_displays", (DL_FUNC) &R_gdk_display_manager_list_displays, 1},
@@ -7423,6 +7549,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_dmabuf_formats_ref", (DL_FUNC) &R_gdk_dmabuf_formats_ref, 1},
     {"R_gdk_dmabuf_formats_unref", (DL_FUNC) &R_gdk_dmabuf_formats_unref, 1},
     {"R_gdk_dmabuf_texture_builder_new", (DL_FUNC) &R_gdk_dmabuf_texture_builder_new, 0},
+    {"R_gdk_dmabuf_texture_builder_build", (DL_FUNC) &R_gdk_dmabuf_texture_builder_build, 3},
     {"R_gdk_dmabuf_texture_builder_get_color_state", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_color_state, 1},
     {"R_gdk_dmabuf_texture_builder_get_display", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_display, 1},
     {"R_gdk_dmabuf_texture_builder_get_fd", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_fd, 2},
@@ -7476,7 +7603,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_drop_get_drag", (DL_FUNC) &R_gdk_drop_get_drag, 1},
     {"R_gdk_drop_get_formats", (DL_FUNC) &R_gdk_drop_get_formats, 1},
     {"R_gdk_drop_get_surface", (DL_FUNC) &R_gdk_drop_get_surface, 1},
+    {"R_gdk_drop_read_async", (DL_FUNC) &R_gdk_drop_read_async, 6},
     {"R_gdk_drop_read_finish", (DL_FUNC) &R_gdk_drop_read_finish, 2},
+    {"R_gdk_drop_read_value_async", (DL_FUNC) &R_gdk_drop_read_value_async, 6},
     {"R_gdk_drop_read_value_finish", (DL_FUNC) &R_gdk_drop_read_value_finish, 2},
     {"R_gdk_drop_status", (DL_FUNC) &R_gdk_drop_status, 3},
     {"R_gdk_event_get_axes", (DL_FUNC) &R_gdk_event_get_axes, 1},
@@ -7540,8 +7669,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_gl_context_set_required_version", (DL_FUNC) &R_gdk_gl_context_set_required_version, 3},
     {"R_gdk_gl_context_set_use_es", (DL_FUNC) &R_gdk_gl_context_set_use_es, 2},
     {"R_gdk_gl_error_quark", (DL_FUNC) &R_gdk_gl_error_quark, 0},
+    {"R_gdk_gl_texture_new", (DL_FUNC) &R_gdk_gl_texture_new, 6},
     {"R_gdk_gl_texture_release", (DL_FUNC) &R_gdk_gl_texture_release, 1},
     {"R_gdk_gl_texture_builder_new", (DL_FUNC) &R_gdk_gl_texture_builder_new, 0},
+    {"R_gdk_gl_texture_builder_build", (DL_FUNC) &R_gdk_gl_texture_builder_build, 3},
     {"R_gdk_gl_texture_builder_get_color_state", (DL_FUNC) &R_gdk_gl_texture_builder_get_color_state, 1},
     {"R_gdk_gl_texture_builder_get_context", (DL_FUNC) &R_gdk_gl_texture_builder_get_context, 1},
     {"R_gdk_gl_texture_builder_get_format", (DL_FUNC) &R_gdk_gl_texture_builder_get_format, 1},
@@ -7569,6 +7700,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_key_event_get_keyval", (DL_FUNC) &R_gdk_key_event_get_keyval, 1},
     {"R_gdk_key_event_get_layout", (DL_FUNC) &R_gdk_key_event_get_layout, 1},
     {"R_gdk_key_event_get_level", (DL_FUNC) &R_gdk_key_event_get_level, 1},
+    {"R_gdk_key_event_get_match", (DL_FUNC) &R_gdk_key_event_get_match, 1},
     {"R_gdk_key_event_is_modifier", (DL_FUNC) &R_gdk_key_event_is_modifier, 1},
     {"R_gdk_key_event_matches", (DL_FUNC) &R_gdk_key_event_matches, 3},
     {"R_gdk_memory_texture_new", (DL_FUNC) &R_gdk_memory_texture_new, 5},
@@ -7678,6 +7810,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_surface_destroy", (DL_FUNC) &R_gdk_surface_destroy, 1},
     {"R_gdk_surface_get_cursor", (DL_FUNC) &R_gdk_surface_get_cursor, 1},
     {"R_gdk_surface_get_device_cursor", (DL_FUNC) &R_gdk_surface_get_device_cursor, 2},
+    {"R_gdk_surface_get_device_position", (DL_FUNC) &R_gdk_surface_get_device_position, 2},
     {"R_gdk_surface_get_display", (DL_FUNC) &R_gdk_surface_get_display, 1},
     {"R_gdk_surface_get_frame_clock", (DL_FUNC) &R_gdk_surface_get_frame_clock, 1},
     {"R_gdk_surface_get_height", (DL_FUNC) &R_gdk_surface_get_height, 1},
@@ -7711,6 +7844,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_texture_downloader_new", (DL_FUNC) &R_gdk_texture_downloader_new, 1},
     {"R_gdk_texture_downloader_copy", (DL_FUNC) &R_gdk_texture_downloader_copy, 1},
     {"R_gdk_texture_downloader_download_bytes", (DL_FUNC) &R_gdk_texture_downloader_download_bytes, 1},
+    {"R_gdk_texture_downloader_download_bytes_with_planes", (DL_FUNC) &R_gdk_texture_downloader_download_bytes_with_planes, 1},
     {"R_gdk_texture_downloader_download_into", (DL_FUNC) &R_gdk_texture_downloader_download_into, 3},
     {"R_gdk_texture_downloader_free", (DL_FUNC) &R_gdk_texture_downloader_free, 1},
     {"R_gdk_texture_downloader_get_color_state", (DL_FUNC) &R_gdk_texture_downloader_get_color_state, 1},
@@ -7771,6 +7905,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_cairo_region_create_from_surface", (DL_FUNC) &R_gdk_cairo_region_create_from_surface, 1},
     {"R_gdk_cairo_set_source_pixbuf", (DL_FUNC) &R_gdk_cairo_set_source_pixbuf, 4},
     {"R_gdk_cairo_set_source_rgba", (DL_FUNC) &R_gdk_cairo_set_source_rgba, 2},
+    {"R_gdk_content_deserialize_async", (DL_FUNC) &R_gdk_content_deserialize_async, 7},
+    {"R_gdk_content_deserialize_finish", (DL_FUNC) &R_gdk_content_deserialize_finish, 1},
+    {"R_gdk_content_register_deserializer", (DL_FUNC) &R_gdk_content_register_deserializer, 5},
+    {"R_gdk_content_register_serializer", (DL_FUNC) &R_gdk_content_register_serializer, 5},
+    {"R_gdk_content_serialize_async", (DL_FUNC) &R_gdk_content_serialize_async, 7},
     {"R_gdk_content_serialize_finish", (DL_FUNC) &R_gdk_content_serialize_finish, 1},
     {"R_gdk_intern_mime_type", (DL_FUNC) &R_gdk_intern_mime_type, 1},
     {"R_gdk_keyval_convert_case", (DL_FUNC) &R_gdk_keyval_convert_case, 1},
@@ -7819,12 +7958,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_app_info_get_all", (DL_FUNC) &R_g_app_info_get_all, 0},
     {"R_g_app_info_get_all_for_type", (DL_FUNC) &R_g_app_info_get_all_for_type, 1},
     {"R_g_app_info_get_default_for_type", (DL_FUNC) &R_g_app_info_get_default_for_type, 2},
+    {"R_g_app_info_get_default_for_type_async", (DL_FUNC) &R_g_app_info_get_default_for_type_async, 5},
     {"R_g_app_info_get_default_for_type_finish", (DL_FUNC) &R_g_app_info_get_default_for_type_finish, 1},
     {"R_g_app_info_get_default_for_uri_scheme", (DL_FUNC) &R_g_app_info_get_default_for_uri_scheme, 1},
+    {"R_g_app_info_get_default_for_uri_scheme_async", (DL_FUNC) &R_g_app_info_get_default_for_uri_scheme_async, 4},
     {"R_g_app_info_get_default_for_uri_scheme_finish", (DL_FUNC) &R_g_app_info_get_default_for_uri_scheme_finish, 1},
     {"R_g_app_info_get_fallback_for_type", (DL_FUNC) &R_g_app_info_get_fallback_for_type, 1},
     {"R_g_app_info_get_recommended_for_type", (DL_FUNC) &R_g_app_info_get_recommended_for_type, 1},
     {"R_g_app_info_launch_default_for_uri", (DL_FUNC) &R_g_app_info_launch_default_for_uri, 2},
+    {"R_g_app_info_launch_default_for_uri_async", (DL_FUNC) &R_g_app_info_launch_default_for_uri_async, 5},
     {"R_g_app_info_launch_default_for_uri_finish", (DL_FUNC) &R_g_app_info_launch_default_for_uri_finish, 1},
     {"R_g_app_info_reset_type_associations", (DL_FUNC) &R_g_app_info_reset_type_associations, 1},
     {"R_g_app_info_add_supports_type", (DL_FUNC) &R_g_app_info_add_supports_type, 2},
@@ -7843,6 +7985,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_app_info_get_supported_types", (DL_FUNC) &R_g_app_info_get_supported_types, 1},
     {"R_g_app_info_launch", (DL_FUNC) &R_g_app_info_launch, 3},
     {"R_g_app_info_launch_uris", (DL_FUNC) &R_g_app_info_launch_uris, 3},
+    {"R_g_app_info_launch_uris_async", (DL_FUNC) &R_g_app_info_launch_uris_async, 6},
     {"R_g_app_info_launch_uris_finish", (DL_FUNC) &R_g_app_info_launch_uris_finish, 2},
     {"R_g_app_info_remove_supports_type", (DL_FUNC) &R_g_app_info_remove_supports_type, 2},
     {"R_g_app_info_set_as_default_for_extension", (DL_FUNC) &R_g_app_info_set_as_default_for_extension, 2},
@@ -7912,6 +8055,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_application_command_line_print_literal", (DL_FUNC) &R_g_application_command_line_print_literal, 2},
     {"R_g_application_command_line_printerr_literal", (DL_FUNC) &R_g_application_command_line_printerr_literal, 2},
     {"R_g_application_command_line_set_exit_status", (DL_FUNC) &R_g_application_command_line_set_exit_status, 2},
+    {"R_g_async_initable_newv_async", (DL_FUNC) &R_g_async_initable_newv_async, 7},
+    {"R_g_async_initable_init_async", (DL_FUNC) &R_g_async_initable_init_async, 5},
     {"R_g_async_initable_init_finish", (DL_FUNC) &R_g_async_initable_init_finish, 2},
     {"R_g_async_initable_new_finish", (DL_FUNC) &R_g_async_initable_new_finish, 2},
     {"R_g_async_result_get_source_object", (DL_FUNC) &R_g_async_result_get_source_object, 1},
@@ -7921,6 +8066,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_buffered_input_stream_new", (DL_FUNC) &R_g_buffered_input_stream_new, 1},
     {"R_g_buffered_input_stream_new_sized", (DL_FUNC) &R_g_buffered_input_stream_new_sized, 2},
     {"R_g_buffered_input_stream_fill", (DL_FUNC) &R_g_buffered_input_stream_fill, 3},
+    {"R_g_buffered_input_stream_fill_async", (DL_FUNC) &R_g_buffered_input_stream_fill_async, 6},
     {"R_g_buffered_input_stream_fill_finish", (DL_FUNC) &R_g_buffered_input_stream_fill_finish, 2},
     {"R_g_buffered_input_stream_get_available", (DL_FUNC) &R_g_buffered_input_stream_get_available, 1},
     {"R_g_buffered_input_stream_get_buffer_size", (DL_FUNC) &R_g_buffered_input_stream_get_buffer_size, 1},
@@ -7939,9 +8085,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_cancellable_new", (DL_FUNC) &R_g_cancellable_new, 0},
     {"R_g_cancellable_get_current", (DL_FUNC) &R_g_cancellable_get_current, 0},
     {"R_g_cancellable_cancel", (DL_FUNC) &R_g_cancellable_cancel, 1},
+    {"R_g_cancellable_connect", (DL_FUNC) &R_g_cancellable_connect, 4},
     {"R_g_cancellable_disconnect", (DL_FUNC) &R_g_cancellable_disconnect, 2},
     {"R_g_cancellable_get_fd", (DL_FUNC) &R_g_cancellable_get_fd, 1},
     {"R_g_cancellable_is_cancelled", (DL_FUNC) &R_g_cancellable_is_cancelled, 1},
+    {"R_g_cancellable_make_pollfd", (DL_FUNC) &R_g_cancellable_make_pollfd, 2},
     {"R_g_cancellable_pop_current", (DL_FUNC) &R_g_cancellable_pop_current, 1},
     {"R_g_cancellable_push_current", (DL_FUNC) &R_g_cancellable_push_current, 1},
     {"R_g_cancellable_release_fd", (DL_FUNC) &R_g_cancellable_release_fd, 1},
@@ -7979,15 +8127,22 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_dbus_connection_new_for_address_finish", (DL_FUNC) &R_g_dbus_connection_new_for_address_finish, 1},
     {"R_g_dbus_connection_new_for_address_sync", (DL_FUNC) &R_g_dbus_connection_new_for_address_sync, 4},
     {"R_g_dbus_connection_new_sync", (DL_FUNC) &R_g_dbus_connection_new_sync, 5},
+    {"R_g_dbus_connection_new", (DL_FUNC) &R_g_dbus_connection_new, 7},
+    {"R_g_dbus_connection_new_for_address", (DL_FUNC) &R_g_dbus_connection_new_for_address, 6},
+    {"R_g_dbus_connection_add_filter", (DL_FUNC) &R_g_dbus_connection_add_filter, 4},
+    {"R_g_dbus_connection_call", (DL_FUNC) &R_g_dbus_connection_call, 12},
     {"R_g_dbus_connection_call_finish", (DL_FUNC) &R_g_dbus_connection_call_finish, 2},
     {"R_g_dbus_connection_call_sync", (DL_FUNC) &R_g_dbus_connection_call_sync, 10},
+    {"R_g_dbus_connection_call_with_unix_fd_list", (DL_FUNC) &R_g_dbus_connection_call_with_unix_fd_list, 13},
     {"R_g_dbus_connection_call_with_unix_fd_list_finish", (DL_FUNC) &R_g_dbus_connection_call_with_unix_fd_list_finish, 2},
     {"R_g_dbus_connection_call_with_unix_fd_list_sync", (DL_FUNC) &R_g_dbus_connection_call_with_unix_fd_list_sync, 11},
+    {"R_g_dbus_connection_close", (DL_FUNC) &R_g_dbus_connection_close, 4},
     {"R_g_dbus_connection_close_finish", (DL_FUNC) &R_g_dbus_connection_close_finish, 2},
     {"R_g_dbus_connection_close_sync", (DL_FUNC) &R_g_dbus_connection_close_sync, 2},
     {"R_g_dbus_connection_emit_signal", (DL_FUNC) &R_g_dbus_connection_emit_signal, 6},
     {"R_g_dbus_connection_export_action_group", (DL_FUNC) &R_g_dbus_connection_export_action_group, 3},
     {"R_g_dbus_connection_export_menu_model", (DL_FUNC) &R_g_dbus_connection_export_menu_model, 3},
+    {"R_g_dbus_connection_flush", (DL_FUNC) &R_g_dbus_connection_flush, 4},
     {"R_g_dbus_connection_flush_finish", (DL_FUNC) &R_g_dbus_connection_flush_finish, 2},
     {"R_g_dbus_connection_flush_sync", (DL_FUNC) &R_g_dbus_connection_flush_sync, 2},
     {"R_g_dbus_connection_get_capabilities", (DL_FUNC) &R_g_dbus_connection_get_capabilities, 1},
@@ -7999,11 +8154,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_dbus_connection_get_stream", (DL_FUNC) &R_g_dbus_connection_get_stream, 1},
     {"R_g_dbus_connection_get_unique_name", (DL_FUNC) &R_g_dbus_connection_get_unique_name, 1},
     {"R_g_dbus_connection_is_closed", (DL_FUNC) &R_g_dbus_connection_is_closed, 1},
+    {"R_g_dbus_connection_register_object", (DL_FUNC) &R_g_dbus_connection_register_object, 6},
     {"R_g_dbus_connection_register_object_with_closures", (DL_FUNC) &R_g_dbus_connection_register_object_with_closures, 6},
     {"R_g_dbus_connection_register_object_with_closures2", (DL_FUNC) &R_g_dbus_connection_register_object_with_closures2, 6},
+    {"R_g_dbus_connection_register_subtree", (DL_FUNC) &R_g_dbus_connection_register_subtree, 6},
     {"R_g_dbus_connection_remove_filter", (DL_FUNC) &R_g_dbus_connection_remove_filter, 2},
+    {"R_g_dbus_connection_send_message", (DL_FUNC) &R_g_dbus_connection_send_message, 3},
+    {"R_g_dbus_connection_send_message_with_reply", (DL_FUNC) &R_g_dbus_connection_send_message_with_reply, 7},
     {"R_g_dbus_connection_send_message_with_reply_finish", (DL_FUNC) &R_g_dbus_connection_send_message_with_reply_finish, 2},
+    {"R_g_dbus_connection_send_message_with_reply_sync", (DL_FUNC) &R_g_dbus_connection_send_message_with_reply_sync, 5},
     {"R_g_dbus_connection_set_exit_on_close", (DL_FUNC) &R_g_dbus_connection_set_exit_on_close, 2},
+    {"R_g_dbus_connection_signal_subscribe", (DL_FUNC) &R_g_dbus_connection_signal_subscribe, 10},
     {"R_g_dbus_connection_signal_unsubscribe", (DL_FUNC) &R_g_dbus_connection_signal_unsubscribe, 2},
     {"R_g_dbus_connection_start_message_processing", (DL_FUNC) &R_g_dbus_connection_start_message_processing, 1},
     {"R_g_dbus_connection_unexport_action_group", (DL_FUNC) &R_g_dbus_connection_unexport_action_group, 2},
@@ -8016,6 +8177,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_dbus_error_new_for_dbus_error", (DL_FUNC) &R_g_dbus_error_new_for_dbus_error, 2},
     {"R_g_dbus_error_quark", (DL_FUNC) &R_g_dbus_error_quark, 0},
     {"R_g_dbus_error_register_error", (DL_FUNC) &R_g_dbus_error_register_error, 3},
+    {"R_g_dbus_error_register_error_domain", (DL_FUNC) &R_g_dbus_error_register_error_domain, 3},
     {"R_g_dbus_error_strip_remote_error", (DL_FUNC) &R_g_dbus_error_strip_remote_error, 1},
     {"R_g_dbus_error_unregister_error", (DL_FUNC) &R_g_dbus_error_unregister_error, 3},
     {"R_g_dbus_interface_dup_object", (DL_FUNC) &R_g_dbus_interface_dup_object, 1},
@@ -8121,6 +8283,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_dbus_object_manager_get_objects", (DL_FUNC) &R_g_dbus_object_manager_get_objects, 1},
     {"R_g_dbus_object_manager_client_new_finish", (DL_FUNC) &R_g_dbus_object_manager_client_new_finish, 1},
     {"R_g_dbus_object_manager_client_new_for_bus_finish", (DL_FUNC) &R_g_dbus_object_manager_client_new_for_bus_finish, 1},
+    {"R_g_dbus_object_manager_client_new_for_bus_sync", (DL_FUNC) &R_g_dbus_object_manager_client_new_for_bus_sync, 8},
+    {"R_g_dbus_object_manager_client_new_sync", (DL_FUNC) &R_g_dbus_object_manager_client_new_sync, 8},
+    {"R_g_dbus_object_manager_client_new", (DL_FUNC) &R_g_dbus_object_manager_client_new, 10},
+    {"R_g_dbus_object_manager_client_new_for_bus", (DL_FUNC) &R_g_dbus_object_manager_client_new_for_bus, 10},
     {"R_g_dbus_object_manager_client_get_connection", (DL_FUNC) &R_g_dbus_object_manager_client_get_connection, 1},
     {"R_g_dbus_object_manager_client_get_flags", (DL_FUNC) &R_g_dbus_object_manager_client_get_flags, 1},
     {"R_g_dbus_object_manager_client_get_name", (DL_FUNC) &R_g_dbus_object_manager_client_get_name, 1},
@@ -8146,8 +8312,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_dbus_proxy_new_for_bus_finish", (DL_FUNC) &R_g_dbus_proxy_new_for_bus_finish, 1},
     {"R_g_dbus_proxy_new_for_bus_sync", (DL_FUNC) &R_g_dbus_proxy_new_for_bus_sync, 7},
     {"R_g_dbus_proxy_new_sync", (DL_FUNC) &R_g_dbus_proxy_new_sync, 7},
+    {"R_g_dbus_proxy_new", (DL_FUNC) &R_g_dbus_proxy_new, 9},
+    {"R_g_dbus_proxy_new_for_bus", (DL_FUNC) &R_g_dbus_proxy_new_for_bus, 9},
+    {"R_g_dbus_proxy_call", (DL_FUNC) &R_g_dbus_proxy_call, 8},
     {"R_g_dbus_proxy_call_finish", (DL_FUNC) &R_g_dbus_proxy_call_finish, 2},
     {"R_g_dbus_proxy_call_sync", (DL_FUNC) &R_g_dbus_proxy_call_sync, 6},
+    {"R_g_dbus_proxy_call_with_unix_fd_list", (DL_FUNC) &R_g_dbus_proxy_call_with_unix_fd_list, 9},
     {"R_g_dbus_proxy_call_with_unix_fd_list_finish", (DL_FUNC) &R_g_dbus_proxy_call_with_unix_fd_list_finish, 2},
     {"R_g_dbus_proxy_call_with_unix_fd_list_sync", (DL_FUNC) &R_g_dbus_proxy_call_with_unix_fd_list_sync, 7},
     {"R_g_dbus_proxy_get_cached_property", (DL_FUNC) &R_g_dbus_proxy_get_cached_property, 2},
@@ -8180,6 +8350,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_data_input_stream_read_int32", (DL_FUNC) &R_g_data_input_stream_read_int32, 2},
     {"R_g_data_input_stream_read_int64", (DL_FUNC) &R_g_data_input_stream_read_int64, 2},
     {"R_g_data_input_stream_read_line", (DL_FUNC) &R_g_data_input_stream_read_line, 2},
+    {"R_g_data_input_stream_read_line_async", (DL_FUNC) &R_g_data_input_stream_read_line_async, 5},
     {"R_g_data_input_stream_read_line_finish", (DL_FUNC) &R_g_data_input_stream_read_line_finish, 2},
     {"R_g_data_input_stream_read_line_finish_utf8", (DL_FUNC) &R_g_data_input_stream_read_line_finish_utf8, 2},
     {"R_g_data_input_stream_read_line_utf8", (DL_FUNC) &R_g_data_input_stream_read_line_utf8, 2},
@@ -8187,8 +8358,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_data_input_stream_read_uint32", (DL_FUNC) &R_g_data_input_stream_read_uint32, 2},
     {"R_g_data_input_stream_read_uint64", (DL_FUNC) &R_g_data_input_stream_read_uint64, 2},
     {"R_g_data_input_stream_read_until", (DL_FUNC) &R_g_data_input_stream_read_until, 3},
+    {"R_g_data_input_stream_read_until_async", (DL_FUNC) &R_g_data_input_stream_read_until_async, 6},
     {"R_g_data_input_stream_read_until_finish", (DL_FUNC) &R_g_data_input_stream_read_until_finish, 2},
     {"R_g_data_input_stream_read_upto", (DL_FUNC) &R_g_data_input_stream_read_upto, 4},
+    {"R_g_data_input_stream_read_upto_async", (DL_FUNC) &R_g_data_input_stream_read_upto_async, 7},
     {"R_g_data_input_stream_read_upto_finish", (DL_FUNC) &R_g_data_input_stream_read_upto_finish, 2},
     {"R_g_data_input_stream_set_byte_order", (DL_FUNC) &R_g_data_input_stream_set_byte_order, 2},
     {"R_g_data_input_stream_set_newline_type", (DL_FUNC) &R_g_data_input_stream_set_newline_type, 2},
@@ -8217,7 +8390,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_drive_can_start", (DL_FUNC) &R_g_drive_can_start, 1},
     {"R_g_drive_can_start_degraded", (DL_FUNC) &R_g_drive_can_start_degraded, 1},
     {"R_g_drive_can_stop", (DL_FUNC) &R_g_drive_can_stop, 1},
+    {"R_g_drive_eject", (DL_FUNC) &R_g_drive_eject, 5},
     {"R_g_drive_eject_finish", (DL_FUNC) &R_g_drive_eject_finish, 2},
+    {"R_g_drive_eject_with_operation", (DL_FUNC) &R_g_drive_eject_with_operation, 6},
     {"R_g_drive_eject_with_operation_finish", (DL_FUNC) &R_g_drive_eject_with_operation_finish, 2},
     {"R_g_drive_enumerate_identifiers", (DL_FUNC) &R_g_drive_enumerate_identifiers, 1},
     {"R_g_drive_get_icon", (DL_FUNC) &R_g_drive_get_icon, 1},
@@ -8232,39 +8407,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_drive_is_media_check_automatic", (DL_FUNC) &R_g_drive_is_media_check_automatic, 1},
     {"R_g_drive_is_media_removable", (DL_FUNC) &R_g_drive_is_media_removable, 1},
     {"R_g_drive_is_removable", (DL_FUNC) &R_g_drive_is_removable, 1},
+    {"R_g_drive_poll_for_media", (DL_FUNC) &R_g_drive_poll_for_media, 4},
     {"R_g_drive_poll_for_media_finish", (DL_FUNC) &R_g_drive_poll_for_media_finish, 2},
+    {"R_g_drive_start", (DL_FUNC) &R_g_drive_start, 6},
     {"R_g_drive_start_finish", (DL_FUNC) &R_g_drive_start_finish, 2},
+    {"R_g_drive_stop", (DL_FUNC) &R_g_drive_stop, 6},
     {"R_g_drive_stop_finish", (DL_FUNC) &R_g_drive_stop_finish, 2},
-    {"R_g_dtls_client_connection_new", (DL_FUNC) &R_g_dtls_client_connection_new, 2},
-    {"R_g_dtls_client_connection_get_accepted_cas", (DL_FUNC) &R_g_dtls_client_connection_get_accepted_cas, 1},
-    {"R_g_dtls_client_connection_get_server_identity", (DL_FUNC) &R_g_dtls_client_connection_get_server_identity, 1},
-    {"R_g_dtls_client_connection_get_validation_flags", (DL_FUNC) &R_g_dtls_client_connection_get_validation_flags, 1},
-    {"R_g_dtls_client_connection_set_server_identity", (DL_FUNC) &R_g_dtls_client_connection_set_server_identity, 2},
-    {"R_g_dtls_client_connection_set_validation_flags", (DL_FUNC) &R_g_dtls_client_connection_set_validation_flags, 2},
-    {"R_g_dtls_connection_close", (DL_FUNC) &R_g_dtls_connection_close, 2},
-    {"R_g_dtls_connection_close_finish", (DL_FUNC) &R_g_dtls_connection_close_finish, 2},
-    {"R_g_dtls_connection_emit_accept_certificate", (DL_FUNC) &R_g_dtls_connection_emit_accept_certificate, 3},
-    {"R_g_dtls_connection_get_certificate", (DL_FUNC) &R_g_dtls_connection_get_certificate, 1},
-    {"R_g_dtls_connection_get_ciphersuite_name", (DL_FUNC) &R_g_dtls_connection_get_ciphersuite_name, 1},
-    {"R_g_dtls_connection_get_database", (DL_FUNC) &R_g_dtls_connection_get_database, 1},
-    {"R_g_dtls_connection_get_interaction", (DL_FUNC) &R_g_dtls_connection_get_interaction, 1},
-    {"R_g_dtls_connection_get_negotiated_protocol", (DL_FUNC) &R_g_dtls_connection_get_negotiated_protocol, 1},
-    {"R_g_dtls_connection_get_peer_certificate", (DL_FUNC) &R_g_dtls_connection_get_peer_certificate, 1},
-    {"R_g_dtls_connection_get_peer_certificate_errors", (DL_FUNC) &R_g_dtls_connection_get_peer_certificate_errors, 1},
-    {"R_g_dtls_connection_get_protocol_version", (DL_FUNC) &R_g_dtls_connection_get_protocol_version, 1},
-    {"R_g_dtls_connection_get_rehandshake_mode", (DL_FUNC) &R_g_dtls_connection_get_rehandshake_mode, 1},
-    {"R_g_dtls_connection_get_require_close_notify", (DL_FUNC) &R_g_dtls_connection_get_require_close_notify, 1},
-    {"R_g_dtls_connection_handshake", (DL_FUNC) &R_g_dtls_connection_handshake, 2},
-    {"R_g_dtls_connection_handshake_finish", (DL_FUNC) &R_g_dtls_connection_handshake_finish, 2},
-    {"R_g_dtls_connection_set_advertised_protocols", (DL_FUNC) &R_g_dtls_connection_set_advertised_protocols, 2},
-    {"R_g_dtls_connection_set_certificate", (DL_FUNC) &R_g_dtls_connection_set_certificate, 2},
-    {"R_g_dtls_connection_set_database", (DL_FUNC) &R_g_dtls_connection_set_database, 2},
-    {"R_g_dtls_connection_set_interaction", (DL_FUNC) &R_g_dtls_connection_set_interaction, 2},
-    {"R_g_dtls_connection_set_rehandshake_mode", (DL_FUNC) &R_g_dtls_connection_set_rehandshake_mode, 2},
-    {"R_g_dtls_connection_set_require_close_notify", (DL_FUNC) &R_g_dtls_connection_set_require_close_notify, 2},
-    {"R_g_dtls_connection_shutdown", (DL_FUNC) &R_g_dtls_connection_shutdown, 4},
-    {"R_g_dtls_connection_shutdown_finish", (DL_FUNC) &R_g_dtls_connection_shutdown_finish, 2},
-    {"R_g_dtls_server_connection_new", (DL_FUNC) &R_g_dtls_server_connection_new, 2},
     {"R_g_emblem_new", (DL_FUNC) &R_g_emblem_new, 1},
     {"R_g_emblem_new_with_origin", (DL_FUNC) &R_g_emblem_new_with_origin, 2},
     {"R_g_emblem_get_icon", (DL_FUNC) &R_g_emblem_get_icon, 1},
@@ -8280,28 +8428,40 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_new_for_path", (DL_FUNC) &R_g_file_new_for_path, 1},
     {"R_g_file_new_for_uri", (DL_FUNC) &R_g_file_new_for_uri, 1},
     {"R_g_file_new_tmp", (DL_FUNC) &R_g_file_new_tmp, 1},
+    {"R_g_file_new_tmp_async", (DL_FUNC) &R_g_file_new_tmp_async, 5},
+    {"R_g_file_new_tmp_dir_async", (DL_FUNC) &R_g_file_new_tmp_dir_async, 5},
     {"R_g_file_new_tmp_dir_finish", (DL_FUNC) &R_g_file_new_tmp_dir_finish, 1},
     {"R_g_file_new_tmp_finish", (DL_FUNC) &R_g_file_new_tmp_finish, 1},
     {"R_g_file_parse_name", (DL_FUNC) &R_g_file_parse_name, 1},
     {"R_g_file_append_to", (DL_FUNC) &R_g_file_append_to, 3},
+    {"R_g_file_append_to_async", (DL_FUNC) &R_g_file_append_to_async, 6},
     {"R_g_file_append_to_finish", (DL_FUNC) &R_g_file_append_to_finish, 2},
     {"R_g_file_build_attribute_list_for_copy", (DL_FUNC) &R_g_file_build_attribute_list_for_copy, 3},
+    {"R_g_file_copy", (DL_FUNC) &R_g_file_copy, 6},
+    {"R_g_file_copy_async", (DL_FUNC) &R_g_file_copy_async, 9},
     {"R_g_file_copy_async_with_closures", (DL_FUNC) &R_g_file_copy_async_with_closures, 7},
     {"R_g_file_copy_attributes", (DL_FUNC) &R_g_file_copy_attributes, 4},
     {"R_g_file_copy_finish", (DL_FUNC) &R_g_file_copy_finish, 2},
     {"R_g_file_create", (DL_FUNC) &R_g_file_create, 3},
+    {"R_g_file_create_async", (DL_FUNC) &R_g_file_create_async, 6},
     {"R_g_file_create_finish", (DL_FUNC) &R_g_file_create_finish, 2},
     {"R_g_file_create_readwrite", (DL_FUNC) &R_g_file_create_readwrite, 3},
+    {"R_g_file_create_readwrite_async", (DL_FUNC) &R_g_file_create_readwrite_async, 6},
     {"R_g_file_create_readwrite_finish", (DL_FUNC) &R_g_file_create_readwrite_finish, 2},
     {"R_g_file_delete", (DL_FUNC) &R_g_file_delete, 2},
+    {"R_g_file_delete_async", (DL_FUNC) &R_g_file_delete_async, 5},
     {"R_g_file_delete_finish", (DL_FUNC) &R_g_file_delete_finish, 2},
     {"R_g_file_dup", (DL_FUNC) &R_g_file_dup, 1},
+    {"R_g_file_eject_mountable", (DL_FUNC) &R_g_file_eject_mountable, 5},
     {"R_g_file_eject_mountable_finish", (DL_FUNC) &R_g_file_eject_mountable_finish, 2},
+    {"R_g_file_eject_mountable_with_operation", (DL_FUNC) &R_g_file_eject_mountable_with_operation, 6},
     {"R_g_file_eject_mountable_with_operation_finish", (DL_FUNC) &R_g_file_eject_mountable_with_operation_finish, 2},
     {"R_g_file_enumerate_children", (DL_FUNC) &R_g_file_enumerate_children, 4},
+    {"R_g_file_enumerate_children_async", (DL_FUNC) &R_g_file_enumerate_children_async, 7},
     {"R_g_file_enumerate_children_finish", (DL_FUNC) &R_g_file_enumerate_children_finish, 2},
     {"R_g_file_equal", (DL_FUNC) &R_g_file_equal, 2},
     {"R_g_file_find_enclosing_mount", (DL_FUNC) &R_g_file_find_enclosing_mount, 2},
+    {"R_g_file_find_enclosing_mount_async", (DL_FUNC) &R_g_file_find_enclosing_mount_async, 5},
     {"R_g_file_find_enclosing_mount_finish", (DL_FUNC) &R_g_file_find_enclosing_mount_finish, 2},
     {"R_g_file_get_basename", (DL_FUNC) &R_g_file_get_basename, 1},
     {"R_g_file_get_child", (DL_FUNC) &R_g_file_get_child, 2},
@@ -8318,44 +8478,63 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_hash", (DL_FUNC) &R_g_file_hash, 1},
     {"R_g_file_is_native", (DL_FUNC) &R_g_file_is_native, 1},
     {"R_g_file_load_bytes", (DL_FUNC) &R_g_file_load_bytes, 2},
+    {"R_g_file_load_bytes_async", (DL_FUNC) &R_g_file_load_bytes_async, 4},
     {"R_g_file_load_bytes_finish", (DL_FUNC) &R_g_file_load_bytes_finish, 2},
     {"R_g_file_load_contents", (DL_FUNC) &R_g_file_load_contents, 2},
+    {"R_g_file_load_contents_async", (DL_FUNC) &R_g_file_load_contents_async, 4},
     {"R_g_file_load_contents_finish", (DL_FUNC) &R_g_file_load_contents_finish, 2},
     {"R_g_file_load_partial_contents_finish", (DL_FUNC) &R_g_file_load_partial_contents_finish, 2},
     {"R_g_file_make_directory", (DL_FUNC) &R_g_file_make_directory, 2},
+    {"R_g_file_make_directory_async", (DL_FUNC) &R_g_file_make_directory_async, 5},
     {"R_g_file_make_directory_finish", (DL_FUNC) &R_g_file_make_directory_finish, 2},
     {"R_g_file_make_directory_with_parents", (DL_FUNC) &R_g_file_make_directory_with_parents, 2},
     {"R_g_file_make_symbolic_link", (DL_FUNC) &R_g_file_make_symbolic_link, 3},
+    {"R_g_file_make_symbolic_link_async", (DL_FUNC) &R_g_file_make_symbolic_link_async, 6},
     {"R_g_file_make_symbolic_link_finish", (DL_FUNC) &R_g_file_make_symbolic_link_finish, 2},
+    {"R_g_file_measure_disk_usage", (DL_FUNC) &R_g_file_measure_disk_usage, 5},
     {"R_g_file_measure_disk_usage_finish", (DL_FUNC) &R_g_file_measure_disk_usage_finish, 2},
     {"R_g_file_monitor", (DL_FUNC) &R_g_file_monitor, 3},
     {"R_g_file_monitor_directory", (DL_FUNC) &R_g_file_monitor_directory, 3},
     {"R_g_file_monitor_file", (DL_FUNC) &R_g_file_monitor_file, 3},
+    {"R_g_file_mount_enclosing_volume", (DL_FUNC) &R_g_file_mount_enclosing_volume, 6},
     {"R_g_file_mount_enclosing_volume_finish", (DL_FUNC) &R_g_file_mount_enclosing_volume_finish, 2},
+    {"R_g_file_mount_mountable", (DL_FUNC) &R_g_file_mount_mountable, 6},
     {"R_g_file_mount_mountable_finish", (DL_FUNC) &R_g_file_mount_mountable_finish, 2},
+    {"R_g_file_move", (DL_FUNC) &R_g_file_move, 6},
+    {"R_g_file_move_async", (DL_FUNC) &R_g_file_move_async, 9},
     {"R_g_file_move_async_with_closures", (DL_FUNC) &R_g_file_move_async_with_closures, 7},
     {"R_g_file_move_finish", (DL_FUNC) &R_g_file_move_finish, 2},
     {"R_g_file_open_readwrite", (DL_FUNC) &R_g_file_open_readwrite, 2},
+    {"R_g_file_open_readwrite_async", (DL_FUNC) &R_g_file_open_readwrite_async, 5},
     {"R_g_file_open_readwrite_finish", (DL_FUNC) &R_g_file_open_readwrite_finish, 2},
     {"R_g_file_peek_path", (DL_FUNC) &R_g_file_peek_path, 1},
+    {"R_g_file_poll_mountable", (DL_FUNC) &R_g_file_poll_mountable, 4},
     {"R_g_file_poll_mountable_finish", (DL_FUNC) &R_g_file_poll_mountable_finish, 2},
     {"R_g_file_query_default_handler", (DL_FUNC) &R_g_file_query_default_handler, 2},
+    {"R_g_file_query_default_handler_async", (DL_FUNC) &R_g_file_query_default_handler_async, 5},
     {"R_g_file_query_default_handler_finish", (DL_FUNC) &R_g_file_query_default_handler_finish, 2},
     {"R_g_file_query_exists", (DL_FUNC) &R_g_file_query_exists, 2},
     {"R_g_file_query_file_type", (DL_FUNC) &R_g_file_query_file_type, 3},
     {"R_g_file_query_filesystem_info", (DL_FUNC) &R_g_file_query_filesystem_info, 3},
+    {"R_g_file_query_filesystem_info_async", (DL_FUNC) &R_g_file_query_filesystem_info_async, 6},
     {"R_g_file_query_filesystem_info_finish", (DL_FUNC) &R_g_file_query_filesystem_info_finish, 2},
     {"R_g_file_query_info", (DL_FUNC) &R_g_file_query_info, 4},
+    {"R_g_file_query_info_async", (DL_FUNC) &R_g_file_query_info_async, 7},
     {"R_g_file_query_info_finish", (DL_FUNC) &R_g_file_query_info_finish, 2},
     {"R_g_file_query_settable_attributes", (DL_FUNC) &R_g_file_query_settable_attributes, 2},
     {"R_g_file_query_writable_namespaces", (DL_FUNC) &R_g_file_query_writable_namespaces, 2},
     {"R_g_file_read", (DL_FUNC) &R_g_file_read, 2},
+    {"R_g_file_read_async", (DL_FUNC) &R_g_file_read_async, 5},
     {"R_g_file_read_finish", (DL_FUNC) &R_g_file_read_finish, 2},
     {"R_g_file_replace", (DL_FUNC) &R_g_file_replace, 5},
+    {"R_g_file_replace_async", (DL_FUNC) &R_g_file_replace_async, 8},
     {"R_g_file_replace_contents", (DL_FUNC) &R_g_file_replace_contents, 7},
+    {"R_g_file_replace_contents_async", (DL_FUNC) &R_g_file_replace_contents_async, 9},
+    {"R_g_file_replace_contents_bytes_async", (DL_FUNC) &R_g_file_replace_contents_bytes_async, 8},
     {"R_g_file_replace_contents_finish", (DL_FUNC) &R_g_file_replace_contents_finish, 2},
     {"R_g_file_replace_finish", (DL_FUNC) &R_g_file_replace_finish, 2},
     {"R_g_file_replace_readwrite", (DL_FUNC) &R_g_file_replace_readwrite, 5},
+    {"R_g_file_replace_readwrite_async", (DL_FUNC) &R_g_file_replace_readwrite_async, 8},
     {"R_g_file_replace_readwrite_finish", (DL_FUNC) &R_g_file_replace_readwrite_finish, 2},
     {"R_g_file_resolve_relative_path", (DL_FUNC) &R_g_file_resolve_relative_path, 2},
     {"R_g_file_set_attribute", (DL_FUNC) &R_g_file_set_attribute, 6},
@@ -8365,16 +8544,23 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_set_attribute_string", (DL_FUNC) &R_g_file_set_attribute_string, 5},
     {"R_g_file_set_attribute_uint32", (DL_FUNC) &R_g_file_set_attribute_uint32, 5},
     {"R_g_file_set_attribute_uint64", (DL_FUNC) &R_g_file_set_attribute_uint64, 5},
+    {"R_g_file_set_attributes_async", (DL_FUNC) &R_g_file_set_attributes_async, 7},
     {"R_g_file_set_attributes_finish", (DL_FUNC) &R_g_file_set_attributes_finish, 2},
     {"R_g_file_set_attributes_from_info", (DL_FUNC) &R_g_file_set_attributes_from_info, 4},
     {"R_g_file_set_display_name", (DL_FUNC) &R_g_file_set_display_name, 3},
+    {"R_g_file_set_display_name_async", (DL_FUNC) &R_g_file_set_display_name_async, 6},
     {"R_g_file_set_display_name_finish", (DL_FUNC) &R_g_file_set_display_name_finish, 2},
+    {"R_g_file_start_mountable", (DL_FUNC) &R_g_file_start_mountable, 6},
     {"R_g_file_start_mountable_finish", (DL_FUNC) &R_g_file_start_mountable_finish, 2},
+    {"R_g_file_stop_mountable", (DL_FUNC) &R_g_file_stop_mountable, 6},
     {"R_g_file_stop_mountable_finish", (DL_FUNC) &R_g_file_stop_mountable_finish, 2},
     {"R_g_file_supports_thread_contexts", (DL_FUNC) &R_g_file_supports_thread_contexts, 1},
     {"R_g_file_trash", (DL_FUNC) &R_g_file_trash, 2},
+    {"R_g_file_trash_async", (DL_FUNC) &R_g_file_trash_async, 5},
     {"R_g_file_trash_finish", (DL_FUNC) &R_g_file_trash_finish, 2},
+    {"R_g_file_unmount_mountable", (DL_FUNC) &R_g_file_unmount_mountable, 5},
     {"R_g_file_unmount_mountable_finish", (DL_FUNC) &R_g_file_unmount_mountable_finish, 2},
+    {"R_g_file_unmount_mountable_with_operation", (DL_FUNC) &R_g_file_unmount_mountable_with_operation, 6},
     {"R_g_file_unmount_mountable_with_operation_finish", (DL_FUNC) &R_g_file_unmount_mountable_with_operation_finish, 2},
     {"R_g_file_attribute_info_list_new", (DL_FUNC) &R_g_file_attribute_info_list_new, 0},
     {"R_g_file_attribute_info_list_add", (DL_FUNC) &R_g_file_attribute_info_list_add, 4},
@@ -8392,6 +8578,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_attribute_matcher_to_string", (DL_FUNC) &R_g_file_attribute_matcher_to_string, 1},
     {"R_g_file_attribute_matcher_unref", (DL_FUNC) &R_g_file_attribute_matcher_unref, 1},
     {"R_g_file_enumerator_close", (DL_FUNC) &R_g_file_enumerator_close, 2},
+    {"R_g_file_enumerator_close_async", (DL_FUNC) &R_g_file_enumerator_close_async, 5},
     {"R_g_file_enumerator_close_finish", (DL_FUNC) &R_g_file_enumerator_close_finish, 2},
     {"R_g_file_enumerator_get_child", (DL_FUNC) &R_g_file_enumerator_get_child, 2},
     {"R_g_file_enumerator_get_container", (DL_FUNC) &R_g_file_enumerator_get_container, 1},
@@ -8399,10 +8586,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_enumerator_is_closed", (DL_FUNC) &R_g_file_enumerator_is_closed, 1},
     {"R_g_file_enumerator_iterate", (DL_FUNC) &R_g_file_enumerator_iterate, 2},
     {"R_g_file_enumerator_next_file", (DL_FUNC) &R_g_file_enumerator_next_file, 2},
+    {"R_g_file_enumerator_next_files_async", (DL_FUNC) &R_g_file_enumerator_next_files_async, 6},
     {"R_g_file_enumerator_next_files_finish", (DL_FUNC) &R_g_file_enumerator_next_files_finish, 2},
     {"R_g_file_enumerator_set_pending", (DL_FUNC) &R_g_file_enumerator_set_pending, 2},
     {"R_g_file_io_stream_get_etag", (DL_FUNC) &R_g_file_io_stream_get_etag, 1},
     {"R_g_file_io_stream_query_info", (DL_FUNC) &R_g_file_io_stream_query_info, 3},
+    {"R_g_file_io_stream_query_info_async", (DL_FUNC) &R_g_file_io_stream_query_info_async, 6},
     {"R_g_file_io_stream_query_info_finish", (DL_FUNC) &R_g_file_io_stream_query_info_finish, 2},
     {"R_g_file_icon_new", (DL_FUNC) &R_g_file_icon_new, 1},
     {"R_g_file_icon_get_file", (DL_FUNC) &R_g_file_icon_get_file, 1},
@@ -8414,6 +8603,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_info_get_attribute_as_string", (DL_FUNC) &R_g_file_info_get_attribute_as_string, 2},
     {"R_g_file_info_get_attribute_boolean", (DL_FUNC) &R_g_file_info_get_attribute_boolean, 2},
     {"R_g_file_info_get_attribute_byte_string", (DL_FUNC) &R_g_file_info_get_attribute_byte_string, 2},
+    {"R_g_file_info_get_attribute_data", (DL_FUNC) &R_g_file_info_get_attribute_data, 2},
     {"R_g_file_info_get_attribute_file_path", (DL_FUNC) &R_g_file_info_get_attribute_file_path, 2},
     {"R_g_file_info_get_attribute_int32", (DL_FUNC) &R_g_file_info_get_attribute_int32, 2},
     {"R_g_file_info_get_attribute_int64", (DL_FUNC) &R_g_file_info_get_attribute_int64, 2},
@@ -8477,6 +8667,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_info_set_symlink_target", (DL_FUNC) &R_g_file_info_set_symlink_target, 2},
     {"R_g_file_info_unset_attribute_mask", (DL_FUNC) &R_g_file_info_unset_attribute_mask, 1},
     {"R_g_file_input_stream_query_info", (DL_FUNC) &R_g_file_input_stream_query_info, 3},
+    {"R_g_file_input_stream_query_info_async", (DL_FUNC) &R_g_file_input_stream_query_info_async, 6},
     {"R_g_file_input_stream_query_info_finish", (DL_FUNC) &R_g_file_input_stream_query_info_finish, 2},
     {"R_g_file_monitor_cancel", (DL_FUNC) &R_g_file_monitor_cancel, 1},
     {"R_g_file_monitor_emit_event", (DL_FUNC) &R_g_file_monitor_emit_event, 4},
@@ -8484,6 +8675,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_monitor_set_rate_limit", (DL_FUNC) &R_g_file_monitor_set_rate_limit, 2},
     {"R_g_file_output_stream_get_etag", (DL_FUNC) &R_g_file_output_stream_get_etag, 1},
     {"R_g_file_output_stream_query_info", (DL_FUNC) &R_g_file_output_stream_query_info, 3},
+    {"R_g_file_output_stream_query_info_async", (DL_FUNC) &R_g_file_output_stream_query_info_async, 6},
     {"R_g_file_output_stream_query_info_finish", (DL_FUNC) &R_g_file_output_stream_query_info_finish, 2},
     {"R_g_filename_completer_new", (DL_FUNC) &R_g_filename_completer_new, 0},
     {"R_g_filename_completer_get_completion_suffix", (DL_FUNC) &R_g_filename_completer_get_completion_suffix, 2},
@@ -8505,15 +8697,19 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_io_extension_point_implement", (DL_FUNC) &R_g_io_extension_point_implement, 4},
     {"R_g_io_extension_point_lookup", (DL_FUNC) &R_g_io_extension_point_lookup, 1},
     {"R_g_io_extension_point_register", (DL_FUNC) &R_g_io_extension_point_register, 1},
+    {"R_g_io_scheduler_job_send_to_mainloop", (DL_FUNC) &R_g_io_scheduler_job_send_to_mainloop, 4},
+    {"R_g_io_scheduler_job_send_to_mainloop_async", (DL_FUNC) &R_g_io_scheduler_job_send_to_mainloop_async, 4},
     {"R_g_io_stream_splice_finish", (DL_FUNC) &R_g_io_stream_splice_finish, 1},
     {"R_g_io_stream_clear_pending", (DL_FUNC) &R_g_io_stream_clear_pending, 1},
     {"R_g_io_stream_close", (DL_FUNC) &R_g_io_stream_close, 2},
+    {"R_g_io_stream_close_async", (DL_FUNC) &R_g_io_stream_close_async, 5},
     {"R_g_io_stream_close_finish", (DL_FUNC) &R_g_io_stream_close_finish, 2},
     {"R_g_io_stream_get_input_stream", (DL_FUNC) &R_g_io_stream_get_input_stream, 1},
     {"R_g_io_stream_get_output_stream", (DL_FUNC) &R_g_io_stream_get_output_stream, 1},
     {"R_g_io_stream_has_pending", (DL_FUNC) &R_g_io_stream_has_pending, 1},
     {"R_g_io_stream_is_closed", (DL_FUNC) &R_g_io_stream_is_closed, 1},
     {"R_g_io_stream_set_pending", (DL_FUNC) &R_g_io_stream_set_pending, 1},
+    {"R_g_io_stream_splice_async", (DL_FUNC) &R_g_io_stream_splice_async, 7},
     {"R_g_ip_tos_message_new", (DL_FUNC) &R_g_ip_tos_message_new, 2},
     {"R_g_ip_tos_message_get_dscp", (DL_FUNC) &R_g_ip_tos_message_get_dscp, 1},
     {"R_g_ip_tos_message_get_ecn", (DL_FUNC) &R_g_ip_tos_message_get_ecn, 1},
@@ -8565,15 +8761,22 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_initable_init", (DL_FUNC) &R_g_initable_init, 2},
     {"R_g_input_stream_clear_pending", (DL_FUNC) &R_g_input_stream_clear_pending, 1},
     {"R_g_input_stream_close", (DL_FUNC) &R_g_input_stream_close, 2},
+    {"R_g_input_stream_close_async", (DL_FUNC) &R_g_input_stream_close_async, 5},
     {"R_g_input_stream_close_finish", (DL_FUNC) &R_g_input_stream_close_finish, 2},
     {"R_g_input_stream_has_pending", (DL_FUNC) &R_g_input_stream_has_pending, 1},
     {"R_g_input_stream_is_closed", (DL_FUNC) &R_g_input_stream_is_closed, 1},
+    {"R_g_input_stream_read", (DL_FUNC) &R_g_input_stream_read, 3},
+    {"R_g_input_stream_read_all", (DL_FUNC) &R_g_input_stream_read_all, 3},
+    {"R_g_input_stream_read_all_async", (DL_FUNC) &R_g_input_stream_read_all_async, 6},
     {"R_g_input_stream_read_all_finish", (DL_FUNC) &R_g_input_stream_read_all_finish, 2},
+    {"R_g_input_stream_read_async", (DL_FUNC) &R_g_input_stream_read_async, 6},
     {"R_g_input_stream_read_bytes", (DL_FUNC) &R_g_input_stream_read_bytes, 3},
+    {"R_g_input_stream_read_bytes_async", (DL_FUNC) &R_g_input_stream_read_bytes_async, 6},
     {"R_g_input_stream_read_bytes_finish", (DL_FUNC) &R_g_input_stream_read_bytes_finish, 2},
     {"R_g_input_stream_read_finish", (DL_FUNC) &R_g_input_stream_read_finish, 2},
     {"R_g_input_stream_set_pending", (DL_FUNC) &R_g_input_stream_set_pending, 1},
     {"R_g_input_stream_skip", (DL_FUNC) &R_g_input_stream_skip, 3},
+    {"R_g_input_stream_skip_async", (DL_FUNC) &R_g_input_stream_skip_async, 6},
     {"R_g_input_stream_skip_finish", (DL_FUNC) &R_g_input_stream_skip_finish, 2},
     {"R_g_list_model_get_item_type", (DL_FUNC) &R_g_list_model_get_item_type, 1},
     {"R_g_list_model_get_n_items", (DL_FUNC) &R_g_list_model_get_n_items, 1},
@@ -8582,16 +8785,22 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_list_store_new", (DL_FUNC) &R_g_list_store_new, 1},
     {"R_g_list_store_append", (DL_FUNC) &R_g_list_store_append, 2},
     {"R_g_list_store_find", (DL_FUNC) &R_g_list_store_find, 2},
+    {"R_g_list_store_find_with_equal_func", (DL_FUNC) &R_g_list_store_find_with_equal_func, 3},
     {"R_g_list_store_find_with_equal_func_full", (DL_FUNC) &R_g_list_store_find_with_equal_func_full, 4},
     {"R_g_list_store_insert", (DL_FUNC) &R_g_list_store_insert, 3},
+    {"R_g_list_store_insert_sorted", (DL_FUNC) &R_g_list_store_insert_sorted, 4},
     {"R_g_list_store_remove", (DL_FUNC) &R_g_list_store_remove, 2},
     {"R_g_list_store_remove_all", (DL_FUNC) &R_g_list_store_remove_all, 1},
+    {"R_g_list_store_sort", (DL_FUNC) &R_g_list_store_sort, 3},
     {"R_g_list_store_splice", (DL_FUNC) &R_g_list_store_splice, 5},
     {"R_g_loadable_icon_load", (DL_FUNC) &R_g_loadable_icon_load, 3},
+    {"R_g_loadable_icon_load_async", (DL_FUNC) &R_g_loadable_icon_load_async, 5},
     {"R_g_loadable_icon_load_finish", (DL_FUNC) &R_g_loadable_icon_load_finish, 2},
     {"R_g_memory_input_stream_new", (DL_FUNC) &R_g_memory_input_stream_new, 0},
     {"R_g_memory_input_stream_new_from_bytes", (DL_FUNC) &R_g_memory_input_stream_new_from_bytes, 1},
+    {"R_g_memory_input_stream_new_from_data", (DL_FUNC) &R_g_memory_input_stream_new_from_data, 3},
     {"R_g_memory_input_stream_add_bytes", (DL_FUNC) &R_g_memory_input_stream_add_bytes, 2},
+    {"R_g_memory_input_stream_add_data", (DL_FUNC) &R_g_memory_input_stream_add_data, 4},
     {"R_g_memory_monitor_dup_default", (DL_FUNC) &R_g_memory_monitor_dup_default, 0},
     {"R_g_memory_output_stream_new_resizable", (DL_FUNC) &R_g_memory_output_stream_new_resizable, 0},
     {"R_g_memory_output_stream_get_data", (DL_FUNC) &R_g_memory_output_stream_get_data, 1},
@@ -8646,7 +8855,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_menu_model_iterate_item_links", (DL_FUNC) &R_g_menu_model_iterate_item_links, 2},
     {"R_g_mount_can_eject", (DL_FUNC) &R_g_mount_can_eject, 1},
     {"R_g_mount_can_unmount", (DL_FUNC) &R_g_mount_can_unmount, 1},
+    {"R_g_mount_eject", (DL_FUNC) &R_g_mount_eject, 5},
     {"R_g_mount_eject_finish", (DL_FUNC) &R_g_mount_eject_finish, 2},
+    {"R_g_mount_eject_with_operation", (DL_FUNC) &R_g_mount_eject_with_operation, 6},
     {"R_g_mount_eject_with_operation_finish", (DL_FUNC) &R_g_mount_eject_with_operation_finish, 2},
     {"R_g_mount_get_default_location", (DL_FUNC) &R_g_mount_get_default_location, 1},
     {"R_g_mount_get_drive", (DL_FUNC) &R_g_mount_get_drive, 1},
@@ -8657,12 +8868,16 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_mount_get_symbolic_icon", (DL_FUNC) &R_g_mount_get_symbolic_icon, 1},
     {"R_g_mount_get_uuid", (DL_FUNC) &R_g_mount_get_uuid, 1},
     {"R_g_mount_get_volume", (DL_FUNC) &R_g_mount_get_volume, 1},
+    {"R_g_mount_guess_content_type", (DL_FUNC) &R_g_mount_guess_content_type, 5},
     {"R_g_mount_guess_content_type_finish", (DL_FUNC) &R_g_mount_guess_content_type_finish, 2},
     {"R_g_mount_guess_content_type_sync", (DL_FUNC) &R_g_mount_guess_content_type_sync, 3},
     {"R_g_mount_is_shadowed", (DL_FUNC) &R_g_mount_is_shadowed, 1},
+    {"R_g_mount_remount", (DL_FUNC) &R_g_mount_remount, 6},
     {"R_g_mount_remount_finish", (DL_FUNC) &R_g_mount_remount_finish, 2},
     {"R_g_mount_shadow", (DL_FUNC) &R_g_mount_shadow, 1},
+    {"R_g_mount_unmount", (DL_FUNC) &R_g_mount_unmount, 5},
     {"R_g_mount_unmount_finish", (DL_FUNC) &R_g_mount_unmount_finish, 2},
+    {"R_g_mount_unmount_with_operation", (DL_FUNC) &R_g_mount_unmount_with_operation, 6},
     {"R_g_mount_unmount_with_operation_finish", (DL_FUNC) &R_g_mount_unmount_with_operation_finish, 2},
     {"R_g_mount_unshadow", (DL_FUNC) &R_g_mount_unshadow, 1},
     {"R_g_mount_operation_new", (DL_FUNC) &R_g_mount_operation_new, 0},
@@ -8695,6 +8910,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_network_address_get_scheme", (DL_FUNC) &R_g_network_address_get_scheme, 1},
     {"R_g_network_monitor_get_default", (DL_FUNC) &R_g_network_monitor_get_default, 0},
     {"R_g_network_monitor_can_reach", (DL_FUNC) &R_g_network_monitor_can_reach, 3},
+    {"R_g_network_monitor_can_reach_async", (DL_FUNC) &R_g_network_monitor_can_reach_async, 5},
     {"R_g_network_monitor_can_reach_finish", (DL_FUNC) &R_g_network_monitor_can_reach_finish, 2},
     {"R_g_network_monitor_get_connectivity", (DL_FUNC) &R_g_network_monitor_get_connectivity, 1},
     {"R_g_network_monitor_get_network_available", (DL_FUNC) &R_g_network_monitor_get_network_available, 1},
@@ -8718,36 +8934,47 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_notification_set_urgent", (DL_FUNC) &R_g_notification_set_urgent, 2},
     {"R_g_output_stream_clear_pending", (DL_FUNC) &R_g_output_stream_clear_pending, 1},
     {"R_g_output_stream_close", (DL_FUNC) &R_g_output_stream_close, 2},
+    {"R_g_output_stream_close_async", (DL_FUNC) &R_g_output_stream_close_async, 5},
     {"R_g_output_stream_close_finish", (DL_FUNC) &R_g_output_stream_close_finish, 2},
     {"R_g_output_stream_flush", (DL_FUNC) &R_g_output_stream_flush, 2},
+    {"R_g_output_stream_flush_async", (DL_FUNC) &R_g_output_stream_flush_async, 5},
     {"R_g_output_stream_flush_finish", (DL_FUNC) &R_g_output_stream_flush_finish, 2},
     {"R_g_output_stream_has_pending", (DL_FUNC) &R_g_output_stream_has_pending, 1},
     {"R_g_output_stream_is_closed", (DL_FUNC) &R_g_output_stream_is_closed, 1},
     {"R_g_output_stream_is_closing", (DL_FUNC) &R_g_output_stream_is_closing, 1},
     {"R_g_output_stream_set_pending", (DL_FUNC) &R_g_output_stream_set_pending, 1},
     {"R_g_output_stream_splice", (DL_FUNC) &R_g_output_stream_splice, 4},
+    {"R_g_output_stream_splice_async", (DL_FUNC) &R_g_output_stream_splice_async, 7},
     {"R_g_output_stream_splice_finish", (DL_FUNC) &R_g_output_stream_splice_finish, 2},
     {"R_g_output_stream_write", (DL_FUNC) &R_g_output_stream_write, 4},
     {"R_g_output_stream_write_all", (DL_FUNC) &R_g_output_stream_write_all, 4},
+    {"R_g_output_stream_write_all_async", (DL_FUNC) &R_g_output_stream_write_all_async, 7},
     {"R_g_output_stream_write_all_finish", (DL_FUNC) &R_g_output_stream_write_all_finish, 2},
+    {"R_g_output_stream_write_async", (DL_FUNC) &R_g_output_stream_write_async, 7},
     {"R_g_output_stream_write_bytes", (DL_FUNC) &R_g_output_stream_write_bytes, 3},
+    {"R_g_output_stream_write_bytes_async", (DL_FUNC) &R_g_output_stream_write_bytes_async, 6},
     {"R_g_output_stream_write_bytes_finish", (DL_FUNC) &R_g_output_stream_write_bytes_finish, 2},
     {"R_g_output_stream_write_finish", (DL_FUNC) &R_g_output_stream_write_finish, 2},
     {"R_g_output_stream_writev", (DL_FUNC) &R_g_output_stream_writev, 4},
     {"R_g_output_stream_writev_all", (DL_FUNC) &R_g_output_stream_writev_all, 4},
+    {"R_g_output_stream_writev_all_async", (DL_FUNC) &R_g_output_stream_writev_all_async, 7},
     {"R_g_output_stream_writev_all_finish", (DL_FUNC) &R_g_output_stream_writev_all_finish, 2},
+    {"R_g_output_stream_writev_async", (DL_FUNC) &R_g_output_stream_writev_async, 7},
     {"R_g_output_stream_writev_finish", (DL_FUNC) &R_g_output_stream_writev_finish, 2},
     {"R_g_permission_acquire", (DL_FUNC) &R_g_permission_acquire, 2},
+    {"R_g_permission_acquire_async", (DL_FUNC) &R_g_permission_acquire_async, 4},
     {"R_g_permission_acquire_finish", (DL_FUNC) &R_g_permission_acquire_finish, 2},
     {"R_g_permission_get_allowed", (DL_FUNC) &R_g_permission_get_allowed, 1},
     {"R_g_permission_get_can_acquire", (DL_FUNC) &R_g_permission_get_can_acquire, 1},
     {"R_g_permission_get_can_release", (DL_FUNC) &R_g_permission_get_can_release, 1},
     {"R_g_permission_impl_update", (DL_FUNC) &R_g_permission_impl_update, 4},
     {"R_g_permission_release", (DL_FUNC) &R_g_permission_release, 2},
+    {"R_g_permission_release_async", (DL_FUNC) &R_g_permission_release_async, 4},
     {"R_g_permission_release_finish", (DL_FUNC) &R_g_permission_release_finish, 2},
     {"R_g_pollable_input_stream_can_poll", (DL_FUNC) &R_g_pollable_input_stream_can_poll, 1},
     {"R_g_pollable_input_stream_create_source", (DL_FUNC) &R_g_pollable_input_stream_create_source, 2},
     {"R_g_pollable_input_stream_is_readable", (DL_FUNC) &R_g_pollable_input_stream_is_readable, 1},
+    {"R_g_pollable_input_stream_read_nonblocking", (DL_FUNC) &R_g_pollable_input_stream_read_nonblocking, 3},
     {"R_g_pollable_output_stream_can_poll", (DL_FUNC) &R_g_pollable_output_stream_can_poll, 1},
     {"R_g_pollable_output_stream_create_source", (DL_FUNC) &R_g_pollable_output_stream_create_source, 2},
     {"R_g_pollable_output_stream_is_writable", (DL_FUNC) &R_g_pollable_output_stream_is_writable, 1},
@@ -8758,6 +8985,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_property_action_new", (DL_FUNC) &R_g_property_action_new, 3},
     {"R_g_proxy_get_default_for_protocol", (DL_FUNC) &R_g_proxy_get_default_for_protocol, 1},
     {"R_g_proxy_connect", (DL_FUNC) &R_g_proxy_connect, 4},
+    {"R_g_proxy_connect_async", (DL_FUNC) &R_g_proxy_connect_async, 6},
     {"R_g_proxy_connect_finish", (DL_FUNC) &R_g_proxy_connect_finish, 2},
     {"R_g_proxy_supports_hostname", (DL_FUNC) &R_g_proxy_supports_hostname, 1},
     {"R_g_proxy_address_new", (DL_FUNC) &R_g_proxy_address_new, 7},
@@ -8771,20 +8999,26 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_proxy_resolver_get_default", (DL_FUNC) &R_g_proxy_resolver_get_default, 0},
     {"R_g_proxy_resolver_is_supported", (DL_FUNC) &R_g_proxy_resolver_is_supported, 1},
     {"R_g_proxy_resolver_lookup", (DL_FUNC) &R_g_proxy_resolver_lookup, 3},
+    {"R_g_proxy_resolver_lookup_async", (DL_FUNC) &R_g_proxy_resolver_lookup_async, 5},
     {"R_g_proxy_resolver_lookup_finish", (DL_FUNC) &R_g_proxy_resolver_lookup_finish, 2},
     {"R_g_remote_action_group_activate_action_full", (DL_FUNC) &R_g_remote_action_group_activate_action_full, 4},
     {"R_g_remote_action_group_change_action_state_full", (DL_FUNC) &R_g_remote_action_group_change_action_state_full, 4},
     {"R_g_resolver_get_default", (DL_FUNC) &R_g_resolver_get_default, 0},
     {"R_g_resolver_get_timeout", (DL_FUNC) &R_g_resolver_get_timeout, 1},
     {"R_g_resolver_lookup_by_address", (DL_FUNC) &R_g_resolver_lookup_by_address, 3},
+    {"R_g_resolver_lookup_by_address_async", (DL_FUNC) &R_g_resolver_lookup_by_address_async, 5},
     {"R_g_resolver_lookup_by_address_finish", (DL_FUNC) &R_g_resolver_lookup_by_address_finish, 2},
     {"R_g_resolver_lookup_by_name", (DL_FUNC) &R_g_resolver_lookup_by_name, 3},
+    {"R_g_resolver_lookup_by_name_async", (DL_FUNC) &R_g_resolver_lookup_by_name_async, 5},
     {"R_g_resolver_lookup_by_name_finish", (DL_FUNC) &R_g_resolver_lookup_by_name_finish, 2},
     {"R_g_resolver_lookup_by_name_with_flags", (DL_FUNC) &R_g_resolver_lookup_by_name_with_flags, 4},
+    {"R_g_resolver_lookup_by_name_with_flags_async", (DL_FUNC) &R_g_resolver_lookup_by_name_with_flags_async, 6},
     {"R_g_resolver_lookup_by_name_with_flags_finish", (DL_FUNC) &R_g_resolver_lookup_by_name_with_flags_finish, 2},
     {"R_g_resolver_lookup_records", (DL_FUNC) &R_g_resolver_lookup_records, 4},
+    {"R_g_resolver_lookup_records_async", (DL_FUNC) &R_g_resolver_lookup_records_async, 6},
     {"R_g_resolver_lookup_records_finish", (DL_FUNC) &R_g_resolver_lookup_records_finish, 2},
     {"R_g_resolver_lookup_service", (DL_FUNC) &R_g_resolver_lookup_service, 5},
+    {"R_g_resolver_lookup_service_async", (DL_FUNC) &R_g_resolver_lookup_service_async, 7},
     {"R_g_resolver_lookup_service_finish", (DL_FUNC) &R_g_resolver_lookup_service_finish, 2},
     {"R_g_resolver_set_default", (DL_FUNC) &R_g_resolver_set_default, 1},
     {"R_g_resolver_set_timeout", (DL_FUNC) &R_g_resolver_set_timeout, 2},
@@ -8894,6 +9128,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_simple_action_group_insert", (DL_FUNC) &R_g_simple_action_group_insert, 2},
     {"R_g_simple_action_group_lookup", (DL_FUNC) &R_g_simple_action_group_lookup, 2},
     {"R_g_simple_action_group_remove", (DL_FUNC) &R_g_simple_action_group_remove, 2},
+    {"R_g_simple_async_result_new", (DL_FUNC) &R_g_simple_async_result_new, 4},
+    {"R_g_simple_async_result_new_from_error", (DL_FUNC) &R_g_simple_async_result_new_from_error, 4},
     {"R_g_simple_async_result_is_valid", (DL_FUNC) &R_g_simple_async_result_is_valid, 3},
     {"R_g_simple_async_result_complete", (DL_FUNC) &R_g_simple_async_result_complete, 1},
     {"R_g_simple_async_result_complete_in_idle", (DL_FUNC) &R_g_simple_async_result_complete_in_idle, 1},
@@ -8975,16 +9211,21 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_socket_address_get_native_size", (DL_FUNC) &R_g_socket_address_get_native_size, 1},
     {"R_g_socket_address_to_native", (DL_FUNC) &R_g_socket_address_to_native, 3},
     {"R_g_socket_address_enumerator_next", (DL_FUNC) &R_g_socket_address_enumerator_next, 2},
+    {"R_g_socket_address_enumerator_next_async", (DL_FUNC) &R_g_socket_address_enumerator_next_async, 4},
     {"R_g_socket_address_enumerator_next_finish", (DL_FUNC) &R_g_socket_address_enumerator_next_finish, 2},
     {"R_g_socket_client_new", (DL_FUNC) &R_g_socket_client_new, 0},
     {"R_g_socket_client_add_application_proxy", (DL_FUNC) &R_g_socket_client_add_application_proxy, 2},
     {"R_g_socket_client_connect", (DL_FUNC) &R_g_socket_client_connect, 3},
+    {"R_g_socket_client_connect_async", (DL_FUNC) &R_g_socket_client_connect_async, 5},
     {"R_g_socket_client_connect_finish", (DL_FUNC) &R_g_socket_client_connect_finish, 2},
     {"R_g_socket_client_connect_to_host", (DL_FUNC) &R_g_socket_client_connect_to_host, 4},
+    {"R_g_socket_client_connect_to_host_async", (DL_FUNC) &R_g_socket_client_connect_to_host_async, 6},
     {"R_g_socket_client_connect_to_host_finish", (DL_FUNC) &R_g_socket_client_connect_to_host_finish, 2},
     {"R_g_socket_client_connect_to_service", (DL_FUNC) &R_g_socket_client_connect_to_service, 4},
+    {"R_g_socket_client_connect_to_service_async", (DL_FUNC) &R_g_socket_client_connect_to_service_async, 6},
     {"R_g_socket_client_connect_to_service_finish", (DL_FUNC) &R_g_socket_client_connect_to_service_finish, 2},
     {"R_g_socket_client_connect_to_uri", (DL_FUNC) &R_g_socket_client_connect_to_uri, 4},
+    {"R_g_socket_client_connect_to_uri_async", (DL_FUNC) &R_g_socket_client_connect_to_uri_async, 6},
     {"R_g_socket_client_connect_to_uri_finish", (DL_FUNC) &R_g_socket_client_connect_to_uri_finish, 2},
     {"R_g_socket_client_get_enable_proxy", (DL_FUNC) &R_g_socket_client_get_enable_proxy, 1},
     {"R_g_socket_client_get_family", (DL_FUNC) &R_g_socket_client_get_family, 1},
@@ -9010,6 +9251,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_socket_connection_factory_lookup_type", (DL_FUNC) &R_g_socket_connection_factory_lookup_type, 3},
     {"R_g_socket_connection_factory_register_type", (DL_FUNC) &R_g_socket_connection_factory_register_type, 4},
     {"R_g_socket_connection_connect", (DL_FUNC) &R_g_socket_connection_connect, 3},
+    {"R_g_socket_connection_connect_async", (DL_FUNC) &R_g_socket_connection_connect_async, 5},
     {"R_g_socket_connection_connect_finish", (DL_FUNC) &R_g_socket_connection_connect_finish, 2},
     {"R_g_socket_connection_get_local_address", (DL_FUNC) &R_g_socket_connection_get_local_address, 1},
     {"R_g_socket_connection_get_remote_address", (DL_FUNC) &R_g_socket_connection_get_remote_address, 1},
@@ -9022,8 +9264,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_socket_control_message_serialize", (DL_FUNC) &R_g_socket_control_message_serialize, 2},
     {"R_g_socket_listener_new", (DL_FUNC) &R_g_socket_listener_new, 0},
     {"R_g_socket_listener_accept", (DL_FUNC) &R_g_socket_listener_accept, 2},
+    {"R_g_socket_listener_accept_async", (DL_FUNC) &R_g_socket_listener_accept_async, 4},
     {"R_g_socket_listener_accept_finish", (DL_FUNC) &R_g_socket_listener_accept_finish, 2},
     {"R_g_socket_listener_accept_socket", (DL_FUNC) &R_g_socket_listener_accept_socket, 2},
+    {"R_g_socket_listener_accept_socket_async", (DL_FUNC) &R_g_socket_listener_accept_socket_async, 4},
     {"R_g_socket_listener_accept_socket_finish", (DL_FUNC) &R_g_socket_listener_accept_socket_finish, 2},
     {"R_g_socket_listener_add_address", (DL_FUNC) &R_g_socket_listener_add_address, 5},
     {"R_g_socket_listener_add_any_inet_port", (DL_FUNC) &R_g_socket_listener_add_any_inet_port, 2},
@@ -9047,8 +9291,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_static_resource_init", (DL_FUNC) &R_g_static_resource_init, 1},
     {"R_g_subprocess_newv", (DL_FUNC) &R_g_subprocess_newv, 2},
     {"R_g_subprocess_communicate", (DL_FUNC) &R_g_subprocess_communicate, 3},
+    {"R_g_subprocess_communicate_async", (DL_FUNC) &R_g_subprocess_communicate_async, 5},
     {"R_g_subprocess_communicate_finish", (DL_FUNC) &R_g_subprocess_communicate_finish, 2},
     {"R_g_subprocess_communicate_utf8", (DL_FUNC) &R_g_subprocess_communicate_utf8, 3},
+    {"R_g_subprocess_communicate_utf8_async", (DL_FUNC) &R_g_subprocess_communicate_utf8_async, 5},
     {"R_g_subprocess_communicate_utf8_finish", (DL_FUNC) &R_g_subprocess_communicate_utf8_finish, 2},
     {"R_g_subprocess_force_exit", (DL_FUNC) &R_g_subprocess_force_exit, 1},
     {"R_g_subprocess_get_exit_status", (DL_FUNC) &R_g_subprocess_get_exit_status, 1},
@@ -9063,7 +9309,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_subprocess_get_term_sig", (DL_FUNC) &R_g_subprocess_get_term_sig, 1},
     {"R_g_subprocess_send_signal", (DL_FUNC) &R_g_subprocess_send_signal, 2},
     {"R_g_subprocess_wait", (DL_FUNC) &R_g_subprocess_wait, 2},
+    {"R_g_subprocess_wait_async", (DL_FUNC) &R_g_subprocess_wait_async, 4},
     {"R_g_subprocess_wait_check", (DL_FUNC) &R_g_subprocess_wait_check, 2},
+    {"R_g_subprocess_wait_check_async", (DL_FUNC) &R_g_subprocess_wait_check_async, 4},
     {"R_g_subprocess_wait_check_finish", (DL_FUNC) &R_g_subprocess_wait_check_finish, 2},
     {"R_g_subprocess_wait_finish", (DL_FUNC) &R_g_subprocess_wait_finish, 2},
     {"R_g_subprocess_launcher_new", (DL_FUNC) &R_g_subprocess_launcher_new, 1},
@@ -9082,7 +9330,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_subprocess_launcher_take_stdin_fd", (DL_FUNC) &R_g_subprocess_launcher_take_stdin_fd, 2},
     {"R_g_subprocess_launcher_take_stdout_fd", (DL_FUNC) &R_g_subprocess_launcher_take_stdout_fd, 2},
     {"R_g_subprocess_launcher_unsetenv", (DL_FUNC) &R_g_subprocess_launcher_unsetenv, 2},
+    {"R_g_task_new", (DL_FUNC) &R_g_task_new, 4},
     {"R_g_task_is_valid", (DL_FUNC) &R_g_task_is_valid, 2},
+    {"R_g_task_report_error", (DL_FUNC) &R_g_task_report_error, 5},
     {"R_g_task_get_cancellable", (DL_FUNC) &R_g_task_get_cancellable, 1},
     {"R_g_task_get_check_cancellable", (DL_FUNC) &R_g_task_get_check_cancellable, 1},
     {"R_g_task_get_completed", (DL_FUNC) &R_g_task_get_completed, 1},
@@ -9097,18 +9347,23 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_task_propagate_boolean", (DL_FUNC) &R_g_task_propagate_boolean, 1},
     {"R_g_task_propagate_int", (DL_FUNC) &R_g_task_propagate_int, 1},
     {"R_g_task_propagate_pointer", (DL_FUNC) &R_g_task_propagate_pointer, 1},
+    {"R_g_task_propagate_value", (DL_FUNC) &R_g_task_propagate_value, 1},
     {"R_g_task_return_boolean", (DL_FUNC) &R_g_task_return_boolean, 2},
     {"R_g_task_return_error", (DL_FUNC) &R_g_task_return_error, 2},
     {"R_g_task_return_error_if_cancelled", (DL_FUNC) &R_g_task_return_error_if_cancelled, 1},
     {"R_g_task_return_int", (DL_FUNC) &R_g_task_return_int, 2},
     {"R_g_task_return_new_error_literal", (DL_FUNC) &R_g_task_return_new_error_literal, 4},
+    {"R_g_task_return_pointer", (DL_FUNC) &R_g_task_return_pointer, 3},
     {"R_g_task_return_value", (DL_FUNC) &R_g_task_return_value, 2},
+    {"R_g_task_run_in_thread", (DL_FUNC) &R_g_task_run_in_thread, 2},
+    {"R_g_task_run_in_thread_sync", (DL_FUNC) &R_g_task_run_in_thread_sync, 2},
     {"R_g_task_set_check_cancellable", (DL_FUNC) &R_g_task_set_check_cancellable, 2},
     {"R_g_task_set_name", (DL_FUNC) &R_g_task_set_name, 2},
     {"R_g_task_set_priority", (DL_FUNC) &R_g_task_set_priority, 2},
     {"R_g_task_set_return_on_cancel", (DL_FUNC) &R_g_task_set_return_on_cancel, 2},
     {"R_g_task_set_source_tag", (DL_FUNC) &R_g_task_set_source_tag, 2},
     {"R_g_task_set_static_name", (DL_FUNC) &R_g_task_set_static_name, 2},
+    {"R_g_task_set_task_data", (DL_FUNC) &R_g_task_set_task_data, 3},
     {"R_g_tcp_connection_get_graceful_disconnect", (DL_FUNC) &R_g_tcp_connection_get_graceful_disconnect, 1},
     {"R_g_tcp_connection_set_graceful_disconnect", (DL_FUNC) &R_g_tcp_connection_set_graceful_disconnect, 2},
     {"R_g_tcp_wrapper_connection_new", (DL_FUNC) &R_g_tcp_wrapper_connection_new, 2},
@@ -9128,116 +9383,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_themed_icon_get_names", (DL_FUNC) &R_g_themed_icon_get_names, 1},
     {"R_g_themed_icon_prepend_name", (DL_FUNC) &R_g_themed_icon_prepend_name, 2},
     {"R_g_threaded_socket_service_new", (DL_FUNC) &R_g_threaded_socket_service_new, 1},
-    {"R_g_tls_backend_get_default", (DL_FUNC) &R_g_tls_backend_get_default, 0},
-    {"R_g_tls_backend_get_certificate_type", (DL_FUNC) &R_g_tls_backend_get_certificate_type, 1},
-    {"R_g_tls_backend_get_client_connection_type", (DL_FUNC) &R_g_tls_backend_get_client_connection_type, 1},
-    {"R_g_tls_backend_get_default_database", (DL_FUNC) &R_g_tls_backend_get_default_database, 1},
-    {"R_g_tls_backend_get_dtls_client_connection_type", (DL_FUNC) &R_g_tls_backend_get_dtls_client_connection_type, 1},
-    {"R_g_tls_backend_get_dtls_server_connection_type", (DL_FUNC) &R_g_tls_backend_get_dtls_server_connection_type, 1},
-    {"R_g_tls_backend_get_file_database_type", (DL_FUNC) &R_g_tls_backend_get_file_database_type, 1},
-    {"R_g_tls_backend_get_server_connection_type", (DL_FUNC) &R_g_tls_backend_get_server_connection_type, 1},
-    {"R_g_tls_backend_set_default_database", (DL_FUNC) &R_g_tls_backend_set_default_database, 2},
-    {"R_g_tls_backend_supports_dtls", (DL_FUNC) &R_g_tls_backend_supports_dtls, 1},
-    {"R_g_tls_backend_supports_tls", (DL_FUNC) &R_g_tls_backend_supports_tls, 1},
-    {"R_g_tls_certificate_new_from_file", (DL_FUNC) &R_g_tls_certificate_new_from_file, 1},
-    {"R_g_tls_certificate_new_from_file_with_password", (DL_FUNC) &R_g_tls_certificate_new_from_file_with_password, 2},
-    {"R_g_tls_certificate_new_from_files", (DL_FUNC) &R_g_tls_certificate_new_from_files, 2},
-    {"R_g_tls_certificate_new_from_pem", (DL_FUNC) &R_g_tls_certificate_new_from_pem, 2},
-    {"R_g_tls_certificate_new_from_pkcs11_uris", (DL_FUNC) &R_g_tls_certificate_new_from_pkcs11_uris, 2},
-    {"R_g_tls_certificate_new_from_pkcs12", (DL_FUNC) &R_g_tls_certificate_new_from_pkcs12, 3},
-    {"R_g_tls_certificate_list_new_from_file", (DL_FUNC) &R_g_tls_certificate_list_new_from_file, 1},
-    {"R_g_tls_certificate_get_dns_names", (DL_FUNC) &R_g_tls_certificate_get_dns_names, 1},
-    {"R_g_tls_certificate_get_ip_addresses", (DL_FUNC) &R_g_tls_certificate_get_ip_addresses, 1},
-    {"R_g_tls_certificate_get_issuer", (DL_FUNC) &R_g_tls_certificate_get_issuer, 1},
-    {"R_g_tls_certificate_get_issuer_name", (DL_FUNC) &R_g_tls_certificate_get_issuer_name, 1},
-    {"R_g_tls_certificate_get_not_valid_after", (DL_FUNC) &R_g_tls_certificate_get_not_valid_after, 1},
-    {"R_g_tls_certificate_get_not_valid_before", (DL_FUNC) &R_g_tls_certificate_get_not_valid_before, 1},
-    {"R_g_tls_certificate_get_subject_name", (DL_FUNC) &R_g_tls_certificate_get_subject_name, 1},
-    {"R_g_tls_certificate_is_same", (DL_FUNC) &R_g_tls_certificate_is_same, 2},
-    {"R_g_tls_certificate_verify", (DL_FUNC) &R_g_tls_certificate_verify, 3},
-    {"R_g_tls_channel_binding_error_quark", (DL_FUNC) &R_g_tls_channel_binding_error_quark, 0},
-    {"R_g_tls_client_connection_new", (DL_FUNC) &R_g_tls_client_connection_new, 2},
-    {"R_g_tls_client_connection_copy_session_state", (DL_FUNC) &R_g_tls_client_connection_copy_session_state, 2},
-    {"R_g_tls_client_connection_get_accepted_cas", (DL_FUNC) &R_g_tls_client_connection_get_accepted_cas, 1},
-    {"R_g_tls_client_connection_get_server_identity", (DL_FUNC) &R_g_tls_client_connection_get_server_identity, 1},
-    {"R_g_tls_client_connection_get_use_ssl3", (DL_FUNC) &R_g_tls_client_connection_get_use_ssl3, 1},
-    {"R_g_tls_client_connection_get_validation_flags", (DL_FUNC) &R_g_tls_client_connection_get_validation_flags, 1},
-    {"R_g_tls_client_connection_set_server_identity", (DL_FUNC) &R_g_tls_client_connection_set_server_identity, 2},
-    {"R_g_tls_client_connection_set_use_ssl3", (DL_FUNC) &R_g_tls_client_connection_set_use_ssl3, 2},
-    {"R_g_tls_client_connection_set_validation_flags", (DL_FUNC) &R_g_tls_client_connection_set_validation_flags, 2},
-    {"R_g_tls_connection_emit_accept_certificate", (DL_FUNC) &R_g_tls_connection_emit_accept_certificate, 3},
-    {"R_g_tls_connection_get_certificate", (DL_FUNC) &R_g_tls_connection_get_certificate, 1},
-    {"R_g_tls_connection_get_ciphersuite_name", (DL_FUNC) &R_g_tls_connection_get_ciphersuite_name, 1},
-    {"R_g_tls_connection_get_database", (DL_FUNC) &R_g_tls_connection_get_database, 1},
-    {"R_g_tls_connection_get_interaction", (DL_FUNC) &R_g_tls_connection_get_interaction, 1},
-    {"R_g_tls_connection_get_negotiated_protocol", (DL_FUNC) &R_g_tls_connection_get_negotiated_protocol, 1},
-    {"R_g_tls_connection_get_peer_certificate", (DL_FUNC) &R_g_tls_connection_get_peer_certificate, 1},
-    {"R_g_tls_connection_get_peer_certificate_errors", (DL_FUNC) &R_g_tls_connection_get_peer_certificate_errors, 1},
-    {"R_g_tls_connection_get_protocol_version", (DL_FUNC) &R_g_tls_connection_get_protocol_version, 1},
-    {"R_g_tls_connection_get_rehandshake_mode", (DL_FUNC) &R_g_tls_connection_get_rehandshake_mode, 1},
-    {"R_g_tls_connection_get_require_close_notify", (DL_FUNC) &R_g_tls_connection_get_require_close_notify, 1},
-    {"R_g_tls_connection_get_use_system_certdb", (DL_FUNC) &R_g_tls_connection_get_use_system_certdb, 1},
-    {"R_g_tls_connection_handshake", (DL_FUNC) &R_g_tls_connection_handshake, 2},
-    {"R_g_tls_connection_handshake_finish", (DL_FUNC) &R_g_tls_connection_handshake_finish, 2},
-    {"R_g_tls_connection_set_advertised_protocols", (DL_FUNC) &R_g_tls_connection_set_advertised_protocols, 2},
-    {"R_g_tls_connection_set_certificate", (DL_FUNC) &R_g_tls_connection_set_certificate, 2},
-    {"R_g_tls_connection_set_database", (DL_FUNC) &R_g_tls_connection_set_database, 2},
-    {"R_g_tls_connection_set_interaction", (DL_FUNC) &R_g_tls_connection_set_interaction, 2},
-    {"R_g_tls_connection_set_rehandshake_mode", (DL_FUNC) &R_g_tls_connection_set_rehandshake_mode, 2},
-    {"R_g_tls_connection_set_require_close_notify", (DL_FUNC) &R_g_tls_connection_set_require_close_notify, 2},
-    {"R_g_tls_connection_set_use_system_certdb", (DL_FUNC) &R_g_tls_connection_set_use_system_certdb, 2},
-    {"R_g_tls_database_create_certificate_handle", (DL_FUNC) &R_g_tls_database_create_certificate_handle, 2},
-    {"R_g_tls_database_lookup_certificate_for_handle", (DL_FUNC) &R_g_tls_database_lookup_certificate_for_handle, 5},
-    {"R_g_tls_database_lookup_certificate_for_handle_finish", (DL_FUNC) &R_g_tls_database_lookup_certificate_for_handle_finish, 2},
-    {"R_g_tls_database_lookup_certificate_issuer", (DL_FUNC) &R_g_tls_database_lookup_certificate_issuer, 5},
-    {"R_g_tls_database_lookup_certificate_issuer_finish", (DL_FUNC) &R_g_tls_database_lookup_certificate_issuer_finish, 2},
-    {"R_g_tls_database_lookup_certificates_issued_by", (DL_FUNC) &R_g_tls_database_lookup_certificates_issued_by, 5},
-    {"R_g_tls_database_lookup_certificates_issued_by_finish", (DL_FUNC) &R_g_tls_database_lookup_certificates_issued_by_finish, 2},
-    {"R_g_tls_database_verify_chain", (DL_FUNC) &R_g_tls_database_verify_chain, 7},
-    {"R_g_tls_database_verify_chain_finish", (DL_FUNC) &R_g_tls_database_verify_chain_finish, 2},
-    {"R_g_tls_error_quark", (DL_FUNC) &R_g_tls_error_quark, 0},
-    {"R_g_tls_file_database_new", (DL_FUNC) &R_g_tls_file_database_new, 1},
-    {"R_g_tls_interaction_ask_password", (DL_FUNC) &R_g_tls_interaction_ask_password, 3},
-    {"R_g_tls_interaction_ask_password_finish", (DL_FUNC) &R_g_tls_interaction_ask_password_finish, 2},
-    {"R_g_tls_interaction_invoke_ask_password", (DL_FUNC) &R_g_tls_interaction_invoke_ask_password, 3},
-    {"R_g_tls_interaction_invoke_request_certificate", (DL_FUNC) &R_g_tls_interaction_invoke_request_certificate, 4},
-    {"R_g_tls_interaction_request_certificate", (DL_FUNC) &R_g_tls_interaction_request_certificate, 4},
-    {"R_g_tls_interaction_request_certificate_finish", (DL_FUNC) &R_g_tls_interaction_request_certificate_finish, 2},
-    {"R_g_tls_password_new", (DL_FUNC) &R_g_tls_password_new, 2},
-    {"R_g_tls_password_get_description", (DL_FUNC) &R_g_tls_password_get_description, 1},
-    {"R_g_tls_password_get_flags", (DL_FUNC) &R_g_tls_password_get_flags, 1},
-    {"R_g_tls_password_get_value", (DL_FUNC) &R_g_tls_password_get_value, 1},
-    {"R_g_tls_password_get_warning", (DL_FUNC) &R_g_tls_password_get_warning, 1},
-    {"R_g_tls_password_set_description", (DL_FUNC) &R_g_tls_password_set_description, 2},
-    {"R_g_tls_password_set_flags", (DL_FUNC) &R_g_tls_password_set_flags, 2},
-    {"R_g_tls_password_set_value", (DL_FUNC) &R_g_tls_password_set_value, 3},
-    {"R_g_tls_password_set_warning", (DL_FUNC) &R_g_tls_password_set_warning, 2},
-    {"R_g_tls_server_connection_new", (DL_FUNC) &R_g_tls_server_connection_new, 2},
-    {"R_g_unix_connection_receive_credentials", (DL_FUNC) &R_g_unix_connection_receive_credentials, 2},
-    {"R_g_unix_connection_receive_credentials_finish", (DL_FUNC) &R_g_unix_connection_receive_credentials_finish, 2},
-    {"R_g_unix_connection_receive_fd", (DL_FUNC) &R_g_unix_connection_receive_fd, 2},
-    {"R_g_unix_connection_send_credentials", (DL_FUNC) &R_g_unix_connection_send_credentials, 2},
-    {"R_g_unix_connection_send_credentials_finish", (DL_FUNC) &R_g_unix_connection_send_credentials_finish, 2},
-    {"R_g_unix_connection_send_fd", (DL_FUNC) &R_g_unix_connection_send_fd, 3},
-    {"R_g_unix_credentials_message_new", (DL_FUNC) &R_g_unix_credentials_message_new, 0},
-    {"R_g_unix_credentials_message_new_with_credentials", (DL_FUNC) &R_g_unix_credentials_message_new_with_credentials, 1},
-    {"R_g_unix_credentials_message_is_supported", (DL_FUNC) &R_g_unix_credentials_message_is_supported, 0},
-    {"R_g_unix_credentials_message_get_credentials", (DL_FUNC) &R_g_unix_credentials_message_get_credentials, 1},
-    {"R_g_unix_fd_list_new", (DL_FUNC) &R_g_unix_fd_list_new, 0},
-    {"R_g_unix_fd_list_new_from_array", (DL_FUNC) &R_g_unix_fd_list_new_from_array, 2},
-    {"R_g_unix_fd_list_append", (DL_FUNC) &R_g_unix_fd_list_append, 2},
-    {"R_g_unix_fd_list_get", (DL_FUNC) &R_g_unix_fd_list_get, 2},
-    {"R_g_unix_fd_list_get_length", (DL_FUNC) &R_g_unix_fd_list_get_length, 1},
-    {"R_g_unix_fd_list_peek_fds", (DL_FUNC) &R_g_unix_fd_list_peek_fds, 1},
-    {"R_g_unix_fd_list_steal_fds", (DL_FUNC) &R_g_unix_fd_list_steal_fds, 1},
-    {"R_g_unix_socket_address_new", (DL_FUNC) &R_g_unix_socket_address_new, 1},
-    {"R_g_unix_socket_address_new_abstract", (DL_FUNC) &R_g_unix_socket_address_new_abstract, 2},
-    {"R_g_unix_socket_address_new_with_type", (DL_FUNC) &R_g_unix_socket_address_new_with_type, 3},
-    {"R_g_unix_socket_address_abstract_names_supported", (DL_FUNC) &R_g_unix_socket_address_abstract_names_supported, 0},
-    {"R_g_unix_socket_address_get_address_type", (DL_FUNC) &R_g_unix_socket_address_get_address_type, 1},
-    {"R_g_unix_socket_address_get_is_abstract", (DL_FUNC) &R_g_unix_socket_address_get_is_abstract, 1},
-    {"R_g_unix_socket_address_get_path", (DL_FUNC) &R_g_unix_socket_address_get_path, 1},
-    {"R_g_unix_socket_address_get_path_len", (DL_FUNC) &R_g_unix_socket_address_get_path_len, 1},
     {"R_g_vfs_get_default", (DL_FUNC) &R_g_vfs_get_default, 0},
     {"R_g_vfs_get_local", (DL_FUNC) &R_g_vfs_get_local, 0},
     {"R_g_vfs_get_file_for_path", (DL_FUNC) &R_g_vfs_get_file_for_path, 2},
@@ -9245,10 +9390,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_vfs_get_supported_uri_schemes", (DL_FUNC) &R_g_vfs_get_supported_uri_schemes, 1},
     {"R_g_vfs_is_active", (DL_FUNC) &R_g_vfs_is_active, 1},
     {"R_g_vfs_parse_name", (DL_FUNC) &R_g_vfs_parse_name, 2},
+    {"R_g_vfs_register_uri_scheme", (DL_FUNC) &R_g_vfs_register_uri_scheme, 8},
     {"R_g_vfs_unregister_uri_scheme", (DL_FUNC) &R_g_vfs_unregister_uri_scheme, 2},
     {"R_g_volume_can_eject", (DL_FUNC) &R_g_volume_can_eject, 1},
     {"R_g_volume_can_mount", (DL_FUNC) &R_g_volume_can_mount, 1},
+    {"R_g_volume_eject", (DL_FUNC) &R_g_volume_eject, 5},
     {"R_g_volume_eject_finish", (DL_FUNC) &R_g_volume_eject_finish, 2},
+    {"R_g_volume_eject_with_operation", (DL_FUNC) &R_g_volume_eject_with_operation, 6},
     {"R_g_volume_eject_with_operation_finish", (DL_FUNC) &R_g_volume_eject_with_operation_finish, 2},
     {"R_g_volume_enumerate_identifiers", (DL_FUNC) &R_g_volume_enumerate_identifiers, 1},
     {"R_g_volume_get_activation_root", (DL_FUNC) &R_g_volume_get_activation_root, 1},
@@ -9260,6 +9408,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_volume_get_sort_key", (DL_FUNC) &R_g_volume_get_sort_key, 1},
     {"R_g_volume_get_symbolic_icon", (DL_FUNC) &R_g_volume_get_symbolic_icon, 1},
     {"R_g_volume_get_uuid", (DL_FUNC) &R_g_volume_get_uuid, 1},
+    {"R_g_volume_mount", (DL_FUNC) &R_g_volume_mount, 6},
     {"R_g_volume_mount_finish", (DL_FUNC) &R_g_volume_mount_finish, 2},
     {"R_g_volume_should_automount", (DL_FUNC) &R_g_volume_should_automount, 1},
     {"R_g_volume_monitor_adopt_orphan_mount", (DL_FUNC) &R_g_volume_monitor_adopt_orphan_mount, 1},
@@ -9276,12 +9425,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_zlib_compressor_set_os", (DL_FUNC) &R_g_zlib_compressor_set_os, 2},
     {"R_g_zlib_decompressor_new", (DL_FUNC) &R_g_zlib_decompressor_new, 1},
     {"R_g_zlib_decompressor_get_file_info", (DL_FUNC) &R_g_zlib_decompressor_get_file_info, 1},
+    {"R_g_bus_get", (DL_FUNC) &R_g_bus_get, 4},
     {"R_g_bus_get_finish", (DL_FUNC) &R_g_bus_get_finish, 1},
     {"R_g_bus_get_sync", (DL_FUNC) &R_g_bus_get_sync, 2},
+    {"R_g_bus_own_name", (DL_FUNC) &R_g_bus_own_name, 8},
+    {"R_g_bus_own_name_on_connection", (DL_FUNC) &R_g_bus_own_name_on_connection, 7},
     {"R_g_bus_own_name_on_connection_with_closures", (DL_FUNC) &R_g_bus_own_name_on_connection_with_closures, 5},
     {"R_g_bus_own_name_with_closures", (DL_FUNC) &R_g_bus_own_name_with_closures, 6},
     {"R_g_bus_unown_name", (DL_FUNC) &R_g_bus_unown_name, 1},
     {"R_g_bus_unwatch_name", (DL_FUNC) &R_g_bus_unwatch_name, 1},
+    {"R_g_bus_watch_name", (DL_FUNC) &R_g_bus_watch_name, 7},
+    {"R_g_bus_watch_name_on_connection", (DL_FUNC) &R_g_bus_watch_name_on_connection, 7},
     {"R_g_bus_watch_name_on_connection_with_closures", (DL_FUNC) &R_g_bus_watch_name_on_connection_with_closures, 5},
     {"R_g_bus_watch_name_with_closures", (DL_FUNC) &R_g_bus_watch_name_with_closures, 5},
     {"R_g_content_type_can_be_executable", (DL_FUNC) &R_g_content_type_can_be_executable, 1},
@@ -9302,12 +9456,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_content_types_get_registered", (DL_FUNC) &R_g_content_types_get_registered, 0},
     {"R_g_dbus_address_escape_value", (DL_FUNC) &R_g_dbus_address_escape_value, 1},
     {"R_g_dbus_address_get_for_bus_sync", (DL_FUNC) &R_g_dbus_address_get_for_bus_sync, 2},
+    {"R_g_dbus_address_get_stream", (DL_FUNC) &R_g_dbus_address_get_stream, 4},
     {"R_g_dbus_address_get_stream_finish", (DL_FUNC) &R_g_dbus_address_get_stream_finish, 1},
     {"R_g_dbus_address_get_stream_sync", (DL_FUNC) &R_g_dbus_address_get_stream_sync, 2},
     {"R_g_dbus_escape_object_path", (DL_FUNC) &R_g_dbus_escape_object_path, 1},
     {"R_g_dbus_escape_object_path_bytestring", (DL_FUNC) &R_g_dbus_escape_object_path_bytestring, 1},
     {"R_g_dbus_generate_guid", (DL_FUNC) &R_g_dbus_generate_guid, 0},
     {"R_g_dbus_gvalue_to_gvariant", (DL_FUNC) &R_g_dbus_gvalue_to_gvariant, 2},
+    {"R_g_dbus_gvariant_to_gvalue", (DL_FUNC) &R_g_dbus_gvariant_to_gvalue, 1},
     {"R_g_dbus_is_address", (DL_FUNC) &R_g_dbus_is_address, 1},
     {"R_g_dbus_is_error_name", (DL_FUNC) &R_g_dbus_is_error_name, 1},
     {"R_g_dbus_is_guid", (DL_FUNC) &R_g_dbus_is_guid, 1},
@@ -9325,6 +9481,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_io_modules_scan_all_in_directory", (DL_FUNC) &R_g_io_modules_scan_all_in_directory, 1},
     {"R_g_io_modules_scan_all_in_directory_with_scope", (DL_FUNC) &R_g_io_modules_scan_all_in_directory_with_scope, 2},
     {"R_g_io_scheduler_cancel_all_jobs", (DL_FUNC) &R_g_io_scheduler_cancel_all_jobs, 0},
+    {"R_g_io_scheduler_push_job", (DL_FUNC) &R_g_io_scheduler_push_job, 5},
     {"R_g_keyfile_settings_backend_new", (DL_FUNC) &R_g_keyfile_settings_backend_new, 3},
     {"R_g_memory_settings_backend_new", (DL_FUNC) &R_g_memory_settings_backend_new, 0},
     {"R_g_networking_init", (DL_FUNC) &R_g_networking_init, 0},
@@ -9339,6 +9496,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_resources_has_children", (DL_FUNC) &R_g_resources_has_children, 1},
     {"R_g_resources_lookup_data", (DL_FUNC) &R_g_resources_lookup_data, 2},
     {"R_g_resources_open_stream", (DL_FUNC) &R_g_resources_open_stream, 2},
+    {"R_g_simple_async_report_gerror_in_idle", (DL_FUNC) &R_g_simple_async_report_gerror_in_idle, 4},
     {"R_g_allocator_free", (DL_FUNC) &R_g_allocator_free, 1},
     {"R_g_async_queue_length", (DL_FUNC) &R_g_async_queue_length, 1},
     {"R_g_async_queue_length_unlocked", (DL_FUNC) &R_g_async_queue_length_unlocked, 1},
@@ -9348,11 +9506,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_async_queue_push", (DL_FUNC) &R_g_async_queue_push, 2},
     {"R_g_async_queue_push_front", (DL_FUNC) &R_g_async_queue_push_front, 2},
     {"R_g_async_queue_push_front_unlocked", (DL_FUNC) &R_g_async_queue_push_front_unlocked, 2},
+    {"R_g_async_queue_push_sorted", (DL_FUNC) &R_g_async_queue_push_sorted, 4},
+    {"R_g_async_queue_push_sorted_unlocked", (DL_FUNC) &R_g_async_queue_push_sorted_unlocked, 4},
     {"R_g_async_queue_push_unlocked", (DL_FUNC) &R_g_async_queue_push_unlocked, 2},
     {"R_g_async_queue_ref", (DL_FUNC) &R_g_async_queue_ref, 1},
     {"R_g_async_queue_ref_unlocked", (DL_FUNC) &R_g_async_queue_ref_unlocked, 1},
     {"R_g_async_queue_remove", (DL_FUNC) &R_g_async_queue_remove, 2},
     {"R_g_async_queue_remove_unlocked", (DL_FUNC) &R_g_async_queue_remove_unlocked, 2},
+    {"R_g_async_queue_sort", (DL_FUNC) &R_g_async_queue_sort, 3},
+    {"R_g_async_queue_sort_unlocked", (DL_FUNC) &R_g_async_queue_sort_unlocked, 3},
     {"R_g_async_queue_timed_pop", (DL_FUNC) &R_g_async_queue_timed_pop, 2},
     {"R_g_async_queue_timed_pop_unlocked", (DL_FUNC) &R_g_async_queue_timed_pop_unlocked, 2},
     {"R_g_async_queue_timeout_pop", (DL_FUNC) &R_g_async_queue_timeout_pop, 2},
@@ -9363,6 +9525,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_async_queue_unref", (DL_FUNC) &R_g_async_queue_unref, 1},
     {"R_g_async_queue_unref_and_unlock", (DL_FUNC) &R_g_async_queue_unref_and_unlock, 1},
     {"R_g_async_queue_new", (DL_FUNC) &R_g_async_queue_new, 0},
+    {"R_g_async_queue_new_full", (DL_FUNC) &R_g_async_queue_new_full, 1},
     {"R_g_bookmark_file_new", (DL_FUNC) &R_g_bookmark_file_new, 0},
     {"R_g_bookmark_file_add_application", (DL_FUNC) &R_g_bookmark_file_add_application, 4},
     {"R_g_bookmark_file_add_group", (DL_FUNC) &R_g_bookmark_file_add_group, 3},
@@ -9370,6 +9533,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_bookmark_file_free", (DL_FUNC) &R_g_bookmark_file_free, 1},
     {"R_g_bookmark_file_get_added", (DL_FUNC) &R_g_bookmark_file_get_added, 2},
     {"R_g_bookmark_file_get_added_date_time", (DL_FUNC) &R_g_bookmark_file_get_added_date_time, 2},
+    {"R_g_bookmark_file_get_app_info", (DL_FUNC) &R_g_bookmark_file_get_app_info, 3},
+    {"R_g_bookmark_file_get_application_info", (DL_FUNC) &R_g_bookmark_file_get_application_info, 3},
     {"R_g_bookmark_file_get_applications", (DL_FUNC) &R_g_bookmark_file_get_applications, 2},
     {"R_g_bookmark_file_get_description", (DL_FUNC) &R_g_bookmark_file_get_description, 2},
     {"R_g_bookmark_file_get_groups", (DL_FUNC) &R_g_bookmark_file_get_groups, 2},
@@ -9422,6 +9587,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_byte_array_remove_range", (DL_FUNC) &R_g_byte_array_remove_range, 3},
     {"R_g_byte_array_set_size", (DL_FUNC) &R_g_byte_array_set_size, 2},
     {"R_g_byte_array_sized_new", (DL_FUNC) &R_g_byte_array_sized_new, 1},
+    {"R_g_byte_array_sort", (DL_FUNC) &R_g_byte_array_sort, 2},
+    {"R_g_byte_array_sort_with_data", (DL_FUNC) &R_g_byte_array_sort_with_data, 3},
     {"R_g_byte_array_steal", (DL_FUNC) &R_g_byte_array_steal, 1},
     {"R_g_byte_array_unref", (DL_FUNC) &R_g_byte_array_unref, 1},
     {"R_g_bytes_new", (DL_FUNC) &R_g_bytes_new, 2},
@@ -9439,7 +9606,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_bytes_unref_to_data", (DL_FUNC) &R_g_bytes_unref_to_data, 1},
     {"R_g_cache_destroy", (DL_FUNC) &R_g_cache_destroy, 1},
     {"R_g_cache_insert", (DL_FUNC) &R_g_cache_insert, 2},
+    {"R_g_cache_key_foreach", (DL_FUNC) &R_g_cache_key_foreach, 3},
     {"R_g_cache_remove", (DL_FUNC) &R_g_cache_remove, 2},
+    {"R_g_cache_value_foreach", (DL_FUNC) &R_g_cache_value_foreach, 3},
     {"R_g_checksum_new", (DL_FUNC) &R_g_checksum_new, 1},
     {"R_g_checksum_copy", (DL_FUNC) &R_g_checksum_copy, 1},
     {"R_g_checksum_free", (DL_FUNC) &R_g_checksum_free, 1},
@@ -9448,6 +9617,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_checksum_update", (DL_FUNC) &R_g_checksum_update, 3},
     {"R_g_checksum_type_get_length", (DL_FUNC) &R_g_checksum_type_get_length, 1},
     {"R_g_completion_clear_items", (DL_FUNC) &R_g_completion_clear_items, 1},
+    {"R_g_completion_complete_utf8", (DL_FUNC) &R_g_completion_complete_utf8, 3},
     {"R_g_completion_free", (DL_FUNC) &R_g_completion_free, 1},
     {"R_g_cond_broadcast", (DL_FUNC) &R_g_cond_broadcast, 1},
     {"R_g_cond_clear", (DL_FUNC) &R_g_cond_clear, 1},
@@ -9492,6 +9662,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_date_subtract_days", (DL_FUNC) &R_g_date_subtract_days, 2},
     {"R_g_date_subtract_months", (DL_FUNC) &R_g_date_subtract_months, 2},
     {"R_g_date_subtract_years", (DL_FUNC) &R_g_date_subtract_years, 2},
+    {"R_g_date_to_struct_tm", (DL_FUNC) &R_g_date_to_struct_tm, 2},
     {"R_g_date_valid", (DL_FUNC) &R_g_date_valid, 1},
     {"R_g_date_get_days_in_month", (DL_FUNC) &R_g_date_get_days_in_month, 2},
     {"R_g_date_get_monday_weeks_in_year", (DL_FUNC) &R_g_date_get_monday_weeks_in_year, 1},
@@ -9569,9 +9740,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_error_copy", (DL_FUNC) &R_g_error_copy, 1},
     {"R_g_error_free", (DL_FUNC) &R_g_error_free, 1},
     {"R_g_error_matches", (DL_FUNC) &R_g_error_matches, 3},
+    {"R_g_error_domain_register", (DL_FUNC) &R_g_error_domain_register, 5},
+    {"R_g_error_domain_register_static", (DL_FUNC) &R_g_error_domain_register_static, 5},
     {"R_g_hash_table_add", (DL_FUNC) &R_g_hash_table_add, 2},
     {"R_g_hash_table_contains", (DL_FUNC) &R_g_hash_table_contains, 2},
     {"R_g_hash_table_destroy", (DL_FUNC) &R_g_hash_table_destroy, 1},
+    {"R_g_hash_table_find", (DL_FUNC) &R_g_hash_table_find, 3},
+    {"R_g_hash_table_foreach", (DL_FUNC) &R_g_hash_table_foreach, 3},
+    {"R_g_hash_table_foreach_remove", (DL_FUNC) &R_g_hash_table_foreach_remove, 3},
+    {"R_g_hash_table_foreach_steal", (DL_FUNC) &R_g_hash_table_foreach_steal, 3},
     {"R_g_hash_table_insert", (DL_FUNC) &R_g_hash_table_insert, 3},
     {"R_g_hash_table_lookup", (DL_FUNC) &R_g_hash_table_lookup, 2},
     {"R_g_hash_table_lookup_extended", (DL_FUNC) &R_g_hash_table_lookup_extended, 2},
@@ -9603,12 +9780,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_hook_destroy_link", (DL_FUNC) &R_g_hook_destroy_link, 2},
     {"R_g_hook_free", (DL_FUNC) &R_g_hook_free, 2},
     {"R_g_hook_insert_before", (DL_FUNC) &R_g_hook_insert_before, 3},
+    {"R_g_hook_insert_sorted", (DL_FUNC) &R_g_hook_insert_sorted, 3},
     {"R_g_hook_prepend", (DL_FUNC) &R_g_hook_prepend, 2},
     {"R_g_hook_unref", (DL_FUNC) &R_g_hook_unref, 2},
     {"R_g_hook_list_clear", (DL_FUNC) &R_g_hook_list_clear, 1},
     {"R_g_hook_list_init", (DL_FUNC) &R_g_hook_list_init, 2},
     {"R_g_hook_list_invoke", (DL_FUNC) &R_g_hook_list_invoke, 2},
     {"R_g_hook_list_invoke_check", (DL_FUNC) &R_g_hook_list_invoke_check, 2},
+    {"R_g_hook_list_marshal", (DL_FUNC) &R_g_hook_list_marshal, 4},
+    {"R_g_hook_list_marshal_check", (DL_FUNC) &R_g_hook_list_marshal_check, 4},
     {"R_g_io_channel_new_file", (DL_FUNC) &R_g_io_channel_new_file, 2},
     {"R_g_io_channel_unix_new", (DL_FUNC) &R_g_io_channel_unix_new, 1},
     {"R_g_io_channel_close", (DL_FUNC) &R_g_io_channel_close, 1},
@@ -9696,10 +9876,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_main_context_new", (DL_FUNC) &R_g_main_context_new, 0},
     {"R_g_main_context_new_with_flags", (DL_FUNC) &R_g_main_context_new_with_flags, 1},
     {"R_g_main_context_acquire", (DL_FUNC) &R_g_main_context_acquire, 1},
+    {"R_g_main_context_add_poll", (DL_FUNC) &R_g_main_context_add_poll, 3},
+    {"R_g_main_context_check", (DL_FUNC) &R_g_main_context_check, 4},
     {"R_g_main_context_dispatch", (DL_FUNC) &R_g_main_context_dispatch, 1},
     {"R_g_main_context_find_source_by_funcs_user_data", (DL_FUNC) &R_g_main_context_find_source_by_funcs_user_data, 3},
     {"R_g_main_context_find_source_by_id", (DL_FUNC) &R_g_main_context_find_source_by_id, 2},
     {"R_g_main_context_find_source_by_user_data", (DL_FUNC) &R_g_main_context_find_source_by_user_data, 2},
+    {"R_g_main_context_invoke_full", (DL_FUNC) &R_g_main_context_invoke_full, 5},
     {"R_g_main_context_is_owner", (DL_FUNC) &R_g_main_context_is_owner, 1},
     {"R_g_main_context_iteration", (DL_FUNC) &R_g_main_context_iteration, 2},
     {"R_g_main_context_pending", (DL_FUNC) &R_g_main_context_pending, 1},
@@ -9707,8 +9890,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_main_context_prepare", (DL_FUNC) &R_g_main_context_prepare, 1},
     {"R_g_main_context_push_thread_default", (DL_FUNC) &R_g_main_context_push_thread_default, 1},
     {"R_g_main_context_pusher_new", (DL_FUNC) &R_g_main_context_pusher_new, 1},
+    {"R_g_main_context_query", (DL_FUNC) &R_g_main_context_query, 3},
     {"R_g_main_context_ref", (DL_FUNC) &R_g_main_context_ref, 1},
     {"R_g_main_context_release", (DL_FUNC) &R_g_main_context_release, 1},
+    {"R_g_main_context_remove_poll", (DL_FUNC) &R_g_main_context_remove_poll, 2},
     {"R_g_main_context_unref", (DL_FUNC) &R_g_main_context_unref, 1},
     {"R_g_main_context_wait", (DL_FUNC) &R_g_main_context_wait, 3},
     {"R_g_main_context_wakeup", (DL_FUNC) &R_g_main_context_wakeup, 1},
@@ -9730,6 +9915,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_mapped_file_get_length", (DL_FUNC) &R_g_mapped_file_get_length, 1},
     {"R_g_mapped_file_ref", (DL_FUNC) &R_g_mapped_file_ref, 1},
     {"R_g_mapped_file_unref", (DL_FUNC) &R_g_mapped_file_unref, 1},
+    {"R_g_markup_parse_context_new", (DL_FUNC) &R_g_markup_parse_context_new, 4},
     {"R_g_markup_parse_context_end_parse", (DL_FUNC) &R_g_markup_parse_context_end_parse, 1},
     {"R_g_markup_parse_context_free", (DL_FUNC) &R_g_markup_parse_context_free, 1},
     {"R_g_markup_parse_context_get_element", (DL_FUNC) &R_g_markup_parse_context_get_element, 1},
@@ -9773,6 +9959,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_mutex_unlock", (DL_FUNC) &R_g_mutex_unlock, 1},
     {"R_g_node_child_index", (DL_FUNC) &R_g_node_child_index, 2},
     {"R_g_node_child_position", (DL_FUNC) &R_g_node_child_position, 2},
+    {"R_g_node_children_foreach", (DL_FUNC) &R_g_node_children_foreach, 4},
     {"R_g_node_depth", (DL_FUNC) &R_g_node_depth, 1},
     {"R_g_node_destroy", (DL_FUNC) &R_g_node_destroy, 1},
     {"R_g_node_is_ancestor", (DL_FUNC) &R_g_node_is_ancestor, 2},
@@ -9780,6 +9967,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_node_n_children", (DL_FUNC) &R_g_node_n_children, 1},
     {"R_g_node_n_nodes", (DL_FUNC) &R_g_node_n_nodes, 2},
     {"R_g_node_reverse_children", (DL_FUNC) &R_g_node_reverse_children, 1},
+    {"R_g_node_traverse", (DL_FUNC) &R_g_node_traverse, 6},
     {"R_g_node_unlink", (DL_FUNC) &R_g_node_unlink, 1},
     {"R_g_node_pop_allocator", (DL_FUNC) &R_g_node_pop_allocator, 0},
     {"R_g_node_push_allocator", (DL_FUNC) &R_g_node_push_allocator, 1},
@@ -9801,10 +9989,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_option_context_set_main_group", (DL_FUNC) &R_g_option_context_set_main_group, 2},
     {"R_g_option_context_set_strict_posix", (DL_FUNC) &R_g_option_context_set_strict_posix, 2},
     {"R_g_option_context_set_summary", (DL_FUNC) &R_g_option_context_set_summary, 2},
+    {"R_g_option_context_set_translate_func", (DL_FUNC) &R_g_option_context_set_translate_func, 4},
     {"R_g_option_context_set_translation_domain", (DL_FUNC) &R_g_option_context_set_translation_domain, 2},
+    {"R_g_option_group_new", (DL_FUNC) &R_g_option_group_new, 5},
     {"R_g_option_group_add_entries", (DL_FUNC) &R_g_option_group_add_entries, 2},
     {"R_g_option_group_free", (DL_FUNC) &R_g_option_group_free, 1},
     {"R_g_option_group_ref", (DL_FUNC) &R_g_option_group_ref, 1},
+    {"R_g_option_group_set_translate_func", (DL_FUNC) &R_g_option_group_set_translate_func, 4},
     {"R_g_option_group_set_translation_domain", (DL_FUNC) &R_g_option_group_set_translation_domain, 2},
     {"R_g_option_group_unref", (DL_FUNC) &R_g_option_group_unref, 1},
     {"R_g_path_buf_clear", (DL_FUNC) &R_g_path_buf_clear, 1},
@@ -9829,10 +10020,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_private_replace", (DL_FUNC) &R_g_private_replace, 2},
     {"R_g_private_set", (DL_FUNC) &R_g_private_set, 2},
     {"R_g_queue_clear", (DL_FUNC) &R_g_queue_clear, 1},
+    {"R_g_queue_clear_full", (DL_FUNC) &R_g_queue_clear_full, 2},
+    {"R_g_queue_foreach", (DL_FUNC) &R_g_queue_foreach, 3},
     {"R_g_queue_free", (DL_FUNC) &R_g_queue_free, 1},
+    {"R_g_queue_free_full", (DL_FUNC) &R_g_queue_free_full, 2},
     {"R_g_queue_get_length", (DL_FUNC) &R_g_queue_get_length, 1},
     {"R_g_queue_index", (DL_FUNC) &R_g_queue_index, 2},
     {"R_g_queue_init", (DL_FUNC) &R_g_queue_init, 1},
+    {"R_g_queue_insert_sorted", (DL_FUNC) &R_g_queue_insert_sorted, 4},
     {"R_g_queue_is_empty", (DL_FUNC) &R_g_queue_is_empty, 1},
     {"R_g_queue_peek_head", (DL_FUNC) &R_g_queue_peek_head, 1},
     {"R_g_queue_peek_nth", (DL_FUNC) &R_g_queue_peek_nth, 2},
@@ -9846,6 +10041,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_queue_remove", (DL_FUNC) &R_g_queue_remove, 2},
     {"R_g_queue_remove_all", (DL_FUNC) &R_g_queue_remove_all, 2},
     {"R_g_queue_reverse", (DL_FUNC) &R_g_queue_reverse, 1},
+    {"R_g_queue_sort", (DL_FUNC) &R_g_queue_sort, 3},
     {"R_g_rw_lock_clear", (DL_FUNC) &R_g_rw_lock_clear, 1},
     {"R_g_rw_lock_init", (DL_FUNC) &R_g_rw_lock_init, 1},
     {"R_g_rw_lock_reader_lock", (DL_FUNC) &R_g_rw_lock_reader_lock, 1},
@@ -9885,6 +10081,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_regex_match_full", (DL_FUNC) &R_g_regex_match_full, 5},
     {"R_g_regex_ref", (DL_FUNC) &R_g_regex_ref, 1},
     {"R_g_regex_replace", (DL_FUNC) &R_g_regex_replace, 6},
+    {"R_g_regex_replace_eval", (DL_FUNC) &R_g_regex_replace_eval, 7},
     {"R_g_regex_replace_literal", (DL_FUNC) &R_g_regex_replace_literal, 6},
     {"R_g_regex_split", (DL_FUNC) &R_g_regex_split, 3},
     {"R_g_regex_split_full", (DL_FUNC) &R_g_regex_split_full, 6},
@@ -9912,19 +10109,30 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_scanner_lookup_symbol", (DL_FUNC) &R_g_scanner_lookup_symbol, 2},
     {"R_g_scanner_peek_next_token", (DL_FUNC) &R_g_scanner_peek_next_token, 1},
     {"R_g_scanner_scope_add_symbol", (DL_FUNC) &R_g_scanner_scope_add_symbol, 4},
+    {"R_g_scanner_scope_foreach_symbol", (DL_FUNC) &R_g_scanner_scope_foreach_symbol, 4},
     {"R_g_scanner_scope_lookup_symbol", (DL_FUNC) &R_g_scanner_scope_lookup_symbol, 3},
     {"R_g_scanner_scope_remove_symbol", (DL_FUNC) &R_g_scanner_scope_remove_symbol, 3},
     {"R_g_scanner_set_scope", (DL_FUNC) &R_g_scanner_set_scope, 2},
     {"R_g_scanner_sync_file_offset", (DL_FUNC) &R_g_scanner_sync_file_offset, 1},
     {"R_g_scanner_unexp_token", (DL_FUNC) &R_g_scanner_unexp_token, 7},
     {"R_g_sequence_append", (DL_FUNC) &R_g_sequence_append, 2},
+    {"R_g_sequence_foreach", (DL_FUNC) &R_g_sequence_foreach, 3},
     {"R_g_sequence_free", (DL_FUNC) &R_g_sequence_free, 1},
     {"R_g_sequence_get_begin_iter", (DL_FUNC) &R_g_sequence_get_begin_iter, 1},
     {"R_g_sequence_get_end_iter", (DL_FUNC) &R_g_sequence_get_end_iter, 1},
     {"R_g_sequence_get_iter_at_pos", (DL_FUNC) &R_g_sequence_get_iter_at_pos, 2},
     {"R_g_sequence_get_length", (DL_FUNC) &R_g_sequence_get_length, 1},
+    {"R_g_sequence_insert_sorted", (DL_FUNC) &R_g_sequence_insert_sorted, 4},
+    {"R_g_sequence_insert_sorted_iter", (DL_FUNC) &R_g_sequence_insert_sorted_iter, 4},
     {"R_g_sequence_is_empty", (DL_FUNC) &R_g_sequence_is_empty, 1},
+    {"R_g_sequence_lookup", (DL_FUNC) &R_g_sequence_lookup, 4},
+    {"R_g_sequence_lookup_iter", (DL_FUNC) &R_g_sequence_lookup_iter, 4},
     {"R_g_sequence_prepend", (DL_FUNC) &R_g_sequence_prepend, 2},
+    {"R_g_sequence_search", (DL_FUNC) &R_g_sequence_search, 4},
+    {"R_g_sequence_search_iter", (DL_FUNC) &R_g_sequence_search_iter, 4},
+    {"R_g_sequence_sort", (DL_FUNC) &R_g_sequence_sort, 3},
+    {"R_g_sequence_sort_iter", (DL_FUNC) &R_g_sequence_sort_iter, 3},
+    {"R_g_sequence_foreach_range", (DL_FUNC) &R_g_sequence_foreach_range, 4},
     {"R_g_sequence_get", (DL_FUNC) &R_g_sequence_get, 1},
     {"R_g_sequence_insert_before", (DL_FUNC) &R_g_sequence_insert_before, 2},
     {"R_g_sequence_move", (DL_FUNC) &R_g_sequence_move, 2},
@@ -9933,6 +10141,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_sequence_remove", (DL_FUNC) &R_g_sequence_remove, 1},
     {"R_g_sequence_remove_range", (DL_FUNC) &R_g_sequence_remove_range, 2},
     {"R_g_sequence_set", (DL_FUNC) &R_g_sequence_set, 2},
+    {"R_g_sequence_sort_changed", (DL_FUNC) &R_g_sequence_sort_changed, 3},
+    {"R_g_sequence_sort_changed_iter", (DL_FUNC) &R_g_sequence_sort_changed_iter, 3},
     {"R_g_sequence_swap", (DL_FUNC) &R_g_sequence_swap, 2},
     {"R_g_sequence_iter_compare", (DL_FUNC) &R_g_sequence_iter_compare, 2},
     {"R_g_sequence_iter_get_position", (DL_FUNC) &R_g_sequence_iter_get_position, 1},
@@ -9944,6 +10154,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_sequence_iter_prev", (DL_FUNC) &R_g_sequence_iter_prev, 1},
     {"R_g_source_new", (DL_FUNC) &R_g_source_new, 2},
     {"R_g_source_add_child_source", (DL_FUNC) &R_g_source_add_child_source, 2},
+    {"R_g_source_add_poll", (DL_FUNC) &R_g_source_add_poll, 2},
     {"R_g_source_add_unix_fd", (DL_FUNC) &R_g_source_add_unix_fd, 3},
     {"R_g_source_attach", (DL_FUNC) &R_g_source_attach, 2},
     {"R_g_source_destroy", (DL_FUNC) &R_g_source_destroy, 1},
@@ -9961,7 +10172,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_source_query_unix_fd", (DL_FUNC) &R_g_source_query_unix_fd, 2},
     {"R_g_source_ref", (DL_FUNC) &R_g_source_ref, 1},
     {"R_g_source_remove_child_source", (DL_FUNC) &R_g_source_remove_child_source, 2},
+    {"R_g_source_remove_poll", (DL_FUNC) &R_g_source_remove_poll, 2},
     {"R_g_source_remove_unix_fd", (DL_FUNC) &R_g_source_remove_unix_fd, 2},
+    {"R_g_source_set_callback", (DL_FUNC) &R_g_source_set_callback, 4},
     {"R_g_source_set_callback_indirect", (DL_FUNC) &R_g_source_set_callback_indirect, 3},
     {"R_g_source_set_can_recurse", (DL_FUNC) &R_g_source_set_can_recurse, 2},
     {"R_g_source_set_funcs", (DL_FUNC) &R_g_source_set_funcs, 2},
@@ -10029,6 +10242,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_test_suite_add", (DL_FUNC) &R_g_test_suite_add, 2},
     {"R_g_test_suite_add_suite", (DL_FUNC) &R_g_test_suite_add_suite, 2},
     {"R_g_test_suite_free", (DL_FUNC) &R_g_test_suite_free, 1},
+    {"R_g_thread_new", (DL_FUNC) &R_g_thread_new, 3},
+    {"R_g_thread_try_new", (DL_FUNC) &R_g_thread_try_new, 3},
     {"R_g_thread_get_name", (DL_FUNC) &R_g_thread_get_name, 1},
     {"R_g_thread_join", (DL_FUNC) &R_g_thread_join, 1},
     {"R_g_thread_ref", (DL_FUNC) &R_g_thread_ref, 1},
@@ -10073,7 +10288,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_timer_reset", (DL_FUNC) &R_g_timer_reset, 1},
     {"R_g_timer_start", (DL_FUNC) &R_g_timer_start, 1},
     {"R_g_timer_stop", (DL_FUNC) &R_g_timer_stop, 1},
+    {"R_g_trash_stack_height", (DL_FUNC) &R_g_trash_stack_height, 1},
+    {"R_g_trash_stack_peek", (DL_FUNC) &R_g_trash_stack_peek, 1},
+    {"R_g_trash_stack_pop", (DL_FUNC) &R_g_trash_stack_pop, 1},
+    {"R_g_trash_stack_push", (DL_FUNC) &R_g_trash_stack_push, 2},
+    {"R_g_tree_new_full", (DL_FUNC) &R_g_tree_new_full, 4},
     {"R_g_tree_destroy", (DL_FUNC) &R_g_tree_destroy, 1},
+    {"R_g_tree_foreach", (DL_FUNC) &R_g_tree_foreach, 3},
+    {"R_g_tree_foreach_node", (DL_FUNC) &R_g_tree_foreach_node, 3},
     {"R_g_tree_height", (DL_FUNC) &R_g_tree_height, 1},
     {"R_g_tree_insert", (DL_FUNC) &R_g_tree_insert, 3},
     {"R_g_tree_insert_node", (DL_FUNC) &R_g_tree_insert_node, 3},
@@ -10089,7 +10311,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_tree_remove_all", (DL_FUNC) &R_g_tree_remove_all, 1},
     {"R_g_tree_replace", (DL_FUNC) &R_g_tree_replace, 3},
     {"R_g_tree_replace_node", (DL_FUNC) &R_g_tree_replace_node, 3},
+    {"R_g_tree_search", (DL_FUNC) &R_g_tree_search, 3},
+    {"R_g_tree_search_node", (DL_FUNC) &R_g_tree_search_node, 3},
     {"R_g_tree_steal", (DL_FUNC) &R_g_tree_steal, 2},
+    {"R_g_tree_traverse", (DL_FUNC) &R_g_tree_traverse, 4},
     {"R_g_tree_unref", (DL_FUNC) &R_g_tree_unref, 1},
     {"R_g_tree_upper_bound", (DL_FUNC) &R_g_tree_upper_bound, 2},
     {"R_g_tree_node_key", (DL_FUNC) &R_g_tree_node_key, 1},
@@ -10145,6 +10370,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_variant_new_double", (DL_FUNC) &R_g_variant_new_double, 1},
     {"R_g_variant_new_fixed_array", (DL_FUNC) &R_g_variant_new_fixed_array, 4},
     {"R_g_variant_new_from_bytes", (DL_FUNC) &R_g_variant_new_from_bytes, 3},
+    {"R_g_variant_new_from_data", (DL_FUNC) &R_g_variant_new_from_data, 6},
     {"R_g_variant_new_handle", (DL_FUNC) &R_g_variant_new_handle, 1},
     {"R_g_variant_new_int16", (DL_FUNC) &R_g_variant_new_int16, 1},
     {"R_g_variant_new_int32", (DL_FUNC) &R_g_variant_new_int32, 1},
@@ -10209,6 +10435,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_variant_unref", (DL_FUNC) &R_g_variant_unref, 1},
     {"R_g_variant_is_object_path", (DL_FUNC) &R_g_variant_is_object_path, 1},
     {"R_g_variant_is_signature", (DL_FUNC) &R_g_variant_is_signature, 1},
+    {"R_g_variant_parse", (DL_FUNC) &R_g_variant_parse, 4},
     {"R_g_variant_parse_error_print_context", (DL_FUNC) &R_g_variant_parse_error_print_context, 2},
     {"R_g_variant_parse_error_quark", (DL_FUNC) &R_g_variant_parse_error_quark, 0},
     {"R_g_variant_parser_get_error_quark", (DL_FUNC) &R_g_variant_parser_get_error_quark, 0},
@@ -10285,17 +10512,22 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_assertion_message", (DL_FUNC) &R_g_assertion_message, 5},
     {"R_g_assertion_message_cmpint", (DL_FUNC) &R_g_assertion_message_cmpint, 9},
     {"R_g_assertion_message_cmpstr", (DL_FUNC) &R_g_assertion_message_cmpstr, 8},
+    {"R_g_assertion_message_cmpstrv", (DL_FUNC) &R_g_assertion_message_cmpstrv, 8},
     {"R_g_assertion_message_error", (DL_FUNC) &R_g_assertion_message_error, 8},
+    {"R_g_atexit", (DL_FUNC) &R_g_atexit, 1},
     {"R_g_base64_decode", (DL_FUNC) &R_g_base64_decode, 1},
     {"R_g_base64_decode_inplace", (DL_FUNC) &R_g_base64_decode_inplace, 0},
     {"R_g_base64_encode", (DL_FUNC) &R_g_base64_encode, 2},
     {"R_g_base64_encode_close", (DL_FUNC) &R_g_base64_encode_close, 1},
     {"R_g_base64_encode_step", (DL_FUNC) &R_g_base64_encode_step, 3},
     {"R_g_basename", (DL_FUNC) &R_g_basename, 1},
+    {"R_g_bit_lock", (DL_FUNC) &R_g_bit_lock, 2},
     {"R_g_bit_lock_and_get", (DL_FUNC) &R_g_bit_lock_and_get, 2},
     {"R_g_bit_nth_lsf", (DL_FUNC) &R_g_bit_nth_lsf, 2},
     {"R_g_bit_nth_msf", (DL_FUNC) &R_g_bit_nth_msf, 2},
     {"R_g_bit_storage", (DL_FUNC) &R_g_bit_storage, 1},
+    {"R_g_bit_trylock", (DL_FUNC) &R_g_bit_trylock, 2},
+    {"R_g_bit_unlock", (DL_FUNC) &R_g_bit_unlock, 2},
     {"R_g_bit_unlock_and_set", (DL_FUNC) &R_g_bit_unlock_and_set, 4},
     {"R_g_blow_chunks", (DL_FUNC) &R_g_blow_chunks, 0},
     {"R_g_build_filenamev", (DL_FUNC) &R_g_build_filenamev, 1},
@@ -10303,6 +10535,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_canonicalize_filename", (DL_FUNC) &R_g_canonicalize_filename, 2},
     {"R_g_chdir", (DL_FUNC) &R_g_chdir, 1},
     {"R_glib_check_version", (DL_FUNC) &R_glib_check_version, 3},
+    {"R_g_child_watch_add_full", (DL_FUNC) &R_g_child_watch_add_full, 5},
     {"R_g_child_watch_source_new", (DL_FUNC) &R_g_child_watch_source_new, 1},
     {"R_g_chmod", (DL_FUNC) &R_g_chmod, 2},
     {"R_g_clear_error", (DL_FUNC) &R_g_clear_error, 0},
@@ -10317,7 +10550,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_convert_error_quark", (DL_FUNC) &R_g_convert_error_quark, 0},
     {"R_g_convert_with_fallback", (DL_FUNC) &R_g_convert_with_fallback, 5},
     {"R_g_creat", (DL_FUNC) &R_g_creat, 2},
+    {"R_g_datalist_foreach", (DL_FUNC) &R_g_datalist_foreach, 3},
+    {"R_g_datalist_get_data", (DL_FUNC) &R_g_datalist_get_data, 2},
+    {"R_g_datalist_get_flags", (DL_FUNC) &R_g_datalist_get_flags, 1},
+    {"R_g_datalist_id_get_data", (DL_FUNC) &R_g_datalist_id_get_data, 2},
+    {"R_g_datalist_id_remove_multiple", (DL_FUNC) &R_g_datalist_id_remove_multiple, 3},
+    {"R_g_datalist_set_flags", (DL_FUNC) &R_g_datalist_set_flags, 2},
+    {"R_g_datalist_unset_flags", (DL_FUNC) &R_g_datalist_unset_flags, 2},
     {"R_g_dataset_destroy", (DL_FUNC) &R_g_dataset_destroy, 1},
+    {"R_g_dataset_foreach", (DL_FUNC) &R_g_dataset_foreach, 3},
     {"R_g_dataset_id_get_data", (DL_FUNC) &R_g_dataset_id_get_data, 2},
     {"R_g_dcgettext", (DL_FUNC) &R_g_dcgettext, 3},
     {"R_g_dgettext", (DL_FUNC) &R_g_dgettext, 2},
@@ -10390,6 +10631,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_hostname_is_non_ascii", (DL_FUNC) &R_g_hostname_is_non_ascii, 1},
     {"R_g_hostname_to_ascii", (DL_FUNC) &R_g_hostname_to_ascii, 1},
     {"R_g_hostname_to_unicode", (DL_FUNC) &R_g_hostname_to_unicode, 1},
+    {"R_g_idle_add_full", (DL_FUNC) &R_g_idle_add_full, 4},
     {"R_g_idle_remove_by_data", (DL_FUNC) &R_g_idle_remove_by_data, 1},
     {"R_g_idle_source_new", (DL_FUNC) &R_g_idle_source_new, 0},
     {"R_g_int64_equal", (DL_FUNC) &R_g_int64_equal, 2},
@@ -10398,6 +10640,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_int_hash", (DL_FUNC) &R_g_int_hash, 1},
     {"R_g_intern_static_string", (DL_FUNC) &R_g_intern_static_string, 1},
     {"R_g_intern_string", (DL_FUNC) &R_g_intern_string, 1},
+    {"R_g_io_add_watch_full", (DL_FUNC) &R_g_io_add_watch_full, 6},
     {"R_g_io_create_watch", (DL_FUNC) &R_g_io_create_watch, 2},
     {"R_g_listenv", (DL_FUNC) &R_g_listenv, 0},
     {"R_g_locale_from_utf8", (DL_FUNC) &R_g_locale_from_utf8, 2},
@@ -10409,9 +10652,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_log_set_always_fatal", (DL_FUNC) &R_g_log_set_always_fatal, 1},
     {"R_g_log_set_debug_enabled", (DL_FUNC) &R_g_log_set_debug_enabled, 1},
     {"R_g_log_set_fatal_mask", (DL_FUNC) &R_g_log_set_fatal_mask, 2},
+    {"R_g_log_set_handler_full", (DL_FUNC) &R_g_log_set_handler_full, 5},
+    {"R_g_log_set_writer_func", (DL_FUNC) &R_g_log_set_writer_func, 3},
     {"R_g_log_structured_array", (DL_FUNC) &R_g_log_structured_array, 3},
     {"R_g_log_variant", (DL_FUNC) &R_g_log_variant, 3},
     {"R_g_log_writer_default", (DL_FUNC) &R_g_log_writer_default, 4},
+    {"R_g_log_writer_default_set_debug_domains", (DL_FUNC) &R_g_log_writer_default_set_debug_domains, 1},
     {"R_g_log_writer_default_set_use_stderr", (DL_FUNC) &R_g_log_writer_default_set_use_stderr, 1},
     {"R_g_log_writer_default_would_drop", (DL_FUNC) &R_g_log_writer_default_would_drop, 2},
     {"R_g_log_writer_format_fields", (DL_FUNC) &R_g_log_writer_format_fields, 4},
@@ -10448,8 +10694,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_path_is_absolute", (DL_FUNC) &R_g_path_is_absolute, 1},
     {"R_g_path_skip_root", (DL_FUNC) &R_g_path_skip_root, 1},
     {"R_g_pattern_match_simple", (DL_FUNC) &R_g_pattern_match_simple, 2},
+    {"R_g_poll", (DL_FUNC) &R_g_poll, 3},
     {"R_g_prefix_error_literal", (DL_FUNC) &R_g_prefix_error_literal, 1},
     {"R_g_propagate_error", (DL_FUNC) &R_g_propagate_error, 1},
+    {"R_g_qsort_with_data", (DL_FUNC) &R_g_qsort_with_data, 5},
     {"R_g_quark_from_static_string", (DL_FUNC) &R_g_quark_from_static_string, 1},
     {"R_g_quark_from_string", (DL_FUNC) &R_g_quark_from_string, 1},
     {"R_g_quark_to_string", (DL_FUNC) &R_g_quark_to_string, 1},
@@ -10465,9 +10713,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_rc_box_dup", (DL_FUNC) &R_g_rc_box_dup, 2},
     {"R_g_rc_box_get_size", (DL_FUNC) &R_g_rc_box_get_size, 1},
     {"R_g_rc_box_release", (DL_FUNC) &R_g_rc_box_release, 1},
+    {"R_g_rc_box_release_full", (DL_FUNC) &R_g_rc_box_release_full, 2},
     {"R_g_realloc", (DL_FUNC) &R_g_realloc, 2},
     {"R_g_realloc_n", (DL_FUNC) &R_g_realloc_n, 3},
     {"R_g_ref_count_compare", (DL_FUNC) &R_g_ref_count_compare, 2},
+    {"R_g_ref_count_dec", (DL_FUNC) &R_g_ref_count_dec, 0},
+    {"R_g_ref_count_inc", (DL_FUNC) &R_g_ref_count_inc, 0},
+    {"R_g_ref_count_init", (DL_FUNC) &R_g_ref_count_init, 0},
     {"R_g_ref_string_acquire", (DL_FUNC) &R_g_ref_string_acquire, 1},
     {"R_g_ref_string_equal", (DL_FUNC) &R_g_ref_string_equal, 2},
     {"R_g_ref_string_length", (DL_FUNC) &R_g_ref_string_length, 1},
@@ -10496,6 +10748,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_slice_get_config_state", (DL_FUNC) &R_g_slice_get_config_state, 3},
     {"R_g_slice_set_config", (DL_FUNC) &R_g_slice_set_config, 2},
     {"R_g_spaced_primes_closest", (DL_FUNC) &R_g_spaced_primes_closest, 1},
+    {"R_g_spawn_async", (DL_FUNC) &R_g_spawn_async, 6},
+    {"R_g_spawn_async_with_fds", (DL_FUNC) &R_g_spawn_async_with_fds, 9},
+    {"R_g_spawn_async_with_pipes", (DL_FUNC) &R_g_spawn_async_with_pipes, 6},
+    {"R_g_spawn_async_with_pipes_and_fds", (DL_FUNC) &R_g_spawn_async_with_pipes_and_fds, 12},
     {"R_g_spawn_check_exit_status", (DL_FUNC) &R_g_spawn_check_exit_status, 1},
     {"R_g_spawn_check_wait_status", (DL_FUNC) &R_g_spawn_check_wait_status, 1},
     {"R_g_spawn_close_pid", (DL_FUNC) &R_g_spawn_close_pid, 1},
@@ -10503,6 +10759,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_spawn_command_line_sync", (DL_FUNC) &R_g_spawn_command_line_sync, 1},
     {"R_g_spawn_error_quark", (DL_FUNC) &R_g_spawn_error_quark, 0},
     {"R_g_spawn_exit_error_quark", (DL_FUNC) &R_g_spawn_exit_error_quark, 0},
+    {"R_g_spawn_sync", (DL_FUNC) &R_g_spawn_sync, 6},
     {"R_g_stat", (DL_FUNC) &R_g_stat, 2},
     {"R_g_stpcpy", (DL_FUNC) &R_g_stpcpy, 2},
     {"R_g_str_equal", (DL_FUNC) &R_g_str_equal, 2},
@@ -10546,6 +10803,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_strv_equal", (DL_FUNC) &R_g_strv_equal, 2},
     {"R_g_strv_get_type", (DL_FUNC) &R_g_strv_get_type, 0},
     {"R_g_strv_length", (DL_FUNC) &R_g_strv_length, 1},
+    {"R_g_test_add_data_func", (DL_FUNC) &R_g_test_add_data_func, 3},
+    {"R_g_test_add_data_func_full", (DL_FUNC) &R_g_test_add_data_func_full, 4},
+    {"R_g_test_add_func", (DL_FUNC) &R_g_test_add_func, 2},
     {"R_g_test_assert_expected_messages_internal", (DL_FUNC) &R_g_test_assert_expected_messages_internal, 4},
     {"R_g_test_bug", (DL_FUNC) &R_g_test_bug, 1},
     {"R_g_test_bug_base", (DL_FUNC) &R_g_test_bug_base, 1},
@@ -10557,6 +10817,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_test_get_path", (DL_FUNC) &R_g_test_get_path, 0},
     {"R_g_test_incomplete", (DL_FUNC) &R_g_test_incomplete, 1},
     {"R_g_test_log_type_name", (DL_FUNC) &R_g_test_log_type_name, 1},
+    {"R_g_test_queue_destroy", (DL_FUNC) &R_g_test_queue_destroy, 2},
     {"R_g_test_queue_free", (DL_FUNC) &R_g_test_queue_free, 1},
     {"R_g_test_rand_double", (DL_FUNC) &R_g_test_rand_double, 0},
     {"R_g_test_rand_double_range", (DL_FUNC) &R_g_test_rand_double_range, 2},
@@ -10578,6 +10839,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_test_trap_reached_timeout", (DL_FUNC) &R_g_test_trap_reached_timeout, 0},
     {"R_g_test_trap_subprocess", (DL_FUNC) &R_g_test_trap_subprocess, 3},
     {"R_g_test_trap_subprocess_with_envp", (DL_FUNC) &R_g_test_trap_subprocess_with_envp, 4},
+    {"R_g_timeout_add_full", (DL_FUNC) &R_g_timeout_add_full, 5},
+    {"R_g_timeout_add_seconds_full", (DL_FUNC) &R_g_timeout_add_seconds_full, 5},
     {"R_g_timeout_source_new", (DL_FUNC) &R_g_timeout_source_new, 1},
     {"R_g_timeout_source_new_seconds", (DL_FUNC) &R_g_timeout_source_new_seconds, 1},
     {"R_g_try_malloc", (DL_FUNC) &R_g_try_malloc, 1},
@@ -10654,6 +10917,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_utf8_truncate_middle", (DL_FUNC) &R_g_utf8_truncate_middle, 2},
     {"R_g_utf8_validate", (DL_FUNC) &R_g_utf8_validate, 2},
     {"R_g_utf8_validate_len", (DL_FUNC) &R_g_utf8_validate_len, 2},
+    {"R_g_utime", (DL_FUNC) &R_g_utime, 2},
     {"R_g_uuid_string_is_valid", (DL_FUNC) &R_g_uuid_string_is_valid, 1},
     {"R_g_uuid_string_random", (DL_FUNC) &R_g_uuid_string_random, 0},
     {"R_g_variant_get_gtype", (DL_FUNC) &R_g_variant_get_gtype, 0},
@@ -10667,6 +10931,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_binding_unbind", (DL_FUNC) &R_g_binding_unbind, 1},
     {"R_g_binding_group_new", (DL_FUNC) &R_g_binding_group_new, 0},
     {"R_g_binding_group_bind", (DL_FUNC) &R_g_binding_group_bind, 5},
+    {"R_g_binding_group_bind_full", (DL_FUNC) &R_g_binding_group_bind_full, 9},
     {"R_g_binding_group_bind_with_closures", (DL_FUNC) &R_g_binding_group_bind_with_closures, 7},
     {"R_g_binding_group_dup_source", (DL_FUNC) &R_g_binding_group_dup_source, 1},
     {"R_g_binding_group_set_source", (DL_FUNC) &R_g_binding_group_set_source, 2},
@@ -10696,6 +10961,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_closure_new_object", (DL_FUNC) &R_g_closure_new_object, 2},
     {"R_g_closure_new_simple", (DL_FUNC) &R_g_closure_new_simple, 2},
     {"R_g_closure_invalidate", (DL_FUNC) &R_g_closure_invalidate, 1},
+    {"R_g_closure_invoke", (DL_FUNC) &R_g_closure_invoke, 4},
     {"R_g_closure_ref", (DL_FUNC) &R_g_closure_ref, 1},
     {"R_g_closure_sink", (DL_FUNC) &R_g_closure_sink, 1},
     {"R_g_closure_unref", (DL_FUNC) &R_g_closure_unref, 1},
@@ -10705,6 +10971,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_object_interface_install_property", (DL_FUNC) &R_g_object_interface_install_property, 2},
     {"R_g_object_interface_list_properties", (DL_FUNC) &R_g_object_interface_list_properties, 1},
     {"R_g_object_bind_property", (DL_FUNC) &R_g_object_bind_property, 5},
+    {"R_g_object_bind_property_full", (DL_FUNC) &R_g_object_bind_property_full, 9},
     {"R_g_object_bind_property_with_closures", (DL_FUNC) &R_g_object_bind_property_with_closures, 7},
     {"R_g_object_force_floating", (DL_FUNC) &R_g_object_force_floating, 1},
     {"R_g_object_freeze_notify", (DL_FUNC) &R_g_object_freeze_notify, 1},
@@ -10750,6 +11017,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_signal_group_new", (DL_FUNC) &R_g_signal_group_new, 1},
     {"R_g_signal_group_block", (DL_FUNC) &R_g_signal_group_block, 1},
     {"R_g_signal_group_connect_closure", (DL_FUNC) &R_g_signal_group_connect_closure, 4},
+    {"R_g_signal_group_connect_data", (DL_FUNC) &R_g_signal_group_connect_data, 6},
+    {"R_g_signal_group_connect_swapped", (DL_FUNC) &R_g_signal_group_connect_swapped, 4},
     {"R_g_signal_group_dup_target", (DL_FUNC) &R_g_signal_group_dup_target, 1},
     {"R_g_signal_group_set_target", (DL_FUNC) &R_g_signal_group_set_target, 2},
     {"R_g_signal_group_unblock", (DL_FUNC) &R_g_signal_group_unblock, 1},
@@ -10854,14 +11123,19 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_value_array_insert", (DL_FUNC) &R_g_value_array_insert, 3},
     {"R_g_value_array_prepend", (DL_FUNC) &R_g_value_array_prepend, 2},
     {"R_g_value_array_remove", (DL_FUNC) &R_g_value_array_remove, 2},
+    {"R_g_value_array_sort", (DL_FUNC) &R_g_value_array_sort, 2},
+    {"R_g_value_array_sort_with_data", (DL_FUNC) &R_g_value_array_sort_with_data, 3},
     {"R_g_boxed_copy", (DL_FUNC) &R_g_boxed_copy, 2},
     {"R_g_boxed_free", (DL_FUNC) &R_g_boxed_free, 2},
+    {"R_g_boxed_type_register_static", (DL_FUNC) &R_g_boxed_type_register_static, 3},
     {"R_g_clear_signal_handler", (DL_FUNC) &R_g_clear_signal_handler, 2},
+    {"R_g_enum_complete_type_info", (DL_FUNC) &R_g_enum_complete_type_info, 2},
     {"R_g_enum_get_value", (DL_FUNC) &R_g_enum_get_value, 2},
     {"R_g_enum_get_value_by_name", (DL_FUNC) &R_g_enum_get_value_by_name, 2},
     {"R_g_enum_get_value_by_nick", (DL_FUNC) &R_g_enum_get_value_by_nick, 2},
     {"R_g_enum_register_static", (DL_FUNC) &R_g_enum_register_static, 2},
     {"R_g_enum_to_string", (DL_FUNC) &R_g_enum_to_string, 2},
+    {"R_g_flags_complete_type_info", (DL_FUNC) &R_g_flags_complete_type_info, 2},
     {"R_g_flags_get_first_value", (DL_FUNC) &R_g_flags_get_first_value, 2},
     {"R_g_flags_get_value_by_name", (DL_FUNC) &R_g_flags_get_value_by_name, 2},
     {"R_g_flags_get_value_by_nick", (DL_FUNC) &R_g_flags_get_value_by_nick, 2},
@@ -10899,9 +11173,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_pointer_type_register_static", (DL_FUNC) &R_g_pointer_type_register_static, 1},
     {"R_g_signal_accumulator_first_wins", (DL_FUNC) &R_g_signal_accumulator_first_wins, 4},
     {"R_g_signal_accumulator_true_handled", (DL_FUNC) &R_g_signal_accumulator_true_handled, 4},
+    {"R_g_signal_add_emission_hook", (DL_FUNC) &R_g_signal_add_emission_hook, 5},
     {"R_g_signal_chain_from_overridden", (DL_FUNC) &R_g_signal_chain_from_overridden, 2},
     {"R_g_signal_connect_closure", (DL_FUNC) &R_g_signal_connect_closure, 4},
     {"R_g_signal_connect_closure_by_id", (DL_FUNC) &R_g_signal_connect_closure_by_id, 5},
+    {"R_g_signal_emitv", (DL_FUNC) &R_g_signal_emitv, 3},
     {"R_g_signal_get_invocation_hint", (DL_FUNC) &R_g_signal_get_invocation_hint, 1},
     {"R_g_signal_handler_block", (DL_FUNC) &R_g_signal_handler_block, 2},
     {"R_g_signal_handler_disconnect", (DL_FUNC) &R_g_signal_handler_disconnect, 2},
@@ -10918,7 +11194,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_signal_lookup", (DL_FUNC) &R_g_signal_lookup, 2},
     {"R_g_signal_name", (DL_FUNC) &R_g_signal_name, 1},
     {"R_g_signal_override_class_closure", (DL_FUNC) &R_g_signal_override_class_closure, 3},
+    {"R_g_signal_override_class_handler", (DL_FUNC) &R_g_signal_override_class_handler, 3},
     {"R_g_signal_parse_name", (DL_FUNC) &R_g_signal_parse_name, 3},
+    {"R_g_signal_query", (DL_FUNC) &R_g_signal_query, 1},
     {"R_g_signal_remove_emission_hook", (DL_FUNC) &R_g_signal_remove_emission_hook, 2},
     {"R_g_signal_stop_emission", (DL_FUNC) &R_g_signal_stop_emission, 3},
     {"R_g_signal_stop_emission_by_name", (DL_FUNC) &R_g_signal_stop_emission_by_name, 2},
@@ -10960,6 +11238,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_type_next_base", (DL_FUNC) &R_g_type_next_base, 2},
     {"R_g_type_parent", (DL_FUNC) &R_g_type_parent, 1},
     {"R_g_type_qname", (DL_FUNC) &R_g_type_qname, 1},
+    {"R_g_type_query", (DL_FUNC) &R_g_type_query, 1},
     {"R_g_type_register_dynamic", (DL_FUNC) &R_g_type_register_dynamic, 4},
     {"R_g_type_register_fundamental", (DL_FUNC) &R_g_type_register_fundamental, 5},
     {"R_g_type_register_static", (DL_FUNC) &R_g_type_register_static, 4},
@@ -11061,6 +11340,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_adjustment_set_step_increment", (DL_FUNC) &R_gtk_adjustment_set_step_increment, 2},
     {"R_gtk_adjustment_set_upper", (DL_FUNC) &R_gtk_adjustment_set_upper, 2},
     {"R_gtk_adjustment_set_value", (DL_FUNC) &R_gtk_adjustment_set_value, 2},
+    {"R_gtk_alert_dialog_choose", (DL_FUNC) &R_gtk_alert_dialog_choose, 5},
     {"R_gtk_alert_dialog_choose_finish", (DL_FUNC) &R_gtk_alert_dialog_choose_finish, 2},
     {"R_gtk_alert_dialog_get_buttons", (DL_FUNC) &R_gtk_alert_dialog_get_buttons, 1},
     {"R_gtk_alert_dialog_get_cancel_button", (DL_FUNC) &R_gtk_alert_dialog_get_cancel_button, 1},
@@ -11163,6 +11443,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_assistant_remove_action_widget", (DL_FUNC) &R_gtk_assistant_remove_action_widget, 2},
     {"R_gtk_assistant_remove_page", (DL_FUNC) &R_gtk_assistant_remove_page, 2},
     {"R_gtk_assistant_set_current_page", (DL_FUNC) &R_gtk_assistant_set_current_page, 2},
+    {"R_gtk_assistant_set_forward_page_func", (DL_FUNC) &R_gtk_assistant_set_forward_page_func, 4},
     {"R_gtk_assistant_set_page_complete", (DL_FUNC) &R_gtk_assistant_set_page_complete, 3},
     {"R_gtk_assistant_set_page_title", (DL_FUNC) &R_gtk_assistant_set_page_title, 3},
     {"R_gtk_assistant_set_page_type", (DL_FUNC) &R_gtk_assistant_set_page_type, 3},
@@ -11202,6 +11483,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_bitset_iter_is_valid", (DL_FUNC) &R_gtk_bitset_iter_is_valid, 1},
     {"R_gtk_bitset_iter_next", (DL_FUNC) &R_gtk_bitset_iter_next, 1},
     {"R_gtk_bitset_iter_previous", (DL_FUNC) &R_gtk_bitset_iter_previous, 1},
+    {"R_gtk_bitset_iter_init_at", (DL_FUNC) &R_gtk_bitset_iter_init_at, 2},
+    {"R_gtk_bitset_iter_init_first", (DL_FUNC) &R_gtk_bitset_iter_init_first, 1},
+    {"R_gtk_bitset_iter_init_last", (DL_FUNC) &R_gtk_bitset_iter_init_last, 1},
     {"R_gtk_bookmark_list_new", (DL_FUNC) &R_gtk_bookmark_list_new, 2},
     {"R_gtk_bookmark_list_get_attributes", (DL_FUNC) &R_gtk_bookmark_list_get_attributes, 1},
     {"R_gtk_bookmark_list_get_filename", (DL_FUNC) &R_gtk_bookmark_list_get_filename, 1},
@@ -11268,7 +11552,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_builder_set_current_object", (DL_FUNC) &R_gtk_builder_set_current_object, 2},
     {"R_gtk_builder_set_scope", (DL_FUNC) &R_gtk_builder_set_scope, 2},
     {"R_gtk_builder_set_translation_domain", (DL_FUNC) &R_gtk_builder_set_translation_domain, 2},
+    {"R_gtk_builder_value_from_string", (DL_FUNC) &R_gtk_builder_value_from_string, 3},
+    {"R_gtk_builder_value_from_string_type", (DL_FUNC) &R_gtk_builder_value_from_string_type, 3},
     {"R_gtk_builder_cscope_new", (DL_FUNC) &R_gtk_builder_cscope_new, 0},
+    {"R_gtk_builder_cscope_add_callback_symbol", (DL_FUNC) &R_gtk_builder_cscope_add_callback_symbol, 3},
     {"R_gtk_builder_error_quark", (DL_FUNC) &R_gtk_builder_error_quark, 0},
     {"R_gtk_builder_list_item_factory_new_from_bytes", (DL_FUNC) &R_gtk_builder_list_item_factory_new_from_bytes, 2},
     {"R_gtk_builder_list_item_factory_new_from_resource", (DL_FUNC) &R_gtk_builder_list_item_factory_new_from_resource, 2},
@@ -11291,6 +11578,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_button_set_icon_name", (DL_FUNC) &R_gtk_button_set_icon_name, 2},
     {"R_gtk_button_set_label", (DL_FUNC) &R_gtk_button_set_label, 2},
     {"R_gtk_button_set_use_underline", (DL_FUNC) &R_gtk_button_set_use_underline, 2},
+    {"R_gtk_cclosure_expression_new", (DL_FUNC) &R_gtk_cclosure_expression_new, 7},
     {"R_gtk_calendar_new", (DL_FUNC) &R_gtk_calendar_new, 0},
     {"R_gtk_calendar_clear_marks", (DL_FUNC) &R_gtk_calendar_clear_marks, 1},
     {"R_gtk_calendar_get_date", (DL_FUNC) &R_gtk_calendar_get_date, 1},
@@ -11311,6 +11599,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_calendar_set_show_week_numbers", (DL_FUNC) &R_gtk_calendar_set_show_week_numbers, 2},
     {"R_gtk_calendar_set_year", (DL_FUNC) &R_gtk_calendar_set_year, 2},
     {"R_gtk_calendar_unmark_day", (DL_FUNC) &R_gtk_calendar_unmark_day, 2},
+    {"R_gtk_callback_action_new", (DL_FUNC) &R_gtk_callback_action_new, 3},
     {"R_gtk_cell_area_activate", (DL_FUNC) &R_gtk_cell_area_activate, 6},
     {"R_gtk_cell_area_activate_cell", (DL_FUNC) &R_gtk_cell_area_activate_cell, 6},
     {"R_gtk_cell_area_add", (DL_FUNC) &R_gtk_cell_area_add, 2},
@@ -11325,6 +11614,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_cell_area_create_context", (DL_FUNC) &R_gtk_cell_area_create_context, 1},
     {"R_gtk_cell_area_event", (DL_FUNC) &R_gtk_cell_area_event, 6},
     {"R_gtk_cell_area_focus", (DL_FUNC) &R_gtk_cell_area_focus, 2},
+    {"R_gtk_cell_area_foreach", (DL_FUNC) &R_gtk_cell_area_foreach, 3},
+    {"R_gtk_cell_area_foreach_alloc", (DL_FUNC) &R_gtk_cell_area_foreach_alloc, 7},
     {"R_gtk_cell_area_get_cell_allocation", (DL_FUNC) &R_gtk_cell_area_get_cell_allocation, 5},
     {"R_gtk_cell_area_get_cell_at_position", (DL_FUNC) &R_gtk_cell_area_get_cell_at_position, 6},
     {"R_gtk_cell_area_get_current_path_string", (DL_FUNC) &R_gtk_cell_area_get_current_path_string, 1},
@@ -11377,6 +11668,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_cell_layout_pack_end", (DL_FUNC) &R_gtk_cell_layout_pack_end, 3},
     {"R_gtk_cell_layout_pack_start", (DL_FUNC) &R_gtk_cell_layout_pack_start, 3},
     {"R_gtk_cell_layout_reorder", (DL_FUNC) &R_gtk_cell_layout_reorder, 3},
+    {"R_gtk_cell_layout_set_cell_data_func", (DL_FUNC) &R_gtk_cell_layout_set_cell_data_func, 5},
     {"R_gtk_cell_renderer_activate", (DL_FUNC) &R_gtk_cell_renderer_activate, 7},
     {"R_gtk_cell_renderer_get_aligned_area", (DL_FUNC) &R_gtk_cell_renderer_get_aligned_area, 4},
     {"R_gtk_cell_renderer_get_alignment", (DL_FUNC) &R_gtk_cell_renderer_get_alignment, 1},
@@ -11386,6 +11678,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_cell_renderer_get_padding", (DL_FUNC) &R_gtk_cell_renderer_get_padding, 1},
     {"R_gtk_cell_renderer_get_preferred_height", (DL_FUNC) &R_gtk_cell_renderer_get_preferred_height, 2},
     {"R_gtk_cell_renderer_get_preferred_height_for_width", (DL_FUNC) &R_gtk_cell_renderer_get_preferred_height_for_width, 3},
+    {"R_gtk_cell_renderer_get_preferred_size", (DL_FUNC) &R_gtk_cell_renderer_get_preferred_size, 2},
     {"R_gtk_cell_renderer_get_preferred_width", (DL_FUNC) &R_gtk_cell_renderer_get_preferred_width, 2},
     {"R_gtk_cell_renderer_get_preferred_width_for_height", (DL_FUNC) &R_gtk_cell_renderer_get_preferred_width_for_height, 3},
     {"R_gtk_cell_renderer_get_request_mode", (DL_FUNC) &R_gtk_cell_renderer_get_request_mode, 1},
@@ -11484,6 +11777,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_color_chooser_dialog_new", (DL_FUNC) &R_gtk_color_chooser_dialog_new, 2},
     {"R_gtk_color_chooser_widget_new", (DL_FUNC) &R_gtk_color_chooser_widget_new, 0},
     {"R_gtk_color_dialog_new", (DL_FUNC) &R_gtk_color_dialog_new, 0},
+    {"R_gtk_color_dialog_choose_rgba", (DL_FUNC) &R_gtk_color_dialog_choose_rgba, 6},
     {"R_gtk_color_dialog_choose_rgba_finish", (DL_FUNC) &R_gtk_color_dialog_choose_rgba_finish, 2},
     {"R_gtk_color_dialog_get_modal", (DL_FUNC) &R_gtk_color_dialog_get_modal, 1},
     {"R_gtk_color_dialog_get_title", (DL_FUNC) &R_gtk_color_dialog_get_title, 1},
@@ -11563,6 +11857,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_column_view_row_set_focusable", (DL_FUNC) &R_gtk_column_view_row_set_focusable, 2},
     {"R_gtk_column_view_row_set_selectable", (DL_FUNC) &R_gtk_column_view_row_set_selectable, 2},
     {"R_gtk_column_view_sorter_get_n_sort_columns", (DL_FUNC) &R_gtk_column_view_sorter_get_n_sort_columns, 1},
+    {"R_gtk_column_view_sorter_get_nth_sort_column", (DL_FUNC) &R_gtk_column_view_sorter_get_nth_sort_column, 2},
     {"R_gtk_column_view_sorter_get_primary_sort_column", (DL_FUNC) &R_gtk_column_view_sorter_get_primary_sort_column, 1},
     {"R_gtk_column_view_sorter_get_primary_sort_order", (DL_FUNC) &R_gtk_column_view_sorter_get_primary_sort_order, 1},
     {"R_gtk_combo_box_new", (DL_FUNC) &R_gtk_combo_box_new, 0},
@@ -11571,6 +11866,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_combo_box_new_with_model_and_entry", (DL_FUNC) &R_gtk_combo_box_new_with_model_and_entry, 1},
     {"R_gtk_combo_box_get_active", (DL_FUNC) &R_gtk_combo_box_get_active, 1},
     {"R_gtk_combo_box_get_active_id", (DL_FUNC) &R_gtk_combo_box_get_active_id, 1},
+    {"R_gtk_combo_box_get_active_iter", (DL_FUNC) &R_gtk_combo_box_get_active_iter, 1},
     {"R_gtk_combo_box_get_button_sensitivity", (DL_FUNC) &R_gtk_combo_box_get_button_sensitivity, 1},
     {"R_gtk_combo_box_get_child", (DL_FUNC) &R_gtk_combo_box_get_child, 1},
     {"R_gtk_combo_box_get_entry_text_column", (DL_FUNC) &R_gtk_combo_box_get_entry_text_column, 1},
@@ -11590,6 +11886,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_combo_box_set_id_column", (DL_FUNC) &R_gtk_combo_box_set_id_column, 2},
     {"R_gtk_combo_box_set_model", (DL_FUNC) &R_gtk_combo_box_set_model, 2},
     {"R_gtk_combo_box_set_popup_fixed_width", (DL_FUNC) &R_gtk_combo_box_set_popup_fixed_width, 2},
+    {"R_gtk_combo_box_set_row_separator_func", (DL_FUNC) &R_gtk_combo_box_set_row_separator_func, 4},
     {"R_gtk_combo_box_text_new", (DL_FUNC) &R_gtk_combo_box_text_new, 0},
     {"R_gtk_combo_box_text_new_with_entry", (DL_FUNC) &R_gtk_combo_box_text_new_with_entry, 0},
     {"R_gtk_combo_box_text_append", (DL_FUNC) &R_gtk_combo_box_text_append, 3},
@@ -11657,6 +11954,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_css_section_ref", (DL_FUNC) &R_gtk_css_section_ref, 1},
     {"R_gtk_css_section_to_string", (DL_FUNC) &R_gtk_css_section_to_string, 1},
     {"R_gtk_css_section_unref", (DL_FUNC) &R_gtk_css_section_unref, 1},
+    {"R_gtk_custom_filter_new", (DL_FUNC) &R_gtk_custom_filter_new, 3},
+    {"R_gtk_custom_filter_set_filter_func", (DL_FUNC) &R_gtk_custom_filter_set_filter_func, 4},
+    {"R_gtk_custom_layout_new", (DL_FUNC) &R_gtk_custom_layout_new, 3},
+    {"R_gtk_custom_sorter_new", (DL_FUNC) &R_gtk_custom_sorter_new, 3},
+    {"R_gtk_custom_sorter_set_sort_func", (DL_FUNC) &R_gtk_custom_sorter_set_sort_func, 4},
     {"R_gtk_dialog_new", (DL_FUNC) &R_gtk_dialog_new, 0},
     {"R_gtk_dialog_add_action_widget", (DL_FUNC) &R_gtk_dialog_add_action_widget, 3},
     {"R_gtk_dialog_add_button", (DL_FUNC) &R_gtk_dialog_add_button, 3},
@@ -11697,6 +11999,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_drawing_area_get_content_width", (DL_FUNC) &R_gtk_drawing_area_get_content_width, 1},
     {"R_gtk_drawing_area_set_content_height", (DL_FUNC) &R_gtk_drawing_area_set_content_height, 2},
     {"R_gtk_drawing_area_set_content_width", (DL_FUNC) &R_gtk_drawing_area_set_content_width, 2},
+    {"R_gtk_drawing_area_set_draw_func", (DL_FUNC) &R_gtk_drawing_area_set_draw_func, 4},
     {"R_gtk_drop_controller_motion_new", (DL_FUNC) &R_gtk_drop_controller_motion_new, 0},
     {"R_gtk_drop_controller_motion_contains_pointer", (DL_FUNC) &R_gtk_drop_controller_motion_contains_pointer, 1},
     {"R_gtk_drop_controller_motion_get_drop", (DL_FUNC) &R_gtk_drop_controller_motion_get_drop, 1},
@@ -11862,6 +12165,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_entry_completion_insert_prefix", (DL_FUNC) &R_gtk_entry_completion_insert_prefix, 1},
     {"R_gtk_entry_completion_set_inline_completion", (DL_FUNC) &R_gtk_entry_completion_set_inline_completion, 2},
     {"R_gtk_entry_completion_set_inline_selection", (DL_FUNC) &R_gtk_entry_completion_set_inline_selection, 2},
+    {"R_gtk_entry_completion_set_match_func", (DL_FUNC) &R_gtk_entry_completion_set_match_func, 4},
     {"R_gtk_entry_completion_set_minimum_key_length", (DL_FUNC) &R_gtk_entry_completion_set_minimum_key_length, 2},
     {"R_gtk_entry_completion_set_model", (DL_FUNC) &R_gtk_entry_completion_set_model, 2},
     {"R_gtk_entry_completion_set_popup_completion", (DL_FUNC) &R_gtk_entry_completion_set_popup_completion, 2},
@@ -11920,6 +12224,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_expression_is_static", (DL_FUNC) &R_gtk_expression_is_static, 1},
     {"R_gtk_expression_ref", (DL_FUNC) &R_gtk_expression_ref, 1},
     {"R_gtk_expression_unref", (DL_FUNC) &R_gtk_expression_unref, 1},
+    {"R_gtk_expression_watch", (DL_FUNC) &R_gtk_expression_watch, 5},
     {"R_gtk_expression_watch_evaluate", (DL_FUNC) &R_gtk_expression_watch_evaluate, 2},
     {"R_gtk_expression_watch_ref", (DL_FUNC) &R_gtk_expression_watch_ref, 1},
     {"R_gtk_expression_watch_unref", (DL_FUNC) &R_gtk_expression_watch_unref, 1},
@@ -11965,13 +12270,21 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_file_dialog_get_initial_name", (DL_FUNC) &R_gtk_file_dialog_get_initial_name, 1},
     {"R_gtk_file_dialog_get_modal", (DL_FUNC) &R_gtk_file_dialog_get_modal, 1},
     {"R_gtk_file_dialog_get_title", (DL_FUNC) &R_gtk_file_dialog_get_title, 1},
+    {"R_gtk_file_dialog_open", (DL_FUNC) &R_gtk_file_dialog_open, 5},
     {"R_gtk_file_dialog_open_finish", (DL_FUNC) &R_gtk_file_dialog_open_finish, 2},
+    {"R_gtk_file_dialog_open_multiple", (DL_FUNC) &R_gtk_file_dialog_open_multiple, 5},
     {"R_gtk_file_dialog_open_multiple_finish", (DL_FUNC) &R_gtk_file_dialog_open_multiple_finish, 2},
+    {"R_gtk_file_dialog_open_multiple_text_files", (DL_FUNC) &R_gtk_file_dialog_open_multiple_text_files, 5},
     {"R_gtk_file_dialog_open_multiple_text_files_finish", (DL_FUNC) &R_gtk_file_dialog_open_multiple_text_files_finish, 2},
+    {"R_gtk_file_dialog_open_text_file", (DL_FUNC) &R_gtk_file_dialog_open_text_file, 5},
     {"R_gtk_file_dialog_open_text_file_finish", (DL_FUNC) &R_gtk_file_dialog_open_text_file_finish, 2},
+    {"R_gtk_file_dialog_save", (DL_FUNC) &R_gtk_file_dialog_save, 5},
     {"R_gtk_file_dialog_save_finish", (DL_FUNC) &R_gtk_file_dialog_save_finish, 2},
+    {"R_gtk_file_dialog_save_text_file", (DL_FUNC) &R_gtk_file_dialog_save_text_file, 5},
     {"R_gtk_file_dialog_save_text_file_finish", (DL_FUNC) &R_gtk_file_dialog_save_text_file_finish, 2},
+    {"R_gtk_file_dialog_select_folder", (DL_FUNC) &R_gtk_file_dialog_select_folder, 5},
     {"R_gtk_file_dialog_select_folder_finish", (DL_FUNC) &R_gtk_file_dialog_select_folder_finish, 2},
+    {"R_gtk_file_dialog_select_multiple_folders", (DL_FUNC) &R_gtk_file_dialog_select_multiple_folders, 5},
     {"R_gtk_file_dialog_select_multiple_folders_finish", (DL_FUNC) &R_gtk_file_dialog_select_multiple_folders_finish, 2},
     {"R_gtk_file_dialog_set_accept_label", (DL_FUNC) &R_gtk_file_dialog_set_accept_label, 2},
     {"R_gtk_file_dialog_set_default_filter", (DL_FUNC) &R_gtk_file_dialog_set_default_filter, 2},
@@ -11996,7 +12309,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_file_launcher_get_always_ask", (DL_FUNC) &R_gtk_file_launcher_get_always_ask, 1},
     {"R_gtk_file_launcher_get_file", (DL_FUNC) &R_gtk_file_launcher_get_file, 1},
     {"R_gtk_file_launcher_get_writable", (DL_FUNC) &R_gtk_file_launcher_get_writable, 1},
+    {"R_gtk_file_launcher_launch", (DL_FUNC) &R_gtk_file_launcher_launch, 5},
     {"R_gtk_file_launcher_launch_finish", (DL_FUNC) &R_gtk_file_launcher_launch_finish, 2},
+    {"R_gtk_file_launcher_open_containing_folder", (DL_FUNC) &R_gtk_file_launcher_open_containing_folder, 5},
     {"R_gtk_file_launcher_open_containing_folder_finish", (DL_FUNC) &R_gtk_file_launcher_open_containing_folder_finish, 2},
     {"R_gtk_file_launcher_set_always_ask", (DL_FUNC) &R_gtk_file_launcher_set_always_ask, 2},
     {"R_gtk_file_launcher_set_file", (DL_FUNC) &R_gtk_file_launcher_set_file, 2},
@@ -12030,6 +12345,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_flatten_list_model_set_model", (DL_FUNC) &R_gtk_flatten_list_model_set_model, 2},
     {"R_gtk_flow_box_new", (DL_FUNC) &R_gtk_flow_box_new, 0},
     {"R_gtk_flow_box_append", (DL_FUNC) &R_gtk_flow_box_append, 2},
+    {"R_gtk_flow_box_bind_model", (DL_FUNC) &R_gtk_flow_box_bind_model, 5},
     {"R_gtk_flow_box_get_activate_on_single_click", (DL_FUNC) &R_gtk_flow_box_get_activate_on_single_click, 1},
     {"R_gtk_flow_box_get_child_at_index", (DL_FUNC) &R_gtk_flow_box_get_child_at_index, 2},
     {"R_gtk_flow_box_get_child_at_pos", (DL_FUNC) &R_gtk_flow_box_get_child_at_pos, 3},
@@ -12048,14 +12364,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_flow_box_remove_all", (DL_FUNC) &R_gtk_flow_box_remove_all, 1},
     {"R_gtk_flow_box_select_all", (DL_FUNC) &R_gtk_flow_box_select_all, 1},
     {"R_gtk_flow_box_select_child", (DL_FUNC) &R_gtk_flow_box_select_child, 2},
+    {"R_gtk_flow_box_selected_foreach", (DL_FUNC) &R_gtk_flow_box_selected_foreach, 3},
     {"R_gtk_flow_box_set_activate_on_single_click", (DL_FUNC) &R_gtk_flow_box_set_activate_on_single_click, 2},
     {"R_gtk_flow_box_set_column_spacing", (DL_FUNC) &R_gtk_flow_box_set_column_spacing, 2},
+    {"R_gtk_flow_box_set_filter_func", (DL_FUNC) &R_gtk_flow_box_set_filter_func, 4},
     {"R_gtk_flow_box_set_hadjustment", (DL_FUNC) &R_gtk_flow_box_set_hadjustment, 2},
     {"R_gtk_flow_box_set_homogeneous", (DL_FUNC) &R_gtk_flow_box_set_homogeneous, 2},
     {"R_gtk_flow_box_set_max_children_per_line", (DL_FUNC) &R_gtk_flow_box_set_max_children_per_line, 2},
     {"R_gtk_flow_box_set_min_children_per_line", (DL_FUNC) &R_gtk_flow_box_set_min_children_per_line, 2},
     {"R_gtk_flow_box_set_row_spacing", (DL_FUNC) &R_gtk_flow_box_set_row_spacing, 2},
     {"R_gtk_flow_box_set_selection_mode", (DL_FUNC) &R_gtk_flow_box_set_selection_mode, 2},
+    {"R_gtk_flow_box_set_sort_func", (DL_FUNC) &R_gtk_flow_box_set_sort_func, 4},
     {"R_gtk_flow_box_set_vadjustment", (DL_FUNC) &R_gtk_flow_box_set_vadjustment, 2},
     {"R_gtk_flow_box_unselect_all", (DL_FUNC) &R_gtk_flow_box_unselect_all, 1},
     {"R_gtk_flow_box_unselect_child", (DL_FUNC) &R_gtk_flow_box_unselect_child, 2},
@@ -12086,6 +12405,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_font_chooser_get_level", (DL_FUNC) &R_gtk_font_chooser_get_level, 1},
     {"R_gtk_font_chooser_get_preview_text", (DL_FUNC) &R_gtk_font_chooser_get_preview_text, 1},
     {"R_gtk_font_chooser_get_show_preview_entry", (DL_FUNC) &R_gtk_font_chooser_get_show_preview_entry, 1},
+    {"R_gtk_font_chooser_set_filter_func", (DL_FUNC) &R_gtk_font_chooser_set_filter_func, 4},
     {"R_gtk_font_chooser_set_font", (DL_FUNC) &R_gtk_font_chooser_set_font, 2},
     {"R_gtk_font_chooser_set_font_desc", (DL_FUNC) &R_gtk_font_chooser_set_font_desc, 2},
     {"R_gtk_font_chooser_set_font_map", (DL_FUNC) &R_gtk_font_chooser_set_font_map, 2},
@@ -12096,8 +12416,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_font_chooser_dialog_new", (DL_FUNC) &R_gtk_font_chooser_dialog_new, 2},
     {"R_gtk_font_chooser_widget_new", (DL_FUNC) &R_gtk_font_chooser_widget_new, 0},
     {"R_gtk_font_dialog_new", (DL_FUNC) &R_gtk_font_dialog_new, 0},
+    {"R_gtk_font_dialog_choose_face", (DL_FUNC) &R_gtk_font_dialog_choose_face, 6},
     {"R_gtk_font_dialog_choose_face_finish", (DL_FUNC) &R_gtk_font_dialog_choose_face_finish, 2},
+    {"R_gtk_font_dialog_choose_family", (DL_FUNC) &R_gtk_font_dialog_choose_family, 6},
     {"R_gtk_font_dialog_choose_family_finish", (DL_FUNC) &R_gtk_font_dialog_choose_family_finish, 2},
+    {"R_gtk_font_dialog_choose_font", (DL_FUNC) &R_gtk_font_dialog_choose_font, 6},
+    {"R_gtk_font_dialog_choose_font_and_features", (DL_FUNC) &R_gtk_font_dialog_choose_font_and_features, 6},
     {"R_gtk_font_dialog_choose_font_and_features_finish", (DL_FUNC) &R_gtk_font_dialog_choose_font_and_features_finish, 2},
     {"R_gtk_font_dialog_choose_font_finish", (DL_FUNC) &R_gtk_font_dialog_choose_font_finish, 2},
     {"R_gtk_font_dialog_get_filter", (DL_FUNC) &R_gtk_font_dialog_get_filter, 1},
@@ -12334,6 +12658,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_icon_view_get_column_spacing", (DL_FUNC) &R_gtk_icon_view_get_column_spacing, 1},
     {"R_gtk_icon_view_get_columns", (DL_FUNC) &R_gtk_icon_view_get_columns, 1},
     {"R_gtk_icon_view_get_cursor", (DL_FUNC) &R_gtk_icon_view_get_cursor, 1},
+    {"R_gtk_icon_view_get_dest_item_at_pos", (DL_FUNC) &R_gtk_icon_view_get_dest_item_at_pos, 3},
+    {"R_gtk_icon_view_get_drag_dest_item", (DL_FUNC) &R_gtk_icon_view_get_drag_dest_item, 1},
     {"R_gtk_icon_view_get_item_at_pos", (DL_FUNC) &R_gtk_icon_view_get_item_at_pos, 3},
     {"R_gtk_icon_view_get_item_column", (DL_FUNC) &R_gtk_icon_view_get_item_column, 2},
     {"R_gtk_icon_view_get_item_orientation", (DL_FUNC) &R_gtk_icon_view_get_item_orientation, 1},
@@ -12352,12 +12678,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_icon_view_get_spacing", (DL_FUNC) &R_gtk_icon_view_get_spacing, 1},
     {"R_gtk_icon_view_get_text_column", (DL_FUNC) &R_gtk_icon_view_get_text_column, 1},
     {"R_gtk_icon_view_get_tooltip_column", (DL_FUNC) &R_gtk_icon_view_get_tooltip_column, 1},
+    {"R_gtk_icon_view_get_tooltip_context", (DL_FUNC) &R_gtk_icon_view_get_tooltip_context, 4},
     {"R_gtk_icon_view_get_visible_range", (DL_FUNC) &R_gtk_icon_view_get_visible_range, 1},
     {"R_gtk_icon_view_item_activated", (DL_FUNC) &R_gtk_icon_view_item_activated, 2},
     {"R_gtk_icon_view_path_is_selected", (DL_FUNC) &R_gtk_icon_view_path_is_selected, 2},
     {"R_gtk_icon_view_scroll_to_path", (DL_FUNC) &R_gtk_icon_view_scroll_to_path, 5},
     {"R_gtk_icon_view_select_all", (DL_FUNC) &R_gtk_icon_view_select_all, 1},
     {"R_gtk_icon_view_select_path", (DL_FUNC) &R_gtk_icon_view_select_path, 2},
+    {"R_gtk_icon_view_selected_foreach", (DL_FUNC) &R_gtk_icon_view_selected_foreach, 3},
     {"R_gtk_icon_view_set_activate_on_single_click", (DL_FUNC) &R_gtk_icon_view_set_activate_on_single_click, 2},
     {"R_gtk_icon_view_set_column_spacing", (DL_FUNC) &R_gtk_icon_view_set_column_spacing, 2},
     {"R_gtk_icon_view_set_columns", (DL_FUNC) &R_gtk_icon_view_set_columns, 2},
@@ -12526,6 +12854,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_link_button_set_visited", (DL_FUNC) &R_gtk_link_button_set_visited, 2},
     {"R_gtk_list_box_new", (DL_FUNC) &R_gtk_list_box_new, 0},
     {"R_gtk_list_box_append", (DL_FUNC) &R_gtk_list_box_append, 2},
+    {"R_gtk_list_box_bind_model", (DL_FUNC) &R_gtk_list_box_bind_model, 5},
     {"R_gtk_list_box_drag_highlight_row", (DL_FUNC) &R_gtk_list_box_drag_highlight_row, 2},
     {"R_gtk_list_box_drag_unhighlight_row", (DL_FUNC) &R_gtk_list_box_drag_unhighlight_row, 1},
     {"R_gtk_list_box_get_activate_on_single_click", (DL_FUNC) &R_gtk_list_box_get_activate_on_single_click, 1},
@@ -12546,11 +12875,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_list_box_remove_all", (DL_FUNC) &R_gtk_list_box_remove_all, 1},
     {"R_gtk_list_box_select_all", (DL_FUNC) &R_gtk_list_box_select_all, 1},
     {"R_gtk_list_box_select_row", (DL_FUNC) &R_gtk_list_box_select_row, 2},
+    {"R_gtk_list_box_selected_foreach", (DL_FUNC) &R_gtk_list_box_selected_foreach, 3},
     {"R_gtk_list_box_set_activate_on_single_click", (DL_FUNC) &R_gtk_list_box_set_activate_on_single_click, 2},
     {"R_gtk_list_box_set_adjustment", (DL_FUNC) &R_gtk_list_box_set_adjustment, 2},
+    {"R_gtk_list_box_set_filter_func", (DL_FUNC) &R_gtk_list_box_set_filter_func, 4},
+    {"R_gtk_list_box_set_header_func", (DL_FUNC) &R_gtk_list_box_set_header_func, 4},
     {"R_gtk_list_box_set_placeholder", (DL_FUNC) &R_gtk_list_box_set_placeholder, 2},
     {"R_gtk_list_box_set_selection_mode", (DL_FUNC) &R_gtk_list_box_set_selection_mode, 2},
     {"R_gtk_list_box_set_show_separators", (DL_FUNC) &R_gtk_list_box_set_show_separators, 2},
+    {"R_gtk_list_box_set_sort_func", (DL_FUNC) &R_gtk_list_box_set_sort_func, 4},
     {"R_gtk_list_box_set_tab_behavior", (DL_FUNC) &R_gtk_list_box_set_tab_behavior, 2},
     {"R_gtk_list_box_unselect_all", (DL_FUNC) &R_gtk_list_box_unselect_all, 1},
     {"R_gtk_list_box_unselect_row", (DL_FUNC) &R_gtk_list_box_unselect_row, 2},
@@ -12588,10 +12921,16 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_list_item_set_focusable", (DL_FUNC) &R_gtk_list_item_set_focusable, 2},
     {"R_gtk_list_item_set_selectable", (DL_FUNC) &R_gtk_list_item_set_selectable, 2},
     {"R_gtk_list_store_newv", (DL_FUNC) &R_gtk_list_store_newv, 2},
+    {"R_gtk_list_store_append", (DL_FUNC) &R_gtk_list_store_append, 1},
     {"R_gtk_list_store_clear", (DL_FUNC) &R_gtk_list_store_clear, 1},
+    {"R_gtk_list_store_insert", (DL_FUNC) &R_gtk_list_store_insert, 2},
+    {"R_gtk_list_store_insert_after", (DL_FUNC) &R_gtk_list_store_insert_after, 2},
+    {"R_gtk_list_store_insert_before", (DL_FUNC) &R_gtk_list_store_insert_before, 2},
+    {"R_gtk_list_store_insert_with_valuesv", (DL_FUNC) &R_gtk_list_store_insert_with_valuesv, 5},
     {"R_gtk_list_store_iter_is_valid", (DL_FUNC) &R_gtk_list_store_iter_is_valid, 2},
     {"R_gtk_list_store_move_after", (DL_FUNC) &R_gtk_list_store_move_after, 3},
     {"R_gtk_list_store_move_before", (DL_FUNC) &R_gtk_list_store_move_before, 3},
+    {"R_gtk_list_store_prepend", (DL_FUNC) &R_gtk_list_store_prepend, 1},
     {"R_gtk_list_store_remove", (DL_FUNC) &R_gtk_list_store_remove, 2},
     {"R_gtk_list_store_reorder", (DL_FUNC) &R_gtk_list_store_reorder, 2},
     {"R_gtk_list_store_set_column_types", (DL_FUNC) &R_gtk_list_store_set_column_types, 3},
@@ -12617,8 +12956,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_lock_button_new", (DL_FUNC) &R_gtk_lock_button_new, 1},
     {"R_gtk_lock_button_get_permission", (DL_FUNC) &R_gtk_lock_button_get_permission, 1},
     {"R_gtk_lock_button_set_permission", (DL_FUNC) &R_gtk_lock_button_set_permission, 2},
+    {"R_gtk_map_list_model_new", (DL_FUNC) &R_gtk_map_list_model_new, 4},
     {"R_gtk_map_list_model_get_model", (DL_FUNC) &R_gtk_map_list_model_get_model, 1},
     {"R_gtk_map_list_model_has_map", (DL_FUNC) &R_gtk_map_list_model_has_map, 1},
+    {"R_gtk_map_list_model_set_map_func", (DL_FUNC) &R_gtk_map_list_model_set_map_func, 4},
     {"R_gtk_map_list_model_set_model", (DL_FUNC) &R_gtk_map_list_model_set_model, 2},
     {"R_gtk_media_controls_new", (DL_FUNC) &R_gtk_media_controls_new, 1},
     {"R_gtk_media_controls_get_media_stream", (DL_FUNC) &R_gtk_media_controls_get_media_stream, 1},
@@ -12683,6 +13024,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_menu_button_set_always_show_arrow", (DL_FUNC) &R_gtk_menu_button_set_always_show_arrow, 2},
     {"R_gtk_menu_button_set_can_shrink", (DL_FUNC) &R_gtk_menu_button_set_can_shrink, 2},
     {"R_gtk_menu_button_set_child", (DL_FUNC) &R_gtk_menu_button_set_child, 2},
+    {"R_gtk_menu_button_set_create_popup_func", (DL_FUNC) &R_gtk_menu_button_set_create_popup_func, 4},
     {"R_gtk_menu_button_set_direction", (DL_FUNC) &R_gtk_menu_button_set_direction, 2},
     {"R_gtk_menu_button_set_has_frame", (DL_FUNC) &R_gtk_menu_button_set_has_frame, 2},
     {"R_gtk_menu_button_set_icon_name", (DL_FUNC) &R_gtk_menu_button_set_icon_name, 2},
@@ -12805,33 +13147,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_pad_controller_new", (DL_FUNC) &R_gtk_pad_controller_new, 2},
     {"R_gtk_pad_controller_set_action", (DL_FUNC) &R_gtk_pad_controller_set_action, 6},
     {"R_gtk_pad_controller_set_action_entries", (DL_FUNC) &R_gtk_pad_controller_set_action_entries, 3},
-    {"R_gtk_page_setup_new", (DL_FUNC) &R_gtk_page_setup_new, 0},
-    {"R_gtk_page_setup_new_from_file", (DL_FUNC) &R_gtk_page_setup_new_from_file, 1},
-    {"R_gtk_page_setup_new_from_gvariant", (DL_FUNC) &R_gtk_page_setup_new_from_gvariant, 1},
-    {"R_gtk_page_setup_new_from_key_file", (DL_FUNC) &R_gtk_page_setup_new_from_key_file, 2},
-    {"R_gtk_page_setup_copy", (DL_FUNC) &R_gtk_page_setup_copy, 1},
-    {"R_gtk_page_setup_get_bottom_margin", (DL_FUNC) &R_gtk_page_setup_get_bottom_margin, 2},
-    {"R_gtk_page_setup_get_left_margin", (DL_FUNC) &R_gtk_page_setup_get_left_margin, 2},
-    {"R_gtk_page_setup_get_orientation", (DL_FUNC) &R_gtk_page_setup_get_orientation, 1},
-    {"R_gtk_page_setup_get_page_height", (DL_FUNC) &R_gtk_page_setup_get_page_height, 2},
-    {"R_gtk_page_setup_get_page_width", (DL_FUNC) &R_gtk_page_setup_get_page_width, 2},
-    {"R_gtk_page_setup_get_paper_height", (DL_FUNC) &R_gtk_page_setup_get_paper_height, 2},
-    {"R_gtk_page_setup_get_paper_size", (DL_FUNC) &R_gtk_page_setup_get_paper_size, 1},
-    {"R_gtk_page_setup_get_paper_width", (DL_FUNC) &R_gtk_page_setup_get_paper_width, 2},
-    {"R_gtk_page_setup_get_right_margin", (DL_FUNC) &R_gtk_page_setup_get_right_margin, 2},
-    {"R_gtk_page_setup_get_top_margin", (DL_FUNC) &R_gtk_page_setup_get_top_margin, 2},
-    {"R_gtk_page_setup_load_file", (DL_FUNC) &R_gtk_page_setup_load_file, 2},
-    {"R_gtk_page_setup_load_key_file", (DL_FUNC) &R_gtk_page_setup_load_key_file, 3},
-    {"R_gtk_page_setup_set_bottom_margin", (DL_FUNC) &R_gtk_page_setup_set_bottom_margin, 3},
-    {"R_gtk_page_setup_set_left_margin", (DL_FUNC) &R_gtk_page_setup_set_left_margin, 3},
-    {"R_gtk_page_setup_set_orientation", (DL_FUNC) &R_gtk_page_setup_set_orientation, 2},
-    {"R_gtk_page_setup_set_paper_size", (DL_FUNC) &R_gtk_page_setup_set_paper_size, 2},
-    {"R_gtk_page_setup_set_paper_size_and_default_margins", (DL_FUNC) &R_gtk_page_setup_set_paper_size_and_default_margins, 2},
-    {"R_gtk_page_setup_set_right_margin", (DL_FUNC) &R_gtk_page_setup_set_right_margin, 3},
-    {"R_gtk_page_setup_set_top_margin", (DL_FUNC) &R_gtk_page_setup_set_top_margin, 3},
-    {"R_gtk_page_setup_to_file", (DL_FUNC) &R_gtk_page_setup_to_file, 2},
-    {"R_gtk_page_setup_to_gvariant", (DL_FUNC) &R_gtk_page_setup_to_gvariant, 1},
-    {"R_gtk_page_setup_to_key_file", (DL_FUNC) &R_gtk_page_setup_to_key_file, 3},
     {"R_gtk_paned_new", (DL_FUNC) &R_gtk_paned_new, 1},
     {"R_gtk_paned_get_end_child", (DL_FUNC) &R_gtk_paned_get_end_child, 1},
     {"R_gtk_paned_get_position", (DL_FUNC) &R_gtk_paned_get_position, 1},
@@ -12948,144 +13263,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_popover_menu_bar_get_menu_model", (DL_FUNC) &R_gtk_popover_menu_bar_get_menu_model, 1},
     {"R_gtk_popover_menu_bar_remove_child", (DL_FUNC) &R_gtk_popover_menu_bar_remove_child, 2},
     {"R_gtk_popover_menu_bar_set_menu_model", (DL_FUNC) &R_gtk_popover_menu_bar_set_menu_model, 2},
-    {"R_gtk_print_context_create_pango_context", (DL_FUNC) &R_gtk_print_context_create_pango_context, 1},
-    {"R_gtk_print_context_create_pango_layout", (DL_FUNC) &R_gtk_print_context_create_pango_layout, 1},
-    {"R_gtk_print_context_get_cairo_context", (DL_FUNC) &R_gtk_print_context_get_cairo_context, 1},
-    {"R_gtk_print_context_get_dpi_x", (DL_FUNC) &R_gtk_print_context_get_dpi_x, 1},
-    {"R_gtk_print_context_get_dpi_y", (DL_FUNC) &R_gtk_print_context_get_dpi_y, 1},
-    {"R_gtk_print_context_get_hard_margins", (DL_FUNC) &R_gtk_print_context_get_hard_margins, 1},
-    {"R_gtk_print_context_get_height", (DL_FUNC) &R_gtk_print_context_get_height, 1},
-    {"R_gtk_print_context_get_page_setup", (DL_FUNC) &R_gtk_print_context_get_page_setup, 1},
-    {"R_gtk_print_context_get_pango_fontmap", (DL_FUNC) &R_gtk_print_context_get_pango_fontmap, 1},
-    {"R_gtk_print_context_get_width", (DL_FUNC) &R_gtk_print_context_get_width, 1},
-    {"R_gtk_print_context_set_cairo_context", (DL_FUNC) &R_gtk_print_context_set_cairo_context, 4},
-    {"R_gtk_print_dialog_new", (DL_FUNC) &R_gtk_print_dialog_new, 0},
-    {"R_gtk_print_dialog_get_accept_label", (DL_FUNC) &R_gtk_print_dialog_get_accept_label, 1},
-    {"R_gtk_print_dialog_get_modal", (DL_FUNC) &R_gtk_print_dialog_get_modal, 1},
-    {"R_gtk_print_dialog_get_page_setup", (DL_FUNC) &R_gtk_print_dialog_get_page_setup, 1},
-    {"R_gtk_print_dialog_get_print_settings", (DL_FUNC) &R_gtk_print_dialog_get_print_settings, 1},
-    {"R_gtk_print_dialog_get_title", (DL_FUNC) &R_gtk_print_dialog_get_title, 1},
-    {"R_gtk_print_dialog_print_file_finish", (DL_FUNC) &R_gtk_print_dialog_print_file_finish, 2},
-    {"R_gtk_print_dialog_print_finish", (DL_FUNC) &R_gtk_print_dialog_print_finish, 2},
-    {"R_gtk_print_dialog_set_accept_label", (DL_FUNC) &R_gtk_print_dialog_set_accept_label, 2},
-    {"R_gtk_print_dialog_set_modal", (DL_FUNC) &R_gtk_print_dialog_set_modal, 2},
-    {"R_gtk_print_dialog_set_page_setup", (DL_FUNC) &R_gtk_print_dialog_set_page_setup, 2},
-    {"R_gtk_print_dialog_set_print_settings", (DL_FUNC) &R_gtk_print_dialog_set_print_settings, 2},
-    {"R_gtk_print_dialog_set_title", (DL_FUNC) &R_gtk_print_dialog_set_title, 2},
-    {"R_gtk_print_dialog_setup_finish", (DL_FUNC) &R_gtk_print_dialog_setup_finish, 2},
-    {"R_gtk_print_error_quark", (DL_FUNC) &R_gtk_print_error_quark, 0},
-    {"R_gtk_print_operation_new", (DL_FUNC) &R_gtk_print_operation_new, 0},
-    {"R_gtk_print_operation_cancel", (DL_FUNC) &R_gtk_print_operation_cancel, 1},
-    {"R_gtk_print_operation_draw_page_finish", (DL_FUNC) &R_gtk_print_operation_draw_page_finish, 1},
-    {"R_gtk_print_operation_get_default_page_setup", (DL_FUNC) &R_gtk_print_operation_get_default_page_setup, 1},
-    {"R_gtk_print_operation_get_embed_page_setup", (DL_FUNC) &R_gtk_print_operation_get_embed_page_setup, 1},
-    {"R_gtk_print_operation_get_error", (DL_FUNC) &R_gtk_print_operation_get_error, 1},
-    {"R_gtk_print_operation_get_has_selection", (DL_FUNC) &R_gtk_print_operation_get_has_selection, 1},
-    {"R_gtk_print_operation_get_n_pages_to_print", (DL_FUNC) &R_gtk_print_operation_get_n_pages_to_print, 1},
-    {"R_gtk_print_operation_get_print_settings", (DL_FUNC) &R_gtk_print_operation_get_print_settings, 1},
-    {"R_gtk_print_operation_get_status", (DL_FUNC) &R_gtk_print_operation_get_status, 1},
-    {"R_gtk_print_operation_get_status_string", (DL_FUNC) &R_gtk_print_operation_get_status_string, 1},
-    {"R_gtk_print_operation_get_support_selection", (DL_FUNC) &R_gtk_print_operation_get_support_selection, 1},
-    {"R_gtk_print_operation_is_finished", (DL_FUNC) &R_gtk_print_operation_is_finished, 1},
-    {"R_gtk_print_operation_run", (DL_FUNC) &R_gtk_print_operation_run, 3},
-    {"R_gtk_print_operation_set_allow_async", (DL_FUNC) &R_gtk_print_operation_set_allow_async, 2},
-    {"R_gtk_print_operation_set_current_page", (DL_FUNC) &R_gtk_print_operation_set_current_page, 2},
-    {"R_gtk_print_operation_set_custom_tab_label", (DL_FUNC) &R_gtk_print_operation_set_custom_tab_label, 2},
-    {"R_gtk_print_operation_set_default_page_setup", (DL_FUNC) &R_gtk_print_operation_set_default_page_setup, 2},
-    {"R_gtk_print_operation_set_defer_drawing", (DL_FUNC) &R_gtk_print_operation_set_defer_drawing, 1},
-    {"R_gtk_print_operation_set_embed_page_setup", (DL_FUNC) &R_gtk_print_operation_set_embed_page_setup, 2},
-    {"R_gtk_print_operation_set_export_filename", (DL_FUNC) &R_gtk_print_operation_set_export_filename, 2},
-    {"R_gtk_print_operation_set_has_selection", (DL_FUNC) &R_gtk_print_operation_set_has_selection, 2},
-    {"R_gtk_print_operation_set_job_name", (DL_FUNC) &R_gtk_print_operation_set_job_name, 2},
-    {"R_gtk_print_operation_set_n_pages", (DL_FUNC) &R_gtk_print_operation_set_n_pages, 2},
-    {"R_gtk_print_operation_set_print_settings", (DL_FUNC) &R_gtk_print_operation_set_print_settings, 2},
-    {"R_gtk_print_operation_set_show_progress", (DL_FUNC) &R_gtk_print_operation_set_show_progress, 2},
-    {"R_gtk_print_operation_set_support_selection", (DL_FUNC) &R_gtk_print_operation_set_support_selection, 2},
-    {"R_gtk_print_operation_set_track_print_status", (DL_FUNC) &R_gtk_print_operation_set_track_print_status, 2},
-    {"R_gtk_print_operation_set_unit", (DL_FUNC) &R_gtk_print_operation_set_unit, 2},
-    {"R_gtk_print_operation_set_use_full_page", (DL_FUNC) &R_gtk_print_operation_set_use_full_page, 2},
-    {"R_gtk_print_operation_preview_end_preview", (DL_FUNC) &R_gtk_print_operation_preview_end_preview, 1},
-    {"R_gtk_print_operation_preview_is_selected", (DL_FUNC) &R_gtk_print_operation_preview_is_selected, 2},
-    {"R_gtk_print_operation_preview_render_page", (DL_FUNC) &R_gtk_print_operation_preview_render_page, 2},
-    {"R_gtk_print_settings_new", (DL_FUNC) &R_gtk_print_settings_new, 0},
-    {"R_gtk_print_settings_new_from_file", (DL_FUNC) &R_gtk_print_settings_new_from_file, 1},
-    {"R_gtk_print_settings_new_from_gvariant", (DL_FUNC) &R_gtk_print_settings_new_from_gvariant, 1},
-    {"R_gtk_print_settings_new_from_key_file", (DL_FUNC) &R_gtk_print_settings_new_from_key_file, 2},
-    {"R_gtk_print_settings_copy", (DL_FUNC) &R_gtk_print_settings_copy, 1},
-    {"R_gtk_print_settings_get", (DL_FUNC) &R_gtk_print_settings_get, 2},
-    {"R_gtk_print_settings_get_bool", (DL_FUNC) &R_gtk_print_settings_get_bool, 2},
-    {"R_gtk_print_settings_get_collate", (DL_FUNC) &R_gtk_print_settings_get_collate, 1},
-    {"R_gtk_print_settings_get_default_source", (DL_FUNC) &R_gtk_print_settings_get_default_source, 1},
-    {"R_gtk_print_settings_get_dither", (DL_FUNC) &R_gtk_print_settings_get_dither, 1},
-    {"R_gtk_print_settings_get_double", (DL_FUNC) &R_gtk_print_settings_get_double, 2},
-    {"R_gtk_print_settings_get_double_with_default", (DL_FUNC) &R_gtk_print_settings_get_double_with_default, 3},
-    {"R_gtk_print_settings_get_duplex", (DL_FUNC) &R_gtk_print_settings_get_duplex, 1},
-    {"R_gtk_print_settings_get_finishings", (DL_FUNC) &R_gtk_print_settings_get_finishings, 1},
-    {"R_gtk_print_settings_get_int", (DL_FUNC) &R_gtk_print_settings_get_int, 2},
-    {"R_gtk_print_settings_get_int_with_default", (DL_FUNC) &R_gtk_print_settings_get_int_with_default, 3},
-    {"R_gtk_print_settings_get_length", (DL_FUNC) &R_gtk_print_settings_get_length, 3},
-    {"R_gtk_print_settings_get_media_type", (DL_FUNC) &R_gtk_print_settings_get_media_type, 1},
-    {"R_gtk_print_settings_get_n_copies", (DL_FUNC) &R_gtk_print_settings_get_n_copies, 1},
-    {"R_gtk_print_settings_get_number_up", (DL_FUNC) &R_gtk_print_settings_get_number_up, 1},
-    {"R_gtk_print_settings_get_number_up_layout", (DL_FUNC) &R_gtk_print_settings_get_number_up_layout, 1},
-    {"R_gtk_print_settings_get_orientation", (DL_FUNC) &R_gtk_print_settings_get_orientation, 1},
-    {"R_gtk_print_settings_get_output_bin", (DL_FUNC) &R_gtk_print_settings_get_output_bin, 1},
-    {"R_gtk_print_settings_get_page_ranges", (DL_FUNC) &R_gtk_print_settings_get_page_ranges, 1},
-    {"R_gtk_print_settings_get_page_set", (DL_FUNC) &R_gtk_print_settings_get_page_set, 1},
-    {"R_gtk_print_settings_get_paper_height", (DL_FUNC) &R_gtk_print_settings_get_paper_height, 2},
-    {"R_gtk_print_settings_get_paper_size", (DL_FUNC) &R_gtk_print_settings_get_paper_size, 1},
-    {"R_gtk_print_settings_get_paper_width", (DL_FUNC) &R_gtk_print_settings_get_paper_width, 2},
-    {"R_gtk_print_settings_get_print_pages", (DL_FUNC) &R_gtk_print_settings_get_print_pages, 1},
-    {"R_gtk_print_settings_get_printer", (DL_FUNC) &R_gtk_print_settings_get_printer, 1},
-    {"R_gtk_print_settings_get_printer_lpi", (DL_FUNC) &R_gtk_print_settings_get_printer_lpi, 1},
-    {"R_gtk_print_settings_get_quality", (DL_FUNC) &R_gtk_print_settings_get_quality, 1},
-    {"R_gtk_print_settings_get_resolution", (DL_FUNC) &R_gtk_print_settings_get_resolution, 1},
-    {"R_gtk_print_settings_get_resolution_x", (DL_FUNC) &R_gtk_print_settings_get_resolution_x, 1},
-    {"R_gtk_print_settings_get_resolution_y", (DL_FUNC) &R_gtk_print_settings_get_resolution_y, 1},
-    {"R_gtk_print_settings_get_reverse", (DL_FUNC) &R_gtk_print_settings_get_reverse, 1},
-    {"R_gtk_print_settings_get_scale", (DL_FUNC) &R_gtk_print_settings_get_scale, 1},
-    {"R_gtk_print_settings_get_use_color", (DL_FUNC) &R_gtk_print_settings_get_use_color, 1},
-    {"R_gtk_print_settings_has_key", (DL_FUNC) &R_gtk_print_settings_has_key, 2},
-    {"R_gtk_print_settings_load_file", (DL_FUNC) &R_gtk_print_settings_load_file, 2},
-    {"R_gtk_print_settings_load_key_file", (DL_FUNC) &R_gtk_print_settings_load_key_file, 3},
-    {"R_gtk_print_settings_set", (DL_FUNC) &R_gtk_print_settings_set, 3},
-    {"R_gtk_print_settings_set_bool", (DL_FUNC) &R_gtk_print_settings_set_bool, 3},
-    {"R_gtk_print_settings_set_collate", (DL_FUNC) &R_gtk_print_settings_set_collate, 2},
-    {"R_gtk_print_settings_set_default_source", (DL_FUNC) &R_gtk_print_settings_set_default_source, 2},
-    {"R_gtk_print_settings_set_dither", (DL_FUNC) &R_gtk_print_settings_set_dither, 2},
-    {"R_gtk_print_settings_set_double", (DL_FUNC) &R_gtk_print_settings_set_double, 3},
-    {"R_gtk_print_settings_set_duplex", (DL_FUNC) &R_gtk_print_settings_set_duplex, 2},
-    {"R_gtk_print_settings_set_finishings", (DL_FUNC) &R_gtk_print_settings_set_finishings, 2},
-    {"R_gtk_print_settings_set_int", (DL_FUNC) &R_gtk_print_settings_set_int, 3},
-    {"R_gtk_print_settings_set_length", (DL_FUNC) &R_gtk_print_settings_set_length, 4},
-    {"R_gtk_print_settings_set_media_type", (DL_FUNC) &R_gtk_print_settings_set_media_type, 2},
-    {"R_gtk_print_settings_set_n_copies", (DL_FUNC) &R_gtk_print_settings_set_n_copies, 2},
-    {"R_gtk_print_settings_set_number_up", (DL_FUNC) &R_gtk_print_settings_set_number_up, 2},
-    {"R_gtk_print_settings_set_number_up_layout", (DL_FUNC) &R_gtk_print_settings_set_number_up_layout, 2},
-    {"R_gtk_print_settings_set_orientation", (DL_FUNC) &R_gtk_print_settings_set_orientation, 2},
-    {"R_gtk_print_settings_set_output_bin", (DL_FUNC) &R_gtk_print_settings_set_output_bin, 2},
-    {"R_gtk_print_settings_set_page_ranges", (DL_FUNC) &R_gtk_print_settings_set_page_ranges, 3},
-    {"R_gtk_print_settings_set_page_set", (DL_FUNC) &R_gtk_print_settings_set_page_set, 2},
-    {"R_gtk_print_settings_set_paper_height", (DL_FUNC) &R_gtk_print_settings_set_paper_height, 3},
-    {"R_gtk_print_settings_set_paper_size", (DL_FUNC) &R_gtk_print_settings_set_paper_size, 2},
-    {"R_gtk_print_settings_set_paper_width", (DL_FUNC) &R_gtk_print_settings_set_paper_width, 3},
-    {"R_gtk_print_settings_set_print_pages", (DL_FUNC) &R_gtk_print_settings_set_print_pages, 2},
-    {"R_gtk_print_settings_set_printer", (DL_FUNC) &R_gtk_print_settings_set_printer, 2},
-    {"R_gtk_print_settings_set_printer_lpi", (DL_FUNC) &R_gtk_print_settings_set_printer_lpi, 2},
-    {"R_gtk_print_settings_set_quality", (DL_FUNC) &R_gtk_print_settings_set_quality, 2},
-    {"R_gtk_print_settings_set_resolution", (DL_FUNC) &R_gtk_print_settings_set_resolution, 2},
-    {"R_gtk_print_settings_set_resolution_xy", (DL_FUNC) &R_gtk_print_settings_set_resolution_xy, 3},
-    {"R_gtk_print_settings_set_reverse", (DL_FUNC) &R_gtk_print_settings_set_reverse, 2},
-    {"R_gtk_print_settings_set_scale", (DL_FUNC) &R_gtk_print_settings_set_scale, 2},
-    {"R_gtk_print_settings_set_use_color", (DL_FUNC) &R_gtk_print_settings_set_use_color, 2},
-    {"R_gtk_print_settings_to_file", (DL_FUNC) &R_gtk_print_settings_to_file, 2},
-    {"R_gtk_print_settings_to_gvariant", (DL_FUNC) &R_gtk_print_settings_to_gvariant, 1},
-    {"R_gtk_print_settings_to_key_file", (DL_FUNC) &R_gtk_print_settings_to_key_file, 3},
-    {"R_gtk_print_settings_unset", (DL_FUNC) &R_gtk_print_settings_unset, 2},
-    {"R_gtk_print_setup_get_page_setup", (DL_FUNC) &R_gtk_print_setup_get_page_setup, 1},
-    {"R_gtk_print_setup_get_print_settings", (DL_FUNC) &R_gtk_print_setup_get_print_settings, 1},
-    {"R_gtk_print_setup_ref", (DL_FUNC) &R_gtk_print_setup_ref, 1},
-    {"R_gtk_print_setup_unref", (DL_FUNC) &R_gtk_print_setup_unref, 1},
     {"R_gtk_progress_bar_new", (DL_FUNC) &R_gtk_progress_bar_new, 0},
     {"R_gtk_progress_bar_get_ellipsize", (DL_FUNC) &R_gtk_progress_bar_get_ellipsize, 1},
     {"R_gtk_progress_bar_get_fraction", (DL_FUNC) &R_gtk_progress_bar_get_fraction, 1},
@@ -13189,6 +13366,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_scale_get_value_pos", (DL_FUNC) &R_gtk_scale_get_value_pos, 1},
     {"R_gtk_scale_set_digits", (DL_FUNC) &R_gtk_scale_set_digits, 2},
     {"R_gtk_scale_set_draw_value", (DL_FUNC) &R_gtk_scale_set_draw_value, 2},
+    {"R_gtk_scale_set_format_value_func", (DL_FUNC) &R_gtk_scale_set_format_value_func, 4},
     {"R_gtk_scale_set_has_origin", (DL_FUNC) &R_gtk_scale_set_has_origin, 2},
     {"R_gtk_scale_set_value_pos", (DL_FUNC) &R_gtk_scale_set_value_pos, 2},
     {"R_gtk_scale_button_new", (DL_FUNC) &R_gtk_scale_button_new, 4},
@@ -13210,6 +13388,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_scroll_info_set_enable_horizontal", (DL_FUNC) &R_gtk_scroll_info_set_enable_horizontal, 2},
     {"R_gtk_scroll_info_set_enable_vertical", (DL_FUNC) &R_gtk_scroll_info_set_enable_vertical, 2},
     {"R_gtk_scroll_info_unref", (DL_FUNC) &R_gtk_scroll_info_unref, 1},
+    {"R_gtk_scrollable_get_border", (DL_FUNC) &R_gtk_scrollable_get_border, 1},
     {"R_gtk_scrollable_get_hadjustment", (DL_FUNC) &R_gtk_scrollable_get_hadjustment, 1},
     {"R_gtk_scrollable_get_hscroll_policy", (DL_FUNC) &R_gtk_scrollable_get_hscroll_policy, 1},
     {"R_gtk_scrollable_get_vadjustment", (DL_FUNC) &R_gtk_scrollable_get_vadjustment, 1},
@@ -13233,6 +13412,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_scrolled_window_get_min_content_width", (DL_FUNC) &R_gtk_scrolled_window_get_min_content_width, 1},
     {"R_gtk_scrolled_window_get_overlay_scrolling", (DL_FUNC) &R_gtk_scrolled_window_get_overlay_scrolling, 1},
     {"R_gtk_scrolled_window_get_placement", (DL_FUNC) &R_gtk_scrolled_window_get_placement, 1},
+    {"R_gtk_scrolled_window_get_policy", (DL_FUNC) &R_gtk_scrolled_window_get_policy, 1},
     {"R_gtk_scrolled_window_get_propagate_natural_height", (DL_FUNC) &R_gtk_scrolled_window_get_propagate_natural_height, 1},
     {"R_gtk_scrolled_window_get_propagate_natural_width", (DL_FUNC) &R_gtk_scrolled_window_get_propagate_natural_width, 1},
     {"R_gtk_scrolled_window_get_vadjustment", (DL_FUNC) &R_gtk_scrolled_window_get_vadjustment, 1},
@@ -13534,8 +13714,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_style_context_remove_provider_for_display", (DL_FUNC) &R_gtk_style_context_remove_provider_for_display, 2},
     {"R_gtk_style_context_add_class", (DL_FUNC) &R_gtk_style_context_add_class, 2},
     {"R_gtk_style_context_add_provider", (DL_FUNC) &R_gtk_style_context_add_provider, 3},
+    {"R_gtk_style_context_get_border", (DL_FUNC) &R_gtk_style_context_get_border, 1},
     {"R_gtk_style_context_get_color", (DL_FUNC) &R_gtk_style_context_get_color, 1},
     {"R_gtk_style_context_get_display", (DL_FUNC) &R_gtk_style_context_get_display, 1},
+    {"R_gtk_style_context_get_margin", (DL_FUNC) &R_gtk_style_context_get_margin, 1},
+    {"R_gtk_style_context_get_padding", (DL_FUNC) &R_gtk_style_context_get_padding, 1},
     {"R_gtk_style_context_get_scale", (DL_FUNC) &R_gtk_style_context_get_scale, 1},
     {"R_gtk_style_context_get_state", (DL_FUNC) &R_gtk_style_context_get_state, 1},
     {"R_gtk_style_context_has_class", (DL_FUNC) &R_gtk_style_context_has_class, 2},
@@ -13553,6 +13736,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_svg_new_from_resource", (DL_FUNC) &R_gtk_svg_new_from_resource, 1},
     {"R_gtk_svg_get_features", (DL_FUNC) &R_gtk_svg_get_features, 1},
     {"R_gtk_svg_get_state", (DL_FUNC) &R_gtk_svg_get_state, 1},
+    {"R_gtk_svg_get_state_names", (DL_FUNC) &R_gtk_svg_get_state_names, 1},
     {"R_gtk_svg_get_weight", (DL_FUNC) &R_gtk_svg_get_weight, 1},
     {"R_gtk_svg_load_from_bytes", (DL_FUNC) &R_gtk_svg_load_from_bytes, 2},
     {"R_gtk_svg_load_from_resource", (DL_FUNC) &R_gtk_svg_load_from_resource, 2},
@@ -13613,6 +13797,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_text_set_visibility", (DL_FUNC) &R_gtk_text_set_visibility, 2},
     {"R_gtk_text_unset_invisible_char", (DL_FUNC) &R_gtk_text_unset_invisible_char, 1},
     {"R_gtk_text_buffer_new", (DL_FUNC) &R_gtk_text_buffer_new, 1},
+    {"R_gtk_text_buffer_add_commit_notify", (DL_FUNC) &R_gtk_text_buffer_add_commit_notify, 5},
     {"R_gtk_text_buffer_add_mark", (DL_FUNC) &R_gtk_text_buffer_add_mark, 3},
     {"R_gtk_text_buffer_add_selection_clipboard", (DL_FUNC) &R_gtk_text_buffer_add_selection_clipboard, 2},
     {"R_gtk_text_buffer_apply_tag", (DL_FUNC) &R_gtk_text_buffer_apply_tag, 4},
@@ -13899,6 +14084,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_expander_set_list_row", (DL_FUNC) &R_gtk_tree_expander_set_list_row, 2},
     {"R_gtk_tree_iter_copy", (DL_FUNC) &R_gtk_tree_iter_copy, 1},
     {"R_gtk_tree_iter_free", (DL_FUNC) &R_gtk_tree_iter_free, 1},
+    {"R_gtk_tree_list_model_new", (DL_FUNC) &R_gtk_tree_list_model_new, 6},
     {"R_gtk_tree_list_model_get_autoexpand", (DL_FUNC) &R_gtk_tree_list_model_get_autoexpand, 1},
     {"R_gtk_tree_list_model_get_child_row", (DL_FUNC) &R_gtk_tree_list_model_get_child_row, 2},
     {"R_gtk_tree_list_model_get_model", (DL_FUNC) &R_gtk_tree_list_model_get_model, 1},
@@ -13918,14 +14104,22 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_list_row_sorter_get_sorter", (DL_FUNC) &R_gtk_tree_list_row_sorter_get_sorter, 1},
     {"R_gtk_tree_list_row_sorter_set_sorter", (DL_FUNC) &R_gtk_tree_list_row_sorter_set_sorter, 2},
     {"R_gtk_tree_model_filter_new", (DL_FUNC) &R_gtk_tree_model_filter_new, 2},
+    {"R_gtk_tree_model_foreach", (DL_FUNC) &R_gtk_tree_model_foreach, 3},
     {"R_gtk_tree_model_get_column_type", (DL_FUNC) &R_gtk_tree_model_get_column_type, 2},
     {"R_gtk_tree_model_get_flags", (DL_FUNC) &R_gtk_tree_model_get_flags, 1},
+    {"R_gtk_tree_model_get_iter", (DL_FUNC) &R_gtk_tree_model_get_iter, 2},
+    {"R_gtk_tree_model_get_iter_first", (DL_FUNC) &R_gtk_tree_model_get_iter_first, 1},
+    {"R_gtk_tree_model_get_iter_from_string", (DL_FUNC) &R_gtk_tree_model_get_iter_from_string, 2},
     {"R_gtk_tree_model_get_n_columns", (DL_FUNC) &R_gtk_tree_model_get_n_columns, 1},
     {"R_gtk_tree_model_get_path", (DL_FUNC) &R_gtk_tree_model_get_path, 2},
     {"R_gtk_tree_model_get_string_from_iter", (DL_FUNC) &R_gtk_tree_model_get_string_from_iter, 2},
+    {"R_gtk_tree_model_get_value", (DL_FUNC) &R_gtk_tree_model_get_value, 3},
+    {"R_gtk_tree_model_iter_children", (DL_FUNC) &R_gtk_tree_model_iter_children, 2},
     {"R_gtk_tree_model_iter_has_child", (DL_FUNC) &R_gtk_tree_model_iter_has_child, 2},
     {"R_gtk_tree_model_iter_n_children", (DL_FUNC) &R_gtk_tree_model_iter_n_children, 2},
     {"R_gtk_tree_model_iter_next", (DL_FUNC) &R_gtk_tree_model_iter_next, 2},
+    {"R_gtk_tree_model_iter_nth_child", (DL_FUNC) &R_gtk_tree_model_iter_nth_child, 3},
+    {"R_gtk_tree_model_iter_parent", (DL_FUNC) &R_gtk_tree_model_iter_parent, 2},
     {"R_gtk_tree_model_iter_previous", (DL_FUNC) &R_gtk_tree_model_iter_previous, 2},
     {"R_gtk_tree_model_ref_node", (DL_FUNC) &R_gtk_tree_model_ref_node, 2},
     {"R_gtk_tree_model_row_changed", (DL_FUNC) &R_gtk_tree_model_row_changed, 3},
@@ -13935,14 +14129,20 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_model_rows_reordered_with_length", (DL_FUNC) &R_gtk_tree_model_rows_reordered_with_length, 5},
     {"R_gtk_tree_model_unref_node", (DL_FUNC) &R_gtk_tree_model_unref_node, 2},
     {"R_gtk_tree_model_filter_clear_cache", (DL_FUNC) &R_gtk_tree_model_filter_clear_cache, 1},
+    {"R_gtk_tree_model_filter_convert_child_iter_to_iter", (DL_FUNC) &R_gtk_tree_model_filter_convert_child_iter_to_iter, 2},
     {"R_gtk_tree_model_filter_convert_child_path_to_path", (DL_FUNC) &R_gtk_tree_model_filter_convert_child_path_to_path, 2},
+    {"R_gtk_tree_model_filter_convert_iter_to_child_iter", (DL_FUNC) &R_gtk_tree_model_filter_convert_iter_to_child_iter, 2},
     {"R_gtk_tree_model_filter_convert_path_to_child_path", (DL_FUNC) &R_gtk_tree_model_filter_convert_path_to_child_path, 2},
     {"R_gtk_tree_model_filter_get_model", (DL_FUNC) &R_gtk_tree_model_filter_get_model, 1},
     {"R_gtk_tree_model_filter_refilter", (DL_FUNC) &R_gtk_tree_model_filter_refilter, 1},
+    {"R_gtk_tree_model_filter_set_modify_func", (DL_FUNC) &R_gtk_tree_model_filter_set_modify_func, 6},
     {"R_gtk_tree_model_filter_set_visible_column", (DL_FUNC) &R_gtk_tree_model_filter_set_visible_column, 2},
+    {"R_gtk_tree_model_filter_set_visible_func", (DL_FUNC) &R_gtk_tree_model_filter_set_visible_func, 4},
     {"R_gtk_tree_model_sort_new_with_model", (DL_FUNC) &R_gtk_tree_model_sort_new_with_model, 1},
     {"R_gtk_tree_model_sort_clear_cache", (DL_FUNC) &R_gtk_tree_model_sort_clear_cache, 1},
+    {"R_gtk_tree_model_sort_convert_child_iter_to_iter", (DL_FUNC) &R_gtk_tree_model_sort_convert_child_iter_to_iter, 2},
     {"R_gtk_tree_model_sort_convert_child_path_to_path", (DL_FUNC) &R_gtk_tree_model_sort_convert_child_path_to_path, 2},
+    {"R_gtk_tree_model_sort_convert_iter_to_child_iter", (DL_FUNC) &R_gtk_tree_model_sort_convert_iter_to_child_iter, 2},
     {"R_gtk_tree_model_sort_convert_path_to_child_path", (DL_FUNC) &R_gtk_tree_model_sort_convert_path_to_child_path, 2},
     {"R_gtk_tree_model_sort_get_model", (DL_FUNC) &R_gtk_tree_model_sort_get_model, 1},
     {"R_gtk_tree_model_sort_iter_is_valid", (DL_FUNC) &R_gtk_tree_model_sort_iter_is_valid, 2},
@@ -13976,6 +14176,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_row_reference_inserted", (DL_FUNC) &R_gtk_tree_row_reference_inserted, 2},
     {"R_gtk_tree_selection_count_selected_rows", (DL_FUNC) &R_gtk_tree_selection_count_selected_rows, 1},
     {"R_gtk_tree_selection_get_mode", (DL_FUNC) &R_gtk_tree_selection_get_mode, 1},
+    {"R_gtk_tree_selection_get_selected", (DL_FUNC) &R_gtk_tree_selection_get_selected, 1},
     {"R_gtk_tree_selection_get_selected_rows", (DL_FUNC) &R_gtk_tree_selection_get_selected_rows, 1},
     {"R_gtk_tree_selection_get_tree_view", (DL_FUNC) &R_gtk_tree_selection_get_tree_view, 1},
     {"R_gtk_tree_selection_iter_is_selected", (DL_FUNC) &R_gtk_tree_selection_iter_is_selected, 2},
@@ -13984,21 +14185,32 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_selection_select_iter", (DL_FUNC) &R_gtk_tree_selection_select_iter, 2},
     {"R_gtk_tree_selection_select_path", (DL_FUNC) &R_gtk_tree_selection_select_path, 2},
     {"R_gtk_tree_selection_select_range", (DL_FUNC) &R_gtk_tree_selection_select_range, 3},
+    {"R_gtk_tree_selection_selected_foreach", (DL_FUNC) &R_gtk_tree_selection_selected_foreach, 3},
     {"R_gtk_tree_selection_set_mode", (DL_FUNC) &R_gtk_tree_selection_set_mode, 2},
+    {"R_gtk_tree_selection_set_select_function", (DL_FUNC) &R_gtk_tree_selection_set_select_function, 4},
     {"R_gtk_tree_selection_unselect_all", (DL_FUNC) &R_gtk_tree_selection_unselect_all, 1},
     {"R_gtk_tree_selection_unselect_iter", (DL_FUNC) &R_gtk_tree_selection_unselect_iter, 2},
     {"R_gtk_tree_selection_unselect_path", (DL_FUNC) &R_gtk_tree_selection_unselect_path, 2},
     {"R_gtk_tree_selection_unselect_range", (DL_FUNC) &R_gtk_tree_selection_unselect_range, 3},
+    {"R_gtk_tree_sortable_get_sort_column_id", (DL_FUNC) &R_gtk_tree_sortable_get_sort_column_id, 1},
     {"R_gtk_tree_sortable_has_default_sort_func", (DL_FUNC) &R_gtk_tree_sortable_has_default_sort_func, 1},
+    {"R_gtk_tree_sortable_set_default_sort_func", (DL_FUNC) &R_gtk_tree_sortable_set_default_sort_func, 4},
     {"R_gtk_tree_sortable_set_sort_column_id", (DL_FUNC) &R_gtk_tree_sortable_set_sort_column_id, 3},
+    {"R_gtk_tree_sortable_set_sort_func", (DL_FUNC) &R_gtk_tree_sortable_set_sort_func, 5},
     {"R_gtk_tree_sortable_sort_column_changed", (DL_FUNC) &R_gtk_tree_sortable_sort_column_changed, 1},
     {"R_gtk_tree_store_newv", (DL_FUNC) &R_gtk_tree_store_newv, 2},
+    {"R_gtk_tree_store_append", (DL_FUNC) &R_gtk_tree_store_append, 2},
     {"R_gtk_tree_store_clear", (DL_FUNC) &R_gtk_tree_store_clear, 1},
+    {"R_gtk_tree_store_insert", (DL_FUNC) &R_gtk_tree_store_insert, 3},
+    {"R_gtk_tree_store_insert_after", (DL_FUNC) &R_gtk_tree_store_insert_after, 3},
+    {"R_gtk_tree_store_insert_before", (DL_FUNC) &R_gtk_tree_store_insert_before, 3},
+    {"R_gtk_tree_store_insert_with_valuesv", (DL_FUNC) &R_gtk_tree_store_insert_with_valuesv, 6},
     {"R_gtk_tree_store_is_ancestor", (DL_FUNC) &R_gtk_tree_store_is_ancestor, 3},
     {"R_gtk_tree_store_iter_depth", (DL_FUNC) &R_gtk_tree_store_iter_depth, 2},
     {"R_gtk_tree_store_iter_is_valid", (DL_FUNC) &R_gtk_tree_store_iter_is_valid, 2},
     {"R_gtk_tree_store_move_after", (DL_FUNC) &R_gtk_tree_store_move_after, 3},
     {"R_gtk_tree_store_move_before", (DL_FUNC) &R_gtk_tree_store_move_before, 3},
+    {"R_gtk_tree_store_prepend", (DL_FUNC) &R_gtk_tree_store_prepend, 2},
     {"R_gtk_tree_store_remove", (DL_FUNC) &R_gtk_tree_store_remove, 2},
     {"R_gtk_tree_store_set_column_types", (DL_FUNC) &R_gtk_tree_store_set_column_types, 3},
     {"R_gtk_tree_store_set_value", (DL_FUNC) &R_gtk_tree_store_set_value, 4},
@@ -14028,6 +14240,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_view_get_column", (DL_FUNC) &R_gtk_tree_view_get_column, 2},
     {"R_gtk_tree_view_get_columns", (DL_FUNC) &R_gtk_tree_view_get_columns, 1},
     {"R_gtk_tree_view_get_cursor", (DL_FUNC) &R_gtk_tree_view_get_cursor, 1},
+    {"R_gtk_tree_view_get_dest_row_at_pos", (DL_FUNC) &R_gtk_tree_view_get_dest_row_at_pos, 3},
+    {"R_gtk_tree_view_get_drag_dest_row", (DL_FUNC) &R_gtk_tree_view_get_drag_dest_row, 1},
     {"R_gtk_tree_view_get_enable_search", (DL_FUNC) &R_gtk_tree_view_get_enable_search, 1},
     {"R_gtk_tree_view_get_enable_tree_lines", (DL_FUNC) &R_gtk_tree_view_get_enable_tree_lines, 1},
     {"R_gtk_tree_view_get_expander_column", (DL_FUNC) &R_gtk_tree_view_get_expander_column, 1},
@@ -14048,11 +14262,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_view_get_selection", (DL_FUNC) &R_gtk_tree_view_get_selection, 1},
     {"R_gtk_tree_view_get_show_expanders", (DL_FUNC) &R_gtk_tree_view_get_show_expanders, 1},
     {"R_gtk_tree_view_get_tooltip_column", (DL_FUNC) &R_gtk_tree_view_get_tooltip_column, 1},
+    {"R_gtk_tree_view_get_tooltip_context", (DL_FUNC) &R_gtk_tree_view_get_tooltip_context, 4},
     {"R_gtk_tree_view_get_visible_range", (DL_FUNC) &R_gtk_tree_view_get_visible_range, 1},
     {"R_gtk_tree_view_get_visible_rect", (DL_FUNC) &R_gtk_tree_view_get_visible_rect, 1},
     {"R_gtk_tree_view_insert_column", (DL_FUNC) &R_gtk_tree_view_insert_column, 3},
+    {"R_gtk_tree_view_insert_column_with_data_func", (DL_FUNC) &R_gtk_tree_view_insert_column_with_data_func, 7},
     {"R_gtk_tree_view_is_blank_at_pos", (DL_FUNC) &R_gtk_tree_view_is_blank_at_pos, 3},
     {"R_gtk_tree_view_is_rubber_banding_active", (DL_FUNC) &R_gtk_tree_view_is_rubber_banding_active, 1},
+    {"R_gtk_tree_view_map_expanded_rows", (DL_FUNC) &R_gtk_tree_view_map_expanded_rows, 3},
     {"R_gtk_tree_view_move_column_after", (DL_FUNC) &R_gtk_tree_view_move_column_after, 3},
     {"R_gtk_tree_view_remove_column", (DL_FUNC) &R_gtk_tree_view_remove_column, 2},
     {"R_gtk_tree_view_row_activated", (DL_FUNC) &R_gtk_tree_view_row_activated, 3},
@@ -14060,6 +14277,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_view_scroll_to_cell", (DL_FUNC) &R_gtk_tree_view_scroll_to_cell, 6},
     {"R_gtk_tree_view_scroll_to_point", (DL_FUNC) &R_gtk_tree_view_scroll_to_point, 3},
     {"R_gtk_tree_view_set_activate_on_single_click", (DL_FUNC) &R_gtk_tree_view_set_activate_on_single_click, 2},
+    {"R_gtk_tree_view_set_column_drag_function", (DL_FUNC) &R_gtk_tree_view_set_column_drag_function, 4},
     {"R_gtk_tree_view_set_cursor", (DL_FUNC) &R_gtk_tree_view_set_cursor, 4},
     {"R_gtk_tree_view_set_cursor_on_cell", (DL_FUNC) &R_gtk_tree_view_set_cursor_on_cell, 5},
     {"R_gtk_tree_view_set_drag_dest_row", (DL_FUNC) &R_gtk_tree_view_set_drag_dest_row, 3},
@@ -14075,9 +14293,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_view_set_level_indentation", (DL_FUNC) &R_gtk_tree_view_set_level_indentation, 2},
     {"R_gtk_tree_view_set_model", (DL_FUNC) &R_gtk_tree_view_set_model, 2},
     {"R_gtk_tree_view_set_reorderable", (DL_FUNC) &R_gtk_tree_view_set_reorderable, 2},
+    {"R_gtk_tree_view_set_row_separator_func", (DL_FUNC) &R_gtk_tree_view_set_row_separator_func, 4},
     {"R_gtk_tree_view_set_rubber_banding", (DL_FUNC) &R_gtk_tree_view_set_rubber_banding, 2},
     {"R_gtk_tree_view_set_search_column", (DL_FUNC) &R_gtk_tree_view_set_search_column, 2},
     {"R_gtk_tree_view_set_search_entry", (DL_FUNC) &R_gtk_tree_view_set_search_entry, 2},
+    {"R_gtk_tree_view_set_search_equal_func", (DL_FUNC) &R_gtk_tree_view_set_search_equal_func, 4},
     {"R_gtk_tree_view_set_show_expanders", (DL_FUNC) &R_gtk_tree_view_set_show_expanders, 2},
     {"R_gtk_tree_view_set_tooltip_cell", (DL_FUNC) &R_gtk_tree_view_set_tooltip_cell, 5},
     {"R_gtk_tree_view_set_tooltip_column", (DL_FUNC) &R_gtk_tree_view_set_tooltip_column, 2},
@@ -14119,6 +14339,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_view_column_pack_start", (DL_FUNC) &R_gtk_tree_view_column_pack_start, 3},
     {"R_gtk_tree_view_column_queue_resize", (DL_FUNC) &R_gtk_tree_view_column_queue_resize, 1},
     {"R_gtk_tree_view_column_set_alignment", (DL_FUNC) &R_gtk_tree_view_column_set_alignment, 2},
+    {"R_gtk_tree_view_column_set_cell_data_func", (DL_FUNC) &R_gtk_tree_view_column_set_cell_data_func, 5},
     {"R_gtk_tree_view_column_set_clickable", (DL_FUNC) &R_gtk_tree_view_column_set_clickable, 2},
     {"R_gtk_tree_view_column_set_expand", (DL_FUNC) &R_gtk_tree_view_column_set_expand, 2},
     {"R_gtk_tree_view_column_set_fixed_width", (DL_FUNC) &R_gtk_tree_view_column_set_fixed_width, 2},
@@ -14138,6 +14359,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_uri_launcher_new", (DL_FUNC) &R_gtk_uri_launcher_new, 1},
     {"R_gtk_uri_launcher_can_launch", (DL_FUNC) &R_gtk_uri_launcher_can_launch, 2},
     {"R_gtk_uri_launcher_get_uri", (DL_FUNC) &R_gtk_uri_launcher_get_uri, 1},
+    {"R_gtk_uri_launcher_launch", (DL_FUNC) &R_gtk_uri_launcher_launch, 5},
     {"R_gtk_uri_launcher_launch_finish", (DL_FUNC) &R_gtk_uri_launcher_launch_finish, 2},
     {"R_gtk_uri_launcher_set_uri", (DL_FUNC) &R_gtk_uri_launcher_set_uri, 2},
     {"R_gtk_video_new", (DL_FUNC) &R_gtk_video_new, 0},
@@ -14173,11 +14395,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_widget_add_controller", (DL_FUNC) &R_gtk_widget_add_controller, 2},
     {"R_gtk_widget_add_css_class", (DL_FUNC) &R_gtk_widget_add_css_class, 2},
     {"R_gtk_widget_add_mnemonic_label", (DL_FUNC) &R_gtk_widget_add_mnemonic_label, 2},
+    {"R_gtk_widget_add_tick_callback", (DL_FUNC) &R_gtk_widget_add_tick_callback, 4},
     {"R_gtk_widget_allocate", (DL_FUNC) &R_gtk_widget_allocate, 5},
     {"R_gtk_widget_child_focus", (DL_FUNC) &R_gtk_widget_child_focus, 2},
     {"R_gtk_widget_compute_bounds", (DL_FUNC) &R_gtk_widget_compute_bounds, 2},
     {"R_gtk_widget_compute_expand", (DL_FUNC) &R_gtk_widget_compute_expand, 2},
     {"R_gtk_widget_compute_point", (DL_FUNC) &R_gtk_widget_compute_point, 3},
+    {"R_gtk_widget_compute_transform", (DL_FUNC) &R_gtk_widget_compute_transform, 2},
     {"R_gtk_widget_contains", (DL_FUNC) &R_gtk_widget_contains, 3},
     {"R_gtk_widget_create_pango_context", (DL_FUNC) &R_gtk_widget_create_pango_context, 1},
     {"R_gtk_widget_create_pango_layout", (DL_FUNC) &R_gtk_widget_create_pango_layout, 2},
@@ -14187,6 +14411,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_widget_get_allocated_baseline", (DL_FUNC) &R_gtk_widget_get_allocated_baseline, 1},
     {"R_gtk_widget_get_allocated_height", (DL_FUNC) &R_gtk_widget_get_allocated_height, 1},
     {"R_gtk_widget_get_allocated_width", (DL_FUNC) &R_gtk_widget_get_allocated_width, 1},
+    {"R_gtk_widget_get_allocation", (DL_FUNC) &R_gtk_widget_get_allocation, 1},
     {"R_gtk_widget_get_ancestor", (DL_FUNC) &R_gtk_widget_get_ancestor, 2},
     {"R_gtk_widget_get_baseline", (DL_FUNC) &R_gtk_widget_get_baseline, 1},
     {"R_gtk_widget_get_can_focus", (DL_FUNC) &R_gtk_widget_get_can_focus, 1},
@@ -14226,6 +14451,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_widget_get_overflow", (DL_FUNC) &R_gtk_widget_get_overflow, 1},
     {"R_gtk_widget_get_pango_context", (DL_FUNC) &R_gtk_widget_get_pango_context, 1},
     {"R_gtk_widget_get_parent", (DL_FUNC) &R_gtk_widget_get_parent, 1},
+    {"R_gtk_widget_get_preferred_size", (DL_FUNC) &R_gtk_widget_get_preferred_size, 1},
     {"R_gtk_widget_get_prev_sibling", (DL_FUNC) &R_gtk_widget_get_prev_sibling, 1},
     {"R_gtk_widget_get_primary_clipboard", (DL_FUNC) &R_gtk_widget_get_primary_clipboard, 1},
     {"R_gtk_widget_get_realized", (DL_FUNC) &R_gtk_widget_get_realized, 1},
@@ -14326,11 +14552,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_widget_unrealize", (DL_FUNC) &R_gtk_widget_unrealize, 1},
     {"R_gtk_widget_unset_state_flags", (DL_FUNC) &R_gtk_widget_unset_state_flags, 2},
     {"R_gtk_widget_class_add_shortcut", (DL_FUNC) &R_gtk_widget_class_add_shortcut, 2},
+    {"R_gtk_widget_class_bind_template_callback_full", (DL_FUNC) &R_gtk_widget_class_bind_template_callback_full, 3},
     {"R_gtk_widget_class_bind_template_child_full", (DL_FUNC) &R_gtk_widget_class_bind_template_child_full, 4},
     {"R_gtk_widget_class_get_accessible_role", (DL_FUNC) &R_gtk_widget_class_get_accessible_role, 1},
     {"R_gtk_widget_class_get_activate_signal", (DL_FUNC) &R_gtk_widget_class_get_activate_signal, 1},
     {"R_gtk_widget_class_get_css_name", (DL_FUNC) &R_gtk_widget_class_get_css_name, 1},
     {"R_gtk_widget_class_get_layout_manager_type", (DL_FUNC) &R_gtk_widget_class_get_layout_manager_type, 1},
+    {"R_gtk_widget_class_install_action", (DL_FUNC) &R_gtk_widget_class_install_action, 4},
     {"R_gtk_widget_class_install_property_action", (DL_FUNC) &R_gtk_widget_class_install_property_action, 3},
     {"R_gtk_widget_class_query_action", (DL_FUNC) &R_gtk_widget_class_query_action, 2},
     {"R_gtk_widget_class_set_accessible_role", (DL_FUNC) &R_gtk_widget_class_set_accessible_role, 2},
@@ -14429,6 +14657,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_accelerator_get_label_with_keycode", (DL_FUNC) &R_gtk_accelerator_get_label_with_keycode, 4},
     {"R_gtk_accelerator_name", (DL_FUNC) &R_gtk_accelerator_name, 2},
     {"R_gtk_accelerator_name_with_keycode", (DL_FUNC) &R_gtk_accelerator_name_with_keycode, 4},
+    {"R_gtk_accelerator_parse", (DL_FUNC) &R_gtk_accelerator_parse, 1},
+    {"R_gtk_accelerator_parse_with_keycode", (DL_FUNC) &R_gtk_accelerator_parse_with_keycode, 2},
     {"R_gtk_accelerator_valid", (DL_FUNC) &R_gtk_accelerator_valid, 2},
     {"R_gtk_check_version", (DL_FUNC) &R_gtk_check_version, 3},
     {"R_gtk_css_parser_error_quark", (DL_FUNC) &R_gtk_css_parser_error_quark, 0},
@@ -14450,7 +14680,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_init_check", (DL_FUNC) &R_gtk_init_check, 0},
     {"R_gtk_is_initialized", (DL_FUNC) &R_gtk_is_initialized, 0},
     {"R_gtk_param_spec_expression", (DL_FUNC) &R_gtk_param_spec_expression, 4},
-    {"R_gtk_print_run_page_setup_dialog", (DL_FUNC) &R_gtk_print_run_page_setup_dialog, 3},
     {"R_gtk_render_activity", (DL_FUNC) &R_gtk_render_activity, 6},
     {"R_gtk_render_arrow", (DL_FUNC) &R_gtk_render_arrow, 6},
     {"R_gtk_render_background", (DL_FUNC) &R_gtk_render_background, 6},
@@ -14466,6 +14695,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_rgb_to_hsv", (DL_FUNC) &R_gtk_rgb_to_hsv, 3},
     {"R_gtk_set_debug_flags", (DL_FUNC) &R_gtk_set_debug_flags, 1},
     {"R_gtk_show_uri", (DL_FUNC) &R_gtk_show_uri, 3},
+    {"R_gtk_show_uri_full", (DL_FUNC) &R_gtk_show_uri_full, 6},
     {"R_gtk_show_uri_full_finish", (DL_FUNC) &R_gtk_show_uri_full_finish, 2},
     {"R_gtk_test_accessible_assertion_message_role", (DL_FUNC) &R_gtk_test_accessible_assertion_message_role, 8},
     {"R_gtk_test_accessible_has_property", (DL_FUNC) &R_gtk_test_accessible_has_property, 2},

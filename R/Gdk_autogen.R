@@ -7,7 +7,7 @@
 #' @return Display
 #' @export
 gdkAppLaunchContextGetDisplay <- function(context) {
-  .Call("R_gdk_app_launch_context_get_display", context)
+  .Call("R_gdk_app_launch_context_get_display", context)$result
 }
 
 
@@ -66,7 +66,7 @@ gdkAppLaunchContextSetTimestamp <- function(context, timestamp) {
 #' @return guint
 #' @export
 gdkButtonEventGetButton <- function(event) {
-  .Call("R_gdk_button_event_get_button", event)
+  .Call("R_gdk_button_event_get_button", event)$result
 }
 
 
@@ -77,7 +77,7 @@ gdkButtonEventGetButton <- function(event) {
 #' @return cairo.Context
 #' @export
 gdkCairoContextCairoCreate <- function(self) {
-  .Call("R_gdk_cairo_context_cairo_create", self)
+  .Call("R_gdk_cairo_context_cairo_create", self)$result
 }
 
 
@@ -87,7 +87,7 @@ gdkCairoContextCairoCreate <- function(self) {
 #' @return CicpParams
 #' @export
 gdkCicpParamsNew <- function() {
-  .Call("R_gdk_cicp_params_new")
+  .Call("R_gdk_cicp_params_new")$result
 }
 
 
@@ -98,7 +98,7 @@ gdkCicpParamsNew <- function() {
 #' @return ColorState
 #' @export
 gdkCicpParamsBuildColorState <- function(self) {
-  .Call("R_gdk_cicp_params_build_color_state", self)
+  .Call("R_gdk_cicp_params_build_color_state", self)$result
 }
 
 
@@ -109,7 +109,7 @@ gdkCicpParamsBuildColorState <- function(self) {
 #' @return guint
 #' @export
 gdkCicpParamsGetColorPrimaries <- function(self) {
-  .Call("R_gdk_cicp_params_get_color_primaries", self)
+  .Call("R_gdk_cicp_params_get_color_primaries", self)$result
 }
 
 
@@ -120,7 +120,7 @@ gdkCicpParamsGetColorPrimaries <- function(self) {
 #' @return guint
 #' @export
 gdkCicpParamsGetMatrixCoefficients <- function(self) {
-  .Call("R_gdk_cicp_params_get_matrix_coefficients", self)
+  .Call("R_gdk_cicp_params_get_matrix_coefficients", self)$result
 }
 
 
@@ -131,7 +131,7 @@ gdkCicpParamsGetMatrixCoefficients <- function(self) {
 #' @return CicpRange
 #' @export
 gdkCicpParamsGetRange <- function(self) {
-  .Call("R_gdk_cicp_params_get_range", self)
+  .Call("R_gdk_cicp_params_get_range", self)$result
 }
 
 
@@ -142,7 +142,7 @@ gdkCicpParamsGetRange <- function(self) {
 #' @return guint
 #' @export
 gdkCicpParamsGetTransferFunction <- function(self) {
-  .Call("R_gdk_cicp_params_get_transfer_function", self)
+  .Call("R_gdk_cicp_params_get_transfer_function", self)$result
 }
 
 
@@ -201,7 +201,7 @@ gdkCicpParamsSetTransferFunction <- function(self, transfer_function) {
 #' @return ContentProvider
 #' @export
 gdkClipboardGetContent <- function(clipboard) {
-  .Call("R_gdk_clipboard_get_content", clipboard)
+  .Call("R_gdk_clipboard_get_content", clipboard)$result
 }
 
 
@@ -212,7 +212,7 @@ gdkClipboardGetContent <- function(clipboard) {
 #' @return Display
 #' @export
 gdkClipboardGetDisplay <- function(clipboard) {
-  .Call("R_gdk_clipboard_get_display", clipboard)
+  .Call("R_gdk_clipboard_get_display", clipboard)$result
 }
 
 
@@ -223,7 +223,7 @@ gdkClipboardGetDisplay <- function(clipboard) {
 #' @return ContentFormats
 #' @export
 gdkClipboardGetFormats <- function(clipboard) {
-  .Call("R_gdk_clipboard_get_formats", clipboard)
+  .Call("R_gdk_clipboard_get_formats", clipboard)$result
 }
 
 
@@ -234,7 +234,7 @@ gdkClipboardGetFormats <- function(clipboard) {
 #' @return gboolean
 #' @export
 gdkClipboardIsLocal <- function(clipboard) {
-  .Call("R_gdk_clipboard_is_local", clipboard)
+  .Call("R_gdk_clipboard_is_local", clipboard)$result
 }
 
 
@@ -258,7 +258,7 @@ gdkClipboardReadFinish <- function(clipboard, result) {
 #' @return utf8
 #' @export
 gdkClipboardReadTextFinish <- function(clipboard, result) {
-  .Call("R_gdk_clipboard_read_text_finish", clipboard, result)
+  .Call("R_gdk_clipboard_read_text_finish", clipboard, result)$result
 }
 
 
@@ -270,7 +270,7 @@ gdkClipboardReadTextFinish <- function(clipboard, result) {
 #' @return Texture
 #' @export
 gdkClipboardReadTextureFinish <- function(clipboard, result) {
-  .Call("R_gdk_clipboard_read_texture_finish", clipboard, result)
+  .Call("R_gdk_clipboard_read_texture_finish", clipboard, result)$result
 }
 
 
@@ -282,7 +282,7 @@ gdkClipboardReadTextureFinish <- function(clipboard, result) {
 #' @return GObject.Value
 #' @export
 gdkClipboardReadValueFinish <- function(clipboard, result) {
-  .Call("R_gdk_clipboard_read_value_finish", clipboard, result)
+  .Call("R_gdk_clipboard_read_value_finish", clipboard, result)$result
 }
 
 
@@ -294,7 +294,7 @@ gdkClipboardReadValueFinish <- function(clipboard, result) {
 #' @return gboolean
 #' @export
 gdkClipboardSetContent <- function(clipboard, provider) {
-  .Call("R_gdk_clipboard_set_content", clipboard, provider)
+  .Call("R_gdk_clipboard_set_content", clipboard, provider)$result
 }
 
 
@@ -318,7 +318,7 @@ gdkClipboardSetValue <- function(clipboard, value) {
 #' @return gboolean
 #' @export
 gdkClipboardStoreFinish <- function(clipboard, result) {
-  .Call("R_gdk_clipboard_store_finish", clipboard, result)
+  .Call("R_gdk_clipboard_store_finish", clipboard, result)$result
 }
 
 
@@ -329,7 +329,7 @@ gdkClipboardStoreFinish <- function(clipboard, result) {
 #' @return CicpParams
 #' @export
 gdkColorStateCreateCicpParams <- function(self) {
-  .Call("R_gdk_color_state_create_cicp_params", self)
+  .Call("R_gdk_color_state_create_cicp_params", self)$result
 }
 
 
@@ -341,7 +341,7 @@ gdkColorStateCreateCicpParams <- function(self) {
 #' @return gboolean
 #' @export
 gdkColorStateEqual <- function(self, other) {
-  .Call("R_gdk_color_state_equal", self, other)
+  .Call("R_gdk_color_state_equal", self, other)$result
 }
 
 
@@ -353,7 +353,7 @@ gdkColorStateEqual <- function(self, other) {
 #' @return gboolean
 #' @export
 gdkColorStateEquivalent <- function(self, other) {
-  .Call("R_gdk_color_state_equivalent", self, other)
+  .Call("R_gdk_color_state_equivalent", self, other)$result
 }
 
 
@@ -364,7 +364,7 @@ gdkColorStateEquivalent <- function(self, other) {
 #' @return ColorState
 #' @export
 gdkColorStateRef <- function(self) {
-  .Call("R_gdk_color_state_ref", self)
+  .Call("R_gdk_color_state_ref", self)$result
 }
 
 
@@ -385,7 +385,7 @@ gdkColorStateUnref <- function(self) {
 #' @return ColorState
 #' @export
 gdkColorStateGetOklab <- function() {
-  .Call("R_gdk_color_state_get_oklab")
+  .Call("R_gdk_color_state_get_oklab")$result
 }
 
 
@@ -395,7 +395,7 @@ gdkColorStateGetOklab <- function() {
 #' @return ColorState
 #' @export
 gdkColorStateGetOklch <- function() {
-  .Call("R_gdk_color_state_get_oklch")
+  .Call("R_gdk_color_state_get_oklch")$result
 }
 
 
@@ -405,7 +405,7 @@ gdkColorStateGetOklch <- function() {
 #' @return ColorState
 #' @export
 gdkColorStateGetRec2100Linear <- function() {
-  .Call("R_gdk_color_state_get_rec2100_linear")
+  .Call("R_gdk_color_state_get_rec2100_linear")$result
 }
 
 
@@ -415,7 +415,7 @@ gdkColorStateGetRec2100Linear <- function() {
 #' @return ColorState
 #' @export
 gdkColorStateGetRec2100Pq <- function() {
-  .Call("R_gdk_color_state_get_rec2100_pq")
+  .Call("R_gdk_color_state_get_rec2100_pq")$result
 }
 
 
@@ -425,7 +425,7 @@ gdkColorStateGetRec2100Pq <- function() {
 #' @return ColorState
 #' @export
 gdkColorStateGetSrgb <- function() {
-  .Call("R_gdk_color_state_get_srgb")
+  .Call("R_gdk_color_state_get_srgb")$result
 }
 
 
@@ -435,7 +435,7 @@ gdkColorStateGetSrgb <- function() {
 #' @return ColorState
 #' @export
 gdkColorStateGetSrgbLinear <- function() {
-  .Call("R_gdk_color_state_get_srgb_linear")
+  .Call("R_gdk_color_state_get_srgb_linear")$result
 }
 
 
@@ -446,7 +446,7 @@ gdkColorStateGetSrgbLinear <- function() {
 #' @return Gio.Cancellable
 #' @export
 gdkContentDeserializerGetCancellable <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_get_cancellable", deserializer)
+  .Call("R_gdk_content_deserializer_get_cancellable", deserializer)$result
 }
 
 
@@ -457,7 +457,7 @@ gdkContentDeserializerGetCancellable <- function(deserializer) {
 #' @return GType
 #' @export
 gdkContentDeserializerGetGtype <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_get_gtype", deserializer)
+  .Call("R_gdk_content_deserializer_get_gtype", deserializer)$result
 }
 
 
@@ -468,7 +468,7 @@ gdkContentDeserializerGetGtype <- function(deserializer) {
 #' @return Gio.InputStream
 #' @export
 gdkContentDeserializerGetInputStream <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_get_input_stream", deserializer)
+  .Call("R_gdk_content_deserializer_get_input_stream", deserializer)$result
 }
 
 
@@ -479,7 +479,7 @@ gdkContentDeserializerGetInputStream <- function(deserializer) {
 #' @return utf8
 #' @export
 gdkContentDeserializerGetMimeType <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_get_mime_type", deserializer)
+  .Call("R_gdk_content_deserializer_get_mime_type", deserializer)$result
 }
 
 
@@ -490,7 +490,7 @@ gdkContentDeserializerGetMimeType <- function(deserializer) {
 #' @return gint
 #' @export
 gdkContentDeserializerGetPriority <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_get_priority", deserializer)
+  .Call("R_gdk_content_deserializer_get_priority", deserializer)$result
 }
 
 
@@ -501,7 +501,7 @@ gdkContentDeserializerGetPriority <- function(deserializer) {
 #' @return gpointer
 #' @export
 gdkContentDeserializerGetTaskData <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_get_task_data", deserializer)
+  .Call("R_gdk_content_deserializer_get_task_data", deserializer)$result
 }
 
 
@@ -512,7 +512,7 @@ gdkContentDeserializerGetTaskData <- function(deserializer) {
 #' @return gpointer
 #' @export
 gdkContentDeserializerGetUserData <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_get_user_data", deserializer)
+  .Call("R_gdk_content_deserializer_get_user_data", deserializer)$result
 }
 
 
@@ -523,7 +523,7 @@ gdkContentDeserializerGetUserData <- function(deserializer) {
 #' @return GObject.Value
 #' @export
 gdkContentDeserializerGetValue <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_get_value", deserializer)
+  .Call("R_gdk_content_deserializer_get_value", deserializer)$result
 }
 
 
@@ -558,7 +558,7 @@ gdkContentDeserializerReturnSuccess <- function(deserializer) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsNew <- function(mime_types, n_mime_types) {
-  .Call("R_gdk_content_formats_new", mime_types, n_mime_types)
+  .Call("R_gdk_content_formats_new", mime_types, n_mime_types)$result
 }
 
 
@@ -569,7 +569,7 @@ gdkContentFormatsNew <- function(mime_types, n_mime_types) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsNewForGtype <- function(type) {
-  .Call("R_gdk_content_formats_new_for_gtype", type)
+  .Call("R_gdk_content_formats_new_for_gtype", type)$result
 }
 
 
@@ -581,7 +581,7 @@ gdkContentFormatsNewForGtype <- function(type) {
 #' @return gboolean
 #' @export
 gdkContentFormatsContainGtype <- function(formats, type) {
-  .Call("R_gdk_content_formats_contain_gtype", formats, type)
+  .Call("R_gdk_content_formats_contain_gtype", formats, type)$result
 }
 
 
@@ -593,7 +593,7 @@ gdkContentFormatsContainGtype <- function(formats, type) {
 #' @return gboolean
 #' @export
 gdkContentFormatsContainMimeType <- function(formats, mime_type) {
-  .Call("R_gdk_content_formats_contain_mime_type", formats, mime_type)
+  .Call("R_gdk_content_formats_contain_mime_type", formats, mime_type)$result
 }
 
 
@@ -626,7 +626,7 @@ gdkContentFormatsGetMimeTypes <- function(formats) {
 #' @return gboolean
 #' @export
 gdkContentFormatsIsEmpty <- function(formats) {
-  .Call("R_gdk_content_formats_is_empty", formats)
+  .Call("R_gdk_content_formats_is_empty", formats)$result
 }
 
 
@@ -638,7 +638,7 @@ gdkContentFormatsIsEmpty <- function(formats) {
 #' @return gboolean
 #' @export
 gdkContentFormatsMatch <- function(first, second) {
-  .Call("R_gdk_content_formats_match", first, second)
+  .Call("R_gdk_content_formats_match", first, second)$result
 }
 
 
@@ -650,7 +650,7 @@ gdkContentFormatsMatch <- function(first, second) {
 #' @return GType
 #' @export
 gdkContentFormatsMatchGtype <- function(first, second) {
-  .Call("R_gdk_content_formats_match_gtype", first, second)
+  .Call("R_gdk_content_formats_match_gtype", first, second)$result
 }
 
 
@@ -662,7 +662,7 @@ gdkContentFormatsMatchGtype <- function(first, second) {
 #' @return utf8
 #' @export
 gdkContentFormatsMatchMimeType <- function(first, second) {
-  .Call("R_gdk_content_formats_match_mime_type", first, second)
+  .Call("R_gdk_content_formats_match_mime_type", first, second)$result
 }
 
 
@@ -685,7 +685,7 @@ gdkContentFormatsPrint <- function(formats, string) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsRef <- function(formats) {
-  .Call("R_gdk_content_formats_ref", formats)
+  .Call("R_gdk_content_formats_ref", formats)$result
 }
 
 
@@ -696,7 +696,7 @@ gdkContentFormatsRef <- function(formats) {
 #' @return utf8
 #' @export
 gdkContentFormatsToString <- function(formats) {
-  .Call("R_gdk_content_formats_to_string", formats)
+  .Call("R_gdk_content_formats_to_string", formats)$result
 }
 
 
@@ -708,7 +708,7 @@ gdkContentFormatsToString <- function(formats) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsUnion <- function(first, second) {
-  .Call("R_gdk_content_formats_union", first, second)
+  .Call("R_gdk_content_formats_union", first, second)$result
 }
 
 
@@ -719,7 +719,7 @@ gdkContentFormatsUnion <- function(first, second) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsUnionDeserializeGtypes <- function(formats) {
-  .Call("R_gdk_content_formats_union_deserialize_gtypes", formats)
+  .Call("R_gdk_content_formats_union_deserialize_gtypes", formats)$result
 }
 
 
@@ -730,7 +730,7 @@ gdkContentFormatsUnionDeserializeGtypes <- function(formats) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsUnionDeserializeMimeTypes <- function(formats) {
-  .Call("R_gdk_content_formats_union_deserialize_mime_types", formats)
+  .Call("R_gdk_content_formats_union_deserialize_mime_types", formats)$result
 }
 
 
@@ -741,7 +741,7 @@ gdkContentFormatsUnionDeserializeMimeTypes <- function(formats) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsUnionSerializeGtypes <- function(formats) {
-  .Call("R_gdk_content_formats_union_serialize_gtypes", formats)
+  .Call("R_gdk_content_formats_union_serialize_gtypes", formats)$result
 }
 
 
@@ -752,7 +752,7 @@ gdkContentFormatsUnionSerializeGtypes <- function(formats) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsUnionSerializeMimeTypes <- function(formats) {
-  .Call("R_gdk_content_formats_union_serialize_mime_types", formats)
+  .Call("R_gdk_content_formats_union_serialize_mime_types", formats)$result
 }
 
 
@@ -774,7 +774,7 @@ gdkContentFormatsUnref <- function(formats) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsParse <- function(string) {
-  .Call("R_gdk_content_formats_parse", string)
+  .Call("R_gdk_content_formats_parse", string)$result
 }
 
 
@@ -784,7 +784,7 @@ gdkContentFormatsParse <- function(string) {
 #' @return ContentFormatsBuilder
 #' @export
 gdkContentFormatsBuilderNew <- function() {
-  .Call("R_gdk_content_formats_builder_new")
+  .Call("R_gdk_content_formats_builder_new")$result
 }
 
 
@@ -831,7 +831,7 @@ gdkContentFormatsBuilderAddMimeType <- function(builder, mime_type) {
 #' @return ContentFormatsBuilder
 #' @export
 gdkContentFormatsBuilderRef <- function(builder) {
-  .Call("R_gdk_content_formats_builder_ref", builder)
+  .Call("R_gdk_content_formats_builder_ref", builder)$result
 }
 
 
@@ -842,7 +842,7 @@ gdkContentFormatsBuilderRef <- function(builder) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsBuilderToFormats <- function(builder) {
-  .Call("R_gdk_content_formats_builder_to_formats", builder)
+  .Call("R_gdk_content_formats_builder_to_formats", builder)$result
 }
 
 
@@ -865,7 +865,7 @@ gdkContentFormatsBuilderUnref <- function(builder) {
 #' @return ContentProvider
 #' @export
 gdkContentProviderNewForBytes <- function(mime_type, bytes) {
-  .Call("R_gdk_content_provider_new_for_bytes", mime_type, bytes)
+  .Call("R_gdk_content_provider_new_for_bytes", mime_type, bytes)$result
 }
 
 
@@ -876,7 +876,7 @@ gdkContentProviderNewForBytes <- function(mime_type, bytes) {
 #' @return ContentProvider
 #' @export
 gdkContentProviderNewForValue <- function(value) {
-  .Call("R_gdk_content_provider_new_for_value", value)
+  .Call("R_gdk_content_provider_new_for_value", value)$result
 }
 
 
@@ -888,7 +888,7 @@ gdkContentProviderNewForValue <- function(value) {
 #' @return ContentProvider
 #' @export
 gdkContentProviderNewUnion <- function(providers, n_providers) {
-  .Call("R_gdk_content_provider_new_union", providers, n_providers)
+  .Call("R_gdk_content_provider_new_union", providers, n_providers)$result
 }
 
 
@@ -921,7 +921,7 @@ gdkContentProviderGetValue <- function(provider) {
 #' @return ContentFormats
 #' @export
 gdkContentProviderRefFormats <- function(provider) {
-  .Call("R_gdk_content_provider_ref_formats", provider)
+  .Call("R_gdk_content_provider_ref_formats", provider)$result
 }
 
 
@@ -932,7 +932,7 @@ gdkContentProviderRefFormats <- function(provider) {
 #' @return ContentFormats
 #' @export
 gdkContentProviderRefStorableFormats <- function(provider) {
-  .Call("R_gdk_content_provider_ref_storable_formats", provider)
+  .Call("R_gdk_content_provider_ref_storable_formats", provider)$result
 }
 
 
@@ -944,7 +944,7 @@ gdkContentProviderRefStorableFormats <- function(provider) {
 #' @return gboolean
 #' @export
 gdkContentProviderWriteMimeTypeFinish <- function(provider, result) {
-  .Call("R_gdk_content_provider_write_mime_type_finish", provider, result)
+  .Call("R_gdk_content_provider_write_mime_type_finish", provider, result)$result
 }
 
 
@@ -955,7 +955,7 @@ gdkContentProviderWriteMimeTypeFinish <- function(provider, result) {
 #' @return Gio.Cancellable
 #' @export
 gdkContentSerializerGetCancellable <- function(serializer) {
-  .Call("R_gdk_content_serializer_get_cancellable", serializer)
+  .Call("R_gdk_content_serializer_get_cancellable", serializer)$result
 }
 
 
@@ -966,7 +966,7 @@ gdkContentSerializerGetCancellable <- function(serializer) {
 #' @return GType
 #' @export
 gdkContentSerializerGetGtype <- function(serializer) {
-  .Call("R_gdk_content_serializer_get_gtype", serializer)
+  .Call("R_gdk_content_serializer_get_gtype", serializer)$result
 }
 
 
@@ -977,7 +977,7 @@ gdkContentSerializerGetGtype <- function(serializer) {
 #' @return utf8
 #' @export
 gdkContentSerializerGetMimeType <- function(serializer) {
-  .Call("R_gdk_content_serializer_get_mime_type", serializer)
+  .Call("R_gdk_content_serializer_get_mime_type", serializer)$result
 }
 
 
@@ -988,7 +988,7 @@ gdkContentSerializerGetMimeType <- function(serializer) {
 #' @return Gio.OutputStream
 #' @export
 gdkContentSerializerGetOutputStream <- function(serializer) {
-  .Call("R_gdk_content_serializer_get_output_stream", serializer)
+  .Call("R_gdk_content_serializer_get_output_stream", serializer)$result
 }
 
 
@@ -999,7 +999,7 @@ gdkContentSerializerGetOutputStream <- function(serializer) {
 #' @return gint
 #' @export
 gdkContentSerializerGetPriority <- function(serializer) {
-  .Call("R_gdk_content_serializer_get_priority", serializer)
+  .Call("R_gdk_content_serializer_get_priority", serializer)$result
 }
 
 
@@ -1010,7 +1010,7 @@ gdkContentSerializerGetPriority <- function(serializer) {
 #' @return gpointer
 #' @export
 gdkContentSerializerGetTaskData <- function(serializer) {
-  .Call("R_gdk_content_serializer_get_task_data", serializer)
+  .Call("R_gdk_content_serializer_get_task_data", serializer)$result
 }
 
 
@@ -1021,7 +1021,7 @@ gdkContentSerializerGetTaskData <- function(serializer) {
 #' @return gpointer
 #' @export
 gdkContentSerializerGetUserData <- function(serializer) {
-  .Call("R_gdk_content_serializer_get_user_data", serializer)
+  .Call("R_gdk_content_serializer_get_user_data", serializer)$result
 }
 
 
@@ -1032,7 +1032,7 @@ gdkContentSerializerGetUserData <- function(serializer) {
 #' @return GObject.Value
 #' @export
 gdkContentSerializerGetValue <- function(serializer) {
-  .Call("R_gdk_content_serializer_get_value", serializer)
+  .Call("R_gdk_content_serializer_get_value", serializer)$result
 }
 
 
@@ -1066,7 +1066,7 @@ gdkContentSerializerReturnSuccess <- function(serializer) {
 #' @return NotifyType
 #' @export
 gdkCrossingEventGetDetail <- function(event) {
-  .Call("R_gdk_crossing_event_get_detail", event)
+  .Call("R_gdk_crossing_event_get_detail", event)$result
 }
 
 
@@ -1077,7 +1077,7 @@ gdkCrossingEventGetDetail <- function(event) {
 #' @return gboolean
 #' @export
 gdkCrossingEventGetFocus <- function(event) {
-  .Call("R_gdk_crossing_event_get_focus", event)
+  .Call("R_gdk_crossing_event_get_focus", event)$result
 }
 
 
@@ -1088,7 +1088,7 @@ gdkCrossingEventGetFocus <- function(event) {
 #' @return CrossingMode
 #' @export
 gdkCrossingEventGetMode <- function(event) {
-  .Call("R_gdk_crossing_event_get_mode", event)
+  .Call("R_gdk_crossing_event_get_mode", event)$result
 }
 
 
@@ -1100,7 +1100,7 @@ gdkCrossingEventGetMode <- function(event) {
 #' @return Cursor
 #' @export
 gdkCursorNewFromName <- function(name, fallback) {
-  .Call("R_gdk_cursor_new_from_name", name, fallback)
+  .Call("R_gdk_cursor_new_from_name", name, fallback)$result
 }
 
 
@@ -1114,7 +1114,7 @@ gdkCursorNewFromName <- function(name, fallback) {
 #' @return Cursor
 #' @export
 gdkCursorNewFromTexture <- function(texture, hotspot_x, hotspot_y, fallback) {
-  .Call("R_gdk_cursor_new_from_texture", texture, hotspot_x, hotspot_y, fallback)
+  .Call("R_gdk_cursor_new_from_texture", texture, hotspot_x, hotspot_y, fallback)$result
 }
 
 
@@ -1125,7 +1125,7 @@ gdkCursorNewFromTexture <- function(texture, hotspot_x, hotspot_y, fallback) {
 #' @return Cursor
 #' @export
 gdkCursorGetFallback <- function(cursor) {
-  .Call("R_gdk_cursor_get_fallback", cursor)
+  .Call("R_gdk_cursor_get_fallback", cursor)$result
 }
 
 
@@ -1136,7 +1136,7 @@ gdkCursorGetFallback <- function(cursor) {
 #' @return gint
 #' @export
 gdkCursorGetHotspotX <- function(cursor) {
-  .Call("R_gdk_cursor_get_hotspot_x", cursor)
+  .Call("R_gdk_cursor_get_hotspot_x", cursor)$result
 }
 
 
@@ -1147,7 +1147,7 @@ gdkCursorGetHotspotX <- function(cursor) {
 #' @return gint
 #' @export
 gdkCursorGetHotspotY <- function(cursor) {
-  .Call("R_gdk_cursor_get_hotspot_y", cursor)
+  .Call("R_gdk_cursor_get_hotspot_y", cursor)$result
 }
 
 
@@ -1158,7 +1158,7 @@ gdkCursorGetHotspotY <- function(cursor) {
 #' @return utf8
 #' @export
 gdkCursorGetName <- function(cursor) {
-  .Call("R_gdk_cursor_get_name", cursor)
+  .Call("R_gdk_cursor_get_name", cursor)$result
 }
 
 
@@ -1169,7 +1169,7 @@ gdkCursorGetName <- function(cursor) {
 #' @return Texture
 #' @export
 gdkCursorGetTexture <- function(cursor) {
-  .Call("R_gdk_cursor_get_texture", cursor)
+  .Call("R_gdk_cursor_get_texture", cursor)$result
 }
 
 
@@ -1180,7 +1180,7 @@ gdkCursorGetTexture <- function(cursor) {
 #' @return Drop
 #' @export
 gdkDndEventGetDrop <- function(event) {
-  .Call("R_gdk_dnd_event_get_drop", event)
+  .Call("R_gdk_dnd_event_get_drop", event)$result
 }
 
 
@@ -1191,7 +1191,7 @@ gdkDndEventGetDrop <- function(event) {
 #' @return gint
 #' @export
 gdkDeviceGetActiveLayoutIndex <- function(device) {
-  .Call("R_gdk_device_get_active_layout_index", device)
+  .Call("R_gdk_device_get_active_layout_index", device)$result
 }
 
 
@@ -1202,7 +1202,7 @@ gdkDeviceGetActiveLayoutIndex <- function(device) {
 #' @return gboolean
 #' @export
 gdkDeviceGetCapsLockState <- function(device) {
-  .Call("R_gdk_device_get_caps_lock_state", device)
+  .Call("R_gdk_device_get_caps_lock_state", device)$result
 }
 
 
@@ -1213,7 +1213,7 @@ gdkDeviceGetCapsLockState <- function(device) {
 #' @return DeviceTool
 #' @export
 gdkDeviceGetDeviceTool <- function(device) {
-  .Call("R_gdk_device_get_device_tool", device)
+  .Call("R_gdk_device_get_device_tool", device)$result
 }
 
 
@@ -1224,7 +1224,7 @@ gdkDeviceGetDeviceTool <- function(device) {
 #' @return Pango.Direction
 #' @export
 gdkDeviceGetDirection <- function(device) {
-  .Call("R_gdk_device_get_direction", device)
+  .Call("R_gdk_device_get_direction", device)$result
 }
 
 
@@ -1235,7 +1235,7 @@ gdkDeviceGetDirection <- function(device) {
 #' @return Display
 #' @export
 gdkDeviceGetDisplay <- function(device) {
-  .Call("R_gdk_device_get_display", device)
+  .Call("R_gdk_device_get_display", device)$result
 }
 
 
@@ -1246,7 +1246,7 @@ gdkDeviceGetDisplay <- function(device) {
 #' @return gboolean
 #' @export
 gdkDeviceGetHasCursor <- function(device) {
-  .Call("R_gdk_device_get_has_cursor", device)
+  .Call("R_gdk_device_get_has_cursor", device)$result
 }
 
 
@@ -1257,7 +1257,7 @@ gdkDeviceGetHasCursor <- function(device) {
 #' @return utf8
 #' @export
 gdkDeviceGetLayoutNames <- function(device) {
-  .Call("R_gdk_device_get_layout_names", device)
+  .Call("R_gdk_device_get_layout_names", device)$result
 }
 
 
@@ -1268,7 +1268,7 @@ gdkDeviceGetLayoutNames <- function(device) {
 #' @return ModifierType
 #' @export
 gdkDeviceGetModifierState <- function(device) {
-  .Call("R_gdk_device_get_modifier_state", device)
+  .Call("R_gdk_device_get_modifier_state", device)$result
 }
 
 
@@ -1279,7 +1279,7 @@ gdkDeviceGetModifierState <- function(device) {
 #' @return utf8
 #' @export
 gdkDeviceGetName <- function(device) {
-  .Call("R_gdk_device_get_name", device)
+  .Call("R_gdk_device_get_name", device)$result
 }
 
 
@@ -1290,7 +1290,7 @@ gdkDeviceGetName <- function(device) {
 #' @return gboolean
 #' @export
 gdkDeviceGetNumLockState <- function(device) {
-  .Call("R_gdk_device_get_num_lock_state", device)
+  .Call("R_gdk_device_get_num_lock_state", device)$result
 }
 
 
@@ -1301,7 +1301,7 @@ gdkDeviceGetNumLockState <- function(device) {
 #' @return guint
 #' @export
 gdkDeviceGetNumTouches <- function(device) {
-  .Call("R_gdk_device_get_num_touches", device)
+  .Call("R_gdk_device_get_num_touches", device)$result
 }
 
 
@@ -1312,7 +1312,7 @@ gdkDeviceGetNumTouches <- function(device) {
 #' @return utf8
 #' @export
 gdkDeviceGetProductId <- function(device) {
-  .Call("R_gdk_device_get_product_id", device)
+  .Call("R_gdk_device_get_product_id", device)$result
 }
 
 
@@ -1323,7 +1323,7 @@ gdkDeviceGetProductId <- function(device) {
 #' @return gboolean
 #' @export
 gdkDeviceGetScrollLockState <- function(device) {
-  .Call("R_gdk_device_get_scroll_lock_state", device)
+  .Call("R_gdk_device_get_scroll_lock_state", device)$result
 }
 
 
@@ -1334,7 +1334,7 @@ gdkDeviceGetScrollLockState <- function(device) {
 #' @return Seat
 #' @export
 gdkDeviceGetSeat <- function(device) {
-  .Call("R_gdk_device_get_seat", device)
+  .Call("R_gdk_device_get_seat", device)$result
 }
 
 
@@ -1345,7 +1345,7 @@ gdkDeviceGetSeat <- function(device) {
 #' @return InputSource
 #' @export
 gdkDeviceGetSource <- function(device) {
-  .Call("R_gdk_device_get_source", device)
+  .Call("R_gdk_device_get_source", device)$result
 }
 
 
@@ -1367,7 +1367,7 @@ gdkDeviceGetSurfaceAtPosition <- function(device) {
 #' @return guint32
 #' @export
 gdkDeviceGetTimestamp <- function(device) {
-  .Call("R_gdk_device_get_timestamp", device)
+  .Call("R_gdk_device_get_timestamp", device)$result
 }
 
 
@@ -1378,7 +1378,7 @@ gdkDeviceGetTimestamp <- function(device) {
 #' @return utf8
 #' @export
 gdkDeviceGetVendorId <- function(device) {
-  .Call("R_gdk_device_get_vendor_id", device)
+  .Call("R_gdk_device_get_vendor_id", device)$result
 }
 
 
@@ -1389,7 +1389,7 @@ gdkDeviceGetVendorId <- function(device) {
 #' @return gboolean
 #' @export
 gdkDeviceHasBidiLayouts <- function(device) {
-  .Call("R_gdk_device_has_bidi_layouts", device)
+  .Call("R_gdk_device_has_bidi_layouts", device)$result
 }
 
 
@@ -1402,7 +1402,7 @@ gdkDeviceHasBidiLayouts <- function(device) {
 #' @return gint
 #' @export
 gdkDevicePadGetFeatureGroup <- function(pad, feature, feature_idx) {
-  .Call("R_gdk_device_pad_get_feature_group", pad, feature, feature_idx)
+  .Call("R_gdk_device_pad_get_feature_group", pad, feature, feature_idx)$result
 }
 
 
@@ -1414,7 +1414,7 @@ gdkDevicePadGetFeatureGroup <- function(pad, feature, feature_idx) {
 #' @return gint
 #' @export
 gdkDevicePadGetGroupNModes <- function(pad, group_idx) {
-  .Call("R_gdk_device_pad_get_group_n_modes", pad, group_idx)
+  .Call("R_gdk_device_pad_get_group_n_modes", pad, group_idx)$result
 }
 
 
@@ -1426,7 +1426,7 @@ gdkDevicePadGetGroupNModes <- function(pad, group_idx) {
 #' @return gint
 #' @export
 gdkDevicePadGetNFeatures <- function(pad, feature) {
-  .Call("R_gdk_device_pad_get_n_features", pad, feature)
+  .Call("R_gdk_device_pad_get_n_features", pad, feature)$result
 }
 
 
@@ -1437,7 +1437,7 @@ gdkDevicePadGetNFeatures <- function(pad, feature) {
 #' @return gint
 #' @export
 gdkDevicePadGetNGroups <- function(pad) {
-  .Call("R_gdk_device_pad_get_n_groups", pad)
+  .Call("R_gdk_device_pad_get_n_groups", pad)$result
 }
 
 
@@ -1448,7 +1448,7 @@ gdkDevicePadGetNGroups <- function(pad) {
 #' @return AxisFlags
 #' @export
 gdkDeviceToolGetAxes <- function(tool) {
-  .Call("R_gdk_device_tool_get_axes", tool)
+  .Call("R_gdk_device_tool_get_axes", tool)$result
 }
 
 
@@ -1459,7 +1459,7 @@ gdkDeviceToolGetAxes <- function(tool) {
 #' @return guint64
 #' @export
 gdkDeviceToolGetHardwareId <- function(tool) {
-  .Call("R_gdk_device_tool_get_hardware_id", tool)
+  .Call("R_gdk_device_tool_get_hardware_id", tool)$result
 }
 
 
@@ -1470,7 +1470,7 @@ gdkDeviceToolGetHardwareId <- function(tool) {
 #' @return guint64
 #' @export
 gdkDeviceToolGetSerial <- function(tool) {
-  .Call("R_gdk_device_tool_get_serial", tool)
+  .Call("R_gdk_device_tool_get_serial", tool)$result
 }
 
 
@@ -1481,7 +1481,7 @@ gdkDeviceToolGetSerial <- function(tool) {
 #' @return DeviceToolType
 #' @export
 gdkDeviceToolGetToolType <- function(tool) {
-  .Call("R_gdk_device_tool_get_tool_type", tool)
+  .Call("R_gdk_device_tool_get_tool_type", tool)$result
 }
 
 
@@ -1491,7 +1491,7 @@ gdkDeviceToolGetToolType <- function(tool) {
 #' @return Display
 #' @export
 gdkDisplayGetDefault <- function() {
-  .Call("R_gdk_display_get_default")
+  .Call("R_gdk_display_get_default")$result
 }
 
 
@@ -1502,7 +1502,7 @@ gdkDisplayGetDefault <- function() {
 #' @return Display
 #' @export
 gdkDisplayOpen <- function(display_name) {
-  .Call("R_gdk_display_open", display_name)
+  .Call("R_gdk_display_open", display_name)$result
 }
 
 
@@ -1535,7 +1535,7 @@ gdkDisplayClose <- function(display) {
 #' @return GLContext
 #' @export
 gdkDisplayCreateGlContext <- function(self) {
-  .Call("R_gdk_display_create_gl_context", self)
+  .Call("R_gdk_display_create_gl_context", self)$result
 }
 
 
@@ -1547,7 +1547,7 @@ gdkDisplayCreateGlContext <- function(self) {
 #' @return gboolean
 #' @export
 gdkDisplayDeviceIsGrabbed <- function(display, device) {
-  .Call("R_gdk_display_device_is_grabbed", display, device)
+  .Call("R_gdk_display_device_is_grabbed", display, device)$result
 }
 
 
@@ -1569,7 +1569,7 @@ gdkDisplayFlush <- function(display) {
 #' @return AppLaunchContext
 #' @export
 gdkDisplayGetAppLaunchContext <- function(display) {
-  .Call("R_gdk_display_get_app_launch_context", display)
+  .Call("R_gdk_display_get_app_launch_context", display)$result
 }
 
 
@@ -1580,7 +1580,7 @@ gdkDisplayGetAppLaunchContext <- function(display) {
 #' @return Clipboard
 #' @export
 gdkDisplayGetClipboard <- function(display) {
-  .Call("R_gdk_display_get_clipboard", display)
+  .Call("R_gdk_display_get_clipboard", display)$result
 }
 
 
@@ -1591,7 +1591,7 @@ gdkDisplayGetClipboard <- function(display) {
 #' @return Seat
 #' @export
 gdkDisplayGetDefaultSeat <- function(display) {
-  .Call("R_gdk_display_get_default_seat", display)
+  .Call("R_gdk_display_get_default_seat", display)$result
 }
 
 
@@ -1602,7 +1602,7 @@ gdkDisplayGetDefaultSeat <- function(display) {
 #' @return DmabufFormats
 #' @export
 gdkDisplayGetDmabufFormats <- function(display) {
-  .Call("R_gdk_display_get_dmabuf_formats", display)
+  .Call("R_gdk_display_get_dmabuf_formats", display)$result
 }
 
 
@@ -1614,7 +1614,7 @@ gdkDisplayGetDmabufFormats <- function(display) {
 #' @return Monitor
 #' @export
 gdkDisplayGetMonitorAtSurface <- function(display, surface) {
-  .Call("R_gdk_display_get_monitor_at_surface", display, surface)
+  .Call("R_gdk_display_get_monitor_at_surface", display, surface)$result
 }
 
 
@@ -1625,7 +1625,7 @@ gdkDisplayGetMonitorAtSurface <- function(display, surface) {
 #' @return Gio.ListModel
 #' @export
 gdkDisplayGetMonitors <- function(self) {
-  .Call("R_gdk_display_get_monitors", self)
+  .Call("R_gdk_display_get_monitors", self)$result
 }
 
 
@@ -1636,7 +1636,7 @@ gdkDisplayGetMonitors <- function(self) {
 #' @return utf8
 #' @export
 gdkDisplayGetName <- function(display) {
-  .Call("R_gdk_display_get_name", display)
+  .Call("R_gdk_display_get_name", display)$result
 }
 
 
@@ -1647,7 +1647,7 @@ gdkDisplayGetName <- function(display) {
 #' @return Clipboard
 #' @export
 gdkDisplayGetPrimaryClipboard <- function(display) {
-  .Call("R_gdk_display_get_primary_clipboard", display)
+  .Call("R_gdk_display_get_primary_clipboard", display)$result
 }
 
 
@@ -1660,7 +1660,7 @@ gdkDisplayGetPrimaryClipboard <- function(display) {
 #' @return gboolean
 #' @export
 gdkDisplayGetSetting <- function(display, name, value) {
-  .Call("R_gdk_display_get_setting", display, name, value)
+  .Call("R_gdk_display_get_setting", display, name, value)$result
 }
 
 
@@ -1671,7 +1671,7 @@ gdkDisplayGetSetting <- function(display, name, value) {
 #' @return utf8
 #' @export
 gdkDisplayGetStartupNotificationId <- function(display) {
-  .Call("R_gdk_display_get_startup_notification_id", display)
+  .Call("R_gdk_display_get_startup_notification_id", display)$result
 }
 
 
@@ -1682,7 +1682,7 @@ gdkDisplayGetStartupNotificationId <- function(display) {
 #' @return gboolean
 #' @export
 gdkDisplayIsClosed <- function(display) {
-  .Call("R_gdk_display_is_closed", display)
+  .Call("R_gdk_display_is_closed", display)$result
 }
 
 
@@ -1693,7 +1693,7 @@ gdkDisplayIsClosed <- function(display) {
 #' @return gboolean
 #' @export
 gdkDisplayIsComposited <- function(display) {
-  .Call("R_gdk_display_is_composited", display)
+  .Call("R_gdk_display_is_composited", display)$result
 }
 
 
@@ -1704,7 +1704,7 @@ gdkDisplayIsComposited <- function(display) {
 #' @return gboolean
 #' @export
 gdkDisplayIsRgba <- function(display) {
-  .Call("R_gdk_display_is_rgba", display)
+  .Call("R_gdk_display_is_rgba", display)$result
 }
 
 
@@ -1715,7 +1715,7 @@ gdkDisplayIsRgba <- function(display) {
 #' @return GLib.List
 #' @export
 gdkDisplayListSeats <- function(display) {
-  .Call("R_gdk_display_list_seats", display)
+  .Call("R_gdk_display_list_seats", display)$result
 }
 
 
@@ -1762,7 +1762,7 @@ gdkDisplayNotifyStartupComplete <- function(display, startup_id) {
 #' @return gboolean
 #' @export
 gdkDisplayPrepareGl <- function(self) {
-  .Call("R_gdk_display_prepare_gl", self)
+  .Call("R_gdk_display_prepare_gl", self)$result
 }
 
 
@@ -1785,7 +1785,7 @@ gdkDisplayPutEvent <- function(display, event) {
 #' @return gboolean
 #' @export
 gdkDisplaySupportsInputShapes <- function(display) {
-  .Call("R_gdk_display_supports_input_shapes", display)
+  .Call("R_gdk_display_supports_input_shapes", display)$result
 }
 
 
@@ -1796,7 +1796,7 @@ gdkDisplaySupportsInputShapes <- function(display) {
 #' @return gboolean
 #' @export
 gdkDisplaySupportsShadowWidth <- function(display) {
-  .Call("R_gdk_display_supports_shadow_width", display)
+  .Call("R_gdk_display_supports_shadow_width", display)$result
 }
 
 
@@ -1831,7 +1831,7 @@ gdkDisplayTranslateKey <- function(display, keycode, state, group) {
 #' @return DisplayManager
 #' @export
 gdkDisplayManagerGet <- function() {
-  .Call("R_gdk_display_manager_get")
+  .Call("R_gdk_display_manager_get")$result
 }
 
 
@@ -1842,7 +1842,7 @@ gdkDisplayManagerGet <- function() {
 #' @return Display
 #' @export
 gdkDisplayManagerGetDefaultDisplay <- function(manager) {
-  .Call("R_gdk_display_manager_get_default_display", manager)
+  .Call("R_gdk_display_manager_get_default_display", manager)$result
 }
 
 
@@ -1853,7 +1853,7 @@ gdkDisplayManagerGetDefaultDisplay <- function(manager) {
 #' @return GLib.SList
 #' @export
 gdkDisplayManagerListDisplays <- function(manager) {
-  .Call("R_gdk_display_manager_list_displays", manager)
+  .Call("R_gdk_display_manager_list_displays", manager)$result
 }
 
 
@@ -1865,7 +1865,7 @@ gdkDisplayManagerListDisplays <- function(manager) {
 #' @return Display
 #' @export
 gdkDisplayManagerOpenDisplay <- function(manager, name) {
-  .Call("R_gdk_display_manager_open_display", manager, name)
+  .Call("R_gdk_display_manager_open_display", manager, name)$result
 }
 
 
@@ -1887,7 +1887,7 @@ gdkDisplayManagerSetDefaultDisplay <- function(manager, display) {
 #' @return GLib.Quark
 #' @export
 gdkDmabufErrorQuark <- function() {
-  .Call("R_gdk_dmabuf_error_quark")
+  .Call("R_gdk_dmabuf_error_quark")$result
 }
 
 
@@ -1900,7 +1900,7 @@ gdkDmabufErrorQuark <- function() {
 #' @return gboolean
 #' @export
 gdkDmabufFormatsContains <- function(formats, fourcc, modifier) {
-  .Call("R_gdk_dmabuf_formats_contains", formats, fourcc, modifier)
+  .Call("R_gdk_dmabuf_formats_contains", formats, fourcc, modifier)$result
 }
 
 
@@ -1912,7 +1912,7 @@ gdkDmabufFormatsContains <- function(formats, fourcc, modifier) {
 #' @return gboolean
 #' @export
 gdkDmabufFormatsEqual <- function(formats1, formats2) {
-  .Call("R_gdk_dmabuf_formats_equal", formats1, formats2)
+  .Call("R_gdk_dmabuf_formats_equal", formats1, formats2)$result
 }
 
 
@@ -1935,7 +1935,7 @@ gdkDmabufFormatsGetFormat <- function(formats, idx) {
 #' @return gsize
 #' @export
 gdkDmabufFormatsGetNFormats <- function(formats) {
-  .Call("R_gdk_dmabuf_formats_get_n_formats", formats)
+  .Call("R_gdk_dmabuf_formats_get_n_formats", formats)$result
 }
 
 
@@ -1946,7 +1946,7 @@ gdkDmabufFormatsGetNFormats <- function(formats) {
 #' @return DmabufFormats
 #' @export
 gdkDmabufFormatsRef <- function(formats) {
-  .Call("R_gdk_dmabuf_formats_ref", formats)
+  .Call("R_gdk_dmabuf_formats_ref", formats)$result
 }
 
 
@@ -1967,7 +1967,7 @@ gdkDmabufFormatsUnref <- function(formats) {
 #' @return DmabufTextureBuilder
 #' @export
 gdkDmabufTextureBuilderNew <- function() {
-  .Call("R_gdk_dmabuf_texture_builder_new")
+  .Call("R_gdk_dmabuf_texture_builder_new")$result
 }
 
 
@@ -1978,7 +1978,7 @@ gdkDmabufTextureBuilderNew <- function() {
 #' @return ColorState
 #' @export
 gdkDmabufTextureBuilderGetColorState <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_color_state", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_color_state", self)$result
 }
 
 
@@ -1989,7 +1989,7 @@ gdkDmabufTextureBuilderGetColorState <- function(self) {
 #' @return Display
 #' @export
 gdkDmabufTextureBuilderGetDisplay <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_display", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_display", self)$result
 }
 
 
@@ -2001,7 +2001,7 @@ gdkDmabufTextureBuilderGetDisplay <- function(self) {
 #' @return gint
 #' @export
 gdkDmabufTextureBuilderGetFd <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_fd", self, plane)
+  .Call("R_gdk_dmabuf_texture_builder_get_fd", self, plane)$result
 }
 
 
@@ -2012,7 +2012,7 @@ gdkDmabufTextureBuilderGetFd <- function(self, plane) {
 #' @return guint32
 #' @export
 gdkDmabufTextureBuilderGetFourcc <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_fourcc", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_fourcc", self)$result
 }
 
 
@@ -2023,7 +2023,7 @@ gdkDmabufTextureBuilderGetFourcc <- function(self) {
 #' @return guint
 #' @export
 gdkDmabufTextureBuilderGetHeight <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_height", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_height", self)$result
 }
 
 
@@ -2034,7 +2034,7 @@ gdkDmabufTextureBuilderGetHeight <- function(self) {
 #' @return guint64
 #' @export
 gdkDmabufTextureBuilderGetModifier <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_modifier", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_modifier", self)$result
 }
 
 
@@ -2045,7 +2045,7 @@ gdkDmabufTextureBuilderGetModifier <- function(self) {
 #' @return guint
 #' @export
 gdkDmabufTextureBuilderGetNPlanes <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_n_planes", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_n_planes", self)$result
 }
 
 
@@ -2057,7 +2057,7 @@ gdkDmabufTextureBuilderGetNPlanes <- function(self) {
 #' @return guint
 #' @export
 gdkDmabufTextureBuilderGetOffset <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_offset", self, plane)
+  .Call("R_gdk_dmabuf_texture_builder_get_offset", self, plane)$result
 }
 
 
@@ -2068,7 +2068,7 @@ gdkDmabufTextureBuilderGetOffset <- function(self, plane) {
 #' @return gboolean
 #' @export
 gdkDmabufTextureBuilderGetPremultiplied <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_premultiplied", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_premultiplied", self)$result
 }
 
 
@@ -2080,7 +2080,7 @@ gdkDmabufTextureBuilderGetPremultiplied <- function(self) {
 #' @return guint
 #' @export
 gdkDmabufTextureBuilderGetStride <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_stride", self, plane)
+  .Call("R_gdk_dmabuf_texture_builder_get_stride", self, plane)$result
 }
 
 
@@ -2091,7 +2091,7 @@ gdkDmabufTextureBuilderGetStride <- function(self, plane) {
 #' @return cairo.Region
 #' @export
 gdkDmabufTextureBuilderGetUpdateRegion <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_update_region", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_update_region", self)$result
 }
 
 
@@ -2102,7 +2102,7 @@ gdkDmabufTextureBuilderGetUpdateRegion <- function(self) {
 #' @return Texture
 #' @export
 gdkDmabufTextureBuilderGetUpdateTexture <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_update_texture", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_update_texture", self)$result
 }
 
 
@@ -2113,7 +2113,7 @@ gdkDmabufTextureBuilderGetUpdateTexture <- function(self) {
 #' @return guint
 #' @export
 gdkDmabufTextureBuilderGetWidth <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_width", self)
+  .Call("R_gdk_dmabuf_texture_builder_get_width", self)$result
 }
 
 
@@ -2288,7 +2288,7 @@ gdkDmabufTextureBuilderSetWidth <- function(self, width) {
 #' @return Drag
 #' @export
 gdkDragBegin <- function(surface, device, content, actions, dx, dy) {
-  .Call("R_gdk_drag_begin", surface, device, content, actions, dx, dy)
+  .Call("R_gdk_drag_begin", surface, device, content, actions, dx, dy)$result
 }
 
 
@@ -2311,7 +2311,7 @@ gdkDragDropDone <- function(drag, success) {
 #' @return DragAction
 #' @export
 gdkDragGetActions <- function(drag) {
-  .Call("R_gdk_drag_get_actions", drag)
+  .Call("R_gdk_drag_get_actions", drag)$result
 }
 
 
@@ -2322,7 +2322,7 @@ gdkDragGetActions <- function(drag) {
 #' @return ContentProvider
 #' @export
 gdkDragGetContent <- function(drag) {
-  .Call("R_gdk_drag_get_content", drag)
+  .Call("R_gdk_drag_get_content", drag)$result
 }
 
 
@@ -2333,7 +2333,7 @@ gdkDragGetContent <- function(drag) {
 #' @return Device
 #' @export
 gdkDragGetDevice <- function(drag) {
-  .Call("R_gdk_drag_get_device", drag)
+  .Call("R_gdk_drag_get_device", drag)$result
 }
 
 
@@ -2344,7 +2344,7 @@ gdkDragGetDevice <- function(drag) {
 #' @return Display
 #' @export
 gdkDragGetDisplay <- function(drag) {
-  .Call("R_gdk_drag_get_display", drag)
+  .Call("R_gdk_drag_get_display", drag)$result
 }
 
 
@@ -2355,7 +2355,7 @@ gdkDragGetDisplay <- function(drag) {
 #' @return Surface
 #' @export
 gdkDragGetDragSurface <- function(drag) {
-  .Call("R_gdk_drag_get_drag_surface", drag)
+  .Call("R_gdk_drag_get_drag_surface", drag)$result
 }
 
 
@@ -2366,7 +2366,7 @@ gdkDragGetDragSurface <- function(drag) {
 #' @return ContentFormats
 #' @export
 gdkDragGetFormats <- function(drag) {
-  .Call("R_gdk_drag_get_formats", drag)
+  .Call("R_gdk_drag_get_formats", drag)$result
 }
 
 
@@ -2377,7 +2377,7 @@ gdkDragGetFormats <- function(drag) {
 #' @return DragAction
 #' @export
 gdkDragGetSelectedAction <- function(drag) {
-  .Call("R_gdk_drag_get_selected_action", drag)
+  .Call("R_gdk_drag_get_selected_action", drag)$result
 }
 
 
@@ -2388,7 +2388,7 @@ gdkDragGetSelectedAction <- function(drag) {
 #' @return Surface
 #' @export
 gdkDragGetSurface <- function(drag) {
-  .Call("R_gdk_drag_get_surface", drag)
+  .Call("R_gdk_drag_get_surface", drag)$result
 }
 
 
@@ -2412,7 +2412,7 @@ gdkDragSetHotspot <- function(drag, hot_x, hot_y) {
 #' @return gboolean
 #' @export
 gdkDragActionIsUnique <- function(action) {
-  .Call("R_gdk_drag_action_is_unique", action)
+  .Call("R_gdk_drag_action_is_unique", action)$result
 }
 
 
@@ -2425,7 +2425,7 @@ gdkDragActionIsUnique <- function(action) {
 #' @return gboolean
 #' @export
 gdkDragSurfacePresent <- function(drag_surface, width, height) {
-  .Call("R_gdk_drag_surface_present", drag_surface, width, height)
+  .Call("R_gdk_drag_surface_present", drag_surface, width, height)$result
 }
 
 
@@ -2472,7 +2472,7 @@ gdkDrawContextEndFrame <- function(context) {
 #' @return Display
 #' @export
 gdkDrawContextGetDisplay <- function(context) {
-  .Call("R_gdk_draw_context_get_display", context)
+  .Call("R_gdk_draw_context_get_display", context)$result
 }
 
 
@@ -2483,7 +2483,7 @@ gdkDrawContextGetDisplay <- function(context) {
 #' @return cairo.Region
 #' @export
 gdkDrawContextGetFrameRegion <- function(context) {
-  .Call("R_gdk_draw_context_get_frame_region", context)
+  .Call("R_gdk_draw_context_get_frame_region", context)$result
 }
 
 
@@ -2494,7 +2494,7 @@ gdkDrawContextGetFrameRegion <- function(context) {
 #' @return Surface
 #' @export
 gdkDrawContextGetSurface <- function(context) {
-  .Call("R_gdk_draw_context_get_surface", context)
+  .Call("R_gdk_draw_context_get_surface", context)$result
 }
 
 
@@ -2505,7 +2505,7 @@ gdkDrawContextGetSurface <- function(context) {
 #' @return gboolean
 #' @export
 gdkDrawContextIsInFrame <- function(context) {
-  .Call("R_gdk_draw_context_is_in_frame", context)
+  .Call("R_gdk_draw_context_is_in_frame", context)$result
 }
 
 
@@ -2528,7 +2528,7 @@ gdkDropFinish <- function(self, action) {
 #' @return DragAction
 #' @export
 gdkDropGetActions <- function(self) {
-  .Call("R_gdk_drop_get_actions", self)
+  .Call("R_gdk_drop_get_actions", self)$result
 }
 
 
@@ -2539,7 +2539,7 @@ gdkDropGetActions <- function(self) {
 #' @return Device
 #' @export
 gdkDropGetDevice <- function(self) {
-  .Call("R_gdk_drop_get_device", self)
+  .Call("R_gdk_drop_get_device", self)$result
 }
 
 
@@ -2550,7 +2550,7 @@ gdkDropGetDevice <- function(self) {
 #' @return Display
 #' @export
 gdkDropGetDisplay <- function(self) {
-  .Call("R_gdk_drop_get_display", self)
+  .Call("R_gdk_drop_get_display", self)$result
 }
 
 
@@ -2561,7 +2561,7 @@ gdkDropGetDisplay <- function(self) {
 #' @return Drag
 #' @export
 gdkDropGetDrag <- function(self) {
-  .Call("R_gdk_drop_get_drag", self)
+  .Call("R_gdk_drop_get_drag", self)$result
 }
 
 
@@ -2572,7 +2572,7 @@ gdkDropGetDrag <- function(self) {
 #' @return ContentFormats
 #' @export
 gdkDropGetFormats <- function(self) {
-  .Call("R_gdk_drop_get_formats", self)
+  .Call("R_gdk_drop_get_formats", self)$result
 }
 
 
@@ -2583,7 +2583,7 @@ gdkDropGetFormats <- function(self) {
 #' @return Surface
 #' @export
 gdkDropGetSurface <- function(self) {
-  .Call("R_gdk_drop_get_surface", self)
+  .Call("R_gdk_drop_get_surface", self)$result
 }
 
 
@@ -2607,7 +2607,7 @@ gdkDropReadFinish <- function(self, result) {
 #' @return GObject.Value
 #' @export
 gdkDropReadValueFinish <- function(self, result) {
-  .Call("R_gdk_drop_read_value_finish", self, result)
+  .Call("R_gdk_drop_read_value_finish", self, result)$result
 }
 
 
@@ -2690,7 +2690,7 @@ gdkEventGetAxis <- function(event, axis_use) {
 #' @return Device
 #' @export
 gdkEventGetDevice <- function(event) {
-  .Call("R_gdk_event_get_device", event)
+  .Call("R_gdk_event_get_device", event)$result
 }
 
 
@@ -2701,7 +2701,7 @@ gdkEventGetDevice <- function(event) {
 #' @return DeviceTool
 #' @export
 gdkEventGetDeviceTool <- function(event) {
-  .Call("R_gdk_event_get_device_tool", event)
+  .Call("R_gdk_event_get_device_tool", event)$result
 }
 
 
@@ -2712,7 +2712,7 @@ gdkEventGetDeviceTool <- function(event) {
 #' @return Display
 #' @export
 gdkEventGetDisplay <- function(event) {
-  .Call("R_gdk_event_get_display", event)
+  .Call("R_gdk_event_get_display", event)$result
 }
 
 
@@ -2723,7 +2723,7 @@ gdkEventGetDisplay <- function(event) {
 #' @return EventSequence
 #' @export
 gdkEventGetEventSequence <- function(event) {
-  .Call("R_gdk_event_get_event_sequence", event)
+  .Call("R_gdk_event_get_event_sequence", event)$result
 }
 
 
@@ -2734,7 +2734,7 @@ gdkEventGetEventSequence <- function(event) {
 #' @return EventType
 #' @export
 gdkEventGetEventType <- function(event) {
-  .Call("R_gdk_event_get_event_type", event)
+  .Call("R_gdk_event_get_event_type", event)$result
 }
 
 
@@ -2756,7 +2756,7 @@ gdkEventGetHistory <- function(event) {
 #' @return ModifierType
 #' @export
 gdkEventGetModifierState <- function(event) {
-  .Call("R_gdk_event_get_modifier_state", event)
+  .Call("R_gdk_event_get_modifier_state", event)$result
 }
 
 
@@ -2767,7 +2767,7 @@ gdkEventGetModifierState <- function(event) {
 #' @return gboolean
 #' @export
 gdkEventGetPointerEmulated <- function(event) {
-  .Call("R_gdk_event_get_pointer_emulated", event)
+  .Call("R_gdk_event_get_pointer_emulated", event)$result
 }
 
 
@@ -2789,7 +2789,7 @@ gdkEventGetPosition <- function(event) {
 #' @return Seat
 #' @export
 gdkEventGetSeat <- function(event) {
-  .Call("R_gdk_event_get_seat", event)
+  .Call("R_gdk_event_get_seat", event)$result
 }
 
 
@@ -2800,7 +2800,7 @@ gdkEventGetSeat <- function(event) {
 #' @return Surface
 #' @export
 gdkEventGetSurface <- function(event) {
-  .Call("R_gdk_event_get_surface", event)
+  .Call("R_gdk_event_get_surface", event)$result
 }
 
 
@@ -2811,7 +2811,7 @@ gdkEventGetSurface <- function(event) {
 #' @return guint32
 #' @export
 gdkEventGetTime <- function(event) {
-  .Call("R_gdk_event_get_time", event)
+  .Call("R_gdk_event_get_time", event)$result
 }
 
 
@@ -2822,7 +2822,7 @@ gdkEventGetTime <- function(event) {
 #' @return Event
 #' @export
 gdkEventRef <- function(event) {
-  .Call("R_gdk_event_ref", event)
+  .Call("R_gdk_event_ref", event)$result
 }
 
 
@@ -2833,7 +2833,7 @@ gdkEventRef <- function(event) {
 #' @return gboolean
 #' @export
 gdkEventTriggersContextMenu <- function(event) {
-  .Call("R_gdk_event_triggers_context_menu", event)
+  .Call("R_gdk_event_triggers_context_menu", event)$result
 }
 
 
@@ -2856,7 +2856,7 @@ gdkEventUnref <- function(event) {
 #' @return FileList
 #' @export
 gdkFileListNewFromArray <- function(files, n_files) {
-  .Call("R_gdk_file_list_new_from_array", files, n_files)
+  .Call("R_gdk_file_list_new_from_array", files, n_files)$result
 }
 
 
@@ -2867,7 +2867,7 @@ gdkFileListNewFromArray <- function(files, n_files) {
 #' @return FileList
 #' @export
 gdkFileListNewFromList <- function(files) {
-  .Call("R_gdk_file_list_new_from_list", files)
+  .Call("R_gdk_file_list_new_from_list", files)$result
 }
 
 
@@ -2878,7 +2878,7 @@ gdkFileListNewFromList <- function(files) {
 #' @return GLib.SList
 #' @export
 gdkFileListGetFiles <- function(file_list) {
-  .Call("R_gdk_file_list_get_files", file_list)
+  .Call("R_gdk_file_list_get_files", file_list)$result
 }
 
 
@@ -2889,7 +2889,7 @@ gdkFileListGetFiles <- function(file_list) {
 #' @return gboolean
 #' @export
 gdkFocusEventGetIn <- function(event) {
-  .Call("R_gdk_focus_event_get_in", event)
+  .Call("R_gdk_focus_event_get_in", event)$result
 }
 
 
@@ -2922,7 +2922,7 @@ gdkFrameClockEndUpdating <- function(frame_clock) {
 #' @return FrameTimings
 #' @export
 gdkFrameClockGetCurrentTimings <- function(frame_clock) {
-  .Call("R_gdk_frame_clock_get_current_timings", frame_clock)
+  .Call("R_gdk_frame_clock_get_current_timings", frame_clock)$result
 }
 
 
@@ -2933,7 +2933,7 @@ gdkFrameClockGetCurrentTimings <- function(frame_clock) {
 #' @return gdouble
 #' @export
 gdkFrameClockGetFps <- function(frame_clock) {
-  .Call("R_gdk_frame_clock_get_fps", frame_clock)
+  .Call("R_gdk_frame_clock_get_fps", frame_clock)$result
 }
 
 
@@ -2944,7 +2944,7 @@ gdkFrameClockGetFps <- function(frame_clock) {
 #' @return gint64
 #' @export
 gdkFrameClockGetFrameCounter <- function(frame_clock) {
-  .Call("R_gdk_frame_clock_get_frame_counter", frame_clock)
+  .Call("R_gdk_frame_clock_get_frame_counter", frame_clock)$result
 }
 
 
@@ -2955,7 +2955,7 @@ gdkFrameClockGetFrameCounter <- function(frame_clock) {
 #' @return gint64
 #' @export
 gdkFrameClockGetFrameTime <- function(frame_clock) {
-  .Call("R_gdk_frame_clock_get_frame_time", frame_clock)
+  .Call("R_gdk_frame_clock_get_frame_time", frame_clock)$result
 }
 
 
@@ -2966,7 +2966,7 @@ gdkFrameClockGetFrameTime <- function(frame_clock) {
 #' @return gint64
 #' @export
 gdkFrameClockGetHistoryStart <- function(frame_clock) {
-  .Call("R_gdk_frame_clock_get_history_start", frame_clock)
+  .Call("R_gdk_frame_clock_get_history_start", frame_clock)$result
 }
 
 
@@ -2990,7 +2990,7 @@ gdkFrameClockGetRefreshInfo <- function(frame_clock, base_time) {
 #' @return FrameTimings
 #' @export
 gdkFrameClockGetTimings <- function(frame_clock, frame_counter) {
-  .Call("R_gdk_frame_clock_get_timings", frame_clock, frame_counter)
+  .Call("R_gdk_frame_clock_get_timings", frame_clock, frame_counter)$result
 }
 
 
@@ -3013,7 +3013,7 @@ gdkFrameClockRequestPhase <- function(frame_clock, phase) {
 #' @return gboolean
 #' @export
 gdkFrameTimingsGetComplete <- function(timings) {
-  .Call("R_gdk_frame_timings_get_complete", timings)
+  .Call("R_gdk_frame_timings_get_complete", timings)$result
 }
 
 
@@ -3024,7 +3024,7 @@ gdkFrameTimingsGetComplete <- function(timings) {
 #' @return gint64
 #' @export
 gdkFrameTimingsGetFrameCounter <- function(timings) {
-  .Call("R_gdk_frame_timings_get_frame_counter", timings)
+  .Call("R_gdk_frame_timings_get_frame_counter", timings)$result
 }
 
 
@@ -3035,7 +3035,7 @@ gdkFrameTimingsGetFrameCounter <- function(timings) {
 #' @return gint64
 #' @export
 gdkFrameTimingsGetFrameTime <- function(timings) {
-  .Call("R_gdk_frame_timings_get_frame_time", timings)
+  .Call("R_gdk_frame_timings_get_frame_time", timings)$result
 }
 
 
@@ -3046,7 +3046,7 @@ gdkFrameTimingsGetFrameTime <- function(timings) {
 #' @return gint64
 #' @export
 gdkFrameTimingsGetPredictedPresentationTime <- function(timings) {
-  .Call("R_gdk_frame_timings_get_predicted_presentation_time", timings)
+  .Call("R_gdk_frame_timings_get_predicted_presentation_time", timings)$result
 }
 
 
@@ -3057,7 +3057,7 @@ gdkFrameTimingsGetPredictedPresentationTime <- function(timings) {
 #' @return gint64
 #' @export
 gdkFrameTimingsGetPresentationTime <- function(timings) {
-  .Call("R_gdk_frame_timings_get_presentation_time", timings)
+  .Call("R_gdk_frame_timings_get_presentation_time", timings)$result
 }
 
 
@@ -3068,7 +3068,7 @@ gdkFrameTimingsGetPresentationTime <- function(timings) {
 #' @return gint64
 #' @export
 gdkFrameTimingsGetRefreshInterval <- function(timings) {
-  .Call("R_gdk_frame_timings_get_refresh_interval", timings)
+  .Call("R_gdk_frame_timings_get_refresh_interval", timings)$result
 }
 
 
@@ -3079,7 +3079,7 @@ gdkFrameTimingsGetRefreshInterval <- function(timings) {
 #' @return FrameTimings
 #' @export
 gdkFrameTimingsRef <- function(timings) {
-  .Call("R_gdk_frame_timings_ref", timings)
+  .Call("R_gdk_frame_timings_ref", timings)$result
 }
 
 
@@ -3110,7 +3110,7 @@ gdkGlContextClearCurrent <- function() {
 #' @return GLContext
 #' @export
 gdkGlContextGetCurrent <- function() {
-  .Call("R_gdk_gl_context_get_current")
+  .Call("R_gdk_gl_context_get_current")$result
 }
 
 
@@ -3121,7 +3121,7 @@ gdkGlContextGetCurrent <- function() {
 #' @return GLAPI
 #' @export
 gdkGlContextGetAllowedApis <- function(self) {
-  .Call("R_gdk_gl_context_get_allowed_apis", self)
+  .Call("R_gdk_gl_context_get_allowed_apis", self)$result
 }
 
 
@@ -3132,7 +3132,7 @@ gdkGlContextGetAllowedApis <- function(self) {
 #' @return GLAPI
 #' @export
 gdkGlContextGetApi <- function(self) {
-  .Call("R_gdk_gl_context_get_api", self)
+  .Call("R_gdk_gl_context_get_api", self)$result
 }
 
 
@@ -3143,7 +3143,7 @@ gdkGlContextGetApi <- function(self) {
 #' @return gboolean
 #' @export
 gdkGlContextGetDebugEnabled <- function(context) {
-  .Call("R_gdk_gl_context_get_debug_enabled", context)
+  .Call("R_gdk_gl_context_get_debug_enabled", context)$result
 }
 
 
@@ -3154,7 +3154,7 @@ gdkGlContextGetDebugEnabled <- function(context) {
 #' @return Display
 #' @export
 gdkGlContextGetDisplay <- function(context) {
-  .Call("R_gdk_gl_context_get_display", context)
+  .Call("R_gdk_gl_context_get_display", context)$result
 }
 
 
@@ -3165,7 +3165,7 @@ gdkGlContextGetDisplay <- function(context) {
 #' @return gboolean
 #' @export
 gdkGlContextGetForwardCompatible <- function(context) {
-  .Call("R_gdk_gl_context_get_forward_compatible", context)
+  .Call("R_gdk_gl_context_get_forward_compatible", context)$result
 }
 
 
@@ -3187,7 +3187,7 @@ gdkGlContextGetRequiredVersion <- function(context) {
 #' @return GLContext
 #' @export
 gdkGlContextGetSharedContext <- function(context) {
-  .Call("R_gdk_gl_context_get_shared_context", context)
+  .Call("R_gdk_gl_context_get_shared_context", context)$result
 }
 
 
@@ -3198,7 +3198,7 @@ gdkGlContextGetSharedContext <- function(context) {
 #' @return Surface
 #' @export
 gdkGlContextGetSurface <- function(context) {
-  .Call("R_gdk_gl_context_get_surface", context)
+  .Call("R_gdk_gl_context_get_surface", context)$result
 }
 
 
@@ -3209,7 +3209,7 @@ gdkGlContextGetSurface <- function(context) {
 #' @return gboolean
 #' @export
 gdkGlContextGetUseEs <- function(context) {
-  .Call("R_gdk_gl_context_get_use_es", context)
+  .Call("R_gdk_gl_context_get_use_es", context)$result
 }
 
 
@@ -3231,7 +3231,7 @@ gdkGlContextGetVersion <- function(context) {
 #' @return gboolean
 #' @export
 gdkGlContextIsLegacy <- function(context) {
-  .Call("R_gdk_gl_context_is_legacy", context)
+  .Call("R_gdk_gl_context_is_legacy", context)$result
 }
 
 
@@ -3243,7 +3243,7 @@ gdkGlContextIsLegacy <- function(context) {
 #' @return gboolean
 #' @export
 gdkGlContextIsShared <- function(self, other) {
-  .Call("R_gdk_gl_context_is_shared", self, other)
+  .Call("R_gdk_gl_context_is_shared", self, other)$result
 }
 
 
@@ -3265,7 +3265,7 @@ gdkGlContextMakeCurrent <- function(context) {
 #' @return gboolean
 #' @export
 gdkGlContextRealize <- function(context) {
-  .Call("R_gdk_gl_context_realize", context)
+  .Call("R_gdk_gl_context_realize", context)$result
 }
 
 
@@ -3336,7 +3336,7 @@ gdkGlContextSetUseEs <- function(context, use_es) {
 #' @return GLib.Quark
 #' @export
 gdkGlErrorQuark <- function() {
-  .Call("R_gdk_gl_error_quark")
+  .Call("R_gdk_gl_error_quark")$result
 }
 
 
@@ -3357,7 +3357,7 @@ gdkGlTextureRelease <- function(self) {
 #' @return GLTextureBuilder
 #' @export
 gdkGlTextureBuilderNew <- function() {
-  .Call("R_gdk_gl_texture_builder_new")
+  .Call("R_gdk_gl_texture_builder_new")$result
 }
 
 
@@ -3368,7 +3368,7 @@ gdkGlTextureBuilderNew <- function() {
 #' @return ColorState
 #' @export
 gdkGlTextureBuilderGetColorState <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_color_state", self)
+  .Call("R_gdk_gl_texture_builder_get_color_state", self)$result
 }
 
 
@@ -3379,7 +3379,7 @@ gdkGlTextureBuilderGetColorState <- function(self) {
 #' @return GLContext
 #' @export
 gdkGlTextureBuilderGetContext <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_context", self)
+  .Call("R_gdk_gl_texture_builder_get_context", self)$result
 }
 
 
@@ -3390,7 +3390,7 @@ gdkGlTextureBuilderGetContext <- function(self) {
 #' @return MemoryFormat
 #' @export
 gdkGlTextureBuilderGetFormat <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_format", self)
+  .Call("R_gdk_gl_texture_builder_get_format", self)$result
 }
 
 
@@ -3401,7 +3401,7 @@ gdkGlTextureBuilderGetFormat <- function(self) {
 #' @return gboolean
 #' @export
 gdkGlTextureBuilderGetHasMipmap <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_has_mipmap", self)
+  .Call("R_gdk_gl_texture_builder_get_has_mipmap", self)$result
 }
 
 
@@ -3412,7 +3412,7 @@ gdkGlTextureBuilderGetHasMipmap <- function(self) {
 #' @return gint
 #' @export
 gdkGlTextureBuilderGetHeight <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_height", self)
+  .Call("R_gdk_gl_texture_builder_get_height", self)$result
 }
 
 
@@ -3423,7 +3423,7 @@ gdkGlTextureBuilderGetHeight <- function(self) {
 #' @return guint
 #' @export
 gdkGlTextureBuilderGetId <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_id", self)
+  .Call("R_gdk_gl_texture_builder_get_id", self)$result
 }
 
 
@@ -3434,7 +3434,7 @@ gdkGlTextureBuilderGetId <- function(self) {
 #' @return gpointer
 #' @export
 gdkGlTextureBuilderGetSync <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_sync", self)
+  .Call("R_gdk_gl_texture_builder_get_sync", self)$result
 }
 
 
@@ -3445,7 +3445,7 @@ gdkGlTextureBuilderGetSync <- function(self) {
 #' @return cairo.Region
 #' @export
 gdkGlTextureBuilderGetUpdateRegion <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_update_region", self)
+  .Call("R_gdk_gl_texture_builder_get_update_region", self)$result
 }
 
 
@@ -3456,7 +3456,7 @@ gdkGlTextureBuilderGetUpdateRegion <- function(self) {
 #' @return Texture
 #' @export
 gdkGlTextureBuilderGetUpdateTexture <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_update_texture", self)
+  .Call("R_gdk_gl_texture_builder_get_update_texture", self)$result
 }
 
 
@@ -3467,7 +3467,7 @@ gdkGlTextureBuilderGetUpdateTexture <- function(self) {
 #' @return gint
 #' @export
 gdkGlTextureBuilderGetWidth <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_width", self)
+  .Call("R_gdk_gl_texture_builder_get_width", self)$result
 }
 
 
@@ -3598,7 +3598,7 @@ gdkGlTextureBuilderSetWidth <- function(self, width) {
 #' @return Surface
 #' @export
 gdkGrabBrokenEventGetGrabSurface <- function(event) {
-  .Call("R_gdk_grab_broken_event_get_grab_surface", event)
+  .Call("R_gdk_grab_broken_event_get_grab_surface", event)$result
 }
 
 
@@ -3609,7 +3609,7 @@ gdkGrabBrokenEventGetGrabSurface <- function(event) {
 #' @return gboolean
 #' @export
 gdkGrabBrokenEventGetImplicit <- function(event) {
-  .Call("R_gdk_grab_broken_event_get_implicit", event)
+  .Call("R_gdk_grab_broken_event_get_implicit", event)$result
 }
 
 
@@ -3620,7 +3620,7 @@ gdkGrabBrokenEventGetImplicit <- function(event) {
 #' @return ModifierType
 #' @export
 gdkKeyEventGetConsumedModifiers <- function(event) {
-  .Call("R_gdk_key_event_get_consumed_modifiers", event)
+  .Call("R_gdk_key_event_get_consumed_modifiers", event)$result
 }
 
 
@@ -3631,7 +3631,7 @@ gdkKeyEventGetConsumedModifiers <- function(event) {
 #' @return guint
 #' @export
 gdkKeyEventGetKeycode <- function(event) {
-  .Call("R_gdk_key_event_get_keycode", event)
+  .Call("R_gdk_key_event_get_keycode", event)$result
 }
 
 
@@ -3642,7 +3642,7 @@ gdkKeyEventGetKeycode <- function(event) {
 #' @return guint
 #' @export
 gdkKeyEventGetKeyval <- function(event) {
-  .Call("R_gdk_key_event_get_keyval", event)
+  .Call("R_gdk_key_event_get_keyval", event)$result
 }
 
 
@@ -3653,7 +3653,7 @@ gdkKeyEventGetKeyval <- function(event) {
 #' @return guint
 #' @export
 gdkKeyEventGetLayout <- function(event) {
-  .Call("R_gdk_key_event_get_layout", event)
+  .Call("R_gdk_key_event_get_layout", event)$result
 }
 
 
@@ -3664,7 +3664,7 @@ gdkKeyEventGetLayout <- function(event) {
 #' @return guint
 #' @export
 gdkKeyEventGetLevel <- function(event) {
-  .Call("R_gdk_key_event_get_level", event)
+  .Call("R_gdk_key_event_get_level", event)$result
 }
 
 
@@ -3686,7 +3686,7 @@ gdkKeyEventGetMatch <- function(event) {
 #' @return gboolean
 #' @export
 gdkKeyEventIsModifier <- function(event) {
-  .Call("R_gdk_key_event_is_modifier", event)
+  .Call("R_gdk_key_event_is_modifier", event)$result
 }
 
 
@@ -3699,7 +3699,7 @@ gdkKeyEventIsModifier <- function(event) {
 #' @return KeyMatch
 #' @export
 gdkKeyEventMatches <- function(event, keyval, modifiers) {
-  .Call("R_gdk_key_event_matches", event, keyval, modifiers)
+  .Call("R_gdk_key_event_matches", event, keyval, modifiers)$result
 }
 
 
@@ -3714,7 +3714,7 @@ gdkKeyEventMatches <- function(event, keyval, modifiers) {
 #' @return MemoryTexture
 #' @export
 gdkMemoryTextureNew <- function(width, height, format, bytes, stride) {
-  .Call("R_gdk_memory_texture_new", width, height, format, bytes, stride)
+  .Call("R_gdk_memory_texture_new", width, height, format, bytes, stride)$result
 }
 
 
@@ -3724,7 +3724,7 @@ gdkMemoryTextureNew <- function(width, height, format, bytes, stride) {
 #' @return MemoryTextureBuilder
 #' @export
 gdkMemoryTextureBuilderNew <- function() {
-  .Call("R_gdk_memory_texture_builder_new")
+  .Call("R_gdk_memory_texture_builder_new")$result
 }
 
 
@@ -3735,7 +3735,7 @@ gdkMemoryTextureBuilderNew <- function() {
 #' @return Texture
 #' @export
 gdkMemoryTextureBuilderBuild <- function(self) {
-  .Call("R_gdk_memory_texture_builder_build", self)
+  .Call("R_gdk_memory_texture_builder_build", self)$result
 }
 
 
@@ -3746,7 +3746,7 @@ gdkMemoryTextureBuilderBuild <- function(self) {
 #' @return GLib.Bytes
 #' @export
 gdkMemoryTextureBuilderGetBytes <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_bytes", self)
+  .Call("R_gdk_memory_texture_builder_get_bytes", self)$result
 }
 
 
@@ -3757,7 +3757,7 @@ gdkMemoryTextureBuilderGetBytes <- function(self) {
 #' @return ColorState
 #' @export
 gdkMemoryTextureBuilderGetColorState <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_color_state", self)
+  .Call("R_gdk_memory_texture_builder_get_color_state", self)$result
 }
 
 
@@ -3768,7 +3768,7 @@ gdkMemoryTextureBuilderGetColorState <- function(self) {
 #' @return MemoryFormat
 #' @export
 gdkMemoryTextureBuilderGetFormat <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_format", self)
+  .Call("R_gdk_memory_texture_builder_get_format", self)$result
 }
 
 
@@ -3779,7 +3779,7 @@ gdkMemoryTextureBuilderGetFormat <- function(self) {
 #' @return gint
 #' @export
 gdkMemoryTextureBuilderGetHeight <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_height", self)
+  .Call("R_gdk_memory_texture_builder_get_height", self)$result
 }
 
 
@@ -3791,7 +3791,7 @@ gdkMemoryTextureBuilderGetHeight <- function(self) {
 #' @return gsize
 #' @export
 gdkMemoryTextureBuilderGetOffset <- function(self, plane) {
-  .Call("R_gdk_memory_texture_builder_get_offset", self, plane)
+  .Call("R_gdk_memory_texture_builder_get_offset", self, plane)$result
 }
 
 
@@ -3802,7 +3802,7 @@ gdkMemoryTextureBuilderGetOffset <- function(self, plane) {
 #' @return gsize
 #' @export
 gdkMemoryTextureBuilderGetStride <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_stride", self)
+  .Call("R_gdk_memory_texture_builder_get_stride", self)$result
 }
 
 
@@ -3814,7 +3814,7 @@ gdkMemoryTextureBuilderGetStride <- function(self) {
 #' @return gsize
 #' @export
 gdkMemoryTextureBuilderGetStrideForPlane <- function(self, plane) {
-  .Call("R_gdk_memory_texture_builder_get_stride_for_plane", self, plane)
+  .Call("R_gdk_memory_texture_builder_get_stride_for_plane", self, plane)$result
 }
 
 
@@ -3825,7 +3825,7 @@ gdkMemoryTextureBuilderGetStrideForPlane <- function(self, plane) {
 #' @return cairo.Region
 #' @export
 gdkMemoryTextureBuilderGetUpdateRegion <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_update_region", self)
+  .Call("R_gdk_memory_texture_builder_get_update_region", self)$result
 }
 
 
@@ -3836,7 +3836,7 @@ gdkMemoryTextureBuilderGetUpdateRegion <- function(self) {
 #' @return Texture
 #' @export
 gdkMemoryTextureBuilderGetUpdateTexture <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_update_texture", self)
+  .Call("R_gdk_memory_texture_builder_get_update_texture", self)$result
 }
 
 
@@ -3847,7 +3847,7 @@ gdkMemoryTextureBuilderGetUpdateTexture <- function(self) {
 #' @return gint
 #' @export
 gdkMemoryTextureBuilderGetWidth <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_width", self)
+  .Call("R_gdk_memory_texture_builder_get_width", self)$result
 }
 
 
@@ -3980,7 +3980,7 @@ gdkMemoryTextureBuilderSetWidth <- function(self, width) {
 #' @return utf8
 #' @export
 gdkMonitorGetConnector <- function(monitor) {
-  .Call("R_gdk_monitor_get_connector", monitor)
+  .Call("R_gdk_monitor_get_connector", monitor)$result
 }
 
 
@@ -3991,7 +3991,7 @@ gdkMonitorGetConnector <- function(monitor) {
 #' @return utf8
 #' @export
 gdkMonitorGetDescription <- function(monitor) {
-  .Call("R_gdk_monitor_get_description", monitor)
+  .Call("R_gdk_monitor_get_description", monitor)$result
 }
 
 
@@ -4002,7 +4002,7 @@ gdkMonitorGetDescription <- function(monitor) {
 #' @return Display
 #' @export
 gdkMonitorGetDisplay <- function(monitor) {
-  .Call("R_gdk_monitor_get_display", monitor)
+  .Call("R_gdk_monitor_get_display", monitor)$result
 }
 
 
@@ -4013,7 +4013,7 @@ gdkMonitorGetDisplay <- function(monitor) {
 #' @return Return value from C function
 #' @export
 gdkMonitorGetGeometry <- function(monitor) {
-  .Call("R_gdk_monitor_get_geometry", monitor)
+  .Call("R_gdk_monitor_get_geometry", monitor)$geometry
 }
 
 
@@ -4024,7 +4024,7 @@ gdkMonitorGetGeometry <- function(monitor) {
 #' @return gint
 #' @export
 gdkMonitorGetHeightMm <- function(monitor) {
-  .Call("R_gdk_monitor_get_height_mm", monitor)
+  .Call("R_gdk_monitor_get_height_mm", monitor)$result
 }
 
 
@@ -4035,7 +4035,7 @@ gdkMonitorGetHeightMm <- function(monitor) {
 #' @return utf8
 #' @export
 gdkMonitorGetManufacturer <- function(monitor) {
-  .Call("R_gdk_monitor_get_manufacturer", monitor)
+  .Call("R_gdk_monitor_get_manufacturer", monitor)$result
 }
 
 
@@ -4046,7 +4046,7 @@ gdkMonitorGetManufacturer <- function(monitor) {
 #' @return utf8
 #' @export
 gdkMonitorGetModel <- function(monitor) {
-  .Call("R_gdk_monitor_get_model", monitor)
+  .Call("R_gdk_monitor_get_model", monitor)$result
 }
 
 
@@ -4057,7 +4057,7 @@ gdkMonitorGetModel <- function(monitor) {
 #' @return gint
 #' @export
 gdkMonitorGetRefreshRate <- function(monitor) {
-  .Call("R_gdk_monitor_get_refresh_rate", monitor)
+  .Call("R_gdk_monitor_get_refresh_rate", monitor)$result
 }
 
 
@@ -4068,7 +4068,7 @@ gdkMonitorGetRefreshRate <- function(monitor) {
 #' @return gdouble
 #' @export
 gdkMonitorGetScale <- function(monitor) {
-  .Call("R_gdk_monitor_get_scale", monitor)
+  .Call("R_gdk_monitor_get_scale", monitor)$result
 }
 
 
@@ -4079,7 +4079,7 @@ gdkMonitorGetScale <- function(monitor) {
 #' @return gint
 #' @export
 gdkMonitorGetScaleFactor <- function(monitor) {
-  .Call("R_gdk_monitor_get_scale_factor", monitor)
+  .Call("R_gdk_monitor_get_scale_factor", monitor)$result
 }
 
 
@@ -4090,7 +4090,7 @@ gdkMonitorGetScaleFactor <- function(monitor) {
 #' @return SubpixelLayout
 #' @export
 gdkMonitorGetSubpixelLayout <- function(monitor) {
-  .Call("R_gdk_monitor_get_subpixel_layout", monitor)
+  .Call("R_gdk_monitor_get_subpixel_layout", monitor)$result
 }
 
 
@@ -4101,7 +4101,7 @@ gdkMonitorGetSubpixelLayout <- function(monitor) {
 #' @return gint
 #' @export
 gdkMonitorGetWidthMm <- function(monitor) {
-  .Call("R_gdk_monitor_get_width_mm", monitor)
+  .Call("R_gdk_monitor_get_width_mm", monitor)$result
 }
 
 
@@ -4112,7 +4112,7 @@ gdkMonitorGetWidthMm <- function(monitor) {
 #' @return gboolean
 #' @export
 gdkMonitorIsValid <- function(monitor) {
-  .Call("R_gdk_monitor_is_valid", monitor)
+  .Call("R_gdk_monitor_is_valid", monitor)$result
 }
 
 
@@ -4134,7 +4134,7 @@ gdkPadEventGetAxisValue <- function(event) {
 #' @return guint
 #' @export
 gdkPadEventGetButton <- function(event) {
-  .Call("R_gdk_pad_event_get_button", event)
+  .Call("R_gdk_pad_event_get_button", event)$result
 }
 
 
@@ -4157,7 +4157,7 @@ gdkPadEventGetGroupMode <- function(event) {
 #' @return Paintable
 #' @export
 gdkPaintableNewEmpty <- function(intrinsic_width, intrinsic_height) {
-  .Call("R_gdk_paintable_new_empty", intrinsic_width, intrinsic_height)
+  .Call("R_gdk_paintable_new_empty", intrinsic_width, intrinsic_height)$result
 }
 
 
@@ -4183,7 +4183,7 @@ gdkPaintableComputeConcreteSize <- function(paintable, specified_width, specifie
 #' @return Paintable
 #' @export
 gdkPaintableGetCurrentImage <- function(paintable) {
-  .Call("R_gdk_paintable_get_current_image", paintable)
+  .Call("R_gdk_paintable_get_current_image", paintable)$result
 }
 
 
@@ -4194,7 +4194,7 @@ gdkPaintableGetCurrentImage <- function(paintable) {
 #' @return PaintableFlags
 #' @export
 gdkPaintableGetFlags <- function(paintable) {
-  .Call("R_gdk_paintable_get_flags", paintable)
+  .Call("R_gdk_paintable_get_flags", paintable)$result
 }
 
 
@@ -4205,7 +4205,7 @@ gdkPaintableGetFlags <- function(paintable) {
 #' @return gdouble
 #' @export
 gdkPaintableGetIntrinsicAspectRatio <- function(paintable) {
-  .Call("R_gdk_paintable_get_intrinsic_aspect_ratio", paintable)
+  .Call("R_gdk_paintable_get_intrinsic_aspect_ratio", paintable)$result
 }
 
 
@@ -4216,7 +4216,7 @@ gdkPaintableGetIntrinsicAspectRatio <- function(paintable) {
 #' @return gint
 #' @export
 gdkPaintableGetIntrinsicHeight <- function(paintable) {
-  .Call("R_gdk_paintable_get_intrinsic_height", paintable)
+  .Call("R_gdk_paintable_get_intrinsic_height", paintable)$result
 }
 
 
@@ -4227,7 +4227,7 @@ gdkPaintableGetIntrinsicHeight <- function(paintable) {
 #' @return gint
 #' @export
 gdkPaintableGetIntrinsicWidth <- function(paintable) {
-  .Call("R_gdk_paintable_get_intrinsic_width", paintable)
+  .Call("R_gdk_paintable_get_intrinsic_width", paintable)$result
 }
 
 
@@ -4274,7 +4274,7 @@ gdkPaintableSnapshot <- function(paintable, snapshot, width, height) {
 #' @return gboolean
 #' @export
 gdkPopupGetAutohide <- function(popup) {
-  .Call("R_gdk_popup_get_autohide", popup)
+  .Call("R_gdk_popup_get_autohide", popup)$result
 }
 
 
@@ -4285,7 +4285,7 @@ gdkPopupGetAutohide <- function(popup) {
 #' @return Surface
 #' @export
 gdkPopupGetParent <- function(popup) {
-  .Call("R_gdk_popup_get_parent", popup)
+  .Call("R_gdk_popup_get_parent", popup)$result
 }
 
 
@@ -4296,7 +4296,7 @@ gdkPopupGetParent <- function(popup) {
 #' @return gint
 #' @export
 gdkPopupGetPositionX <- function(popup) {
-  .Call("R_gdk_popup_get_position_x", popup)
+  .Call("R_gdk_popup_get_position_x", popup)$result
 }
 
 
@@ -4307,7 +4307,7 @@ gdkPopupGetPositionX <- function(popup) {
 #' @return gint
 #' @export
 gdkPopupGetPositionY <- function(popup) {
-  .Call("R_gdk_popup_get_position_y", popup)
+  .Call("R_gdk_popup_get_position_y", popup)$result
 }
 
 
@@ -4318,7 +4318,7 @@ gdkPopupGetPositionY <- function(popup) {
 #' @return Gravity
 #' @export
 gdkPopupGetRectAnchor <- function(popup) {
-  .Call("R_gdk_popup_get_rect_anchor", popup)
+  .Call("R_gdk_popup_get_rect_anchor", popup)$result
 }
 
 
@@ -4329,7 +4329,7 @@ gdkPopupGetRectAnchor <- function(popup) {
 #' @return Gravity
 #' @export
 gdkPopupGetSurfaceAnchor <- function(popup) {
-  .Call("R_gdk_popup_get_surface_anchor", popup)
+  .Call("R_gdk_popup_get_surface_anchor", popup)$result
 }
 
 
@@ -4343,7 +4343,7 @@ gdkPopupGetSurfaceAnchor <- function(popup) {
 #' @return gboolean
 #' @export
 gdkPopupPresent <- function(popup, width, height, layout) {
-  .Call("R_gdk_popup_present", popup, width, height, layout)
+  .Call("R_gdk_popup_present", popup, width, height, layout)$result
 }
 
 
@@ -4356,7 +4356,7 @@ gdkPopupPresent <- function(popup, width, height, layout) {
 #' @return PopupLayout
 #' @export
 gdkPopupLayoutNew <- function(anchor_rect, rect_anchor, surface_anchor) {
-  .Call("R_gdk_popup_layout_new", anchor_rect, rect_anchor, surface_anchor)
+  .Call("R_gdk_popup_layout_new", anchor_rect, rect_anchor, surface_anchor)$result
 }
 
 
@@ -4367,7 +4367,7 @@ gdkPopupLayoutNew <- function(anchor_rect, rect_anchor, surface_anchor) {
 #' @return PopupLayout
 #' @export
 gdkPopupLayoutCopy <- function(layout) {
-  .Call("R_gdk_popup_layout_copy", layout)
+  .Call("R_gdk_popup_layout_copy", layout)$result
 }
 
 
@@ -4379,7 +4379,7 @@ gdkPopupLayoutCopy <- function(layout) {
 #' @return gboolean
 #' @export
 gdkPopupLayoutEqual <- function(layout, other) {
-  .Call("R_gdk_popup_layout_equal", layout, other)
+  .Call("R_gdk_popup_layout_equal", layout, other)$result
 }
 
 
@@ -4390,7 +4390,7 @@ gdkPopupLayoutEqual <- function(layout, other) {
 #' @return AnchorHints
 #' @export
 gdkPopupLayoutGetAnchorHints <- function(layout) {
-  .Call("R_gdk_popup_layout_get_anchor_hints", layout)
+  .Call("R_gdk_popup_layout_get_anchor_hints", layout)$result
 }
 
 
@@ -4401,7 +4401,7 @@ gdkPopupLayoutGetAnchorHints <- function(layout) {
 #' @return Rectangle
 #' @export
 gdkPopupLayoutGetAnchorRect <- function(layout) {
-  .Call("R_gdk_popup_layout_get_anchor_rect", layout)
+  .Call("R_gdk_popup_layout_get_anchor_rect", layout)$result
 }
 
 
@@ -4423,7 +4423,7 @@ gdkPopupLayoutGetOffset <- function(layout) {
 #' @return Gravity
 #' @export
 gdkPopupLayoutGetRectAnchor <- function(layout) {
-  .Call("R_gdk_popup_layout_get_rect_anchor", layout)
+  .Call("R_gdk_popup_layout_get_rect_anchor", layout)$result
 }
 
 
@@ -4445,7 +4445,7 @@ gdkPopupLayoutGetShadowWidth <- function(layout) {
 #' @return Gravity
 #' @export
 gdkPopupLayoutGetSurfaceAnchor <- function(layout) {
-  .Call("R_gdk_popup_layout_get_surface_anchor", layout)
+  .Call("R_gdk_popup_layout_get_surface_anchor", layout)$result
 }
 
 
@@ -4456,7 +4456,7 @@ gdkPopupLayoutGetSurfaceAnchor <- function(layout) {
 #' @return PopupLayout
 #' @export
 gdkPopupLayoutRef <- function(layout) {
-  .Call("R_gdk_popup_layout_ref", layout)
+  .Call("R_gdk_popup_layout_ref", layout)$result
 }
 
 
@@ -4554,7 +4554,7 @@ gdkPopupLayoutUnref <- function(layout) {
 #' @return RGBA
 #' @export
 gdkRgbaCopy <- function(rgba) {
-  .Call("R_gdk_rgba_copy", rgba)
+  .Call("R_gdk_rgba_copy", rgba)$result
 }
 
 
@@ -4566,7 +4566,7 @@ gdkRgbaCopy <- function(rgba) {
 #' @return gboolean
 #' @export
 gdkRgbaEqual <- function(p1, p2) {
-  .Call("R_gdk_rgba_equal", p1, p2)
+  .Call("R_gdk_rgba_equal", p1, p2)$result
 }
 
 
@@ -4588,7 +4588,7 @@ gdkRgbaFree <- function(rgba) {
 #' @return guint
 #' @export
 gdkRgbaHash <- function(p) {
-  .Call("R_gdk_rgba_hash", p)
+  .Call("R_gdk_rgba_hash", p)$result
 }
 
 
@@ -4599,7 +4599,7 @@ gdkRgbaHash <- function(p) {
 #' @return gboolean
 #' @export
 gdkRgbaIsClear <- function(rgba) {
-  .Call("R_gdk_rgba_is_clear", rgba)
+  .Call("R_gdk_rgba_is_clear", rgba)$result
 }
 
 
@@ -4610,7 +4610,7 @@ gdkRgbaIsClear <- function(rgba) {
 #' @return gboolean
 #' @export
 gdkRgbaIsOpaque <- function(rgba) {
-  .Call("R_gdk_rgba_is_opaque", rgba)
+  .Call("R_gdk_rgba_is_opaque", rgba)$result
 }
 
 
@@ -4622,7 +4622,7 @@ gdkRgbaIsOpaque <- function(rgba) {
 #' @return gboolean
 #' @export
 gdkRgbaParse <- function(rgba, spec) {
-  .Call("R_gdk_rgba_parse", rgba, spec)
+  .Call("R_gdk_rgba_parse", rgba, spec)$result
 }
 
 
@@ -4634,7 +4634,7 @@ gdkRgbaParse <- function(rgba, spec) {
 #' @return GLib.String
 #' @export
 gdkRgbaPrint <- function(rgba, string) {
-  .Call("R_gdk_rgba_print", rgba, string)
+  .Call("R_gdk_rgba_print", rgba, string)$result
 }
 
 
@@ -4645,7 +4645,7 @@ gdkRgbaPrint <- function(rgba, string) {
 #' @return utf8
 #' @export
 gdkRgbaToString <- function(rgba) {
-  .Call("R_gdk_rgba_to_string", rgba)
+  .Call("R_gdk_rgba_to_string", rgba)$result
 }
 
 
@@ -4658,7 +4658,7 @@ gdkRgbaToString <- function(rgba) {
 #' @return gboolean
 #' @export
 gdkRectangleContainsPoint <- function(rect, x, y) {
-  .Call("R_gdk_rectangle_contains_point", rect, x, y)
+  .Call("R_gdk_rectangle_contains_point", rect, x, y)$result
 }
 
 
@@ -4670,7 +4670,7 @@ gdkRectangleContainsPoint <- function(rect, x, y) {
 #' @return gboolean
 #' @export
 gdkRectangleEqual <- function(rect1, rect2) {
-  .Call("R_gdk_rectangle_equal", rect1, rect2)
+  .Call("R_gdk_rectangle_equal", rect1, rect2)$result
 }
 
 
@@ -4694,7 +4694,7 @@ gdkRectangleIntersect <- function(src1, src2) {
 #' @return Return value from C function
 #' @export
 gdkRectangleUnion <- function(src1, src2) {
-  .Call("R_gdk_rectangle_union", src1, src2)
+  .Call("R_gdk_rectangle_union", src1, src2)$dest
 }
 
 
@@ -4716,7 +4716,7 @@ gdkScrollEventGetDeltas <- function(event) {
 #' @return ScrollDirection
 #' @export
 gdkScrollEventGetDirection <- function(event) {
-  .Call("R_gdk_scroll_event_get_direction", event)
+  .Call("R_gdk_scroll_event_get_direction", event)$result
 }
 
 
@@ -4727,7 +4727,7 @@ gdkScrollEventGetDirection <- function(event) {
 #' @return ScrollRelativeDirection
 #' @export
 gdkScrollEventGetRelativeDirection <- function(event) {
-  .Call("R_gdk_scroll_event_get_relative_direction", event)
+  .Call("R_gdk_scroll_event_get_relative_direction", event)$result
 }
 
 
@@ -4738,7 +4738,7 @@ gdkScrollEventGetRelativeDirection <- function(event) {
 #' @return ScrollUnit
 #' @export
 gdkScrollEventGetUnit <- function(event) {
-  .Call("R_gdk_scroll_event_get_unit", event)
+  .Call("R_gdk_scroll_event_get_unit", event)$result
 }
 
 
@@ -4749,7 +4749,7 @@ gdkScrollEventGetUnit <- function(event) {
 #' @return gboolean
 #' @export
 gdkScrollEventIsStop <- function(event) {
-  .Call("R_gdk_scroll_event_is_stop", event)
+  .Call("R_gdk_scroll_event_is_stop", event)$result
 }
 
 
@@ -4760,7 +4760,7 @@ gdkScrollEventIsStop <- function(event) {
 #' @return SeatCapabilities
 #' @export
 gdkSeatGetCapabilities <- function(seat) {
-  .Call("R_gdk_seat_get_capabilities", seat)
+  .Call("R_gdk_seat_get_capabilities", seat)$result
 }
 
 
@@ -4772,7 +4772,7 @@ gdkSeatGetCapabilities <- function(seat) {
 #' @return GLib.List
 #' @export
 gdkSeatGetDevices <- function(seat, capabilities) {
-  .Call("R_gdk_seat_get_devices", seat, capabilities)
+  .Call("R_gdk_seat_get_devices", seat, capabilities)$result
 }
 
 
@@ -4783,7 +4783,7 @@ gdkSeatGetDevices <- function(seat, capabilities) {
 #' @return Display
 #' @export
 gdkSeatGetDisplay <- function(seat) {
-  .Call("R_gdk_seat_get_display", seat)
+  .Call("R_gdk_seat_get_display", seat)$result
 }
 
 
@@ -4794,7 +4794,7 @@ gdkSeatGetDisplay <- function(seat) {
 #' @return Device
 #' @export
 gdkSeatGetKeyboard <- function(seat) {
-  .Call("R_gdk_seat_get_keyboard", seat)
+  .Call("R_gdk_seat_get_keyboard", seat)$result
 }
 
 
@@ -4805,7 +4805,7 @@ gdkSeatGetKeyboard <- function(seat) {
 #' @return Device
 #' @export
 gdkSeatGetPointer <- function(seat) {
-  .Call("R_gdk_seat_get_pointer", seat)
+  .Call("R_gdk_seat_get_pointer", seat)$result
 }
 
 
@@ -4816,7 +4816,7 @@ gdkSeatGetPointer <- function(seat) {
 #' @return GLib.List
 #' @export
 gdkSeatGetTools <- function(seat) {
-  .Call("R_gdk_seat_get_tools", seat)
+  .Call("R_gdk_seat_get_tools", seat)$result
 }
 
 
@@ -4828,7 +4828,7 @@ gdkSeatGetTools <- function(seat) {
 #' @return Surface
 #' @export
 gdkSurfaceNewPopup <- function(parent, autohide) {
-  .Call("R_gdk_surface_new_popup", parent, autohide)
+  .Call("R_gdk_surface_new_popup", parent, autohide)$result
 }
 
 
@@ -4839,7 +4839,7 @@ gdkSurfaceNewPopup <- function(parent, autohide) {
 #' @return Surface
 #' @export
 gdkSurfaceNewToplevel <- function(display) {
-  .Call("R_gdk_surface_new_toplevel", display)
+  .Call("R_gdk_surface_new_toplevel", display)$result
 }
 
 
@@ -4861,7 +4861,7 @@ gdkSurfaceBeep <- function(surface) {
 #' @return CairoContext
 #' @export
 gdkSurfaceCreateCairoContext <- function(surface) {
-  .Call("R_gdk_surface_create_cairo_context", surface)
+  .Call("R_gdk_surface_create_cairo_context", surface)$result
 }
 
 
@@ -4872,7 +4872,7 @@ gdkSurfaceCreateCairoContext <- function(surface) {
 #' @return GLContext
 #' @export
 gdkSurfaceCreateGlContext <- function(surface) {
-  .Call("R_gdk_surface_create_gl_context", surface)
+  .Call("R_gdk_surface_create_gl_context", surface)$result
 }
 
 
@@ -4886,7 +4886,7 @@ gdkSurfaceCreateGlContext <- function(surface) {
 #' @return cairo.Surface
 #' @export
 gdkSurfaceCreateSimilarSurface <- function(surface, content, width, height) {
-  .Call("R_gdk_surface_create_similar_surface", surface, content, width, height)
+  .Call("R_gdk_surface_create_similar_surface", surface, content, width, height)$result
 }
 
 
@@ -4897,7 +4897,7 @@ gdkSurfaceCreateSimilarSurface <- function(surface, content, width, height) {
 #' @return VulkanContext
 #' @export
 gdkSurfaceCreateVulkanContext <- function(surface) {
-  .Call("R_gdk_surface_create_vulkan_context", surface)
+  .Call("R_gdk_surface_create_vulkan_context", surface)$result
 }
 
 
@@ -4919,7 +4919,7 @@ gdkSurfaceDestroy <- function(surface) {
 #' @return Cursor
 #' @export
 gdkSurfaceGetCursor <- function(surface) {
-  .Call("R_gdk_surface_get_cursor", surface)
+  .Call("R_gdk_surface_get_cursor", surface)$result
 }
 
 
@@ -4931,7 +4931,7 @@ gdkSurfaceGetCursor <- function(surface) {
 #' @return Cursor
 #' @export
 gdkSurfaceGetDeviceCursor <- function(surface, device) {
-  .Call("R_gdk_surface_get_device_cursor", surface, device)
+  .Call("R_gdk_surface_get_device_cursor", surface, device)$result
 }
 
 
@@ -4954,7 +4954,7 @@ gdkSurfaceGetDevicePosition <- function(surface, device) {
 #' @return Display
 #' @export
 gdkSurfaceGetDisplay <- function(surface) {
-  .Call("R_gdk_surface_get_display", surface)
+  .Call("R_gdk_surface_get_display", surface)$result
 }
 
 
@@ -4965,7 +4965,7 @@ gdkSurfaceGetDisplay <- function(surface) {
 #' @return FrameClock
 #' @export
 gdkSurfaceGetFrameClock <- function(surface) {
-  .Call("R_gdk_surface_get_frame_clock", surface)
+  .Call("R_gdk_surface_get_frame_clock", surface)$result
 }
 
 
@@ -4976,7 +4976,7 @@ gdkSurfaceGetFrameClock <- function(surface) {
 #' @return gint
 #' @export
 gdkSurfaceGetHeight <- function(surface) {
-  .Call("R_gdk_surface_get_height", surface)
+  .Call("R_gdk_surface_get_height", surface)$result
 }
 
 
@@ -4987,7 +4987,7 @@ gdkSurfaceGetHeight <- function(surface) {
 #' @return gboolean
 #' @export
 gdkSurfaceGetMapped <- function(surface) {
-  .Call("R_gdk_surface_get_mapped", surface)
+  .Call("R_gdk_surface_get_mapped", surface)$result
 }
 
 
@@ -4998,7 +4998,7 @@ gdkSurfaceGetMapped <- function(surface) {
 #' @return gdouble
 #' @export
 gdkSurfaceGetScale <- function(surface) {
-  .Call("R_gdk_surface_get_scale", surface)
+  .Call("R_gdk_surface_get_scale", surface)$result
 }
 
 
@@ -5009,7 +5009,7 @@ gdkSurfaceGetScale <- function(surface) {
 #' @return gint
 #' @export
 gdkSurfaceGetScaleFactor <- function(surface) {
-  .Call("R_gdk_surface_get_scale_factor", surface)
+  .Call("R_gdk_surface_get_scale_factor", surface)$result
 }
 
 
@@ -5020,7 +5020,7 @@ gdkSurfaceGetScaleFactor <- function(surface) {
 #' @return gint
 #' @export
 gdkSurfaceGetWidth <- function(surface) {
-  .Call("R_gdk_surface_get_width", surface)
+  .Call("R_gdk_surface_get_width", surface)$result
 }
 
 
@@ -5042,7 +5042,7 @@ gdkSurfaceHide <- function(surface) {
 #' @return gboolean
 #' @export
 gdkSurfaceIsDestroyed <- function(surface) {
-  .Call("R_gdk_surface_is_destroyed", surface)
+  .Call("R_gdk_surface_is_destroyed", surface)$result
 }
 
 
@@ -5136,7 +5136,7 @@ gdkSurfaceTranslateCoordinates <- function(from, to) {
 #' @return Texture
 #' @export
 gdkTextureNewForPixbuf <- function(pixbuf) {
-  .Call("R_gdk_texture_new_for_pixbuf", pixbuf)
+  .Call("R_gdk_texture_new_for_pixbuf", pixbuf)$result
 }
 
 
@@ -5147,7 +5147,7 @@ gdkTextureNewForPixbuf <- function(pixbuf) {
 #' @return Texture
 #' @export
 gdkTextureNewFromBytes <- function(bytes) {
-  .Call("R_gdk_texture_new_from_bytes", bytes)
+  .Call("R_gdk_texture_new_from_bytes", bytes)$result
 }
 
 
@@ -5158,7 +5158,7 @@ gdkTextureNewFromBytes <- function(bytes) {
 #' @return Texture
 #' @export
 gdkTextureNewFromFile <- function(file) {
-  .Call("R_gdk_texture_new_from_file", file)
+  .Call("R_gdk_texture_new_from_file", file)$result
 }
 
 
@@ -5169,7 +5169,7 @@ gdkTextureNewFromFile <- function(file) {
 #' @return Texture
 #' @export
 gdkTextureNewFromFilename <- function(path) {
-  .Call("R_gdk_texture_new_from_filename", path)
+  .Call("R_gdk_texture_new_from_filename", path)$result
 }
 
 
@@ -5180,7 +5180,7 @@ gdkTextureNewFromFilename <- function(path) {
 #' @return Texture
 #' @export
 gdkTextureNewFromResource <- function(resource_path) {
-  .Call("R_gdk_texture_new_from_resource", resource_path)
+  .Call("R_gdk_texture_new_from_resource", resource_path)$result
 }
 
 
@@ -5204,7 +5204,7 @@ gdkTextureDownload <- function(texture, data, stride) {
 #' @return ColorState
 #' @export
 gdkTextureGetColorState <- function(self) {
-  .Call("R_gdk_texture_get_color_state", self)
+  .Call("R_gdk_texture_get_color_state", self)$result
 }
 
 
@@ -5215,7 +5215,7 @@ gdkTextureGetColorState <- function(self) {
 #' @return MemoryFormat
 #' @export
 gdkTextureGetFormat <- function(self) {
-  .Call("R_gdk_texture_get_format", self)
+  .Call("R_gdk_texture_get_format", self)$result
 }
 
 
@@ -5226,7 +5226,7 @@ gdkTextureGetFormat <- function(self) {
 #' @return gint
 #' @export
 gdkTextureGetHeight <- function(texture) {
-  .Call("R_gdk_texture_get_height", texture)
+  .Call("R_gdk_texture_get_height", texture)$result
 }
 
 
@@ -5237,7 +5237,7 @@ gdkTextureGetHeight <- function(texture) {
 #' @return gint
 #' @export
 gdkTextureGetWidth <- function(texture) {
-  .Call("R_gdk_texture_get_width", texture)
+  .Call("R_gdk_texture_get_width", texture)$result
 }
 
 
@@ -5249,7 +5249,7 @@ gdkTextureGetWidth <- function(texture) {
 #' @return gboolean
 #' @export
 gdkTextureSaveToPng <- function(texture, filename) {
-  .Call("R_gdk_texture_save_to_png", texture, filename)
+  .Call("R_gdk_texture_save_to_png", texture, filename)$result
 }
 
 
@@ -5260,7 +5260,7 @@ gdkTextureSaveToPng <- function(texture, filename) {
 #' @return GLib.Bytes
 #' @export
 gdkTextureSaveToPngBytes <- function(texture) {
-  .Call("R_gdk_texture_save_to_png_bytes", texture)
+  .Call("R_gdk_texture_save_to_png_bytes", texture)$result
 }
 
 
@@ -5272,7 +5272,7 @@ gdkTextureSaveToPngBytes <- function(texture) {
 #' @return gboolean
 #' @export
 gdkTextureSaveToTiff <- function(texture, filename) {
-  .Call("R_gdk_texture_save_to_tiff", texture, filename)
+  .Call("R_gdk_texture_save_to_tiff", texture, filename)$result
 }
 
 
@@ -5283,7 +5283,7 @@ gdkTextureSaveToTiff <- function(texture, filename) {
 #' @return GLib.Bytes
 #' @export
 gdkTextureSaveToTiffBytes <- function(texture) {
-  .Call("R_gdk_texture_save_to_tiff_bytes", texture)
+  .Call("R_gdk_texture_save_to_tiff_bytes", texture)$result
 }
 
 
@@ -5294,7 +5294,7 @@ gdkTextureSaveToTiffBytes <- function(texture) {
 #' @return TextureDownloader
 #' @export
 gdkTextureDownloaderNew <- function(texture) {
-  .Call("R_gdk_texture_downloader_new", texture)
+  .Call("R_gdk_texture_downloader_new", texture)$result
 }
 
 
@@ -5305,7 +5305,7 @@ gdkTextureDownloaderNew <- function(texture) {
 #' @return TextureDownloader
 #' @export
 gdkTextureDownloaderCopy <- function(self) {
-  .Call("R_gdk_texture_downloader_copy", self)
+  .Call("R_gdk_texture_downloader_copy", self)$result
 }
 
 
@@ -5362,7 +5362,7 @@ gdkTextureDownloaderFree <- function(self) {
 #' @return ColorState
 #' @export
 gdkTextureDownloaderGetColorState <- function(self) {
-  .Call("R_gdk_texture_downloader_get_color_state", self)
+  .Call("R_gdk_texture_downloader_get_color_state", self)$result
 }
 
 
@@ -5373,7 +5373,7 @@ gdkTextureDownloaderGetColorState <- function(self) {
 #' @return MemoryFormat
 #' @export
 gdkTextureDownloaderGetFormat <- function(self) {
-  .Call("R_gdk_texture_downloader_get_format", self)
+  .Call("R_gdk_texture_downloader_get_format", self)$result
 }
 
 
@@ -5384,7 +5384,7 @@ gdkTextureDownloaderGetFormat <- function(self) {
 #' @return Texture
 #' @export
 gdkTextureDownloaderGetTexture <- function(self) {
-  .Call("R_gdk_texture_downloader_get_texture", self)
+  .Call("R_gdk_texture_downloader_get_texture", self)$result
 }
 
 
@@ -5430,7 +5430,7 @@ gdkTextureDownloaderSetTexture <- function(self, texture) {
 #' @return GLib.Quark
 #' @export
 gdkTextureErrorQuark <- function() {
-  .Call("R_gdk_texture_error_quark")
+  .Call("R_gdk_texture_error_quark")$result
 }
 
 
@@ -5486,7 +5486,7 @@ gdkToplevelFocus <- function(toplevel, timestamp) {
 #' @return ToplevelCapabilities
 #' @export
 gdkToplevelGetCapabilities <- function(toplevel) {
-  .Call("R_gdk_toplevel_get_capabilities", toplevel)
+  .Call("R_gdk_toplevel_get_capabilities", toplevel)$result
 }
 
 
@@ -5497,7 +5497,7 @@ gdkToplevelGetCapabilities <- function(toplevel) {
 #' @return Gravity
 #' @export
 gdkToplevelGetGravity <- function(toplevel) {
-  .Call("R_gdk_toplevel_get_gravity", toplevel)
+  .Call("R_gdk_toplevel_get_gravity", toplevel)$result
 }
 
 
@@ -5508,7 +5508,7 @@ gdkToplevelGetGravity <- function(toplevel) {
 #' @return ToplevelState
 #' @export
 gdkToplevelGetState <- function(toplevel) {
-  .Call("R_gdk_toplevel_get_state", toplevel)
+  .Call("R_gdk_toplevel_get_state", toplevel)$result
 }
 
 
@@ -5531,7 +5531,7 @@ gdkToplevelInhibitSystemShortcuts <- function(toplevel, event) {
 #' @return gboolean
 #' @export
 gdkToplevelLower <- function(toplevel) {
-  .Call("R_gdk_toplevel_lower", toplevel)
+  .Call("R_gdk_toplevel_lower", toplevel)$result
 }
 
 
@@ -5542,7 +5542,7 @@ gdkToplevelLower <- function(toplevel) {
 #' @return gboolean
 #' @export
 gdkToplevelMinimize <- function(toplevel) {
-  .Call("R_gdk_toplevel_minimize", toplevel)
+  .Call("R_gdk_toplevel_minimize", toplevel)$result
 }
 
 
@@ -5673,7 +5673,7 @@ gdkToplevelSetTransientFor <- function(toplevel, parent) {
 #' @return gboolean
 #' @export
 gdkToplevelShowWindowMenu <- function(toplevel, event) {
-  .Call("R_gdk_toplevel_show_window_menu", toplevel, event)
+  .Call("R_gdk_toplevel_show_window_menu", toplevel, event)$result
 }
 
 
@@ -5684,7 +5684,7 @@ gdkToplevelShowWindowMenu <- function(toplevel, event) {
 #' @return gboolean
 #' @export
 gdkToplevelSupportsEdgeConstraints <- function(toplevel) {
-  .Call("R_gdk_toplevel_supports_edge_constraints", toplevel)
+  .Call("R_gdk_toplevel_supports_edge_constraints", toplevel)$result
 }
 
 
@@ -5696,7 +5696,7 @@ gdkToplevelSupportsEdgeConstraints <- function(toplevel) {
 #' @return gboolean
 #' @export
 gdkToplevelTitlebarGesture <- function(toplevel, gesture) {
-  .Call("R_gdk_toplevel_titlebar_gesture", toplevel, gesture)
+  .Call("R_gdk_toplevel_titlebar_gesture", toplevel, gesture)$result
 }
 
 
@@ -5706,7 +5706,7 @@ gdkToplevelTitlebarGesture <- function(toplevel, gesture) {
 #' @return ToplevelLayout
 #' @export
 gdkToplevelLayoutNew <- function() {
-  .Call("R_gdk_toplevel_layout_new")
+  .Call("R_gdk_toplevel_layout_new")$result
 }
 
 
@@ -5717,7 +5717,7 @@ gdkToplevelLayoutNew <- function() {
 #' @return ToplevelLayout
 #' @export
 gdkToplevelLayoutCopy <- function(layout) {
-  .Call("R_gdk_toplevel_layout_copy", layout)
+  .Call("R_gdk_toplevel_layout_copy", layout)$result
 }
 
 
@@ -5729,7 +5729,7 @@ gdkToplevelLayoutCopy <- function(layout) {
 #' @return gboolean
 #' @export
 gdkToplevelLayoutEqual <- function(layout, other) {
-  .Call("R_gdk_toplevel_layout_equal", layout, other)
+  .Call("R_gdk_toplevel_layout_equal", layout, other)$result
 }
 
 
@@ -5751,7 +5751,7 @@ gdkToplevelLayoutGetFullscreen <- function(layout) {
 #' @return Monitor
 #' @export
 gdkToplevelLayoutGetFullscreenMonitor <- function(layout) {
-  .Call("R_gdk_toplevel_layout_get_fullscreen_monitor", layout)
+  .Call("R_gdk_toplevel_layout_get_fullscreen_monitor", layout)$result
 }
 
 
@@ -5773,7 +5773,7 @@ gdkToplevelLayoutGetMaximized <- function(layout) {
 #' @return gboolean
 #' @export
 gdkToplevelLayoutGetResizable <- function(layout) {
-  .Call("R_gdk_toplevel_layout_get_resizable", layout)
+  .Call("R_gdk_toplevel_layout_get_resizable", layout)$result
 }
 
 
@@ -5784,7 +5784,7 @@ gdkToplevelLayoutGetResizable <- function(layout) {
 #' @return ToplevelLayout
 #' @export
 gdkToplevelLayoutRef <- function(layout) {
-  .Call("R_gdk_toplevel_layout_ref", layout)
+  .Call("R_gdk_toplevel_layout_ref", layout)$result
 }
 
 
@@ -5895,7 +5895,7 @@ gdkToplevelSizeSetSize <- function(size, width, height) {
 #' @return gboolean
 #' @export
 gdkTouchEventGetEmulatingPointer <- function(event) {
-  .Call("R_gdk_touch_event_get_emulating_pointer", event)
+  .Call("R_gdk_touch_event_get_emulating_pointer", event)$result
 }
 
 
@@ -5917,7 +5917,7 @@ gdkTouchpadEventGetDeltas <- function(event) {
 #' @return TouchpadGesturePhase
 #' @export
 gdkTouchpadEventGetGesturePhase <- function(event) {
-  .Call("R_gdk_touchpad_event_get_gesture_phase", event)
+  .Call("R_gdk_touchpad_event_get_gesture_phase", event)$result
 }
 
 
@@ -5928,7 +5928,7 @@ gdkTouchpadEventGetGesturePhase <- function(event) {
 #' @return guint
 #' @export
 gdkTouchpadEventGetNFingers <- function(event) {
-  .Call("R_gdk_touchpad_event_get_n_fingers", event)
+  .Call("R_gdk_touchpad_event_get_n_fingers", event)$result
 }
 
 
@@ -5939,7 +5939,7 @@ gdkTouchpadEventGetNFingers <- function(event) {
 #' @return gdouble
 #' @export
 gdkTouchpadEventGetPinchAngleDelta <- function(event) {
-  .Call("R_gdk_touchpad_event_get_pinch_angle_delta", event)
+  .Call("R_gdk_touchpad_event_get_pinch_angle_delta", event)$result
 }
 
 
@@ -5950,7 +5950,7 @@ gdkTouchpadEventGetPinchAngleDelta <- function(event) {
 #' @return gdouble
 #' @export
 gdkTouchpadEventGetPinchScale <- function(event) {
-  .Call("R_gdk_touchpad_event_get_pinch_scale", event)
+  .Call("R_gdk_touchpad_event_get_pinch_scale", event)$result
 }
 
 
@@ -5960,7 +5960,7 @@ gdkTouchpadEventGetPinchScale <- function(event) {
 #' @return GLib.Quark
 #' @export
 gdkVulkanErrorQuark <- function() {
-  .Call("R_gdk_vulkan_error_quark")
+  .Call("R_gdk_vulkan_error_quark")$result
 }
 
 
@@ -6014,7 +6014,7 @@ gdkCairoRegion <- function(cr, region) {
 #' @return cairo.Region
 #' @export
 gdkCairoRegionCreateFromSurface <- function(surface) {
-  .Call("R_gdk_cairo_region_create_from_surface", surface)
+  .Call("R_gdk_cairo_region_create_from_surface", surface)$result
 }
 
 
@@ -6062,7 +6062,7 @@ gdkContentDeserializeFinish <- function(result) {
 #' @return gboolean
 #' @export
 gdkContentSerializeFinish <- function(result) {
-  .Call("R_gdk_content_serialize_finish", result)
+  .Call("R_gdk_content_serialize_finish", result)$result
 }
 
 
@@ -6073,7 +6073,7 @@ gdkContentSerializeFinish <- function(result) {
 #' @return utf8
 #' @export
 gdkInternMimeType <- function(string) {
-  .Call("R_gdk_intern_mime_type", string)
+  .Call("R_gdk_intern_mime_type", string)$result
 }
 
 
@@ -6095,7 +6095,7 @@ gdkKeyvalConvertCase <- function(symbol) {
 #' @return guint
 #' @export
 gdkKeyvalFromName <- function(keyval_name) {
-  .Call("R_gdk_keyval_from_name", keyval_name)
+  .Call("R_gdk_keyval_from_name", keyval_name)$result
 }
 
 
@@ -6106,7 +6106,7 @@ gdkKeyvalFromName <- function(keyval_name) {
 #' @return gboolean
 #' @export
 gdkKeyvalIsLower <- function(keyval) {
-  .Call("R_gdk_keyval_is_lower", keyval)
+  .Call("R_gdk_keyval_is_lower", keyval)$result
 }
 
 
@@ -6117,7 +6117,7 @@ gdkKeyvalIsLower <- function(keyval) {
 #' @return gboolean
 #' @export
 gdkKeyvalIsUpper <- function(keyval) {
-  .Call("R_gdk_keyval_is_upper", keyval)
+  .Call("R_gdk_keyval_is_upper", keyval)$result
 }
 
 
@@ -6128,7 +6128,7 @@ gdkKeyvalIsUpper <- function(keyval) {
 #' @return utf8
 #' @export
 gdkKeyvalName <- function(keyval) {
-  .Call("R_gdk_keyval_name", keyval)
+  .Call("R_gdk_keyval_name", keyval)$result
 }
 
 
@@ -6139,7 +6139,7 @@ gdkKeyvalName <- function(keyval) {
 #' @return guint
 #' @export
 gdkKeyvalToLower <- function(keyval) {
-  .Call("R_gdk_keyval_to_lower", keyval)
+  .Call("R_gdk_keyval_to_lower", keyval)$result
 }
 
 
@@ -6150,7 +6150,7 @@ gdkKeyvalToLower <- function(keyval) {
 #' @return guint32
 #' @export
 gdkKeyvalToUnicode <- function(keyval) {
-  .Call("R_gdk_keyval_to_unicode", keyval)
+  .Call("R_gdk_keyval_to_unicode", keyval)$result
 }
 
 
@@ -6161,7 +6161,7 @@ gdkKeyvalToUnicode <- function(keyval) {
 #' @return guint
 #' @export
 gdkKeyvalToUpper <- function(keyval) {
-  .Call("R_gdk_keyval_to_upper", keyval)
+  .Call("R_gdk_keyval_to_upper", keyval)$result
 }
 
 
@@ -6176,7 +6176,7 @@ gdkKeyvalToUpper <- function(keyval) {
 #' @return GdkPixbuf.Pixbuf
 #' @export
 gdkPixbufGetFromSurface <- function(surface, src_x, src_y, width, height) {
-  .Call("R_gdk_pixbuf_get_from_surface", surface, src_x, src_y, width, height)
+  .Call("R_gdk_pixbuf_get_from_surface", surface, src_x, src_y, width, height)$result
 }
 
 
@@ -6187,7 +6187,7 @@ gdkPixbufGetFromSurface <- function(surface, src_x, src_y, width, height) {
 #' @return GdkPixbuf.Pixbuf
 #' @export
 gdkPixbufGetFromTexture <- function(texture) {
-  .Call("R_gdk_pixbuf_get_from_texture", texture)
+  .Call("R_gdk_pixbuf_get_from_texture", texture)$result
 }
 
 
@@ -6209,7 +6209,7 @@ gdkSetAllowedBackends <- function(backends) {
 #' @return guint
 #' @export
 gdkUnicodeToKeyval <- function(wc) {
-  .Call("R_gdk_unicode_to_keyval", wc)
+  .Call("R_gdk_unicode_to_keyval", wc)$result
 }
 
 

@@ -7,7 +7,7 @@
 #' @return Object
 #' @export
 gBindingDupSource <- function(binding) {
-  .Call("R_g_binding_dup_source", binding)
+  .Call("R_g_binding_dup_source", binding)$result
 }
 
 
@@ -18,7 +18,7 @@ gBindingDupSource <- function(binding) {
 #' @return Object
 #' @export
 gBindingDupTarget <- function(binding) {
-  .Call("R_g_binding_dup_target", binding)
+  .Call("R_g_binding_dup_target", binding)$result
 }
 
 
@@ -29,7 +29,7 @@ gBindingDupTarget <- function(binding) {
 #' @return BindingFlags
 #' @export
 gBindingGetFlags <- function(binding) {
-  .Call("R_g_binding_get_flags", binding)
+  .Call("R_g_binding_get_flags", binding)$result
 }
 
 
@@ -40,7 +40,7 @@ gBindingGetFlags <- function(binding) {
 #' @return Object
 #' @export
 gBindingGetSource <- function(binding) {
-  .Call("R_g_binding_get_source", binding)
+  .Call("R_g_binding_get_source", binding)$result
 }
 
 
@@ -51,7 +51,7 @@ gBindingGetSource <- function(binding) {
 #' @return utf8
 #' @export
 gBindingGetSourceProperty <- function(binding) {
-  .Call("R_g_binding_get_source_property", binding)
+  .Call("R_g_binding_get_source_property", binding)$result
 }
 
 
@@ -62,7 +62,7 @@ gBindingGetSourceProperty <- function(binding) {
 #' @return Object
 #' @export
 gBindingGetTarget <- function(binding) {
-  .Call("R_g_binding_get_target", binding)
+  .Call("R_g_binding_get_target", binding)$result
 }
 
 
@@ -73,7 +73,7 @@ gBindingGetTarget <- function(binding) {
 #' @return utf8
 #' @export
 gBindingGetTargetProperty <- function(binding) {
-  .Call("R_g_binding_get_target_property", binding)
+  .Call("R_g_binding_get_target_property", binding)$result
 }
 
 
@@ -94,7 +94,7 @@ gBindingUnbind <- function(binding) {
 #' @return BindingGroup
 #' @export
 gBindingGroupNew <- function() {
-  .Call("R_g_binding_group_new")
+  .Call("R_g_binding_group_new")$result
 }
 
 
@@ -137,7 +137,7 @@ gBindingGroupBindWithClosures <- function(self, source_property, target, target_
 #' @return Object
 #' @export
 gBindingGroupDupSource <- function(self) {
-  .Call("R_g_binding_group_dup_source", self)
+  .Call("R_g_binding_group_dup_source", self)$result
 }
 
 
@@ -529,7 +529,7 @@ gCclosureMarshalGeneric <- function(closure, return_gvalue, n_param_values, para
 #' @return Closure
 #' @export
 gClosureNewObject <- function(sizeof_closure, object) {
-  .Call("R_g_closure_new_object", sizeof_closure, object)
+  .Call("R_g_closure_new_object", sizeof_closure, object)$result
 }
 
 
@@ -541,7 +541,7 @@ gClosureNewObject <- function(sizeof_closure, object) {
 #' @return Closure
 #' @export
 gClosureNewSimple <- function(sizeof_closure, data) {
-  .Call("R_g_closure_new_simple", sizeof_closure, data)
+  .Call("R_g_closure_new_simple", sizeof_closure, data)$result
 }
 
 
@@ -566,7 +566,7 @@ gClosureInvalidate <- function(closure) {
 #' @return Return value from C function
 #' @export
 gClosureInvoke <- function(closure, n_param_values, param_values, invocation_hint) {
-  .Call("R_g_closure_invoke", closure, n_param_values, param_values, invocation_hint)
+  .Call("R_g_closure_invoke", closure, n_param_values, param_values, invocation_hint)$return_value
 }
 
 
@@ -577,7 +577,7 @@ gClosureInvoke <- function(closure, n_param_values, param_values, invocation_hin
 #' @return Closure
 #' @export
 gClosureRef <- function(closure) {
-  .Call("R_g_closure_ref", closure)
+  .Call("R_g_closure_ref", closure)$result
 }
 
 
@@ -612,7 +612,7 @@ gClosureUnref <- function(closure) {
 #' @return Object
 #' @export
 gObjectNewv <- function(object_type, n_parameters, parameters) {
-  .Call("R_g_object_newv", object_type, n_parameters, parameters)
+  .Call("R_g_object_newv", object_type, n_parameters, parameters)$result
 }
 
 
@@ -624,7 +624,7 @@ gObjectNewv <- function(object_type, n_parameters, parameters) {
 #' @return gsize
 #' @export
 gObjectCompatControl <- function(what, data) {
-  .Call("R_g_object_compat_control", what, data)
+  .Call("R_g_object_compat_control", what, data)$result
 }
 
 
@@ -636,7 +636,7 @@ gObjectCompatControl <- function(what, data) {
 #' @return ParamSpec
 #' @export
 gObjectInterfaceFindProperty <- function(g_iface, property_name) {
-  .Call("R_g_object_interface_find_property", g_iface, property_name)
+  .Call("R_g_object_interface_find_property", g_iface, property_name)$result
 }
 
 
@@ -674,7 +674,7 @@ gObjectInterfaceListProperties <- function(g_iface) {
 #' @return Binding
 #' @export
 gObjectBindProperty <- function(source, source_property, target, target_property, flags) {
-  .Call("R_g_object_bind_property", source, source_property, target, target_property, flags)
+  .Call("R_g_object_bind_property", source, source_property, target, target_property, flags)$result
 }
 
 
@@ -691,7 +691,7 @@ gObjectBindProperty <- function(source, source_property, target, target_property
 #' @return Binding
 #' @export
 gObjectBindPropertyWithClosures <- function(source, source_property, target, target_property, flags, transform_to, transform_from) {
-  .Call("R_g_object_bind_property_with_closures", source, source_property, target, target_property, flags, transform_to, transform_from)
+  .Call("R_g_object_bind_property_with_closures", source, source_property, target, target_property, flags, transform_to, transform_from)$result
 }
 
 
@@ -725,7 +725,7 @@ gObjectFreezeNotify <- function(object) {
 #' @return gpointer
 #' @export
 gObjectGetData <- function(object, key) {
-  .Call("R_g_object_get_data", object, key)
+  .Call("R_g_object_get_data", object, key)$result
 }
 
 
@@ -750,7 +750,7 @@ gObjectGetProperty <- function(object, property_name, value) {
 #' @return gpointer
 #' @export
 gObjectGetQdata <- function(object, quark) {
-  .Call("R_g_object_get_qdata", object, quark)
+  .Call("R_g_object_get_qdata", object, quark)$result
 }
 
 
@@ -775,7 +775,7 @@ gObjectGetv <- function(object, n_properties, names, values) {
 #' @return gboolean
 #' @export
 gObjectIsFloating <- function(object) {
-  .Call("R_g_object_is_floating", object)
+  .Call("R_g_object_is_floating", object)$result
 }
 
 
@@ -810,7 +810,7 @@ gObjectNotifyByPspec <- function(object, pspec) {
 #' @return Object
 #' @export
 gObjectRef <- function(object) {
-  .Call("R_g_object_ref", object)
+  .Call("R_g_object_ref", object)$result
 }
 
 
@@ -821,7 +821,7 @@ gObjectRef <- function(object) {
 #' @return Object
 #' @export
 gObjectRefSink <- function(object) {
-  .Call("R_g_object_ref_sink", object)
+  .Call("R_g_object_ref_sink", object)$result
 }
 
 
@@ -870,7 +870,7 @@ gObjectSetProperty <- function(object, property_name, value) {
 #' @return gpointer
 #' @export
 gObjectStealData <- function(object, key) {
-  .Call("R_g_object_steal_data", object, key)
+  .Call("R_g_object_steal_data", object, key)$result
 }
 
 
@@ -882,7 +882,7 @@ gObjectStealData <- function(object, key) {
 #' @return gpointer
 #' @export
 gObjectStealQdata <- function(object, quark) {
-  .Call("R_g_object_steal_qdata", object, quark)
+  .Call("R_g_object_steal_qdata", object, quark)$result
 }
 
 
@@ -928,7 +928,7 @@ gObjectWatchClosure <- function(object, closure) {
 #' @return ParamSpec
 #' @export
 gObjectClassFindProperty <- function(oclass, property_name) {
-  .Call("R_g_object_class_find_property", oclass, property_name)
+  .Call("R_g_object_class_find_property", oclass, property_name)$result
 }
 
 
@@ -989,7 +989,7 @@ gObjectClassOverrideProperty <- function(oclass, property_id, name) {
 #' @return gboolean
 #' @export
 gParamSpecIsValidName <- function(name) {
-  .Call("R_g_param_spec_is_valid_name", name)
+  .Call("R_g_param_spec_is_valid_name", name)$result
 }
 
 
@@ -1000,7 +1000,7 @@ gParamSpecIsValidName <- function(name) {
 #' @return utf8
 #' @export
 gParamSpecGetBlurb <- function(pspec) {
-  .Call("R_g_param_spec_get_blurb", pspec)
+  .Call("R_g_param_spec_get_blurb", pspec)$result
 }
 
 
@@ -1011,7 +1011,7 @@ gParamSpecGetBlurb <- function(pspec) {
 #' @return Value
 #' @export
 gParamSpecGetDefaultValue <- function(pspec) {
-  .Call("R_g_param_spec_get_default_value", pspec)
+  .Call("R_g_param_spec_get_default_value", pspec)$result
 }
 
 
@@ -1022,7 +1022,7 @@ gParamSpecGetDefaultValue <- function(pspec) {
 #' @return utf8
 #' @export
 gParamSpecGetName <- function(pspec) {
-  .Call("R_g_param_spec_get_name", pspec)
+  .Call("R_g_param_spec_get_name", pspec)$result
 }
 
 
@@ -1033,7 +1033,7 @@ gParamSpecGetName <- function(pspec) {
 #' @return GLib.Quark
 #' @export
 gParamSpecGetNameQuark <- function(pspec) {
-  .Call("R_g_param_spec_get_name_quark", pspec)
+  .Call("R_g_param_spec_get_name_quark", pspec)$result
 }
 
 
@@ -1044,7 +1044,7 @@ gParamSpecGetNameQuark <- function(pspec) {
 #' @return utf8
 #' @export
 gParamSpecGetNick <- function(pspec) {
-  .Call("R_g_param_spec_get_nick", pspec)
+  .Call("R_g_param_spec_get_nick", pspec)$result
 }
 
 
@@ -1056,7 +1056,7 @@ gParamSpecGetNick <- function(pspec) {
 #' @return gpointer
 #' @export
 gParamSpecGetQdata <- function(pspec, quark) {
-  .Call("R_g_param_spec_get_qdata", pspec, quark)
+  .Call("R_g_param_spec_get_qdata", pspec, quark)$result
 }
 
 
@@ -1067,7 +1067,7 @@ gParamSpecGetQdata <- function(pspec, quark) {
 #' @return ParamSpec
 #' @export
 gParamSpecGetRedirectTarget <- function(pspec) {
-  .Call("R_g_param_spec_get_redirect_target", pspec)
+  .Call("R_g_param_spec_get_redirect_target", pspec)$result
 }
 
 
@@ -1103,7 +1103,7 @@ gParamSpecSink <- function(pspec) {
 #' @return gpointer
 #' @export
 gParamSpecStealQdata <- function(pspec, quark) {
-  .Call("R_g_param_spec_steal_qdata", pspec, quark)
+  .Call("R_g_param_spec_steal_qdata", pspec, quark)$result
 }
 
 
@@ -1151,7 +1151,7 @@ gParamSpecPoolList <- function(pool, owner_type) {
 #' @return GLib.List
 #' @export
 gParamSpecPoolListOwned <- function(pool, owner_type) {
-  .Call("R_g_param_spec_pool_list_owned", pool, owner_type)
+  .Call("R_g_param_spec_pool_list_owned", pool, owner_type)$result
 }
 
 
@@ -1165,7 +1165,7 @@ gParamSpecPoolListOwned <- function(pool, owner_type) {
 #' @return ParamSpec
 #' @export
 gParamSpecPoolLookup <- function(pool, param_name, owner_type, walk_ancestors) {
-  .Call("R_g_param_spec_pool_lookup", pool, param_name, owner_type, walk_ancestors)
+  .Call("R_g_param_spec_pool_lookup", pool, param_name, owner_type, walk_ancestors)$result
 }
 
 
@@ -1188,7 +1188,7 @@ gParamSpecPoolRemove <- function(pool, pspec) {
 #' @return SignalGroup
 #' @export
 gSignalGroupNew <- function(target_type) {
-  .Call("R_g_signal_group_new", target_type)
+  .Call("R_g_signal_group_new", target_type)$result
 }
 
 
@@ -1224,7 +1224,7 @@ gSignalGroupConnectClosure <- function(self, detailed_signal, closure, after) {
 #' @return Object
 #' @export
 gSignalGroupDupTarget <- function(self) {
-  .Call("R_g_signal_group_dup_target", self)
+  .Call("R_g_signal_group_dup_target", self)$result
 }
 
 
@@ -1294,7 +1294,7 @@ gTypeClassAddPrivate <- function(g_class, private_size) {
 #' @return gpointer
 #' @export
 gTypeClassGetPrivate <- function(klass, private_type) {
-  .Call("R_g_type_class_get_private", klass, private_type)
+  .Call("R_g_type_class_get_private", klass, private_type)$result
 }
 
 
@@ -1305,7 +1305,7 @@ gTypeClassGetPrivate <- function(klass, private_type) {
 #' @return TypeClass
 #' @export
 gTypeClassPeekParent <- function(g_class) {
-  .Call("R_g_type_class_peek_parent", g_class)
+  .Call("R_g_type_class_peek_parent", g_class)$result
 }
 
 
@@ -1339,7 +1339,7 @@ gTypeClassAdjustPrivateOffset <- function(g_class, private_size_or_offset) {
 #' @return TypeClass
 #' @export
 gTypeClassGet <- function(type) {
-  .Call("R_g_type_class_get", type)
+  .Call("R_g_type_class_get", type)$result
 }
 
 
@@ -1350,7 +1350,7 @@ gTypeClassGet <- function(type) {
 #' @return TypeClass
 #' @export
 gTypeClassPeek <- function(type) {
-  .Call("R_g_type_class_peek", type)
+  .Call("R_g_type_class_peek", type)$result
 }
 
 
@@ -1361,7 +1361,7 @@ gTypeClassPeek <- function(type) {
 #' @return TypeClass
 #' @export
 gTypeClassPeekStatic <- function(type) {
-  .Call("R_g_type_class_peek_static", type)
+  .Call("R_g_type_class_peek_static", type)$result
 }
 
 
@@ -1372,7 +1372,7 @@ gTypeClassPeekStatic <- function(type) {
 #' @return TypeClass
 #' @export
 gTypeClassRef <- function(type) {
-  .Call("R_g_type_class_ref", type)
+  .Call("R_g_type_class_ref", type)$result
 }
 
 
@@ -1384,7 +1384,7 @@ gTypeClassRef <- function(type) {
 #' @return gpointer
 #' @export
 gTypeInstanceGetPrivate <- function(instance, private_type) {
-  .Call("R_g_type_instance_get_private", instance, private_type)
+  .Call("R_g_type_instance_get_private", instance, private_type)$result
 }
 
 
@@ -1395,7 +1395,7 @@ gTypeInstanceGetPrivate <- function(instance, private_type) {
 #' @return TypeInterface
 #' @export
 gTypeInterfacePeekParent <- function(g_iface) {
-  .Call("R_g_type_interface_peek_parent", g_iface)
+  .Call("R_g_type_interface_peek_parent", g_iface)$result
 }
 
 
@@ -1419,7 +1419,7 @@ gTypeInterfaceAddPrerequisite <- function(interface_type, prerequisite_type) {
 #' @return TypePlugin
 #' @export
 gTypeInterfaceGetPlugin <- function(instance_type, interface_type) {
-  .Call("R_g_type_interface_get_plugin", instance_type, interface_type)
+  .Call("R_g_type_interface_get_plugin", instance_type, interface_type)$result
 }
 
 
@@ -1430,7 +1430,7 @@ gTypeInterfaceGetPlugin <- function(instance_type, interface_type) {
 #' @return GType
 #' @export
 gTypeInterfaceInstantiatablePrerequisite <- function(interface_type) {
-  .Call("R_g_type_interface_instantiatable_prerequisite", interface_type)
+  .Call("R_g_type_interface_instantiatable_prerequisite", interface_type)$result
 }
 
 
@@ -1442,7 +1442,7 @@ gTypeInterfaceInstantiatablePrerequisite <- function(interface_type) {
 #' @return TypeInterface
 #' @export
 gTypeInterfacePeek <- function(instance_class, iface_type) {
-  .Call("R_g_type_interface_peek", instance_class, iface_type)
+  .Call("R_g_type_interface_peek", instance_class, iface_type)$result
 }
 
 
@@ -1480,7 +1480,7 @@ gTypeModuleAddInterface <- function(module, instance_type, interface_type, inter
 #' @return GType
 #' @export
 gTypeModuleRegisterEnum <- function(module, name, const_static_values) {
-  .Call("R_g_type_module_register_enum", module, name, const_static_values)
+  .Call("R_g_type_module_register_enum", module, name, const_static_values)$result
 }
 
 
@@ -1493,7 +1493,7 @@ gTypeModuleRegisterEnum <- function(module, name, const_static_values) {
 #' @return GType
 #' @export
 gTypeModuleRegisterFlags <- function(module, name, const_static_values) {
-  .Call("R_g_type_module_register_flags", module, name, const_static_values)
+  .Call("R_g_type_module_register_flags", module, name, const_static_values)$result
 }
 
 
@@ -1508,7 +1508,7 @@ gTypeModuleRegisterFlags <- function(module, name, const_static_values) {
 #' @return GType
 #' @export
 gTypeModuleRegisterType <- function(module, parent_type, type_name, type_info, flags) {
-  .Call("R_g_type_module_register_type", module, parent_type, type_name, type_info, flags)
+  .Call("R_g_type_module_register_type", module, parent_type, type_name, type_info, flags)$result
 }
 
 
@@ -1542,7 +1542,7 @@ gTypeModuleUnuse <- function(module) {
 #' @return gboolean
 #' @export
 gTypeModuleUse <- function(module) {
-  .Call("R_g_type_module_use", module)
+  .Call("R_g_type_module_use", module)$result
 }
 
 
@@ -1615,7 +1615,7 @@ gValueCopy <- function(src_value, dest_value) {
 #' @return Object
 #' @export
 gValueDupObject <- function(value) {
-  .Call("R_g_value_dup_object", value)
+  .Call("R_g_value_dup_object", value)$result
 }
 
 
@@ -1626,7 +1626,7 @@ gValueDupObject <- function(value) {
 #' @return utf8
 #' @export
 gValueDupString <- function(value) {
-  .Call("R_g_value_dup_string", value)
+  .Call("R_g_value_dup_string", value)$result
 }
 
 
@@ -1637,7 +1637,7 @@ gValueDupString <- function(value) {
 #' @return GLib.Variant
 #' @export
 gValueDupVariant <- function(value) {
-  .Call("R_g_value_dup_variant", value)
+  .Call("R_g_value_dup_variant", value)$result
 }
 
 
@@ -1648,7 +1648,7 @@ gValueDupVariant <- function(value) {
 #' @return gboolean
 #' @export
 gValueFitsPointer <- function(value) {
-  .Call("R_g_value_fits_pointer", value)
+  .Call("R_g_value_fits_pointer", value)$result
 }
 
 
@@ -1659,7 +1659,7 @@ gValueFitsPointer <- function(value) {
 #' @return gboolean
 #' @export
 gValueGetBoolean <- function(value) {
-  .Call("R_g_value_get_boolean", value)
+  .Call("R_g_value_get_boolean", value)$result
 }
 
 
@@ -1670,7 +1670,7 @@ gValueGetBoolean <- function(value) {
 #' @return gpointer
 #' @export
 gValueGetBoxed <- function(value) {
-  .Call("R_g_value_get_boxed", value)
+  .Call("R_g_value_get_boxed", value)$result
 }
 
 
@@ -1681,7 +1681,7 @@ gValueGetBoxed <- function(value) {
 #' @return gchar
 #' @export
 gValueGetChar <- function(value) {
-  .Call("R_g_value_get_char", value)
+  .Call("R_g_value_get_char", value)$result
 }
 
 
@@ -1692,7 +1692,7 @@ gValueGetChar <- function(value) {
 #' @return gdouble
 #' @export
 gValueGetDouble <- function(value) {
-  .Call("R_g_value_get_double", value)
+  .Call("R_g_value_get_double", value)$result
 }
 
 
@@ -1703,7 +1703,7 @@ gValueGetDouble <- function(value) {
 #' @return gint
 #' @export
 gValueGetEnum <- function(value) {
-  .Call("R_g_value_get_enum", value)
+  .Call("R_g_value_get_enum", value)$result
 }
 
 
@@ -1714,7 +1714,7 @@ gValueGetEnum <- function(value) {
 #' @return guint
 #' @export
 gValueGetFlags <- function(value) {
-  .Call("R_g_value_get_flags", value)
+  .Call("R_g_value_get_flags", value)$result
 }
 
 
@@ -1725,7 +1725,7 @@ gValueGetFlags <- function(value) {
 #' @return gfloat
 #' @export
 gValueGetFloat <- function(value) {
-  .Call("R_g_value_get_float", value)
+  .Call("R_g_value_get_float", value)$result
 }
 
 
@@ -1736,7 +1736,7 @@ gValueGetFloat <- function(value) {
 #' @return GType
 #' @export
 gValueGetGtype <- function(value) {
-  .Call("R_g_value_get_gtype", value)
+  .Call("R_g_value_get_gtype", value)$result
 }
 
 
@@ -1747,7 +1747,7 @@ gValueGetGtype <- function(value) {
 #' @return gint
 #' @export
 gValueGetInt <- function(value) {
-  .Call("R_g_value_get_int", value)
+  .Call("R_g_value_get_int", value)$result
 }
 
 
@@ -1758,7 +1758,7 @@ gValueGetInt <- function(value) {
 #' @return gint64
 #' @export
 gValueGetInt64 <- function(value) {
-  .Call("R_g_value_get_int64", value)
+  .Call("R_g_value_get_int64", value)$result
 }
 
 
@@ -1769,7 +1769,7 @@ gValueGetInt64 <- function(value) {
 #' @return glong
 #' @export
 gValueGetLong <- function(value) {
-  .Call("R_g_value_get_long", value)
+  .Call("R_g_value_get_long", value)$result
 }
 
 
@@ -1780,7 +1780,7 @@ gValueGetLong <- function(value) {
 #' @return Object
 #' @export
 gValueGetObject <- function(value) {
-  .Call("R_g_value_get_object", value)
+  .Call("R_g_value_get_object", value)$result
 }
 
 
@@ -1791,7 +1791,7 @@ gValueGetObject <- function(value) {
 #' @return ParamSpec
 #' @export
 gValueGetParam <- function(value) {
-  .Call("R_g_value_get_param", value)
+  .Call("R_g_value_get_param", value)$result
 }
 
 
@@ -1802,7 +1802,7 @@ gValueGetParam <- function(value) {
 #' @return gpointer
 #' @export
 gValueGetPointer <- function(value) {
-  .Call("R_g_value_get_pointer", value)
+  .Call("R_g_value_get_pointer", value)$result
 }
 
 
@@ -1813,7 +1813,7 @@ gValueGetPointer <- function(value) {
 #' @return gint8
 #' @export
 gValueGetSchar <- function(value) {
-  .Call("R_g_value_get_schar", value)
+  .Call("R_g_value_get_schar", value)$result
 }
 
 
@@ -1824,7 +1824,7 @@ gValueGetSchar <- function(value) {
 #' @return utf8
 #' @export
 gValueGetString <- function(value) {
-  .Call("R_g_value_get_string", value)
+  .Call("R_g_value_get_string", value)$result
 }
 
 
@@ -1835,7 +1835,7 @@ gValueGetString <- function(value) {
 #' @return guint8
 #' @export
 gValueGetUchar <- function(value) {
-  .Call("R_g_value_get_uchar", value)
+  .Call("R_g_value_get_uchar", value)$result
 }
 
 
@@ -1846,7 +1846,7 @@ gValueGetUchar <- function(value) {
 #' @return guint
 #' @export
 gValueGetUint <- function(value) {
-  .Call("R_g_value_get_uint", value)
+  .Call("R_g_value_get_uint", value)$result
 }
 
 
@@ -1857,7 +1857,7 @@ gValueGetUint <- function(value) {
 #' @return guint64
 #' @export
 gValueGetUint64 <- function(value) {
-  .Call("R_g_value_get_uint64", value)
+  .Call("R_g_value_get_uint64", value)$result
 }
 
 
@@ -1868,7 +1868,7 @@ gValueGetUint64 <- function(value) {
 #' @return gulong
 #' @export
 gValueGetUlong <- function(value) {
-  .Call("R_g_value_get_ulong", value)
+  .Call("R_g_value_get_ulong", value)$result
 }
 
 
@@ -1879,7 +1879,7 @@ gValueGetUlong <- function(value) {
 #' @return GLib.Variant
 #' @export
 gValueGetVariant <- function(value) {
-  .Call("R_g_value_get_variant", value)
+  .Call("R_g_value_get_variant", value)$result
 }
 
 
@@ -1891,7 +1891,7 @@ gValueGetVariant <- function(value) {
 #' @return Value
 #' @export
 gValueInit <- function(value, g_type) {
-  .Call("R_g_value_init", value, g_type)
+  .Call("R_g_value_init", value, g_type)$result
 }
 
 
@@ -1914,7 +1914,7 @@ gValueInitFromInstance <- function(value, instance) {
 #' @return gpointer
 #' @export
 gValuePeekPointer <- function(value) {
-  .Call("R_g_value_peek_pointer", value)
+  .Call("R_g_value_peek_pointer", value)$result
 }
 
 
@@ -1925,7 +1925,7 @@ gValuePeekPointer <- function(value) {
 #' @return Value
 #' @export
 gValueReset <- function(value) {
-  .Call("R_g_value_reset", value)
+  .Call("R_g_value_reset", value)$result
 }
 
 
@@ -2260,7 +2260,7 @@ gValueSetVariant <- function(value, variant) {
 #' @return utf8
 #' @export
 gValueStealString <- function(value) {
-  .Call("R_g_value_steal_string", value)
+  .Call("R_g_value_steal_string", value)$result
 }
 
 
@@ -2308,7 +2308,7 @@ gValueTakeVariant <- function(value, variant) {
 #' @return gboolean
 #' @export
 gValueTransform <- function(src_value, dest_value) {
-  .Call("R_g_value_transform", src_value, dest_value)
+  .Call("R_g_value_transform", src_value, dest_value)$result
 }
 
 
@@ -2331,7 +2331,7 @@ gValueUnset <- function(value) {
 #' @return gboolean
 #' @export
 gValueTypeCompatible <- function(src_type, dest_type) {
-  .Call("R_g_value_type_compatible", src_type, dest_type)
+  .Call("R_g_value_type_compatible", src_type, dest_type)$result
 }
 
 
@@ -2343,7 +2343,7 @@ gValueTypeCompatible <- function(src_type, dest_type) {
 #' @return gboolean
 #' @export
 gValueTypeTransformable <- function(src_type, dest_type) {
-  .Call("R_g_value_type_transformable", src_type, dest_type)
+  .Call("R_g_value_type_transformable", src_type, dest_type)$result
 }
 
 
@@ -2354,7 +2354,7 @@ gValueTypeTransformable <- function(src_type, dest_type) {
 #' @return ValueArray
 #' @export
 gValueArrayNew <- function(n_prealloced) {
-  .Call("R_g_value_array_new", n_prealloced)
+  .Call("R_g_value_array_new", n_prealloced)$result
 }
 
 
@@ -2366,7 +2366,7 @@ gValueArrayNew <- function(n_prealloced) {
 #' @return ValueArray
 #' @export
 gValueArrayAppend <- function(value_array, value) {
-  .Call("R_g_value_array_append", value_array, value)
+  .Call("R_g_value_array_append", value_array, value)$result
 }
 
 
@@ -2377,7 +2377,7 @@ gValueArrayAppend <- function(value_array, value) {
 #' @return ValueArray
 #' @export
 gValueArrayCopy <- function(value_array) {
-  .Call("R_g_value_array_copy", value_array)
+  .Call("R_g_value_array_copy", value_array)$result
 }
 
 
@@ -2389,7 +2389,7 @@ gValueArrayCopy <- function(value_array) {
 #' @return Value
 #' @export
 gValueArrayGetNth <- function(value_array, index_) {
-  .Call("R_g_value_array_get_nth", value_array, index_)
+  .Call("R_g_value_array_get_nth", value_array, index_)$result
 }
 
 
@@ -2402,7 +2402,7 @@ gValueArrayGetNth <- function(value_array, index_) {
 #' @return ValueArray
 #' @export
 gValueArrayInsert <- function(value_array, index_, value) {
-  .Call("R_g_value_array_insert", value_array, index_, value)
+  .Call("R_g_value_array_insert", value_array, index_, value)$result
 }
 
 
@@ -2414,7 +2414,7 @@ gValueArrayInsert <- function(value_array, index_, value) {
 #' @return ValueArray
 #' @export
 gValueArrayPrepend <- function(value_array, value) {
-  .Call("R_g_value_array_prepend", value_array, value)
+  .Call("R_g_value_array_prepend", value_array, value)$result
 }
 
 
@@ -2426,7 +2426,7 @@ gValueArrayPrepend <- function(value_array, value) {
 #' @return ValueArray
 #' @export
 gValueArrayRemove <- function(value_array, index_) {
-  .Call("R_g_value_array_remove", value_array, index_)
+  .Call("R_g_value_array_remove", value_array, index_)$result
 }
 
 
@@ -2438,7 +2438,7 @@ gValueArrayRemove <- function(value_array, index_) {
 #' @return gpointer
 #' @export
 gBoxedCopy <- function(boxed_type, src_boxed) {
-  .Call("R_g_boxed_copy", boxed_type, src_boxed)
+  .Call("R_g_boxed_copy", boxed_type, src_boxed)$result
 }
 
 
@@ -2474,7 +2474,7 @@ gClearSignalHandler <- function(handler_id_ptr, instance) {
 #' @return Return value from C function
 #' @export
 gEnumCompleteTypeInfo <- function(g_enum_type, const_values) {
-  .Call("R_g_enum_complete_type_info", g_enum_type, const_values)
+  .Call("R_g_enum_complete_type_info", g_enum_type, const_values)$info
 }
 
 
@@ -2486,7 +2486,7 @@ gEnumCompleteTypeInfo <- function(g_enum_type, const_values) {
 #' @return EnumValue
 #' @export
 gEnumGetValue <- function(enum_class, value) {
-  .Call("R_g_enum_get_value", enum_class, value)
+  .Call("R_g_enum_get_value", enum_class, value)$result
 }
 
 
@@ -2498,7 +2498,7 @@ gEnumGetValue <- function(enum_class, value) {
 #' @return EnumValue
 #' @export
 gEnumGetValueByName <- function(enum_class, name) {
-  .Call("R_g_enum_get_value_by_name", enum_class, name)
+  .Call("R_g_enum_get_value_by_name", enum_class, name)$result
 }
 
 
@@ -2510,7 +2510,7 @@ gEnumGetValueByName <- function(enum_class, name) {
 #' @return EnumValue
 #' @export
 gEnumGetValueByNick <- function(enum_class, nick) {
-  .Call("R_g_enum_get_value_by_nick", enum_class, nick)
+  .Call("R_g_enum_get_value_by_nick", enum_class, nick)$result
 }
 
 
@@ -2522,7 +2522,7 @@ gEnumGetValueByNick <- function(enum_class, nick) {
 #' @return GType
 #' @export
 gEnumRegisterStatic <- function(name, const_static_values) {
-  .Call("R_g_enum_register_static", name, const_static_values)
+  .Call("R_g_enum_register_static", name, const_static_values)$result
 }
 
 
@@ -2534,7 +2534,7 @@ gEnumRegisterStatic <- function(name, const_static_values) {
 #' @return utf8
 #' @export
 gEnumToString <- function(g_enum_type, value) {
-  .Call("R_g_enum_to_string", g_enum_type, value)
+  .Call("R_g_enum_to_string", g_enum_type, value)$result
 }
 
 
@@ -2546,7 +2546,7 @@ gEnumToString <- function(g_enum_type, value) {
 #' @return Return value from C function
 #' @export
 gFlagsCompleteTypeInfo <- function(g_flags_type, const_values) {
-  .Call("R_g_flags_complete_type_info", g_flags_type, const_values)
+  .Call("R_g_flags_complete_type_info", g_flags_type, const_values)$info
 }
 
 
@@ -2558,7 +2558,7 @@ gFlagsCompleteTypeInfo <- function(g_flags_type, const_values) {
 #' @return FlagsValue
 #' @export
 gFlagsGetFirstValue <- function(flags_class, value) {
-  .Call("R_g_flags_get_first_value", flags_class, value)
+  .Call("R_g_flags_get_first_value", flags_class, value)$result
 }
 
 
@@ -2570,7 +2570,7 @@ gFlagsGetFirstValue <- function(flags_class, value) {
 #' @return FlagsValue
 #' @export
 gFlagsGetValueByName <- function(flags_class, name) {
-  .Call("R_g_flags_get_value_by_name", flags_class, name)
+  .Call("R_g_flags_get_value_by_name", flags_class, name)$result
 }
 
 
@@ -2582,7 +2582,7 @@ gFlagsGetValueByName <- function(flags_class, name) {
 #' @return FlagsValue
 #' @export
 gFlagsGetValueByNick <- function(flags_class, nick) {
-  .Call("R_g_flags_get_value_by_nick", flags_class, nick)
+  .Call("R_g_flags_get_value_by_nick", flags_class, nick)$result
 }
 
 
@@ -2594,7 +2594,7 @@ gFlagsGetValueByNick <- function(flags_class, nick) {
 #' @return GType
 #' @export
 gFlagsRegisterStatic <- function(name, const_static_values) {
-  .Call("R_g_flags_register_static", name, const_static_values)
+  .Call("R_g_flags_register_static", name, const_static_values)$result
 }
 
 
@@ -2606,7 +2606,7 @@ gFlagsRegisterStatic <- function(name, const_static_values) {
 #' @return utf8
 #' @export
 gFlagsToString <- function(flags_type, value) {
-  .Call("R_g_flags_to_string", flags_type, value)
+  .Call("R_g_flags_to_string", flags_type, value)$result
 }
 
 
@@ -2616,7 +2616,7 @@ gFlagsToString <- function(flags_type, value) {
 #' @return GType
 #' @export
 gGtypeGetType <- function() {
-  .Call("R_g_gtype_get_type")
+  .Call("R_g_gtype_get_type")$result
 }
 
 
@@ -2631,7 +2631,7 @@ gGtypeGetType <- function() {
 #' @return ParamSpec
 #' @export
 gParamSpecBoolean <- function(name, nick, blurb, default_value, flags) {
-  .Call("R_g_param_spec_boolean", name, nick, blurb, default_value, flags)
+  .Call("R_g_param_spec_boolean", name, nick, blurb, default_value, flags)$result
 }
 
 
@@ -2646,7 +2646,7 @@ gParamSpecBoolean <- function(name, nick, blurb, default_value, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecBoxed <- function(name, nick, blurb, boxed_type, flags) {
-  .Call("R_g_param_spec_boxed", name, nick, blurb, boxed_type, flags)
+  .Call("R_g_param_spec_boxed", name, nick, blurb, boxed_type, flags)$result
 }
 
 
@@ -2663,7 +2663,7 @@ gParamSpecBoxed <- function(name, nick, blurb, boxed_type, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecChar <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_char", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_char", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2680,7 +2680,7 @@ gParamSpecChar <- function(name, nick, blurb, minimum, maximum, default_value, f
 #' @return ParamSpec
 #' @export
 gParamSpecDouble <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_double", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_double", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2696,7 +2696,7 @@ gParamSpecDouble <- function(name, nick, blurb, minimum, maximum, default_value,
 #' @return ParamSpec
 #' @export
 gParamSpecEnum <- function(name, nick, blurb, enum_type, default_value, flags) {
-  .Call("R_g_param_spec_enum", name, nick, blurb, enum_type, default_value, flags)
+  .Call("R_g_param_spec_enum", name, nick, blurb, enum_type, default_value, flags)$result
 }
 
 
@@ -2712,7 +2712,7 @@ gParamSpecEnum <- function(name, nick, blurb, enum_type, default_value, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecFlags <- function(name, nick, blurb, flags_type, default_value, flags) {
-  .Call("R_g_param_spec_flags", name, nick, blurb, flags_type, default_value, flags)
+  .Call("R_g_param_spec_flags", name, nick, blurb, flags_type, default_value, flags)$result
 }
 
 
@@ -2729,7 +2729,7 @@ gParamSpecFlags <- function(name, nick, blurb, flags_type, default_value, flags)
 #' @return ParamSpec
 #' @export
 gParamSpecFloat <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_float", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_float", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2744,7 +2744,7 @@ gParamSpecFloat <- function(name, nick, blurb, minimum, maximum, default_value, 
 #' @return ParamSpec
 #' @export
 gParamSpecGtype <- function(name, nick, blurb, is_a_type, flags) {
-  .Call("R_g_param_spec_gtype", name, nick, blurb, is_a_type, flags)
+  .Call("R_g_param_spec_gtype", name, nick, blurb, is_a_type, flags)$result
 }
 
 
@@ -2761,7 +2761,7 @@ gParamSpecGtype <- function(name, nick, blurb, is_a_type, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecInt <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_int", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_int", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2778,7 +2778,7 @@ gParamSpecInt <- function(name, nick, blurb, minimum, maximum, default_value, fl
 #' @return ParamSpec
 #' @export
 gParamSpecInt64 <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_int64", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_int64", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2795,7 +2795,7 @@ gParamSpecInt64 <- function(name, nick, blurb, minimum, maximum, default_value, 
 #' @return ParamSpec
 #' @export
 gParamSpecLong <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_long", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_long", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2810,7 +2810,7 @@ gParamSpecLong <- function(name, nick, blurb, minimum, maximum, default_value, f
 #' @return ParamSpec
 #' @export
 gParamSpecObject <- function(name, nick, blurb, object_type, flags) {
-  .Call("R_g_param_spec_object", name, nick, blurb, object_type, flags)
+  .Call("R_g_param_spec_object", name, nick, blurb, object_type, flags)$result
 }
 
 
@@ -2825,7 +2825,7 @@ gParamSpecObject <- function(name, nick, blurb, object_type, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecParam <- function(name, nick, blurb, param_type, flags) {
-  .Call("R_g_param_spec_param", name, nick, blurb, param_type, flags)
+  .Call("R_g_param_spec_param", name, nick, blurb, param_type, flags)$result
 }
 
 
@@ -2839,7 +2839,7 @@ gParamSpecParam <- function(name, nick, blurb, param_type, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecPointer <- function(name, nick, blurb, flags) {
-  .Call("R_g_param_spec_pointer", name, nick, blurb, flags)
+  .Call("R_g_param_spec_pointer", name, nick, blurb, flags)$result
 }
 
 
@@ -2854,7 +2854,7 @@ gParamSpecPointer <- function(name, nick, blurb, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecString <- function(name, nick, blurb, default_value, flags) {
-  .Call("R_g_param_spec_string", name, nick, blurb, default_value, flags)
+  .Call("R_g_param_spec_string", name, nick, blurb, default_value, flags)$result
 }
 
 
@@ -2871,7 +2871,7 @@ gParamSpecString <- function(name, nick, blurb, default_value, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecUchar <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_uchar", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_uchar", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2888,7 +2888,7 @@ gParamSpecUchar <- function(name, nick, blurb, minimum, maximum, default_value, 
 #' @return ParamSpec
 #' @export
 gParamSpecUint <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_uint", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_uint", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2905,7 +2905,7 @@ gParamSpecUint <- function(name, nick, blurb, minimum, maximum, default_value, f
 #' @return ParamSpec
 #' @export
 gParamSpecUint64 <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_uint64", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_uint64", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2922,7 +2922,7 @@ gParamSpecUint64 <- function(name, nick, blurb, minimum, maximum, default_value,
 #' @return ParamSpec
 #' @export
 gParamSpecUlong <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_ulong", name, nick, blurb, minimum, maximum, default_value, flags)
+  .Call("R_g_param_spec_ulong", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2937,7 +2937,7 @@ gParamSpecUlong <- function(name, nick, blurb, minimum, maximum, default_value, 
 #' @return ParamSpec
 #' @export
 gParamSpecUnichar <- function(name, nick, blurb, default_value, flags) {
-  .Call("R_g_param_spec_unichar", name, nick, blurb, default_value, flags)
+  .Call("R_g_param_spec_unichar", name, nick, blurb, default_value, flags)$result
 }
 
 
@@ -2953,7 +2953,7 @@ gParamSpecUnichar <- function(name, nick, blurb, default_value, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecVariant <- function(name, nick, blurb, type, default_value, flags) {
-  .Call("R_g_param_spec_variant", name, nick, blurb, type, default_value, flags)
+  .Call("R_g_param_spec_variant", name, nick, blurb, type, default_value, flags)$result
 }
 
 
@@ -2965,7 +2965,7 @@ gParamSpecVariant <- function(name, nick, blurb, type, default_value, flags) {
 #' @return GType
 #' @export
 gParamTypeRegisterStatic <- function(name, pspec_info) {
-  .Call("R_g_param_type_register_static", name, pspec_info)
+  .Call("R_g_param_type_register_static", name, pspec_info)$result
 }
 
 
@@ -2979,7 +2979,7 @@ gParamTypeRegisterStatic <- function(name, pspec_info) {
 #' @return gboolean
 #' @export
 gParamValueConvert <- function(pspec, src_value, dest_value, strict_validation) {
-  .Call("R_g_param_value_convert", pspec, src_value, dest_value, strict_validation)
+  .Call("R_g_param_value_convert", pspec, src_value, dest_value, strict_validation)$result
 }
 
 
@@ -2991,7 +2991,7 @@ gParamValueConvert <- function(pspec, src_value, dest_value, strict_validation) 
 #' @return gboolean
 #' @export
 gParamValueDefaults <- function(pspec, value) {
-  .Call("R_g_param_value_defaults", pspec, value)
+  .Call("R_g_param_value_defaults", pspec, value)$result
 }
 
 
@@ -3003,7 +3003,7 @@ gParamValueDefaults <- function(pspec, value) {
 #' @return gboolean
 #' @export
 gParamValueIsValid <- function(pspec, value) {
-  .Call("R_g_param_value_is_valid", pspec, value)
+  .Call("R_g_param_value_is_valid", pspec, value)$result
 }
 
 
@@ -3027,7 +3027,7 @@ gParamValueSetDefault <- function(pspec, value) {
 #' @return gboolean
 #' @export
 gParamValueValidate <- function(pspec, value) {
-  .Call("R_g_param_value_validate", pspec, value)
+  .Call("R_g_param_value_validate", pspec, value)$result
 }
 
 
@@ -3040,7 +3040,7 @@ gParamValueValidate <- function(pspec, value) {
 #' @return gint
 #' @export
 gParamValuesCmp <- function(pspec, value1, value2) {
-  .Call("R_g_param_values_cmp", pspec, value1, value2)
+  .Call("R_g_param_values_cmp", pspec, value1, value2)$result
 }
 
 
@@ -3051,7 +3051,7 @@ gParamValuesCmp <- function(pspec, value1, value2) {
 #' @return GType
 #' @export
 gPointerTypeRegisterStatic <- function(name) {
-  .Call("R_g_pointer_type_register_static", name)
+  .Call("R_g_pointer_type_register_static", name)$result
 }
 
 
@@ -3065,7 +3065,7 @@ gPointerTypeRegisterStatic <- function(name) {
 #' @return gboolean
 #' @export
 gSignalAccumulatorFirstWins <- function(ihint, return_accu, handler_return, dummy) {
-  .Call("R_g_signal_accumulator_first_wins", ihint, return_accu, handler_return, dummy)
+  .Call("R_g_signal_accumulator_first_wins", ihint, return_accu, handler_return, dummy)$result
 }
 
 
@@ -3079,7 +3079,7 @@ gSignalAccumulatorFirstWins <- function(ihint, return_accu, handler_return, dumm
 #' @return gboolean
 #' @export
 gSignalAccumulatorTrueHandled <- function(ihint, return_accu, handler_return, dummy) {
-  .Call("R_g_signal_accumulator_true_handled", ihint, return_accu, handler_return, dummy)
+  .Call("R_g_signal_accumulator_true_handled", ihint, return_accu, handler_return, dummy)$result
 }
 
 
@@ -3105,7 +3105,7 @@ gSignalChainFromOverridden <- function(instance_and_params, return_value) {
 #' @return gulong
 #' @export
 gSignalConnectClosure <- function(instance, detailed_signal, closure, after) {
-  .Call("R_g_signal_connect_closure", instance, detailed_signal, closure, after)
+  .Call("R_g_signal_connect_closure", instance, detailed_signal, closure, after)$result
 }
 
 
@@ -3120,7 +3120,7 @@ gSignalConnectClosure <- function(instance, detailed_signal, closure, after) {
 #' @return gulong
 #' @export
 gSignalConnectClosureById <- function(instance, signal_id, detail, closure, after) {
-  .Call("R_g_signal_connect_closure_by_id", instance, signal_id, detail, closure, after)
+  .Call("R_g_signal_connect_closure_by_id", instance, signal_id, detail, closure, after)$result
 }
 
 
@@ -3133,7 +3133,7 @@ gSignalConnectClosureById <- function(instance, signal_id, detail, closure, afte
 #' @return Return value from C function
 #' @export
 gSignalEmitv <- function(instance_and_params, signal_id, detail) {
-  .Call("R_g_signal_emitv", instance_and_params, signal_id, detail)
+  .Call("R_g_signal_emitv", instance_and_params, signal_id, detail)$return_value
 }
 
 
@@ -3144,7 +3144,7 @@ gSignalEmitv <- function(instance_and_params, signal_id, detail) {
 #' @return SignalInvocationHint
 #' @export
 gSignalGetInvocationHint <- function(instance) {
-  .Call("R_g_signal_get_invocation_hint", instance)
+  .Call("R_g_signal_get_invocation_hint", instance)$result
 }
 
 
@@ -3185,7 +3185,7 @@ gSignalHandlerDisconnect <- function(instance, handler_id) {
 #' @return gulong
 #' @export
 gSignalHandlerFind <- function(instance, mask, signal_id, detail, closure, func, data) {
-  .Call("R_g_signal_handler_find", instance, mask, signal_id, detail, closure, func, data)
+  .Call("R_g_signal_handler_find", instance, mask, signal_id, detail, closure, func, data)$result
 }
 
 
@@ -3197,7 +3197,7 @@ gSignalHandlerFind <- function(instance, mask, signal_id, detail, closure, func,
 #' @return gboolean
 #' @export
 gSignalHandlerIsConnected <- function(instance, handler_id) {
-  .Call("R_g_signal_handler_is_connected", instance, handler_id)
+  .Call("R_g_signal_handler_is_connected", instance, handler_id)$result
 }
 
 
@@ -3226,7 +3226,7 @@ gSignalHandlerUnblock <- function(instance, handler_id) {
 #' @return guint
 #' @export
 gSignalHandlersBlockMatched <- function(instance, mask, signal_id, detail, closure, func, data) {
-  .Call("R_g_signal_handlers_block_matched", instance, mask, signal_id, detail, closure, func, data)
+  .Call("R_g_signal_handlers_block_matched", instance, mask, signal_id, detail, closure, func, data)$result
 }
 
 
@@ -3254,7 +3254,7 @@ gSignalHandlersDestroy <- function(instance) {
 #' @return guint
 #' @export
 gSignalHandlersDisconnectMatched <- function(instance, mask, signal_id, detail, closure, func, data) {
-  .Call("R_g_signal_handlers_disconnect_matched", instance, mask, signal_id, detail, closure, func, data)
+  .Call("R_g_signal_handlers_disconnect_matched", instance, mask, signal_id, detail, closure, func, data)$result
 }
 
 
@@ -3271,7 +3271,7 @@ gSignalHandlersDisconnectMatched <- function(instance, mask, signal_id, detail, 
 #' @return guint
 #' @export
 gSignalHandlersUnblockMatched <- function(instance, mask, signal_id, detail, closure, func, data) {
-  .Call("R_g_signal_handlers_unblock_matched", instance, mask, signal_id, detail, closure, func, data)
+  .Call("R_g_signal_handlers_unblock_matched", instance, mask, signal_id, detail, closure, func, data)$result
 }
 
 
@@ -3285,7 +3285,7 @@ gSignalHandlersUnblockMatched <- function(instance, mask, signal_id, detail, clo
 #' @return gboolean
 #' @export
 gSignalHasHandlerPending <- function(instance, signal_id, detail, may_be_blocked) {
-  .Call("R_g_signal_has_handler_pending", instance, signal_id, detail, may_be_blocked)
+  .Call("R_g_signal_has_handler_pending", instance, signal_id, detail, may_be_blocked)$result
 }
 
 
@@ -3296,7 +3296,7 @@ gSignalHasHandlerPending <- function(instance, signal_id, detail, may_be_blocked
 #' @return gboolean
 #' @export
 gSignalIsValidName <- function(name) {
-  .Call("R_g_signal_is_valid_name", name)
+  .Call("R_g_signal_is_valid_name", name)$result
 }
 
 
@@ -3319,7 +3319,7 @@ gSignalListIds <- function(itype) {
 #' @return guint
 #' @export
 gSignalLookup <- function(name, itype) {
-  .Call("R_g_signal_lookup", name, itype)
+  .Call("R_g_signal_lookup", name, itype)$result
 }
 
 
@@ -3330,7 +3330,7 @@ gSignalLookup <- function(name, itype) {
 #' @return utf8
 #' @export
 gSignalName <- function(signal_id) {
-  .Call("R_g_signal_name", signal_id)
+  .Call("R_g_signal_name", signal_id)$result
 }
 
 
@@ -3367,7 +3367,7 @@ gSignalParseName <- function(detailed_signal, itype, force_detail_quark) {
 #' @return Return value from C function
 #' @export
 gSignalQuery <- function(signal_id) {
-  .Call("R_g_signal_query", signal_id)
+  .Call("R_g_signal_query", signal_id)$query
 }
 
 
@@ -3416,7 +3416,7 @@ gSignalStopEmissionByName <- function(instance, detailed_signal) {
 #' @return Closure
 #' @export
 gSignalTypeCclosureNew <- function(itype, struct_offset) {
-  .Call("R_g_signal_type_cclosure_new", itype, struct_offset)
+  .Call("R_g_signal_type_cclosure_new", itype, struct_offset)$result
 }
 
 
@@ -3427,7 +3427,7 @@ gSignalTypeCclosureNew <- function(itype, struct_offset) {
 #' @return utf8
 #' @export
 gStrdupValueContents <- function(value) {
-  .Call("R_g_strdup_value_contents", value)
+  .Call("R_g_strdup_value_contents", value)$result
 }
 
 
@@ -3451,7 +3451,7 @@ gTypeAddClassPrivate <- function(class_type, private_size) {
 #' @return gint
 #' @export
 gTypeAddInstancePrivate <- function(class_type, private_size) {
-  .Call("R_g_type_add_instance_private", class_type, private_size)
+  .Call("R_g_type_add_instance_private", class_type, private_size)$result
 }
 
 
@@ -3489,7 +3489,7 @@ gTypeAddInterfaceStatic <- function(instance_type, interface_type, info) {
 #' @return gboolean
 #' @export
 gTypeCheckClassIsA <- function(g_class, is_a_type) {
-  .Call("R_g_type_check_class_is_a", g_class, is_a_type)
+  .Call("R_g_type_check_class_is_a", g_class, is_a_type)$result
 }
 
 
@@ -3500,7 +3500,7 @@ gTypeCheckClassIsA <- function(g_class, is_a_type) {
 #' @return gboolean
 #' @export
 gTypeCheckInstance <- function(instance) {
-  .Call("R_g_type_check_instance", instance)
+  .Call("R_g_type_check_instance", instance)$result
 }
 
 
@@ -3512,7 +3512,7 @@ gTypeCheckInstance <- function(instance) {
 #' @return gboolean
 #' @export
 gTypeCheckInstanceIsA <- function(instance, iface_type) {
-  .Call("R_g_type_check_instance_is_a", instance, iface_type)
+  .Call("R_g_type_check_instance_is_a", instance, iface_type)$result
 }
 
 
@@ -3524,7 +3524,7 @@ gTypeCheckInstanceIsA <- function(instance, iface_type) {
 #' @return gboolean
 #' @export
 gTypeCheckInstanceIsFundamentallyA <- function(instance, fundamental_type) {
-  .Call("R_g_type_check_instance_is_fundamentally_a", instance, fundamental_type)
+  .Call("R_g_type_check_instance_is_fundamentally_a", instance, fundamental_type)$result
 }
 
 
@@ -3535,7 +3535,7 @@ gTypeCheckInstanceIsFundamentallyA <- function(instance, fundamental_type) {
 #' @return gboolean
 #' @export
 gTypeCheckIsValueType <- function(type) {
-  .Call("R_g_type_check_is_value_type", type)
+  .Call("R_g_type_check_is_value_type", type)$result
 }
 
 
@@ -3546,7 +3546,7 @@ gTypeCheckIsValueType <- function(type) {
 #' @return gboolean
 #' @export
 gTypeCheckValue <- function(value) {
-  .Call("R_g_type_check_value", value)
+  .Call("R_g_type_check_value", value)$result
 }
 
 
@@ -3558,7 +3558,7 @@ gTypeCheckValue <- function(value) {
 #' @return gboolean
 #' @export
 gTypeCheckValueHolds <- function(value, type) {
-  .Call("R_g_type_check_value_holds", value, type)
+  .Call("R_g_type_check_value_holds", value, type)$result
 }
 
 
@@ -3580,7 +3580,7 @@ gTypeChildren <- function(type) {
 #' @return TypeInterface
 #' @export
 gTypeDefaultInterfaceGet <- function(g_type) {
-  .Call("R_g_type_default_interface_get", g_type)
+  .Call("R_g_type_default_interface_get", g_type)$result
 }
 
 
@@ -3591,7 +3591,7 @@ gTypeDefaultInterfaceGet <- function(g_type) {
 #' @return TypeInterface
 #' @export
 gTypeDefaultInterfacePeek <- function(g_type) {
-  .Call("R_g_type_default_interface_peek", g_type)
+  .Call("R_g_type_default_interface_peek", g_type)$result
 }
 
 
@@ -3602,7 +3602,7 @@ gTypeDefaultInterfacePeek <- function(g_type) {
 #' @return TypeInterface
 #' @export
 gTypeDefaultInterfaceRef <- function(g_type) {
-  .Call("R_g_type_default_interface_ref", g_type)
+  .Call("R_g_type_default_interface_ref", g_type)$result
 }
 
 
@@ -3624,7 +3624,7 @@ gTypeDefaultInterfaceUnref <- function(g_iface) {
 #' @return guint
 #' @export
 gTypeDepth <- function(type) {
-  .Call("R_g_type_depth", type)
+  .Call("R_g_type_depth", type)$result
 }
 
 
@@ -3657,7 +3657,7 @@ gTypeFreeInstance <- function(instance) {
 #' @return GType
 #' @export
 gTypeFromName <- function(name) {
-  .Call("R_g_type_from_name", name)
+  .Call("R_g_type_from_name", name)$result
 }
 
 
@@ -3668,7 +3668,7 @@ gTypeFromName <- function(name) {
 #' @return GType
 #' @export
 gTypeFundamental <- function(type_id) {
-  .Call("R_g_type_fundamental", type_id)
+  .Call("R_g_type_fundamental", type_id)$result
 }
 
 
@@ -3678,7 +3678,7 @@ gTypeFundamental <- function(type_id) {
 #' @return GType
 #' @export
 gTypeFundamentalNext <- function() {
-  .Call("R_g_type_fundamental_next")
+  .Call("R_g_type_fundamental_next")$result
 }
 
 
@@ -3689,7 +3689,7 @@ gTypeFundamentalNext <- function() {
 #' @return gint
 #' @export
 gTypeGetInstanceCount <- function(type) {
-  .Call("R_g_type_get_instance_count", type)
+  .Call("R_g_type_get_instance_count", type)$result
 }
 
 
@@ -3700,7 +3700,7 @@ gTypeGetInstanceCount <- function(type) {
 #' @return TypePlugin
 #' @export
 gTypeGetPlugin <- function(type) {
-  .Call("R_g_type_get_plugin", type)
+  .Call("R_g_type_get_plugin", type)$result
 }
 
 
@@ -3712,7 +3712,7 @@ gTypeGetPlugin <- function(type) {
 #' @return gpointer
 #' @export
 gTypeGetQdata <- function(type, quark) {
-  .Call("R_g_type_get_qdata", type, quark)
+  .Call("R_g_type_get_qdata", type, quark)$result
 }
 
 
@@ -3722,7 +3722,7 @@ gTypeGetQdata <- function(type, quark) {
 #' @return guint
 #' @export
 gTypeGetTypeRegistrationSerial <- function() {
-  .Call("R_g_type_get_type_registration_serial")
+  .Call("R_g_type_get_type_registration_serial")$result
 }
 
 
@@ -3766,7 +3766,7 @@ gTypeInterfaces <- function(type) {
 #' @return gboolean
 #' @export
 gTypeIsA <- function(type, is_a_type) {
-  .Call("R_g_type_is_a", type, is_a_type)
+  .Call("R_g_type_is_a", type, is_a_type)$result
 }
 
 
@@ -3777,7 +3777,7 @@ gTypeIsA <- function(type, is_a_type) {
 #' @return utf8
 #' @export
 gTypeName <- function(type) {
-  .Call("R_g_type_name", type)
+  .Call("R_g_type_name", type)$result
 }
 
 
@@ -3788,7 +3788,7 @@ gTypeName <- function(type) {
 #' @return utf8
 #' @export
 gTypeNameFromClass <- function(g_class) {
-  .Call("R_g_type_name_from_class", g_class)
+  .Call("R_g_type_name_from_class", g_class)$result
 }
 
 
@@ -3799,7 +3799,7 @@ gTypeNameFromClass <- function(g_class) {
 #' @return utf8
 #' @export
 gTypeNameFromInstance <- function(instance) {
-  .Call("R_g_type_name_from_instance", instance)
+  .Call("R_g_type_name_from_instance", instance)$result
 }
 
 
@@ -3811,7 +3811,7 @@ gTypeNameFromInstance <- function(instance) {
 #' @return GType
 #' @export
 gTypeNextBase <- function(leaf_type, root_type) {
-  .Call("R_g_type_next_base", leaf_type, root_type)
+  .Call("R_g_type_next_base", leaf_type, root_type)$result
 }
 
 
@@ -3822,7 +3822,7 @@ gTypeNextBase <- function(leaf_type, root_type) {
 #' @return GType
 #' @export
 gTypeParent <- function(type) {
-  .Call("R_g_type_parent", type)
+  .Call("R_g_type_parent", type)$result
 }
 
 
@@ -3833,7 +3833,7 @@ gTypeParent <- function(type) {
 #' @return GLib.Quark
 #' @export
 gTypeQname <- function(type) {
-  .Call("R_g_type_qname", type)
+  .Call("R_g_type_qname", type)$result
 }
 
 
@@ -3844,7 +3844,7 @@ gTypeQname <- function(type) {
 #' @return Return value from C function
 #' @export
 gTypeQuery <- function(type) {
-  .Call("R_g_type_query", type)
+  .Call("R_g_type_query", type)$query
 }
 
 
@@ -3858,7 +3858,7 @@ gTypeQuery <- function(type) {
 #' @return GType
 #' @export
 gTypeRegisterDynamic <- function(parent_type, type_name, plugin, flags) {
-  .Call("R_g_type_register_dynamic", parent_type, type_name, plugin, flags)
+  .Call("R_g_type_register_dynamic", parent_type, type_name, plugin, flags)$result
 }
 
 
@@ -3873,7 +3873,7 @@ gTypeRegisterDynamic <- function(parent_type, type_name, plugin, flags) {
 #' @return GType
 #' @export
 gTypeRegisterFundamental <- function(type_id, type_name, info, finfo, flags) {
-  .Call("R_g_type_register_fundamental", type_id, type_name, info, finfo, flags)
+  .Call("R_g_type_register_fundamental", type_id, type_name, info, finfo, flags)$result
 }
 
 
@@ -3887,7 +3887,7 @@ gTypeRegisterFundamental <- function(type_id, type_name, info, finfo, flags) {
 #' @return GType
 #' @export
 gTypeRegisterStatic <- function(parent_type, type_name, info, flags) {
-  .Call("R_g_type_register_static", parent_type, type_name, info, flags)
+  .Call("R_g_type_register_static", parent_type, type_name, info, flags)$result
 }
 
 
@@ -3912,7 +3912,7 @@ gTypeSetQdata <- function(type, quark, data) {
 #' @return gboolean
 #' @export
 gTypeTestFlags <- function(type, flags) {
-  .Call("R_g_type_test_flags", type, flags)
+  .Call("R_g_type_test_flags", type, flags)$result
 }
 
 

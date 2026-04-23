@@ -7,7 +7,7 @@
 #' @return gboolean
 #' @export
 gActionNameIsValid <- function(action_name) {
-  .Call("R_g_action_name_is_valid", action_name)
+  .Call("R_g_action_name_is_valid", action_name)$result
 }
 
 
@@ -30,7 +30,7 @@ gActionParseDetailedName <- function(detailed_name) {
 #' @return utf8
 #' @export
 gActionPrintDetailedName <- function(action_name, target_value) {
-  .Call("R_g_action_print_detailed_name", action_name, target_value)
+  .Call("R_g_action_print_detailed_name", action_name, target_value)$result
 }
 
 
@@ -65,7 +65,7 @@ gActionChangeState <- function(action, value) {
 #' @return gboolean
 #' @export
 gActionGetEnabled <- function(action) {
-  .Call("R_g_action_get_enabled", action)
+  .Call("R_g_action_get_enabled", action)$result
 }
 
 
@@ -76,7 +76,7 @@ gActionGetEnabled <- function(action) {
 #' @return utf8
 #' @export
 gActionGetName <- function(action) {
-  .Call("R_g_action_get_name", action)
+  .Call("R_g_action_get_name", action)$result
 }
 
 
@@ -87,7 +87,7 @@ gActionGetName <- function(action) {
 #' @return GLib.VariantType
 #' @export
 gActionGetParameterType <- function(action) {
-  .Call("R_g_action_get_parameter_type", action)
+  .Call("R_g_action_get_parameter_type", action)$result
 }
 
 
@@ -98,7 +98,7 @@ gActionGetParameterType <- function(action) {
 #' @return GLib.Variant
 #' @export
 gActionGetState <- function(action) {
-  .Call("R_g_action_get_state", action)
+  .Call("R_g_action_get_state", action)$result
 }
 
 
@@ -109,7 +109,7 @@ gActionGetState <- function(action) {
 #' @return GLib.Variant
 #' @export
 gActionGetStateHint <- function(action) {
-  .Call("R_g_action_get_state_hint", action)
+  .Call("R_g_action_get_state_hint", action)$result
 }
 
 
@@ -120,7 +120,7 @@ gActionGetStateHint <- function(action) {
 #' @return GLib.VariantType
 #' @export
 gActionGetStateType <- function(action) {
-  .Call("R_g_action_get_state_type", action)
+  .Call("R_g_action_get_state_type", action)$result
 }
 
 
@@ -208,7 +208,7 @@ gActionGroupChangeActionState <- function(action_group, action_name, value) {
 #' @return gboolean
 #' @export
 gActionGroupGetActionEnabled <- function(action_group, action_name) {
-  .Call("R_g_action_group_get_action_enabled", action_group, action_name)
+  .Call("R_g_action_group_get_action_enabled", action_group, action_name)$result
 }
 
 
@@ -220,7 +220,7 @@ gActionGroupGetActionEnabled <- function(action_group, action_name) {
 #' @return GLib.VariantType
 #' @export
 gActionGroupGetActionParameterType <- function(action_group, action_name) {
-  .Call("R_g_action_group_get_action_parameter_type", action_group, action_name)
+  .Call("R_g_action_group_get_action_parameter_type", action_group, action_name)$result
 }
 
 
@@ -232,7 +232,7 @@ gActionGroupGetActionParameterType <- function(action_group, action_name) {
 #' @return GLib.Variant
 #' @export
 gActionGroupGetActionState <- function(action_group, action_name) {
-  .Call("R_g_action_group_get_action_state", action_group, action_name)
+  .Call("R_g_action_group_get_action_state", action_group, action_name)$result
 }
 
 
@@ -244,7 +244,7 @@ gActionGroupGetActionState <- function(action_group, action_name) {
 #' @return GLib.Variant
 #' @export
 gActionGroupGetActionStateHint <- function(action_group, action_name) {
-  .Call("R_g_action_group_get_action_state_hint", action_group, action_name)
+  .Call("R_g_action_group_get_action_state_hint", action_group, action_name)$result
 }
 
 
@@ -256,7 +256,7 @@ gActionGroupGetActionStateHint <- function(action_group, action_name) {
 #' @return GLib.VariantType
 #' @export
 gActionGroupGetActionStateType <- function(action_group, action_name) {
-  .Call("R_g_action_group_get_action_state_type", action_group, action_name)
+  .Call("R_g_action_group_get_action_state_type", action_group, action_name)$result
 }
 
 
@@ -268,7 +268,7 @@ gActionGroupGetActionStateType <- function(action_group, action_name) {
 #' @return gboolean
 #' @export
 gActionGroupHasAction <- function(action_group, action_name) {
-  .Call("R_g_action_group_has_action", action_group, action_name)
+  .Call("R_g_action_group_has_action", action_group, action_name)$result
 }
 
 
@@ -279,7 +279,7 @@ gActionGroupHasAction <- function(action_group, action_name) {
 #' @return utf8
 #' @export
 gActionGroupListActions <- function(action_group) {
-  .Call("R_g_action_group_list_actions", action_group)
+  .Call("R_g_action_group_list_actions", action_group)$result
 }
 
 
@@ -329,7 +329,7 @@ gActionMapAddActionEntries <- function(action_map, entries, n_entries, user_data
 #' @return Action
 #' @export
 gActionMapLookupAction <- function(action_map, action_name) {
-  .Call("R_g_action_map_lookup_action", action_map, action_name)
+  .Call("R_g_action_map_lookup_action", action_map, action_name)$result
 }
 
 
@@ -367,7 +367,7 @@ gActionMapRemoveActionEntries <- function(action_map, entries, n_entries) {
 #' @return AppInfo
 #' @export
 gAppInfoCreateFromCommandline <- function(commandline, application_name, flags) {
-  .Call("R_g_app_info_create_from_commandline", commandline, application_name, flags)
+  .Call("R_g_app_info_create_from_commandline", commandline, application_name, flags)$result
 }
 
 
@@ -377,7 +377,7 @@ gAppInfoCreateFromCommandline <- function(commandline, application_name, flags) 
 #' @return GLib.List
 #' @export
 gAppInfoGetAll <- function() {
-  .Call("R_g_app_info_get_all")
+  .Call("R_g_app_info_get_all")$result
 }
 
 
@@ -388,7 +388,7 @@ gAppInfoGetAll <- function() {
 #' @return GLib.List
 #' @export
 gAppInfoGetAllForType <- function(content_type) {
-  .Call("R_g_app_info_get_all_for_type", content_type)
+  .Call("R_g_app_info_get_all_for_type", content_type)$result
 }
 
 
@@ -400,7 +400,7 @@ gAppInfoGetAllForType <- function(content_type) {
 #' @return AppInfo
 #' @export
 gAppInfoGetDefaultForType <- function(content_type, must_support_uris) {
-  .Call("R_g_app_info_get_default_for_type", content_type, must_support_uris)
+  .Call("R_g_app_info_get_default_for_type", content_type, must_support_uris)$result
 }
 
 
@@ -411,7 +411,7 @@ gAppInfoGetDefaultForType <- function(content_type, must_support_uris) {
 #' @return AppInfo
 #' @export
 gAppInfoGetDefaultForTypeFinish <- function(result) {
-  .Call("R_g_app_info_get_default_for_type_finish", result)
+  .Call("R_g_app_info_get_default_for_type_finish", result)$result
 }
 
 
@@ -422,7 +422,7 @@ gAppInfoGetDefaultForTypeFinish <- function(result) {
 #' @return AppInfo
 #' @export
 gAppInfoGetDefaultForUriScheme <- function(uri_scheme) {
-  .Call("R_g_app_info_get_default_for_uri_scheme", uri_scheme)
+  .Call("R_g_app_info_get_default_for_uri_scheme", uri_scheme)$result
 }
 
 
@@ -433,7 +433,7 @@ gAppInfoGetDefaultForUriScheme <- function(uri_scheme) {
 #' @return AppInfo
 #' @export
 gAppInfoGetDefaultForUriSchemeFinish <- function(result) {
-  .Call("R_g_app_info_get_default_for_uri_scheme_finish", result)
+  .Call("R_g_app_info_get_default_for_uri_scheme_finish", result)$result
 }
 
 
@@ -444,7 +444,7 @@ gAppInfoGetDefaultForUriSchemeFinish <- function(result) {
 #' @return GLib.List
 #' @export
 gAppInfoGetFallbackForType <- function(content_type) {
-  .Call("R_g_app_info_get_fallback_for_type", content_type)
+  .Call("R_g_app_info_get_fallback_for_type", content_type)$result
 }
 
 
@@ -455,7 +455,7 @@ gAppInfoGetFallbackForType <- function(content_type) {
 #' @return GLib.List
 #' @export
 gAppInfoGetRecommendedForType <- function(content_type) {
-  .Call("R_g_app_info_get_recommended_for_type", content_type)
+  .Call("R_g_app_info_get_recommended_for_type", content_type)$result
 }
 
 
@@ -467,7 +467,7 @@ gAppInfoGetRecommendedForType <- function(content_type) {
 #' @return gboolean
 #' @export
 gAppInfoLaunchDefaultForUri <- function(uri, context) {
-  .Call("R_g_app_info_launch_default_for_uri", uri, context)
+  .Call("R_g_app_info_launch_default_for_uri", uri, context)$result
 }
 
 
@@ -478,7 +478,7 @@ gAppInfoLaunchDefaultForUri <- function(uri, context) {
 #' @return gboolean
 #' @export
 gAppInfoLaunchDefaultForUriFinish <- function(result) {
-  .Call("R_g_app_info_launch_default_for_uri_finish", result)
+  .Call("R_g_app_info_launch_default_for_uri_finish", result)$result
 }
 
 
@@ -501,7 +501,7 @@ gAppInfoResetTypeAssociations <- function(content_type) {
 #' @return gboolean
 #' @export
 gAppInfoAddSupportsType <- function(appinfo, content_type) {
-  .Call("R_g_app_info_add_supports_type", appinfo, content_type)
+  .Call("R_g_app_info_add_supports_type", appinfo, content_type)$result
 }
 
 
@@ -512,7 +512,7 @@ gAppInfoAddSupportsType <- function(appinfo, content_type) {
 #' @return gboolean
 #' @export
 gAppInfoCanDelete <- function(appinfo) {
-  .Call("R_g_app_info_can_delete", appinfo)
+  .Call("R_g_app_info_can_delete", appinfo)$result
 }
 
 
@@ -523,7 +523,7 @@ gAppInfoCanDelete <- function(appinfo) {
 #' @return gboolean
 #' @export
 gAppInfoCanRemoveSupportsType <- function(appinfo) {
-  .Call("R_g_app_info_can_remove_supports_type", appinfo)
+  .Call("R_g_app_info_can_remove_supports_type", appinfo)$result
 }
 
 
@@ -534,7 +534,7 @@ gAppInfoCanRemoveSupportsType <- function(appinfo) {
 #' @return gboolean
 #' @export
 gAppInfoDelete <- function(appinfo) {
-  .Call("R_g_app_info_delete", appinfo)
+  .Call("R_g_app_info_delete", appinfo)$result
 }
 
 
@@ -545,7 +545,7 @@ gAppInfoDelete <- function(appinfo) {
 #' @return AppInfo
 #' @export
 gAppInfoDup <- function(appinfo) {
-  .Call("R_g_app_info_dup", appinfo)
+  .Call("R_g_app_info_dup", appinfo)$result
 }
 
 
@@ -557,7 +557,7 @@ gAppInfoDup <- function(appinfo) {
 #' @return gboolean
 #' @export
 gAppInfoEqual <- function(appinfo1, appinfo2) {
-  .Call("R_g_app_info_equal", appinfo1, appinfo2)
+  .Call("R_g_app_info_equal", appinfo1, appinfo2)$result
 }
 
 
@@ -568,7 +568,7 @@ gAppInfoEqual <- function(appinfo1, appinfo2) {
 #' @return filename
 #' @export
 gAppInfoGetCommandline <- function(appinfo) {
-  .Call("R_g_app_info_get_commandline", appinfo)
+  .Call("R_g_app_info_get_commandline", appinfo)$result
 }
 
 
@@ -579,7 +579,7 @@ gAppInfoGetCommandline <- function(appinfo) {
 #' @return utf8
 #' @export
 gAppInfoGetDescription <- function(appinfo) {
-  .Call("R_g_app_info_get_description", appinfo)
+  .Call("R_g_app_info_get_description", appinfo)$result
 }
 
 
@@ -590,7 +590,7 @@ gAppInfoGetDescription <- function(appinfo) {
 #' @return utf8
 #' @export
 gAppInfoGetDisplayName <- function(appinfo) {
-  .Call("R_g_app_info_get_display_name", appinfo)
+  .Call("R_g_app_info_get_display_name", appinfo)$result
 }
 
 
@@ -601,7 +601,7 @@ gAppInfoGetDisplayName <- function(appinfo) {
 #' @return filename
 #' @export
 gAppInfoGetExecutable <- function(appinfo) {
-  .Call("R_g_app_info_get_executable", appinfo)
+  .Call("R_g_app_info_get_executable", appinfo)$result
 }
 
 
@@ -612,7 +612,7 @@ gAppInfoGetExecutable <- function(appinfo) {
 #' @return Icon
 #' @export
 gAppInfoGetIcon <- function(appinfo) {
-  .Call("R_g_app_info_get_icon", appinfo)
+  .Call("R_g_app_info_get_icon", appinfo)$result
 }
 
 
@@ -623,7 +623,7 @@ gAppInfoGetIcon <- function(appinfo) {
 #' @return utf8
 #' @export
 gAppInfoGetId <- function(appinfo) {
-  .Call("R_g_app_info_get_id", appinfo)
+  .Call("R_g_app_info_get_id", appinfo)$result
 }
 
 
@@ -634,7 +634,7 @@ gAppInfoGetId <- function(appinfo) {
 #' @return utf8
 #' @export
 gAppInfoGetName <- function(appinfo) {
-  .Call("R_g_app_info_get_name", appinfo)
+  .Call("R_g_app_info_get_name", appinfo)$result
 }
 
 
@@ -645,7 +645,7 @@ gAppInfoGetName <- function(appinfo) {
 #' @return utf8
 #' @export
 gAppInfoGetSupportedTypes <- function(appinfo) {
-  .Call("R_g_app_info_get_supported_types", appinfo)
+  .Call("R_g_app_info_get_supported_types", appinfo)$result
 }
 
 
@@ -658,7 +658,7 @@ gAppInfoGetSupportedTypes <- function(appinfo) {
 #' @return gboolean
 #' @export
 gAppInfoLaunch <- function(appinfo, files, context) {
-  .Call("R_g_app_info_launch", appinfo, files, context)
+  .Call("R_g_app_info_launch", appinfo, files, context)$result
 }
 
 
@@ -671,7 +671,7 @@ gAppInfoLaunch <- function(appinfo, files, context) {
 #' @return gboolean
 #' @export
 gAppInfoLaunchUris <- function(appinfo, uris, context) {
-  .Call("R_g_app_info_launch_uris", appinfo, uris, context)
+  .Call("R_g_app_info_launch_uris", appinfo, uris, context)$result
 }
 
 
@@ -683,7 +683,7 @@ gAppInfoLaunchUris <- function(appinfo, uris, context) {
 #' @return gboolean
 #' @export
 gAppInfoLaunchUrisFinish <- function(appinfo, result) {
-  .Call("R_g_app_info_launch_uris_finish", appinfo, result)
+  .Call("R_g_app_info_launch_uris_finish", appinfo, result)$result
 }
 
 
@@ -695,7 +695,7 @@ gAppInfoLaunchUrisFinish <- function(appinfo, result) {
 #' @return gboolean
 #' @export
 gAppInfoRemoveSupportsType <- function(appinfo, content_type) {
-  .Call("R_g_app_info_remove_supports_type", appinfo, content_type)
+  .Call("R_g_app_info_remove_supports_type", appinfo, content_type)$result
 }
 
 
@@ -707,7 +707,7 @@ gAppInfoRemoveSupportsType <- function(appinfo, content_type) {
 #' @return gboolean
 #' @export
 gAppInfoSetAsDefaultForExtension <- function(appinfo, extension) {
-  .Call("R_g_app_info_set_as_default_for_extension", appinfo, extension)
+  .Call("R_g_app_info_set_as_default_for_extension", appinfo, extension)$result
 }
 
 
@@ -719,7 +719,7 @@ gAppInfoSetAsDefaultForExtension <- function(appinfo, extension) {
 #' @return gboolean
 #' @export
 gAppInfoSetAsDefaultForType <- function(appinfo, content_type) {
-  .Call("R_g_app_info_set_as_default_for_type", appinfo, content_type)
+  .Call("R_g_app_info_set_as_default_for_type", appinfo, content_type)$result
 }
 
 
@@ -731,7 +731,7 @@ gAppInfoSetAsDefaultForType <- function(appinfo, content_type) {
 #' @return gboolean
 #' @export
 gAppInfoSetAsLastUsedForType <- function(appinfo, content_type) {
-  .Call("R_g_app_info_set_as_last_used_for_type", appinfo, content_type)
+  .Call("R_g_app_info_set_as_last_used_for_type", appinfo, content_type)$result
 }
 
 
@@ -742,7 +742,7 @@ gAppInfoSetAsLastUsedForType <- function(appinfo, content_type) {
 #' @return gboolean
 #' @export
 gAppInfoShouldShow <- function(appinfo) {
-  .Call("R_g_app_info_should_show", appinfo)
+  .Call("R_g_app_info_should_show", appinfo)$result
 }
 
 
@@ -753,7 +753,7 @@ gAppInfoShouldShow <- function(appinfo) {
 #' @return gboolean
 #' @export
 gAppInfoSupportsFiles <- function(appinfo) {
-  .Call("R_g_app_info_supports_files", appinfo)
+  .Call("R_g_app_info_supports_files", appinfo)$result
 }
 
 
@@ -764,7 +764,7 @@ gAppInfoSupportsFiles <- function(appinfo) {
 #' @return gboolean
 #' @export
 gAppInfoSupportsUris <- function(appinfo) {
-  .Call("R_g_app_info_supports_uris", appinfo)
+  .Call("R_g_app_info_supports_uris", appinfo)$result
 }
 
 
@@ -774,7 +774,7 @@ gAppInfoSupportsUris <- function(appinfo) {
 #' @return AppInfoMonitor
 #' @export
 gAppInfoMonitorGet <- function() {
-  .Call("R_g_app_info_monitor_get")
+  .Call("R_g_app_info_monitor_get")$result
 }
 
 
@@ -784,7 +784,7 @@ gAppInfoMonitorGet <- function() {
 #' @return AppLaunchContext
 #' @export
 gAppLaunchContextNew <- function() {
-  .Call("R_g_app_launch_context_new")
+  .Call("R_g_app_launch_context_new")$result
 }
 
 
@@ -797,7 +797,7 @@ gAppLaunchContextNew <- function() {
 #' @return utf8
 #' @export
 gAppLaunchContextGetDisplay <- function(context, info, files) {
-  .Call("R_g_app_launch_context_get_display", context, info, files)
+  .Call("R_g_app_launch_context_get_display", context, info, files)$result
 }
 
 
@@ -808,7 +808,7 @@ gAppLaunchContextGetDisplay <- function(context, info, files) {
 #' @return filename
 #' @export
 gAppLaunchContextGetEnvironment <- function(context) {
-  .Call("R_g_app_launch_context_get_environment", context)
+  .Call("R_g_app_launch_context_get_environment", context)$result
 }
 
 
@@ -821,7 +821,7 @@ gAppLaunchContextGetEnvironment <- function(context) {
 #' @return utf8
 #' @export
 gAppLaunchContextGetStartupNotifyId <- function(context, info, files) {
-  .Call("R_g_app_launch_context_get_startup_notify_id", context, info, files)
+  .Call("R_g_app_launch_context_get_startup_notify_id", context, info, files)$result
 }
 
 
@@ -870,7 +870,7 @@ gAppLaunchContextUnsetenv <- function(context, variable) {
 #' @return Application
 #' @export
 gApplicationNew <- function(application_id, flags) {
-  .Call("R_g_application_new", application_id, flags)
+  .Call("R_g_application_new", application_id, flags)$result
 }
 
 
@@ -880,7 +880,7 @@ gApplicationNew <- function(application_id, flags) {
 #' @return Application
 #' @export
 gApplicationGetDefault <- function() {
-  .Call("R_g_application_get_default")
+  .Call("R_g_application_get_default")$result
 }
 
 
@@ -891,7 +891,7 @@ gApplicationGetDefault <- function() {
 #' @return gboolean
 #' @export
 gApplicationIdIsValid <- function(application_id) {
-  .Call("R_g_application_id_is_valid", application_id)
+  .Call("R_g_application_id_is_valid", application_id)$result
 }
 
 
@@ -967,7 +967,7 @@ gApplicationBindBusyProperty <- function(application, object, property) {
 #' @return utf8
 #' @export
 gApplicationGetApplicationId <- function(application) {
-  .Call("R_g_application_get_application_id", application)
+  .Call("R_g_application_get_application_id", application)$result
 }
 
 
@@ -978,7 +978,7 @@ gApplicationGetApplicationId <- function(application) {
 #' @return DBusConnection
 #' @export
 gApplicationGetDbusConnection <- function(application) {
-  .Call("R_g_application_get_dbus_connection", application)
+  .Call("R_g_application_get_dbus_connection", application)$result
 }
 
 
@@ -989,7 +989,7 @@ gApplicationGetDbusConnection <- function(application) {
 #' @return utf8
 #' @export
 gApplicationGetDbusObjectPath <- function(application) {
-  .Call("R_g_application_get_dbus_object_path", application)
+  .Call("R_g_application_get_dbus_object_path", application)$result
 }
 
 
@@ -1000,7 +1000,7 @@ gApplicationGetDbusObjectPath <- function(application) {
 #' @return ApplicationFlags
 #' @export
 gApplicationGetFlags <- function(application) {
-  .Call("R_g_application_get_flags", application)
+  .Call("R_g_application_get_flags", application)$result
 }
 
 
@@ -1011,7 +1011,7 @@ gApplicationGetFlags <- function(application) {
 #' @return guint
 #' @export
 gApplicationGetInactivityTimeout <- function(application) {
-  .Call("R_g_application_get_inactivity_timeout", application)
+  .Call("R_g_application_get_inactivity_timeout", application)$result
 }
 
 
@@ -1022,7 +1022,7 @@ gApplicationGetInactivityTimeout <- function(application) {
 #' @return gboolean
 #' @export
 gApplicationGetIsBusy <- function(application) {
-  .Call("R_g_application_get_is_busy", application)
+  .Call("R_g_application_get_is_busy", application)$result
 }
 
 
@@ -1033,7 +1033,7 @@ gApplicationGetIsBusy <- function(application) {
 #' @return gboolean
 #' @export
 gApplicationGetIsRegistered <- function(application) {
-  .Call("R_g_application_get_is_registered", application)
+  .Call("R_g_application_get_is_registered", application)$result
 }
 
 
@@ -1044,7 +1044,7 @@ gApplicationGetIsRegistered <- function(application) {
 #' @return gboolean
 #' @export
 gApplicationGetIsRemote <- function(application) {
-  .Call("R_g_application_get_is_remote", application)
+  .Call("R_g_application_get_is_remote", application)$result
 }
 
 
@@ -1055,7 +1055,7 @@ gApplicationGetIsRemote <- function(application) {
 #' @return utf8
 #' @export
 gApplicationGetResourceBasePath <- function(application) {
-  .Call("R_g_application_get_resource_base_path", application)
+  .Call("R_g_application_get_resource_base_path", application)$result
 }
 
 
@@ -1066,7 +1066,7 @@ gApplicationGetResourceBasePath <- function(application) {
 #' @return utf8
 #' @export
 gApplicationGetVersion <- function(application) {
-  .Call("R_g_application_get_version", application)
+  .Call("R_g_application_get_version", application)$result
 }
 
 
@@ -1125,7 +1125,7 @@ gApplicationQuit <- function(application) {
 #' @return gboolean
 #' @export
 gApplicationRegister <- function(application, cancellable) {
-  .Call("R_g_application_register", application, cancellable)
+  .Call("R_g_application_register", application, cancellable)$result
 }
 
 
@@ -1149,7 +1149,7 @@ gApplicationRelease <- function(application) {
 #' @return gint
 #' @export
 gApplicationRun <- function(application, argc, argv) {
-  .Call("R_g_application_run", application, argc, argv)
+  .Call("R_g_application_run", application, argc, argv)$result
 }
 
 
@@ -1329,7 +1329,7 @@ gApplicationWithdrawNotification <- function(application, id) {
 #' @return File
 #' @export
 gApplicationCommandLineCreateFileForArg <- function(cmdline, arg) {
-  .Call("R_g_application_command_line_create_file_for_arg", cmdline, arg)
+  .Call("R_g_application_command_line_create_file_for_arg", cmdline, arg)$result
 }
 
 
@@ -1362,7 +1362,7 @@ gApplicationCommandLineGetArguments <- function(cmdline) {
 #' @return filename
 #' @export
 gApplicationCommandLineGetCwd <- function(cmdline) {
-  .Call("R_g_application_command_line_get_cwd", cmdline)
+  .Call("R_g_application_command_line_get_cwd", cmdline)$result
 }
 
 
@@ -1373,7 +1373,7 @@ gApplicationCommandLineGetCwd <- function(cmdline) {
 #' @return filename
 #' @export
 gApplicationCommandLineGetEnviron <- function(cmdline) {
-  .Call("R_g_application_command_line_get_environ", cmdline)
+  .Call("R_g_application_command_line_get_environ", cmdline)$result
 }
 
 
@@ -1384,7 +1384,7 @@ gApplicationCommandLineGetEnviron <- function(cmdline) {
 #' @return gint
 #' @export
 gApplicationCommandLineGetExitStatus <- function(cmdline) {
-  .Call("R_g_application_command_line_get_exit_status", cmdline)
+  .Call("R_g_application_command_line_get_exit_status", cmdline)$result
 }
 
 
@@ -1395,7 +1395,7 @@ gApplicationCommandLineGetExitStatus <- function(cmdline) {
 #' @return gboolean
 #' @export
 gApplicationCommandLineGetIsRemote <- function(cmdline) {
-  .Call("R_g_application_command_line_get_is_remote", cmdline)
+  .Call("R_g_application_command_line_get_is_remote", cmdline)$result
 }
 
 
@@ -1406,7 +1406,7 @@ gApplicationCommandLineGetIsRemote <- function(cmdline) {
 #' @return GLib.VariantDict
 #' @export
 gApplicationCommandLineGetOptionsDict <- function(cmdline) {
-  .Call("R_g_application_command_line_get_options_dict", cmdline)
+  .Call("R_g_application_command_line_get_options_dict", cmdline)$result
 }
 
 
@@ -1417,7 +1417,7 @@ gApplicationCommandLineGetOptionsDict <- function(cmdline) {
 #' @return GLib.Variant
 #' @export
 gApplicationCommandLineGetPlatformData <- function(cmdline) {
-  .Call("R_g_application_command_line_get_platform_data", cmdline)
+  .Call("R_g_application_command_line_get_platform_data", cmdline)$result
 }
 
 
@@ -1428,7 +1428,7 @@ gApplicationCommandLineGetPlatformData <- function(cmdline) {
 #' @return InputStream
 #' @export
 gApplicationCommandLineGetStdin <- function(cmdline) {
-  .Call("R_g_application_command_line_get_stdin", cmdline)
+  .Call("R_g_application_command_line_get_stdin", cmdline)$result
 }
 
 
@@ -1440,7 +1440,7 @@ gApplicationCommandLineGetStdin <- function(cmdline) {
 #' @return utf8
 #' @export
 gApplicationCommandLineGetenv <- function(cmdline, name) {
-  .Call("R_g_application_command_line_getenv", cmdline, name)
+  .Call("R_g_application_command_line_getenv", cmdline, name)$result
 }
 
 
@@ -1488,7 +1488,7 @@ gApplicationCommandLineSetExitStatus <- function(cmdline, exit_status) {
 #' @return gboolean
 #' @export
 gAsyncInitableInitFinish <- function(initable, res) {
-  .Call("R_g_async_initable_init_finish", initable, res)
+  .Call("R_g_async_initable_init_finish", initable, res)$result
 }
 
 
@@ -1500,7 +1500,7 @@ gAsyncInitableInitFinish <- function(initable, res) {
 #' @return GObject.Object
 #' @export
 gAsyncInitableNewFinish <- function(initable, res) {
-  .Call("R_g_async_initable_new_finish", initable, res)
+  .Call("R_g_async_initable_new_finish", initable, res)$result
 }
 
 
@@ -1511,7 +1511,7 @@ gAsyncInitableNewFinish <- function(initable, res) {
 #' @return GObject.Object
 #' @export
 gAsyncResultGetSourceObject <- function(res) {
-  .Call("R_g_async_result_get_source_object", res)
+  .Call("R_g_async_result_get_source_object", res)$result
 }
 
 
@@ -1522,7 +1522,7 @@ gAsyncResultGetSourceObject <- function(res) {
 #' @return gpointer
 #' @export
 gAsyncResultGetUserData <- function(res) {
-  .Call("R_g_async_result_get_user_data", res)
+  .Call("R_g_async_result_get_user_data", res)$result
 }
 
 
@@ -1534,7 +1534,7 @@ gAsyncResultGetUserData <- function(res) {
 #' @return gboolean
 #' @export
 gAsyncResultIsTagged <- function(res, source_tag) {
-  .Call("R_g_async_result_is_tagged", res, source_tag)
+  .Call("R_g_async_result_is_tagged", res, source_tag)$result
 }
 
 
@@ -1545,7 +1545,7 @@ gAsyncResultIsTagged <- function(res, source_tag) {
 #' @return gboolean
 #' @export
 gAsyncResultLegacyPropagateError <- function(res) {
-  .Call("R_g_async_result_legacy_propagate_error", res)
+  .Call("R_g_async_result_legacy_propagate_error", res)$result
 }
 
 
@@ -1556,7 +1556,7 @@ gAsyncResultLegacyPropagateError <- function(res) {
 #' @return InputStream
 #' @export
 gBufferedInputStreamNew <- function(base_stream) {
-  .Call("R_g_buffered_input_stream_new", base_stream)
+  .Call("R_g_buffered_input_stream_new", base_stream)$result
 }
 
 
@@ -1568,7 +1568,7 @@ gBufferedInputStreamNew <- function(base_stream) {
 #' @return InputStream
 #' @export
 gBufferedInputStreamNewSized <- function(base_stream, size) {
-  .Call("R_g_buffered_input_stream_new_sized", base_stream, size)
+  .Call("R_g_buffered_input_stream_new_sized", base_stream, size)$result
 }
 
 
@@ -1581,7 +1581,7 @@ gBufferedInputStreamNewSized <- function(base_stream, size) {
 #' @return gssize
 #' @export
 gBufferedInputStreamFill <- function(stream, count, cancellable) {
-  .Call("R_g_buffered_input_stream_fill", stream, count, cancellable)
+  .Call("R_g_buffered_input_stream_fill", stream, count, cancellable)$result
 }
 
 
@@ -1593,7 +1593,7 @@ gBufferedInputStreamFill <- function(stream, count, cancellable) {
 #' @return gssize
 #' @export
 gBufferedInputStreamFillFinish <- function(stream, result) {
-  .Call("R_g_buffered_input_stream_fill_finish", stream, result)
+  .Call("R_g_buffered_input_stream_fill_finish", stream, result)$result
 }
 
 
@@ -1604,7 +1604,7 @@ gBufferedInputStreamFillFinish <- function(stream, result) {
 #' @return gsize
 #' @export
 gBufferedInputStreamGetAvailable <- function(stream) {
-  .Call("R_g_buffered_input_stream_get_available", stream)
+  .Call("R_g_buffered_input_stream_get_available", stream)$result
 }
 
 
@@ -1615,7 +1615,7 @@ gBufferedInputStreamGetAvailable <- function(stream) {
 #' @return gsize
 #' @export
 gBufferedInputStreamGetBufferSize <- function(stream) {
-  .Call("R_g_buffered_input_stream_get_buffer_size", stream)
+  .Call("R_g_buffered_input_stream_get_buffer_size", stream)$result
 }
 
 
@@ -1629,7 +1629,7 @@ gBufferedInputStreamGetBufferSize <- function(stream) {
 #' @return gsize
 #' @export
 gBufferedInputStreamPeek <- function(stream, buffer, offset, count) {
-  .Call("R_g_buffered_input_stream_peek", stream, buffer, offset, count)
+  .Call("R_g_buffered_input_stream_peek", stream, buffer, offset, count)$result
 }
 
 
@@ -1652,7 +1652,7 @@ gBufferedInputStreamPeekBuffer <- function(stream) {
 #' @return gint
 #' @export
 gBufferedInputStreamReadByte <- function(stream, cancellable) {
-  .Call("R_g_buffered_input_stream_read_byte", stream, cancellable)
+  .Call("R_g_buffered_input_stream_read_byte", stream, cancellable)$result
 }
 
 
@@ -1675,7 +1675,7 @@ gBufferedInputStreamSetBufferSize <- function(stream, size) {
 #' @return OutputStream
 #' @export
 gBufferedOutputStreamNew <- function(base_stream) {
-  .Call("R_g_buffered_output_stream_new", base_stream)
+  .Call("R_g_buffered_output_stream_new", base_stream)$result
 }
 
 
@@ -1687,7 +1687,7 @@ gBufferedOutputStreamNew <- function(base_stream) {
 #' @return OutputStream
 #' @export
 gBufferedOutputStreamNewSized <- function(base_stream, size) {
-  .Call("R_g_buffered_output_stream_new_sized", base_stream, size)
+  .Call("R_g_buffered_output_stream_new_sized", base_stream, size)$result
 }
 
 
@@ -1698,7 +1698,7 @@ gBufferedOutputStreamNewSized <- function(base_stream, size) {
 #' @return gboolean
 #' @export
 gBufferedOutputStreamGetAutoGrow <- function(stream) {
-  .Call("R_g_buffered_output_stream_get_auto_grow", stream)
+  .Call("R_g_buffered_output_stream_get_auto_grow", stream)$result
 }
 
 
@@ -1709,7 +1709,7 @@ gBufferedOutputStreamGetAutoGrow <- function(stream) {
 #' @return gsize
 #' @export
 gBufferedOutputStreamGetBufferSize <- function(stream) {
-  .Call("R_g_buffered_output_stream_get_buffer_size", stream)
+  .Call("R_g_buffered_output_stream_get_buffer_size", stream)$result
 }
 
 
@@ -1744,7 +1744,7 @@ gBufferedOutputStreamSetBufferSize <- function(stream, size) {
 #' @return BytesIcon
 #' @export
 gBytesIconNew <- function(bytes) {
-  .Call("R_g_bytes_icon_new", bytes)
+  .Call("R_g_bytes_icon_new", bytes)$result
 }
 
 
@@ -1755,7 +1755,7 @@ gBytesIconNew <- function(bytes) {
 #' @return GLib.Bytes
 #' @export
 gBytesIconGetBytes <- function(icon) {
-  .Call("R_g_bytes_icon_get_bytes", icon)
+  .Call("R_g_bytes_icon_get_bytes", icon)$result
 }
 
 
@@ -1765,7 +1765,7 @@ gBytesIconGetBytes <- function(icon) {
 #' @return Cancellable
 #' @export
 gCancellableNew <- function() {
-  .Call("R_g_cancellable_new")
+  .Call("R_g_cancellable_new")$result
 }
 
 
@@ -1775,7 +1775,7 @@ gCancellableNew <- function() {
 #' @return Cancellable
 #' @export
 gCancellableGetCurrent <- function() {
-  .Call("R_g_cancellable_get_current")
+  .Call("R_g_cancellable_get_current")$result
 }
 
 
@@ -1809,7 +1809,7 @@ gCancellableDisconnect <- function(cancellable, handler_id) {
 #' @return gint
 #' @export
 gCancellableGetFd <- function(cancellable) {
-  .Call("R_g_cancellable_get_fd", cancellable)
+  .Call("R_g_cancellable_get_fd", cancellable)$result
 }
 
 
@@ -1820,7 +1820,7 @@ gCancellableGetFd <- function(cancellable) {
 #' @return gboolean
 #' @export
 gCancellableIsCancelled <- function(cancellable) {
-  .Call("R_g_cancellable_is_cancelled", cancellable)
+  .Call("R_g_cancellable_is_cancelled", cancellable)$result
 }
 
 
@@ -1832,7 +1832,7 @@ gCancellableIsCancelled <- function(cancellable) {
 #' @return gboolean
 #' @export
 gCancellableMakePollfd <- function(cancellable, pollfd) {
-  .Call("R_g_cancellable_make_pollfd", cancellable, pollfd)
+  .Call("R_g_cancellable_make_pollfd", cancellable, pollfd)$result
 }
 
 
@@ -1887,7 +1887,7 @@ gCancellableReset <- function(cancellable) {
 #' @return gboolean
 #' @export
 gCancellableSetErrorIfCancelled <- function(cancellable) {
-  .Call("R_g_cancellable_set_error_if_cancelled", cancellable)
+  .Call("R_g_cancellable_set_error_if_cancelled", cancellable)$result
 }
 
 
@@ -1898,7 +1898,7 @@ gCancellableSetErrorIfCancelled <- function(cancellable) {
 #' @return GLib.Source
 #' @export
 gCancellableSourceNew <- function(cancellable) {
-  .Call("R_g_cancellable_source_new", cancellable)
+  .Call("R_g_cancellable_source_new", cancellable)$result
 }
 
 
@@ -1910,7 +1910,7 @@ gCancellableSourceNew <- function(cancellable) {
 #' @return CharsetConverter
 #' @export
 gCharsetConverterNew <- function(to_charset, from_charset) {
-  .Call("R_g_charset_converter_new", to_charset, from_charset)
+  .Call("R_g_charset_converter_new", to_charset, from_charset)$result
 }
 
 
@@ -1921,7 +1921,7 @@ gCharsetConverterNew <- function(to_charset, from_charset) {
 #' @return guint
 #' @export
 gCharsetConverterGetNumFallbacks <- function(converter) {
-  .Call("R_g_charset_converter_get_num_fallbacks", converter)
+  .Call("R_g_charset_converter_get_num_fallbacks", converter)$result
 }
 
 
@@ -1932,7 +1932,7 @@ gCharsetConverterGetNumFallbacks <- function(converter) {
 #' @return gboolean
 #' @export
 gCharsetConverterGetUseFallback <- function(converter) {
-  .Call("R_g_charset_converter_get_use_fallback", converter)
+  .Call("R_g_charset_converter_get_use_fallback", converter)$result
 }
 
 
@@ -1972,7 +1972,7 @@ gConverterConvert <- function(converter, inbuf, inbuf_size, outbuf, outbuf_size,
 #' @return GLib.Bytes
 #' @export
 gConverterConvertBytes <- function(converter, bytes) {
-  .Call("R_g_converter_convert_bytes", converter, bytes)
+  .Call("R_g_converter_convert_bytes", converter, bytes)$result
 }
 
 
@@ -1995,7 +1995,7 @@ gConverterReset <- function(converter) {
 #' @return InputStream
 #' @export
 gConverterInputStreamNew <- function(base_stream, converter) {
-  .Call("R_g_converter_input_stream_new", base_stream, converter)
+  .Call("R_g_converter_input_stream_new", base_stream, converter)$result
 }
 
 
@@ -2006,7 +2006,7 @@ gConverterInputStreamNew <- function(base_stream, converter) {
 #' @return Converter
 #' @export
 gConverterInputStreamGetConverter <- function(converter_stream) {
-  .Call("R_g_converter_input_stream_get_converter", converter_stream)
+  .Call("R_g_converter_input_stream_get_converter", converter_stream)$result
 }
 
 
@@ -2018,7 +2018,7 @@ gConverterInputStreamGetConverter <- function(converter_stream) {
 #' @return OutputStream
 #' @export
 gConverterOutputStreamNew <- function(base_stream, converter) {
-  .Call("R_g_converter_output_stream_new", base_stream, converter)
+  .Call("R_g_converter_output_stream_new", base_stream, converter)$result
 }
 
 
@@ -2029,7 +2029,7 @@ gConverterOutputStreamNew <- function(base_stream, converter) {
 #' @return Converter
 #' @export
 gConverterOutputStreamGetConverter <- function(converter_stream) {
-  .Call("R_g_converter_output_stream_get_converter", converter_stream)
+  .Call("R_g_converter_output_stream_get_converter", converter_stream)$result
 }
 
 
@@ -2039,7 +2039,7 @@ gConverterOutputStreamGetConverter <- function(converter_stream) {
 #' @return Credentials
 #' @export
 gCredentialsNew <- function() {
-  .Call("R_g_credentials_new")
+  .Call("R_g_credentials_new")$result
 }
 
 
@@ -2050,7 +2050,7 @@ gCredentialsNew <- function() {
 #' @return pid_t
 #' @export
 gCredentialsGetUnixPid <- function(credentials) {
-  .Call("R_g_credentials_get_unix_pid", credentials)
+  .Call("R_g_credentials_get_unix_pid", credentials)$result
 }
 
 
@@ -2061,7 +2061,7 @@ gCredentialsGetUnixPid <- function(credentials) {
 #' @return uid_t
 #' @export
 gCredentialsGetUnixUser <- function(credentials) {
-  .Call("R_g_credentials_get_unix_user", credentials)
+  .Call("R_g_credentials_get_unix_user", credentials)$result
 }
 
 
@@ -2073,7 +2073,7 @@ gCredentialsGetUnixUser <- function(credentials) {
 #' @return gboolean
 #' @export
 gCredentialsIsSameUser <- function(credentials, other_credentials) {
-  .Call("R_g_credentials_is_same_user", credentials, other_credentials)
+  .Call("R_g_credentials_is_same_user", credentials, other_credentials)$result
 }
 
 
@@ -2098,7 +2098,7 @@ gCredentialsSetNative <- function(credentials, native_type, native) {
 #' @return gboolean
 #' @export
 gCredentialsSetUnixUser <- function(credentials, uid) {
-  .Call("R_g_credentials_set_unix_user", credentials, uid)
+  .Call("R_g_credentials_set_unix_user", credentials, uid)$result
 }
 
 
@@ -2109,7 +2109,7 @@ gCredentialsSetUnixUser <- function(credentials, uid) {
 #' @return utf8
 #' @export
 gCredentialsToString <- function(credentials) {
-  .Call("R_g_credentials_to_string", credentials)
+  .Call("R_g_credentials_to_string", credentials)$result
 }
 
 
@@ -2122,7 +2122,7 @@ gCredentialsToString <- function(credentials) {
 #' @return DBusActionGroup
 #' @export
 gDbusActionGroupGet <- function(connection, bus_name, object_path) {
-  .Call("R_g_dbus_action_group_get", connection, bus_name, object_path)
+  .Call("R_g_dbus_action_group_get", connection, bus_name, object_path)$result
 }
 
 
@@ -2133,7 +2133,7 @@ gDbusActionGroupGet <- function(connection, bus_name, object_path) {
 #' @return DBusAnnotationInfo
 #' @export
 gDbusAnnotationInfoRef <- function(info) {
-  .Call("R_g_dbus_annotation_info_ref", info)
+  .Call("R_g_dbus_annotation_info_ref", info)$result
 }
 
 
@@ -2156,7 +2156,7 @@ gDbusAnnotationInfoUnref <- function(info) {
 #' @return utf8
 #' @export
 gDbusAnnotationInfoLookup <- function(annotations, name) {
-  .Call("R_g_dbus_annotation_info_lookup", annotations, name)
+  .Call("R_g_dbus_annotation_info_lookup", annotations, name)$result
 }
 
 
@@ -2167,7 +2167,7 @@ gDbusAnnotationInfoLookup <- function(annotations, name) {
 #' @return DBusArgInfo
 #' @export
 gDbusArgInfoRef <- function(info) {
-  .Call("R_g_dbus_arg_info_ref", info)
+  .Call("R_g_dbus_arg_info_ref", info)$result
 }
 
 
@@ -2188,7 +2188,7 @@ gDbusArgInfoUnref <- function(info) {
 #' @return DBusAuthObserver
 #' @export
 gDbusAuthObserverNew <- function() {
-  .Call("R_g_dbus_auth_observer_new")
+  .Call("R_g_dbus_auth_observer_new")$result
 }
 
 
@@ -2200,7 +2200,7 @@ gDbusAuthObserverNew <- function() {
 #' @return gboolean
 #' @export
 gDbusAuthObserverAllowMechanism <- function(observer, mechanism) {
-  .Call("R_g_dbus_auth_observer_allow_mechanism", observer, mechanism)
+  .Call("R_g_dbus_auth_observer_allow_mechanism", observer, mechanism)$result
 }
 
 
@@ -2213,7 +2213,7 @@ gDbusAuthObserverAllowMechanism <- function(observer, mechanism) {
 #' @return gboolean
 #' @export
 gDbusAuthObserverAuthorizeAuthenticatedPeer <- function(observer, stream, credentials) {
-  .Call("R_g_dbus_auth_observer_authorize_authenticated_peer", observer, stream, credentials)
+  .Call("R_g_dbus_auth_observer_authorize_authenticated_peer", observer, stream, credentials)$result
 }
 
 
@@ -2224,7 +2224,7 @@ gDbusAuthObserverAuthorizeAuthenticatedPeer <- function(observer, stream, creden
 #' @return DBusConnection
 #' @export
 gDbusConnectionNewFinish <- function(res) {
-  .Call("R_g_dbus_connection_new_finish", res)
+  .Call("R_g_dbus_connection_new_finish", res)$result
 }
 
 
@@ -2235,7 +2235,7 @@ gDbusConnectionNewFinish <- function(res) {
 #' @return DBusConnection
 #' @export
 gDbusConnectionNewForAddressFinish <- function(res) {
-  .Call("R_g_dbus_connection_new_for_address_finish", res)
+  .Call("R_g_dbus_connection_new_for_address_finish", res)$result
 }
 
 
@@ -2249,7 +2249,7 @@ gDbusConnectionNewForAddressFinish <- function(res) {
 #' @return DBusConnection
 #' @export
 gDbusConnectionNewForAddressSync <- function(address, flags, observer, cancellable) {
-  .Call("R_g_dbus_connection_new_for_address_sync", address, flags, observer, cancellable)
+  .Call("R_g_dbus_connection_new_for_address_sync", address, flags, observer, cancellable)$result
 }
 
 
@@ -2264,7 +2264,7 @@ gDbusConnectionNewForAddressSync <- function(address, flags, observer, cancellab
 #' @return DBusConnection
 #' @export
 gDbusConnectionNewSync <- function(stream, guid, flags, observer, cancellable) {
-  .Call("R_g_dbus_connection_new_sync", stream, guid, flags, observer, cancellable)
+  .Call("R_g_dbus_connection_new_sync", stream, guid, flags, observer, cancellable)$result
 }
 
 
@@ -2276,7 +2276,7 @@ gDbusConnectionNewSync <- function(stream, guid, flags, observer, cancellable) {
 #' @return GLib.Variant
 #' @export
 gDbusConnectionCallFinish <- function(connection, res) {
-  .Call("R_g_dbus_connection_call_finish", connection, res)
+  .Call("R_g_dbus_connection_call_finish", connection, res)$result
 }
 
 
@@ -2296,7 +2296,7 @@ gDbusConnectionCallFinish <- function(connection, res) {
 #' @return GLib.Variant
 #' @export
 gDbusConnectionCallSync <- function(connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, timeout_msec, cancellable) {
-  .Call("R_g_dbus_connection_call_sync", connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, timeout_msec, cancellable)
+  .Call("R_g_dbus_connection_call_sync", connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, timeout_msec, cancellable)$result
 }
 
 
@@ -2341,7 +2341,7 @@ gDbusConnectionCallWithUnixFdListSync <- function(connection, bus_name, object_p
 #' @return gboolean
 #' @export
 gDbusConnectionCloseFinish <- function(connection, res) {
-  .Call("R_g_dbus_connection_close_finish", connection, res)
+  .Call("R_g_dbus_connection_close_finish", connection, res)$result
 }
 
 
@@ -2353,7 +2353,7 @@ gDbusConnectionCloseFinish <- function(connection, res) {
 #' @return gboolean
 #' @export
 gDbusConnectionCloseSync <- function(connection, cancellable) {
-  .Call("R_g_dbus_connection_close_sync", connection, cancellable)
+  .Call("R_g_dbus_connection_close_sync", connection, cancellable)$result
 }
 
 
@@ -2369,7 +2369,7 @@ gDbusConnectionCloseSync <- function(connection, cancellable) {
 #' @return gboolean
 #' @export
 gDbusConnectionEmitSignal <- function(connection, destination_bus_name, object_path, interface_name, signal_name, parameters) {
-  .Call("R_g_dbus_connection_emit_signal", connection, destination_bus_name, object_path, interface_name, signal_name, parameters)
+  .Call("R_g_dbus_connection_emit_signal", connection, destination_bus_name, object_path, interface_name, signal_name, parameters)$result
 }
 
 
@@ -2382,7 +2382,7 @@ gDbusConnectionEmitSignal <- function(connection, destination_bus_name, object_p
 #' @return guint
 #' @export
 gDbusConnectionExportActionGroup <- function(connection, object_path, action_group) {
-  .Call("R_g_dbus_connection_export_action_group", connection, object_path, action_group)
+  .Call("R_g_dbus_connection_export_action_group", connection, object_path, action_group)$result
 }
 
 
@@ -2395,7 +2395,7 @@ gDbusConnectionExportActionGroup <- function(connection, object_path, action_gro
 #' @return guint
 #' @export
 gDbusConnectionExportMenuModel <- function(connection, object_path, menu) {
-  .Call("R_g_dbus_connection_export_menu_model", connection, object_path, menu)
+  .Call("R_g_dbus_connection_export_menu_model", connection, object_path, menu)$result
 }
 
 
@@ -2407,7 +2407,7 @@ gDbusConnectionExportMenuModel <- function(connection, object_path, menu) {
 #' @return gboolean
 #' @export
 gDbusConnectionFlushFinish <- function(connection, res) {
-  .Call("R_g_dbus_connection_flush_finish", connection, res)
+  .Call("R_g_dbus_connection_flush_finish", connection, res)$result
 }
 
 
@@ -2419,7 +2419,7 @@ gDbusConnectionFlushFinish <- function(connection, res) {
 #' @return gboolean
 #' @export
 gDbusConnectionFlushSync <- function(connection, cancellable) {
-  .Call("R_g_dbus_connection_flush_sync", connection, cancellable)
+  .Call("R_g_dbus_connection_flush_sync", connection, cancellable)$result
 }
 
 
@@ -2430,7 +2430,7 @@ gDbusConnectionFlushSync <- function(connection, cancellable) {
 #' @return DBusCapabilityFlags
 #' @export
 gDbusConnectionGetCapabilities <- function(connection) {
-  .Call("R_g_dbus_connection_get_capabilities", connection)
+  .Call("R_g_dbus_connection_get_capabilities", connection)$result
 }
 
 
@@ -2441,7 +2441,7 @@ gDbusConnectionGetCapabilities <- function(connection) {
 #' @return gboolean
 #' @export
 gDbusConnectionGetExitOnClose <- function(connection) {
-  .Call("R_g_dbus_connection_get_exit_on_close", connection)
+  .Call("R_g_dbus_connection_get_exit_on_close", connection)$result
 }
 
 
@@ -2452,7 +2452,7 @@ gDbusConnectionGetExitOnClose <- function(connection) {
 #' @return DBusConnectionFlags
 #' @export
 gDbusConnectionGetFlags <- function(connection) {
-  .Call("R_g_dbus_connection_get_flags", connection)
+  .Call("R_g_dbus_connection_get_flags", connection)$result
 }
 
 
@@ -2463,7 +2463,7 @@ gDbusConnectionGetFlags <- function(connection) {
 #' @return utf8
 #' @export
 gDbusConnectionGetGuid <- function(connection) {
-  .Call("R_g_dbus_connection_get_guid", connection)
+  .Call("R_g_dbus_connection_get_guid", connection)$result
 }
 
 
@@ -2474,7 +2474,7 @@ gDbusConnectionGetGuid <- function(connection) {
 #' @return guint32
 #' @export
 gDbusConnectionGetLastSerial <- function(connection) {
-  .Call("R_g_dbus_connection_get_last_serial", connection)
+  .Call("R_g_dbus_connection_get_last_serial", connection)$result
 }
 
 
@@ -2485,7 +2485,7 @@ gDbusConnectionGetLastSerial <- function(connection) {
 #' @return Credentials
 #' @export
 gDbusConnectionGetPeerCredentials <- function(connection) {
-  .Call("R_g_dbus_connection_get_peer_credentials", connection)
+  .Call("R_g_dbus_connection_get_peer_credentials", connection)$result
 }
 
 
@@ -2496,7 +2496,7 @@ gDbusConnectionGetPeerCredentials <- function(connection) {
 #' @return IOStream
 #' @export
 gDbusConnectionGetStream <- function(connection) {
-  .Call("R_g_dbus_connection_get_stream", connection)
+  .Call("R_g_dbus_connection_get_stream", connection)$result
 }
 
 
@@ -2507,7 +2507,7 @@ gDbusConnectionGetStream <- function(connection) {
 #' @return utf8
 #' @export
 gDbusConnectionGetUniqueName <- function(connection) {
-  .Call("R_g_dbus_connection_get_unique_name", connection)
+  .Call("R_g_dbus_connection_get_unique_name", connection)$result
 }
 
 
@@ -2518,7 +2518,7 @@ gDbusConnectionGetUniqueName <- function(connection) {
 #' @return gboolean
 #' @export
 gDbusConnectionIsClosed <- function(connection) {
-  .Call("R_g_dbus_connection_is_closed", connection)
+  .Call("R_g_dbus_connection_is_closed", connection)$result
 }
 
 
@@ -2534,7 +2534,7 @@ gDbusConnectionIsClosed <- function(connection) {
 #' @return guint
 #' @export
 gDbusConnectionRegisterObjectWithClosures <- function(connection, object_path, interface_info, method_call_closure, get_property_closure, set_property_closure) {
-  .Call("R_g_dbus_connection_register_object_with_closures", connection, object_path, interface_info, method_call_closure, get_property_closure, set_property_closure)
+  .Call("R_g_dbus_connection_register_object_with_closures", connection, object_path, interface_info, method_call_closure, get_property_closure, set_property_closure)$result
 }
 
 
@@ -2550,7 +2550,7 @@ gDbusConnectionRegisterObjectWithClosures <- function(connection, object_path, i
 #' @return guint
 #' @export
 gDbusConnectionRegisterObjectWithClosures2 <- function(connection, object_path, interface_info, method_call_closure, get_property_closure, set_property_closure) {
-  .Call("R_g_dbus_connection_register_object_with_closures2", connection, object_path, interface_info, method_call_closure, get_property_closure, set_property_closure)
+  .Call("R_g_dbus_connection_register_object_with_closures2", connection, object_path, interface_info, method_call_closure, get_property_closure, set_property_closure)$result
 }
 
 
@@ -2587,7 +2587,7 @@ gDbusConnectionSendMessage <- function(connection, message, flags) {
 #' @return DBusMessage
 #' @export
 gDbusConnectionSendMessageWithReplyFinish <- function(connection, res) {
-  .Call("R_g_dbus_connection_send_message_with_reply_finish", connection, res)
+  .Call("R_g_dbus_connection_send_message_with_reply_finish", connection, res)$result
 }
 
 
@@ -2673,7 +2673,7 @@ gDbusConnectionUnexportMenuModel <- function(connection, export_id) {
 #' @return gboolean
 #' @export
 gDbusConnectionUnregisterObject <- function(connection, registration_id) {
-  .Call("R_g_dbus_connection_unregister_object", connection, registration_id)
+  .Call("R_g_dbus_connection_unregister_object", connection, registration_id)$result
 }
 
 
@@ -2685,7 +2685,7 @@ gDbusConnectionUnregisterObject <- function(connection, registration_id) {
 #' @return gboolean
 #' @export
 gDbusConnectionUnregisterSubtree <- function(connection, registration_id) {
-  .Call("R_g_dbus_connection_unregister_subtree", connection, registration_id)
+  .Call("R_g_dbus_connection_unregister_subtree", connection, registration_id)$result
 }
 
 
@@ -2696,7 +2696,7 @@ gDbusConnectionUnregisterSubtree <- function(connection, registration_id) {
 #' @return utf8
 #' @export
 gDbusErrorEncodeGerror <- function(error) {
-  .Call("R_g_dbus_error_encode_gerror", error)
+  .Call("R_g_dbus_error_encode_gerror", error)$result
 }
 
 
@@ -2707,7 +2707,7 @@ gDbusErrorEncodeGerror <- function(error) {
 #' @return utf8
 #' @export
 gDbusErrorGetRemoteError <- function(error) {
-  .Call("R_g_dbus_error_get_remote_error", error)
+  .Call("R_g_dbus_error_get_remote_error", error)$result
 }
 
 
@@ -2718,7 +2718,7 @@ gDbusErrorGetRemoteError <- function(error) {
 #' @return gboolean
 #' @export
 gDbusErrorIsRemoteError <- function(error) {
-  .Call("R_g_dbus_error_is_remote_error", error)
+  .Call("R_g_dbus_error_is_remote_error", error)$result
 }
 
 
@@ -2730,7 +2730,7 @@ gDbusErrorIsRemoteError <- function(error) {
 #' @return GLib.Error
 #' @export
 gDbusErrorNewForDbusError <- function(dbus_error_name, dbus_error_message) {
-  .Call("R_g_dbus_error_new_for_dbus_error", dbus_error_name, dbus_error_message)
+  .Call("R_g_dbus_error_new_for_dbus_error", dbus_error_name, dbus_error_message)$result
 }
 
 
@@ -2740,7 +2740,7 @@ gDbusErrorNewForDbusError <- function(dbus_error_name, dbus_error_message) {
 #' @return GLib.Quark
 #' @export
 gDbusErrorQuark <- function() {
-  .Call("R_g_dbus_error_quark")
+  .Call("R_g_dbus_error_quark")$result
 }
 
 
@@ -2753,7 +2753,7 @@ gDbusErrorQuark <- function() {
 #' @return gboolean
 #' @export
 gDbusErrorRegisterError <- function(error_domain, error_code, dbus_error_name) {
-  .Call("R_g_dbus_error_register_error", error_domain, error_code, dbus_error_name)
+  .Call("R_g_dbus_error_register_error", error_domain, error_code, dbus_error_name)$result
 }
 
 
@@ -2766,7 +2766,7 @@ gDbusErrorRegisterError <- function(error_domain, error_code, dbus_error_name) {
 #' @return Return value from C function
 #' @export
 gDbusErrorRegisterErrorDomain <- function(error_domain_quark_name, entries, num_entries) {
-  .Call("R_g_dbus_error_register_error_domain", error_domain_quark_name, entries, num_entries)
+  .Call("R_g_dbus_error_register_error_domain", error_domain_quark_name, entries, num_entries)$quark_volatile
 }
 
 
@@ -2777,7 +2777,7 @@ gDbusErrorRegisterErrorDomain <- function(error_domain_quark_name, entries, num_
 #' @return gboolean
 #' @export
 gDbusErrorStripRemoteError <- function(error) {
-  .Call("R_g_dbus_error_strip_remote_error", error)
+  .Call("R_g_dbus_error_strip_remote_error", error)$result
 }
 
 
@@ -2790,7 +2790,7 @@ gDbusErrorStripRemoteError <- function(error) {
 #' @return gboolean
 #' @export
 gDbusErrorUnregisterError <- function(error_domain, error_code, dbus_error_name) {
-  .Call("R_g_dbus_error_unregister_error", error_domain, error_code, dbus_error_name)
+  .Call("R_g_dbus_error_unregister_error", error_domain, error_code, dbus_error_name)$result
 }
 
 
@@ -2801,7 +2801,7 @@ gDbusErrorUnregisterError <- function(error_domain, error_code, dbus_error_name)
 #' @return DBusObject
 #' @export
 gDbusInterfaceDupObject <- function(interface_) {
-  .Call("R_g_dbus_interface_dup_object", interface_)
+  .Call("R_g_dbus_interface_dup_object", interface_)$result
 }
 
 
@@ -2812,7 +2812,7 @@ gDbusInterfaceDupObject <- function(interface_) {
 #' @return DBusInterfaceInfo
 #' @export
 gDbusInterfaceGetInfo <- function(interface_) {
-  .Call("R_g_dbus_interface_get_info", interface_)
+  .Call("R_g_dbus_interface_get_info", interface_)$result
 }
 
 
@@ -2871,7 +2871,7 @@ gDbusInterfaceInfoGenerateXml <- function(info, indent, string_builder) {
 #' @return DBusMethodInfo
 #' @export
 gDbusInterfaceInfoLookupMethod <- function(info, name) {
-  .Call("R_g_dbus_interface_info_lookup_method", info, name)
+  .Call("R_g_dbus_interface_info_lookup_method", info, name)$result
 }
 
 
@@ -2883,7 +2883,7 @@ gDbusInterfaceInfoLookupMethod <- function(info, name) {
 #' @return DBusPropertyInfo
 #' @export
 gDbusInterfaceInfoLookupProperty <- function(info, name) {
-  .Call("R_g_dbus_interface_info_lookup_property", info, name)
+  .Call("R_g_dbus_interface_info_lookup_property", info, name)$result
 }
 
 
@@ -2895,7 +2895,7 @@ gDbusInterfaceInfoLookupProperty <- function(info, name) {
 #' @return DBusSignalInfo
 #' @export
 gDbusInterfaceInfoLookupSignal <- function(info, name) {
-  .Call("R_g_dbus_interface_info_lookup_signal", info, name)
+  .Call("R_g_dbus_interface_info_lookup_signal", info, name)$result
 }
 
 
@@ -2906,7 +2906,7 @@ gDbusInterfaceInfoLookupSignal <- function(info, name) {
 #' @return DBusInterfaceInfo
 #' @export
 gDbusInterfaceInfoRef <- function(info) {
-  .Call("R_g_dbus_interface_info_ref", info)
+  .Call("R_g_dbus_interface_info_ref", info)$result
 }
 
 
@@ -2930,7 +2930,7 @@ gDbusInterfaceInfoUnref <- function(info) {
 #' @return gboolean
 #' @export
 gDbusInterfaceSkeletonExport <- function(interface_, connection, object_path) {
-  .Call("R_g_dbus_interface_skeleton_export", interface_, connection, object_path)
+  .Call("R_g_dbus_interface_skeleton_export", interface_, connection, object_path)$result
 }
 
 
@@ -2952,7 +2952,7 @@ gDbusInterfaceSkeletonFlush <- function(interface_) {
 #' @return DBusConnection
 #' @export
 gDbusInterfaceSkeletonGetConnection <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_get_connection", interface_)
+  .Call("R_g_dbus_interface_skeleton_get_connection", interface_)$result
 }
 
 
@@ -2963,7 +2963,7 @@ gDbusInterfaceSkeletonGetConnection <- function(interface_) {
 #' @return GLib.List
 #' @export
 gDbusInterfaceSkeletonGetConnections <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_get_connections", interface_)
+  .Call("R_g_dbus_interface_skeleton_get_connections", interface_)$result
 }
 
 
@@ -2974,7 +2974,7 @@ gDbusInterfaceSkeletonGetConnections <- function(interface_) {
 #' @return DBusInterfaceSkeletonFlags
 #' @export
 gDbusInterfaceSkeletonGetFlags <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_get_flags", interface_)
+  .Call("R_g_dbus_interface_skeleton_get_flags", interface_)$result
 }
 
 
@@ -2985,7 +2985,7 @@ gDbusInterfaceSkeletonGetFlags <- function(interface_) {
 #' @return DBusInterfaceInfo
 #' @export
 gDbusInterfaceSkeletonGetInfo <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_get_info", interface_)
+  .Call("R_g_dbus_interface_skeleton_get_info", interface_)$result
 }
 
 
@@ -2996,7 +2996,7 @@ gDbusInterfaceSkeletonGetInfo <- function(interface_) {
 #' @return utf8
 #' @export
 gDbusInterfaceSkeletonGetObjectPath <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_get_object_path", interface_)
+  .Call("R_g_dbus_interface_skeleton_get_object_path", interface_)$result
 }
 
 
@@ -3007,7 +3007,7 @@ gDbusInterfaceSkeletonGetObjectPath <- function(interface_) {
 #' @return GLib.Variant
 #' @export
 gDbusInterfaceSkeletonGetProperties <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_get_properties", interface_)
+  .Call("R_g_dbus_interface_skeleton_get_properties", interface_)$result
 }
 
 
@@ -3018,7 +3018,7 @@ gDbusInterfaceSkeletonGetProperties <- function(interface_) {
 #' @return DBusInterfaceVTable
 #' @export
 gDbusInterfaceSkeletonGetVtable <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_get_vtable", interface_)
+  .Call("R_g_dbus_interface_skeleton_get_vtable", interface_)$result
 }
 
 
@@ -3030,7 +3030,7 @@ gDbusInterfaceSkeletonGetVtable <- function(interface_) {
 #' @return gboolean
 #' @export
 gDbusInterfaceSkeletonHasConnection <- function(interface_, connection) {
-  .Call("R_g_dbus_interface_skeleton_has_connection", interface_, connection)
+  .Call("R_g_dbus_interface_skeleton_has_connection", interface_, connection)$result
 }
 
 
@@ -3078,7 +3078,7 @@ gDbusInterfaceSkeletonUnexportFromConnection <- function(interface_, connection)
 #' @return DBusMenuModel
 #' @export
 gDbusMenuModelGet <- function(connection, bus_name, object_path) {
-  .Call("R_g_dbus_menu_model_get", connection, bus_name, object_path)
+  .Call("R_g_dbus_menu_model_get", connection, bus_name, object_path)$result
 }
 
 
@@ -3088,7 +3088,7 @@ gDbusMenuModelGet <- function(connection, bus_name, object_path) {
 #' @return DBusMessage
 #' @export
 gDbusMessageNew <- function() {
-  .Call("R_g_dbus_message_new")
+  .Call("R_g_dbus_message_new")$result
 }
 
 
@@ -3101,7 +3101,7 @@ gDbusMessageNew <- function() {
 #' @return DBusMessage
 #' @export
 gDbusMessageNewFromBlob <- function(blob, blob_len, capabilities) {
-  .Call("R_g_dbus_message_new_from_blob", blob, blob_len, capabilities)
+  .Call("R_g_dbus_message_new_from_blob", blob, blob_len, capabilities)$result
 }
 
 
@@ -3115,7 +3115,7 @@ gDbusMessageNewFromBlob <- function(blob, blob_len, capabilities) {
 #' @return DBusMessage
 #' @export
 gDbusMessageNewMethodCall <- function(name, path, interface_, method) {
-  .Call("R_g_dbus_message_new_method_call", name, path, interface_, method)
+  .Call("R_g_dbus_message_new_method_call", name, path, interface_, method)$result
 }
 
 
@@ -3128,7 +3128,7 @@ gDbusMessageNewMethodCall <- function(name, path, interface_, method) {
 #' @return DBusMessage
 #' @export
 gDbusMessageNewSignal <- function(path, interface_, signal) {
-  .Call("R_g_dbus_message_new_signal", path, interface_, signal)
+  .Call("R_g_dbus_message_new_signal", path, interface_, signal)$result
 }
 
 
@@ -3140,7 +3140,7 @@ gDbusMessageNewSignal <- function(path, interface_, signal) {
 #' @return gssize
 #' @export
 gDbusMessageBytesNeeded <- function(blob, blob_len) {
-  .Call("R_g_dbus_message_bytes_needed", blob, blob_len)
+  .Call("R_g_dbus_message_bytes_needed", blob, blob_len)$result
 }
 
 
@@ -3151,7 +3151,7 @@ gDbusMessageBytesNeeded <- function(blob, blob_len) {
 #' @return DBusMessage
 #' @export
 gDbusMessageCopy <- function(message) {
-  .Call("R_g_dbus_message_copy", message)
+  .Call("R_g_dbus_message_copy", message)$result
 }
 
 
@@ -3162,7 +3162,7 @@ gDbusMessageCopy <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetArg0 <- function(message) {
-  .Call("R_g_dbus_message_get_arg0", message)
+  .Call("R_g_dbus_message_get_arg0", message)$result
 }
 
 
@@ -3173,7 +3173,7 @@ gDbusMessageGetArg0 <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetArg0Path <- function(message) {
-  .Call("R_g_dbus_message_get_arg0_path", message)
+  .Call("R_g_dbus_message_get_arg0_path", message)$result
 }
 
 
@@ -3184,7 +3184,7 @@ gDbusMessageGetArg0Path <- function(message) {
 #' @return GLib.Variant
 #' @export
 gDbusMessageGetBody <- function(message) {
-  .Call("R_g_dbus_message_get_body", message)
+  .Call("R_g_dbus_message_get_body", message)$result
 }
 
 
@@ -3195,7 +3195,7 @@ gDbusMessageGetBody <- function(message) {
 #' @return DBusMessageByteOrder
 #' @export
 gDbusMessageGetByteOrder <- function(message) {
-  .Call("R_g_dbus_message_get_byte_order", message)
+  .Call("R_g_dbus_message_get_byte_order", message)$result
 }
 
 
@@ -3206,7 +3206,7 @@ gDbusMessageGetByteOrder <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetDestination <- function(message) {
-  .Call("R_g_dbus_message_get_destination", message)
+  .Call("R_g_dbus_message_get_destination", message)$result
 }
 
 
@@ -3217,7 +3217,7 @@ gDbusMessageGetDestination <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetErrorName <- function(message) {
-  .Call("R_g_dbus_message_get_error_name", message)
+  .Call("R_g_dbus_message_get_error_name", message)$result
 }
 
 
@@ -3228,7 +3228,7 @@ gDbusMessageGetErrorName <- function(message) {
 #' @return DBusMessageFlags
 #' @export
 gDbusMessageGetFlags <- function(message) {
-  .Call("R_g_dbus_message_get_flags", message)
+  .Call("R_g_dbus_message_get_flags", message)$result
 }
 
 
@@ -3240,7 +3240,7 @@ gDbusMessageGetFlags <- function(message) {
 #' @return GLib.Variant
 #' @export
 gDbusMessageGetHeader <- function(message, header_field) {
-  .Call("R_g_dbus_message_get_header", message, header_field)
+  .Call("R_g_dbus_message_get_header", message, header_field)$result
 }
 
 
@@ -3251,7 +3251,7 @@ gDbusMessageGetHeader <- function(message, header_field) {
 #' @return guint8
 #' @export
 gDbusMessageGetHeaderFields <- function(message) {
-  .Call("R_g_dbus_message_get_header_fields", message)
+  .Call("R_g_dbus_message_get_header_fields", message)$result
 }
 
 
@@ -3262,7 +3262,7 @@ gDbusMessageGetHeaderFields <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetInterface <- function(message) {
-  .Call("R_g_dbus_message_get_interface", message)
+  .Call("R_g_dbus_message_get_interface", message)$result
 }
 
 
@@ -3273,7 +3273,7 @@ gDbusMessageGetInterface <- function(message) {
 #' @return gboolean
 #' @export
 gDbusMessageGetLocked <- function(message) {
-  .Call("R_g_dbus_message_get_locked", message)
+  .Call("R_g_dbus_message_get_locked", message)$result
 }
 
 
@@ -3284,7 +3284,7 @@ gDbusMessageGetLocked <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetMember <- function(message) {
-  .Call("R_g_dbus_message_get_member", message)
+  .Call("R_g_dbus_message_get_member", message)$result
 }
 
 
@@ -3295,7 +3295,7 @@ gDbusMessageGetMember <- function(message) {
 #' @return DBusMessageType
 #' @export
 gDbusMessageGetMessageType <- function(message) {
-  .Call("R_g_dbus_message_get_message_type", message)
+  .Call("R_g_dbus_message_get_message_type", message)$result
 }
 
 
@@ -3306,7 +3306,7 @@ gDbusMessageGetMessageType <- function(message) {
 #' @return guint32
 #' @export
 gDbusMessageGetNumUnixFds <- function(message) {
-  .Call("R_g_dbus_message_get_num_unix_fds", message)
+  .Call("R_g_dbus_message_get_num_unix_fds", message)$result
 }
 
 
@@ -3317,7 +3317,7 @@ gDbusMessageGetNumUnixFds <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetPath <- function(message) {
-  .Call("R_g_dbus_message_get_path", message)
+  .Call("R_g_dbus_message_get_path", message)$result
 }
 
 
@@ -3328,7 +3328,7 @@ gDbusMessageGetPath <- function(message) {
 #' @return guint32
 #' @export
 gDbusMessageGetReplySerial <- function(message) {
-  .Call("R_g_dbus_message_get_reply_serial", message)
+  .Call("R_g_dbus_message_get_reply_serial", message)$result
 }
 
 
@@ -3339,7 +3339,7 @@ gDbusMessageGetReplySerial <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetSender <- function(message) {
-  .Call("R_g_dbus_message_get_sender", message)
+  .Call("R_g_dbus_message_get_sender", message)$result
 }
 
 
@@ -3350,7 +3350,7 @@ gDbusMessageGetSender <- function(message) {
 #' @return guint32
 #' @export
 gDbusMessageGetSerial <- function(message) {
-  .Call("R_g_dbus_message_get_serial", message)
+  .Call("R_g_dbus_message_get_serial", message)$result
 }
 
 
@@ -3361,7 +3361,7 @@ gDbusMessageGetSerial <- function(message) {
 #' @return utf8
 #' @export
 gDbusMessageGetSignature <- function(message) {
-  .Call("R_g_dbus_message_get_signature", message)
+  .Call("R_g_dbus_message_get_signature", message)$result
 }
 
 
@@ -3372,7 +3372,7 @@ gDbusMessageGetSignature <- function(message) {
 #' @return UnixFDList
 #' @export
 gDbusMessageGetUnixFdList <- function(message) {
-  .Call("R_g_dbus_message_get_unix_fd_list", message)
+  .Call("R_g_dbus_message_get_unix_fd_list", message)$result
 }
 
 
@@ -3396,7 +3396,7 @@ gDbusMessageLock <- function(message) {
 #' @return DBusMessage
 #' @export
 gDbusMessageNewMethodErrorLiteral <- function(method_call_message, error_name, error_message) {
-  .Call("R_g_dbus_message_new_method_error_literal", method_call_message, error_name, error_message)
+  .Call("R_g_dbus_message_new_method_error_literal", method_call_message, error_name, error_message)$result
 }
 
 
@@ -3407,7 +3407,7 @@ gDbusMessageNewMethodErrorLiteral <- function(method_call_message, error_name, e
 #' @return DBusMessage
 #' @export
 gDbusMessageNewMethodReply <- function(method_call_message) {
-  .Call("R_g_dbus_message_new_method_reply", method_call_message)
+  .Call("R_g_dbus_message_new_method_reply", method_call_message)$result
 }
 
 
@@ -3419,7 +3419,7 @@ gDbusMessageNewMethodReply <- function(method_call_message) {
 #' @return utf8
 #' @export
 gDbusMessagePrint <- function(message, indent) {
-  .Call("R_g_dbus_message_print", message, indent)
+  .Call("R_g_dbus_message_print", message, indent)$result
 }
 
 
@@ -3635,7 +3635,7 @@ gDbusMessageToBlob <- function(message, capabilities) {
 #' @return gboolean
 #' @export
 gDbusMessageToGerror <- function(message) {
-  .Call("R_g_dbus_message_to_gerror", message)
+  .Call("R_g_dbus_message_to_gerror", message)$result
 }
 
 
@@ -3646,7 +3646,7 @@ gDbusMessageToGerror <- function(message) {
 #' @return DBusMethodInfo
 #' @export
 gDbusMethodInfoRef <- function(info) {
-  .Call("R_g_dbus_method_info_ref", info)
+  .Call("R_g_dbus_method_info_ref", info)$result
 }
 
 
@@ -3668,7 +3668,7 @@ gDbusMethodInfoUnref <- function(info) {
 #' @return DBusConnection
 #' @export
 gDbusMethodInvocationGetConnection <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_connection", invocation)
+  .Call("R_g_dbus_method_invocation_get_connection", invocation)$result
 }
 
 
@@ -3679,7 +3679,7 @@ gDbusMethodInvocationGetConnection <- function(invocation) {
 #' @return utf8
 #' @export
 gDbusMethodInvocationGetInterfaceName <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_interface_name", invocation)
+  .Call("R_g_dbus_method_invocation_get_interface_name", invocation)$result
 }
 
 
@@ -3690,7 +3690,7 @@ gDbusMethodInvocationGetInterfaceName <- function(invocation) {
 #' @return DBusMessage
 #' @export
 gDbusMethodInvocationGetMessage <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_message", invocation)
+  .Call("R_g_dbus_method_invocation_get_message", invocation)$result
 }
 
 
@@ -3701,7 +3701,7 @@ gDbusMethodInvocationGetMessage <- function(invocation) {
 #' @return DBusMethodInfo
 #' @export
 gDbusMethodInvocationGetMethodInfo <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_method_info", invocation)
+  .Call("R_g_dbus_method_invocation_get_method_info", invocation)$result
 }
 
 
@@ -3712,7 +3712,7 @@ gDbusMethodInvocationGetMethodInfo <- function(invocation) {
 #' @return utf8
 #' @export
 gDbusMethodInvocationGetMethodName <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_method_name", invocation)
+  .Call("R_g_dbus_method_invocation_get_method_name", invocation)$result
 }
 
 
@@ -3723,7 +3723,7 @@ gDbusMethodInvocationGetMethodName <- function(invocation) {
 #' @return utf8
 #' @export
 gDbusMethodInvocationGetObjectPath <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_object_path", invocation)
+  .Call("R_g_dbus_method_invocation_get_object_path", invocation)$result
 }
 
 
@@ -3734,7 +3734,7 @@ gDbusMethodInvocationGetObjectPath <- function(invocation) {
 #' @return GLib.Variant
 #' @export
 gDbusMethodInvocationGetParameters <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_parameters", invocation)
+  .Call("R_g_dbus_method_invocation_get_parameters", invocation)$result
 }
 
 
@@ -3745,7 +3745,7 @@ gDbusMethodInvocationGetParameters <- function(invocation) {
 #' @return DBusPropertyInfo
 #' @export
 gDbusMethodInvocationGetPropertyInfo <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_property_info", invocation)
+  .Call("R_g_dbus_method_invocation_get_property_info", invocation)$result
 }
 
 
@@ -3756,7 +3756,7 @@ gDbusMethodInvocationGetPropertyInfo <- function(invocation) {
 #' @return utf8
 #' @export
 gDbusMethodInvocationGetSender <- function(invocation) {
-  .Call("R_g_dbus_method_invocation_get_sender", invocation)
+  .Call("R_g_dbus_method_invocation_get_sender", invocation)$result
 }
 
 
@@ -3831,7 +3831,7 @@ gDbusMethodInvocationReturnValueWithUnixFdList <- function(invocation, parameter
 #' @return DBusNodeInfo
 #' @export
 gDbusNodeInfoNewForXml <- function(xml_data) {
-  .Call("R_g_dbus_node_info_new_for_xml", xml_data)
+  .Call("R_g_dbus_node_info_new_for_xml", xml_data)$result
 }
 
 
@@ -3856,7 +3856,7 @@ gDbusNodeInfoGenerateXml <- function(info, indent, string_builder) {
 #' @return DBusInterfaceInfo
 #' @export
 gDbusNodeInfoLookupInterface <- function(info, name) {
-  .Call("R_g_dbus_node_info_lookup_interface", info, name)
+  .Call("R_g_dbus_node_info_lookup_interface", info, name)$result
 }
 
 
@@ -3867,7 +3867,7 @@ gDbusNodeInfoLookupInterface <- function(info, name) {
 #' @return DBusNodeInfo
 #' @export
 gDbusNodeInfoRef <- function(info) {
-  .Call("R_g_dbus_node_info_ref", info)
+  .Call("R_g_dbus_node_info_ref", info)$result
 }
 
 
@@ -3890,7 +3890,7 @@ gDbusNodeInfoUnref <- function(info) {
 #' @return DBusInterface
 #' @export
 gDbusObjectGetInterface <- function(object, interface_name) {
-  .Call("R_g_dbus_object_get_interface", object, interface_name)
+  .Call("R_g_dbus_object_get_interface", object, interface_name)$result
 }
 
 
@@ -3901,7 +3901,7 @@ gDbusObjectGetInterface <- function(object, interface_name) {
 #' @return GLib.List
 #' @export
 gDbusObjectGetInterfaces <- function(object) {
-  .Call("R_g_dbus_object_get_interfaces", object)
+  .Call("R_g_dbus_object_get_interfaces", object)$result
 }
 
 
@@ -3912,7 +3912,7 @@ gDbusObjectGetInterfaces <- function(object) {
 #' @return utf8
 #' @export
 gDbusObjectGetObjectPath <- function(object) {
-  .Call("R_g_dbus_object_get_object_path", object)
+  .Call("R_g_dbus_object_get_object_path", object)$result
 }
 
 
@@ -3925,7 +3925,7 @@ gDbusObjectGetObjectPath <- function(object) {
 #' @return DBusInterface
 #' @export
 gDbusObjectManagerGetInterface <- function(manager, object_path, interface_name) {
-  .Call("R_g_dbus_object_manager_get_interface", manager, object_path, interface_name)
+  .Call("R_g_dbus_object_manager_get_interface", manager, object_path, interface_name)$result
 }
 
 
@@ -3937,7 +3937,7 @@ gDbusObjectManagerGetInterface <- function(manager, object_path, interface_name)
 #' @return DBusObject
 #' @export
 gDbusObjectManagerGetObject <- function(manager, object_path) {
-  .Call("R_g_dbus_object_manager_get_object", manager, object_path)
+  .Call("R_g_dbus_object_manager_get_object", manager, object_path)$result
 }
 
 
@@ -3948,7 +3948,7 @@ gDbusObjectManagerGetObject <- function(manager, object_path) {
 #' @return utf8
 #' @export
 gDbusObjectManagerGetObjectPath <- function(manager) {
-  .Call("R_g_dbus_object_manager_get_object_path", manager)
+  .Call("R_g_dbus_object_manager_get_object_path", manager)$result
 }
 
 
@@ -3959,7 +3959,7 @@ gDbusObjectManagerGetObjectPath <- function(manager) {
 #' @return GLib.List
 #' @export
 gDbusObjectManagerGetObjects <- function(manager) {
-  .Call("R_g_dbus_object_manager_get_objects", manager)
+  .Call("R_g_dbus_object_manager_get_objects", manager)$result
 }
 
 
@@ -3970,7 +3970,7 @@ gDbusObjectManagerGetObjects <- function(manager) {
 #' @return DBusObjectManagerClient
 #' @export
 gDbusObjectManagerClientNewFinish <- function(res) {
-  .Call("R_g_dbus_object_manager_client_new_finish", res)
+  .Call("R_g_dbus_object_manager_client_new_finish", res)$result
 }
 
 
@@ -3981,7 +3981,7 @@ gDbusObjectManagerClientNewFinish <- function(res) {
 #' @return DBusObjectManagerClient
 #' @export
 gDbusObjectManagerClientNewForBusFinish <- function(res) {
-  .Call("R_g_dbus_object_manager_client_new_for_bus_finish", res)
+  .Call("R_g_dbus_object_manager_client_new_for_bus_finish", res)$result
 }
 
 
@@ -3992,7 +3992,7 @@ gDbusObjectManagerClientNewForBusFinish <- function(res) {
 #' @return DBusConnection
 #' @export
 gDbusObjectManagerClientGetConnection <- function(manager) {
-  .Call("R_g_dbus_object_manager_client_get_connection", manager)
+  .Call("R_g_dbus_object_manager_client_get_connection", manager)$result
 }
 
 
@@ -4003,7 +4003,7 @@ gDbusObjectManagerClientGetConnection <- function(manager) {
 #' @return DBusObjectManagerClientFlags
 #' @export
 gDbusObjectManagerClientGetFlags <- function(manager) {
-  .Call("R_g_dbus_object_manager_client_get_flags", manager)
+  .Call("R_g_dbus_object_manager_client_get_flags", manager)$result
 }
 
 
@@ -4014,7 +4014,7 @@ gDbusObjectManagerClientGetFlags <- function(manager) {
 #' @return utf8
 #' @export
 gDbusObjectManagerClientGetName <- function(manager) {
-  .Call("R_g_dbus_object_manager_client_get_name", manager)
+  .Call("R_g_dbus_object_manager_client_get_name", manager)$result
 }
 
 
@@ -4025,7 +4025,7 @@ gDbusObjectManagerClientGetName <- function(manager) {
 #' @return utf8
 #' @export
 gDbusObjectManagerClientGetNameOwner <- function(manager) {
-  .Call("R_g_dbus_object_manager_client_get_name_owner", manager)
+  .Call("R_g_dbus_object_manager_client_get_name_owner", manager)$result
 }
 
 
@@ -4036,7 +4036,7 @@ gDbusObjectManagerClientGetNameOwner <- function(manager) {
 #' @return DBusObjectManagerServer
 #' @export
 gDbusObjectManagerServerNew <- function(object_path) {
-  .Call("R_g_dbus_object_manager_server_new", object_path)
+  .Call("R_g_dbus_object_manager_server_new", object_path)$result
 }
 
 
@@ -4071,7 +4071,7 @@ gDbusObjectManagerServerExportUniquely <- function(manager, object) {
 #' @return DBusConnection
 #' @export
 gDbusObjectManagerServerGetConnection <- function(manager) {
-  .Call("R_g_dbus_object_manager_server_get_connection", manager)
+  .Call("R_g_dbus_object_manager_server_get_connection", manager)$result
 }
 
 
@@ -4083,7 +4083,7 @@ gDbusObjectManagerServerGetConnection <- function(manager) {
 #' @return gboolean
 #' @export
 gDbusObjectManagerServerIsExported <- function(manager, object) {
-  .Call("R_g_dbus_object_manager_server_is_exported", manager, object)
+  .Call("R_g_dbus_object_manager_server_is_exported", manager, object)$result
 }
 
 
@@ -4107,7 +4107,7 @@ gDbusObjectManagerServerSetConnection <- function(manager, connection) {
 #' @return gboolean
 #' @export
 gDbusObjectManagerServerUnexport <- function(manager, object_path) {
-  .Call("R_g_dbus_object_manager_server_unexport", manager, object_path)
+  .Call("R_g_dbus_object_manager_server_unexport", manager, object_path)$result
 }
 
 
@@ -4119,7 +4119,7 @@ gDbusObjectManagerServerUnexport <- function(manager, object_path) {
 #' @return DBusObjectProxy
 #' @export
 gDbusObjectProxyNew <- function(connection, object_path) {
-  .Call("R_g_dbus_object_proxy_new", connection, object_path)
+  .Call("R_g_dbus_object_proxy_new", connection, object_path)$result
 }
 
 
@@ -4130,7 +4130,7 @@ gDbusObjectProxyNew <- function(connection, object_path) {
 #' @return DBusConnection
 #' @export
 gDbusObjectProxyGetConnection <- function(proxy) {
-  .Call("R_g_dbus_object_proxy_get_connection", proxy)
+  .Call("R_g_dbus_object_proxy_get_connection", proxy)$result
 }
 
 
@@ -4141,7 +4141,7 @@ gDbusObjectProxyGetConnection <- function(proxy) {
 #' @return DBusObjectSkeleton
 #' @export
 gDbusObjectSkeletonNew <- function(object_path) {
-  .Call("R_g_dbus_object_skeleton_new", object_path)
+  .Call("R_g_dbus_object_skeleton_new", object_path)$result
 }
 
 
@@ -4211,7 +4211,7 @@ gDbusObjectSkeletonSetObjectPath <- function(object, object_path) {
 #' @return DBusPropertyInfo
 #' @export
 gDbusPropertyInfoRef <- function(info) {
-  .Call("R_g_dbus_property_info_ref", info)
+  .Call("R_g_dbus_property_info_ref", info)$result
 }
 
 
@@ -4233,7 +4233,7 @@ gDbusPropertyInfoUnref <- function(info) {
 #' @return DBusProxy
 #' @export
 gDbusProxyNewFinish <- function(res) {
-  .Call("R_g_dbus_proxy_new_finish", res)
+  .Call("R_g_dbus_proxy_new_finish", res)$result
 }
 
 
@@ -4244,7 +4244,7 @@ gDbusProxyNewFinish <- function(res) {
 #' @return DBusProxy
 #' @export
 gDbusProxyNewForBusFinish <- function(res) {
-  .Call("R_g_dbus_proxy_new_for_bus_finish", res)
+  .Call("R_g_dbus_proxy_new_for_bus_finish", res)$result
 }
 
 
@@ -4261,7 +4261,7 @@ gDbusProxyNewForBusFinish <- function(res) {
 #' @return DBusProxy
 #' @export
 gDbusProxyNewForBusSync <- function(bus_type, flags, info, name, object_path, interface_name, cancellable) {
-  .Call("R_g_dbus_proxy_new_for_bus_sync", bus_type, flags, info, name, object_path, interface_name, cancellable)
+  .Call("R_g_dbus_proxy_new_for_bus_sync", bus_type, flags, info, name, object_path, interface_name, cancellable)$result
 }
 
 
@@ -4278,7 +4278,7 @@ gDbusProxyNewForBusSync <- function(bus_type, flags, info, name, object_path, in
 #' @return DBusProxy
 #' @export
 gDbusProxyNewSync <- function(connection, flags, info, name, object_path, interface_name, cancellable) {
-  .Call("R_g_dbus_proxy_new_sync", connection, flags, info, name, object_path, interface_name, cancellable)
+  .Call("R_g_dbus_proxy_new_sync", connection, flags, info, name, object_path, interface_name, cancellable)$result
 }
 
 
@@ -4290,7 +4290,7 @@ gDbusProxyNewSync <- function(connection, flags, info, name, object_path, interf
 #' @return GLib.Variant
 #' @export
 gDbusProxyCallFinish <- function(proxy, res) {
-  .Call("R_g_dbus_proxy_call_finish", proxy, res)
+  .Call("R_g_dbus_proxy_call_finish", proxy, res)$result
 }
 
 
@@ -4306,7 +4306,7 @@ gDbusProxyCallFinish <- function(proxy, res) {
 #' @return GLib.Variant
 #' @export
 gDbusProxyCallSync <- function(proxy, method_name, parameters, flags, timeout_msec, cancellable) {
-  .Call("R_g_dbus_proxy_call_sync", proxy, method_name, parameters, flags, timeout_msec, cancellable)
+  .Call("R_g_dbus_proxy_call_sync", proxy, method_name, parameters, flags, timeout_msec, cancellable)$result
 }
 
 
@@ -4347,7 +4347,7 @@ gDbusProxyCallWithUnixFdListSync <- function(proxy, method_name, parameters, fla
 #' @return GLib.Variant
 #' @export
 gDbusProxyGetCachedProperty <- function(proxy, property_name) {
-  .Call("R_g_dbus_proxy_get_cached_property", proxy, property_name)
+  .Call("R_g_dbus_proxy_get_cached_property", proxy, property_name)$result
 }
 
 
@@ -4358,7 +4358,7 @@ gDbusProxyGetCachedProperty <- function(proxy, property_name) {
 #' @return utf8
 #' @export
 gDbusProxyGetCachedPropertyNames <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_cached_property_names", proxy)
+  .Call("R_g_dbus_proxy_get_cached_property_names", proxy)$result
 }
 
 
@@ -4369,7 +4369,7 @@ gDbusProxyGetCachedPropertyNames <- function(proxy) {
 #' @return DBusConnection
 #' @export
 gDbusProxyGetConnection <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_connection", proxy)
+  .Call("R_g_dbus_proxy_get_connection", proxy)$result
 }
 
 
@@ -4380,7 +4380,7 @@ gDbusProxyGetConnection <- function(proxy) {
 #' @return gint
 #' @export
 gDbusProxyGetDefaultTimeout <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_default_timeout", proxy)
+  .Call("R_g_dbus_proxy_get_default_timeout", proxy)$result
 }
 
 
@@ -4391,7 +4391,7 @@ gDbusProxyGetDefaultTimeout <- function(proxy) {
 #' @return DBusProxyFlags
 #' @export
 gDbusProxyGetFlags <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_flags", proxy)
+  .Call("R_g_dbus_proxy_get_flags", proxy)$result
 }
 
 
@@ -4402,7 +4402,7 @@ gDbusProxyGetFlags <- function(proxy) {
 #' @return DBusInterfaceInfo
 #' @export
 gDbusProxyGetInterfaceInfo <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_interface_info", proxy)
+  .Call("R_g_dbus_proxy_get_interface_info", proxy)$result
 }
 
 
@@ -4413,7 +4413,7 @@ gDbusProxyGetInterfaceInfo <- function(proxy) {
 #' @return utf8
 #' @export
 gDbusProxyGetInterfaceName <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_interface_name", proxy)
+  .Call("R_g_dbus_proxy_get_interface_name", proxy)$result
 }
 
 
@@ -4424,7 +4424,7 @@ gDbusProxyGetInterfaceName <- function(proxy) {
 #' @return utf8
 #' @export
 gDbusProxyGetName <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_name", proxy)
+  .Call("R_g_dbus_proxy_get_name", proxy)$result
 }
 
 
@@ -4435,7 +4435,7 @@ gDbusProxyGetName <- function(proxy) {
 #' @return utf8
 #' @export
 gDbusProxyGetNameOwner <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_name_owner", proxy)
+  .Call("R_g_dbus_proxy_get_name_owner", proxy)$result
 }
 
 
@@ -4446,7 +4446,7 @@ gDbusProxyGetNameOwner <- function(proxy) {
 #' @return utf8
 #' @export
 gDbusProxyGetObjectPath <- function(proxy) {
-  .Call("R_g_dbus_proxy_get_object_path", proxy)
+  .Call("R_g_dbus_proxy_get_object_path", proxy)$result
 }
 
 
@@ -4498,7 +4498,7 @@ gDbusProxySetInterfaceInfo <- function(proxy, info) {
 #' @return DBusServer
 #' @export
 gDbusServerNewSync <- function(address, flags, guid, observer, cancellable) {
-  .Call("R_g_dbus_server_new_sync", address, flags, guid, observer, cancellable)
+  .Call("R_g_dbus_server_new_sync", address, flags, guid, observer, cancellable)$result
 }
 
 
@@ -4509,7 +4509,7 @@ gDbusServerNewSync <- function(address, flags, guid, observer, cancellable) {
 #' @return utf8
 #' @export
 gDbusServerGetClientAddress <- function(server) {
-  .Call("R_g_dbus_server_get_client_address", server)
+  .Call("R_g_dbus_server_get_client_address", server)$result
 }
 
 
@@ -4520,7 +4520,7 @@ gDbusServerGetClientAddress <- function(server) {
 #' @return DBusServerFlags
 #' @export
 gDbusServerGetFlags <- function(server) {
-  .Call("R_g_dbus_server_get_flags", server)
+  .Call("R_g_dbus_server_get_flags", server)$result
 }
 
 
@@ -4531,7 +4531,7 @@ gDbusServerGetFlags <- function(server) {
 #' @return utf8
 #' @export
 gDbusServerGetGuid <- function(server) {
-  .Call("R_g_dbus_server_get_guid", server)
+  .Call("R_g_dbus_server_get_guid", server)$result
 }
 
 
@@ -4542,7 +4542,7 @@ gDbusServerGetGuid <- function(server) {
 #' @return gboolean
 #' @export
 gDbusServerIsActive <- function(server) {
-  .Call("R_g_dbus_server_is_active", server)
+  .Call("R_g_dbus_server_is_active", server)$result
 }
 
 
@@ -4575,7 +4575,7 @@ gDbusServerStop <- function(server) {
 #' @return DBusSignalInfo
 #' @export
 gDbusSignalInfoRef <- function(info) {
-  .Call("R_g_dbus_signal_info_ref", info)
+  .Call("R_g_dbus_signal_info_ref", info)$result
 }
 
 
@@ -4597,7 +4597,7 @@ gDbusSignalInfoUnref <- function(info) {
 #' @return DataInputStream
 #' @export
 gDataInputStreamNew <- function(base_stream) {
-  .Call("R_g_data_input_stream_new", base_stream)
+  .Call("R_g_data_input_stream_new", base_stream)$result
 }
 
 
@@ -4608,7 +4608,7 @@ gDataInputStreamNew <- function(base_stream) {
 #' @return DataStreamByteOrder
 #' @export
 gDataInputStreamGetByteOrder <- function(stream) {
-  .Call("R_g_data_input_stream_get_byte_order", stream)
+  .Call("R_g_data_input_stream_get_byte_order", stream)$result
 }
 
 
@@ -4619,7 +4619,7 @@ gDataInputStreamGetByteOrder <- function(stream) {
 #' @return DataStreamNewlineType
 #' @export
 gDataInputStreamGetNewlineType <- function(stream) {
-  .Call("R_g_data_input_stream_get_newline_type", stream)
+  .Call("R_g_data_input_stream_get_newline_type", stream)$result
 }
 
 
@@ -4631,7 +4631,7 @@ gDataInputStreamGetNewlineType <- function(stream) {
 #' @return guint8
 #' @export
 gDataInputStreamReadByte <- function(stream, cancellable) {
-  .Call("R_g_data_input_stream_read_byte", stream, cancellable)
+  .Call("R_g_data_input_stream_read_byte", stream, cancellable)$result
 }
 
 
@@ -4643,7 +4643,7 @@ gDataInputStreamReadByte <- function(stream, cancellable) {
 #' @return gint16
 #' @export
 gDataInputStreamReadInt16 <- function(stream, cancellable) {
-  .Call("R_g_data_input_stream_read_int16", stream, cancellable)
+  .Call("R_g_data_input_stream_read_int16", stream, cancellable)$result
 }
 
 
@@ -4655,7 +4655,7 @@ gDataInputStreamReadInt16 <- function(stream, cancellable) {
 #' @return gint32
 #' @export
 gDataInputStreamReadInt32 <- function(stream, cancellable) {
-  .Call("R_g_data_input_stream_read_int32", stream, cancellable)
+  .Call("R_g_data_input_stream_read_int32", stream, cancellable)$result
 }
 
 
@@ -4667,7 +4667,7 @@ gDataInputStreamReadInt32 <- function(stream, cancellable) {
 #' @return gint64
 #' @export
 gDataInputStreamReadInt64 <- function(stream, cancellable) {
-  .Call("R_g_data_input_stream_read_int64", stream, cancellable)
+  .Call("R_g_data_input_stream_read_int64", stream, cancellable)$result
 }
 
 
@@ -4727,7 +4727,7 @@ gDataInputStreamReadLineUtf8 <- function(stream, cancellable) {
 #' @return guint16
 #' @export
 gDataInputStreamReadUint16 <- function(stream, cancellable) {
-  .Call("R_g_data_input_stream_read_uint16", stream, cancellable)
+  .Call("R_g_data_input_stream_read_uint16", stream, cancellable)$result
 }
 
 
@@ -4739,7 +4739,7 @@ gDataInputStreamReadUint16 <- function(stream, cancellable) {
 #' @return guint32
 #' @export
 gDataInputStreamReadUint32 <- function(stream, cancellable) {
-  .Call("R_g_data_input_stream_read_uint32", stream, cancellable)
+  .Call("R_g_data_input_stream_read_uint32", stream, cancellable)$result
 }
 
 
@@ -4751,7 +4751,7 @@ gDataInputStreamReadUint32 <- function(stream, cancellable) {
 #' @return guint64
 #' @export
 gDataInputStreamReadUint64 <- function(stream, cancellable) {
-  .Call("R_g_data_input_stream_read_uint64", stream, cancellable)
+  .Call("R_g_data_input_stream_read_uint64", stream, cancellable)$result
 }
 
 
@@ -4837,7 +4837,7 @@ gDataInputStreamSetNewlineType <- function(stream, type) {
 #' @return DataOutputStream
 #' @export
 gDataOutputStreamNew <- function(base_stream) {
-  .Call("R_g_data_output_stream_new", base_stream)
+  .Call("R_g_data_output_stream_new", base_stream)$result
 }
 
 
@@ -4848,7 +4848,7 @@ gDataOutputStreamNew <- function(base_stream) {
 #' @return DataStreamByteOrder
 #' @export
 gDataOutputStreamGetByteOrder <- function(stream) {
-  .Call("R_g_data_output_stream_get_byte_order", stream)
+  .Call("R_g_data_output_stream_get_byte_order", stream)$result
 }
 
 
@@ -4861,7 +4861,7 @@ gDataOutputStreamGetByteOrder <- function(stream) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutByte <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_byte", stream, data, cancellable)
+  .Call("R_g_data_output_stream_put_byte", stream, data, cancellable)$result
 }
 
 
@@ -4874,7 +4874,7 @@ gDataOutputStreamPutByte <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutInt16 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_int16", stream, data, cancellable)
+  .Call("R_g_data_output_stream_put_int16", stream, data, cancellable)$result
 }
 
 
@@ -4887,7 +4887,7 @@ gDataOutputStreamPutInt16 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutInt32 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_int32", stream, data, cancellable)
+  .Call("R_g_data_output_stream_put_int32", stream, data, cancellable)$result
 }
 
 
@@ -4900,7 +4900,7 @@ gDataOutputStreamPutInt32 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutInt64 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_int64", stream, data, cancellable)
+  .Call("R_g_data_output_stream_put_int64", stream, data, cancellable)$result
 }
 
 
@@ -4913,7 +4913,7 @@ gDataOutputStreamPutInt64 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutString <- function(stream, str, cancellable) {
-  .Call("R_g_data_output_stream_put_string", stream, str, cancellable)
+  .Call("R_g_data_output_stream_put_string", stream, str, cancellable)$result
 }
 
 
@@ -4926,7 +4926,7 @@ gDataOutputStreamPutString <- function(stream, str, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutUint16 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_uint16", stream, data, cancellable)
+  .Call("R_g_data_output_stream_put_uint16", stream, data, cancellable)$result
 }
 
 
@@ -4939,7 +4939,7 @@ gDataOutputStreamPutUint16 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutUint32 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_uint32", stream, data, cancellable)
+  .Call("R_g_data_output_stream_put_uint32", stream, data, cancellable)$result
 }
 
 
@@ -4952,7 +4952,7 @@ gDataOutputStreamPutUint32 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutUint64 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_uint64", stream, data, cancellable)
+  .Call("R_g_data_output_stream_put_uint64", stream, data, cancellable)$result
 }
 
 
@@ -4976,7 +4976,7 @@ gDataOutputStreamSetByteOrder <- function(stream, order) {
 #' @return GLib.IOCondition
 #' @export
 gDatagramBasedConditionCheck <- function(datagram_based, condition) {
-  .Call("R_g_datagram_based_condition_check", datagram_based, condition)
+  .Call("R_g_datagram_based_condition_check", datagram_based, condition)$result
 }
 
 
@@ -4990,7 +4990,7 @@ gDatagramBasedConditionCheck <- function(datagram_based, condition) {
 #' @return gboolean
 #' @export
 gDatagramBasedConditionWait <- function(datagram_based, condition, timeout, cancellable) {
-  .Call("R_g_datagram_based_condition_wait", datagram_based, condition, timeout, cancellable)
+  .Call("R_g_datagram_based_condition_wait", datagram_based, condition, timeout, cancellable)$result
 }
 
 
@@ -5003,7 +5003,7 @@ gDatagramBasedConditionWait <- function(datagram_based, condition, timeout, canc
 #' @return GLib.Source
 #' @export
 gDatagramBasedCreateSource <- function(datagram_based, condition, cancellable) {
-  .Call("R_g_datagram_based_create_source", datagram_based, condition, cancellable)
+  .Call("R_g_datagram_based_create_source", datagram_based, condition, cancellable)$result
 }
 
 
@@ -5019,7 +5019,7 @@ gDatagramBasedCreateSource <- function(datagram_based, condition, cancellable) {
 #' @return gint
 #' @export
 gDatagramBasedReceiveMessages <- function(datagram_based, messages, num_messages, flags, timeout, cancellable) {
-  .Call("R_g_datagram_based_receive_messages", datagram_based, messages, num_messages, flags, timeout, cancellable)
+  .Call("R_g_datagram_based_receive_messages", datagram_based, messages, num_messages, flags, timeout, cancellable)$result
 }
 
 
@@ -5035,7 +5035,7 @@ gDatagramBasedReceiveMessages <- function(datagram_based, messages, num_messages
 #' @return gint
 #' @export
 gDatagramBasedSendMessages <- function(datagram_based, messages, num_messages, flags, timeout, cancellable) {
-  .Call("R_g_datagram_based_send_messages", datagram_based, messages, num_messages, flags, timeout, cancellable)
+  .Call("R_g_datagram_based_send_messages", datagram_based, messages, num_messages, flags, timeout, cancellable)$result
 }
 
 
@@ -5046,7 +5046,7 @@ gDatagramBasedSendMessages <- function(datagram_based, messages, num_messages, f
 #' @return gboolean
 #' @export
 gDebugControllerGetDebugEnabled <- function(self) {
-  .Call("R_g_debug_controller_get_debug_enabled", self)
+  .Call("R_g_debug_controller_get_debug_enabled", self)$result
 }
 
 
@@ -5070,7 +5070,7 @@ gDebugControllerSetDebugEnabled <- function(self, debug_enabled) {
 #' @return DebugControllerDBus
 #' @export
 gDebugControllerDbusNew <- function(connection, cancellable) {
-  .Call("R_g_debug_controller_dbus_new", connection, cancellable)
+  .Call("R_g_debug_controller_dbus_new", connection, cancellable)$result
 }
 
 
@@ -5092,7 +5092,7 @@ gDebugControllerDbusStop <- function(self) {
 #' @return gboolean
 #' @export
 gDriveCanEject <- function(drive) {
-  .Call("R_g_drive_can_eject", drive)
+  .Call("R_g_drive_can_eject", drive)$result
 }
 
 
@@ -5103,7 +5103,7 @@ gDriveCanEject <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveCanPollForMedia <- function(drive) {
-  .Call("R_g_drive_can_poll_for_media", drive)
+  .Call("R_g_drive_can_poll_for_media", drive)$result
 }
 
 
@@ -5114,7 +5114,7 @@ gDriveCanPollForMedia <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveCanStart <- function(drive) {
-  .Call("R_g_drive_can_start", drive)
+  .Call("R_g_drive_can_start", drive)$result
 }
 
 
@@ -5125,7 +5125,7 @@ gDriveCanStart <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveCanStartDegraded <- function(drive) {
-  .Call("R_g_drive_can_start_degraded", drive)
+  .Call("R_g_drive_can_start_degraded", drive)$result
 }
 
 
@@ -5136,7 +5136,7 @@ gDriveCanStartDegraded <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveCanStop <- function(drive) {
-  .Call("R_g_drive_can_stop", drive)
+  .Call("R_g_drive_can_stop", drive)$result
 }
 
 
@@ -5148,7 +5148,7 @@ gDriveCanStop <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveEjectFinish <- function(drive, result) {
-  .Call("R_g_drive_eject_finish", drive, result)
+  .Call("R_g_drive_eject_finish", drive, result)$result
 }
 
 
@@ -5160,7 +5160,7 @@ gDriveEjectFinish <- function(drive, result) {
 #' @return gboolean
 #' @export
 gDriveEjectWithOperationFinish <- function(drive, result) {
-  .Call("R_g_drive_eject_with_operation_finish", drive, result)
+  .Call("R_g_drive_eject_with_operation_finish", drive, result)$result
 }
 
 
@@ -5171,7 +5171,7 @@ gDriveEjectWithOperationFinish <- function(drive, result) {
 #' @return utf8
 #' @export
 gDriveEnumerateIdentifiers <- function(drive) {
-  .Call("R_g_drive_enumerate_identifiers", drive)
+  .Call("R_g_drive_enumerate_identifiers", drive)$result
 }
 
 
@@ -5182,7 +5182,7 @@ gDriveEnumerateIdentifiers <- function(drive) {
 #' @return Icon
 #' @export
 gDriveGetIcon <- function(drive) {
-  .Call("R_g_drive_get_icon", drive)
+  .Call("R_g_drive_get_icon", drive)$result
 }
 
 
@@ -5194,7 +5194,7 @@ gDriveGetIcon <- function(drive) {
 #' @return utf8
 #' @export
 gDriveGetIdentifier <- function(drive, kind) {
-  .Call("R_g_drive_get_identifier", drive, kind)
+  .Call("R_g_drive_get_identifier", drive, kind)$result
 }
 
 
@@ -5205,7 +5205,7 @@ gDriveGetIdentifier <- function(drive, kind) {
 #' @return utf8
 #' @export
 gDriveGetName <- function(drive) {
-  .Call("R_g_drive_get_name", drive)
+  .Call("R_g_drive_get_name", drive)$result
 }
 
 
@@ -5216,7 +5216,7 @@ gDriveGetName <- function(drive) {
 #' @return utf8
 #' @export
 gDriveGetSortKey <- function(drive) {
-  .Call("R_g_drive_get_sort_key", drive)
+  .Call("R_g_drive_get_sort_key", drive)$result
 }
 
 
@@ -5227,7 +5227,7 @@ gDriveGetSortKey <- function(drive) {
 #' @return DriveStartStopType
 #' @export
 gDriveGetStartStopType <- function(drive) {
-  .Call("R_g_drive_get_start_stop_type", drive)
+  .Call("R_g_drive_get_start_stop_type", drive)$result
 }
 
 
@@ -5238,7 +5238,7 @@ gDriveGetStartStopType <- function(drive) {
 #' @return Icon
 #' @export
 gDriveGetSymbolicIcon <- function(drive) {
-  .Call("R_g_drive_get_symbolic_icon", drive)
+  .Call("R_g_drive_get_symbolic_icon", drive)$result
 }
 
 
@@ -5249,7 +5249,7 @@ gDriveGetSymbolicIcon <- function(drive) {
 #' @return GLib.List
 #' @export
 gDriveGetVolumes <- function(drive) {
-  .Call("R_g_drive_get_volumes", drive)
+  .Call("R_g_drive_get_volumes", drive)$result
 }
 
 
@@ -5260,7 +5260,7 @@ gDriveGetVolumes <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveHasMedia <- function(drive) {
-  .Call("R_g_drive_has_media", drive)
+  .Call("R_g_drive_has_media", drive)$result
 }
 
 
@@ -5271,7 +5271,7 @@ gDriveHasMedia <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveHasVolumes <- function(drive) {
-  .Call("R_g_drive_has_volumes", drive)
+  .Call("R_g_drive_has_volumes", drive)$result
 }
 
 
@@ -5282,7 +5282,7 @@ gDriveHasVolumes <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveIsMediaCheckAutomatic <- function(drive) {
-  .Call("R_g_drive_is_media_check_automatic", drive)
+  .Call("R_g_drive_is_media_check_automatic", drive)$result
 }
 
 
@@ -5293,7 +5293,7 @@ gDriveIsMediaCheckAutomatic <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveIsMediaRemovable <- function(drive) {
-  .Call("R_g_drive_is_media_removable", drive)
+  .Call("R_g_drive_is_media_removable", drive)$result
 }
 
 
@@ -5304,7 +5304,7 @@ gDriveIsMediaRemovable <- function(drive) {
 #' @return gboolean
 #' @export
 gDriveIsRemovable <- function(drive) {
-  .Call("R_g_drive_is_removable", drive)
+  .Call("R_g_drive_is_removable", drive)$result
 }
 
 
@@ -5316,7 +5316,7 @@ gDriveIsRemovable <- function(drive) {
 #' @return gboolean
 #' @export
 gDrivePollForMediaFinish <- function(drive, result) {
-  .Call("R_g_drive_poll_for_media_finish", drive, result)
+  .Call("R_g_drive_poll_for_media_finish", drive, result)$result
 }
 
 
@@ -5328,7 +5328,7 @@ gDrivePollForMediaFinish <- function(drive, result) {
 #' @return gboolean
 #' @export
 gDriveStartFinish <- function(drive, result) {
-  .Call("R_g_drive_start_finish", drive, result)
+  .Call("R_g_drive_start_finish", drive, result)$result
 }
 
 
@@ -5340,369 +5340,7 @@ gDriveStartFinish <- function(drive, result) {
 #' @return gboolean
 #' @export
 gDriveStopFinish <- function(drive, result) {
-  .Call("R_g_drive_stop_finish", drive, result)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsClientConnectionNew
-#'
-#' @param base_socket DatagramBased
-#' @param server_identity SocketConnectable
-#' @return DtlsClientConnection
-#' @export
-gDtlsClientConnectionNew <- function(base_socket, server_identity) {
-  .Call("R_g_dtls_client_connection_new", base_socket, server_identity)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsClientConnectionGetAcceptedCas
-#'
-#' @param conn DtlsClientConnection
-#' @return GLib.List
-#' @export
-gDtlsClientConnectionGetAcceptedCas <- function(conn) {
-  .Call("R_g_dtls_client_connection_get_accepted_cas", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsClientConnectionGetServerIdentity
-#'
-#' @param conn DtlsClientConnection
-#' @return SocketConnectable
-#' @export
-gDtlsClientConnectionGetServerIdentity <- function(conn) {
-  .Call("R_g_dtls_client_connection_get_server_identity", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsClientConnectionGetValidationFlags
-#'
-#' @param conn DtlsClientConnection
-#' @return TlsCertificateFlags
-#' @export
-gDtlsClientConnectionGetValidationFlags <- function(conn) {
-  .Call("R_g_dtls_client_connection_get_validation_flags", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsClientConnectionSetServerIdentity
-#'
-#' @param conn DtlsClientConnection
-#' @param identity SocketConnectable
-#' @return Return value from C function
-#' @export
-gDtlsClientConnectionSetServerIdentity <- function(conn, identity) {
-  .Call("R_g_dtls_client_connection_set_server_identity", conn, identity)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsClientConnectionSetValidationFlags
-#'
-#' @param conn DtlsClientConnection
-#' @param flags TlsCertificateFlags
-#' @return Return value from C function
-#' @export
-gDtlsClientConnectionSetValidationFlags <- function(conn, flags) {
-  .Call("R_g_dtls_client_connection_set_validation_flags", conn, flags)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionClose
-#'
-#' @param conn DtlsConnection
-#' @param cancellable Cancellable
-#' @return gboolean
-#' @export
-gDtlsConnectionClose <- function(conn, cancellable) {
-  .Call("R_g_dtls_connection_close", conn, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionCloseFinish
-#'
-#' @param conn DtlsConnection
-#' @param result AsyncResult
-#' @return gboolean
-#' @export
-gDtlsConnectionCloseFinish <- function(conn, result) {
-  .Call("R_g_dtls_connection_close_finish", conn, result)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionEmitAcceptCertificate
-#'
-#' @param conn DtlsConnection
-#' @param peer_cert TlsCertificate
-#' @param errors TlsCertificateFlags
-#' @return gboolean
-#' @export
-gDtlsConnectionEmitAcceptCertificate <- function(conn, peer_cert, errors) {
-  .Call("R_g_dtls_connection_emit_accept_certificate", conn, peer_cert, errors)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetCertificate
-#'
-#' @param conn DtlsConnection
-#' @return TlsCertificate
-#' @export
-gDtlsConnectionGetCertificate <- function(conn) {
-  .Call("R_g_dtls_connection_get_certificate", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetChannelBindingData
-#'
-#' @param conn DtlsConnection
-#' @param type TlsChannelBindingType
-#' @return gboolean
-#' @export
-gDtlsConnectionGetChannelBindingData <- function(conn, type) {
-  .Call("R_g_dtls_connection_get_channel_binding_data", conn, type)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetCiphersuiteName
-#'
-#' @param conn DtlsConnection
-#' @return utf8
-#' @export
-gDtlsConnectionGetCiphersuiteName <- function(conn) {
-  .Call("R_g_dtls_connection_get_ciphersuite_name", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetDatabase
-#'
-#' @param conn DtlsConnection
-#' @return TlsDatabase
-#' @export
-gDtlsConnectionGetDatabase <- function(conn) {
-  .Call("R_g_dtls_connection_get_database", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetInteraction
-#'
-#' @param conn DtlsConnection
-#' @return TlsInteraction
-#' @export
-gDtlsConnectionGetInteraction <- function(conn) {
-  .Call("R_g_dtls_connection_get_interaction", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetNegotiatedProtocol
-#'
-#' @param conn DtlsConnection
-#' @return utf8
-#' @export
-gDtlsConnectionGetNegotiatedProtocol <- function(conn) {
-  .Call("R_g_dtls_connection_get_negotiated_protocol", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetPeerCertificate
-#'
-#' @param conn DtlsConnection
-#' @return TlsCertificate
-#' @export
-gDtlsConnectionGetPeerCertificate <- function(conn) {
-  .Call("R_g_dtls_connection_get_peer_certificate", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetPeerCertificateErrors
-#'
-#' @param conn DtlsConnection
-#' @return TlsCertificateFlags
-#' @export
-gDtlsConnectionGetPeerCertificateErrors <- function(conn) {
-  .Call("R_g_dtls_connection_get_peer_certificate_errors", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetProtocolVersion
-#'
-#' @param conn DtlsConnection
-#' @return TlsProtocolVersion
-#' @export
-gDtlsConnectionGetProtocolVersion <- function(conn) {
-  .Call("R_g_dtls_connection_get_protocol_version", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetRehandshakeMode
-#'
-#' @param conn DtlsConnection
-#' @return TlsRehandshakeMode
-#' @export
-gDtlsConnectionGetRehandshakeMode <- function(conn) {
-  .Call("R_g_dtls_connection_get_rehandshake_mode", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionGetRequireCloseNotify
-#'
-#' @param conn DtlsConnection
-#' @return gboolean
-#' @export
-gDtlsConnectionGetRequireCloseNotify <- function(conn) {
-  .Call("R_g_dtls_connection_get_require_close_notify", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionHandshake
-#'
-#' @param conn DtlsConnection
-#' @param cancellable Cancellable
-#' @return gboolean
-#' @export
-gDtlsConnectionHandshake <- function(conn, cancellable) {
-  .Call("R_g_dtls_connection_handshake", conn, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionHandshakeFinish
-#'
-#' @param conn DtlsConnection
-#' @param result AsyncResult
-#' @return gboolean
-#' @export
-gDtlsConnectionHandshakeFinish <- function(conn, result) {
-  .Call("R_g_dtls_connection_handshake_finish", conn, result)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionSetAdvertisedProtocols
-#'
-#' @param conn DtlsConnection
-#' @param protocols utf8
-#' @return Return value from C function
-#' @export
-gDtlsConnectionSetAdvertisedProtocols <- function(conn, protocols) {
-  .Call("R_g_dtls_connection_set_advertised_protocols", conn, protocols)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionSetCertificate
-#'
-#' @param conn DtlsConnection
-#' @param certificate TlsCertificate
-#' @return Return value from C function
-#' @export
-gDtlsConnectionSetCertificate <- function(conn, certificate) {
-  .Call("R_g_dtls_connection_set_certificate", conn, certificate)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionSetDatabase
-#'
-#' @param conn DtlsConnection
-#' @param database TlsDatabase
-#' @return Return value from C function
-#' @export
-gDtlsConnectionSetDatabase <- function(conn, database) {
-  .Call("R_g_dtls_connection_set_database", conn, database)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionSetInteraction
-#'
-#' @param conn DtlsConnection
-#' @param interaction TlsInteraction
-#' @return Return value from C function
-#' @export
-gDtlsConnectionSetInteraction <- function(conn, interaction) {
-  .Call("R_g_dtls_connection_set_interaction", conn, interaction)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionSetRehandshakeMode
-#'
-#' @param conn DtlsConnection
-#' @param mode TlsRehandshakeMode
-#' @return Return value from C function
-#' @export
-gDtlsConnectionSetRehandshakeMode <- function(conn, mode) {
-  .Call("R_g_dtls_connection_set_rehandshake_mode", conn, mode)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionSetRequireCloseNotify
-#'
-#' @param conn DtlsConnection
-#' @param require_close_notify gboolean
-#' @return Return value from C function
-#' @export
-gDtlsConnectionSetRequireCloseNotify <- function(conn, require_close_notify) {
-  .Call("R_g_dtls_connection_set_require_close_notify", conn, require_close_notify)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionShutdown
-#'
-#' @param conn DtlsConnection
-#' @param shutdown_read gboolean
-#' @param shutdown_write gboolean
-#' @param cancellable Cancellable
-#' @return gboolean
-#' @export
-gDtlsConnectionShutdown <- function(conn, shutdown_read, shutdown_write, cancellable) {
-  .Call("R_g_dtls_connection_shutdown", conn, shutdown_read, shutdown_write, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsConnectionShutdownFinish
-#'
-#' @param conn DtlsConnection
-#' @param result AsyncResult
-#' @return gboolean
-#' @export
-gDtlsConnectionShutdownFinish <- function(conn, result) {
-  .Call("R_g_dtls_connection_shutdown_finish", conn, result)
-}
-
-
-#' @rdname glib-other
-#' @title gDtlsServerConnectionNew
-#'
-#' @param base_socket DatagramBased
-#' @param certificate TlsCertificate
-#' @return DtlsServerConnection
-#' @export
-gDtlsServerConnectionNew <- function(base_socket, certificate) {
-  .Call("R_g_dtls_server_connection_new", base_socket, certificate)
+  .Call("R_g_drive_stop_finish", drive, result)$result
 }
 
 
@@ -5713,7 +5351,7 @@ gDtlsServerConnectionNew <- function(base_socket, certificate) {
 #' @return Emblem
 #' @export
 gEmblemNew <- function(icon) {
-  .Call("R_g_emblem_new", icon)
+  .Call("R_g_emblem_new", icon)$result
 }
 
 
@@ -5725,7 +5363,7 @@ gEmblemNew <- function(icon) {
 #' @return Emblem
 #' @export
 gEmblemNewWithOrigin <- function(icon, origin) {
-  .Call("R_g_emblem_new_with_origin", icon, origin)
+  .Call("R_g_emblem_new_with_origin", icon, origin)$result
 }
 
 
@@ -5736,7 +5374,7 @@ gEmblemNewWithOrigin <- function(icon, origin) {
 #' @return Icon
 #' @export
 gEmblemGetIcon <- function(emblem) {
-  .Call("R_g_emblem_get_icon", emblem)
+  .Call("R_g_emblem_get_icon", emblem)$result
 }
 
 
@@ -5747,7 +5385,7 @@ gEmblemGetIcon <- function(emblem) {
 #' @return EmblemOrigin
 #' @export
 gEmblemGetOrigin <- function(emblem) {
-  .Call("R_g_emblem_get_origin", emblem)
+  .Call("R_g_emblem_get_origin", emblem)$result
 }
 
 
@@ -5759,7 +5397,7 @@ gEmblemGetOrigin <- function(emblem) {
 #' @return EmblemedIcon
 #' @export
 gEmblemedIconNew <- function(icon, emblem) {
-  .Call("R_g_emblemed_icon_new", icon, emblem)
+  .Call("R_g_emblemed_icon_new", icon, emblem)$result
 }
 
 
@@ -5793,7 +5431,7 @@ gEmblemedIconClearEmblems <- function(emblemed) {
 #' @return GLib.List
 #' @export
 gEmblemedIconGetEmblems <- function(emblemed) {
-  .Call("R_g_emblemed_icon_get_emblems", emblemed)
+  .Call("R_g_emblemed_icon_get_emblems", emblemed)$result
 }
 
 
@@ -5804,7 +5442,7 @@ gEmblemedIconGetEmblems <- function(emblemed) {
 #' @return Icon
 #' @export
 gEmblemedIconGetIcon <- function(emblemed) {
-  .Call("R_g_emblemed_icon_get_icon", emblemed)
+  .Call("R_g_emblemed_icon_get_icon", emblemed)$result
 }
 
 
@@ -5815,7 +5453,7 @@ gEmblemedIconGetIcon <- function(emblemed) {
 #' @return File
 #' @export
 gFileNewBuildFilenamev <- function(args) {
-  .Call("R_g_file_new_build_filenamev", args)
+  .Call("R_g_file_new_build_filenamev", args)$result
 }
 
 
@@ -5826,7 +5464,7 @@ gFileNewBuildFilenamev <- function(args) {
 #' @return File
 #' @export
 gFileNewForCommandlineArg <- function(arg) {
-  .Call("R_g_file_new_for_commandline_arg", arg)
+  .Call("R_g_file_new_for_commandline_arg", arg)$result
 }
 
 
@@ -5838,7 +5476,7 @@ gFileNewForCommandlineArg <- function(arg) {
 #' @return File
 #' @export
 gFileNewForCommandlineArgAndCwd <- function(arg, cwd) {
-  .Call("R_g_file_new_for_commandline_arg_and_cwd", arg, cwd)
+  .Call("R_g_file_new_for_commandline_arg_and_cwd", arg, cwd)$result
 }
 
 
@@ -5849,7 +5487,7 @@ gFileNewForCommandlineArgAndCwd <- function(arg, cwd) {
 #' @return File
 #' @export
 gFileNewForPath <- function(path) {
-  .Call("R_g_file_new_for_path", path)
+  .Call("R_g_file_new_for_path", path)$result
 }
 
 
@@ -5860,7 +5498,7 @@ gFileNewForPath <- function(path) {
 #' @return File
 #' @export
 gFileNewForUri <- function(uri) {
-  .Call("R_g_file_new_for_uri", uri)
+  .Call("R_g_file_new_for_uri", uri)$result
 }
 
 
@@ -5882,7 +5520,7 @@ gFileNewTmp <- function(tmpl) {
 #' @return File
 #' @export
 gFileNewTmpDirFinish <- function(result) {
-  .Call("R_g_file_new_tmp_dir_finish", result)
+  .Call("R_g_file_new_tmp_dir_finish", result)$result
 }
 
 
@@ -5904,7 +5542,7 @@ gFileNewTmpFinish <- function(result) {
 #' @return File
 #' @export
 gFileParseName <- function(parse_name) {
-  .Call("R_g_file_parse_name", parse_name)
+  .Call("R_g_file_parse_name", parse_name)$result
 }
 
 
@@ -5917,7 +5555,7 @@ gFileParseName <- function(parse_name) {
 #' @return FileOutputStream
 #' @export
 gFileAppendTo <- function(file, flags, cancellable) {
-  .Call("R_g_file_append_to", file, flags, cancellable)
+  .Call("R_g_file_append_to", file, flags, cancellable)$result
 }
 
 
@@ -5929,7 +5567,7 @@ gFileAppendTo <- function(file, flags, cancellable) {
 #' @return FileOutputStream
 #' @export
 gFileAppendToFinish <- function(file, res) {
-  .Call("R_g_file_append_to_finish", file, res)
+  .Call("R_g_file_append_to_finish", file, res)$result
 }
 
 
@@ -5942,7 +5580,7 @@ gFileAppendToFinish <- function(file, res) {
 #' @return utf8
 #' @export
 gFileBuildAttributeListForCopy <- function(file, flags, cancellable) {
-  .Call("R_g_file_build_attribute_list_for_copy", file, flags, cancellable)
+  .Call("R_g_file_build_attribute_list_for_copy", file, flags, cancellable)$result
 }
 
 
@@ -5973,7 +5611,7 @@ gFileCopyAsyncWithClosures <- function(source, destination, flags, io_priority, 
 #' @return gboolean
 #' @export
 gFileCopyAttributes <- function(source, destination, flags, cancellable) {
-  .Call("R_g_file_copy_attributes", source, destination, flags, cancellable)
+  .Call("R_g_file_copy_attributes", source, destination, flags, cancellable)$result
 }
 
 
@@ -5985,7 +5623,7 @@ gFileCopyAttributes <- function(source, destination, flags, cancellable) {
 #' @return gboolean
 #' @export
 gFileCopyFinish <- function(file, res) {
-  .Call("R_g_file_copy_finish", file, res)
+  .Call("R_g_file_copy_finish", file, res)$result
 }
 
 
@@ -5998,7 +5636,7 @@ gFileCopyFinish <- function(file, res) {
 #' @return FileOutputStream
 #' @export
 gFileCreate <- function(file, flags, cancellable) {
-  .Call("R_g_file_create", file, flags, cancellable)
+  .Call("R_g_file_create", file, flags, cancellable)$result
 }
 
 
@@ -6010,7 +5648,7 @@ gFileCreate <- function(file, flags, cancellable) {
 #' @return FileOutputStream
 #' @export
 gFileCreateFinish <- function(file, res) {
-  .Call("R_g_file_create_finish", file, res)
+  .Call("R_g_file_create_finish", file, res)$result
 }
 
 
@@ -6023,7 +5661,7 @@ gFileCreateFinish <- function(file, res) {
 #' @return FileIOStream
 #' @export
 gFileCreateReadwrite <- function(file, flags, cancellable) {
-  .Call("R_g_file_create_readwrite", file, flags, cancellable)
+  .Call("R_g_file_create_readwrite", file, flags, cancellable)$result
 }
 
 
@@ -6035,7 +5673,7 @@ gFileCreateReadwrite <- function(file, flags, cancellable) {
 #' @return FileIOStream
 #' @export
 gFileCreateReadwriteFinish <- function(file, res) {
-  .Call("R_g_file_create_readwrite_finish", file, res)
+  .Call("R_g_file_create_readwrite_finish", file, res)$result
 }
 
 
@@ -6047,7 +5685,7 @@ gFileCreateReadwriteFinish <- function(file, res) {
 #' @return gboolean
 #' @export
 gFileDelete <- function(file, cancellable) {
-  .Call("R_g_file_delete", file, cancellable)
+  .Call("R_g_file_delete", file, cancellable)$result
 }
 
 
@@ -6059,7 +5697,7 @@ gFileDelete <- function(file, cancellable) {
 #' @return gboolean
 #' @export
 gFileDeleteFinish <- function(file, result) {
-  .Call("R_g_file_delete_finish", file, result)
+  .Call("R_g_file_delete_finish", file, result)$result
 }
 
 
@@ -6070,7 +5708,7 @@ gFileDeleteFinish <- function(file, result) {
 #' @return File
 #' @export
 gFileDup <- function(file) {
-  .Call("R_g_file_dup", file)
+  .Call("R_g_file_dup", file)$result
 }
 
 
@@ -6082,7 +5720,7 @@ gFileDup <- function(file) {
 #' @return gboolean
 #' @export
 gFileEjectMountableFinish <- function(file, result) {
-  .Call("R_g_file_eject_mountable_finish", file, result)
+  .Call("R_g_file_eject_mountable_finish", file, result)$result
 }
 
 
@@ -6094,7 +5732,7 @@ gFileEjectMountableFinish <- function(file, result) {
 #' @return gboolean
 #' @export
 gFileEjectMountableWithOperationFinish <- function(file, result) {
-  .Call("R_g_file_eject_mountable_with_operation_finish", file, result)
+  .Call("R_g_file_eject_mountable_with_operation_finish", file, result)$result
 }
 
 
@@ -6108,7 +5746,7 @@ gFileEjectMountableWithOperationFinish <- function(file, result) {
 #' @return FileEnumerator
 #' @export
 gFileEnumerateChildren <- function(file, attributes, flags, cancellable) {
-  .Call("R_g_file_enumerate_children", file, attributes, flags, cancellable)
+  .Call("R_g_file_enumerate_children", file, attributes, flags, cancellable)$result
 }
 
 
@@ -6120,7 +5758,7 @@ gFileEnumerateChildren <- function(file, attributes, flags, cancellable) {
 #' @return FileEnumerator
 #' @export
 gFileEnumerateChildrenFinish <- function(file, res) {
-  .Call("R_g_file_enumerate_children_finish", file, res)
+  .Call("R_g_file_enumerate_children_finish", file, res)$result
 }
 
 
@@ -6132,7 +5770,7 @@ gFileEnumerateChildrenFinish <- function(file, res) {
 #' @return gboolean
 #' @export
 gFileEqual <- function(file1, file2) {
-  .Call("R_g_file_equal", file1, file2)
+  .Call("R_g_file_equal", file1, file2)$result
 }
 
 
@@ -6144,7 +5782,7 @@ gFileEqual <- function(file1, file2) {
 #' @return Mount
 #' @export
 gFileFindEnclosingMount <- function(file, cancellable) {
-  .Call("R_g_file_find_enclosing_mount", file, cancellable)
+  .Call("R_g_file_find_enclosing_mount", file, cancellable)$result
 }
 
 
@@ -6156,7 +5794,7 @@ gFileFindEnclosingMount <- function(file, cancellable) {
 #' @return Mount
 #' @export
 gFileFindEnclosingMountFinish <- function(file, res) {
-  .Call("R_g_file_find_enclosing_mount_finish", file, res)
+  .Call("R_g_file_find_enclosing_mount_finish", file, res)$result
 }
 
 
@@ -6167,7 +5805,7 @@ gFileFindEnclosingMountFinish <- function(file, res) {
 #' @return filename
 #' @export
 gFileGetBasename <- function(file) {
-  .Call("R_g_file_get_basename", file)
+  .Call("R_g_file_get_basename", file)$result
 }
 
 
@@ -6179,7 +5817,7 @@ gFileGetBasename <- function(file) {
 #' @return File
 #' @export
 gFileGetChild <- function(file, name) {
-  .Call("R_g_file_get_child", file, name)
+  .Call("R_g_file_get_child", file, name)$result
 }
 
 
@@ -6191,7 +5829,7 @@ gFileGetChild <- function(file, name) {
 #' @return File
 #' @export
 gFileGetChildForDisplayName <- function(file, display_name) {
-  .Call("R_g_file_get_child_for_display_name", file, display_name)
+  .Call("R_g_file_get_child_for_display_name", file, display_name)$result
 }
 
 
@@ -6202,7 +5840,7 @@ gFileGetChildForDisplayName <- function(file, display_name) {
 #' @return File
 #' @export
 gFileGetParent <- function(file) {
-  .Call("R_g_file_get_parent", file)
+  .Call("R_g_file_get_parent", file)$result
 }
 
 
@@ -6213,7 +5851,7 @@ gFileGetParent <- function(file) {
 #' @return utf8
 #' @export
 gFileGetParseName <- function(file) {
-  .Call("R_g_file_get_parse_name", file)
+  .Call("R_g_file_get_parse_name", file)$result
 }
 
 
@@ -6224,7 +5862,7 @@ gFileGetParseName <- function(file) {
 #' @return filename
 #' @export
 gFileGetPath <- function(file) {
-  .Call("R_g_file_get_path", file)
+  .Call("R_g_file_get_path", file)$result
 }
 
 
@@ -6236,7 +5874,7 @@ gFileGetPath <- function(file) {
 #' @return filename
 #' @export
 gFileGetRelativePath <- function(parent, descendant) {
-  .Call("R_g_file_get_relative_path", parent, descendant)
+  .Call("R_g_file_get_relative_path", parent, descendant)$result
 }
 
 
@@ -6247,7 +5885,7 @@ gFileGetRelativePath <- function(parent, descendant) {
 #' @return utf8
 #' @export
 gFileGetUri <- function(file) {
-  .Call("R_g_file_get_uri", file)
+  .Call("R_g_file_get_uri", file)$result
 }
 
 
@@ -6258,7 +5896,7 @@ gFileGetUri <- function(file) {
 #' @return utf8
 #' @export
 gFileGetUriScheme <- function(file) {
-  .Call("R_g_file_get_uri_scheme", file)
+  .Call("R_g_file_get_uri_scheme", file)$result
 }
 
 
@@ -6270,7 +5908,7 @@ gFileGetUriScheme <- function(file) {
 #' @return gboolean
 #' @export
 gFileHasParent <- function(file, parent) {
-  .Call("R_g_file_has_parent", file, parent)
+  .Call("R_g_file_has_parent", file, parent)$result
 }
 
 
@@ -6282,7 +5920,7 @@ gFileHasParent <- function(file, parent) {
 #' @return gboolean
 #' @export
 gFileHasPrefix <- function(file, prefix) {
-  .Call("R_g_file_has_prefix", file, prefix)
+  .Call("R_g_file_has_prefix", file, prefix)$result
 }
 
 
@@ -6294,7 +5932,7 @@ gFileHasPrefix <- function(file, prefix) {
 #' @return gboolean
 #' @export
 gFileHasUriScheme <- function(file, uri_scheme) {
-  .Call("R_g_file_has_uri_scheme", file, uri_scheme)
+  .Call("R_g_file_has_uri_scheme", file, uri_scheme)$result
 }
 
 
@@ -6305,7 +5943,7 @@ gFileHasUriScheme <- function(file, uri_scheme) {
 #' @return guint
 #' @export
 gFileHash <- function(file) {
-  .Call("R_g_file_hash", file)
+  .Call("R_g_file_hash", file)$result
 }
 
 
@@ -6316,7 +5954,7 @@ gFileHash <- function(file) {
 #' @return gboolean
 #' @export
 gFileIsNative <- function(file) {
-  .Call("R_g_file_is_native", file)
+  .Call("R_g_file_is_native", file)$result
 }
 
 
@@ -6388,7 +6026,7 @@ gFileLoadPartialContentsFinish <- function(file, res) {
 #' @return gboolean
 #' @export
 gFileMakeDirectory <- function(file, cancellable) {
-  .Call("R_g_file_make_directory", file, cancellable)
+  .Call("R_g_file_make_directory", file, cancellable)$result
 }
 
 
@@ -6400,7 +6038,7 @@ gFileMakeDirectory <- function(file, cancellable) {
 #' @return gboolean
 #' @export
 gFileMakeDirectoryFinish <- function(file, result) {
-  .Call("R_g_file_make_directory_finish", file, result)
+  .Call("R_g_file_make_directory_finish", file, result)$result
 }
 
 
@@ -6412,7 +6050,7 @@ gFileMakeDirectoryFinish <- function(file, result) {
 #' @return gboolean
 #' @export
 gFileMakeDirectoryWithParents <- function(file, cancellable) {
-  .Call("R_g_file_make_directory_with_parents", file, cancellable)
+  .Call("R_g_file_make_directory_with_parents", file, cancellable)$result
 }
 
 
@@ -6425,7 +6063,7 @@ gFileMakeDirectoryWithParents <- function(file, cancellable) {
 #' @return gboolean
 #' @export
 gFileMakeSymbolicLink <- function(file, symlink_value, cancellable) {
-  .Call("R_g_file_make_symbolic_link", file, symlink_value, cancellable)
+  .Call("R_g_file_make_symbolic_link", file, symlink_value, cancellable)$result
 }
 
 
@@ -6437,7 +6075,7 @@ gFileMakeSymbolicLink <- function(file, symlink_value, cancellable) {
 #' @return gboolean
 #' @export
 gFileMakeSymbolicLinkFinish <- function(file, result) {
-  .Call("R_g_file_make_symbolic_link_finish", file, result)
+  .Call("R_g_file_make_symbolic_link_finish", file, result)$result
 }
 
 
@@ -6462,7 +6100,7 @@ gFileMeasureDiskUsageFinish <- function(file, result) {
 #' @return FileMonitor
 #' @export
 gFileMonitor <- function(file, flags, cancellable) {
-  .Call("R_g_file_monitor", file, flags, cancellable)
+  .Call("R_g_file_monitor", file, flags, cancellable)$result
 }
 
 
@@ -6475,7 +6113,7 @@ gFileMonitor <- function(file, flags, cancellable) {
 #' @return FileMonitor
 #' @export
 gFileMonitorDirectory <- function(file, flags, cancellable) {
-  .Call("R_g_file_monitor_directory", file, flags, cancellable)
+  .Call("R_g_file_monitor_directory", file, flags, cancellable)$result
 }
 
 
@@ -6488,7 +6126,7 @@ gFileMonitorDirectory <- function(file, flags, cancellable) {
 #' @return FileMonitor
 #' @export
 gFileMonitorFile <- function(file, flags, cancellable) {
-  .Call("R_g_file_monitor_file", file, flags, cancellable)
+  .Call("R_g_file_monitor_file", file, flags, cancellable)$result
 }
 
 
@@ -6500,7 +6138,7 @@ gFileMonitorFile <- function(file, flags, cancellable) {
 #' @return gboolean
 #' @export
 gFileMountEnclosingVolumeFinish <- function(location, result) {
-  .Call("R_g_file_mount_enclosing_volume_finish", location, result)
+  .Call("R_g_file_mount_enclosing_volume_finish", location, result)$result
 }
 
 
@@ -6512,7 +6150,7 @@ gFileMountEnclosingVolumeFinish <- function(location, result) {
 #' @return File
 #' @export
 gFileMountMountableFinish <- function(file, result) {
-  .Call("R_g_file_mount_mountable_finish", file, result)
+  .Call("R_g_file_mount_mountable_finish", file, result)$result
 }
 
 
@@ -6541,7 +6179,7 @@ gFileMoveAsyncWithClosures <- function(source, destination, flags, io_priority, 
 #' @return gboolean
 #' @export
 gFileMoveFinish <- function(file, result) {
-  .Call("R_g_file_move_finish", file, result)
+  .Call("R_g_file_move_finish", file, result)$result
 }
 
 
@@ -6553,7 +6191,7 @@ gFileMoveFinish <- function(file, result) {
 #' @return FileIOStream
 #' @export
 gFileOpenReadwrite <- function(file, cancellable) {
-  .Call("R_g_file_open_readwrite", file, cancellable)
+  .Call("R_g_file_open_readwrite", file, cancellable)$result
 }
 
 
@@ -6565,7 +6203,7 @@ gFileOpenReadwrite <- function(file, cancellable) {
 #' @return FileIOStream
 #' @export
 gFileOpenReadwriteFinish <- function(file, res) {
-  .Call("R_g_file_open_readwrite_finish", file, res)
+  .Call("R_g_file_open_readwrite_finish", file, res)$result
 }
 
 
@@ -6576,7 +6214,7 @@ gFileOpenReadwriteFinish <- function(file, res) {
 #' @return filename
 #' @export
 gFilePeekPath <- function(file) {
-  .Call("R_g_file_peek_path", file)
+  .Call("R_g_file_peek_path", file)$result
 }
 
 
@@ -6588,7 +6226,7 @@ gFilePeekPath <- function(file) {
 #' @return gboolean
 #' @export
 gFilePollMountableFinish <- function(file, result) {
-  .Call("R_g_file_poll_mountable_finish", file, result)
+  .Call("R_g_file_poll_mountable_finish", file, result)$result
 }
 
 
@@ -6600,7 +6238,7 @@ gFilePollMountableFinish <- function(file, result) {
 #' @return AppInfo
 #' @export
 gFileQueryDefaultHandler <- function(file, cancellable) {
-  .Call("R_g_file_query_default_handler", file, cancellable)
+  .Call("R_g_file_query_default_handler", file, cancellable)$result
 }
 
 
@@ -6612,7 +6250,7 @@ gFileQueryDefaultHandler <- function(file, cancellable) {
 #' @return AppInfo
 #' @export
 gFileQueryDefaultHandlerFinish <- function(file, result) {
-  .Call("R_g_file_query_default_handler_finish", file, result)
+  .Call("R_g_file_query_default_handler_finish", file, result)$result
 }
 
 
@@ -6624,7 +6262,7 @@ gFileQueryDefaultHandlerFinish <- function(file, result) {
 #' @return gboolean
 #' @export
 gFileQueryExists <- function(file, cancellable) {
-  .Call("R_g_file_query_exists", file, cancellable)
+  .Call("R_g_file_query_exists", file, cancellable)$result
 }
 
 
@@ -6637,7 +6275,7 @@ gFileQueryExists <- function(file, cancellable) {
 #' @return FileType
 #' @export
 gFileQueryFileType <- function(file, flags, cancellable) {
-  .Call("R_g_file_query_file_type", file, flags, cancellable)
+  .Call("R_g_file_query_file_type", file, flags, cancellable)$result
 }
 
 
@@ -6650,7 +6288,7 @@ gFileQueryFileType <- function(file, flags, cancellable) {
 #' @return FileInfo
 #' @export
 gFileQueryFilesystemInfo <- function(file, attributes, cancellable) {
-  .Call("R_g_file_query_filesystem_info", file, attributes, cancellable)
+  .Call("R_g_file_query_filesystem_info", file, attributes, cancellable)$result
 }
 
 
@@ -6662,7 +6300,7 @@ gFileQueryFilesystemInfo <- function(file, attributes, cancellable) {
 #' @return FileInfo
 #' @export
 gFileQueryFilesystemInfoFinish <- function(file, res) {
-  .Call("R_g_file_query_filesystem_info_finish", file, res)
+  .Call("R_g_file_query_filesystem_info_finish", file, res)$result
 }
 
 
@@ -6676,7 +6314,7 @@ gFileQueryFilesystemInfoFinish <- function(file, res) {
 #' @return FileInfo
 #' @export
 gFileQueryInfo <- function(file, attributes, flags, cancellable) {
-  .Call("R_g_file_query_info", file, attributes, flags, cancellable)
+  .Call("R_g_file_query_info", file, attributes, flags, cancellable)$result
 }
 
 
@@ -6688,7 +6326,7 @@ gFileQueryInfo <- function(file, attributes, flags, cancellable) {
 #' @return FileInfo
 #' @export
 gFileQueryInfoFinish <- function(file, res) {
-  .Call("R_g_file_query_info_finish", file, res)
+  .Call("R_g_file_query_info_finish", file, res)$result
 }
 
 
@@ -6700,7 +6338,7 @@ gFileQueryInfoFinish <- function(file, res) {
 #' @return FileAttributeInfoList
 #' @export
 gFileQuerySettableAttributes <- function(file, cancellable) {
-  .Call("R_g_file_query_settable_attributes", file, cancellable)
+  .Call("R_g_file_query_settable_attributes", file, cancellable)$result
 }
 
 
@@ -6712,7 +6350,7 @@ gFileQuerySettableAttributes <- function(file, cancellable) {
 #' @return FileAttributeInfoList
 #' @export
 gFileQueryWritableNamespaces <- function(file, cancellable) {
-  .Call("R_g_file_query_writable_namespaces", file, cancellable)
+  .Call("R_g_file_query_writable_namespaces", file, cancellable)$result
 }
 
 
@@ -6724,7 +6362,7 @@ gFileQueryWritableNamespaces <- function(file, cancellable) {
 #' @return FileInputStream
 #' @export
 gFileRead <- function(file, cancellable) {
-  .Call("R_g_file_read", file, cancellable)
+  .Call("R_g_file_read", file, cancellable)$result
 }
 
 
@@ -6736,7 +6374,7 @@ gFileRead <- function(file, cancellable) {
 #' @return FileInputStream
 #' @export
 gFileReadFinish <- function(file, res) {
-  .Call("R_g_file_read_finish", file, res)
+  .Call("R_g_file_read_finish", file, res)$result
 }
 
 
@@ -6751,7 +6389,7 @@ gFileReadFinish <- function(file, res) {
 #' @return FileOutputStream
 #' @export
 gFileReplace <- function(file, etag, make_backup, flags, cancellable) {
-  .Call("R_g_file_replace", file, etag, make_backup, flags, cancellable)
+  .Call("R_g_file_replace", file, etag, make_backup, flags, cancellable)$result
 }
 
 
@@ -6792,7 +6430,7 @@ gFileReplaceContentsFinish <- function(file, res) {
 #' @return FileOutputStream
 #' @export
 gFileReplaceFinish <- function(file, res) {
-  .Call("R_g_file_replace_finish", file, res)
+  .Call("R_g_file_replace_finish", file, res)$result
 }
 
 
@@ -6807,7 +6445,7 @@ gFileReplaceFinish <- function(file, res) {
 #' @return FileIOStream
 #' @export
 gFileReplaceReadwrite <- function(file, etag, make_backup, flags, cancellable) {
-  .Call("R_g_file_replace_readwrite", file, etag, make_backup, flags, cancellable)
+  .Call("R_g_file_replace_readwrite", file, etag, make_backup, flags, cancellable)$result
 }
 
 
@@ -6819,7 +6457,7 @@ gFileReplaceReadwrite <- function(file, etag, make_backup, flags, cancellable) {
 #' @return FileIOStream
 #' @export
 gFileReplaceReadwriteFinish <- function(file, res) {
-  .Call("R_g_file_replace_readwrite_finish", file, res)
+  .Call("R_g_file_replace_readwrite_finish", file, res)$result
 }
 
 
@@ -6831,7 +6469,7 @@ gFileReplaceReadwriteFinish <- function(file, res) {
 #' @return File
 #' @export
 gFileResolveRelativePath <- function(file, relative_path) {
-  .Call("R_g_file_resolve_relative_path", file, relative_path)
+  .Call("R_g_file_resolve_relative_path", file, relative_path)$result
 }
 
 
@@ -6847,7 +6485,7 @@ gFileResolveRelativePath <- function(file, relative_path) {
 #' @return gboolean
 #' @export
 gFileSetAttribute <- function(file, attribute, type, value_p, flags, cancellable) {
-  .Call("R_g_file_set_attribute", file, attribute, type, value_p, flags, cancellable)
+  .Call("R_g_file_set_attribute", file, attribute, type, value_p, flags, cancellable)$result
 }
 
 
@@ -6862,7 +6500,7 @@ gFileSetAttribute <- function(file, attribute, type, value_p, flags, cancellable
 #' @return gboolean
 #' @export
 gFileSetAttributeByteString <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_byte_string", file, attribute, value, flags, cancellable)
+  .Call("R_g_file_set_attribute_byte_string", file, attribute, value, flags, cancellable)$result
 }
 
 
@@ -6877,7 +6515,7 @@ gFileSetAttributeByteString <- function(file, attribute, value, flags, cancellab
 #' @return gboolean
 #' @export
 gFileSetAttributeInt32 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_int32", file, attribute, value, flags, cancellable)
+  .Call("R_g_file_set_attribute_int32", file, attribute, value, flags, cancellable)$result
 }
 
 
@@ -6892,7 +6530,7 @@ gFileSetAttributeInt32 <- function(file, attribute, value, flags, cancellable) {
 #' @return gboolean
 #' @export
 gFileSetAttributeInt64 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_int64", file, attribute, value, flags, cancellable)
+  .Call("R_g_file_set_attribute_int64", file, attribute, value, flags, cancellable)$result
 }
 
 
@@ -6907,7 +6545,7 @@ gFileSetAttributeInt64 <- function(file, attribute, value, flags, cancellable) {
 #' @return gboolean
 #' @export
 gFileSetAttributeString <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_string", file, attribute, value, flags, cancellable)
+  .Call("R_g_file_set_attribute_string", file, attribute, value, flags, cancellable)$result
 }
 
 
@@ -6922,7 +6560,7 @@ gFileSetAttributeString <- function(file, attribute, value, flags, cancellable) 
 #' @return gboolean
 #' @export
 gFileSetAttributeUint32 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_uint32", file, attribute, value, flags, cancellable)
+  .Call("R_g_file_set_attribute_uint32", file, attribute, value, flags, cancellable)$result
 }
 
 
@@ -6937,7 +6575,7 @@ gFileSetAttributeUint32 <- function(file, attribute, value, flags, cancellable) 
 #' @return gboolean
 #' @export
 gFileSetAttributeUint64 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_uint64", file, attribute, value, flags, cancellable)
+  .Call("R_g_file_set_attribute_uint64", file, attribute, value, flags, cancellable)$result
 }
 
 
@@ -6963,7 +6601,7 @@ gFileSetAttributesFinish <- function(file, result) {
 #' @return gboolean
 #' @export
 gFileSetAttributesFromInfo <- function(file, info, flags, cancellable) {
-  .Call("R_g_file_set_attributes_from_info", file, info, flags, cancellable)
+  .Call("R_g_file_set_attributes_from_info", file, info, flags, cancellable)$result
 }
 
 
@@ -6976,7 +6614,7 @@ gFileSetAttributesFromInfo <- function(file, info, flags, cancellable) {
 #' @return File
 #' @export
 gFileSetDisplayName <- function(file, display_name, cancellable) {
-  .Call("R_g_file_set_display_name", file, display_name, cancellable)
+  .Call("R_g_file_set_display_name", file, display_name, cancellable)$result
 }
 
 
@@ -6988,7 +6626,7 @@ gFileSetDisplayName <- function(file, display_name, cancellable) {
 #' @return File
 #' @export
 gFileSetDisplayNameFinish <- function(file, res) {
-  .Call("R_g_file_set_display_name_finish", file, res)
+  .Call("R_g_file_set_display_name_finish", file, res)$result
 }
 
 
@@ -7000,7 +6638,7 @@ gFileSetDisplayNameFinish <- function(file, res) {
 #' @return gboolean
 #' @export
 gFileStartMountableFinish <- function(file, result) {
-  .Call("R_g_file_start_mountable_finish", file, result)
+  .Call("R_g_file_start_mountable_finish", file, result)$result
 }
 
 
@@ -7012,7 +6650,7 @@ gFileStartMountableFinish <- function(file, result) {
 #' @return gboolean
 #' @export
 gFileStopMountableFinish <- function(file, result) {
-  .Call("R_g_file_stop_mountable_finish", file, result)
+  .Call("R_g_file_stop_mountable_finish", file, result)$result
 }
 
 
@@ -7023,7 +6661,7 @@ gFileStopMountableFinish <- function(file, result) {
 #' @return gboolean
 #' @export
 gFileSupportsThreadContexts <- function(file) {
-  .Call("R_g_file_supports_thread_contexts", file)
+  .Call("R_g_file_supports_thread_contexts", file)$result
 }
 
 
@@ -7035,7 +6673,7 @@ gFileSupportsThreadContexts <- function(file) {
 #' @return gboolean
 #' @export
 gFileTrash <- function(file, cancellable) {
-  .Call("R_g_file_trash", file, cancellable)
+  .Call("R_g_file_trash", file, cancellable)$result
 }
 
 
@@ -7047,7 +6685,7 @@ gFileTrash <- function(file, cancellable) {
 #' @return gboolean
 #' @export
 gFileTrashFinish <- function(file, result) {
-  .Call("R_g_file_trash_finish", file, result)
+  .Call("R_g_file_trash_finish", file, result)$result
 }
 
 
@@ -7059,7 +6697,7 @@ gFileTrashFinish <- function(file, result) {
 #' @return gboolean
 #' @export
 gFileUnmountMountableFinish <- function(file, result) {
-  .Call("R_g_file_unmount_mountable_finish", file, result)
+  .Call("R_g_file_unmount_mountable_finish", file, result)$result
 }
 
 
@@ -7071,7 +6709,7 @@ gFileUnmountMountableFinish <- function(file, result) {
 #' @return gboolean
 #' @export
 gFileUnmountMountableWithOperationFinish <- function(file, result) {
-  .Call("R_g_file_unmount_mountable_with_operation_finish", file, result)
+  .Call("R_g_file_unmount_mountable_with_operation_finish", file, result)$result
 }
 
 
@@ -7081,7 +6719,7 @@ gFileUnmountMountableWithOperationFinish <- function(file, result) {
 #' @return FileAttributeInfoList
 #' @export
 gFileAttributeInfoListNew <- function() {
-  .Call("R_g_file_attribute_info_list_new")
+  .Call("R_g_file_attribute_info_list_new")$result
 }
 
 
@@ -7106,7 +6744,7 @@ gFileAttributeInfoListAdd <- function(list, name, type, flags) {
 #' @return FileAttributeInfoList
 #' @export
 gFileAttributeInfoListDup <- function(list) {
-  .Call("R_g_file_attribute_info_list_dup", list)
+  .Call("R_g_file_attribute_info_list_dup", list)$result
 }
 
 
@@ -7118,7 +6756,7 @@ gFileAttributeInfoListDup <- function(list) {
 #' @return FileAttributeInfo
 #' @export
 gFileAttributeInfoListLookup <- function(list, name) {
-  .Call("R_g_file_attribute_info_list_lookup", list, name)
+  .Call("R_g_file_attribute_info_list_lookup", list, name)$result
 }
 
 
@@ -7129,7 +6767,7 @@ gFileAttributeInfoListLookup <- function(list, name) {
 #' @return FileAttributeInfoList
 #' @export
 gFileAttributeInfoListRef <- function(list) {
-  .Call("R_g_file_attribute_info_list_ref", list)
+  .Call("R_g_file_attribute_info_list_ref", list)$result
 }
 
 
@@ -7151,7 +6789,7 @@ gFileAttributeInfoListUnref <- function(list) {
 #' @return FileAttributeMatcher
 #' @export
 gFileAttributeMatcherNew <- function(attributes) {
-  .Call("R_g_file_attribute_matcher_new", attributes)
+  .Call("R_g_file_attribute_matcher_new", attributes)$result
 }
 
 
@@ -7163,7 +6801,7 @@ gFileAttributeMatcherNew <- function(attributes) {
 #' @return gboolean
 #' @export
 gFileAttributeMatcherEnumerateNamespace <- function(matcher, ns) {
-  .Call("R_g_file_attribute_matcher_enumerate_namespace", matcher, ns)
+  .Call("R_g_file_attribute_matcher_enumerate_namespace", matcher, ns)$result
 }
 
 
@@ -7174,7 +6812,7 @@ gFileAttributeMatcherEnumerateNamespace <- function(matcher, ns) {
 #' @return utf8
 #' @export
 gFileAttributeMatcherEnumerateNext <- function(matcher) {
-  .Call("R_g_file_attribute_matcher_enumerate_next", matcher)
+  .Call("R_g_file_attribute_matcher_enumerate_next", matcher)$result
 }
 
 
@@ -7186,7 +6824,7 @@ gFileAttributeMatcherEnumerateNext <- function(matcher) {
 #' @return gboolean
 #' @export
 gFileAttributeMatcherMatches <- function(matcher, attribute) {
-  .Call("R_g_file_attribute_matcher_matches", matcher, attribute)
+  .Call("R_g_file_attribute_matcher_matches", matcher, attribute)$result
 }
 
 
@@ -7198,7 +6836,7 @@ gFileAttributeMatcherMatches <- function(matcher, attribute) {
 #' @return gboolean
 #' @export
 gFileAttributeMatcherMatchesOnly <- function(matcher, attribute) {
-  .Call("R_g_file_attribute_matcher_matches_only", matcher, attribute)
+  .Call("R_g_file_attribute_matcher_matches_only", matcher, attribute)$result
 }
 
 
@@ -7209,7 +6847,7 @@ gFileAttributeMatcherMatchesOnly <- function(matcher, attribute) {
 #' @return FileAttributeMatcher
 #' @export
 gFileAttributeMatcherRef <- function(matcher) {
-  .Call("R_g_file_attribute_matcher_ref", matcher)
+  .Call("R_g_file_attribute_matcher_ref", matcher)$result
 }
 
 
@@ -7221,7 +6859,7 @@ gFileAttributeMatcherRef <- function(matcher) {
 #' @return FileAttributeMatcher
 #' @export
 gFileAttributeMatcherSubtract <- function(matcher, subtract) {
-  .Call("R_g_file_attribute_matcher_subtract", matcher, subtract)
+  .Call("R_g_file_attribute_matcher_subtract", matcher, subtract)$result
 }
 
 
@@ -7232,7 +6870,7 @@ gFileAttributeMatcherSubtract <- function(matcher, subtract) {
 #' @return utf8
 #' @export
 gFileAttributeMatcherToString <- function(matcher) {
-  .Call("R_g_file_attribute_matcher_to_string", matcher)
+  .Call("R_g_file_attribute_matcher_to_string", matcher)$result
 }
 
 
@@ -7255,7 +6893,7 @@ gFileAttributeMatcherUnref <- function(matcher) {
 #' @return gboolean
 #' @export
 gFileEnumeratorClose <- function(enumerator, cancellable) {
-  .Call("R_g_file_enumerator_close", enumerator, cancellable)
+  .Call("R_g_file_enumerator_close", enumerator, cancellable)$result
 }
 
 
@@ -7267,7 +6905,7 @@ gFileEnumeratorClose <- function(enumerator, cancellable) {
 #' @return gboolean
 #' @export
 gFileEnumeratorCloseFinish <- function(enumerator, result) {
-  .Call("R_g_file_enumerator_close_finish", enumerator, result)
+  .Call("R_g_file_enumerator_close_finish", enumerator, result)$result
 }
 
 
@@ -7279,7 +6917,7 @@ gFileEnumeratorCloseFinish <- function(enumerator, result) {
 #' @return File
 #' @export
 gFileEnumeratorGetChild <- function(enumerator, info) {
-  .Call("R_g_file_enumerator_get_child", enumerator, info)
+  .Call("R_g_file_enumerator_get_child", enumerator, info)$result
 }
 
 
@@ -7290,7 +6928,7 @@ gFileEnumeratorGetChild <- function(enumerator, info) {
 #' @return File
 #' @export
 gFileEnumeratorGetContainer <- function(enumerator) {
-  .Call("R_g_file_enumerator_get_container", enumerator)
+  .Call("R_g_file_enumerator_get_container", enumerator)$result
 }
 
 
@@ -7301,7 +6939,7 @@ gFileEnumeratorGetContainer <- function(enumerator) {
 #' @return gboolean
 #' @export
 gFileEnumeratorHasPending <- function(enumerator) {
-  .Call("R_g_file_enumerator_has_pending", enumerator)
+  .Call("R_g_file_enumerator_has_pending", enumerator)$result
 }
 
 
@@ -7312,7 +6950,7 @@ gFileEnumeratorHasPending <- function(enumerator) {
 #' @return gboolean
 #' @export
 gFileEnumeratorIsClosed <- function(enumerator) {
-  .Call("R_g_file_enumerator_is_closed", enumerator)
+  .Call("R_g_file_enumerator_is_closed", enumerator)$result
 }
 
 
@@ -7336,7 +6974,7 @@ gFileEnumeratorIterate <- function(direnum, cancellable) {
 #' @return FileInfo
 #' @export
 gFileEnumeratorNextFile <- function(enumerator, cancellable) {
-  .Call("R_g_file_enumerator_next_file", enumerator, cancellable)
+  .Call("R_g_file_enumerator_next_file", enumerator, cancellable)$result
 }
 
 
@@ -7348,7 +6986,7 @@ gFileEnumeratorNextFile <- function(enumerator, cancellable) {
 #' @return GLib.List
 #' @export
 gFileEnumeratorNextFilesFinish <- function(enumerator, result) {
-  .Call("R_g_file_enumerator_next_files_finish", enumerator, result)
+  .Call("R_g_file_enumerator_next_files_finish", enumerator, result)$result
 }
 
 
@@ -7371,7 +7009,7 @@ gFileEnumeratorSetPending <- function(enumerator, pending) {
 #' @return utf8
 #' @export
 gFileIoStreamGetEtag <- function(stream) {
-  .Call("R_g_file_io_stream_get_etag", stream)
+  .Call("R_g_file_io_stream_get_etag", stream)$result
 }
 
 
@@ -7384,7 +7022,7 @@ gFileIoStreamGetEtag <- function(stream) {
 #' @return FileInfo
 #' @export
 gFileIoStreamQueryInfo <- function(stream, attributes, cancellable) {
-  .Call("R_g_file_io_stream_query_info", stream, attributes, cancellable)
+  .Call("R_g_file_io_stream_query_info", stream, attributes, cancellable)$result
 }
 
 
@@ -7396,7 +7034,7 @@ gFileIoStreamQueryInfo <- function(stream, attributes, cancellable) {
 #' @return FileInfo
 #' @export
 gFileIoStreamQueryInfoFinish <- function(stream, result) {
-  .Call("R_g_file_io_stream_query_info_finish", stream, result)
+  .Call("R_g_file_io_stream_query_info_finish", stream, result)$result
 }
 
 
@@ -7407,7 +7045,7 @@ gFileIoStreamQueryInfoFinish <- function(stream, result) {
 #' @return FileIcon
 #' @export
 gFileIconNew <- function(file) {
-  .Call("R_g_file_icon_new", file)
+  .Call("R_g_file_icon_new", file)$result
 }
 
 
@@ -7418,7 +7056,7 @@ gFileIconNew <- function(file) {
 #' @return File
 #' @export
 gFileIconGetFile <- function(icon) {
-  .Call("R_g_file_icon_get_file", icon)
+  .Call("R_g_file_icon_get_file", icon)$result
 }
 
 
@@ -7428,7 +7066,7 @@ gFileIconGetFile <- function(icon) {
 #' @return FileInfo
 #' @export
 gFileInfoNew <- function() {
-  .Call("R_g_file_info_new")
+  .Call("R_g_file_info_new")$result
 }
 
 
@@ -7462,7 +7100,7 @@ gFileInfoCopyInto <- function(src_info, dest_info) {
 #' @return FileInfo
 #' @export
 gFileInfoDup <- function(other) {
-  .Call("R_g_file_info_dup", other)
+  .Call("R_g_file_info_dup", other)$result
 }
 
 
@@ -7473,7 +7111,7 @@ gFileInfoDup <- function(other) {
 #' @return GLib.DateTime
 #' @export
 gFileInfoGetAccessDateTime <- function(info) {
-  .Call("R_g_file_info_get_access_date_time", info)
+  .Call("R_g_file_info_get_access_date_time", info)$result
 }
 
 
@@ -7485,7 +7123,7 @@ gFileInfoGetAccessDateTime <- function(info) {
 #' @return utf8
 #' @export
 gFileInfoGetAttributeAsString <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_as_string", info, attribute)
+  .Call("R_g_file_info_get_attribute_as_string", info, attribute)$result
 }
 
 
@@ -7497,7 +7135,7 @@ gFileInfoGetAttributeAsString <- function(info, attribute) {
 #' @return gboolean
 #' @export
 gFileInfoGetAttributeBoolean <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_boolean", info, attribute)
+  .Call("R_g_file_info_get_attribute_boolean", info, attribute)$result
 }
 
 
@@ -7509,7 +7147,7 @@ gFileInfoGetAttributeBoolean <- function(info, attribute) {
 #' @return utf8
 #' @export
 gFileInfoGetAttributeByteString <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_byte_string", info, attribute)
+  .Call("R_g_file_info_get_attribute_byte_string", info, attribute)$result
 }
 
 
@@ -7533,7 +7171,7 @@ gFileInfoGetAttributeData <- function(info, attribute) {
 #' @return filename
 #' @export
 gFileInfoGetAttributeFilePath <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_file_path", info, attribute)
+  .Call("R_g_file_info_get_attribute_file_path", info, attribute)$result
 }
 
 
@@ -7545,7 +7183,7 @@ gFileInfoGetAttributeFilePath <- function(info, attribute) {
 #' @return gint32
 #' @export
 gFileInfoGetAttributeInt32 <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_int32", info, attribute)
+  .Call("R_g_file_info_get_attribute_int32", info, attribute)$result
 }
 
 
@@ -7557,7 +7195,7 @@ gFileInfoGetAttributeInt32 <- function(info, attribute) {
 #' @return gint64
 #' @export
 gFileInfoGetAttributeInt64 <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_int64", info, attribute)
+  .Call("R_g_file_info_get_attribute_int64", info, attribute)$result
 }
 
 
@@ -7569,7 +7207,7 @@ gFileInfoGetAttributeInt64 <- function(info, attribute) {
 #' @return GObject.Object
 #' @export
 gFileInfoGetAttributeObject <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_object", info, attribute)
+  .Call("R_g_file_info_get_attribute_object", info, attribute)$result
 }
 
 
@@ -7581,7 +7219,7 @@ gFileInfoGetAttributeObject <- function(info, attribute) {
 #' @return FileAttributeStatus
 #' @export
 gFileInfoGetAttributeStatus <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_status", info, attribute)
+  .Call("R_g_file_info_get_attribute_status", info, attribute)$result
 }
 
 
@@ -7593,7 +7231,7 @@ gFileInfoGetAttributeStatus <- function(info, attribute) {
 #' @return utf8
 #' @export
 gFileInfoGetAttributeString <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_string", info, attribute)
+  .Call("R_g_file_info_get_attribute_string", info, attribute)$result
 }
 
 
@@ -7605,7 +7243,7 @@ gFileInfoGetAttributeString <- function(info, attribute) {
 #' @return utf8
 #' @export
 gFileInfoGetAttributeStringv <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_stringv", info, attribute)
+  .Call("R_g_file_info_get_attribute_stringv", info, attribute)$result
 }
 
 
@@ -7617,7 +7255,7 @@ gFileInfoGetAttributeStringv <- function(info, attribute) {
 #' @return FileAttributeType
 #' @export
 gFileInfoGetAttributeType <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_type", info, attribute)
+  .Call("R_g_file_info_get_attribute_type", info, attribute)$result
 }
 
 
@@ -7629,7 +7267,7 @@ gFileInfoGetAttributeType <- function(info, attribute) {
 #' @return guint32
 #' @export
 gFileInfoGetAttributeUint32 <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_uint32", info, attribute)
+  .Call("R_g_file_info_get_attribute_uint32", info, attribute)$result
 }
 
 
@@ -7641,7 +7279,7 @@ gFileInfoGetAttributeUint32 <- function(info, attribute) {
 #' @return guint64
 #' @export
 gFileInfoGetAttributeUint64 <- function(info, attribute) {
-  .Call("R_g_file_info_get_attribute_uint64", info, attribute)
+  .Call("R_g_file_info_get_attribute_uint64", info, attribute)$result
 }
 
 
@@ -7652,7 +7290,7 @@ gFileInfoGetAttributeUint64 <- function(info, attribute) {
 #' @return utf8
 #' @export
 gFileInfoGetContentType <- function(info) {
-  .Call("R_g_file_info_get_content_type", info)
+  .Call("R_g_file_info_get_content_type", info)$result
 }
 
 
@@ -7663,7 +7301,7 @@ gFileInfoGetContentType <- function(info) {
 #' @return GLib.DateTime
 #' @export
 gFileInfoGetCreationDateTime <- function(info) {
-  .Call("R_g_file_info_get_creation_date_time", info)
+  .Call("R_g_file_info_get_creation_date_time", info)$result
 }
 
 
@@ -7674,7 +7312,7 @@ gFileInfoGetCreationDateTime <- function(info) {
 #' @return GLib.DateTime
 #' @export
 gFileInfoGetDeletionDate <- function(info) {
-  .Call("R_g_file_info_get_deletion_date", info)
+  .Call("R_g_file_info_get_deletion_date", info)$result
 }
 
 
@@ -7685,7 +7323,7 @@ gFileInfoGetDeletionDate <- function(info) {
 #' @return utf8
 #' @export
 gFileInfoGetDisplayName <- function(info) {
-  .Call("R_g_file_info_get_display_name", info)
+  .Call("R_g_file_info_get_display_name", info)$result
 }
 
 
@@ -7696,7 +7334,7 @@ gFileInfoGetDisplayName <- function(info) {
 #' @return utf8
 #' @export
 gFileInfoGetEditName <- function(info) {
-  .Call("R_g_file_info_get_edit_name", info)
+  .Call("R_g_file_info_get_edit_name", info)$result
 }
 
 
@@ -7707,7 +7345,7 @@ gFileInfoGetEditName <- function(info) {
 #' @return utf8
 #' @export
 gFileInfoGetEtag <- function(info) {
-  .Call("R_g_file_info_get_etag", info)
+  .Call("R_g_file_info_get_etag", info)$result
 }
 
 
@@ -7718,7 +7356,7 @@ gFileInfoGetEtag <- function(info) {
 #' @return FileType
 #' @export
 gFileInfoGetFileType <- function(info) {
-  .Call("R_g_file_info_get_file_type", info)
+  .Call("R_g_file_info_get_file_type", info)$result
 }
 
 
@@ -7729,7 +7367,7 @@ gFileInfoGetFileType <- function(info) {
 #' @return Icon
 #' @export
 gFileInfoGetIcon <- function(info) {
-  .Call("R_g_file_info_get_icon", info)
+  .Call("R_g_file_info_get_icon", info)$result
 }
 
 
@@ -7740,7 +7378,7 @@ gFileInfoGetIcon <- function(info) {
 #' @return gboolean
 #' @export
 gFileInfoGetIsBackup <- function(info) {
-  .Call("R_g_file_info_get_is_backup", info)
+  .Call("R_g_file_info_get_is_backup", info)$result
 }
 
 
@@ -7751,7 +7389,7 @@ gFileInfoGetIsBackup <- function(info) {
 #' @return gboolean
 #' @export
 gFileInfoGetIsHidden <- function(info) {
-  .Call("R_g_file_info_get_is_hidden", info)
+  .Call("R_g_file_info_get_is_hidden", info)$result
 }
 
 
@@ -7762,7 +7400,7 @@ gFileInfoGetIsHidden <- function(info) {
 #' @return gboolean
 #' @export
 gFileInfoGetIsSymlink <- function(info) {
-  .Call("R_g_file_info_get_is_symlink", info)
+  .Call("R_g_file_info_get_is_symlink", info)$result
 }
 
 
@@ -7773,7 +7411,7 @@ gFileInfoGetIsSymlink <- function(info) {
 #' @return GLib.DateTime
 #' @export
 gFileInfoGetModificationDateTime <- function(info) {
-  .Call("R_g_file_info_get_modification_date_time", info)
+  .Call("R_g_file_info_get_modification_date_time", info)$result
 }
 
 
@@ -7784,7 +7422,7 @@ gFileInfoGetModificationDateTime <- function(info) {
 #' @return Return value from C function
 #' @export
 gFileInfoGetModificationTime <- function(info) {
-  .Call("R_g_file_info_get_modification_time", info)
+  .Call("R_g_file_info_get_modification_time", info)$result
 }
 
 
@@ -7795,7 +7433,7 @@ gFileInfoGetModificationTime <- function(info) {
 #' @return filename
 #' @export
 gFileInfoGetName <- function(info) {
-  .Call("R_g_file_info_get_name", info)
+  .Call("R_g_file_info_get_name", info)$result
 }
 
 
@@ -7806,7 +7444,7 @@ gFileInfoGetName <- function(info) {
 #' @return gint64
 #' @export
 gFileInfoGetSize <- function(info) {
-  .Call("R_g_file_info_get_size", info)
+  .Call("R_g_file_info_get_size", info)$result
 }
 
 
@@ -7817,7 +7455,7 @@ gFileInfoGetSize <- function(info) {
 #' @return gint32
 #' @export
 gFileInfoGetSortOrder <- function(info) {
-  .Call("R_g_file_info_get_sort_order", info)
+  .Call("R_g_file_info_get_sort_order", info)$result
 }
 
 
@@ -7828,7 +7466,7 @@ gFileInfoGetSortOrder <- function(info) {
 #' @return Icon
 #' @export
 gFileInfoGetSymbolicIcon <- function(info) {
-  .Call("R_g_file_info_get_symbolic_icon", info)
+  .Call("R_g_file_info_get_symbolic_icon", info)$result
 }
 
 
@@ -7839,7 +7477,7 @@ gFileInfoGetSymbolicIcon <- function(info) {
 #' @return filename
 #' @export
 gFileInfoGetSymlinkTarget <- function(info) {
-  .Call("R_g_file_info_get_symlink_target", info)
+  .Call("R_g_file_info_get_symlink_target", info)$result
 }
 
 
@@ -7851,7 +7489,7 @@ gFileInfoGetSymlinkTarget <- function(info) {
 #' @return gboolean
 #' @export
 gFileInfoHasAttribute <- function(info, attribute) {
-  .Call("R_g_file_info_has_attribute", info, attribute)
+  .Call("R_g_file_info_has_attribute", info, attribute)$result
 }
 
 
@@ -7863,7 +7501,7 @@ gFileInfoHasAttribute <- function(info, attribute) {
 #' @return gboolean
 #' @export
 gFileInfoHasNamespace <- function(info, name_space) {
-  .Call("R_g_file_info_has_namespace", info, name_space)
+  .Call("R_g_file_info_has_namespace", info, name_space)$result
 }
 
 
@@ -7875,7 +7513,7 @@ gFileInfoHasNamespace <- function(info, name_space) {
 #' @return utf8
 #' @export
 gFileInfoListAttributes <- function(info, name_space) {
-  .Call("R_g_file_info_list_attributes", info, name_space)
+  .Call("R_g_file_info_list_attributes", info, name_space)$result
 }
 
 
@@ -8016,7 +7654,7 @@ gFileInfoSetAttributeObject <- function(info, attribute, attr_value) {
 #' @return gboolean
 #' @export
 gFileInfoSetAttributeStatus <- function(info, attribute, status) {
-  .Call("R_g_file_info_set_attribute_status", info, attribute, status)
+  .Call("R_g_file_info_set_attribute_status", info, attribute, status)$result
 }
 
 
@@ -8272,7 +7910,7 @@ gFileInfoUnsetAttributeMask <- function(info) {
 #' @return FileInfo
 #' @export
 gFileInputStreamQueryInfo <- function(stream, attributes, cancellable) {
-  .Call("R_g_file_input_stream_query_info", stream, attributes, cancellable)
+  .Call("R_g_file_input_stream_query_info", stream, attributes, cancellable)$result
 }
 
 
@@ -8284,7 +7922,7 @@ gFileInputStreamQueryInfo <- function(stream, attributes, cancellable) {
 #' @return FileInfo
 #' @export
 gFileInputStreamQueryInfoFinish <- function(stream, result) {
-  .Call("R_g_file_input_stream_query_info_finish", stream, result)
+  .Call("R_g_file_input_stream_query_info_finish", stream, result)$result
 }
 
 
@@ -8295,7 +7933,7 @@ gFileInputStreamQueryInfoFinish <- function(stream, result) {
 #' @return gboolean
 #' @export
 gFileMonitorCancel <- function(monitor) {
-  .Call("R_g_file_monitor_cancel", monitor)
+  .Call("R_g_file_monitor_cancel", monitor)$result
 }
 
 
@@ -8320,7 +7958,7 @@ gFileMonitorEmitEvent <- function(monitor, child, other_file, event_type) {
 #' @return gboolean
 #' @export
 gFileMonitorIsCancelled <- function(monitor) {
-  .Call("R_g_file_monitor_is_cancelled", monitor)
+  .Call("R_g_file_monitor_is_cancelled", monitor)$result
 }
 
 
@@ -8343,7 +7981,7 @@ gFileMonitorSetRateLimit <- function(monitor, limit_msecs) {
 #' @return utf8
 #' @export
 gFileOutputStreamGetEtag <- function(stream) {
-  .Call("R_g_file_output_stream_get_etag", stream)
+  .Call("R_g_file_output_stream_get_etag", stream)$result
 }
 
 
@@ -8356,7 +7994,7 @@ gFileOutputStreamGetEtag <- function(stream) {
 #' @return FileInfo
 #' @export
 gFileOutputStreamQueryInfo <- function(stream, attributes, cancellable) {
-  .Call("R_g_file_output_stream_query_info", stream, attributes, cancellable)
+  .Call("R_g_file_output_stream_query_info", stream, attributes, cancellable)$result
 }
 
 
@@ -8368,7 +8006,7 @@ gFileOutputStreamQueryInfo <- function(stream, attributes, cancellable) {
 #' @return FileInfo
 #' @export
 gFileOutputStreamQueryInfoFinish <- function(stream, result) {
-  .Call("R_g_file_output_stream_query_info_finish", stream, result)
+  .Call("R_g_file_output_stream_query_info_finish", stream, result)$result
 }
 
 
@@ -8378,7 +8016,7 @@ gFileOutputStreamQueryInfoFinish <- function(stream, result) {
 #' @return FilenameCompleter
 #' @export
 gFilenameCompleterNew <- function() {
-  .Call("R_g_filename_completer_new")
+  .Call("R_g_filename_completer_new")$result
 }
 
 
@@ -8390,7 +8028,7 @@ gFilenameCompleterNew <- function() {
 #' @return utf8
 #' @export
 gFilenameCompleterGetCompletionSuffix <- function(completer, initial_text) {
-  .Call("R_g_filename_completer_get_completion_suffix", completer, initial_text)
+  .Call("R_g_filename_completer_get_completion_suffix", completer, initial_text)$result
 }
 
 
@@ -8402,7 +8040,7 @@ gFilenameCompleterGetCompletionSuffix <- function(completer, initial_text) {
 #' @return utf8
 #' @export
 gFilenameCompleterGetCompletions <- function(completer, initial_text) {
-  .Call("R_g_filename_completer_get_completions", completer, initial_text)
+  .Call("R_g_filename_completer_get_completions", completer, initial_text)$result
 }
 
 
@@ -8425,7 +8063,7 @@ gFilenameCompleterSetDirsOnly <- function(completer, dirs_only) {
 #' @return InputStream
 #' @export
 gFilterInputStreamGetBaseStream <- function(stream) {
-  .Call("R_g_filter_input_stream_get_base_stream", stream)
+  .Call("R_g_filter_input_stream_get_base_stream", stream)$result
 }
 
 
@@ -8436,7 +8074,7 @@ gFilterInputStreamGetBaseStream <- function(stream) {
 #' @return gboolean
 #' @export
 gFilterInputStreamGetCloseBaseStream <- function(stream) {
-  .Call("R_g_filter_input_stream_get_close_base_stream", stream)
+  .Call("R_g_filter_input_stream_get_close_base_stream", stream)$result
 }
 
 
@@ -8459,7 +8097,7 @@ gFilterInputStreamSetCloseBaseStream <- function(stream, close_base) {
 #' @return OutputStream
 #' @export
 gFilterOutputStreamGetBaseStream <- function(stream) {
-  .Call("R_g_filter_output_stream_get_base_stream", stream)
+  .Call("R_g_filter_output_stream_get_base_stream", stream)$result
 }
 
 
@@ -8470,7 +8108,7 @@ gFilterOutputStreamGetBaseStream <- function(stream) {
 #' @return gboolean
 #' @export
 gFilterOutputStreamGetCloseBaseStream <- function(stream) {
-  .Call("R_g_filter_output_stream_get_close_base_stream", stream)
+  .Call("R_g_filter_output_stream_get_close_base_stream", stream)$result
 }
 
 
@@ -8493,7 +8131,7 @@ gFilterOutputStreamSetCloseBaseStream <- function(stream, close_base) {
 #' @return utf8
 #' @export
 gIoExtensionGetName <- function(extension) {
-  .Call("R_g_io_extension_get_name", extension)
+  .Call("R_g_io_extension_get_name", extension)$result
 }
 
 
@@ -8504,7 +8142,7 @@ gIoExtensionGetName <- function(extension) {
 #' @return gint
 #' @export
 gIoExtensionGetPriority <- function(extension) {
-  .Call("R_g_io_extension_get_priority", extension)
+  .Call("R_g_io_extension_get_priority", extension)$result
 }
 
 
@@ -8515,7 +8153,7 @@ gIoExtensionGetPriority <- function(extension) {
 #' @return GType
 #' @export
 gIoExtensionGetType <- function(extension) {
-  .Call("R_g_io_extension_get_type", extension)
+  .Call("R_g_io_extension_get_type", extension)$result
 }
 
 
@@ -8527,7 +8165,7 @@ gIoExtensionGetType <- function(extension) {
 #' @return IOExtension
 #' @export
 gIoExtensionPointGetExtensionByName <- function(extension_point, name) {
-  .Call("R_g_io_extension_point_get_extension_by_name", extension_point, name)
+  .Call("R_g_io_extension_point_get_extension_by_name", extension_point, name)$result
 }
 
 
@@ -8538,7 +8176,7 @@ gIoExtensionPointGetExtensionByName <- function(extension_point, name) {
 #' @return GLib.List
 #' @export
 gIoExtensionPointGetExtensions <- function(extension_point) {
-  .Call("R_g_io_extension_point_get_extensions", extension_point)
+  .Call("R_g_io_extension_point_get_extensions", extension_point)$result
 }
 
 
@@ -8549,7 +8187,7 @@ gIoExtensionPointGetExtensions <- function(extension_point) {
 #' @return GType
 #' @export
 gIoExtensionPointGetRequiredType <- function(extension_point) {
-  .Call("R_g_io_extension_point_get_required_type", extension_point)
+  .Call("R_g_io_extension_point_get_required_type", extension_point)$result
 }
 
 
@@ -8575,7 +8213,7 @@ gIoExtensionPointSetRequiredType <- function(extension_point, type) {
 #' @return IOExtension
 #' @export
 gIoExtensionPointImplement <- function(extension_point_name, type, extension_name, priority) {
-  .Call("R_g_io_extension_point_implement", extension_point_name, type, extension_name, priority)
+  .Call("R_g_io_extension_point_implement", extension_point_name, type, extension_name, priority)$result
 }
 
 
@@ -8586,7 +8224,7 @@ gIoExtensionPointImplement <- function(extension_point_name, type, extension_nam
 #' @return IOExtensionPoint
 #' @export
 gIoExtensionPointLookup <- function(name) {
-  .Call("R_g_io_extension_point_lookup", name)
+  .Call("R_g_io_extension_point_lookup", name)$result
 }
 
 
@@ -8597,7 +8235,7 @@ gIoExtensionPointLookup <- function(name) {
 #' @return IOExtensionPoint
 #' @export
 gIoExtensionPointRegister <- function(name) {
-  .Call("R_g_io_extension_point_register", name)
+  .Call("R_g_io_extension_point_register", name)$result
 }
 
 
@@ -8608,7 +8246,7 @@ gIoExtensionPointRegister <- function(name) {
 #' @return gboolean
 #' @export
 gIoStreamSpliceFinish <- function(result) {
-  .Call("R_g_io_stream_splice_finish", result)
+  .Call("R_g_io_stream_splice_finish", result)$result
 }
 
 
@@ -8631,7 +8269,7 @@ gIoStreamClearPending <- function(stream) {
 #' @return gboolean
 #' @export
 gIoStreamClose <- function(stream, cancellable) {
-  .Call("R_g_io_stream_close", stream, cancellable)
+  .Call("R_g_io_stream_close", stream, cancellable)$result
 }
 
 
@@ -8643,7 +8281,7 @@ gIoStreamClose <- function(stream, cancellable) {
 #' @return gboolean
 #' @export
 gIoStreamCloseFinish <- function(stream, result) {
-  .Call("R_g_io_stream_close_finish", stream, result)
+  .Call("R_g_io_stream_close_finish", stream, result)$result
 }
 
 
@@ -8654,7 +8292,7 @@ gIoStreamCloseFinish <- function(stream, result) {
 #' @return InputStream
 #' @export
 gIoStreamGetInputStream <- function(stream) {
-  .Call("R_g_io_stream_get_input_stream", stream)
+  .Call("R_g_io_stream_get_input_stream", stream)$result
 }
 
 
@@ -8665,7 +8303,7 @@ gIoStreamGetInputStream <- function(stream) {
 #' @return OutputStream
 #' @export
 gIoStreamGetOutputStream <- function(stream) {
-  .Call("R_g_io_stream_get_output_stream", stream)
+  .Call("R_g_io_stream_get_output_stream", stream)$result
 }
 
 
@@ -8676,7 +8314,7 @@ gIoStreamGetOutputStream <- function(stream) {
 #' @return gboolean
 #' @export
 gIoStreamHasPending <- function(stream) {
-  .Call("R_g_io_stream_has_pending", stream)
+  .Call("R_g_io_stream_has_pending", stream)$result
 }
 
 
@@ -8687,7 +8325,7 @@ gIoStreamHasPending <- function(stream) {
 #' @return gboolean
 #' @export
 gIoStreamIsClosed <- function(stream) {
-  .Call("R_g_io_stream_is_closed", stream)
+  .Call("R_g_io_stream_is_closed", stream)$result
 }
 
 
@@ -8698,7 +8336,7 @@ gIoStreamIsClosed <- function(stream) {
 #' @return gboolean
 #' @export
 gIoStreamSetPending <- function(stream) {
-  .Call("R_g_io_stream_set_pending", stream)
+  .Call("R_g_io_stream_set_pending", stream)$result
 }
 
 
@@ -8710,7 +8348,7 @@ gIoStreamSetPending <- function(stream) {
 #' @return SocketControlMessage
 #' @export
 gIpTosMessageNew <- function(dscp, ecn) {
-  .Call("R_g_ip_tos_message_new", dscp, ecn)
+  .Call("R_g_ip_tos_message_new", dscp, ecn)$result
 }
 
 
@@ -8721,7 +8359,7 @@ gIpTosMessageNew <- function(dscp, ecn) {
 #' @return guint8
 #' @export
 gIpTosMessageGetDscp <- function(message) {
-  .Call("R_g_ip_tos_message_get_dscp", message)
+  .Call("R_g_ip_tos_message_get_dscp", message)$result
 }
 
 
@@ -8732,7 +8370,7 @@ gIpTosMessageGetDscp <- function(message) {
 #' @return EcnCodePoint
 #' @export
 gIpTosMessageGetEcn <- function(message) {
-  .Call("R_g_ip_tos_message_get_ecn", message)
+  .Call("R_g_ip_tos_message_get_ecn", message)$result
 }
 
 
@@ -8744,7 +8382,7 @@ gIpTosMessageGetEcn <- function(message) {
 #' @return SocketControlMessage
 #' @export
 gIpv6TclassMessageNew <- function(dscp, ecn) {
-  .Call("R_g_ipv6_tclass_message_new", dscp, ecn)
+  .Call("R_g_ipv6_tclass_message_new", dscp, ecn)$result
 }
 
 
@@ -8755,7 +8393,7 @@ gIpv6TclassMessageNew <- function(dscp, ecn) {
 #' @return guint8
 #' @export
 gIpv6TclassMessageGetDscp <- function(message) {
-  .Call("R_g_ipv6_tclass_message_get_dscp", message)
+  .Call("R_g_ipv6_tclass_message_get_dscp", message)$result
 }
 
 
@@ -8766,7 +8404,7 @@ gIpv6TclassMessageGetDscp <- function(message) {
 #' @return EcnCodePoint
 #' @export
 gIpv6TclassMessageGetEcn <- function(message) {
-  .Call("R_g_ipv6_tclass_message_get_ecn", message)
+  .Call("R_g_ipv6_tclass_message_get_ecn", message)$result
 }
 
 
@@ -8777,7 +8415,7 @@ gIpv6TclassMessageGetEcn <- function(message) {
 #' @return Icon
 #' @export
 gIconDeserialize <- function(value) {
-  .Call("R_g_icon_deserialize", value)
+  .Call("R_g_icon_deserialize", value)$result
 }
 
 
@@ -8788,7 +8426,7 @@ gIconDeserialize <- function(value) {
 #' @return Icon
 #' @export
 gIconNewForString <- function(str) {
-  .Call("R_g_icon_new_for_string", str)
+  .Call("R_g_icon_new_for_string", str)$result
 }
 
 
@@ -8800,7 +8438,7 @@ gIconNewForString <- function(str) {
 #' @return gboolean
 #' @export
 gIconEqual <- function(icon1, icon2) {
-  .Call("R_g_icon_equal", icon1, icon2)
+  .Call("R_g_icon_equal", icon1, icon2)$result
 }
 
 
@@ -8811,7 +8449,7 @@ gIconEqual <- function(icon1, icon2) {
 #' @return guint
 #' @export
 gIconHash <- function(icon) {
-  .Call("R_g_icon_hash", icon)
+  .Call("R_g_icon_hash", icon)$result
 }
 
 
@@ -8822,7 +8460,7 @@ gIconHash <- function(icon) {
 #' @return GLib.Variant
 #' @export
 gIconSerialize <- function(icon) {
-  .Call("R_g_icon_serialize", icon)
+  .Call("R_g_icon_serialize", icon)$result
 }
 
 
@@ -8833,7 +8471,7 @@ gIconSerialize <- function(icon) {
 #' @return utf8
 #' @export
 gIconToString <- function(icon) {
-  .Call("R_g_icon_to_string", icon)
+  .Call("R_g_icon_to_string", icon)$result
 }
 
 
@@ -8844,7 +8482,7 @@ gIconToString <- function(icon) {
 #' @return InetAddress
 #' @export
 gInetAddressNewAny <- function(family) {
-  .Call("R_g_inet_address_new_any", family)
+  .Call("R_g_inet_address_new_any", family)$result
 }
 
 
@@ -8856,7 +8494,7 @@ gInetAddressNewAny <- function(family) {
 #' @return InetAddress
 #' @export
 gInetAddressNewFromBytes <- function(bytes, family) {
-  .Call("R_g_inet_address_new_from_bytes", bytes, family)
+  .Call("R_g_inet_address_new_from_bytes", bytes, family)$result
 }
 
 
@@ -8870,7 +8508,7 @@ gInetAddressNewFromBytes <- function(bytes, family) {
 #' @return InetAddress
 #' @export
 gInetAddressNewFromBytesWithIpv6Info <- function(bytes, family, flowinfo, scope_id) {
-  .Call("R_g_inet_address_new_from_bytes_with_ipv6_info", bytes, family, flowinfo, scope_id)
+  .Call("R_g_inet_address_new_from_bytes_with_ipv6_info", bytes, family, flowinfo, scope_id)$result
 }
 
 
@@ -8881,7 +8519,7 @@ gInetAddressNewFromBytesWithIpv6Info <- function(bytes, family, flowinfo, scope_
 #' @return InetAddress
 #' @export
 gInetAddressNewFromString <- function(string) {
-  .Call("R_g_inet_address_new_from_string", string)
+  .Call("R_g_inet_address_new_from_string", string)$result
 }
 
 
@@ -8892,7 +8530,7 @@ gInetAddressNewFromString <- function(string) {
 #' @return InetAddress
 #' @export
 gInetAddressNewLoopback <- function(family) {
-  .Call("R_g_inet_address_new_loopback", family)
+  .Call("R_g_inet_address_new_loopback", family)$result
 }
 
 
@@ -8904,7 +8542,7 @@ gInetAddressNewLoopback <- function(family) {
 #' @return gboolean
 #' @export
 gInetAddressEqual <- function(address, other_address) {
-  .Call("R_g_inet_address_equal", address, other_address)
+  .Call("R_g_inet_address_equal", address, other_address)$result
 }
 
 
@@ -8915,7 +8553,7 @@ gInetAddressEqual <- function(address, other_address) {
 #' @return SocketFamily
 #' @export
 gInetAddressGetFamily <- function(address) {
-  .Call("R_g_inet_address_get_family", address)
+  .Call("R_g_inet_address_get_family", address)$result
 }
 
 
@@ -8926,7 +8564,7 @@ gInetAddressGetFamily <- function(address) {
 #' @return guint32
 #' @export
 gInetAddressGetFlowinfo <- function(address) {
-  .Call("R_g_inet_address_get_flowinfo", address)
+  .Call("R_g_inet_address_get_flowinfo", address)$result
 }
 
 
@@ -8937,7 +8575,7 @@ gInetAddressGetFlowinfo <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsAny <- function(address) {
-  .Call("R_g_inet_address_get_is_any", address)
+  .Call("R_g_inet_address_get_is_any", address)$result
 }
 
 
@@ -8948,7 +8586,7 @@ gInetAddressGetIsAny <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsLinkLocal <- function(address) {
-  .Call("R_g_inet_address_get_is_link_local", address)
+  .Call("R_g_inet_address_get_is_link_local", address)$result
 }
 
 
@@ -8959,7 +8597,7 @@ gInetAddressGetIsLinkLocal <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsLoopback <- function(address) {
-  .Call("R_g_inet_address_get_is_loopback", address)
+  .Call("R_g_inet_address_get_is_loopback", address)$result
 }
 
 
@@ -8970,7 +8608,7 @@ gInetAddressGetIsLoopback <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsMcGlobal <- function(address) {
-  .Call("R_g_inet_address_get_is_mc_global", address)
+  .Call("R_g_inet_address_get_is_mc_global", address)$result
 }
 
 
@@ -8981,7 +8619,7 @@ gInetAddressGetIsMcGlobal <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsMcLinkLocal <- function(address) {
-  .Call("R_g_inet_address_get_is_mc_link_local", address)
+  .Call("R_g_inet_address_get_is_mc_link_local", address)$result
 }
 
 
@@ -8992,7 +8630,7 @@ gInetAddressGetIsMcLinkLocal <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsMcNodeLocal <- function(address) {
-  .Call("R_g_inet_address_get_is_mc_node_local", address)
+  .Call("R_g_inet_address_get_is_mc_node_local", address)$result
 }
 
 
@@ -9003,7 +8641,7 @@ gInetAddressGetIsMcNodeLocal <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsMcOrgLocal <- function(address) {
-  .Call("R_g_inet_address_get_is_mc_org_local", address)
+  .Call("R_g_inet_address_get_is_mc_org_local", address)$result
 }
 
 
@@ -9014,7 +8652,7 @@ gInetAddressGetIsMcOrgLocal <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsMcSiteLocal <- function(address) {
-  .Call("R_g_inet_address_get_is_mc_site_local", address)
+  .Call("R_g_inet_address_get_is_mc_site_local", address)$result
 }
 
 
@@ -9025,7 +8663,7 @@ gInetAddressGetIsMcSiteLocal <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsMulticast <- function(address) {
-  .Call("R_g_inet_address_get_is_multicast", address)
+  .Call("R_g_inet_address_get_is_multicast", address)$result
 }
 
 
@@ -9036,7 +8674,7 @@ gInetAddressGetIsMulticast <- function(address) {
 #' @return gboolean
 #' @export
 gInetAddressGetIsSiteLocal <- function(address) {
-  .Call("R_g_inet_address_get_is_site_local", address)
+  .Call("R_g_inet_address_get_is_site_local", address)$result
 }
 
 
@@ -9047,7 +8685,7 @@ gInetAddressGetIsSiteLocal <- function(address) {
 #' @return gsize
 #' @export
 gInetAddressGetNativeSize <- function(address) {
-  .Call("R_g_inet_address_get_native_size", address)
+  .Call("R_g_inet_address_get_native_size", address)$result
 }
 
 
@@ -9058,7 +8696,7 @@ gInetAddressGetNativeSize <- function(address) {
 #' @return guint32
 #' @export
 gInetAddressGetScopeId <- function(address) {
-  .Call("R_g_inet_address_get_scope_id", address)
+  .Call("R_g_inet_address_get_scope_id", address)$result
 }
 
 
@@ -9069,7 +8707,7 @@ gInetAddressGetScopeId <- function(address) {
 #' @return utf8
 #' @export
 gInetAddressToString <- function(address) {
-  .Call("R_g_inet_address_to_string", address)
+  .Call("R_g_inet_address_to_string", address)$result
 }
 
 
@@ -9081,7 +8719,7 @@ gInetAddressToString <- function(address) {
 #' @return InetAddressMask
 #' @export
 gInetAddressMaskNew <- function(addr, length) {
-  .Call("R_g_inet_address_mask_new", addr, length)
+  .Call("R_g_inet_address_mask_new", addr, length)$result
 }
 
 
@@ -9092,7 +8730,7 @@ gInetAddressMaskNew <- function(addr, length) {
 #' @return InetAddressMask
 #' @export
 gInetAddressMaskNewFromString <- function(mask_string) {
-  .Call("R_g_inet_address_mask_new_from_string", mask_string)
+  .Call("R_g_inet_address_mask_new_from_string", mask_string)$result
 }
 
 
@@ -9104,7 +8742,7 @@ gInetAddressMaskNewFromString <- function(mask_string) {
 #' @return gboolean
 #' @export
 gInetAddressMaskEqual <- function(mask, mask2) {
-  .Call("R_g_inet_address_mask_equal", mask, mask2)
+  .Call("R_g_inet_address_mask_equal", mask, mask2)$result
 }
 
 
@@ -9115,7 +8753,7 @@ gInetAddressMaskEqual <- function(mask, mask2) {
 #' @return InetAddress
 #' @export
 gInetAddressMaskGetAddress <- function(mask) {
-  .Call("R_g_inet_address_mask_get_address", mask)
+  .Call("R_g_inet_address_mask_get_address", mask)$result
 }
 
 
@@ -9126,7 +8764,7 @@ gInetAddressMaskGetAddress <- function(mask) {
 #' @return SocketFamily
 #' @export
 gInetAddressMaskGetFamily <- function(mask) {
-  .Call("R_g_inet_address_mask_get_family", mask)
+  .Call("R_g_inet_address_mask_get_family", mask)$result
 }
 
 
@@ -9137,7 +8775,7 @@ gInetAddressMaskGetFamily <- function(mask) {
 #' @return guint
 #' @export
 gInetAddressMaskGetLength <- function(mask) {
-  .Call("R_g_inet_address_mask_get_length", mask)
+  .Call("R_g_inet_address_mask_get_length", mask)$result
 }
 
 
@@ -9149,7 +8787,7 @@ gInetAddressMaskGetLength <- function(mask) {
 #' @return gboolean
 #' @export
 gInetAddressMaskMatches <- function(mask, address) {
-  .Call("R_g_inet_address_mask_matches", mask, address)
+  .Call("R_g_inet_address_mask_matches", mask, address)$result
 }
 
 
@@ -9160,7 +8798,7 @@ gInetAddressMaskMatches <- function(mask, address) {
 #' @return utf8
 #' @export
 gInetAddressMaskToString <- function(mask) {
-  .Call("R_g_inet_address_mask_to_string", mask)
+  .Call("R_g_inet_address_mask_to_string", mask)$result
 }
 
 
@@ -9172,7 +8810,7 @@ gInetAddressMaskToString <- function(mask) {
 #' @return SocketAddress
 #' @export
 gInetSocketAddressNew <- function(address, port) {
-  .Call("R_g_inet_socket_address_new", address, port)
+  .Call("R_g_inet_socket_address_new", address, port)$result
 }
 
 
@@ -9184,7 +8822,7 @@ gInetSocketAddressNew <- function(address, port) {
 #' @return SocketAddress
 #' @export
 gInetSocketAddressNewFromString <- function(address, port) {
-  .Call("R_g_inet_socket_address_new_from_string", address, port)
+  .Call("R_g_inet_socket_address_new_from_string", address, port)$result
 }
 
 
@@ -9195,7 +8833,7 @@ gInetSocketAddressNewFromString <- function(address, port) {
 #' @return InetAddress
 #' @export
 gInetSocketAddressGetAddress <- function(address) {
-  .Call("R_g_inet_socket_address_get_address", address)
+  .Call("R_g_inet_socket_address_get_address", address)$result
 }
 
 
@@ -9206,7 +8844,7 @@ gInetSocketAddressGetAddress <- function(address) {
 #' @return guint32
 #' @export
 gInetSocketAddressGetFlowinfo <- function(address) {
-  .Call("R_g_inet_socket_address_get_flowinfo", address)
+  .Call("R_g_inet_socket_address_get_flowinfo", address)$result
 }
 
 
@@ -9217,7 +8855,7 @@ gInetSocketAddressGetFlowinfo <- function(address) {
 #' @return guint16
 #' @export
 gInetSocketAddressGetPort <- function(address) {
-  .Call("R_g_inet_socket_address_get_port", address)
+  .Call("R_g_inet_socket_address_get_port", address)$result
 }
 
 
@@ -9228,7 +8866,7 @@ gInetSocketAddressGetPort <- function(address) {
 #' @return guint32
 #' @export
 gInetSocketAddressGetScopeId <- function(address) {
-  .Call("R_g_inet_socket_address_get_scope_id", address)
+  .Call("R_g_inet_socket_address_get_scope_id", address)$result
 }
 
 
@@ -9242,7 +8880,7 @@ gInetSocketAddressGetScopeId <- function(address) {
 #' @return GObject.Object
 #' @export
 gInitableNewv <- function(object_type, n_parameters, parameters, cancellable) {
-  .Call("R_g_initable_newv", object_type, n_parameters, parameters, cancellable)
+  .Call("R_g_initable_newv", object_type, n_parameters, parameters, cancellable)$result
 }
 
 
@@ -9254,7 +8892,7 @@ gInitableNewv <- function(object_type, n_parameters, parameters, cancellable) {
 #' @return gboolean
 #' @export
 gInitableInit <- function(initable, cancellable) {
-  .Call("R_g_initable_init", initable, cancellable)
+  .Call("R_g_initable_init", initable, cancellable)$result
 }
 
 
@@ -9277,7 +8915,7 @@ gInputStreamClearPending <- function(stream) {
 #' @return gboolean
 #' @export
 gInputStreamClose <- function(stream, cancellable) {
-  .Call("R_g_input_stream_close", stream, cancellable)
+  .Call("R_g_input_stream_close", stream, cancellable)$result
 }
 
 
@@ -9289,7 +8927,7 @@ gInputStreamClose <- function(stream, cancellable) {
 #' @return gboolean
 #' @export
 gInputStreamCloseFinish <- function(stream, result) {
-  .Call("R_g_input_stream_close_finish", stream, result)
+  .Call("R_g_input_stream_close_finish", stream, result)$result
 }
 
 
@@ -9300,7 +8938,7 @@ gInputStreamCloseFinish <- function(stream, result) {
 #' @return gboolean
 #' @export
 gInputStreamHasPending <- function(stream) {
-  .Call("R_g_input_stream_has_pending", stream)
+  .Call("R_g_input_stream_has_pending", stream)$result
 }
 
 
@@ -9311,7 +8949,7 @@ gInputStreamHasPending <- function(stream) {
 #' @return gboolean
 #' @export
 gInputStreamIsClosed <- function(stream) {
-  .Call("R_g_input_stream_is_closed", stream)
+  .Call("R_g_input_stream_is_closed", stream)$result
 }
 
 
@@ -9362,7 +9000,7 @@ gInputStreamReadAllFinish <- function(stream, result) {
 #' @return GLib.Bytes
 #' @export
 gInputStreamReadBytes <- function(stream, count, cancellable) {
-  .Call("R_g_input_stream_read_bytes", stream, count, cancellable)
+  .Call("R_g_input_stream_read_bytes", stream, count, cancellable)$result
 }
 
 
@@ -9374,7 +9012,7 @@ gInputStreamReadBytes <- function(stream, count, cancellable) {
 #' @return GLib.Bytes
 #' @export
 gInputStreamReadBytesFinish <- function(stream, result) {
-  .Call("R_g_input_stream_read_bytes_finish", stream, result)
+  .Call("R_g_input_stream_read_bytes_finish", stream, result)$result
 }
 
 
@@ -9386,7 +9024,7 @@ gInputStreamReadBytesFinish <- function(stream, result) {
 #' @return gssize
 #' @export
 gInputStreamReadFinish <- function(stream, result) {
-  .Call("R_g_input_stream_read_finish", stream, result)
+  .Call("R_g_input_stream_read_finish", stream, result)$result
 }
 
 
@@ -9397,7 +9035,7 @@ gInputStreamReadFinish <- function(stream, result) {
 #' @return gboolean
 #' @export
 gInputStreamSetPending <- function(stream) {
-  .Call("R_g_input_stream_set_pending", stream)
+  .Call("R_g_input_stream_set_pending", stream)$result
 }
 
 
@@ -9410,7 +9048,7 @@ gInputStreamSetPending <- function(stream) {
 #' @return gssize
 #' @export
 gInputStreamSkip <- function(stream, count, cancellable) {
-  .Call("R_g_input_stream_skip", stream, count, cancellable)
+  .Call("R_g_input_stream_skip", stream, count, cancellable)$result
 }
 
 
@@ -9422,7 +9060,7 @@ gInputStreamSkip <- function(stream, count, cancellable) {
 #' @return gssize
 #' @export
 gInputStreamSkipFinish <- function(stream, result) {
-  .Call("R_g_input_stream_skip_finish", stream, result)
+  .Call("R_g_input_stream_skip_finish", stream, result)$result
 }
 
 
@@ -9433,7 +9071,7 @@ gInputStreamSkipFinish <- function(stream, result) {
 #' @return GType
 #' @export
 gListModelGetItemType <- function(list) {
-  .Call("R_g_list_model_get_item_type", list)
+  .Call("R_g_list_model_get_item_type", list)$result
 }
 
 
@@ -9444,7 +9082,7 @@ gListModelGetItemType <- function(list) {
 #' @return guint
 #' @export
 gListModelGetNItems <- function(list) {
-  .Call("R_g_list_model_get_n_items", list)
+  .Call("R_g_list_model_get_n_items", list)$result
 }
 
 
@@ -9456,7 +9094,7 @@ gListModelGetNItems <- function(list) {
 #' @return GObject.Object
 #' @export
 gListModelGetObject <- function(list, position) {
-  .Call("R_g_list_model_get_object", list, position)
+  .Call("R_g_list_model_get_object", list, position)$result
 }
 
 
@@ -9481,7 +9119,7 @@ gListModelItemsChanged <- function(list, position, removed, added) {
 #' @return ListStore
 #' @export
 gListStoreNew <- function(item_type) {
-  .Call("R_g_list_store_new", item_type)
+  .Call("R_g_list_store_new", item_type)$result
 }
 
 
@@ -9605,7 +9243,7 @@ gLoadableIconLoadFinish <- function(icon, res) {
 #' @return InputStream
 #' @export
 gMemoryInputStreamNew <- function() {
-  .Call("R_g_memory_input_stream_new")
+  .Call("R_g_memory_input_stream_new")$result
 }
 
 
@@ -9616,7 +9254,7 @@ gMemoryInputStreamNew <- function() {
 #' @return InputStream
 #' @export
 gMemoryInputStreamNewFromBytes <- function(bytes) {
-  .Call("R_g_memory_input_stream_new_from_bytes", bytes)
+  .Call("R_g_memory_input_stream_new_from_bytes", bytes)$result
 }
 
 
@@ -9638,7 +9276,7 @@ gMemoryInputStreamAddBytes <- function(stream, bytes) {
 #' @return MemoryMonitor
 #' @export
 gMemoryMonitorDupDefault <- function() {
-  .Call("R_g_memory_monitor_dup_default")
+  .Call("R_g_memory_monitor_dup_default")$result
 }
 
 
@@ -9648,7 +9286,7 @@ gMemoryMonitorDupDefault <- function() {
 #' @return OutputStream
 #' @export
 gMemoryOutputStreamNewResizable <- function() {
-  .Call("R_g_memory_output_stream_new_resizable")
+  .Call("R_g_memory_output_stream_new_resizable")$result
 }
 
 
@@ -9659,7 +9297,7 @@ gMemoryOutputStreamNewResizable <- function() {
 #' @return gpointer
 #' @export
 gMemoryOutputStreamGetData <- function(ostream) {
-  .Call("R_g_memory_output_stream_get_data", ostream)
+  .Call("R_g_memory_output_stream_get_data", ostream)$result
 }
 
 
@@ -9670,7 +9308,7 @@ gMemoryOutputStreamGetData <- function(ostream) {
 #' @return gsize
 #' @export
 gMemoryOutputStreamGetDataSize <- function(ostream) {
-  .Call("R_g_memory_output_stream_get_data_size", ostream)
+  .Call("R_g_memory_output_stream_get_data_size", ostream)$result
 }
 
 
@@ -9681,7 +9319,7 @@ gMemoryOutputStreamGetDataSize <- function(ostream) {
 #' @return gsize
 #' @export
 gMemoryOutputStreamGetSize <- function(ostream) {
-  .Call("R_g_memory_output_stream_get_size", ostream)
+  .Call("R_g_memory_output_stream_get_size", ostream)$result
 }
 
 
@@ -9692,7 +9330,7 @@ gMemoryOutputStreamGetSize <- function(ostream) {
 #' @return GLib.Bytes
 #' @export
 gMemoryOutputStreamStealAsBytes <- function(ostream) {
-  .Call("R_g_memory_output_stream_steal_as_bytes", ostream)
+  .Call("R_g_memory_output_stream_steal_as_bytes", ostream)$result
 }
 
 
@@ -9703,7 +9341,7 @@ gMemoryOutputStreamStealAsBytes <- function(ostream) {
 #' @return gpointer
 #' @export
 gMemoryOutputStreamStealData <- function(ostream) {
-  .Call("R_g_memory_output_stream_steal_data", ostream)
+  .Call("R_g_memory_output_stream_steal_data", ostream)$result
 }
 
 
@@ -9713,7 +9351,7 @@ gMemoryOutputStreamStealData <- function(ostream) {
 #' @return Menu
 #' @export
 gMenuNew <- function() {
-  .Call("R_g_menu_new")
+  .Call("R_g_menu_new")$result
 }
 
 
@@ -9915,7 +9553,7 @@ gMenuRemoveAll <- function(menu) {
 #' @return utf8
 #' @export
 gMenuAttributeIterGetName <- function(iter) {
-  .Call("R_g_menu_attribute_iter_get_name", iter)
+  .Call("R_g_menu_attribute_iter_get_name", iter)$result
 }
 
 
@@ -9937,7 +9575,7 @@ gMenuAttributeIterGetNext <- function(iter) {
 #' @return GLib.Variant
 #' @export
 gMenuAttributeIterGetValue <- function(iter) {
-  .Call("R_g_menu_attribute_iter_get_value", iter)
+  .Call("R_g_menu_attribute_iter_get_value", iter)$result
 }
 
 
@@ -9948,7 +9586,7 @@ gMenuAttributeIterGetValue <- function(iter) {
 #' @return gboolean
 #' @export
 gMenuAttributeIterNext <- function(iter) {
-  .Call("R_g_menu_attribute_iter_next", iter)
+  .Call("R_g_menu_attribute_iter_next", iter)$result
 }
 
 
@@ -9960,7 +9598,7 @@ gMenuAttributeIterNext <- function(iter) {
 #' @return MenuItem
 #' @export
 gMenuItemNew <- function(label, detailed_action) {
-  .Call("R_g_menu_item_new", label, detailed_action)
+  .Call("R_g_menu_item_new", label, detailed_action)$result
 }
 
 
@@ -9972,7 +9610,7 @@ gMenuItemNew <- function(label, detailed_action) {
 #' @return MenuItem
 #' @export
 gMenuItemNewFromModel <- function(model, item_index) {
-  .Call("R_g_menu_item_new_from_model", model, item_index)
+  .Call("R_g_menu_item_new_from_model", model, item_index)$result
 }
 
 
@@ -9984,7 +9622,7 @@ gMenuItemNewFromModel <- function(model, item_index) {
 #' @return MenuItem
 #' @export
 gMenuItemNewSection <- function(label, section) {
-  .Call("R_g_menu_item_new_section", label, section)
+  .Call("R_g_menu_item_new_section", label, section)$result
 }
 
 
@@ -9996,7 +9634,7 @@ gMenuItemNewSection <- function(label, section) {
 #' @return MenuItem
 #' @export
 gMenuItemNewSubmenu <- function(label, submenu) {
-  .Call("R_g_menu_item_new_submenu", label, submenu)
+  .Call("R_g_menu_item_new_submenu", label, submenu)$result
 }
 
 
@@ -10009,7 +9647,7 @@ gMenuItemNewSubmenu <- function(label, submenu) {
 #' @return GLib.Variant
 #' @export
 gMenuItemGetAttributeValue <- function(menu_item, attribute, expected_type) {
-  .Call("R_g_menu_item_get_attribute_value", menu_item, attribute, expected_type)
+  .Call("R_g_menu_item_get_attribute_value", menu_item, attribute, expected_type)$result
 }
 
 
@@ -10021,7 +9659,7 @@ gMenuItemGetAttributeValue <- function(menu_item, attribute, expected_type) {
 #' @return MenuModel
 #' @export
 gMenuItemGetLink <- function(menu_item, link) {
-  .Call("R_g_menu_item_get_link", menu_item, link)
+  .Call("R_g_menu_item_get_link", menu_item, link)$result
 }
 
 
@@ -10131,7 +9769,7 @@ gMenuItemSetSubmenu <- function(menu_item, submenu) {
 #' @return utf8
 #' @export
 gMenuLinkIterGetName <- function(iter) {
-  .Call("R_g_menu_link_iter_get_name", iter)
+  .Call("R_g_menu_link_iter_get_name", iter)$result
 }
 
 
@@ -10153,7 +9791,7 @@ gMenuLinkIterGetNext <- function(iter) {
 #' @return MenuModel
 #' @export
 gMenuLinkIterGetValue <- function(iter) {
-  .Call("R_g_menu_link_iter_get_value", iter)
+  .Call("R_g_menu_link_iter_get_value", iter)$result
 }
 
 
@@ -10164,7 +9802,7 @@ gMenuLinkIterGetValue <- function(iter) {
 #' @return gboolean
 #' @export
 gMenuLinkIterNext <- function(iter) {
-  .Call("R_g_menu_link_iter_next", iter)
+  .Call("R_g_menu_link_iter_next", iter)$result
 }
 
 
@@ -10178,7 +9816,7 @@ gMenuLinkIterNext <- function(iter) {
 #' @return GLib.Variant
 #' @export
 gMenuModelGetItemAttributeValue <- function(model, item_index, attribute, expected_type) {
-  .Call("R_g_menu_model_get_item_attribute_value", model, item_index, attribute, expected_type)
+  .Call("R_g_menu_model_get_item_attribute_value", model, item_index, attribute, expected_type)$result
 }
 
 
@@ -10191,7 +9829,7 @@ gMenuModelGetItemAttributeValue <- function(model, item_index, attribute, expect
 #' @return MenuModel
 #' @export
 gMenuModelGetItemLink <- function(model, item_index, link) {
-  .Call("R_g_menu_model_get_item_link", model, item_index, link)
+  .Call("R_g_menu_model_get_item_link", model, item_index, link)$result
 }
 
 
@@ -10202,7 +9840,7 @@ gMenuModelGetItemLink <- function(model, item_index, link) {
 #' @return gint
 #' @export
 gMenuModelGetNItems <- function(model) {
-  .Call("R_g_menu_model_get_n_items", model)
+  .Call("R_g_menu_model_get_n_items", model)$result
 }
 
 
@@ -10213,7 +9851,7 @@ gMenuModelGetNItems <- function(model) {
 #' @return gboolean
 #' @export
 gMenuModelIsMutable <- function(model) {
-  .Call("R_g_menu_model_is_mutable", model)
+  .Call("R_g_menu_model_is_mutable", model)$result
 }
 
 
@@ -10239,7 +9877,7 @@ gMenuModelItemsChanged <- function(model, position, removed, added) {
 #' @return MenuAttributeIter
 #' @export
 gMenuModelIterateItemAttributes <- function(model, item_index) {
-  .Call("R_g_menu_model_iterate_item_attributes", model, item_index)
+  .Call("R_g_menu_model_iterate_item_attributes", model, item_index)$result
 }
 
 
@@ -10251,7 +9889,7 @@ gMenuModelIterateItemAttributes <- function(model, item_index) {
 #' @return MenuLinkIter
 #' @export
 gMenuModelIterateItemLinks <- function(model, item_index) {
-  .Call("R_g_menu_model_iterate_item_links", model, item_index)
+  .Call("R_g_menu_model_iterate_item_links", model, item_index)$result
 }
 
 
@@ -10262,7 +9900,7 @@ gMenuModelIterateItemLinks <- function(model, item_index) {
 #' @return gboolean
 #' @export
 gMountCanEject <- function(mount) {
-  .Call("R_g_mount_can_eject", mount)
+  .Call("R_g_mount_can_eject", mount)$result
 }
 
 
@@ -10273,7 +9911,7 @@ gMountCanEject <- function(mount) {
 #' @return gboolean
 #' @export
 gMountCanUnmount <- function(mount) {
-  .Call("R_g_mount_can_unmount", mount)
+  .Call("R_g_mount_can_unmount", mount)$result
 }
 
 
@@ -10285,7 +9923,7 @@ gMountCanUnmount <- function(mount) {
 #' @return gboolean
 #' @export
 gMountEjectFinish <- function(mount, result) {
-  .Call("R_g_mount_eject_finish", mount, result)
+  .Call("R_g_mount_eject_finish", mount, result)$result
 }
 
 
@@ -10297,7 +9935,7 @@ gMountEjectFinish <- function(mount, result) {
 #' @return gboolean
 #' @export
 gMountEjectWithOperationFinish <- function(mount, result) {
-  .Call("R_g_mount_eject_with_operation_finish", mount, result)
+  .Call("R_g_mount_eject_with_operation_finish", mount, result)$result
 }
 
 
@@ -10308,7 +9946,7 @@ gMountEjectWithOperationFinish <- function(mount, result) {
 #' @return File
 #' @export
 gMountGetDefaultLocation <- function(mount) {
-  .Call("R_g_mount_get_default_location", mount)
+  .Call("R_g_mount_get_default_location", mount)$result
 }
 
 
@@ -10319,7 +9957,7 @@ gMountGetDefaultLocation <- function(mount) {
 #' @return Drive
 #' @export
 gMountGetDrive <- function(mount) {
-  .Call("R_g_mount_get_drive", mount)
+  .Call("R_g_mount_get_drive", mount)$result
 }
 
 
@@ -10330,7 +9968,7 @@ gMountGetDrive <- function(mount) {
 #' @return Icon
 #' @export
 gMountGetIcon <- function(mount) {
-  .Call("R_g_mount_get_icon", mount)
+  .Call("R_g_mount_get_icon", mount)$result
 }
 
 
@@ -10341,7 +9979,7 @@ gMountGetIcon <- function(mount) {
 #' @return utf8
 #' @export
 gMountGetName <- function(mount) {
-  .Call("R_g_mount_get_name", mount)
+  .Call("R_g_mount_get_name", mount)$result
 }
 
 
@@ -10352,7 +9990,7 @@ gMountGetName <- function(mount) {
 #' @return File
 #' @export
 gMountGetRoot <- function(mount) {
-  .Call("R_g_mount_get_root", mount)
+  .Call("R_g_mount_get_root", mount)$result
 }
 
 
@@ -10363,7 +10001,7 @@ gMountGetRoot <- function(mount) {
 #' @return utf8
 #' @export
 gMountGetSortKey <- function(mount) {
-  .Call("R_g_mount_get_sort_key", mount)
+  .Call("R_g_mount_get_sort_key", mount)$result
 }
 
 
@@ -10374,7 +10012,7 @@ gMountGetSortKey <- function(mount) {
 #' @return Icon
 #' @export
 gMountGetSymbolicIcon <- function(mount) {
-  .Call("R_g_mount_get_symbolic_icon", mount)
+  .Call("R_g_mount_get_symbolic_icon", mount)$result
 }
 
 
@@ -10385,7 +10023,7 @@ gMountGetSymbolicIcon <- function(mount) {
 #' @return utf8
 #' @export
 gMountGetUuid <- function(mount) {
-  .Call("R_g_mount_get_uuid", mount)
+  .Call("R_g_mount_get_uuid", mount)$result
 }
 
 
@@ -10396,7 +10034,7 @@ gMountGetUuid <- function(mount) {
 #' @return Volume
 #' @export
 gMountGetVolume <- function(mount) {
-  .Call("R_g_mount_get_volume", mount)
+  .Call("R_g_mount_get_volume", mount)$result
 }
 
 
@@ -10408,7 +10046,7 @@ gMountGetVolume <- function(mount) {
 #' @return utf8
 #' @export
 gMountGuessContentTypeFinish <- function(mount, result) {
-  .Call("R_g_mount_guess_content_type_finish", mount, result)
+  .Call("R_g_mount_guess_content_type_finish", mount, result)$result
 }
 
 
@@ -10421,7 +10059,7 @@ gMountGuessContentTypeFinish <- function(mount, result) {
 #' @return utf8
 #' @export
 gMountGuessContentTypeSync <- function(mount, force_rescan, cancellable) {
-  .Call("R_g_mount_guess_content_type_sync", mount, force_rescan, cancellable)
+  .Call("R_g_mount_guess_content_type_sync", mount, force_rescan, cancellable)$result
 }
 
 
@@ -10432,7 +10070,7 @@ gMountGuessContentTypeSync <- function(mount, force_rescan, cancellable) {
 #' @return gboolean
 #' @export
 gMountIsShadowed <- function(mount) {
-  .Call("R_g_mount_is_shadowed", mount)
+  .Call("R_g_mount_is_shadowed", mount)$result
 }
 
 
@@ -10444,7 +10082,7 @@ gMountIsShadowed <- function(mount) {
 #' @return gboolean
 #' @export
 gMountRemountFinish <- function(mount, result) {
-  .Call("R_g_mount_remount_finish", mount, result)
+  .Call("R_g_mount_remount_finish", mount, result)$result
 }
 
 
@@ -10467,7 +10105,7 @@ gMountShadow <- function(mount) {
 #' @return gboolean
 #' @export
 gMountUnmountFinish <- function(mount, result) {
-  .Call("R_g_mount_unmount_finish", mount, result)
+  .Call("R_g_mount_unmount_finish", mount, result)$result
 }
 
 
@@ -10479,7 +10117,7 @@ gMountUnmountFinish <- function(mount, result) {
 #' @return gboolean
 #' @export
 gMountUnmountWithOperationFinish <- function(mount, result) {
-  .Call("R_g_mount_unmount_with_operation_finish", mount, result)
+  .Call("R_g_mount_unmount_with_operation_finish", mount, result)$result
 }
 
 
@@ -10500,7 +10138,7 @@ gMountUnshadow <- function(mount) {
 #' @return MountOperation
 #' @export
 gMountOperationNew <- function() {
-  .Call("R_g_mount_operation_new")
+  .Call("R_g_mount_operation_new")$result
 }
 
 
@@ -10511,7 +10149,7 @@ gMountOperationNew <- function() {
 #' @return gboolean
 #' @export
 gMountOperationGetAnonymous <- function(op) {
-  .Call("R_g_mount_operation_get_anonymous", op)
+  .Call("R_g_mount_operation_get_anonymous", op)$result
 }
 
 
@@ -10522,7 +10160,7 @@ gMountOperationGetAnonymous <- function(op) {
 #' @return gint
 #' @export
 gMountOperationGetChoice <- function(op) {
-  .Call("R_g_mount_operation_get_choice", op)
+  .Call("R_g_mount_operation_get_choice", op)$result
 }
 
 
@@ -10533,7 +10171,7 @@ gMountOperationGetChoice <- function(op) {
 #' @return utf8
 #' @export
 gMountOperationGetDomain <- function(op) {
-  .Call("R_g_mount_operation_get_domain", op)
+  .Call("R_g_mount_operation_get_domain", op)$result
 }
 
 
@@ -10544,7 +10182,7 @@ gMountOperationGetDomain <- function(op) {
 #' @return gboolean
 #' @export
 gMountOperationGetIsTcryptHiddenVolume <- function(op) {
-  .Call("R_g_mount_operation_get_is_tcrypt_hidden_volume", op)
+  .Call("R_g_mount_operation_get_is_tcrypt_hidden_volume", op)$result
 }
 
 
@@ -10555,7 +10193,7 @@ gMountOperationGetIsTcryptHiddenVolume <- function(op) {
 #' @return gboolean
 #' @export
 gMountOperationGetIsTcryptSystemVolume <- function(op) {
-  .Call("R_g_mount_operation_get_is_tcrypt_system_volume", op)
+  .Call("R_g_mount_operation_get_is_tcrypt_system_volume", op)$result
 }
 
 
@@ -10566,7 +10204,7 @@ gMountOperationGetIsTcryptSystemVolume <- function(op) {
 #' @return utf8
 #' @export
 gMountOperationGetPassword <- function(op) {
-  .Call("R_g_mount_operation_get_password", op)
+  .Call("R_g_mount_operation_get_password", op)$result
 }
 
 
@@ -10577,7 +10215,7 @@ gMountOperationGetPassword <- function(op) {
 #' @return PasswordSave
 #' @export
 gMountOperationGetPasswordSave <- function(op) {
-  .Call("R_g_mount_operation_get_password_save", op)
+  .Call("R_g_mount_operation_get_password_save", op)$result
 }
 
 
@@ -10588,7 +10226,7 @@ gMountOperationGetPasswordSave <- function(op) {
 #' @return guint
 #' @export
 gMountOperationGetPim <- function(op) {
-  .Call("R_g_mount_operation_get_pim", op)
+  .Call("R_g_mount_operation_get_pim", op)$result
 }
 
 
@@ -10599,7 +10237,7 @@ gMountOperationGetPim <- function(op) {
 #' @return utf8
 #' @export
 gMountOperationGetUsername <- function(op) {
-  .Call("R_g_mount_operation_get_username", op)
+  .Call("R_g_mount_operation_get_username", op)$result
 }
 
 
@@ -10731,7 +10369,7 @@ gMountOperationSetUsername <- function(op, username) {
 #' @return SocketAddress
 #' @export
 gNativeSocketAddressNew <- function(native, len) {
-  .Call("R_g_native_socket_address_new", native, len)
+  .Call("R_g_native_socket_address_new", native, len)$result
 }
 
 
@@ -10743,7 +10381,7 @@ gNativeSocketAddressNew <- function(native, len) {
 #' @return NetworkAddress
 #' @export
 gNetworkAddressNew <- function(hostname, port) {
-  .Call("R_g_network_address_new", hostname, port)
+  .Call("R_g_network_address_new", hostname, port)$result
 }
 
 
@@ -10754,7 +10392,7 @@ gNetworkAddressNew <- function(hostname, port) {
 #' @return NetworkAddress
 #' @export
 gNetworkAddressNewLoopback <- function(port) {
-  .Call("R_g_network_address_new_loopback", port)
+  .Call("R_g_network_address_new_loopback", port)$result
 }
 
 
@@ -10766,7 +10404,7 @@ gNetworkAddressNewLoopback <- function(port) {
 #' @return NetworkAddress
 #' @export
 gNetworkAddressParse <- function(host_and_port, default_port) {
-  .Call("R_g_network_address_parse", host_and_port, default_port)
+  .Call("R_g_network_address_parse", host_and_port, default_port)$result
 }
 
 
@@ -10778,7 +10416,7 @@ gNetworkAddressParse <- function(host_and_port, default_port) {
 #' @return NetworkAddress
 #' @export
 gNetworkAddressParseUri <- function(uri, default_port) {
-  .Call("R_g_network_address_parse_uri", uri, default_port)
+  .Call("R_g_network_address_parse_uri", uri, default_port)$result
 }
 
 
@@ -10789,7 +10427,7 @@ gNetworkAddressParseUri <- function(uri, default_port) {
 #' @return utf8
 #' @export
 gNetworkAddressGetHostname <- function(addr) {
-  .Call("R_g_network_address_get_hostname", addr)
+  .Call("R_g_network_address_get_hostname", addr)$result
 }
 
 
@@ -10800,7 +10438,7 @@ gNetworkAddressGetHostname <- function(addr) {
 #' @return guint16
 #' @export
 gNetworkAddressGetPort <- function(addr) {
-  .Call("R_g_network_address_get_port", addr)
+  .Call("R_g_network_address_get_port", addr)$result
 }
 
 
@@ -10811,7 +10449,7 @@ gNetworkAddressGetPort <- function(addr) {
 #' @return utf8
 #' @export
 gNetworkAddressGetScheme <- function(addr) {
-  .Call("R_g_network_address_get_scheme", addr)
+  .Call("R_g_network_address_get_scheme", addr)$result
 }
 
 
@@ -10821,7 +10459,7 @@ gNetworkAddressGetScheme <- function(addr) {
 #' @return NetworkMonitor
 #' @export
 gNetworkMonitorGetDefault <- function() {
-  .Call("R_g_network_monitor_get_default")
+  .Call("R_g_network_monitor_get_default")$result
 }
 
 
@@ -10834,7 +10472,7 @@ gNetworkMonitorGetDefault <- function() {
 #' @return gboolean
 #' @export
 gNetworkMonitorCanReach <- function(monitor, connectable, cancellable) {
-  .Call("R_g_network_monitor_can_reach", monitor, connectable, cancellable)
+  .Call("R_g_network_monitor_can_reach", monitor, connectable, cancellable)$result
 }
 
 
@@ -10846,7 +10484,7 @@ gNetworkMonitorCanReach <- function(monitor, connectable, cancellable) {
 #' @return gboolean
 #' @export
 gNetworkMonitorCanReachFinish <- function(monitor, result) {
-  .Call("R_g_network_monitor_can_reach_finish", monitor, result)
+  .Call("R_g_network_monitor_can_reach_finish", monitor, result)$result
 }
 
 
@@ -10857,7 +10495,7 @@ gNetworkMonitorCanReachFinish <- function(monitor, result) {
 #' @return NetworkConnectivity
 #' @export
 gNetworkMonitorGetConnectivity <- function(monitor) {
-  .Call("R_g_network_monitor_get_connectivity", monitor)
+  .Call("R_g_network_monitor_get_connectivity", monitor)$result
 }
 
 
@@ -10868,7 +10506,7 @@ gNetworkMonitorGetConnectivity <- function(monitor) {
 #' @return gboolean
 #' @export
 gNetworkMonitorGetNetworkAvailable <- function(monitor) {
-  .Call("R_g_network_monitor_get_network_available", monitor)
+  .Call("R_g_network_monitor_get_network_available", monitor)$result
 }
 
 
@@ -10879,7 +10517,7 @@ gNetworkMonitorGetNetworkAvailable <- function(monitor) {
 #' @return gboolean
 #' @export
 gNetworkMonitorGetNetworkMetered <- function(monitor) {
-  .Call("R_g_network_monitor_get_network_metered", monitor)
+  .Call("R_g_network_monitor_get_network_metered", monitor)$result
 }
 
 
@@ -10892,7 +10530,7 @@ gNetworkMonitorGetNetworkMetered <- function(monitor) {
 #' @return NetworkService
 #' @export
 gNetworkServiceNew <- function(service, protocol, domain) {
-  .Call("R_g_network_service_new", service, protocol, domain)
+  .Call("R_g_network_service_new", service, protocol, domain)$result
 }
 
 
@@ -10903,7 +10541,7 @@ gNetworkServiceNew <- function(service, protocol, domain) {
 #' @return utf8
 #' @export
 gNetworkServiceGetDomain <- function(srv) {
-  .Call("R_g_network_service_get_domain", srv)
+  .Call("R_g_network_service_get_domain", srv)$result
 }
 
 
@@ -10914,7 +10552,7 @@ gNetworkServiceGetDomain <- function(srv) {
 #' @return utf8
 #' @export
 gNetworkServiceGetProtocol <- function(srv) {
-  .Call("R_g_network_service_get_protocol", srv)
+  .Call("R_g_network_service_get_protocol", srv)$result
 }
 
 
@@ -10925,7 +10563,7 @@ gNetworkServiceGetProtocol <- function(srv) {
 #' @return utf8
 #' @export
 gNetworkServiceGetScheme <- function(srv) {
-  .Call("R_g_network_service_get_scheme", srv)
+  .Call("R_g_network_service_get_scheme", srv)$result
 }
 
 
@@ -10936,7 +10574,7 @@ gNetworkServiceGetScheme <- function(srv) {
 #' @return utf8
 #' @export
 gNetworkServiceGetService <- function(srv) {
-  .Call("R_g_network_service_get_service", srv)
+  .Call("R_g_network_service_get_service", srv)$result
 }
 
 
@@ -10959,7 +10597,7 @@ gNetworkServiceSetScheme <- function(srv, scheme) {
 #' @return Notification
 #' @export
 gNotificationNew <- function(title) {
-  .Call("R_g_notification_new", title)
+  .Call("R_g_notification_new", title)$result
 }
 
 
@@ -11106,7 +10744,7 @@ gOutputStreamClearPending <- function(stream) {
 #' @return gboolean
 #' @export
 gOutputStreamClose <- function(stream, cancellable) {
-  .Call("R_g_output_stream_close", stream, cancellable)
+  .Call("R_g_output_stream_close", stream, cancellable)$result
 }
 
 
@@ -11118,7 +10756,7 @@ gOutputStreamClose <- function(stream, cancellable) {
 #' @return gboolean
 #' @export
 gOutputStreamCloseFinish <- function(stream, result) {
-  .Call("R_g_output_stream_close_finish", stream, result)
+  .Call("R_g_output_stream_close_finish", stream, result)$result
 }
 
 
@@ -11130,7 +10768,7 @@ gOutputStreamCloseFinish <- function(stream, result) {
 #' @return gboolean
 #' @export
 gOutputStreamFlush <- function(stream, cancellable) {
-  .Call("R_g_output_stream_flush", stream, cancellable)
+  .Call("R_g_output_stream_flush", stream, cancellable)$result
 }
 
 
@@ -11142,7 +10780,7 @@ gOutputStreamFlush <- function(stream, cancellable) {
 #' @return gboolean
 #' @export
 gOutputStreamFlushFinish <- function(stream, result) {
-  .Call("R_g_output_stream_flush_finish", stream, result)
+  .Call("R_g_output_stream_flush_finish", stream, result)$result
 }
 
 
@@ -11153,7 +10791,7 @@ gOutputStreamFlushFinish <- function(stream, result) {
 #' @return gboolean
 #' @export
 gOutputStreamHasPending <- function(stream) {
-  .Call("R_g_output_stream_has_pending", stream)
+  .Call("R_g_output_stream_has_pending", stream)$result
 }
 
 
@@ -11164,7 +10802,7 @@ gOutputStreamHasPending <- function(stream) {
 #' @return gboolean
 #' @export
 gOutputStreamIsClosed <- function(stream) {
-  .Call("R_g_output_stream_is_closed", stream)
+  .Call("R_g_output_stream_is_closed", stream)$result
 }
 
 
@@ -11175,7 +10813,7 @@ gOutputStreamIsClosed <- function(stream) {
 #' @return gboolean
 #' @export
 gOutputStreamIsClosing <- function(stream) {
-  .Call("R_g_output_stream_is_closing", stream)
+  .Call("R_g_output_stream_is_closing", stream)$result
 }
 
 
@@ -11186,7 +10824,7 @@ gOutputStreamIsClosing <- function(stream) {
 #' @return gboolean
 #' @export
 gOutputStreamSetPending <- function(stream) {
-  .Call("R_g_output_stream_set_pending", stream)
+  .Call("R_g_output_stream_set_pending", stream)$result
 }
 
 
@@ -11200,7 +10838,7 @@ gOutputStreamSetPending <- function(stream) {
 #' @return gssize
 #' @export
 gOutputStreamSplice <- function(stream, source, flags, cancellable) {
-  .Call("R_g_output_stream_splice", stream, source, flags, cancellable)
+  .Call("R_g_output_stream_splice", stream, source, flags, cancellable)$result
 }
 
 
@@ -11212,7 +10850,7 @@ gOutputStreamSplice <- function(stream, source, flags, cancellable) {
 #' @return gssize
 #' @export
 gOutputStreamSpliceFinish <- function(stream, result) {
-  .Call("R_g_output_stream_splice_finish", stream, result)
+  .Call("R_g_output_stream_splice_finish", stream, result)$result
 }
 
 
@@ -11226,7 +10864,7 @@ gOutputStreamSpliceFinish <- function(stream, result) {
 #' @return gssize
 #' @export
 gOutputStreamWrite <- function(stream, buffer, count, cancellable) {
-  .Call("R_g_output_stream_write", stream, buffer, count, cancellable)
+  .Call("R_g_output_stream_write", stream, buffer, count, cancellable)$result
 }
 
 
@@ -11265,7 +10903,7 @@ gOutputStreamWriteAllFinish <- function(stream, result) {
 #' @return gssize
 #' @export
 gOutputStreamWriteBytes <- function(stream, bytes, cancellable) {
-  .Call("R_g_output_stream_write_bytes", stream, bytes, cancellable)
+  .Call("R_g_output_stream_write_bytes", stream, bytes, cancellable)$result
 }
 
 
@@ -11277,7 +10915,7 @@ gOutputStreamWriteBytes <- function(stream, bytes, cancellable) {
 #' @return gssize
 #' @export
 gOutputStreamWriteBytesFinish <- function(stream, result) {
-  .Call("R_g_output_stream_write_bytes_finish", stream, result)
+  .Call("R_g_output_stream_write_bytes_finish", stream, result)$result
 }
 
 
@@ -11289,7 +10927,7 @@ gOutputStreamWriteBytesFinish <- function(stream, result) {
 #' @return gssize
 #' @export
 gOutputStreamWriteFinish <- function(stream, result) {
-  .Call("R_g_output_stream_write_finish", stream, result)
+  .Call("R_g_output_stream_write_finish", stream, result)$result
 }
 
 
@@ -11353,7 +10991,7 @@ gOutputStreamWritevFinish <- function(stream, result) {
 #' @return gboolean
 #' @export
 gPermissionAcquire <- function(permission, cancellable) {
-  .Call("R_g_permission_acquire", permission, cancellable)
+  .Call("R_g_permission_acquire", permission, cancellable)$result
 }
 
 
@@ -11365,7 +11003,7 @@ gPermissionAcquire <- function(permission, cancellable) {
 #' @return gboolean
 #' @export
 gPermissionAcquireFinish <- function(permission, result) {
-  .Call("R_g_permission_acquire_finish", permission, result)
+  .Call("R_g_permission_acquire_finish", permission, result)$result
 }
 
 
@@ -11376,7 +11014,7 @@ gPermissionAcquireFinish <- function(permission, result) {
 #' @return gboolean
 #' @export
 gPermissionGetAllowed <- function(permission) {
-  .Call("R_g_permission_get_allowed", permission)
+  .Call("R_g_permission_get_allowed", permission)$result
 }
 
 
@@ -11387,7 +11025,7 @@ gPermissionGetAllowed <- function(permission) {
 #' @return gboolean
 #' @export
 gPermissionGetCanAcquire <- function(permission) {
-  .Call("R_g_permission_get_can_acquire", permission)
+  .Call("R_g_permission_get_can_acquire", permission)$result
 }
 
 
@@ -11398,7 +11036,7 @@ gPermissionGetCanAcquire <- function(permission) {
 #' @return gboolean
 #' @export
 gPermissionGetCanRelease <- function(permission) {
-  .Call("R_g_permission_get_can_release", permission)
+  .Call("R_g_permission_get_can_release", permission)$result
 }
 
 
@@ -11424,7 +11062,7 @@ gPermissionImplUpdate <- function(permission, allowed, can_acquire, can_release)
 #' @return gboolean
 #' @export
 gPermissionRelease <- function(permission, cancellable) {
-  .Call("R_g_permission_release", permission, cancellable)
+  .Call("R_g_permission_release", permission, cancellable)$result
 }
 
 
@@ -11436,7 +11074,7 @@ gPermissionRelease <- function(permission, cancellable) {
 #' @return gboolean
 #' @export
 gPermissionReleaseFinish <- function(permission, result) {
-  .Call("R_g_permission_release_finish", permission, result)
+  .Call("R_g_permission_release_finish", permission, result)$result
 }
 
 
@@ -11447,7 +11085,7 @@ gPermissionReleaseFinish <- function(permission, result) {
 #' @return gboolean
 #' @export
 gPollableInputStreamCanPoll <- function(stream) {
-  .Call("R_g_pollable_input_stream_can_poll", stream)
+  .Call("R_g_pollable_input_stream_can_poll", stream)$result
 }
 
 
@@ -11459,7 +11097,7 @@ gPollableInputStreamCanPoll <- function(stream) {
 #' @return GLib.Source
 #' @export
 gPollableInputStreamCreateSource <- function(stream, cancellable) {
-  .Call("R_g_pollable_input_stream_create_source", stream, cancellable)
+  .Call("R_g_pollable_input_stream_create_source", stream, cancellable)$result
 }
 
 
@@ -11470,7 +11108,7 @@ gPollableInputStreamCreateSource <- function(stream, cancellable) {
 #' @return gboolean
 #' @export
 gPollableInputStreamIsReadable <- function(stream) {
-  .Call("R_g_pollable_input_stream_is_readable", stream)
+  .Call("R_g_pollable_input_stream_is_readable", stream)$result
 }
 
 
@@ -11494,7 +11132,7 @@ gPollableInputStreamReadNonblocking <- function(stream, count, cancellable) {
 #' @return gboolean
 #' @export
 gPollableOutputStreamCanPoll <- function(stream) {
-  .Call("R_g_pollable_output_stream_can_poll", stream)
+  .Call("R_g_pollable_output_stream_can_poll", stream)$result
 }
 
 
@@ -11506,7 +11144,7 @@ gPollableOutputStreamCanPoll <- function(stream) {
 #' @return GLib.Source
 #' @export
 gPollableOutputStreamCreateSource <- function(stream, cancellable) {
-  .Call("R_g_pollable_output_stream_create_source", stream, cancellable)
+  .Call("R_g_pollable_output_stream_create_source", stream, cancellable)$result
 }
 
 
@@ -11517,7 +11155,7 @@ gPollableOutputStreamCreateSource <- function(stream, cancellable) {
 #' @return gboolean
 #' @export
 gPollableOutputStreamIsWritable <- function(stream) {
-  .Call("R_g_pollable_output_stream_is_writable", stream)
+  .Call("R_g_pollable_output_stream_is_writable", stream)$result
 }
 
 
@@ -11531,7 +11169,7 @@ gPollableOutputStreamIsWritable <- function(stream) {
 #' @return gssize
 #' @export
 gPollableOutputStreamWriteNonblocking <- function(stream, buffer, count, cancellable) {
-  .Call("R_g_pollable_output_stream_write_nonblocking", stream, buffer, count, cancellable)
+  .Call("R_g_pollable_output_stream_write_nonblocking", stream, buffer, count, cancellable)$result
 }
 
 
@@ -11555,7 +11193,7 @@ gPollableOutputStreamWritevNonblocking <- function(stream, vectors, n_vectors, c
 #' @return PowerProfileMonitor
 #' @export
 gPowerProfileMonitorDupDefault <- function() {
-  .Call("R_g_power_profile_monitor_dup_default")
+  .Call("R_g_power_profile_monitor_dup_default")$result
 }
 
 
@@ -11566,7 +11204,7 @@ gPowerProfileMonitorDupDefault <- function() {
 #' @return gboolean
 #' @export
 gPowerProfileMonitorGetPowerSaverEnabled <- function(monitor) {
-  .Call("R_g_power_profile_monitor_get_power_saver_enabled", monitor)
+  .Call("R_g_power_profile_monitor_get_power_saver_enabled", monitor)$result
 }
 
 
@@ -11579,7 +11217,7 @@ gPowerProfileMonitorGetPowerSaverEnabled <- function(monitor) {
 #' @return PropertyAction
 #' @export
 gPropertyActionNew <- function(name, object, property_name) {
-  .Call("R_g_property_action_new", name, object, property_name)
+  .Call("R_g_property_action_new", name, object, property_name)$result
 }
 
 
@@ -11590,7 +11228,7 @@ gPropertyActionNew <- function(name, object, property_name) {
 #' @return Proxy
 #' @export
 gProxyGetDefaultForProtocol <- function(protocol) {
-  .Call("R_g_proxy_get_default_for_protocol", protocol)
+  .Call("R_g_proxy_get_default_for_protocol", protocol)$result
 }
 
 
@@ -11604,7 +11242,7 @@ gProxyGetDefaultForProtocol <- function(protocol) {
 #' @return IOStream
 #' @export
 gProxyConnect <- function(proxy, connection, proxy_address, cancellable) {
-  .Call("R_g_proxy_connect", proxy, connection, proxy_address, cancellable)
+  .Call("R_g_proxy_connect", proxy, connection, proxy_address, cancellable)$result
 }
 
 
@@ -11616,7 +11254,7 @@ gProxyConnect <- function(proxy, connection, proxy_address, cancellable) {
 #' @return IOStream
 #' @export
 gProxyConnectFinish <- function(proxy, result) {
-  .Call("R_g_proxy_connect_finish", proxy, result)
+  .Call("R_g_proxy_connect_finish", proxy, result)$result
 }
 
 
@@ -11627,7 +11265,7 @@ gProxyConnectFinish <- function(proxy, result) {
 #' @return gboolean
 #' @export
 gProxySupportsHostname <- function(proxy) {
-  .Call("R_g_proxy_supports_hostname", proxy)
+  .Call("R_g_proxy_supports_hostname", proxy)$result
 }
 
 
@@ -11644,7 +11282,7 @@ gProxySupportsHostname <- function(proxy) {
 #' @return SocketAddress
 #' @export
 gProxyAddressNew <- function(inetaddr, port, protocol, dest_hostname, dest_port, username, password) {
-  .Call("R_g_proxy_address_new", inetaddr, port, protocol, dest_hostname, dest_port, username, password)
+  .Call("R_g_proxy_address_new", inetaddr, port, protocol, dest_hostname, dest_port, username, password)$result
 }
 
 
@@ -11655,7 +11293,7 @@ gProxyAddressNew <- function(inetaddr, port, protocol, dest_hostname, dest_port,
 #' @return utf8
 #' @export
 gProxyAddressGetDestinationHostname <- function(proxy) {
-  .Call("R_g_proxy_address_get_destination_hostname", proxy)
+  .Call("R_g_proxy_address_get_destination_hostname", proxy)$result
 }
 
 
@@ -11666,7 +11304,7 @@ gProxyAddressGetDestinationHostname <- function(proxy) {
 #' @return guint16
 #' @export
 gProxyAddressGetDestinationPort <- function(proxy) {
-  .Call("R_g_proxy_address_get_destination_port", proxy)
+  .Call("R_g_proxy_address_get_destination_port", proxy)$result
 }
 
 
@@ -11677,7 +11315,7 @@ gProxyAddressGetDestinationPort <- function(proxy) {
 #' @return utf8
 #' @export
 gProxyAddressGetDestinationProtocol <- function(proxy) {
-  .Call("R_g_proxy_address_get_destination_protocol", proxy)
+  .Call("R_g_proxy_address_get_destination_protocol", proxy)$result
 }
 
 
@@ -11688,7 +11326,7 @@ gProxyAddressGetDestinationProtocol <- function(proxy) {
 #' @return utf8
 #' @export
 gProxyAddressGetPassword <- function(proxy) {
-  .Call("R_g_proxy_address_get_password", proxy)
+  .Call("R_g_proxy_address_get_password", proxy)$result
 }
 
 
@@ -11699,7 +11337,7 @@ gProxyAddressGetPassword <- function(proxy) {
 #' @return utf8
 #' @export
 gProxyAddressGetProtocol <- function(proxy) {
-  .Call("R_g_proxy_address_get_protocol", proxy)
+  .Call("R_g_proxy_address_get_protocol", proxy)$result
 }
 
 
@@ -11710,7 +11348,7 @@ gProxyAddressGetProtocol <- function(proxy) {
 #' @return utf8
 #' @export
 gProxyAddressGetUri <- function(proxy) {
-  .Call("R_g_proxy_address_get_uri", proxy)
+  .Call("R_g_proxy_address_get_uri", proxy)$result
 }
 
 
@@ -11721,7 +11359,7 @@ gProxyAddressGetUri <- function(proxy) {
 #' @return utf8
 #' @export
 gProxyAddressGetUsername <- function(proxy) {
-  .Call("R_g_proxy_address_get_username", proxy)
+  .Call("R_g_proxy_address_get_username", proxy)$result
 }
 
 
@@ -11731,7 +11369,7 @@ gProxyAddressGetUsername <- function(proxy) {
 #' @return ProxyResolver
 #' @export
 gProxyResolverGetDefault <- function() {
-  .Call("R_g_proxy_resolver_get_default")
+  .Call("R_g_proxy_resolver_get_default")$result
 }
 
 
@@ -11742,7 +11380,7 @@ gProxyResolverGetDefault <- function() {
 #' @return gboolean
 #' @export
 gProxyResolverIsSupported <- function(resolver) {
-  .Call("R_g_proxy_resolver_is_supported", resolver)
+  .Call("R_g_proxy_resolver_is_supported", resolver)$result
 }
 
 
@@ -11755,7 +11393,7 @@ gProxyResolverIsSupported <- function(resolver) {
 #' @return utf8
 #' @export
 gProxyResolverLookup <- function(resolver, uri, cancellable) {
-  .Call("R_g_proxy_resolver_lookup", resolver, uri, cancellable)
+  .Call("R_g_proxy_resolver_lookup", resolver, uri, cancellable)$result
 }
 
 
@@ -11767,7 +11405,7 @@ gProxyResolverLookup <- function(resolver, uri, cancellable) {
 #' @return utf8
 #' @export
 gProxyResolverLookupFinish <- function(resolver, result) {
-  .Call("R_g_proxy_resolver_lookup_finish", resolver, result)
+  .Call("R_g_proxy_resolver_lookup_finish", resolver, result)$result
 }
 
 
@@ -11805,7 +11443,7 @@ gRemoteActionGroupChangeActionStateFull <- function(remote, action_name, value, 
 #' @return Resolver
 #' @export
 gResolverGetDefault <- function() {
-  .Call("R_g_resolver_get_default")
+  .Call("R_g_resolver_get_default")$result
 }
 
 
@@ -11816,7 +11454,7 @@ gResolverGetDefault <- function() {
 #' @return guint
 #' @export
 gResolverGetTimeout <- function(resolver) {
-  .Call("R_g_resolver_get_timeout", resolver)
+  .Call("R_g_resolver_get_timeout", resolver)$result
 }
 
 
@@ -11829,7 +11467,7 @@ gResolverGetTimeout <- function(resolver) {
 #' @return utf8
 #' @export
 gResolverLookupByAddress <- function(resolver, address, cancellable) {
-  .Call("R_g_resolver_lookup_by_address", resolver, address, cancellable)
+  .Call("R_g_resolver_lookup_by_address", resolver, address, cancellable)$result
 }
 
 
@@ -11841,7 +11479,7 @@ gResolverLookupByAddress <- function(resolver, address, cancellable) {
 #' @return utf8
 #' @export
 gResolverLookupByAddressFinish <- function(resolver, result) {
-  .Call("R_g_resolver_lookup_by_address_finish", resolver, result)
+  .Call("R_g_resolver_lookup_by_address_finish", resolver, result)$result
 }
 
 
@@ -11854,7 +11492,7 @@ gResolverLookupByAddressFinish <- function(resolver, result) {
 #' @return GLib.List
 #' @export
 gResolverLookupByName <- function(resolver, hostname, cancellable) {
-  .Call("R_g_resolver_lookup_by_name", resolver, hostname, cancellable)
+  .Call("R_g_resolver_lookup_by_name", resolver, hostname, cancellable)$result
 }
 
 
@@ -11866,7 +11504,7 @@ gResolverLookupByName <- function(resolver, hostname, cancellable) {
 #' @return GLib.List
 #' @export
 gResolverLookupByNameFinish <- function(resolver, result) {
-  .Call("R_g_resolver_lookup_by_name_finish", resolver, result)
+  .Call("R_g_resolver_lookup_by_name_finish", resolver, result)$result
 }
 
 
@@ -11880,7 +11518,7 @@ gResolverLookupByNameFinish <- function(resolver, result) {
 #' @return GLib.List
 #' @export
 gResolverLookupByNameWithFlags <- function(resolver, hostname, flags, cancellable) {
-  .Call("R_g_resolver_lookup_by_name_with_flags", resolver, hostname, flags, cancellable)
+  .Call("R_g_resolver_lookup_by_name_with_flags", resolver, hostname, flags, cancellable)$result
 }
 
 
@@ -11892,7 +11530,7 @@ gResolverLookupByNameWithFlags <- function(resolver, hostname, flags, cancellabl
 #' @return GLib.List
 #' @export
 gResolverLookupByNameWithFlagsFinish <- function(resolver, result) {
-  .Call("R_g_resolver_lookup_by_name_with_flags_finish", resolver, result)
+  .Call("R_g_resolver_lookup_by_name_with_flags_finish", resolver, result)$result
 }
 
 
@@ -11906,7 +11544,7 @@ gResolverLookupByNameWithFlagsFinish <- function(resolver, result) {
 #' @return GLib.List
 #' @export
 gResolverLookupRecords <- function(resolver, rrname, record_type, cancellable) {
-  .Call("R_g_resolver_lookup_records", resolver, rrname, record_type, cancellable)
+  .Call("R_g_resolver_lookup_records", resolver, rrname, record_type, cancellable)$result
 }
 
 
@@ -11918,7 +11556,7 @@ gResolverLookupRecords <- function(resolver, rrname, record_type, cancellable) {
 #' @return GLib.List
 #' @export
 gResolverLookupRecordsFinish <- function(resolver, result) {
-  .Call("R_g_resolver_lookup_records_finish", resolver, result)
+  .Call("R_g_resolver_lookup_records_finish", resolver, result)$result
 }
 
 
@@ -11933,7 +11571,7 @@ gResolverLookupRecordsFinish <- function(resolver, result) {
 #' @return GLib.List
 #' @export
 gResolverLookupService <- function(resolver, service, protocol, domain, cancellable) {
-  .Call("R_g_resolver_lookup_service", resolver, service, protocol, domain, cancellable)
+  .Call("R_g_resolver_lookup_service", resolver, service, protocol, domain, cancellable)$result
 }
 
 
@@ -11945,7 +11583,7 @@ gResolverLookupService <- function(resolver, service, protocol, domain, cancella
 #' @return GLib.List
 #' @export
 gResolverLookupServiceFinish <- function(resolver, result) {
-  .Call("R_g_resolver_lookup_service_finish", resolver, result)
+  .Call("R_g_resolver_lookup_service_finish", resolver, result)$result
 }
 
 
@@ -11978,7 +11616,7 @@ gResolverSetTimeout <- function(resolver, timeout_ms) {
 #' @return GLib.Quark
 #' @export
 gResolverErrorQuark <- function() {
-  .Call("R_g_resolver_error_quark")
+  .Call("R_g_resolver_error_quark")$result
 }
 
 
@@ -11989,7 +11627,7 @@ gResolverErrorQuark <- function() {
 #' @return Resource
 #' @export
 gResourceNewFromData <- function(data) {
-  .Call("R_g_resource_new_from_data", data)
+  .Call("R_g_resource_new_from_data", data)$result
 }
 
 
@@ -12024,7 +11662,7 @@ gResourcesUnregister <- function(resource) {
 #' @return utf8
 #' @export
 gResourceEnumerateChildren <- function(resource, path, lookup_flags) {
-  .Call("R_g_resource_enumerate_children", resource, path, lookup_flags)
+  .Call("R_g_resource_enumerate_children", resource, path, lookup_flags)$result
 }
 
 
@@ -12049,7 +11687,7 @@ gResourceGetInfo <- function(resource, path, lookup_flags) {
 #' @return gboolean
 #' @export
 gResourceHasChildren <- function(resource, path) {
-  .Call("R_g_resource_has_children", resource, path)
+  .Call("R_g_resource_has_children", resource, path)$result
 }
 
 
@@ -12062,7 +11700,7 @@ gResourceHasChildren <- function(resource, path) {
 #' @return GLib.Bytes
 #' @export
 gResourceLookupData <- function(resource, path, lookup_flags) {
-  .Call("R_g_resource_lookup_data", resource, path, lookup_flags)
+  .Call("R_g_resource_lookup_data", resource, path, lookup_flags)$result
 }
 
 
@@ -12075,7 +11713,7 @@ gResourceLookupData <- function(resource, path, lookup_flags) {
 #' @return InputStream
 #' @export
 gResourceOpenStream <- function(resource, path, lookup_flags) {
-  .Call("R_g_resource_open_stream", resource, path, lookup_flags)
+  .Call("R_g_resource_open_stream", resource, path, lookup_flags)$result
 }
 
 
@@ -12086,7 +11724,7 @@ gResourceOpenStream <- function(resource, path, lookup_flags) {
 #' @return Resource
 #' @export
 gResourceRef <- function(resource) {
-  .Call("R_g_resource_ref", resource)
+  .Call("R_g_resource_ref", resource)$result
 }
 
 
@@ -12108,7 +11746,7 @@ gResourceUnref <- function(resource) {
 #' @return Resource
 #' @export
 gResourceLoad <- function(filename) {
-  .Call("R_g_resource_load", filename)
+  .Call("R_g_resource_load", filename)$result
 }
 
 
@@ -12118,7 +11756,7 @@ gResourceLoad <- function(filename) {
 #' @return GLib.Quark
 #' @export
 gResourceErrorQuark <- function() {
-  .Call("R_g_resource_error_quark")
+  .Call("R_g_resource_error_quark")$result
 }
 
 
@@ -12129,7 +11767,7 @@ gResourceErrorQuark <- function() {
 #' @return gboolean
 #' @export
 gSeekableCanSeek <- function(seekable) {
-  .Call("R_g_seekable_can_seek", seekable)
+  .Call("R_g_seekable_can_seek", seekable)$result
 }
 
 
@@ -12140,7 +11778,7 @@ gSeekableCanSeek <- function(seekable) {
 #' @return gboolean
 #' @export
 gSeekableCanTruncate <- function(seekable) {
-  .Call("R_g_seekable_can_truncate", seekable)
+  .Call("R_g_seekable_can_truncate", seekable)$result
 }
 
 
@@ -12154,7 +11792,7 @@ gSeekableCanTruncate <- function(seekable) {
 #' @return gboolean
 #' @export
 gSeekableSeek <- function(seekable, offset, type, cancellable) {
-  .Call("R_g_seekable_seek", seekable, offset, type, cancellable)
+  .Call("R_g_seekable_seek", seekable, offset, type, cancellable)$result
 }
 
 
@@ -12165,7 +11803,7 @@ gSeekableSeek <- function(seekable, offset, type, cancellable) {
 #' @return gint64
 #' @export
 gSeekableTell <- function(seekable) {
-  .Call("R_g_seekable_tell", seekable)
+  .Call("R_g_seekable_tell", seekable)$result
 }
 
 
@@ -12178,7 +11816,7 @@ gSeekableTell <- function(seekable) {
 #' @return gboolean
 #' @export
 gSeekableTruncate <- function(seekable, offset, cancellable) {
-  .Call("R_g_seekable_truncate", seekable, offset, cancellable)
+  .Call("R_g_seekable_truncate", seekable, offset, cancellable)$result
 }
 
 
@@ -12189,7 +11827,7 @@ gSeekableTruncate <- function(seekable, offset, cancellable) {
 #' @return Settings
 #' @export
 gSettingsNew <- function(schema_id) {
-  .Call("R_g_settings_new", schema_id)
+  .Call("R_g_settings_new", schema_id)$result
 }
 
 
@@ -12202,7 +11840,7 @@ gSettingsNew <- function(schema_id) {
 #' @return Settings
 #' @export
 gSettingsNewFull <- function(schema, backend, path) {
-  .Call("R_g_settings_new_full", schema, backend, path)
+  .Call("R_g_settings_new_full", schema, backend, path)$result
 }
 
 
@@ -12214,7 +11852,7 @@ gSettingsNewFull <- function(schema, backend, path) {
 #' @return Settings
 #' @export
 gSettingsNewWithBackend <- function(schema_id, backend) {
-  .Call("R_g_settings_new_with_backend", schema_id, backend)
+  .Call("R_g_settings_new_with_backend", schema_id, backend)$result
 }
 
 
@@ -12227,7 +11865,7 @@ gSettingsNewWithBackend <- function(schema_id, backend) {
 #' @return Settings
 #' @export
 gSettingsNewWithBackendAndPath <- function(schema_id, backend, path) {
-  .Call("R_g_settings_new_with_backend_and_path", schema_id, backend, path)
+  .Call("R_g_settings_new_with_backend_and_path", schema_id, backend, path)$result
 }
 
 
@@ -12239,7 +11877,7 @@ gSettingsNewWithBackendAndPath <- function(schema_id, backend, path) {
 #' @return Settings
 #' @export
 gSettingsNewWithPath <- function(schema_id, path) {
-  .Call("R_g_settings_new_with_path", schema_id, path)
+  .Call("R_g_settings_new_with_path", schema_id, path)$result
 }
 
 
@@ -12249,7 +11887,7 @@ gSettingsNewWithPath <- function(schema_id, path) {
 #' @return utf8
 #' @export
 gSettingsListRelocatableSchemas <- function() {
-  .Call("R_g_settings_list_relocatable_schemas")
+  .Call("R_g_settings_list_relocatable_schemas")$result
 }
 
 
@@ -12259,7 +11897,7 @@ gSettingsListRelocatableSchemas <- function() {
 #' @return utf8
 #' @export
 gSettingsListSchemas <- function() {
-  .Call("R_g_settings_list_schemas")
+  .Call("R_g_settings_list_schemas")$result
 }
 
 
@@ -12351,7 +11989,7 @@ gSettingsBindWritable <- function(settings, key, object, property, inverted) {
 #' @return Action
 #' @export
 gSettingsCreateAction <- function(settings, key) {
-  .Call("R_g_settings_create_action", settings, key)
+  .Call("R_g_settings_create_action", settings, key)$result
 }
 
 
@@ -12374,7 +12012,7 @@ gSettingsDelay <- function(settings) {
 #' @return gboolean
 #' @export
 gSettingsGetBoolean <- function(settings, key) {
-  .Call("R_g_settings_get_boolean", settings, key)
+  .Call("R_g_settings_get_boolean", settings, key)$result
 }
 
 
@@ -12386,7 +12024,7 @@ gSettingsGetBoolean <- function(settings, key) {
 #' @return Settings
 #' @export
 gSettingsGetChild <- function(settings, name) {
-  .Call("R_g_settings_get_child", settings, name)
+  .Call("R_g_settings_get_child", settings, name)$result
 }
 
 
@@ -12398,7 +12036,7 @@ gSettingsGetChild <- function(settings, name) {
 #' @return GLib.Variant
 #' @export
 gSettingsGetDefaultValue <- function(settings, key) {
-  .Call("R_g_settings_get_default_value", settings, key)
+  .Call("R_g_settings_get_default_value", settings, key)$result
 }
 
 
@@ -12410,7 +12048,7 @@ gSettingsGetDefaultValue <- function(settings, key) {
 #' @return gdouble
 #' @export
 gSettingsGetDouble <- function(settings, key) {
-  .Call("R_g_settings_get_double", settings, key)
+  .Call("R_g_settings_get_double", settings, key)$result
 }
 
 
@@ -12422,7 +12060,7 @@ gSettingsGetDouble <- function(settings, key) {
 #' @return gint
 #' @export
 gSettingsGetEnum <- function(settings, key) {
-  .Call("R_g_settings_get_enum", settings, key)
+  .Call("R_g_settings_get_enum", settings, key)$result
 }
 
 
@@ -12434,7 +12072,7 @@ gSettingsGetEnum <- function(settings, key) {
 #' @return guint
 #' @export
 gSettingsGetFlags <- function(settings, key) {
-  .Call("R_g_settings_get_flags", settings, key)
+  .Call("R_g_settings_get_flags", settings, key)$result
 }
 
 
@@ -12445,7 +12083,7 @@ gSettingsGetFlags <- function(settings, key) {
 #' @return gboolean
 #' @export
 gSettingsGetHasUnapplied <- function(settings) {
-  .Call("R_g_settings_get_has_unapplied", settings)
+  .Call("R_g_settings_get_has_unapplied", settings)$result
 }
 
 
@@ -12457,7 +12095,7 @@ gSettingsGetHasUnapplied <- function(settings) {
 #' @return gint
 #' @export
 gSettingsGetInt <- function(settings, key) {
-  .Call("R_g_settings_get_int", settings, key)
+  .Call("R_g_settings_get_int", settings, key)$result
 }
 
 
@@ -12469,7 +12107,7 @@ gSettingsGetInt <- function(settings, key) {
 #' @return gint64
 #' @export
 gSettingsGetInt64 <- function(settings, key) {
-  .Call("R_g_settings_get_int64", settings, key)
+  .Call("R_g_settings_get_int64", settings, key)$result
 }
 
 
@@ -12483,7 +12121,7 @@ gSettingsGetInt64 <- function(settings, key) {
 #' @return gpointer
 #' @export
 gSettingsGetMapped <- function(settings, key, mapping, user_data) {
-  .Call("R_g_settings_get_mapped", settings, key, mapping, user_data)
+  .Call("R_g_settings_get_mapped", settings, key, mapping, user_data)$result
 }
 
 
@@ -12495,7 +12133,7 @@ gSettingsGetMapped <- function(settings, key, mapping, user_data) {
 #' @return GLib.Variant
 #' @export
 gSettingsGetRange <- function(settings, key) {
-  .Call("R_g_settings_get_range", settings, key)
+  .Call("R_g_settings_get_range", settings, key)$result
 }
 
 
@@ -12507,7 +12145,7 @@ gSettingsGetRange <- function(settings, key) {
 #' @return utf8
 #' @export
 gSettingsGetString <- function(settings, key) {
-  .Call("R_g_settings_get_string", settings, key)
+  .Call("R_g_settings_get_string", settings, key)$result
 }
 
 
@@ -12519,7 +12157,7 @@ gSettingsGetString <- function(settings, key) {
 #' @return utf8
 #' @export
 gSettingsGetStrv <- function(settings, key) {
-  .Call("R_g_settings_get_strv", settings, key)
+  .Call("R_g_settings_get_strv", settings, key)$result
 }
 
 
@@ -12531,7 +12169,7 @@ gSettingsGetStrv <- function(settings, key) {
 #' @return guint
 #' @export
 gSettingsGetUint <- function(settings, key) {
-  .Call("R_g_settings_get_uint", settings, key)
+  .Call("R_g_settings_get_uint", settings, key)$result
 }
 
 
@@ -12543,7 +12181,7 @@ gSettingsGetUint <- function(settings, key) {
 #' @return guint64
 #' @export
 gSettingsGetUint64 <- function(settings, key) {
-  .Call("R_g_settings_get_uint64", settings, key)
+  .Call("R_g_settings_get_uint64", settings, key)$result
 }
 
 
@@ -12555,7 +12193,7 @@ gSettingsGetUint64 <- function(settings, key) {
 #' @return GLib.Variant
 #' @export
 gSettingsGetUserValue <- function(settings, key) {
-  .Call("R_g_settings_get_user_value", settings, key)
+  .Call("R_g_settings_get_user_value", settings, key)$result
 }
 
 
@@ -12567,7 +12205,7 @@ gSettingsGetUserValue <- function(settings, key) {
 #' @return GLib.Variant
 #' @export
 gSettingsGetValue <- function(settings, key) {
-  .Call("R_g_settings_get_value", settings, key)
+  .Call("R_g_settings_get_value", settings, key)$result
 }
 
 
@@ -12579,7 +12217,7 @@ gSettingsGetValue <- function(settings, key) {
 #' @return gboolean
 #' @export
 gSettingsIsWritable <- function(settings, name) {
-  .Call("R_g_settings_is_writable", settings, name)
+  .Call("R_g_settings_is_writable", settings, name)$result
 }
 
 
@@ -12590,7 +12228,7 @@ gSettingsIsWritable <- function(settings, name) {
 #' @return utf8
 #' @export
 gSettingsListChildren <- function(settings) {
-  .Call("R_g_settings_list_children", settings)
+  .Call("R_g_settings_list_children", settings)$result
 }
 
 
@@ -12601,7 +12239,7 @@ gSettingsListChildren <- function(settings) {
 #' @return utf8
 #' @export
 gSettingsListKeys <- function(settings) {
-  .Call("R_g_settings_list_keys", settings)
+  .Call("R_g_settings_list_keys", settings)$result
 }
 
 
@@ -12614,7 +12252,7 @@ gSettingsListKeys <- function(settings) {
 #' @return gboolean
 #' @export
 gSettingsRangeCheck <- function(settings, key, value) {
-  .Call("R_g_settings_range_check", settings, key, value)
+  .Call("R_g_settings_range_check", settings, key, value)$result
 }
 
 
@@ -12650,7 +12288,7 @@ gSettingsRevert <- function(settings) {
 #' @return gboolean
 #' @export
 gSettingsSetBoolean <- function(settings, key, value) {
-  .Call("R_g_settings_set_boolean", settings, key, value)
+  .Call("R_g_settings_set_boolean", settings, key, value)$result
 }
 
 
@@ -12663,7 +12301,7 @@ gSettingsSetBoolean <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetDouble <- function(settings, key, value) {
-  .Call("R_g_settings_set_double", settings, key, value)
+  .Call("R_g_settings_set_double", settings, key, value)$result
 }
 
 
@@ -12676,7 +12314,7 @@ gSettingsSetDouble <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetEnum <- function(settings, key, value) {
-  .Call("R_g_settings_set_enum", settings, key, value)
+  .Call("R_g_settings_set_enum", settings, key, value)$result
 }
 
 
@@ -12689,7 +12327,7 @@ gSettingsSetEnum <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetFlags <- function(settings, key, value) {
-  .Call("R_g_settings_set_flags", settings, key, value)
+  .Call("R_g_settings_set_flags", settings, key, value)$result
 }
 
 
@@ -12702,7 +12340,7 @@ gSettingsSetFlags <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetInt <- function(settings, key, value) {
-  .Call("R_g_settings_set_int", settings, key, value)
+  .Call("R_g_settings_set_int", settings, key, value)$result
 }
 
 
@@ -12715,7 +12353,7 @@ gSettingsSetInt <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetInt64 <- function(settings, key, value) {
-  .Call("R_g_settings_set_int64", settings, key, value)
+  .Call("R_g_settings_set_int64", settings, key, value)$result
 }
 
 
@@ -12728,7 +12366,7 @@ gSettingsSetInt64 <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetString <- function(settings, key, value) {
-  .Call("R_g_settings_set_string", settings, key, value)
+  .Call("R_g_settings_set_string", settings, key, value)$result
 }
 
 
@@ -12741,7 +12379,7 @@ gSettingsSetString <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetStrv <- function(settings, key, value) {
-  .Call("R_g_settings_set_strv", settings, key, value)
+  .Call("R_g_settings_set_strv", settings, key, value)$result
 }
 
 
@@ -12754,7 +12392,7 @@ gSettingsSetStrv <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetUint <- function(settings, key, value) {
-  .Call("R_g_settings_set_uint", settings, key, value)
+  .Call("R_g_settings_set_uint", settings, key, value)$result
 }
 
 
@@ -12767,7 +12405,7 @@ gSettingsSetUint <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetUint64 <- function(settings, key, value) {
-  .Call("R_g_settings_set_uint64", settings, key, value)
+  .Call("R_g_settings_set_uint64", settings, key, value)$result
 }
 
 
@@ -12780,7 +12418,7 @@ gSettingsSetUint64 <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetValue <- function(settings, key, value) {
-  .Call("R_g_settings_set_value", settings, key, value)
+  .Call("R_g_settings_set_value", settings, key, value)$result
 }
 
 
@@ -12801,7 +12439,7 @@ gSettingsBackendFlattenTree <- function(tree) {
 #' @return SettingsBackend
 #' @export
 gSettingsBackendGetDefault <- function() {
-  .Call("R_g_settings_backend_get_default")
+  .Call("R_g_settings_backend_get_default")$result
 }
 
 
@@ -12889,7 +12527,7 @@ gSettingsBackendWritableChanged <- function(backend, key) {
 #' @return utf8
 #' @export
 gSettingsSchemaGetId <- function(schema) {
-  .Call("R_g_settings_schema_get_id", schema)
+  .Call("R_g_settings_schema_get_id", schema)$result
 }
 
 
@@ -12901,7 +12539,7 @@ gSettingsSchemaGetId <- function(schema) {
 #' @return SettingsSchemaKey
 #' @export
 gSettingsSchemaGetKey <- function(schema, name) {
-  .Call("R_g_settings_schema_get_key", schema, name)
+  .Call("R_g_settings_schema_get_key", schema, name)$result
 }
 
 
@@ -12912,7 +12550,7 @@ gSettingsSchemaGetKey <- function(schema, name) {
 #' @return utf8
 #' @export
 gSettingsSchemaGetPath <- function(schema) {
-  .Call("R_g_settings_schema_get_path", schema)
+  .Call("R_g_settings_schema_get_path", schema)$result
 }
 
 
@@ -12924,7 +12562,7 @@ gSettingsSchemaGetPath <- function(schema) {
 #' @return gboolean
 #' @export
 gSettingsSchemaHasKey <- function(schema, name) {
-  .Call("R_g_settings_schema_has_key", schema, name)
+  .Call("R_g_settings_schema_has_key", schema, name)$result
 }
 
 
@@ -12935,7 +12573,7 @@ gSettingsSchemaHasKey <- function(schema, name) {
 #' @return utf8
 #' @export
 gSettingsSchemaListChildren <- function(schema) {
-  .Call("R_g_settings_schema_list_children", schema)
+  .Call("R_g_settings_schema_list_children", schema)$result
 }
 
 
@@ -12946,7 +12584,7 @@ gSettingsSchemaListChildren <- function(schema) {
 #' @return utf8
 #' @export
 gSettingsSchemaListKeys <- function(schema) {
-  .Call("R_g_settings_schema_list_keys", schema)
+  .Call("R_g_settings_schema_list_keys", schema)$result
 }
 
 
@@ -12957,7 +12595,7 @@ gSettingsSchemaListKeys <- function(schema) {
 #' @return SettingsSchema
 #' @export
 gSettingsSchemaRef <- function(schema) {
-  .Call("R_g_settings_schema_ref", schema)
+  .Call("R_g_settings_schema_ref", schema)$result
 }
 
 
@@ -12979,7 +12617,7 @@ gSettingsSchemaUnref <- function(schema) {
 #' @return GLib.Variant
 #' @export
 gSettingsSchemaKeyGetDefaultValue <- function(key) {
-  .Call("R_g_settings_schema_key_get_default_value", key)
+  .Call("R_g_settings_schema_key_get_default_value", key)$result
 }
 
 
@@ -12990,7 +12628,7 @@ gSettingsSchemaKeyGetDefaultValue <- function(key) {
 #' @return utf8
 #' @export
 gSettingsSchemaKeyGetDescription <- function(key) {
-  .Call("R_g_settings_schema_key_get_description", key)
+  .Call("R_g_settings_schema_key_get_description", key)$result
 }
 
 
@@ -13001,7 +12639,7 @@ gSettingsSchemaKeyGetDescription <- function(key) {
 #' @return utf8
 #' @export
 gSettingsSchemaKeyGetName <- function(key) {
-  .Call("R_g_settings_schema_key_get_name", key)
+  .Call("R_g_settings_schema_key_get_name", key)$result
 }
 
 
@@ -13012,7 +12650,7 @@ gSettingsSchemaKeyGetName <- function(key) {
 #' @return GLib.Variant
 #' @export
 gSettingsSchemaKeyGetRange <- function(key) {
-  .Call("R_g_settings_schema_key_get_range", key)
+  .Call("R_g_settings_schema_key_get_range", key)$result
 }
 
 
@@ -13023,7 +12661,7 @@ gSettingsSchemaKeyGetRange <- function(key) {
 #' @return utf8
 #' @export
 gSettingsSchemaKeyGetSummary <- function(key) {
-  .Call("R_g_settings_schema_key_get_summary", key)
+  .Call("R_g_settings_schema_key_get_summary", key)$result
 }
 
 
@@ -13034,7 +12672,7 @@ gSettingsSchemaKeyGetSummary <- function(key) {
 #' @return GLib.VariantType
 #' @export
 gSettingsSchemaKeyGetValueType <- function(key) {
-  .Call("R_g_settings_schema_key_get_value_type", key)
+  .Call("R_g_settings_schema_key_get_value_type", key)$result
 }
 
 
@@ -13046,7 +12684,7 @@ gSettingsSchemaKeyGetValueType <- function(key) {
 #' @return gboolean
 #' @export
 gSettingsSchemaKeyRangeCheck <- function(key, value) {
-  .Call("R_g_settings_schema_key_range_check", key, value)
+  .Call("R_g_settings_schema_key_range_check", key, value)$result
 }
 
 
@@ -13057,7 +12695,7 @@ gSettingsSchemaKeyRangeCheck <- function(key, value) {
 #' @return SettingsSchemaKey
 #' @export
 gSettingsSchemaKeyRef <- function(key) {
-  .Call("R_g_settings_schema_key_ref", key)
+  .Call("R_g_settings_schema_key_ref", key)$result
 }
 
 
@@ -13081,7 +12719,7 @@ gSettingsSchemaKeyUnref <- function(key) {
 #' @return SettingsSchemaSource
 #' @export
 gSettingsSchemaSourceNewFromDirectory <- function(directory, parent, trusted) {
-  .Call("R_g_settings_schema_source_new_from_directory", directory, parent, trusted)
+  .Call("R_g_settings_schema_source_new_from_directory", directory, parent, trusted)$result
 }
 
 
@@ -13106,7 +12744,7 @@ gSettingsSchemaSourceListSchemas <- function(source, recursive) {
 #' @return SettingsSchema
 #' @export
 gSettingsSchemaSourceLookup <- function(source, schema_id, recursive) {
-  .Call("R_g_settings_schema_source_lookup", source, schema_id, recursive)
+  .Call("R_g_settings_schema_source_lookup", source, schema_id, recursive)$result
 }
 
 
@@ -13117,7 +12755,7 @@ gSettingsSchemaSourceLookup <- function(source, schema_id, recursive) {
 #' @return SettingsSchemaSource
 #' @export
 gSettingsSchemaSourceRef <- function(source) {
-  .Call("R_g_settings_schema_source_ref", source)
+  .Call("R_g_settings_schema_source_ref", source)$result
 }
 
 
@@ -13138,7 +12776,7 @@ gSettingsSchemaSourceUnref <- function(source) {
 #' @return SettingsSchemaSource
 #' @export
 gSettingsSchemaSourceGetDefault <- function() {
-  .Call("R_g_settings_schema_source_get_default")
+  .Call("R_g_settings_schema_source_get_default")$result
 }
 
 
@@ -13150,7 +12788,7 @@ gSettingsSchemaSourceGetDefault <- function() {
 #' @return SimpleAction
 #' @export
 gSimpleActionNew <- function(name, parameter_type) {
-  .Call("R_g_simple_action_new", name, parameter_type)
+  .Call("R_g_simple_action_new", name, parameter_type)$result
 }
 
 
@@ -13163,7 +12801,7 @@ gSimpleActionNew <- function(name, parameter_type) {
 #' @return SimpleAction
 #' @export
 gSimpleActionNewStateful <- function(name, parameter_type, state) {
-  .Call("R_g_simple_action_new_stateful", name, parameter_type, state)
+  .Call("R_g_simple_action_new_stateful", name, parameter_type, state)$result
 }
 
 
@@ -13209,7 +12847,7 @@ gSimpleActionSetStateHint <- function(simple, state_hint) {
 #' @return SimpleActionGroup
 #' @export
 gSimpleActionGroupNew <- function() {
-  .Call("R_g_simple_action_group_new")
+  .Call("R_g_simple_action_group_new")$result
 }
 
 
@@ -13247,7 +12885,7 @@ gSimpleActionGroupInsert <- function(simple, action) {
 #' @return Action
 #' @export
 gSimpleActionGroupLookup <- function(simple, action_name) {
-  .Call("R_g_simple_action_group_lookup", simple, action_name)
+  .Call("R_g_simple_action_group_lookup", simple, action_name)$result
 }
 
 
@@ -13272,7 +12910,7 @@ gSimpleActionGroupRemove <- function(simple, action_name) {
 #' @return gboolean
 #' @export
 gSimpleAsyncResultIsValid <- function(result, source, source_tag) {
-  .Call("R_g_simple_async_result_is_valid", result, source, source_tag)
+  .Call("R_g_simple_async_result_is_valid", result, source, source_tag)$result
 }
 
 
@@ -13305,7 +12943,7 @@ gSimpleAsyncResultCompleteInIdle <- function(simple) {
 #' @return gboolean
 #' @export
 gSimpleAsyncResultGetOpResGboolean <- function(simple) {
-  .Call("R_g_simple_async_result_get_op_res_gboolean", simple)
+  .Call("R_g_simple_async_result_get_op_res_gboolean", simple)$result
 }
 
 
@@ -13316,7 +12954,7 @@ gSimpleAsyncResultGetOpResGboolean <- function(simple) {
 #' @return gssize
 #' @export
 gSimpleAsyncResultGetOpResGssize <- function(simple) {
-  .Call("R_g_simple_async_result_get_op_res_gssize", simple)
+  .Call("R_g_simple_async_result_get_op_res_gssize", simple)$result
 }
 
 
@@ -13327,7 +12965,7 @@ gSimpleAsyncResultGetOpResGssize <- function(simple) {
 #' @return gboolean
 #' @export
 gSimpleAsyncResultPropagateError <- function(simple) {
-  .Call("R_g_simple_async_result_propagate_error", simple)
+  .Call("R_g_simple_async_result_propagate_error", simple)$result
 }
 
 
@@ -13399,7 +13037,7 @@ gSimpleAsyncResultSetOpResGssize <- function(simple, op_res) {
 #' @return IOStream
 #' @export
 gSimpleIoStreamNew <- function(input_stream, output_stream) {
-  .Call("R_g_simple_io_stream_new", input_stream, output_stream)
+  .Call("R_g_simple_io_stream_new", input_stream, output_stream)$result
 }
 
 
@@ -13410,7 +13048,7 @@ gSimpleIoStreamNew <- function(input_stream, output_stream) {
 #' @return Permission
 #' @export
 gSimplePermissionNew <- function(allowed) {
-  .Call("R_g_simple_permission_new", allowed)
+  .Call("R_g_simple_permission_new", allowed)$result
 }
 
 
@@ -13422,7 +13060,7 @@ gSimplePermissionNew <- function(allowed) {
 #' @return ProxyResolver
 #' @export
 gSimpleProxyResolverNew <- function(default_proxy, ignore_hosts) {
-  .Call("R_g_simple_proxy_resolver_new", default_proxy, ignore_hosts)
+  .Call("R_g_simple_proxy_resolver_new", default_proxy, ignore_hosts)$result
 }
 
 
@@ -13472,7 +13110,7 @@ gSimpleProxyResolverSetUriProxy <- function(resolver, uri_scheme, proxy) {
 #' @return Socket
 #' @export
 gSocketNew <- function(family, type, protocol) {
-  .Call("R_g_socket_new", family, type, protocol)
+  .Call("R_g_socket_new", family, type, protocol)$result
 }
 
 
@@ -13483,7 +13121,7 @@ gSocketNew <- function(family, type, protocol) {
 #' @return Socket
 #' @export
 gSocketNewFromFd <- function(fd) {
-  .Call("R_g_socket_new_from_fd", fd)
+  .Call("R_g_socket_new_from_fd", fd)$result
 }
 
 
@@ -13495,7 +13133,7 @@ gSocketNewFromFd <- function(fd) {
 #' @return Socket
 #' @export
 gSocketAccept <- function(socket, cancellable) {
-  .Call("R_g_socket_accept", socket, cancellable)
+  .Call("R_g_socket_accept", socket, cancellable)$result
 }
 
 
@@ -13508,7 +13146,7 @@ gSocketAccept <- function(socket, cancellable) {
 #' @return gboolean
 #' @export
 gSocketBind <- function(socket, address, allow_reuse) {
-  .Call("R_g_socket_bind", socket, address, allow_reuse)
+  .Call("R_g_socket_bind", socket, address, allow_reuse)$result
 }
 
 
@@ -13519,7 +13157,7 @@ gSocketBind <- function(socket, address, allow_reuse) {
 #' @return gboolean
 #' @export
 gSocketCheckConnectResult <- function(socket) {
-  .Call("R_g_socket_check_connect_result", socket)
+  .Call("R_g_socket_check_connect_result", socket)$result
 }
 
 
@@ -13530,7 +13168,7 @@ gSocketCheckConnectResult <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketClose <- function(socket) {
-  .Call("R_g_socket_close", socket)
+  .Call("R_g_socket_close", socket)$result
 }
 
 
@@ -13542,7 +13180,7 @@ gSocketClose <- function(socket) {
 #' @return GLib.IOCondition
 #' @export
 gSocketConditionCheck <- function(socket, condition) {
-  .Call("R_g_socket_condition_check", socket, condition)
+  .Call("R_g_socket_condition_check", socket, condition)$result
 }
 
 
@@ -13556,7 +13194,7 @@ gSocketConditionCheck <- function(socket, condition) {
 #' @return gboolean
 #' @export
 gSocketConditionTimedWait <- function(socket, condition, timeout_us, cancellable) {
-  .Call("R_g_socket_condition_timed_wait", socket, condition, timeout_us, cancellable)
+  .Call("R_g_socket_condition_timed_wait", socket, condition, timeout_us, cancellable)$result
 }
 
 
@@ -13569,7 +13207,7 @@ gSocketConditionTimedWait <- function(socket, condition, timeout_us, cancellable
 #' @return gboolean
 #' @export
 gSocketConditionWait <- function(socket, condition, cancellable) {
-  .Call("R_g_socket_condition_wait", socket, condition, cancellable)
+  .Call("R_g_socket_condition_wait", socket, condition, cancellable)$result
 }
 
 
@@ -13582,7 +13220,7 @@ gSocketConditionWait <- function(socket, condition, cancellable) {
 #' @return gboolean
 #' @export
 gSocketConnect <- function(socket, address, cancellable) {
-  .Call("R_g_socket_connect", socket, address, cancellable)
+  .Call("R_g_socket_connect", socket, address, cancellable)$result
 }
 
 
@@ -13593,7 +13231,7 @@ gSocketConnect <- function(socket, address, cancellable) {
 #' @return SocketConnection
 #' @export
 gSocketConnectionFactoryCreateConnection <- function(socket) {
-  .Call("R_g_socket_connection_factory_create_connection", socket)
+  .Call("R_g_socket_connection_factory_create_connection", socket)$result
 }
 
 
@@ -13604,7 +13242,7 @@ gSocketConnectionFactoryCreateConnection <- function(socket) {
 #' @return gssize
 #' @export
 gSocketGetAvailableBytes <- function(socket) {
-  .Call("R_g_socket_get_available_bytes", socket)
+  .Call("R_g_socket_get_available_bytes", socket)$result
 }
 
 
@@ -13615,7 +13253,7 @@ gSocketGetAvailableBytes <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketGetBlocking <- function(socket) {
-  .Call("R_g_socket_get_blocking", socket)
+  .Call("R_g_socket_get_blocking", socket)$result
 }
 
 
@@ -13626,7 +13264,7 @@ gSocketGetBlocking <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketGetBroadcast <- function(socket) {
-  .Call("R_g_socket_get_broadcast", socket)
+  .Call("R_g_socket_get_broadcast", socket)$result
 }
 
 
@@ -13637,7 +13275,7 @@ gSocketGetBroadcast <- function(socket) {
 #' @return Credentials
 #' @export
 gSocketGetCredentials <- function(socket) {
-  .Call("R_g_socket_get_credentials", socket)
+  .Call("R_g_socket_get_credentials", socket)$result
 }
 
 
@@ -13648,7 +13286,7 @@ gSocketGetCredentials <- function(socket) {
 #' @return SocketFamily
 #' @export
 gSocketGetFamily <- function(socket) {
-  .Call("R_g_socket_get_family", socket)
+  .Call("R_g_socket_get_family", socket)$result
 }
 
 
@@ -13659,7 +13297,7 @@ gSocketGetFamily <- function(socket) {
 #' @return gint
 #' @export
 gSocketGetFd <- function(socket) {
-  .Call("R_g_socket_get_fd", socket)
+  .Call("R_g_socket_get_fd", socket)$result
 }
 
 
@@ -13670,7 +13308,7 @@ gSocketGetFd <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketGetKeepalive <- function(socket) {
-  .Call("R_g_socket_get_keepalive", socket)
+  .Call("R_g_socket_get_keepalive", socket)$result
 }
 
 
@@ -13681,7 +13319,7 @@ gSocketGetKeepalive <- function(socket) {
 #' @return gint
 #' @export
 gSocketGetListenBacklog <- function(socket) {
-  .Call("R_g_socket_get_listen_backlog", socket)
+  .Call("R_g_socket_get_listen_backlog", socket)$result
 }
 
 
@@ -13692,7 +13330,7 @@ gSocketGetListenBacklog <- function(socket) {
 #' @return SocketAddress
 #' @export
 gSocketGetLocalAddress <- function(socket) {
-  .Call("R_g_socket_get_local_address", socket)
+  .Call("R_g_socket_get_local_address", socket)$result
 }
 
 
@@ -13703,7 +13341,7 @@ gSocketGetLocalAddress <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketGetMulticastLoopback <- function(socket) {
-  .Call("R_g_socket_get_multicast_loopback", socket)
+  .Call("R_g_socket_get_multicast_loopback", socket)$result
 }
 
 
@@ -13714,7 +13352,7 @@ gSocketGetMulticastLoopback <- function(socket) {
 #' @return guint
 #' @export
 gSocketGetMulticastTtl <- function(socket) {
-  .Call("R_g_socket_get_multicast_ttl", socket)
+  .Call("R_g_socket_get_multicast_ttl", socket)$result
 }
 
 
@@ -13738,7 +13376,7 @@ gSocketGetOption <- function(socket, level, optname) {
 #' @return SocketProtocol
 #' @export
 gSocketGetProtocol <- function(socket) {
-  .Call("R_g_socket_get_protocol", socket)
+  .Call("R_g_socket_get_protocol", socket)$result
 }
 
 
@@ -13749,7 +13387,7 @@ gSocketGetProtocol <- function(socket) {
 #' @return SocketAddress
 #' @export
 gSocketGetRemoteAddress <- function(socket) {
-  .Call("R_g_socket_get_remote_address", socket)
+  .Call("R_g_socket_get_remote_address", socket)$result
 }
 
 
@@ -13760,7 +13398,7 @@ gSocketGetRemoteAddress <- function(socket) {
 #' @return SocketType
 #' @export
 gSocketGetSocketType <- function(socket) {
-  .Call("R_g_socket_get_socket_type", socket)
+  .Call("R_g_socket_get_socket_type", socket)$result
 }
 
 
@@ -13771,7 +13409,7 @@ gSocketGetSocketType <- function(socket) {
 #' @return guint
 #' @export
 gSocketGetTimeout <- function(socket) {
-  .Call("R_g_socket_get_timeout", socket)
+  .Call("R_g_socket_get_timeout", socket)$result
 }
 
 
@@ -13782,7 +13420,7 @@ gSocketGetTimeout <- function(socket) {
 #' @return guint
 #' @export
 gSocketGetTtl <- function(socket) {
-  .Call("R_g_socket_get_ttl", socket)
+  .Call("R_g_socket_get_ttl", socket)$result
 }
 
 
@@ -13793,7 +13431,7 @@ gSocketGetTtl <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketIsClosed <- function(socket) {
-  .Call("R_g_socket_is_closed", socket)
+  .Call("R_g_socket_is_closed", socket)$result
 }
 
 
@@ -13804,7 +13442,7 @@ gSocketIsClosed <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketIsConnected <- function(socket) {
-  .Call("R_g_socket_is_connected", socket)
+  .Call("R_g_socket_is_connected", socket)$result
 }
 
 
@@ -13818,7 +13456,7 @@ gSocketIsConnected <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketJoinMulticastGroup <- function(socket, group, source_specific, iface) {
-  .Call("R_g_socket_join_multicast_group", socket, group, source_specific, iface)
+  .Call("R_g_socket_join_multicast_group", socket, group, source_specific, iface)$result
 }
 
 
@@ -13832,7 +13470,7 @@ gSocketJoinMulticastGroup <- function(socket, group, source_specific, iface) {
 #' @return gboolean
 #' @export
 gSocketJoinMulticastGroupSsm <- function(socket, group, source_specific, iface) {
-  .Call("R_g_socket_join_multicast_group_ssm", socket, group, source_specific, iface)
+  .Call("R_g_socket_join_multicast_group_ssm", socket, group, source_specific, iface)$result
 }
 
 
@@ -13846,7 +13484,7 @@ gSocketJoinMulticastGroupSsm <- function(socket, group, source_specific, iface) 
 #' @return gboolean
 #' @export
 gSocketLeaveMulticastGroup <- function(socket, group, source_specific, iface) {
-  .Call("R_g_socket_leave_multicast_group", socket, group, source_specific, iface)
+  .Call("R_g_socket_leave_multicast_group", socket, group, source_specific, iface)$result
 }
 
 
@@ -13860,7 +13498,7 @@ gSocketLeaveMulticastGroup <- function(socket, group, source_specific, iface) {
 #' @return gboolean
 #' @export
 gSocketLeaveMulticastGroupSsm <- function(socket, group, source_specific, iface) {
-  .Call("R_g_socket_leave_multicast_group_ssm", socket, group, source_specific, iface)
+  .Call("R_g_socket_leave_multicast_group_ssm", socket, group, source_specific, iface)$result
 }
 
 
@@ -13871,7 +13509,7 @@ gSocketLeaveMulticastGroupSsm <- function(socket, group, source_specific, iface)
 #' @return gboolean
 #' @export
 gSocketListen <- function(socket) {
-  .Call("R_g_socket_listen", socket)
+  .Call("R_g_socket_listen", socket)$result
 }
 
 
@@ -13898,7 +13536,7 @@ gSocketReceive <- function(socket, size, cancellable) {
 #' @return GLib.Bytes
 #' @export
 gSocketReceiveBytes <- function(socket, size, timeout_us, cancellable) {
-  .Call("R_g_socket_receive_bytes", socket, size, timeout_us, cancellable)
+  .Call("R_g_socket_receive_bytes", socket, size, timeout_us, cancellable)$result
 }
 
 
@@ -13954,7 +13592,7 @@ gSocketReceiveMessage <- function(socket, vectors, num_vectors, cancellable) {
 #' @return gint
 #' @export
 gSocketReceiveMessages <- function(socket, messages, num_messages, flags, cancellable) {
-  .Call("R_g_socket_receive_messages", socket, messages, num_messages, flags, cancellable)
+  .Call("R_g_socket_receive_messages", socket, messages, num_messages, flags, cancellable)$result
 }
 
 
@@ -13982,7 +13620,7 @@ gSocketReceiveWithBlocking <- function(socket, size, blocking, cancellable) {
 #' @return gssize
 #' @export
 gSocketSend <- function(socket, buffer, size, cancellable) {
-  .Call("R_g_socket_send", socket, buffer, size, cancellable)
+  .Call("R_g_socket_send", socket, buffer, size, cancellable)$result
 }
 
 
@@ -14000,7 +13638,7 @@ gSocketSend <- function(socket, buffer, size, cancellable) {
 #' @return gssize
 #' @export
 gSocketSendMessage <- function(socket, address, vectors, num_vectors, messages, num_messages, flags, cancellable) {
-  .Call("R_g_socket_send_message", socket, address, vectors, num_vectors, messages, num_messages, flags, cancellable)
+  .Call("R_g_socket_send_message", socket, address, vectors, num_vectors, messages, num_messages, flags, cancellable)$result
 }
 
 
@@ -14034,7 +13672,7 @@ gSocketSendMessageWithTimeout <- function(socket, address, vectors, num_vectors,
 #' @return gint
 #' @export
 gSocketSendMessages <- function(socket, messages, num_messages, flags, cancellable) {
-  .Call("R_g_socket_send_messages", socket, messages, num_messages, flags, cancellable)
+  .Call("R_g_socket_send_messages", socket, messages, num_messages, flags, cancellable)$result
 }
 
 
@@ -14049,7 +13687,7 @@ gSocketSendMessages <- function(socket, messages, num_messages, flags, cancellab
 #' @return gssize
 #' @export
 gSocketSendTo <- function(socket, address, buffer, size, cancellable) {
-  .Call("R_g_socket_send_to", socket, address, buffer, size, cancellable)
+  .Call("R_g_socket_send_to", socket, address, buffer, size, cancellable)$result
 }
 
 
@@ -14064,7 +13702,7 @@ gSocketSendTo <- function(socket, address, buffer, size, cancellable) {
 #' @return gssize
 #' @export
 gSocketSendWithBlocking <- function(socket, buffer, size, blocking, cancellable) {
-  .Call("R_g_socket_send_with_blocking", socket, buffer, size, blocking, cancellable)
+  .Call("R_g_socket_send_with_blocking", socket, buffer, size, blocking, cancellable)$result
 }
 
 
@@ -14150,7 +13788,7 @@ gSocketSetMulticastTtl <- function(socket, ttl) {
 #' @return gboolean
 #' @export
 gSocketSetOption <- function(socket, level, optname, value) {
-  .Call("R_g_socket_set_option", socket, level, optname, value)
+  .Call("R_g_socket_set_option", socket, level, optname, value)$result
 }
 
 
@@ -14187,7 +13825,7 @@ gSocketSetTtl <- function(socket, ttl) {
 #' @return gboolean
 #' @export
 gSocketShutdown <- function(socket, shutdown_read, shutdown_write) {
-  .Call("R_g_socket_shutdown", socket, shutdown_read, shutdown_write)
+  .Call("R_g_socket_shutdown", socket, shutdown_read, shutdown_write)$result
 }
 
 
@@ -14198,7 +13836,7 @@ gSocketShutdown <- function(socket, shutdown_read, shutdown_write) {
 #' @return gboolean
 #' @export
 gSocketSpeaksIpv4 <- function(socket) {
-  .Call("R_g_socket_speaks_ipv4", socket)
+  .Call("R_g_socket_speaks_ipv4", socket)$result
 }
 
 
@@ -14210,7 +13848,7 @@ gSocketSpeaksIpv4 <- function(socket) {
 #' @return SocketAddress
 #' @export
 gSocketAddressNewFromNative <- function(native, len) {
-  .Call("R_g_socket_address_new_from_native", native, len)
+  .Call("R_g_socket_address_new_from_native", native, len)$result
 }
 
 
@@ -14221,7 +13859,7 @@ gSocketAddressNewFromNative <- function(native, len) {
 #' @return SocketFamily
 #' @export
 gSocketAddressGetFamily <- function(address) {
-  .Call("R_g_socket_address_get_family", address)
+  .Call("R_g_socket_address_get_family", address)$result
 }
 
 
@@ -14232,7 +13870,7 @@ gSocketAddressGetFamily <- function(address) {
 #' @return gssize
 #' @export
 gSocketAddressGetNativeSize <- function(address) {
-  .Call("R_g_socket_address_get_native_size", address)
+  .Call("R_g_socket_address_get_native_size", address)$result
 }
 
 
@@ -14245,7 +13883,7 @@ gSocketAddressGetNativeSize <- function(address) {
 #' @return gboolean
 #' @export
 gSocketAddressToNative <- function(address, dest, destlen) {
-  .Call("R_g_socket_address_to_native", address, dest, destlen)
+  .Call("R_g_socket_address_to_native", address, dest, destlen)$result
 }
 
 
@@ -14257,7 +13895,7 @@ gSocketAddressToNative <- function(address, dest, destlen) {
 #' @return SocketAddress
 #' @export
 gSocketAddressEnumeratorNext <- function(enumerator, cancellable) {
-  .Call("R_g_socket_address_enumerator_next", enumerator, cancellable)
+  .Call("R_g_socket_address_enumerator_next", enumerator, cancellable)$result
 }
 
 
@@ -14269,7 +13907,7 @@ gSocketAddressEnumeratorNext <- function(enumerator, cancellable) {
 #' @return SocketAddress
 #' @export
 gSocketAddressEnumeratorNextFinish <- function(enumerator, result) {
-  .Call("R_g_socket_address_enumerator_next_finish", enumerator, result)
+  .Call("R_g_socket_address_enumerator_next_finish", enumerator, result)$result
 }
 
 
@@ -14279,7 +13917,7 @@ gSocketAddressEnumeratorNextFinish <- function(enumerator, result) {
 #' @return SocketClient
 #' @export
 gSocketClientNew <- function() {
-  .Call("R_g_socket_client_new")
+  .Call("R_g_socket_client_new")$result
 }
 
 
@@ -14304,7 +13942,7 @@ gSocketClientAddApplicationProxy <- function(client, protocol) {
 #' @return SocketConnection
 #' @export
 gSocketClientConnect <- function(client, connectable, cancellable) {
-  .Call("R_g_socket_client_connect", client, connectable, cancellable)
+  .Call("R_g_socket_client_connect", client, connectable, cancellable)$result
 }
 
 
@@ -14316,7 +13954,7 @@ gSocketClientConnect <- function(client, connectable, cancellable) {
 #' @return SocketConnection
 #' @export
 gSocketClientConnectFinish <- function(client, result) {
-  .Call("R_g_socket_client_connect_finish", client, result)
+  .Call("R_g_socket_client_connect_finish", client, result)$result
 }
 
 
@@ -14330,7 +13968,7 @@ gSocketClientConnectFinish <- function(client, result) {
 #' @return SocketConnection
 #' @export
 gSocketClientConnectToHost <- function(client, host_and_port, default_port, cancellable) {
-  .Call("R_g_socket_client_connect_to_host", client, host_and_port, default_port, cancellable)
+  .Call("R_g_socket_client_connect_to_host", client, host_and_port, default_port, cancellable)$result
 }
 
 
@@ -14342,7 +13980,7 @@ gSocketClientConnectToHost <- function(client, host_and_port, default_port, canc
 #' @return SocketConnection
 #' @export
 gSocketClientConnectToHostFinish <- function(client, result) {
-  .Call("R_g_socket_client_connect_to_host_finish", client, result)
+  .Call("R_g_socket_client_connect_to_host_finish", client, result)$result
 }
 
 
@@ -14356,7 +13994,7 @@ gSocketClientConnectToHostFinish <- function(client, result) {
 #' @return SocketConnection
 #' @export
 gSocketClientConnectToService <- function(client, domain, service, cancellable) {
-  .Call("R_g_socket_client_connect_to_service", client, domain, service, cancellable)
+  .Call("R_g_socket_client_connect_to_service", client, domain, service, cancellable)$result
 }
 
 
@@ -14368,7 +14006,7 @@ gSocketClientConnectToService <- function(client, domain, service, cancellable) 
 #' @return SocketConnection
 #' @export
 gSocketClientConnectToServiceFinish <- function(client, result) {
-  .Call("R_g_socket_client_connect_to_service_finish", client, result)
+  .Call("R_g_socket_client_connect_to_service_finish", client, result)$result
 }
 
 
@@ -14382,7 +14020,7 @@ gSocketClientConnectToServiceFinish <- function(client, result) {
 #' @return SocketConnection
 #' @export
 gSocketClientConnectToUri <- function(client, uri, default_port, cancellable) {
-  .Call("R_g_socket_client_connect_to_uri", client, uri, default_port, cancellable)
+  .Call("R_g_socket_client_connect_to_uri", client, uri, default_port, cancellable)$result
 }
 
 
@@ -14394,7 +14032,7 @@ gSocketClientConnectToUri <- function(client, uri, default_port, cancellable) {
 #' @return SocketConnection
 #' @export
 gSocketClientConnectToUriFinish <- function(client, result) {
-  .Call("R_g_socket_client_connect_to_uri_finish", client, result)
+  .Call("R_g_socket_client_connect_to_uri_finish", client, result)$result
 }
 
 
@@ -14405,7 +14043,7 @@ gSocketClientConnectToUriFinish <- function(client, result) {
 #' @return gboolean
 #' @export
 gSocketClientGetEnableProxy <- function(client) {
-  .Call("R_g_socket_client_get_enable_proxy", client)
+  .Call("R_g_socket_client_get_enable_proxy", client)$result
 }
 
 
@@ -14416,7 +14054,7 @@ gSocketClientGetEnableProxy <- function(client) {
 #' @return SocketFamily
 #' @export
 gSocketClientGetFamily <- function(client) {
-  .Call("R_g_socket_client_get_family", client)
+  .Call("R_g_socket_client_get_family", client)$result
 }
 
 
@@ -14427,7 +14065,7 @@ gSocketClientGetFamily <- function(client) {
 #' @return SocketAddress
 #' @export
 gSocketClientGetLocalAddress <- function(client) {
-  .Call("R_g_socket_client_get_local_address", client)
+  .Call("R_g_socket_client_get_local_address", client)$result
 }
 
 
@@ -14438,7 +14076,7 @@ gSocketClientGetLocalAddress <- function(client) {
 #' @return SocketProtocol
 #' @export
 gSocketClientGetProtocol <- function(client) {
-  .Call("R_g_socket_client_get_protocol", client)
+  .Call("R_g_socket_client_get_protocol", client)$result
 }
 
 
@@ -14449,7 +14087,7 @@ gSocketClientGetProtocol <- function(client) {
 #' @return ProxyResolver
 #' @export
 gSocketClientGetProxyResolver <- function(client) {
-  .Call("R_g_socket_client_get_proxy_resolver", client)
+  .Call("R_g_socket_client_get_proxy_resolver", client)$result
 }
 
 
@@ -14460,7 +14098,7 @@ gSocketClientGetProxyResolver <- function(client) {
 #' @return SocketType
 #' @export
 gSocketClientGetSocketType <- function(client) {
-  .Call("R_g_socket_client_get_socket_type", client)
+  .Call("R_g_socket_client_get_socket_type", client)$result
 }
 
 
@@ -14471,7 +14109,7 @@ gSocketClientGetSocketType <- function(client) {
 #' @return guint
 #' @export
 gSocketClientGetTimeout <- function(client) {
-  .Call("R_g_socket_client_get_timeout", client)
+  .Call("R_g_socket_client_get_timeout", client)$result
 }
 
 
@@ -14482,7 +14120,7 @@ gSocketClientGetTimeout <- function(client) {
 #' @return gboolean
 #' @export
 gSocketClientGetTls <- function(client) {
-  .Call("R_g_socket_client_get_tls", client)
+  .Call("R_g_socket_client_get_tls", client)$result
 }
 
 
@@ -14493,7 +14131,7 @@ gSocketClientGetTls <- function(client) {
 #' @return TlsCertificateFlags
 #' @export
 gSocketClientGetTlsValidationFlags <- function(client) {
-  .Call("R_g_socket_client_get_tls_validation_flags", client)
+  .Call("R_g_socket_client_get_tls_validation_flags", client)$result
 }
 
 
@@ -14612,7 +14250,7 @@ gSocketClientSetTlsValidationFlags <- function(client, flags) {
 #' @return SocketAddressEnumerator
 #' @export
 gSocketConnectableEnumerate <- function(connectable) {
-  .Call("R_g_socket_connectable_enumerate", connectable)
+  .Call("R_g_socket_connectable_enumerate", connectable)$result
 }
 
 
@@ -14623,7 +14261,7 @@ gSocketConnectableEnumerate <- function(connectable) {
 #' @return SocketAddressEnumerator
 #' @export
 gSocketConnectableProxyEnumerate <- function(connectable) {
-  .Call("R_g_socket_connectable_proxy_enumerate", connectable)
+  .Call("R_g_socket_connectable_proxy_enumerate", connectable)$result
 }
 
 
@@ -14634,7 +14272,7 @@ gSocketConnectableProxyEnumerate <- function(connectable) {
 #' @return utf8
 #' @export
 gSocketConnectableToString <- function(connectable) {
-  .Call("R_g_socket_connectable_to_string", connectable)
+  .Call("R_g_socket_connectable_to_string", connectable)$result
 }
 
 
@@ -14647,7 +14285,7 @@ gSocketConnectableToString <- function(connectable) {
 #' @return GType
 #' @export
 gSocketConnectionFactoryLookupType <- function(family, type, protocol_id) {
-  .Call("R_g_socket_connection_factory_lookup_type", family, type, protocol_id)
+  .Call("R_g_socket_connection_factory_lookup_type", family, type, protocol_id)$result
 }
 
 
@@ -14674,7 +14312,7 @@ gSocketConnectionFactoryRegisterType <- function(g_type, family, type, protocol)
 #' @return gboolean
 #' @export
 gSocketConnectionConnect <- function(connection, address, cancellable) {
-  .Call("R_g_socket_connection_connect", connection, address, cancellable)
+  .Call("R_g_socket_connection_connect", connection, address, cancellable)$result
 }
 
 
@@ -14686,7 +14324,7 @@ gSocketConnectionConnect <- function(connection, address, cancellable) {
 #' @return gboolean
 #' @export
 gSocketConnectionConnectFinish <- function(connection, result) {
-  .Call("R_g_socket_connection_connect_finish", connection, result)
+  .Call("R_g_socket_connection_connect_finish", connection, result)$result
 }
 
 
@@ -14697,7 +14335,7 @@ gSocketConnectionConnectFinish <- function(connection, result) {
 #' @return SocketAddress
 #' @export
 gSocketConnectionGetLocalAddress <- function(connection) {
-  .Call("R_g_socket_connection_get_local_address", connection)
+  .Call("R_g_socket_connection_get_local_address", connection)$result
 }
 
 
@@ -14708,7 +14346,7 @@ gSocketConnectionGetLocalAddress <- function(connection) {
 #' @return SocketAddress
 #' @export
 gSocketConnectionGetRemoteAddress <- function(connection) {
-  .Call("R_g_socket_connection_get_remote_address", connection)
+  .Call("R_g_socket_connection_get_remote_address", connection)$result
 }
 
 
@@ -14719,7 +14357,7 @@ gSocketConnectionGetRemoteAddress <- function(connection) {
 #' @return Socket
 #' @export
 gSocketConnectionGetSocket <- function(connection) {
-  .Call("R_g_socket_connection_get_socket", connection)
+  .Call("R_g_socket_connection_get_socket", connection)$result
 }
 
 
@@ -14730,7 +14368,7 @@ gSocketConnectionGetSocket <- function(connection) {
 #' @return gboolean
 #' @export
 gSocketConnectionIsConnected <- function(connection) {
-  .Call("R_g_socket_connection_is_connected", connection)
+  .Call("R_g_socket_connection_is_connected", connection)$result
 }
 
 
@@ -14744,7 +14382,7 @@ gSocketConnectionIsConnected <- function(connection) {
 #' @return SocketControlMessage
 #' @export
 gSocketControlMessageDeserialize <- function(level, type, size, data) {
-  .Call("R_g_socket_control_message_deserialize", level, type, size, data)
+  .Call("R_g_socket_control_message_deserialize", level, type, size, data)$result
 }
 
 
@@ -14755,7 +14393,7 @@ gSocketControlMessageDeserialize <- function(level, type, size, data) {
 #' @return gint
 #' @export
 gSocketControlMessageGetLevel <- function(message) {
-  .Call("R_g_socket_control_message_get_level", message)
+  .Call("R_g_socket_control_message_get_level", message)$result
 }
 
 
@@ -14766,7 +14404,7 @@ gSocketControlMessageGetLevel <- function(message) {
 #' @return gint
 #' @export
 gSocketControlMessageGetMsgType <- function(message) {
-  .Call("R_g_socket_control_message_get_msg_type", message)
+  .Call("R_g_socket_control_message_get_msg_type", message)$result
 }
 
 
@@ -14777,7 +14415,7 @@ gSocketControlMessageGetMsgType <- function(message) {
 #' @return gsize
 #' @export
 gSocketControlMessageGetSize <- function(message) {
-  .Call("R_g_socket_control_message_get_size", message)
+  .Call("R_g_socket_control_message_get_size", message)$result
 }
 
 
@@ -14799,7 +14437,7 @@ gSocketControlMessageSerialize <- function(message, data) {
 #' @return SocketListener
 #' @export
 gSocketListenerNew <- function() {
-  .Call("R_g_socket_listener_new")
+  .Call("R_g_socket_listener_new")$result
 }
 
 
@@ -14874,7 +14512,7 @@ gSocketListenerAddAddress <- function(listener, address, type, protocol, source_
 #' @return guint16
 #' @export
 gSocketListenerAddAnyInetPort <- function(listener, source_object) {
-  .Call("R_g_socket_listener_add_any_inet_port", listener, source_object)
+  .Call("R_g_socket_listener_add_any_inet_port", listener, source_object)$result
 }
 
 
@@ -14887,7 +14525,7 @@ gSocketListenerAddAnyInetPort <- function(listener, source_object) {
 #' @return gboolean
 #' @export
 gSocketListenerAddInetPort <- function(listener, port, source_object) {
-  .Call("R_g_socket_listener_add_inet_port", listener, port, source_object)
+  .Call("R_g_socket_listener_add_inet_port", listener, port, source_object)$result
 }
 
 
@@ -14900,7 +14538,7 @@ gSocketListenerAddInetPort <- function(listener, port, source_object) {
 #' @return gboolean
 #' @export
 gSocketListenerAddSocket <- function(listener, socket, source_object) {
-  .Call("R_g_socket_listener_add_socket", listener, socket, source_object)
+  .Call("R_g_socket_listener_add_socket", listener, socket, source_object)$result
 }
 
 
@@ -14933,7 +14571,7 @@ gSocketListenerSetBacklog <- function(listener, listen_backlog) {
 #' @return SocketService
 #' @export
 gSocketServiceNew <- function() {
-  .Call("R_g_socket_service_new")
+  .Call("R_g_socket_service_new")$result
 }
 
 
@@ -14944,7 +14582,7 @@ gSocketServiceNew <- function() {
 #' @return gboolean
 #' @export
 gSocketServiceIsActive <- function(service) {
-  .Call("R_g_socket_service_is_active", service)
+  .Call("R_g_socket_service_is_active", service)$result
 }
 
 
@@ -14980,7 +14618,7 @@ gSocketServiceStop <- function(service) {
 #' @return SrvTarget
 #' @export
 gSrvTargetNew <- function(hostname, port, priority, weight) {
-  .Call("R_g_srv_target_new", hostname, port, priority, weight)
+  .Call("R_g_srv_target_new", hostname, port, priority, weight)$result
 }
 
 
@@ -14991,7 +14629,7 @@ gSrvTargetNew <- function(hostname, port, priority, weight) {
 #' @return SrvTarget
 #' @export
 gSrvTargetCopy <- function(target) {
-  .Call("R_g_srv_target_copy", target)
+  .Call("R_g_srv_target_copy", target)$result
 }
 
 
@@ -15013,7 +14651,7 @@ gSrvTargetFree <- function(target) {
 #' @return utf8
 #' @export
 gSrvTargetGetHostname <- function(target) {
-  .Call("R_g_srv_target_get_hostname", target)
+  .Call("R_g_srv_target_get_hostname", target)$result
 }
 
 
@@ -15024,7 +14662,7 @@ gSrvTargetGetHostname <- function(target) {
 #' @return guint16
 #' @export
 gSrvTargetGetPort <- function(target) {
-  .Call("R_g_srv_target_get_port", target)
+  .Call("R_g_srv_target_get_port", target)$result
 }
 
 
@@ -15035,7 +14673,7 @@ gSrvTargetGetPort <- function(target) {
 #' @return guint16
 #' @export
 gSrvTargetGetPriority <- function(target) {
-  .Call("R_g_srv_target_get_priority", target)
+  .Call("R_g_srv_target_get_priority", target)$result
 }
 
 
@@ -15046,7 +14684,7 @@ gSrvTargetGetPriority <- function(target) {
 #' @return guint16
 #' @export
 gSrvTargetGetWeight <- function(target) {
-  .Call("R_g_srv_target_get_weight", target)
+  .Call("R_g_srv_target_get_weight", target)$result
 }
 
 
@@ -15068,7 +14706,7 @@ gStaticResourceFini <- function(static_resource) {
 #' @return Resource
 #' @export
 gStaticResourceGetResource <- function(static_resource) {
-  .Call("R_g_static_resource_get_resource", static_resource)
+  .Call("R_g_static_resource_get_resource", static_resource)$result
 }
 
 
@@ -15091,7 +14729,7 @@ gStaticResourceInit <- function(static_resource) {
 #' @return Subprocess
 #' @export
 gSubprocessNewv <- function(argv, flags) {
-  .Call("R_g_subprocess_newv", argv, flags)
+  .Call("R_g_subprocess_newv", argv, flags)$result
 }
 
 
@@ -15163,7 +14801,7 @@ gSubprocessForceExit <- function(subprocess) {
 #' @return gint
 #' @export
 gSubprocessGetExitStatus <- function(subprocess) {
-  .Call("R_g_subprocess_get_exit_status", subprocess)
+  .Call("R_g_subprocess_get_exit_status", subprocess)$result
 }
 
 
@@ -15174,7 +14812,7 @@ gSubprocessGetExitStatus <- function(subprocess) {
 #' @return utf8
 #' @export
 gSubprocessGetIdentifier <- function(subprocess) {
-  .Call("R_g_subprocess_get_identifier", subprocess)
+  .Call("R_g_subprocess_get_identifier", subprocess)$result
 }
 
 
@@ -15185,7 +14823,7 @@ gSubprocessGetIdentifier <- function(subprocess) {
 #' @return gboolean
 #' @export
 gSubprocessGetIfExited <- function(subprocess) {
-  .Call("R_g_subprocess_get_if_exited", subprocess)
+  .Call("R_g_subprocess_get_if_exited", subprocess)$result
 }
 
 
@@ -15196,7 +14834,7 @@ gSubprocessGetIfExited <- function(subprocess) {
 #' @return gboolean
 #' @export
 gSubprocessGetIfSignaled <- function(subprocess) {
-  .Call("R_g_subprocess_get_if_signaled", subprocess)
+  .Call("R_g_subprocess_get_if_signaled", subprocess)$result
 }
 
 
@@ -15207,7 +14845,7 @@ gSubprocessGetIfSignaled <- function(subprocess) {
 #' @return gint
 #' @export
 gSubprocessGetStatus <- function(subprocess) {
-  .Call("R_g_subprocess_get_status", subprocess)
+  .Call("R_g_subprocess_get_status", subprocess)$result
 }
 
 
@@ -15218,7 +14856,7 @@ gSubprocessGetStatus <- function(subprocess) {
 #' @return InputStream
 #' @export
 gSubprocessGetStderrPipe <- function(subprocess) {
-  .Call("R_g_subprocess_get_stderr_pipe", subprocess)
+  .Call("R_g_subprocess_get_stderr_pipe", subprocess)$result
 }
 
 
@@ -15229,7 +14867,7 @@ gSubprocessGetStderrPipe <- function(subprocess) {
 #' @return OutputStream
 #' @export
 gSubprocessGetStdinPipe <- function(subprocess) {
-  .Call("R_g_subprocess_get_stdin_pipe", subprocess)
+  .Call("R_g_subprocess_get_stdin_pipe", subprocess)$result
 }
 
 
@@ -15240,7 +14878,7 @@ gSubprocessGetStdinPipe <- function(subprocess) {
 #' @return InputStream
 #' @export
 gSubprocessGetStdoutPipe <- function(subprocess) {
-  .Call("R_g_subprocess_get_stdout_pipe", subprocess)
+  .Call("R_g_subprocess_get_stdout_pipe", subprocess)$result
 }
 
 
@@ -15251,7 +14889,7 @@ gSubprocessGetStdoutPipe <- function(subprocess) {
 #' @return gboolean
 #' @export
 gSubprocessGetSuccessful <- function(subprocess) {
-  .Call("R_g_subprocess_get_successful", subprocess)
+  .Call("R_g_subprocess_get_successful", subprocess)$result
 }
 
 
@@ -15262,7 +14900,7 @@ gSubprocessGetSuccessful <- function(subprocess) {
 #' @return gint
 #' @export
 gSubprocessGetTermSig <- function(subprocess) {
-  .Call("R_g_subprocess_get_term_sig", subprocess)
+  .Call("R_g_subprocess_get_term_sig", subprocess)$result
 }
 
 
@@ -15286,7 +14924,7 @@ gSubprocessSendSignal <- function(subprocess, signal_num) {
 #' @return gboolean
 #' @export
 gSubprocessWait <- function(subprocess, cancellable) {
-  .Call("R_g_subprocess_wait", subprocess, cancellable)
+  .Call("R_g_subprocess_wait", subprocess, cancellable)$result
 }
 
 
@@ -15298,7 +14936,7 @@ gSubprocessWait <- function(subprocess, cancellable) {
 #' @return gboolean
 #' @export
 gSubprocessWaitCheck <- function(subprocess, cancellable) {
-  .Call("R_g_subprocess_wait_check", subprocess, cancellable)
+  .Call("R_g_subprocess_wait_check", subprocess, cancellable)$result
 }
 
 
@@ -15310,7 +14948,7 @@ gSubprocessWaitCheck <- function(subprocess, cancellable) {
 #' @return gboolean
 #' @export
 gSubprocessWaitCheckFinish <- function(subprocess, result) {
-  .Call("R_g_subprocess_wait_check_finish", subprocess, result)
+  .Call("R_g_subprocess_wait_check_finish", subprocess, result)$result
 }
 
 
@@ -15322,7 +14960,7 @@ gSubprocessWaitCheckFinish <- function(subprocess, result) {
 #' @return gboolean
 #' @export
 gSubprocessWaitFinish <- function(subprocess, result) {
-  .Call("R_g_subprocess_wait_finish", subprocess, result)
+  .Call("R_g_subprocess_wait_finish", subprocess, result)$result
 }
 
 
@@ -15333,7 +14971,7 @@ gSubprocessWaitFinish <- function(subprocess, result) {
 #' @return SubprocessLauncher
 #' @export
 gSubprocessLauncherNew <- function(flags) {
-  .Call("R_g_subprocess_launcher_new", flags)
+  .Call("R_g_subprocess_launcher_new", flags)$result
 }
 
 
@@ -15356,7 +14994,7 @@ gSubprocessLauncherClose <- function(self) {
 #' @return filename
 #' @export
 gSubprocessLauncherGetenv <- function(self, variable) {
-  .Call("R_g_subprocess_launcher_getenv", self, variable)
+  .Call("R_g_subprocess_launcher_getenv", self, variable)$result
 }
 
 
@@ -15454,7 +15092,7 @@ gSubprocessLauncherSetenv <- function(self, variable, value, overwrite) {
 #' @return Subprocess
 #' @export
 gSubprocessLauncherSpawnv <- function(self, argv) {
-  .Call("R_g_subprocess_launcher_spawnv", self, argv)
+  .Call("R_g_subprocess_launcher_spawnv", self, argv)$result
 }
 
 
@@ -15527,7 +15165,7 @@ gSubprocessLauncherUnsetenv <- function(self, variable) {
 #' @return gboolean
 #' @export
 gTaskIsValid <- function(result, source_object) {
-  .Call("R_g_task_is_valid", result, source_object)
+  .Call("R_g_task_is_valid", result, source_object)$result
 }
 
 
@@ -15538,7 +15176,7 @@ gTaskIsValid <- function(result, source_object) {
 #' @return Cancellable
 #' @export
 gTaskGetCancellable <- function(task) {
-  .Call("R_g_task_get_cancellable", task)
+  .Call("R_g_task_get_cancellable", task)$result
 }
 
 
@@ -15549,7 +15187,7 @@ gTaskGetCancellable <- function(task) {
 #' @return gboolean
 #' @export
 gTaskGetCheckCancellable <- function(task) {
-  .Call("R_g_task_get_check_cancellable", task)
+  .Call("R_g_task_get_check_cancellable", task)$result
 }
 
 
@@ -15560,7 +15198,7 @@ gTaskGetCheckCancellable <- function(task) {
 #' @return gboolean
 #' @export
 gTaskGetCompleted <- function(task) {
-  .Call("R_g_task_get_completed", task)
+  .Call("R_g_task_get_completed", task)$result
 }
 
 
@@ -15571,7 +15209,7 @@ gTaskGetCompleted <- function(task) {
 #' @return GLib.MainContext
 #' @export
 gTaskGetContext <- function(task) {
-  .Call("R_g_task_get_context", task)
+  .Call("R_g_task_get_context", task)$result
 }
 
 
@@ -15582,7 +15220,7 @@ gTaskGetContext <- function(task) {
 #' @return utf8
 #' @export
 gTaskGetName <- function(task) {
-  .Call("R_g_task_get_name", task)
+  .Call("R_g_task_get_name", task)$result
 }
 
 
@@ -15593,7 +15231,7 @@ gTaskGetName <- function(task) {
 #' @return gint
 #' @export
 gTaskGetPriority <- function(task) {
-  .Call("R_g_task_get_priority", task)
+  .Call("R_g_task_get_priority", task)$result
 }
 
 
@@ -15604,7 +15242,7 @@ gTaskGetPriority <- function(task) {
 #' @return gboolean
 #' @export
 gTaskGetReturnOnCancel <- function(task) {
-  .Call("R_g_task_get_return_on_cancel", task)
+  .Call("R_g_task_get_return_on_cancel", task)$result
 }
 
 
@@ -15615,7 +15253,7 @@ gTaskGetReturnOnCancel <- function(task) {
 #' @return GObject.Object
 #' @export
 gTaskGetSourceObject <- function(task) {
-  .Call("R_g_task_get_source_object", task)
+  .Call("R_g_task_get_source_object", task)$result
 }
 
 
@@ -15626,7 +15264,7 @@ gTaskGetSourceObject <- function(task) {
 #' @return gpointer
 #' @export
 gTaskGetSourceTag <- function(task) {
-  .Call("R_g_task_get_source_tag", task)
+  .Call("R_g_task_get_source_tag", task)$result
 }
 
 
@@ -15637,7 +15275,7 @@ gTaskGetSourceTag <- function(task) {
 #' @return gpointer
 #' @export
 gTaskGetTaskData <- function(task) {
-  .Call("R_g_task_get_task_data", task)
+  .Call("R_g_task_get_task_data", task)$result
 }
 
 
@@ -15648,7 +15286,7 @@ gTaskGetTaskData <- function(task) {
 #' @return gboolean
 #' @export
 gTaskHadError <- function(task) {
-  .Call("R_g_task_had_error", task)
+  .Call("R_g_task_had_error", task)$result
 }
 
 
@@ -15659,7 +15297,7 @@ gTaskHadError <- function(task) {
 #' @return gboolean
 #' @export
 gTaskPropagateBoolean <- function(task) {
-  .Call("R_g_task_propagate_boolean", task)
+  .Call("R_g_task_propagate_boolean", task)$result
 }
 
 
@@ -15670,7 +15308,7 @@ gTaskPropagateBoolean <- function(task) {
 #' @return gssize
 #' @export
 gTaskPropagateInt <- function(task) {
-  .Call("R_g_task_propagate_int", task)
+  .Call("R_g_task_propagate_int", task)$result
 }
 
 
@@ -15681,7 +15319,7 @@ gTaskPropagateInt <- function(task) {
 #' @return gpointer
 #' @export
 gTaskPropagatePointer <- function(task) {
-  .Call("R_g_task_propagate_pointer", task)
+  .Call("R_g_task_propagate_pointer", task)$result
 }
 
 
@@ -15727,7 +15365,7 @@ gTaskReturnError <- function(task, error) {
 #' @return gboolean
 #' @export
 gTaskReturnErrorIfCancelled <- function(task) {
-  .Call("R_g_task_return_error_if_cancelled", task)
+  .Call("R_g_task_return_error_if_cancelled", task)$result
 }
 
 
@@ -15813,7 +15451,7 @@ gTaskSetPriority <- function(task, priority) {
 #' @return gboolean
 #' @export
 gTaskSetReturnOnCancel <- function(task, return_on_cancel) {
-  .Call("R_g_task_set_return_on_cancel", task, return_on_cancel)
+  .Call("R_g_task_set_return_on_cancel", task, return_on_cancel)$result
 }
 
 
@@ -15848,7 +15486,7 @@ gTaskSetStaticName <- function(task, name) {
 #' @return gboolean
 #' @export
 gTcpConnectionGetGracefulDisconnect <- function(connection) {
-  .Call("R_g_tcp_connection_get_graceful_disconnect", connection)
+  .Call("R_g_tcp_connection_get_graceful_disconnect", connection)$result
 }
 
 
@@ -15872,7 +15510,7 @@ gTcpConnectionSetGracefulDisconnect <- function(connection, graceful_disconnect)
 #' @return SocketConnection
 #' @export
 gTcpWrapperConnectionNew <- function(base_io_stream, socket) {
-  .Call("R_g_tcp_wrapper_connection_new", base_io_stream, socket)
+  .Call("R_g_tcp_wrapper_connection_new", base_io_stream, socket)$result
 }
 
 
@@ -15883,7 +15521,7 @@ gTcpWrapperConnectionNew <- function(base_io_stream, socket) {
 #' @return IOStream
 #' @export
 gTcpWrapperConnectionGetBaseIoStream <- function(conn) {
-  .Call("R_g_tcp_wrapper_connection_get_base_io_stream", conn)
+  .Call("R_g_tcp_wrapper_connection_get_base_io_stream", conn)$result
 }
 
 
@@ -15894,7 +15532,7 @@ gTcpWrapperConnectionGetBaseIoStream <- function(conn) {
 #' @return TestDBus
 #' @export
 gTestDbusNew <- function(flags) {
-  .Call("R_g_test_dbus_new", flags)
+  .Call("R_g_test_dbus_new", flags)$result
 }
 
 
@@ -15938,7 +15576,7 @@ gTestDbusDown <- function(self) {
 #' @return utf8
 #' @export
 gTestDbusGetBusAddress <- function(self) {
-  .Call("R_g_test_dbus_get_bus_address", self)
+  .Call("R_g_test_dbus_get_bus_address", self)$result
 }
 
 
@@ -15949,7 +15587,7 @@ gTestDbusGetBusAddress <- function(self) {
 #' @return TestDBusFlags
 #' @export
 gTestDbusGetFlags <- function(self) {
-  .Call("R_g_test_dbus_get_flags", self)
+  .Call("R_g_test_dbus_get_flags", self)$result
 }
 
 
@@ -15982,7 +15620,7 @@ gTestDbusUp <- function(self) {
 #' @return ThemedIcon
 #' @export
 gThemedIconNew <- function(iconname) {
-  .Call("R_g_themed_icon_new", iconname)
+  .Call("R_g_themed_icon_new", iconname)$result
 }
 
 
@@ -15994,7 +15632,7 @@ gThemedIconNew <- function(iconname) {
 #' @return ThemedIcon
 #' @export
 gThemedIconNewFromNames <- function(iconnames, len) {
-  .Call("R_g_themed_icon_new_from_names", iconnames, len)
+  .Call("R_g_themed_icon_new_from_names", iconnames, len)$result
 }
 
 
@@ -16005,7 +15643,7 @@ gThemedIconNewFromNames <- function(iconnames, len) {
 #' @return ThemedIcon
 #' @export
 gThemedIconNewWithDefaultFallbacks <- function(iconname) {
-  .Call("R_g_themed_icon_new_with_default_fallbacks", iconname)
+  .Call("R_g_themed_icon_new_with_default_fallbacks", iconname)$result
 }
 
 
@@ -16028,7 +15666,7 @@ gThemedIconAppendName <- function(icon, iconname) {
 #' @return utf8
 #' @export
 gThemedIconGetNames <- function(icon) {
-  .Call("R_g_themed_icon_get_names", icon)
+  .Call("R_g_themed_icon_get_names", icon)$result
 }
 
 
@@ -16051,1019 +15689,7 @@ gThemedIconPrependName <- function(icon, iconname) {
 #' @return SocketService
 #' @export
 gThreadedSocketServiceNew <- function(max_threads) {
-  .Call("R_g_threaded_socket_service_new", max_threads)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendGetDefault
-#'
-#' @return TlsBackend
-#' @export
-gTlsBackendGetDefault <- function() {
-  .Call("R_g_tls_backend_get_default")
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendGetCertificateType
-#'
-#' @param backend TlsBackend
-#' @return GType
-#' @export
-gTlsBackendGetCertificateType <- function(backend) {
-  .Call("R_g_tls_backend_get_certificate_type", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendGetClientConnectionType
-#'
-#' @param backend TlsBackend
-#' @return GType
-#' @export
-gTlsBackendGetClientConnectionType <- function(backend) {
-  .Call("R_g_tls_backend_get_client_connection_type", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendGetDefaultDatabase
-#'
-#' @param backend TlsBackend
-#' @return TlsDatabase
-#' @export
-gTlsBackendGetDefaultDatabase <- function(backend) {
-  .Call("R_g_tls_backend_get_default_database", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendGetDtlsClientConnectionType
-#'
-#' @param backend TlsBackend
-#' @return GType
-#' @export
-gTlsBackendGetDtlsClientConnectionType <- function(backend) {
-  .Call("R_g_tls_backend_get_dtls_client_connection_type", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendGetDtlsServerConnectionType
-#'
-#' @param backend TlsBackend
-#' @return GType
-#' @export
-gTlsBackendGetDtlsServerConnectionType <- function(backend) {
-  .Call("R_g_tls_backend_get_dtls_server_connection_type", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendGetFileDatabaseType
-#'
-#' @param backend TlsBackend
-#' @return GType
-#' @export
-gTlsBackendGetFileDatabaseType <- function(backend) {
-  .Call("R_g_tls_backend_get_file_database_type", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendGetServerConnectionType
-#'
-#' @param backend TlsBackend
-#' @return GType
-#' @export
-gTlsBackendGetServerConnectionType <- function(backend) {
-  .Call("R_g_tls_backend_get_server_connection_type", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendSetDefaultDatabase
-#'
-#' @param backend TlsBackend
-#' @param database TlsDatabase
-#' @return Return value from C function
-#' @export
-gTlsBackendSetDefaultDatabase <- function(backend, database) {
-  .Call("R_g_tls_backend_set_default_database", backend, database)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendSupportsDtls
-#'
-#' @param backend TlsBackend
-#' @return gboolean
-#' @export
-gTlsBackendSupportsDtls <- function(backend) {
-  .Call("R_g_tls_backend_supports_dtls", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsBackendSupportsTls
-#'
-#' @param backend TlsBackend
-#' @return gboolean
-#' @export
-gTlsBackendSupportsTls <- function(backend) {
-  .Call("R_g_tls_backend_supports_tls", backend)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateNewFromFile
-#'
-#' @param file filename
-#' @return TlsCertificate
-#' @export
-gTlsCertificateNewFromFile <- function(file) {
-  .Call("R_g_tls_certificate_new_from_file", file)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateNewFromFileWithPassword
-#'
-#' @param file filename
-#' @param password utf8
-#' @return TlsCertificate
-#' @export
-gTlsCertificateNewFromFileWithPassword <- function(file, password) {
-  .Call("R_g_tls_certificate_new_from_file_with_password", file, password)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateNewFromFiles
-#'
-#' @param cert_file filename
-#' @param key_file filename
-#' @return TlsCertificate
-#' @export
-gTlsCertificateNewFromFiles <- function(cert_file, key_file) {
-  .Call("R_g_tls_certificate_new_from_files", cert_file, key_file)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateNewFromPem
-#'
-#' @param data utf8
-#' @param length gssize
-#' @return TlsCertificate
-#' @export
-gTlsCertificateNewFromPem <- function(data, length) {
-  .Call("R_g_tls_certificate_new_from_pem", data, length)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateNewFromPkcs11Uris
-#'
-#' @param pkcs11_uri utf8
-#' @param private_key_pkcs11_uri utf8
-#' @return TlsCertificate
-#' @export
-gTlsCertificateNewFromPkcs11Uris <- function(pkcs11_uri, private_key_pkcs11_uri) {
-  .Call("R_g_tls_certificate_new_from_pkcs11_uris", pkcs11_uri, private_key_pkcs11_uri)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateNewFromPkcs12
-#'
-#' @param data guint8
-#' @param length gsize
-#' @param password utf8
-#' @return TlsCertificate
-#' @export
-gTlsCertificateNewFromPkcs12 <- function(data, length, password) {
-  .Call("R_g_tls_certificate_new_from_pkcs12", data, length, password)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateListNewFromFile
-#'
-#' @param file filename
-#' @return GLib.List
-#' @export
-gTlsCertificateListNewFromFile <- function(file) {
-  .Call("R_g_tls_certificate_list_new_from_file", file)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateGetDnsNames
-#'
-#' @param cert TlsCertificate
-#' @return GLib.Bytes
-#' @export
-gTlsCertificateGetDnsNames <- function(cert) {
-  .Call("R_g_tls_certificate_get_dns_names", cert)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateGetIpAddresses
-#'
-#' @param cert TlsCertificate
-#' @return InetAddress
-#' @export
-gTlsCertificateGetIpAddresses <- function(cert) {
-  .Call("R_g_tls_certificate_get_ip_addresses", cert)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateGetIssuer
-#'
-#' @param cert TlsCertificate
-#' @return TlsCertificate
-#' @export
-gTlsCertificateGetIssuer <- function(cert) {
-  .Call("R_g_tls_certificate_get_issuer", cert)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateGetIssuerName
-#'
-#' @param cert TlsCertificate
-#' @return utf8
-#' @export
-gTlsCertificateGetIssuerName <- function(cert) {
-  .Call("R_g_tls_certificate_get_issuer_name", cert)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateGetNotValidAfter
-#'
-#' @param cert TlsCertificate
-#' @return GLib.DateTime
-#' @export
-gTlsCertificateGetNotValidAfter <- function(cert) {
-  .Call("R_g_tls_certificate_get_not_valid_after", cert)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateGetNotValidBefore
-#'
-#' @param cert TlsCertificate
-#' @return GLib.DateTime
-#' @export
-gTlsCertificateGetNotValidBefore <- function(cert) {
-  .Call("R_g_tls_certificate_get_not_valid_before", cert)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateGetSubjectName
-#'
-#' @param cert TlsCertificate
-#' @return utf8
-#' @export
-gTlsCertificateGetSubjectName <- function(cert) {
-  .Call("R_g_tls_certificate_get_subject_name", cert)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateIsSame
-#'
-#' @param cert_one TlsCertificate
-#' @param cert_two TlsCertificate
-#' @return gboolean
-#' @export
-gTlsCertificateIsSame <- function(cert_one, cert_two) {
-  .Call("R_g_tls_certificate_is_same", cert_one, cert_two)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsCertificateVerify
-#'
-#' @param cert TlsCertificate
-#' @param identity SocketConnectable
-#' @param trusted_ca TlsCertificate
-#' @return TlsCertificateFlags
-#' @export
-gTlsCertificateVerify <- function(cert, identity, trusted_ca) {
-  .Call("R_g_tls_certificate_verify", cert, identity, trusted_ca)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsChannelBindingErrorQuark
-#'
-#' @return GLib.Quark
-#' @export
-gTlsChannelBindingErrorQuark <- function() {
-  .Call("R_g_tls_channel_binding_error_quark")
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionNew
-#'
-#' @param base_io_stream IOStream
-#' @param server_identity SocketConnectable
-#' @return TlsClientConnection
-#' @export
-gTlsClientConnectionNew <- function(base_io_stream, server_identity) {
-  .Call("R_g_tls_client_connection_new", base_io_stream, server_identity)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionCopySessionState
-#'
-#' @param conn TlsClientConnection
-#' @param source TlsClientConnection
-#' @return Return value from C function
-#' @export
-gTlsClientConnectionCopySessionState <- function(conn, source) {
-  .Call("R_g_tls_client_connection_copy_session_state", conn, source)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionGetAcceptedCas
-#'
-#' @param conn TlsClientConnection
-#' @return GLib.List
-#' @export
-gTlsClientConnectionGetAcceptedCas <- function(conn) {
-  .Call("R_g_tls_client_connection_get_accepted_cas", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionGetServerIdentity
-#'
-#' @param conn TlsClientConnection
-#' @return SocketConnectable
-#' @export
-gTlsClientConnectionGetServerIdentity <- function(conn) {
-  .Call("R_g_tls_client_connection_get_server_identity", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionGetUseSsl3
-#'
-#' @param conn TlsClientConnection
-#' @return gboolean
-#' @export
-gTlsClientConnectionGetUseSsl3 <- function(conn) {
-  .Call("R_g_tls_client_connection_get_use_ssl3", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionGetValidationFlags
-#'
-#' @param conn TlsClientConnection
-#' @return TlsCertificateFlags
-#' @export
-gTlsClientConnectionGetValidationFlags <- function(conn) {
-  .Call("R_g_tls_client_connection_get_validation_flags", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionSetServerIdentity
-#'
-#' @param conn TlsClientConnection
-#' @param identity SocketConnectable
-#' @return Return value from C function
-#' @export
-gTlsClientConnectionSetServerIdentity <- function(conn, identity) {
-  .Call("R_g_tls_client_connection_set_server_identity", conn, identity)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionSetUseSsl3
-#'
-#' @param conn TlsClientConnection
-#' @param use_ssl3 gboolean
-#' @return Return value from C function
-#' @export
-gTlsClientConnectionSetUseSsl3 <- function(conn, use_ssl3) {
-  .Call("R_g_tls_client_connection_set_use_ssl3", conn, use_ssl3)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsClientConnectionSetValidationFlags
-#'
-#' @param conn TlsClientConnection
-#' @param flags TlsCertificateFlags
-#' @return Return value from C function
-#' @export
-gTlsClientConnectionSetValidationFlags <- function(conn, flags) {
-  .Call("R_g_tls_client_connection_set_validation_flags", conn, flags)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionEmitAcceptCertificate
-#'
-#' @param conn TlsConnection
-#' @param peer_cert TlsCertificate
-#' @param errors TlsCertificateFlags
-#' @return gboolean
-#' @export
-gTlsConnectionEmitAcceptCertificate <- function(conn, peer_cert, errors) {
-  .Call("R_g_tls_connection_emit_accept_certificate", conn, peer_cert, errors)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetCertificate
-#'
-#' @param conn TlsConnection
-#' @return TlsCertificate
-#' @export
-gTlsConnectionGetCertificate <- function(conn) {
-  .Call("R_g_tls_connection_get_certificate", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetChannelBindingData
-#'
-#' @param conn TlsConnection
-#' @param type TlsChannelBindingType
-#' @return gboolean
-#' @export
-gTlsConnectionGetChannelBindingData <- function(conn, type) {
-  .Call("R_g_tls_connection_get_channel_binding_data", conn, type)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetCiphersuiteName
-#'
-#' @param conn TlsConnection
-#' @return utf8
-#' @export
-gTlsConnectionGetCiphersuiteName <- function(conn) {
-  .Call("R_g_tls_connection_get_ciphersuite_name", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetDatabase
-#'
-#' @param conn TlsConnection
-#' @return TlsDatabase
-#' @export
-gTlsConnectionGetDatabase <- function(conn) {
-  .Call("R_g_tls_connection_get_database", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetInteraction
-#'
-#' @param conn TlsConnection
-#' @return TlsInteraction
-#' @export
-gTlsConnectionGetInteraction <- function(conn) {
-  .Call("R_g_tls_connection_get_interaction", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetNegotiatedProtocol
-#'
-#' @param conn TlsConnection
-#' @return utf8
-#' @export
-gTlsConnectionGetNegotiatedProtocol <- function(conn) {
-  .Call("R_g_tls_connection_get_negotiated_protocol", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetPeerCertificate
-#'
-#' @param conn TlsConnection
-#' @return TlsCertificate
-#' @export
-gTlsConnectionGetPeerCertificate <- function(conn) {
-  .Call("R_g_tls_connection_get_peer_certificate", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetPeerCertificateErrors
-#'
-#' @param conn TlsConnection
-#' @return TlsCertificateFlags
-#' @export
-gTlsConnectionGetPeerCertificateErrors <- function(conn) {
-  .Call("R_g_tls_connection_get_peer_certificate_errors", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetProtocolVersion
-#'
-#' @param conn TlsConnection
-#' @return TlsProtocolVersion
-#' @export
-gTlsConnectionGetProtocolVersion <- function(conn) {
-  .Call("R_g_tls_connection_get_protocol_version", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetRehandshakeMode
-#'
-#' @param conn TlsConnection
-#' @return TlsRehandshakeMode
-#' @export
-gTlsConnectionGetRehandshakeMode <- function(conn) {
-  .Call("R_g_tls_connection_get_rehandshake_mode", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetRequireCloseNotify
-#'
-#' @param conn TlsConnection
-#' @return gboolean
-#' @export
-gTlsConnectionGetRequireCloseNotify <- function(conn) {
-  .Call("R_g_tls_connection_get_require_close_notify", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionGetUseSystemCertdb
-#'
-#' @param conn TlsConnection
-#' @return gboolean
-#' @export
-gTlsConnectionGetUseSystemCertdb <- function(conn) {
-  .Call("R_g_tls_connection_get_use_system_certdb", conn)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionHandshake
-#'
-#' @param conn TlsConnection
-#' @param cancellable Cancellable
-#' @return gboolean
-#' @export
-gTlsConnectionHandshake <- function(conn, cancellable) {
-  .Call("R_g_tls_connection_handshake", conn, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionHandshakeFinish
-#'
-#' @param conn TlsConnection
-#' @param result AsyncResult
-#' @return gboolean
-#' @export
-gTlsConnectionHandshakeFinish <- function(conn, result) {
-  .Call("R_g_tls_connection_handshake_finish", conn, result)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionSetAdvertisedProtocols
-#'
-#' @param conn TlsConnection
-#' @param protocols utf8
-#' @return Return value from C function
-#' @export
-gTlsConnectionSetAdvertisedProtocols <- function(conn, protocols) {
-  .Call("R_g_tls_connection_set_advertised_protocols", conn, protocols)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionSetCertificate
-#'
-#' @param conn TlsConnection
-#' @param certificate TlsCertificate
-#' @return Return value from C function
-#' @export
-gTlsConnectionSetCertificate <- function(conn, certificate) {
-  .Call("R_g_tls_connection_set_certificate", conn, certificate)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionSetDatabase
-#'
-#' @param conn TlsConnection
-#' @param database TlsDatabase
-#' @return Return value from C function
-#' @export
-gTlsConnectionSetDatabase <- function(conn, database) {
-  .Call("R_g_tls_connection_set_database", conn, database)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionSetInteraction
-#'
-#' @param conn TlsConnection
-#' @param interaction TlsInteraction
-#' @return Return value from C function
-#' @export
-gTlsConnectionSetInteraction <- function(conn, interaction) {
-  .Call("R_g_tls_connection_set_interaction", conn, interaction)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionSetRehandshakeMode
-#'
-#' @param conn TlsConnection
-#' @param mode TlsRehandshakeMode
-#' @return Return value from C function
-#' @export
-gTlsConnectionSetRehandshakeMode <- function(conn, mode) {
-  .Call("R_g_tls_connection_set_rehandshake_mode", conn, mode)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionSetRequireCloseNotify
-#'
-#' @param conn TlsConnection
-#' @param require_close_notify gboolean
-#' @return Return value from C function
-#' @export
-gTlsConnectionSetRequireCloseNotify <- function(conn, require_close_notify) {
-  .Call("R_g_tls_connection_set_require_close_notify", conn, require_close_notify)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsConnectionSetUseSystemCertdb
-#'
-#' @param conn TlsConnection
-#' @param use_system_certdb gboolean
-#' @return Return value from C function
-#' @export
-gTlsConnectionSetUseSystemCertdb <- function(conn, use_system_certdb) {
-  .Call("R_g_tls_connection_set_use_system_certdb", conn, use_system_certdb)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseCreateCertificateHandle
-#'
-#' @param self TlsDatabase
-#' @param certificate TlsCertificate
-#' @return utf8
-#' @export
-gTlsDatabaseCreateCertificateHandle <- function(self, certificate) {
-  .Call("R_g_tls_database_create_certificate_handle", self, certificate)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseLookupCertificateForHandle
-#'
-#' @param self TlsDatabase
-#' @param handle utf8
-#' @param interaction TlsInteraction
-#' @param flags TlsDatabaseLookupFlags
-#' @param cancellable Cancellable
-#' @return TlsCertificate
-#' @export
-gTlsDatabaseLookupCertificateForHandle <- function(self, handle, interaction, flags, cancellable) {
-  .Call("R_g_tls_database_lookup_certificate_for_handle", self, handle, interaction, flags, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseLookupCertificateForHandleFinish
-#'
-#' @param self TlsDatabase
-#' @param result AsyncResult
-#' @return TlsCertificate
-#' @export
-gTlsDatabaseLookupCertificateForHandleFinish <- function(self, result) {
-  .Call("R_g_tls_database_lookup_certificate_for_handle_finish", self, result)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseLookupCertificateIssuer
-#'
-#' @param self TlsDatabase
-#' @param certificate TlsCertificate
-#' @param interaction TlsInteraction
-#' @param flags TlsDatabaseLookupFlags
-#' @param cancellable Cancellable
-#' @return TlsCertificate
-#' @export
-gTlsDatabaseLookupCertificateIssuer <- function(self, certificate, interaction, flags, cancellable) {
-  .Call("R_g_tls_database_lookup_certificate_issuer", self, certificate, interaction, flags, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseLookupCertificateIssuerFinish
-#'
-#' @param self TlsDatabase
-#' @param result AsyncResult
-#' @return TlsCertificate
-#' @export
-gTlsDatabaseLookupCertificateIssuerFinish <- function(self, result) {
-  .Call("R_g_tls_database_lookup_certificate_issuer_finish", self, result)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseLookupCertificatesIssuedBy
-#'
-#' @param self TlsDatabase
-#' @param issuer_raw_dn guint8
-#' @param interaction TlsInteraction
-#' @param flags TlsDatabaseLookupFlags
-#' @param cancellable Cancellable
-#' @return GLib.List
-#' @export
-gTlsDatabaseLookupCertificatesIssuedBy <- function(self, issuer_raw_dn, interaction, flags, cancellable) {
-  .Call("R_g_tls_database_lookup_certificates_issued_by", self, issuer_raw_dn, interaction, flags, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseLookupCertificatesIssuedByFinish
-#'
-#' @param self TlsDatabase
-#' @param result AsyncResult
-#' @return GLib.List
-#' @export
-gTlsDatabaseLookupCertificatesIssuedByFinish <- function(self, result) {
-  .Call("R_g_tls_database_lookup_certificates_issued_by_finish", self, result)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseVerifyChain
-#'
-#' @param self TlsDatabase
-#' @param chain TlsCertificate
-#' @param purpose utf8
-#' @param identity SocketConnectable
-#' @param interaction TlsInteraction
-#' @param flags TlsDatabaseVerifyFlags
-#' @param cancellable Cancellable
-#' @return TlsCertificateFlags
-#' @export
-gTlsDatabaseVerifyChain <- function(self, chain, purpose, identity, interaction, flags, cancellable) {
-  .Call("R_g_tls_database_verify_chain", self, chain, purpose, identity, interaction, flags, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsDatabaseVerifyChainFinish
-#'
-#' @param self TlsDatabase
-#' @param result AsyncResult
-#' @return TlsCertificateFlags
-#' @export
-gTlsDatabaseVerifyChainFinish <- function(self, result) {
-  .Call("R_g_tls_database_verify_chain_finish", self, result)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsErrorQuark
-#'
-#' @return GLib.Quark
-#' @export
-gTlsErrorQuark <- function() {
-  .Call("R_g_tls_error_quark")
-}
-
-
-#' @rdname glib-other
-#' @title gTlsFileDatabaseNew
-#'
-#' @param anchors filename
-#' @return TlsFileDatabase
-#' @export
-gTlsFileDatabaseNew <- function(anchors) {
-  .Call("R_g_tls_file_database_new", anchors)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsInteractionAskPassword
-#'
-#' @param interaction TlsInteraction
-#' @param password TlsPassword
-#' @param cancellable Cancellable
-#' @return TlsInteractionResult
-#' @export
-gTlsInteractionAskPassword <- function(interaction, password, cancellable) {
-  .Call("R_g_tls_interaction_ask_password", interaction, password, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsInteractionAskPasswordFinish
-#'
-#' @param interaction TlsInteraction
-#' @param result AsyncResult
-#' @return TlsInteractionResult
-#' @export
-gTlsInteractionAskPasswordFinish <- function(interaction, result) {
-  .Call("R_g_tls_interaction_ask_password_finish", interaction, result)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsInteractionInvokeAskPassword
-#'
-#' @param interaction TlsInteraction
-#' @param password TlsPassword
-#' @param cancellable Cancellable
-#' @return TlsInteractionResult
-#' @export
-gTlsInteractionInvokeAskPassword <- function(interaction, password, cancellable) {
-  .Call("R_g_tls_interaction_invoke_ask_password", interaction, password, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsInteractionInvokeRequestCertificate
-#'
-#' @param interaction TlsInteraction
-#' @param connection TlsConnection
-#' @param flags TlsCertificateRequestFlags
-#' @param cancellable Cancellable
-#' @return TlsInteractionResult
-#' @export
-gTlsInteractionInvokeRequestCertificate <- function(interaction, connection, flags, cancellable) {
-  .Call("R_g_tls_interaction_invoke_request_certificate", interaction, connection, flags, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsInteractionRequestCertificate
-#'
-#' @param interaction TlsInteraction
-#' @param connection TlsConnection
-#' @param flags TlsCertificateRequestFlags
-#' @param cancellable Cancellable
-#' @return TlsInteractionResult
-#' @export
-gTlsInteractionRequestCertificate <- function(interaction, connection, flags, cancellable) {
-  .Call("R_g_tls_interaction_request_certificate", interaction, connection, flags, cancellable)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsInteractionRequestCertificateFinish
-#'
-#' @param interaction TlsInteraction
-#' @param result AsyncResult
-#' @return TlsInteractionResult
-#' @export
-gTlsInteractionRequestCertificateFinish <- function(interaction, result) {
-  .Call("R_g_tls_interaction_request_certificate_finish", interaction, result)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordNew
-#'
-#' @param flags TlsPasswordFlags
-#' @param description utf8
-#' @return TlsPassword
-#' @export
-gTlsPasswordNew <- function(flags, description) {
-  .Call("R_g_tls_password_new", flags, description)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordGetDescription
-#'
-#' @param password TlsPassword
-#' @return utf8
-#' @export
-gTlsPasswordGetDescription <- function(password) {
-  .Call("R_g_tls_password_get_description", password)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordGetFlags
-#'
-#' @param password TlsPassword
-#' @return TlsPasswordFlags
-#' @export
-gTlsPasswordGetFlags <- function(password) {
-  .Call("R_g_tls_password_get_flags", password)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordGetValue
-#'
-#' @param password TlsPassword
-#' @return guint8
-#' @export
-gTlsPasswordGetValue <- function(password) {
-  .Call("R_g_tls_password_get_value", password)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordGetWarning
-#'
-#' @param password TlsPassword
-#' @return utf8
-#' @export
-gTlsPasswordGetWarning <- function(password) {
-  .Call("R_g_tls_password_get_warning", password)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordSetDescription
-#'
-#' @param password TlsPassword
-#' @param description utf8
-#' @return Return value from C function
-#' @export
-gTlsPasswordSetDescription <- function(password, description) {
-  .Call("R_g_tls_password_set_description", password, description)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordSetFlags
-#'
-#' @param password TlsPassword
-#' @param flags TlsPasswordFlags
-#' @return Return value from C function
-#' @export
-gTlsPasswordSetFlags <- function(password, flags) {
-  .Call("R_g_tls_password_set_flags", password, flags)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordSetValue
-#'
-#' @param password TlsPassword
-#' @param value guint8
-#' @param length gssize
-#' @return Return value from C function
-#' @export
-gTlsPasswordSetValue <- function(password, value, length) {
-  .Call("R_g_tls_password_set_value", password, value, length)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsPasswordSetWarning
-#'
-#' @param password TlsPassword
-#' @param warning utf8
-#' @return Return value from C function
-#' @export
-gTlsPasswordSetWarning <- function(password, warning) {
-  .Call("R_g_tls_password_set_warning", password, warning)
-}
-
-
-#' @rdname glib-other
-#' @title gTlsServerConnectionNew
-#'
-#' @param base_io_stream IOStream
-#' @param certificate TlsCertificate
-#' @return TlsServerConnection
-#' @export
-gTlsServerConnectionNew <- function(base_io_stream, certificate) {
-  .Call("R_g_tls_server_connection_new", base_io_stream, certificate)
+  .Call("R_g_threaded_socket_service_new", max_threads)$result
 }
 
 
@@ -17073,7 +15699,7 @@ gTlsServerConnectionNew <- function(base_io_stream, certificate) {
 #' @return Vfs
 #' @export
 gVfsGetDefault <- function() {
-  .Call("R_g_vfs_get_default")
+  .Call("R_g_vfs_get_default")$result
 }
 
 
@@ -17083,7 +15709,7 @@ gVfsGetDefault <- function() {
 #' @return Vfs
 #' @export
 gVfsGetLocal <- function() {
-  .Call("R_g_vfs_get_local")
+  .Call("R_g_vfs_get_local")$result
 }
 
 
@@ -17095,7 +15721,7 @@ gVfsGetLocal <- function() {
 #' @return File
 #' @export
 gVfsGetFileForPath <- function(vfs, path) {
-  .Call("R_g_vfs_get_file_for_path", vfs, path)
+  .Call("R_g_vfs_get_file_for_path", vfs, path)$result
 }
 
 
@@ -17107,7 +15733,7 @@ gVfsGetFileForPath <- function(vfs, path) {
 #' @return File
 #' @export
 gVfsGetFileForUri <- function(vfs, uri) {
-  .Call("R_g_vfs_get_file_for_uri", vfs, uri)
+  .Call("R_g_vfs_get_file_for_uri", vfs, uri)$result
 }
 
 
@@ -17118,7 +15744,7 @@ gVfsGetFileForUri <- function(vfs, uri) {
 #' @return utf8
 #' @export
 gVfsGetSupportedUriSchemes <- function(vfs) {
-  .Call("R_g_vfs_get_supported_uri_schemes", vfs)
+  .Call("R_g_vfs_get_supported_uri_schemes", vfs)$result
 }
 
 
@@ -17129,7 +15755,7 @@ gVfsGetSupportedUriSchemes <- function(vfs) {
 #' @return gboolean
 #' @export
 gVfsIsActive <- function(vfs) {
-  .Call("R_g_vfs_is_active", vfs)
+  .Call("R_g_vfs_is_active", vfs)$result
 }
 
 
@@ -17141,7 +15767,7 @@ gVfsIsActive <- function(vfs) {
 #' @return File
 #' @export
 gVfsParseName <- function(vfs, parse_name) {
-  .Call("R_g_vfs_parse_name", vfs, parse_name)
+  .Call("R_g_vfs_parse_name", vfs, parse_name)$result
 }
 
 
@@ -17153,7 +15779,7 @@ gVfsParseName <- function(vfs, parse_name) {
 #' @return gboolean
 #' @export
 gVfsUnregisterUriScheme <- function(vfs, scheme) {
-  .Call("R_g_vfs_unregister_uri_scheme", vfs, scheme)
+  .Call("R_g_vfs_unregister_uri_scheme", vfs, scheme)$result
 }
 
 
@@ -17164,7 +15790,7 @@ gVfsUnregisterUriScheme <- function(vfs, scheme) {
 #' @return gboolean
 #' @export
 gVolumeCanEject <- function(volume) {
-  .Call("R_g_volume_can_eject", volume)
+  .Call("R_g_volume_can_eject", volume)$result
 }
 
 
@@ -17175,7 +15801,7 @@ gVolumeCanEject <- function(volume) {
 #' @return gboolean
 #' @export
 gVolumeCanMount <- function(volume) {
-  .Call("R_g_volume_can_mount", volume)
+  .Call("R_g_volume_can_mount", volume)$result
 }
 
 
@@ -17187,7 +15813,7 @@ gVolumeCanMount <- function(volume) {
 #' @return gboolean
 #' @export
 gVolumeEjectFinish <- function(volume, result) {
-  .Call("R_g_volume_eject_finish", volume, result)
+  .Call("R_g_volume_eject_finish", volume, result)$result
 }
 
 
@@ -17199,7 +15825,7 @@ gVolumeEjectFinish <- function(volume, result) {
 #' @return gboolean
 #' @export
 gVolumeEjectWithOperationFinish <- function(volume, result) {
-  .Call("R_g_volume_eject_with_operation_finish", volume, result)
+  .Call("R_g_volume_eject_with_operation_finish", volume, result)$result
 }
 
 
@@ -17210,7 +15836,7 @@ gVolumeEjectWithOperationFinish <- function(volume, result) {
 #' @return utf8
 #' @export
 gVolumeEnumerateIdentifiers <- function(volume) {
-  .Call("R_g_volume_enumerate_identifiers", volume)
+  .Call("R_g_volume_enumerate_identifiers", volume)$result
 }
 
 
@@ -17221,7 +15847,7 @@ gVolumeEnumerateIdentifiers <- function(volume) {
 #' @return File
 #' @export
 gVolumeGetActivationRoot <- function(volume) {
-  .Call("R_g_volume_get_activation_root", volume)
+  .Call("R_g_volume_get_activation_root", volume)$result
 }
 
 
@@ -17232,7 +15858,7 @@ gVolumeGetActivationRoot <- function(volume) {
 #' @return Drive
 #' @export
 gVolumeGetDrive <- function(volume) {
-  .Call("R_g_volume_get_drive", volume)
+  .Call("R_g_volume_get_drive", volume)$result
 }
 
 
@@ -17243,7 +15869,7 @@ gVolumeGetDrive <- function(volume) {
 #' @return Icon
 #' @export
 gVolumeGetIcon <- function(volume) {
-  .Call("R_g_volume_get_icon", volume)
+  .Call("R_g_volume_get_icon", volume)$result
 }
 
 
@@ -17255,7 +15881,7 @@ gVolumeGetIcon <- function(volume) {
 #' @return utf8
 #' @export
 gVolumeGetIdentifier <- function(volume, kind) {
-  .Call("R_g_volume_get_identifier", volume, kind)
+  .Call("R_g_volume_get_identifier", volume, kind)$result
 }
 
 
@@ -17266,7 +15892,7 @@ gVolumeGetIdentifier <- function(volume, kind) {
 #' @return Mount
 #' @export
 gVolumeGetMount <- function(volume) {
-  .Call("R_g_volume_get_mount", volume)
+  .Call("R_g_volume_get_mount", volume)$result
 }
 
 
@@ -17277,7 +15903,7 @@ gVolumeGetMount <- function(volume) {
 #' @return utf8
 #' @export
 gVolumeGetName <- function(volume) {
-  .Call("R_g_volume_get_name", volume)
+  .Call("R_g_volume_get_name", volume)$result
 }
 
 
@@ -17288,7 +15914,7 @@ gVolumeGetName <- function(volume) {
 #' @return utf8
 #' @export
 gVolumeGetSortKey <- function(volume) {
-  .Call("R_g_volume_get_sort_key", volume)
+  .Call("R_g_volume_get_sort_key", volume)$result
 }
 
 
@@ -17299,7 +15925,7 @@ gVolumeGetSortKey <- function(volume) {
 #' @return Icon
 #' @export
 gVolumeGetSymbolicIcon <- function(volume) {
-  .Call("R_g_volume_get_symbolic_icon", volume)
+  .Call("R_g_volume_get_symbolic_icon", volume)$result
 }
 
 
@@ -17310,7 +15936,7 @@ gVolumeGetSymbolicIcon <- function(volume) {
 #' @return utf8
 #' @export
 gVolumeGetUuid <- function(volume) {
-  .Call("R_g_volume_get_uuid", volume)
+  .Call("R_g_volume_get_uuid", volume)$result
 }
 
 
@@ -17322,7 +15948,7 @@ gVolumeGetUuid <- function(volume) {
 #' @return gboolean
 #' @export
 gVolumeMountFinish <- function(volume, result) {
-  .Call("R_g_volume_mount_finish", volume, result)
+  .Call("R_g_volume_mount_finish", volume, result)$result
 }
 
 
@@ -17333,7 +15959,7 @@ gVolumeMountFinish <- function(volume, result) {
 #' @return gboolean
 #' @export
 gVolumeShouldAutomount <- function(volume) {
-  .Call("R_g_volume_should_automount", volume)
+  .Call("R_g_volume_should_automount", volume)$result
 }
 
 
@@ -17344,7 +15970,7 @@ gVolumeShouldAutomount <- function(volume) {
 #' @return Volume
 #' @export
 gVolumeMonitorAdoptOrphanMount <- function(mount) {
-  .Call("R_g_volume_monitor_adopt_orphan_mount", mount)
+  .Call("R_g_volume_monitor_adopt_orphan_mount", mount)$result
 }
 
 
@@ -17354,7 +15980,7 @@ gVolumeMonitorAdoptOrphanMount <- function(mount) {
 #' @return VolumeMonitor
 #' @export
 gVolumeMonitorGet <- function() {
-  .Call("R_g_volume_monitor_get")
+  .Call("R_g_volume_monitor_get")$result
 }
 
 
@@ -17365,7 +15991,7 @@ gVolumeMonitorGet <- function() {
 #' @return GLib.List
 #' @export
 gVolumeMonitorGetConnectedDrives <- function(volume_monitor) {
-  .Call("R_g_volume_monitor_get_connected_drives", volume_monitor)
+  .Call("R_g_volume_monitor_get_connected_drives", volume_monitor)$result
 }
 
 
@@ -17377,7 +16003,7 @@ gVolumeMonitorGetConnectedDrives <- function(volume_monitor) {
 #' @return Mount
 #' @export
 gVolumeMonitorGetMountForUuid <- function(volume_monitor, uuid) {
-  .Call("R_g_volume_monitor_get_mount_for_uuid", volume_monitor, uuid)
+  .Call("R_g_volume_monitor_get_mount_for_uuid", volume_monitor, uuid)$result
 }
 
 
@@ -17388,7 +16014,7 @@ gVolumeMonitorGetMountForUuid <- function(volume_monitor, uuid) {
 #' @return GLib.List
 #' @export
 gVolumeMonitorGetMounts <- function(volume_monitor) {
-  .Call("R_g_volume_monitor_get_mounts", volume_monitor)
+  .Call("R_g_volume_monitor_get_mounts", volume_monitor)$result
 }
 
 
@@ -17400,7 +16026,7 @@ gVolumeMonitorGetMounts <- function(volume_monitor) {
 #' @return Volume
 #' @export
 gVolumeMonitorGetVolumeForUuid <- function(volume_monitor, uuid) {
-  .Call("R_g_volume_monitor_get_volume_for_uuid", volume_monitor, uuid)
+  .Call("R_g_volume_monitor_get_volume_for_uuid", volume_monitor, uuid)$result
 }
 
 
@@ -17411,7 +16037,7 @@ gVolumeMonitorGetVolumeForUuid <- function(volume_monitor, uuid) {
 #' @return GLib.List
 #' @export
 gVolumeMonitorGetVolumes <- function(volume_monitor) {
-  .Call("R_g_volume_monitor_get_volumes", volume_monitor)
+  .Call("R_g_volume_monitor_get_volumes", volume_monitor)$result
 }
 
 
@@ -17423,7 +16049,7 @@ gVolumeMonitorGetVolumes <- function(volume_monitor) {
 #' @return ZlibCompressor
 #' @export
 gZlibCompressorNew <- function(format, level) {
-  .Call("R_g_zlib_compressor_new", format, level)
+  .Call("R_g_zlib_compressor_new", format, level)$result
 }
 
 
@@ -17434,7 +16060,7 @@ gZlibCompressorNew <- function(format, level) {
 #' @return FileInfo
 #' @export
 gZlibCompressorGetFileInfo <- function(compressor) {
-  .Call("R_g_zlib_compressor_get_file_info", compressor)
+  .Call("R_g_zlib_compressor_get_file_info", compressor)$result
 }
 
 
@@ -17445,7 +16071,7 @@ gZlibCompressorGetFileInfo <- function(compressor) {
 #' @return gint
 #' @export
 gZlibCompressorGetOs <- function(compressor) {
-  .Call("R_g_zlib_compressor_get_os", compressor)
+  .Call("R_g_zlib_compressor_get_os", compressor)$result
 }
 
 
@@ -17480,7 +16106,7 @@ gZlibCompressorSetOs <- function(compressor, os) {
 #' @return ZlibDecompressor
 #' @export
 gZlibDecompressorNew <- function(format) {
-  .Call("R_g_zlib_decompressor_new", format)
+  .Call("R_g_zlib_decompressor_new", format)$result
 }
 
 
@@ -17491,7 +16117,7 @@ gZlibDecompressorNew <- function(format) {
 #' @return FileInfo
 #' @export
 gZlibDecompressorGetFileInfo <- function(decompressor) {
-  .Call("R_g_zlib_decompressor_get_file_info", decompressor)
+  .Call("R_g_zlib_decompressor_get_file_info", decompressor)$result
 }
 
 
@@ -17502,7 +16128,7 @@ gZlibDecompressorGetFileInfo <- function(decompressor) {
 #' @return DBusConnection
 #' @export
 gBusGetFinish <- function(res) {
-  .Call("R_g_bus_get_finish", res)
+  .Call("R_g_bus_get_finish", res)$result
 }
 
 
@@ -17514,7 +16140,7 @@ gBusGetFinish <- function(res) {
 #' @return DBusConnection
 #' @export
 gBusGetSync <- function(bus_type, cancellable) {
-  .Call("R_g_bus_get_sync", bus_type, cancellable)
+  .Call("R_g_bus_get_sync", bus_type, cancellable)$result
 }
 
 
@@ -17529,7 +16155,7 @@ gBusGetSync <- function(bus_type, cancellable) {
 #' @return guint
 #' @export
 gBusOwnNameOnConnectionWithClosures <- function(connection, name, flags, name_acquired_closure, name_lost_closure) {
-  .Call("R_g_bus_own_name_on_connection_with_closures", connection, name, flags, name_acquired_closure, name_lost_closure)
+  .Call("R_g_bus_own_name_on_connection_with_closures", connection, name, flags, name_acquired_closure, name_lost_closure)$result
 }
 
 
@@ -17545,7 +16171,7 @@ gBusOwnNameOnConnectionWithClosures <- function(connection, name, flags, name_ac
 #' @return guint
 #' @export
 gBusOwnNameWithClosures <- function(bus_type, name, flags, bus_acquired_closure, name_acquired_closure, name_lost_closure) {
-  .Call("R_g_bus_own_name_with_closures", bus_type, name, flags, bus_acquired_closure, name_acquired_closure, name_lost_closure)
+  .Call("R_g_bus_own_name_with_closures", bus_type, name, flags, bus_acquired_closure, name_acquired_closure, name_lost_closure)$result
 }
 
 
@@ -17582,7 +16208,7 @@ gBusUnwatchName <- function(watcher_id) {
 #' @return guint
 #' @export
 gBusWatchNameOnConnectionWithClosures <- function(connection, name, flags, name_appeared_closure, name_vanished_closure) {
-  .Call("R_g_bus_watch_name_on_connection_with_closures", connection, name, flags, name_appeared_closure, name_vanished_closure)
+  .Call("R_g_bus_watch_name_on_connection_with_closures", connection, name, flags, name_appeared_closure, name_vanished_closure)$result
 }
 
 
@@ -17597,7 +16223,7 @@ gBusWatchNameOnConnectionWithClosures <- function(connection, name, flags, name_
 #' @return guint
 #' @export
 gBusWatchNameWithClosures <- function(bus_type, name, flags, name_appeared_closure, name_vanished_closure) {
-  .Call("R_g_bus_watch_name_with_closures", bus_type, name, flags, name_appeared_closure, name_vanished_closure)
+  .Call("R_g_bus_watch_name_with_closures", bus_type, name, flags, name_appeared_closure, name_vanished_closure)$result
 }
 
 
@@ -17608,7 +16234,7 @@ gBusWatchNameWithClosures <- function(bus_type, name, flags, name_appeared_closu
 #' @return gboolean
 #' @export
 gContentTypeCanBeExecutable <- function(type) {
-  .Call("R_g_content_type_can_be_executable", type)
+  .Call("R_g_content_type_can_be_executable", type)$result
 }
 
 
@@ -17620,7 +16246,7 @@ gContentTypeCanBeExecutable <- function(type) {
 #' @return gboolean
 #' @export
 gContentTypeEquals <- function(type1, type2) {
-  .Call("R_g_content_type_equals", type1, type2)
+  .Call("R_g_content_type_equals", type1, type2)$result
 }
 
 
@@ -17631,7 +16257,7 @@ gContentTypeEquals <- function(type1, type2) {
 #' @return utf8
 #' @export
 gContentTypeFromMimeType <- function(mime_type) {
-  .Call("R_g_content_type_from_mime_type", mime_type)
+  .Call("R_g_content_type_from_mime_type", mime_type)$result
 }
 
 
@@ -17642,7 +16268,7 @@ gContentTypeFromMimeType <- function(mime_type) {
 #' @return utf8
 #' @export
 gContentTypeGetDescription <- function(type) {
-  .Call("R_g_content_type_get_description", type)
+  .Call("R_g_content_type_get_description", type)$result
 }
 
 
@@ -17653,7 +16279,7 @@ gContentTypeGetDescription <- function(type) {
 #' @return utf8
 #' @export
 gContentTypeGetGenericIconName <- function(type) {
-  .Call("R_g_content_type_get_generic_icon_name", type)
+  .Call("R_g_content_type_get_generic_icon_name", type)$result
 }
 
 
@@ -17664,7 +16290,7 @@ gContentTypeGetGenericIconName <- function(type) {
 #' @return Icon
 #' @export
 gContentTypeGetIcon <- function(type) {
-  .Call("R_g_content_type_get_icon", type)
+  .Call("R_g_content_type_get_icon", type)$result
 }
 
 
@@ -17674,7 +16300,7 @@ gContentTypeGetIcon <- function(type) {
 #' @return utf8
 #' @export
 gContentTypeGetMimeDirs <- function() {
-  .Call("R_g_content_type_get_mime_dirs")
+  .Call("R_g_content_type_get_mime_dirs")$result
 }
 
 
@@ -17685,7 +16311,7 @@ gContentTypeGetMimeDirs <- function() {
 #' @return utf8
 #' @export
 gContentTypeGetMimeType <- function(type) {
-  .Call("R_g_content_type_get_mime_type", type)
+  .Call("R_g_content_type_get_mime_type", type)$result
 }
 
 
@@ -17696,7 +16322,7 @@ gContentTypeGetMimeType <- function(type) {
 #' @return Icon
 #' @export
 gContentTypeGetSymbolicIcon <- function(type) {
-  .Call("R_g_content_type_get_symbolic_icon", type)
+  .Call("R_g_content_type_get_symbolic_icon", type)$result
 }
 
 
@@ -17720,7 +16346,7 @@ gContentTypeGuess <- function(filename, data, data_size) {
 #' @return utf8
 #' @export
 gContentTypeGuessForTree <- function(root) {
-  .Call("R_g_content_type_guess_for_tree", root)
+  .Call("R_g_content_type_guess_for_tree", root)$result
 }
 
 
@@ -17732,7 +16358,7 @@ gContentTypeGuessForTree <- function(root) {
 #' @return gboolean
 #' @export
 gContentTypeIsA <- function(type, supertype) {
-  .Call("R_g_content_type_is_a", type, supertype)
+  .Call("R_g_content_type_is_a", type, supertype)$result
 }
 
 
@@ -17744,7 +16370,7 @@ gContentTypeIsA <- function(type, supertype) {
 #' @return gboolean
 #' @export
 gContentTypeIsMimeType <- function(type, mime_type) {
-  .Call("R_g_content_type_is_mime_type", type, mime_type)
+  .Call("R_g_content_type_is_mime_type", type, mime_type)$result
 }
 
 
@@ -17755,7 +16381,7 @@ gContentTypeIsMimeType <- function(type, mime_type) {
 #' @return gboolean
 #' @export
 gContentTypeIsUnknown <- function(type) {
-  .Call("R_g_content_type_is_unknown", type)
+  .Call("R_g_content_type_is_unknown", type)$result
 }
 
 
@@ -17776,7 +16402,7 @@ gContentTypeSetMimeDirs <- function(dirs) {
 #' @return GLib.List
 #' @export
 gContentTypesGetRegistered <- function() {
-  .Call("R_g_content_types_get_registered")
+  .Call("R_g_content_types_get_registered")$result
 }
 
 
@@ -17787,7 +16413,7 @@ gContentTypesGetRegistered <- function() {
 #' @return utf8
 #' @export
 gDbusAddressEscapeValue <- function(string) {
-  .Call("R_g_dbus_address_escape_value", string)
+  .Call("R_g_dbus_address_escape_value", string)$result
 }
 
 
@@ -17799,7 +16425,7 @@ gDbusAddressEscapeValue <- function(string) {
 #' @return utf8
 #' @export
 gDbusAddressGetForBusSync <- function(bus_type, cancellable) {
-  .Call("R_g_dbus_address_get_for_bus_sync", bus_type, cancellable)
+  .Call("R_g_dbus_address_get_for_bus_sync", bus_type, cancellable)$result
 }
 
 
@@ -17833,7 +16459,7 @@ gDbusAddressGetStreamSync <- function(address, cancellable) {
 #' @return utf8
 #' @export
 gDbusEscapeObjectPath <- function(s) {
-  .Call("R_g_dbus_escape_object_path", s)
+  .Call("R_g_dbus_escape_object_path", s)$result
 }
 
 
@@ -17844,7 +16470,7 @@ gDbusEscapeObjectPath <- function(s) {
 #' @return utf8
 #' @export
 gDbusEscapeObjectPathBytestring <- function(bytes) {
-  .Call("R_g_dbus_escape_object_path_bytestring", bytes)
+  .Call("R_g_dbus_escape_object_path_bytestring", bytes)$result
 }
 
 
@@ -17854,7 +16480,7 @@ gDbusEscapeObjectPathBytestring <- function(bytes) {
 #' @return utf8
 #' @export
 gDbusGenerateGuid <- function() {
-  .Call("R_g_dbus_generate_guid")
+  .Call("R_g_dbus_generate_guid")$result
 }
 
 
@@ -17866,7 +16492,7 @@ gDbusGenerateGuid <- function() {
 #' @return GLib.Variant
 #' @export
 gDbusGvalueToGvariant <- function(gvalue, type) {
-  .Call("R_g_dbus_gvalue_to_gvariant", gvalue, type)
+  .Call("R_g_dbus_gvalue_to_gvariant", gvalue, type)$result
 }
 
 
@@ -17877,7 +16503,7 @@ gDbusGvalueToGvariant <- function(gvalue, type) {
 #' @return Return value from C function
 #' @export
 gDbusGvariantToGvalue <- function(value) {
-  .Call("R_g_dbus_gvariant_to_gvalue", value)
+  .Call("R_g_dbus_gvariant_to_gvalue", value)$out_gvalue
 }
 
 
@@ -17888,7 +16514,7 @@ gDbusGvariantToGvalue <- function(value) {
 #' @return gboolean
 #' @export
 gDbusIsAddress <- function(string) {
-  .Call("R_g_dbus_is_address", string)
+  .Call("R_g_dbus_is_address", string)$result
 }
 
 
@@ -17899,7 +16525,7 @@ gDbusIsAddress <- function(string) {
 #' @return gboolean
 #' @export
 gDbusIsErrorName <- function(string) {
-  .Call("R_g_dbus_is_error_name", string)
+  .Call("R_g_dbus_is_error_name", string)$result
 }
 
 
@@ -17910,7 +16536,7 @@ gDbusIsErrorName <- function(string) {
 #' @return gboolean
 #' @export
 gDbusIsGuid <- function(string) {
-  .Call("R_g_dbus_is_guid", string)
+  .Call("R_g_dbus_is_guid", string)$result
 }
 
 
@@ -17921,7 +16547,7 @@ gDbusIsGuid <- function(string) {
 #' @return gboolean
 #' @export
 gDbusIsInterfaceName <- function(string) {
-  .Call("R_g_dbus_is_interface_name", string)
+  .Call("R_g_dbus_is_interface_name", string)$result
 }
 
 
@@ -17932,7 +16558,7 @@ gDbusIsInterfaceName <- function(string) {
 #' @return gboolean
 #' @export
 gDbusIsMemberName <- function(string) {
-  .Call("R_g_dbus_is_member_name", string)
+  .Call("R_g_dbus_is_member_name", string)$result
 }
 
 
@@ -17943,7 +16569,7 @@ gDbusIsMemberName <- function(string) {
 #' @return gboolean
 #' @export
 gDbusIsName <- function(string) {
-  .Call("R_g_dbus_is_name", string)
+  .Call("R_g_dbus_is_name", string)$result
 }
 
 
@@ -17954,7 +16580,7 @@ gDbusIsName <- function(string) {
 #' @return gboolean
 #' @export
 gDbusIsSupportedAddress <- function(string) {
-  .Call("R_g_dbus_is_supported_address", string)
+  .Call("R_g_dbus_is_supported_address", string)$result
 }
 
 
@@ -17965,7 +16591,7 @@ gDbusIsSupportedAddress <- function(string) {
 #' @return gboolean
 #' @export
 gDbusIsUniqueName <- function(string) {
-  .Call("R_g_dbus_is_unique_name", string)
+  .Call("R_g_dbus_is_unique_name", string)$result
 }
 
 
@@ -17976,7 +16602,7 @@ gDbusIsUniqueName <- function(string) {
 #' @return guint8
 #' @export
 gDbusUnescapeObjectPath <- function(s) {
-  .Call("R_g_dbus_unescape_object_path", s)
+  .Call("R_g_dbus_unescape_object_path", s)$result
 }
 
 
@@ -17987,7 +16613,7 @@ gDbusUnescapeObjectPath <- function(s) {
 #' @return IOErrorEnum
 #' @export
 gIoErrorFromErrno <- function(err_no) {
-  .Call("R_g_io_error_from_errno", err_no)
+  .Call("R_g_io_error_from_errno", err_no)$result
 }
 
 
@@ -17998,7 +16624,7 @@ gIoErrorFromErrno <- function(err_no) {
 #' @return IOErrorEnum
 #' @export
 gIoErrorFromFileError <- function(file_error) {
-  .Call("R_g_io_error_from_file_error", file_error)
+  .Call("R_g_io_error_from_file_error", file_error)$result
 }
 
 
@@ -18008,7 +16634,7 @@ gIoErrorFromFileError <- function(file_error) {
 #' @return GLib.Quark
 #' @export
 gIoErrorQuark <- function() {
-  .Call("R_g_io_error_quark")
+  .Call("R_g_io_error_quark")$result
 }
 
 
@@ -18019,7 +16645,7 @@ gIoErrorQuark <- function() {
 #' @return GLib.List
 #' @export
 gIoModulesLoadAllInDirectory <- function(dirname) {
-  .Call("R_g_io_modules_load_all_in_directory", dirname)
+  .Call("R_g_io_modules_load_all_in_directory", dirname)$result
 }
 
 
@@ -18031,7 +16657,7 @@ gIoModulesLoadAllInDirectory <- function(dirname) {
 #' @return GLib.List
 #' @export
 gIoModulesLoadAllInDirectoryWithScope <- function(dirname, scope) {
-  .Call("R_g_io_modules_load_all_in_directory_with_scope", dirname, scope)
+  .Call("R_g_io_modules_load_all_in_directory_with_scope", dirname, scope)$result
 }
 
 
@@ -18077,7 +16703,7 @@ gIoSchedulerCancelAllJobs <- function() {
 #' @return SettingsBackend
 #' @export
 gKeyfileSettingsBackendNew <- function(filename, root_path, root_group) {
-  .Call("R_g_keyfile_settings_backend_new", filename, root_path, root_group)
+  .Call("R_g_keyfile_settings_backend_new", filename, root_path, root_group)$result
 }
 
 
@@ -18087,7 +16713,7 @@ gKeyfileSettingsBackendNew <- function(filename, root_path, root_group) {
 #' @return SettingsBackend
 #' @export
 gMemorySettingsBackendNew <- function() {
-  .Call("R_g_memory_settings_backend_new")
+  .Call("R_g_memory_settings_backend_new")$result
 }
 
 
@@ -18107,7 +16733,7 @@ gNetworkingInit <- function() {
 #' @return SettingsBackend
 #' @export
 gNullSettingsBackendNew <- function() {
-  .Call("R_g_null_settings_backend_new")
+  .Call("R_g_null_settings_backend_new")$result
 }
 
 
@@ -18118,7 +16744,7 @@ gNullSettingsBackendNew <- function() {
 #' @return GLib.Source
 #' @export
 gPollableSourceNew <- function(pollable_stream) {
-  .Call("R_g_pollable_source_new", pollable_stream)
+  .Call("R_g_pollable_source_new", pollable_stream)$result
 }
 
 
@@ -18131,7 +16757,7 @@ gPollableSourceNew <- function(pollable_stream) {
 #' @return GLib.Source
 #' @export
 gPollableSourceNewFull <- function(pollable_stream, child_source, cancellable) {
-  .Call("R_g_pollable_source_new_full", pollable_stream, child_source, cancellable)
+  .Call("R_g_pollable_source_new_full", pollable_stream, child_source, cancellable)$result
 }
 
 
@@ -18146,7 +16772,7 @@ gPollableSourceNewFull <- function(pollable_stream, child_source, cancellable) {
 #' @return gssize
 #' @export
 gPollableStreamRead <- function(stream, buffer, count, blocking, cancellable) {
-  .Call("R_g_pollable_stream_read", stream, buffer, count, blocking, cancellable)
+  .Call("R_g_pollable_stream_read", stream, buffer, count, blocking, cancellable)$result
 }
 
 
@@ -18161,7 +16787,7 @@ gPollableStreamRead <- function(stream, buffer, count, blocking, cancellable) {
 #' @return gssize
 #' @export
 gPollableStreamWrite <- function(stream, buffer, count, blocking, cancellable) {
-  .Call("R_g_pollable_stream_write", stream, buffer, count, blocking, cancellable)
+  .Call("R_g_pollable_stream_write", stream, buffer, count, blocking, cancellable)$result
 }
 
 
@@ -18188,7 +16814,7 @@ gPollableStreamWriteAll <- function(stream, buffer, count, blocking, cancellable
 #' @return utf8
 #' @export
 gResourcesEnumerateChildren <- function(path, lookup_flags) {
-  .Call("R_g_resources_enumerate_children", path, lookup_flags)
+  .Call("R_g_resources_enumerate_children", path, lookup_flags)$result
 }
 
 
@@ -18211,7 +16837,7 @@ gResourcesGetInfo <- function(path, lookup_flags) {
 #' @return gboolean
 #' @export
 gResourcesHasChildren <- function(path) {
-  .Call("R_g_resources_has_children", path)
+  .Call("R_g_resources_has_children", path)$result
 }
 
 
@@ -18223,7 +16849,7 @@ gResourcesHasChildren <- function(path) {
 #' @return GLib.Bytes
 #' @export
 gResourcesLookupData <- function(path, lookup_flags) {
-  .Call("R_g_resources_lookup_data", path, lookup_flags)
+  .Call("R_g_resources_lookup_data", path, lookup_flags)$result
 }
 
 
@@ -18235,7 +16861,7 @@ gResourcesLookupData <- function(path, lookup_flags) {
 #' @return InputStream
 #' @export
 gResourcesOpenStream <- function(path, lookup_flags) {
-  .Call("R_g_resources_open_stream", path, lookup_flags)
+  .Call("R_g_resources_open_stream", path, lookup_flags)$result
 }
 
 

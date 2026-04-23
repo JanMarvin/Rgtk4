@@ -1337,33 +1337,6 @@
 \alias{gtkPadControllerNew}
 \alias{gtkPadControllerSetAction}
 \alias{gtkPadControllerSetActionEntries}
-\alias{gtkPageSetupNew}
-\alias{gtkPageSetupNewFromFile}
-\alias{gtkPageSetupNewFromGvariant}
-\alias{gtkPageSetupNewFromKeyFile}
-\alias{gtkPageSetupCopy}
-\alias{gtkPageSetupGetBottomMargin}
-\alias{gtkPageSetupGetLeftMargin}
-\alias{gtkPageSetupGetOrientation}
-\alias{gtkPageSetupGetPageHeight}
-\alias{gtkPageSetupGetPageWidth}
-\alias{gtkPageSetupGetPaperHeight}
-\alias{gtkPageSetupGetPaperSize}
-\alias{gtkPageSetupGetPaperWidth}
-\alias{gtkPageSetupGetRightMargin}
-\alias{gtkPageSetupGetTopMargin}
-\alias{gtkPageSetupLoadFile}
-\alias{gtkPageSetupLoadKeyFile}
-\alias{gtkPageSetupSetBottomMargin}
-\alias{gtkPageSetupSetLeftMargin}
-\alias{gtkPageSetupSetOrientation}
-\alias{gtkPageSetupSetPaperSize}
-\alias{gtkPageSetupSetPaperSizeAndDefaultMargins}
-\alias{gtkPageSetupSetRightMargin}
-\alias{gtkPageSetupSetTopMargin}
-\alias{gtkPageSetupToFile}
-\alias{gtkPageSetupToGvariant}
-\alias{gtkPageSetupToKeyFile}
 \alias{gtkPaperSizeNew}
 \alias{gtkPaperSizeNewCustom}
 \alias{gtkPaperSizeNewFromGvariant}
@@ -1395,144 +1368,6 @@
 \alias{gtkPasswordEntrySetExtraMenu}
 \alias{gtkPasswordEntrySetShowPeekIcon}
 \alias{gtkPasswordEntryBufferNew}
-\alias{gtkPrintContextCreatePangoContext}
-\alias{gtkPrintContextCreatePangoLayout}
-\alias{gtkPrintContextGetCairoContext}
-\alias{gtkPrintContextGetDpiX}
-\alias{gtkPrintContextGetDpiY}
-\alias{gtkPrintContextGetHardMargins}
-\alias{gtkPrintContextGetHeight}
-\alias{gtkPrintContextGetPageSetup}
-\alias{gtkPrintContextGetPangoFontmap}
-\alias{gtkPrintContextGetWidth}
-\alias{gtkPrintContextSetCairoContext}
-\alias{gtkPrintDialogNew}
-\alias{gtkPrintDialogGetAcceptLabel}
-\alias{gtkPrintDialogGetModal}
-\alias{gtkPrintDialogGetPageSetup}
-\alias{gtkPrintDialogGetPrintSettings}
-\alias{gtkPrintDialogGetTitle}
-\alias{gtkPrintDialogPrintFileFinish}
-\alias{gtkPrintDialogPrintFinish}
-\alias{gtkPrintDialogSetAcceptLabel}
-\alias{gtkPrintDialogSetModal}
-\alias{gtkPrintDialogSetPageSetup}
-\alias{gtkPrintDialogSetPrintSettings}
-\alias{gtkPrintDialogSetTitle}
-\alias{gtkPrintDialogSetupFinish}
-\alias{gtkPrintErrorQuark}
-\alias{gtkPrintOperationNew}
-\alias{gtkPrintOperationCancel}
-\alias{gtkPrintOperationDrawPageFinish}
-\alias{gtkPrintOperationGetDefaultPageSetup}
-\alias{gtkPrintOperationGetEmbedPageSetup}
-\alias{gtkPrintOperationGetError}
-\alias{gtkPrintOperationGetHasSelection}
-\alias{gtkPrintOperationGetNPagesToPrint}
-\alias{gtkPrintOperationGetPrintSettings}
-\alias{gtkPrintOperationGetStatus}
-\alias{gtkPrintOperationGetStatusString}
-\alias{gtkPrintOperationGetSupportSelection}
-\alias{gtkPrintOperationIsFinished}
-\alias{gtkPrintOperationRun}
-\alias{gtkPrintOperationSetAllowAsync}
-\alias{gtkPrintOperationSetCurrentPage}
-\alias{gtkPrintOperationSetCustomTabLabel}
-\alias{gtkPrintOperationSetDefaultPageSetup}
-\alias{gtkPrintOperationSetDeferDrawing}
-\alias{gtkPrintOperationSetEmbedPageSetup}
-\alias{gtkPrintOperationSetExportFilename}
-\alias{gtkPrintOperationSetHasSelection}
-\alias{gtkPrintOperationSetJobName}
-\alias{gtkPrintOperationSetNPages}
-\alias{gtkPrintOperationSetPrintSettings}
-\alias{gtkPrintOperationSetShowProgress}
-\alias{gtkPrintOperationSetSupportSelection}
-\alias{gtkPrintOperationSetTrackPrintStatus}
-\alias{gtkPrintOperationSetUnit}
-\alias{gtkPrintOperationSetUseFullPage}
-\alias{gtkPrintOperationPreviewEndPreview}
-\alias{gtkPrintOperationPreviewIsSelected}
-\alias{gtkPrintOperationPreviewRenderPage}
-\alias{gtkPrintSettingsNew}
-\alias{gtkPrintSettingsNewFromFile}
-\alias{gtkPrintSettingsNewFromGvariant}
-\alias{gtkPrintSettingsNewFromKeyFile}
-\alias{gtkPrintSettingsCopy}
-\alias{gtkPrintSettingsGet}
-\alias{gtkPrintSettingsGetBool}
-\alias{gtkPrintSettingsGetCollate}
-\alias{gtkPrintSettingsGetDefaultSource}
-\alias{gtkPrintSettingsGetDither}
-\alias{gtkPrintSettingsGetDouble}
-\alias{gtkPrintSettingsGetDoubleWithDefault}
-\alias{gtkPrintSettingsGetDuplex}
-\alias{gtkPrintSettingsGetFinishings}
-\alias{gtkPrintSettingsGetInt}
-\alias{gtkPrintSettingsGetIntWithDefault}
-\alias{gtkPrintSettingsGetLength}
-\alias{gtkPrintSettingsGetMediaType}
-\alias{gtkPrintSettingsGetNCopies}
-\alias{gtkPrintSettingsGetNumberUp}
-\alias{gtkPrintSettingsGetNumberUpLayout}
-\alias{gtkPrintSettingsGetOrientation}
-\alias{gtkPrintSettingsGetOutputBin}
-\alias{gtkPrintSettingsGetPageRanges}
-\alias{gtkPrintSettingsGetPageSet}
-\alias{gtkPrintSettingsGetPaperHeight}
-\alias{gtkPrintSettingsGetPaperSize}
-\alias{gtkPrintSettingsGetPaperWidth}
-\alias{gtkPrintSettingsGetPrintPages}
-\alias{gtkPrintSettingsGetPrinter}
-\alias{gtkPrintSettingsGetPrinterLpi}
-\alias{gtkPrintSettingsGetQuality}
-\alias{gtkPrintSettingsGetResolution}
-\alias{gtkPrintSettingsGetResolutionX}
-\alias{gtkPrintSettingsGetResolutionY}
-\alias{gtkPrintSettingsGetReverse}
-\alias{gtkPrintSettingsGetScale}
-\alias{gtkPrintSettingsGetUseColor}
-\alias{gtkPrintSettingsHasKey}
-\alias{gtkPrintSettingsLoadFile}
-\alias{gtkPrintSettingsLoadKeyFile}
-\alias{gtkPrintSettingsSet}
-\alias{gtkPrintSettingsSetBool}
-\alias{gtkPrintSettingsSetCollate}
-\alias{gtkPrintSettingsSetDefaultSource}
-\alias{gtkPrintSettingsSetDither}
-\alias{gtkPrintSettingsSetDouble}
-\alias{gtkPrintSettingsSetDuplex}
-\alias{gtkPrintSettingsSetFinishings}
-\alias{gtkPrintSettingsSetInt}
-\alias{gtkPrintSettingsSetLength}
-\alias{gtkPrintSettingsSetMediaType}
-\alias{gtkPrintSettingsSetNCopies}
-\alias{gtkPrintSettingsSetNumberUp}
-\alias{gtkPrintSettingsSetNumberUpLayout}
-\alias{gtkPrintSettingsSetOrientation}
-\alias{gtkPrintSettingsSetOutputBin}
-\alias{gtkPrintSettingsSetPageRanges}
-\alias{gtkPrintSettingsSetPageSet}
-\alias{gtkPrintSettingsSetPaperHeight}
-\alias{gtkPrintSettingsSetPaperSize}
-\alias{gtkPrintSettingsSetPaperWidth}
-\alias{gtkPrintSettingsSetPrintPages}
-\alias{gtkPrintSettingsSetPrinter}
-\alias{gtkPrintSettingsSetPrinterLpi}
-\alias{gtkPrintSettingsSetQuality}
-\alias{gtkPrintSettingsSetResolution}
-\alias{gtkPrintSettingsSetResolutionXy}
-\alias{gtkPrintSettingsSetReverse}
-\alias{gtkPrintSettingsSetScale}
-\alias{gtkPrintSettingsSetUseColor}
-\alias{gtkPrintSettingsToFile}
-\alias{gtkPrintSettingsToGvariant}
-\alias{gtkPrintSettingsToKeyFile}
-\alias{gtkPrintSettingsUnset}
-\alias{gtkPrintSetupGetPageSetup}
-\alias{gtkPrintSetupGetPrintSettings}
-\alias{gtkPrintSetupRef}
-\alias{gtkPrintSetupUnref}
 \alias{gtkProgressBarNew}
 \alias{gtkProgressBarGetEllipsize}
 \alias{gtkProgressBarGetFraction}
@@ -2164,7 +1999,6 @@
 \alias{gtkInitCheck}
 \alias{gtkIsInitialized}
 \alias{gtkParamSpecExpression}
-\alias{gtkPrintRunPageSetupDialog}
 \alias{gtkRenderActivity}
 \alias{gtkRenderArrow}
 \alias{gtkRenderBackground}
@@ -4959,60 +4793,6 @@ gtkPadControllerSetAction(controller, type, index, mode, label, action_name)
 
 gtkPadControllerSetActionEntries(controller, entries, n_entries)
 
-gtkPageSetupNew()
-
-gtkPageSetupNewFromFile(file_name)
-
-gtkPageSetupNewFromGvariant(variant)
-
-gtkPageSetupNewFromKeyFile(key_file, group_name)
-
-gtkPageSetupCopy(other)
-
-gtkPageSetupGetBottomMargin(setup, unit)
-
-gtkPageSetupGetLeftMargin(setup, unit)
-
-gtkPageSetupGetOrientation(setup)
-
-gtkPageSetupGetPageHeight(setup, unit)
-
-gtkPageSetupGetPageWidth(setup, unit)
-
-gtkPageSetupGetPaperHeight(setup, unit)
-
-gtkPageSetupGetPaperSize(setup)
-
-gtkPageSetupGetPaperWidth(setup, unit)
-
-gtkPageSetupGetRightMargin(setup, unit)
-
-gtkPageSetupGetTopMargin(setup, unit)
-
-gtkPageSetupLoadFile(setup, file_name)
-
-gtkPageSetupLoadKeyFile(setup, key_file, group_name)
-
-gtkPageSetupSetBottomMargin(setup, margin, unit)
-
-gtkPageSetupSetLeftMargin(setup, margin, unit)
-
-gtkPageSetupSetOrientation(setup, orientation)
-
-gtkPageSetupSetPaperSize(setup, size)
-
-gtkPageSetupSetPaperSizeAndDefaultMargins(setup, size)
-
-gtkPageSetupSetRightMargin(setup, margin, unit)
-
-gtkPageSetupSetTopMargin(setup, margin, unit)
-
-gtkPageSetupToFile(setup, file_name)
-
-gtkPageSetupToGvariant(setup)
-
-gtkPageSetupToKeyFile(setup, key_file, group_name)
-
 gtkPaperSizeNew(name)
 
 gtkPaperSizeNewCustom(name, display_name, width, height, unit)
@@ -5074,282 +4854,6 @@ gtkPasswordEntrySetExtraMenu(entry, model)
 gtkPasswordEntrySetShowPeekIcon(entry, show_peek_icon)
 
 gtkPasswordEntryBufferNew()
-
-gtkPrintContextCreatePangoContext(context)
-
-gtkPrintContextCreatePangoLayout(context)
-
-gtkPrintContextGetCairoContext(context)
-
-gtkPrintContextGetDpiX(context)
-
-gtkPrintContextGetDpiY(context)
-
-gtkPrintContextGetHardMargins(context)
-
-gtkPrintContextGetHeight(context)
-
-gtkPrintContextGetPageSetup(context)
-
-gtkPrintContextGetPangoFontmap(context)
-
-gtkPrintContextGetWidth(context)
-
-gtkPrintContextSetCairoContext(context, cr, dpi_x, dpi_y)
-
-gtkPrintDialogNew()
-
-gtkPrintDialogGetAcceptLabel(self)
-
-gtkPrintDialogGetModal(self)
-
-gtkPrintDialogGetPageSetup(self)
-
-gtkPrintDialogGetPrintSettings(self)
-
-gtkPrintDialogGetTitle(self)
-
-gtkPrintDialogPrintFileFinish(self, result)
-
-gtkPrintDialogPrintFinish(self, result)
-
-gtkPrintDialogSetAcceptLabel(self, accept_label)
-
-gtkPrintDialogSetModal(self, modal)
-
-gtkPrintDialogSetPageSetup(self, page_setup)
-
-gtkPrintDialogSetPrintSettings(self, print_settings)
-
-gtkPrintDialogSetTitle(self, title)
-
-gtkPrintDialogSetupFinish(self, result)
-
-gtkPrintErrorQuark()
-
-gtkPrintOperationNew()
-
-gtkPrintOperationCancel(op)
-
-gtkPrintOperationDrawPageFinish(op)
-
-gtkPrintOperationGetDefaultPageSetup(op)
-
-gtkPrintOperationGetEmbedPageSetup(op)
-
-gtkPrintOperationGetError(op)
-
-gtkPrintOperationGetHasSelection(op)
-
-gtkPrintOperationGetNPagesToPrint(op)
-
-gtkPrintOperationGetPrintSettings(op)
-
-gtkPrintOperationGetStatus(op)
-
-gtkPrintOperationGetStatusString(op)
-
-gtkPrintOperationGetSupportSelection(op)
-
-gtkPrintOperationIsFinished(op)
-
-gtkPrintOperationRun(op, action, parent)
-
-gtkPrintOperationSetAllowAsync(op, allow_async)
-
-gtkPrintOperationSetCurrentPage(op, current_page)
-
-gtkPrintOperationSetCustomTabLabel(op, label)
-
-gtkPrintOperationSetDefaultPageSetup(op, default_page_setup)
-
-gtkPrintOperationSetDeferDrawing(op)
-
-gtkPrintOperationSetEmbedPageSetup(op, embed)
-
-gtkPrintOperationSetExportFilename(op, filename)
-
-gtkPrintOperationSetHasSelection(op, has_selection)
-
-gtkPrintOperationSetJobName(op, job_name)
-
-gtkPrintOperationSetNPages(op, n_pages)
-
-gtkPrintOperationSetPrintSettings(op, print_settings)
-
-gtkPrintOperationSetShowProgress(op, show_progress)
-
-gtkPrintOperationSetSupportSelection(op, support_selection)
-
-gtkPrintOperationSetTrackPrintStatus(op, track_status)
-
-gtkPrintOperationSetUnit(op, unit)
-
-gtkPrintOperationSetUseFullPage(op, full_page)
-
-gtkPrintOperationPreviewEndPreview(preview)
-
-gtkPrintOperationPreviewIsSelected(preview, page_nr)
-
-gtkPrintOperationPreviewRenderPage(preview, page_nr)
-
-gtkPrintSettingsNew()
-
-gtkPrintSettingsNewFromFile(file_name)
-
-gtkPrintSettingsNewFromGvariant(variant)
-
-gtkPrintSettingsNewFromKeyFile(key_file, group_name)
-
-gtkPrintSettingsCopy(other)
-
-gtkPrintSettingsGet(settings, key)
-
-gtkPrintSettingsGetBool(settings, key)
-
-gtkPrintSettingsGetCollate(settings)
-
-gtkPrintSettingsGetDefaultSource(settings)
-
-gtkPrintSettingsGetDither(settings)
-
-gtkPrintSettingsGetDouble(settings, key)
-
-gtkPrintSettingsGetDoubleWithDefault(settings, key, def)
-
-gtkPrintSettingsGetDuplex(settings)
-
-gtkPrintSettingsGetFinishings(settings)
-
-gtkPrintSettingsGetInt(settings, key)
-
-gtkPrintSettingsGetIntWithDefault(settings, key, def)
-
-gtkPrintSettingsGetLength(settings, key, unit)
-
-gtkPrintSettingsGetMediaType(settings)
-
-gtkPrintSettingsGetNCopies(settings)
-
-gtkPrintSettingsGetNumberUp(settings)
-
-gtkPrintSettingsGetNumberUpLayout(settings)
-
-gtkPrintSettingsGetOrientation(settings)
-
-gtkPrintSettingsGetOutputBin(settings)
-
-gtkPrintSettingsGetPageRanges(settings)
-
-gtkPrintSettingsGetPageSet(settings)
-
-gtkPrintSettingsGetPaperHeight(settings, unit)
-
-gtkPrintSettingsGetPaperSize(settings)
-
-gtkPrintSettingsGetPaperWidth(settings, unit)
-
-gtkPrintSettingsGetPrintPages(settings)
-
-gtkPrintSettingsGetPrinter(settings)
-
-gtkPrintSettingsGetPrinterLpi(settings)
-
-gtkPrintSettingsGetQuality(settings)
-
-gtkPrintSettingsGetResolution(settings)
-
-gtkPrintSettingsGetResolutionX(settings)
-
-gtkPrintSettingsGetResolutionY(settings)
-
-gtkPrintSettingsGetReverse(settings)
-
-gtkPrintSettingsGetScale(settings)
-
-gtkPrintSettingsGetUseColor(settings)
-
-gtkPrintSettingsHasKey(settings, key)
-
-gtkPrintSettingsLoadFile(settings, file_name)
-
-gtkPrintSettingsLoadKeyFile(settings, key_file, group_name)
-
-gtkPrintSettingsSet(settings, key, value)
-
-gtkPrintSettingsSetBool(settings, key, value)
-
-gtkPrintSettingsSetCollate(settings, collate)
-
-gtkPrintSettingsSetDefaultSource(settings, default_source)
-
-gtkPrintSettingsSetDither(settings, dither)
-
-gtkPrintSettingsSetDouble(settings, key, value)
-
-gtkPrintSettingsSetDuplex(settings, duplex)
-
-gtkPrintSettingsSetFinishings(settings, finishings)
-
-gtkPrintSettingsSetInt(settings, key, value)
-
-gtkPrintSettingsSetLength(settings, key, value, unit)
-
-gtkPrintSettingsSetMediaType(settings, media_type)
-
-gtkPrintSettingsSetNCopies(settings, num_copies)
-
-gtkPrintSettingsSetNumberUp(settings, number_up)
-
-gtkPrintSettingsSetNumberUpLayout(settings, number_up_layout)
-
-gtkPrintSettingsSetOrientation(settings, orientation)
-
-gtkPrintSettingsSetOutputBin(settings, output_bin)
-
-gtkPrintSettingsSetPageRanges(settings, page_ranges, num_ranges)
-
-gtkPrintSettingsSetPageSet(settings, page_set)
-
-gtkPrintSettingsSetPaperHeight(settings, height, unit)
-
-gtkPrintSettingsSetPaperSize(settings, paper_size)
-
-gtkPrintSettingsSetPaperWidth(settings, width, unit)
-
-gtkPrintSettingsSetPrintPages(settings, pages)
-
-gtkPrintSettingsSetPrinter(settings, printer)
-
-gtkPrintSettingsSetPrinterLpi(settings, lpi)
-
-gtkPrintSettingsSetQuality(settings, quality)
-
-gtkPrintSettingsSetResolution(settings, resolution)
-
-gtkPrintSettingsSetResolutionXy(settings, resolution_x, resolution_y)
-
-gtkPrintSettingsSetReverse(settings, reverse)
-
-gtkPrintSettingsSetScale(settings, scale)
-
-gtkPrintSettingsSetUseColor(settings, use_color)
-
-gtkPrintSettingsToFile(settings, file_name)
-
-gtkPrintSettingsToGvariant(settings)
-
-gtkPrintSettingsToKeyFile(settings, key_file, group_name)
-
-gtkPrintSettingsUnset(settings, key)
-
-gtkPrintSetupGetPageSetup(setup)
-
-gtkPrintSetupGetPrintSettings(setup)
-
-gtkPrintSetupRef(setup)
-
-gtkPrintSetupUnref(setup)
 
 gtkProgressBarNew()
 
@@ -6707,8 +6211,6 @@ gtkIsInitialized()
 
 gtkParamSpecExpression(name, nick, blurb, flags)
 
-gtkPrintRunPageSetupDialog(parent, page_setup, settings)
-
 gtkRenderActivity(context, cr, x, y, width, height)
 
 gtkRenderArrow(context, cr, angle, x, y, size)
@@ -6933,7 +6435,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{stride}{guint}
 
-\item{other}{PrintSettings}
+\item{other}{PaperSize}
 
 \item{nth}{gsize}
 
@@ -7541,25 +7043,19 @@ gtkValueTakeExpression(value, expression)
 
 \item{n_entries}{gint}
 
-\item{file_name}{filename}
-
-\item{key_file}{GLib.KeyFile}
-
-\item{setup}{PrintSetup}
+\item{display_name}{utf8}
 
 \item{unit}{Unit}
 
-\item{margin}{gdouble}
-
-\item{size}{gdouble}
-
-\item{display_name}{utf8}
-
 \item{ipp_name}{utf8}
+
+\item{key_file}{GLib.KeyFile}
 
 \item{ppd_name}{utf8}
 
 \item{ppd_display_name}{utf8}
+
+\item{size}{gdouble}
 
 \item{size1}{PaperSize}
 
@@ -7572,96 +7068,6 @@ gtkValueTakeExpression(value, expression)
 \item{entry}{SearchEntry}
 
 \item{show_peek_icon}{gboolean}
-
-\item{cr}{cairo.Context}
-
-\item{dpi_x}{gdouble}
-
-\item{dpi_y}{gdouble}
-
-\item{page_setup}{PageSetup}
-
-\item{print_settings}{PrintSettings}
-
-\item{action}{ShortcutAction}
-
-\item{allow_async}{gboolean}
-
-\item{current_page}{gint}
-
-\item{default_page_setup}{PageSetup}
-
-\item{embed}{gboolean}
-
-\item{has_selection}{gboolean}
-
-\item{job_name}{utf8}
-
-\item{n_pages}{gint}
-
-\item{show_progress}{gboolean}
-
-\item{support_selection}{gboolean}
-
-\item{track_status}{gboolean}
-
-\item{full_page}{gboolean}
-
-\item{preview}{PrintOperationPreview}
-
-\item{page_nr}{gint}
-
-\item{settings}{PrintSettings}
-
-\item{key}{utf8}
-
-\item{def}{gint}
-
-\item{collate}{gboolean}
-
-\item{default_source}{utf8}
-
-\item{dither}{utf8}
-
-\item{duplex}{PrintDuplex}
-
-\item{finishings}{utf8}
-
-\item{media_type}{utf8}
-
-\item{num_copies}{gint}
-
-\item{number_up}{gint}
-
-\item{number_up_layout}{NumberUpLayout}
-
-\item{output_bin}{utf8}
-
-\item{page_ranges}{PageRange}
-
-\item{num_ranges}{gint}
-
-\item{page_set}{PageSet}
-
-\item{pages}{PrintPages}
-
-\item{printer}{utf8}
-
-\item{lpi}{gdouble}
-
-\item{quality}{PrintQuality}
-
-\item{resolution}{gint}
-
-\item{resolution_x}{gint}
-
-\item{resolution_y}{gint}
-
-\item{reverse}{gboolean}
-
-\item{scale}{gint}
-
-\item{use_color}{gboolean}
 
 \item{pbar}{ProgressBar}
 
@@ -7713,6 +7119,8 @@ gtkValueTakeExpression(value, expression)
 
 \item{focus}{Widget}
 
+\item{scale}{gint}
+
 \item{digits}{guint}
 
 \item{draw_value}{gboolean}
@@ -7761,7 +7169,11 @@ gtkValueTakeExpression(value, expression)
 
 \item{mask}{Bitset}
 
+\item{settings}{Settings}
+
 \item{trigger}{ShortcutTrigger}
+
+\item{action}{ShortcutAction}
 
 \item{args}{GLib.Variant}
 
@@ -8020,6 +7432,8 @@ gtkValueTakeExpression(value, expression)
 \item{nick}{utf8}
 
 \item{blurb}{utf8}
+
+\item{cr}{cairo.Context}
 
 \item{x0}{gdouble}
 
@@ -10718,60 +10132,6 @@ Return value from C function
 
 Return value from C function
 
-PageSetup
-
-PageSetup
-
-PageSetup
-
-PageSetup
-
-PageSetup
-
-gdouble
-
-gdouble
-
-PageOrientation
-
-gdouble
-
-gdouble
-
-gdouble
-
-PaperSize
-
-gdouble
-
-gdouble
-
-gdouble
-
-gboolean
-
-gboolean
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-gboolean
-
-GLib.Variant
-
-Return value from C function
-
 PaperSize
 
 PaperSize
@@ -10833,282 +10193,6 @@ Return value from C function
 Return value from C function
 
 EntryBuffer
-
-Pango.Context
-
-Pango.Layout
-
-cairo.Context
-
-gdouble
-
-gdouble
-
-gboolean
-
-gdouble
-
-PageSetup
-
-Pango.FontMap
-
-gdouble
-
-Return value from C function
-
-PrintDialog
-
-utf8
-
-gboolean
-
-PageSetup
-
-PrintSettings
-
-utf8
-
-gboolean
-
-Gio.OutputStream
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-PrintSetup
-
-GLib.Quark
-
-PrintOperation
-
-Return value from C function
-
-Return value from C function
-
-PageSetup
-
-gboolean
-
-Return value from C function
-
-gboolean
-
-gint
-
-PrintSettings
-
-PrintStatus
-
-utf8
-
-gboolean
-
-gboolean
-
-PrintOperationResult
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-gboolean
-
-Return value from C function
-
-PrintSettings
-
-PrintSettings
-
-PrintSettings
-
-PrintSettings
-
-PrintSettings
-
-utf8
-
-gboolean
-
-gboolean
-
-utf8
-
-utf8
-
-gdouble
-
-gdouble
-
-PrintDuplex
-
-utf8
-
-gint
-
-gint
-
-gdouble
-
-utf8
-
-gint
-
-gint
-
-NumberUpLayout
-
-PageOrientation
-
-utf8
-
-PageRange
-
-PageSet
-
-gdouble
-
-PaperSize
-
-gdouble
-
-PrintPages
-
-utf8
-
-gdouble
-
-PrintQuality
-
-gint
-
-gint
-
-gint
-
-gboolean
-
-gdouble
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-gboolean
-
-GLib.Variant
-
-Return value from C function
-
-Return value from C function
-
-PageSetup
-
-PrintSettings
-
-PrintSetup
-
-Return value from C function
 
 Widget
 
@@ -12371,8 +11455,6 @@ gboolean
 gboolean
 
 GObject.ParamSpec
-
-PageSetup
 
 Return value from C function
 
@@ -15107,60 +14189,6 @@ gtkPadControllerSetAction
 
 gtkPadControllerSetActionEntries
 
-gtkPageSetupNew
-
-gtkPageSetupNewFromFile
-
-gtkPageSetupNewFromGvariant
-
-gtkPageSetupNewFromKeyFile
-
-gtkPageSetupCopy
-
-gtkPageSetupGetBottomMargin
-
-gtkPageSetupGetLeftMargin
-
-gtkPageSetupGetOrientation
-
-gtkPageSetupGetPageHeight
-
-gtkPageSetupGetPageWidth
-
-gtkPageSetupGetPaperHeight
-
-gtkPageSetupGetPaperSize
-
-gtkPageSetupGetPaperWidth
-
-gtkPageSetupGetRightMargin
-
-gtkPageSetupGetTopMargin
-
-gtkPageSetupLoadFile
-
-gtkPageSetupLoadKeyFile
-
-gtkPageSetupSetBottomMargin
-
-gtkPageSetupSetLeftMargin
-
-gtkPageSetupSetOrientation
-
-gtkPageSetupSetPaperSize
-
-gtkPageSetupSetPaperSizeAndDefaultMargins
-
-gtkPageSetupSetRightMargin
-
-gtkPageSetupSetTopMargin
-
-gtkPageSetupToFile
-
-gtkPageSetupToGvariant
-
-gtkPageSetupToKeyFile
-
 gtkPaperSizeNew
 
 gtkPaperSizeNewCustom
@@ -15222,282 +14250,6 @@ gtkPasswordEntrySetExtraMenu
 gtkPasswordEntrySetShowPeekIcon
 
 gtkPasswordEntryBufferNew
-
-gtkPrintContextCreatePangoContext
-
-gtkPrintContextCreatePangoLayout
-
-gtkPrintContextGetCairoContext
-
-gtkPrintContextGetDpiX
-
-gtkPrintContextGetDpiY
-
-gtkPrintContextGetHardMargins
-
-gtkPrintContextGetHeight
-
-gtkPrintContextGetPageSetup
-
-gtkPrintContextGetPangoFontmap
-
-gtkPrintContextGetWidth
-
-gtkPrintContextSetCairoContext
-
-gtkPrintDialogNew
-
-gtkPrintDialogGetAcceptLabel
-
-gtkPrintDialogGetModal
-
-gtkPrintDialogGetPageSetup
-
-gtkPrintDialogGetPrintSettings
-
-gtkPrintDialogGetTitle
-
-gtkPrintDialogPrintFileFinish
-
-gtkPrintDialogPrintFinish
-
-gtkPrintDialogSetAcceptLabel
-
-gtkPrintDialogSetModal
-
-gtkPrintDialogSetPageSetup
-
-gtkPrintDialogSetPrintSettings
-
-gtkPrintDialogSetTitle
-
-gtkPrintDialogSetupFinish
-
-gtkPrintErrorQuark
-
-gtkPrintOperationNew
-
-gtkPrintOperationCancel
-
-gtkPrintOperationDrawPageFinish
-
-gtkPrintOperationGetDefaultPageSetup
-
-gtkPrintOperationGetEmbedPageSetup
-
-gtkPrintOperationGetError
-
-gtkPrintOperationGetHasSelection
-
-gtkPrintOperationGetNPagesToPrint
-
-gtkPrintOperationGetPrintSettings
-
-gtkPrintOperationGetStatus
-
-gtkPrintOperationGetStatusString
-
-gtkPrintOperationGetSupportSelection
-
-gtkPrintOperationIsFinished
-
-gtkPrintOperationRun
-
-gtkPrintOperationSetAllowAsync
-
-gtkPrintOperationSetCurrentPage
-
-gtkPrintOperationSetCustomTabLabel
-
-gtkPrintOperationSetDefaultPageSetup
-
-gtkPrintOperationSetDeferDrawing
-
-gtkPrintOperationSetEmbedPageSetup
-
-gtkPrintOperationSetExportFilename
-
-gtkPrintOperationSetHasSelection
-
-gtkPrintOperationSetJobName
-
-gtkPrintOperationSetNPages
-
-gtkPrintOperationSetPrintSettings
-
-gtkPrintOperationSetShowProgress
-
-gtkPrintOperationSetSupportSelection
-
-gtkPrintOperationSetTrackPrintStatus
-
-gtkPrintOperationSetUnit
-
-gtkPrintOperationSetUseFullPage
-
-gtkPrintOperationPreviewEndPreview
-
-gtkPrintOperationPreviewIsSelected
-
-gtkPrintOperationPreviewRenderPage
-
-gtkPrintSettingsNew
-
-gtkPrintSettingsNewFromFile
-
-gtkPrintSettingsNewFromGvariant
-
-gtkPrintSettingsNewFromKeyFile
-
-gtkPrintSettingsCopy
-
-gtkPrintSettingsGet
-
-gtkPrintSettingsGetBool
-
-gtkPrintSettingsGetCollate
-
-gtkPrintSettingsGetDefaultSource
-
-gtkPrintSettingsGetDither
-
-gtkPrintSettingsGetDouble
-
-gtkPrintSettingsGetDoubleWithDefault
-
-gtkPrintSettingsGetDuplex
-
-gtkPrintSettingsGetFinishings
-
-gtkPrintSettingsGetInt
-
-gtkPrintSettingsGetIntWithDefault
-
-gtkPrintSettingsGetLength
-
-gtkPrintSettingsGetMediaType
-
-gtkPrintSettingsGetNCopies
-
-gtkPrintSettingsGetNumberUp
-
-gtkPrintSettingsGetNumberUpLayout
-
-gtkPrintSettingsGetOrientation
-
-gtkPrintSettingsGetOutputBin
-
-gtkPrintSettingsGetPageRanges
-
-gtkPrintSettingsGetPageSet
-
-gtkPrintSettingsGetPaperHeight
-
-gtkPrintSettingsGetPaperSize
-
-gtkPrintSettingsGetPaperWidth
-
-gtkPrintSettingsGetPrintPages
-
-gtkPrintSettingsGetPrinter
-
-gtkPrintSettingsGetPrinterLpi
-
-gtkPrintSettingsGetQuality
-
-gtkPrintSettingsGetResolution
-
-gtkPrintSettingsGetResolutionX
-
-gtkPrintSettingsGetResolutionY
-
-gtkPrintSettingsGetReverse
-
-gtkPrintSettingsGetScale
-
-gtkPrintSettingsGetUseColor
-
-gtkPrintSettingsHasKey
-
-gtkPrintSettingsLoadFile
-
-gtkPrintSettingsLoadKeyFile
-
-gtkPrintSettingsSet
-
-gtkPrintSettingsSetBool
-
-gtkPrintSettingsSetCollate
-
-gtkPrintSettingsSetDefaultSource
-
-gtkPrintSettingsSetDither
-
-gtkPrintSettingsSetDouble
-
-gtkPrintSettingsSetDuplex
-
-gtkPrintSettingsSetFinishings
-
-gtkPrintSettingsSetInt
-
-gtkPrintSettingsSetLength
-
-gtkPrintSettingsSetMediaType
-
-gtkPrintSettingsSetNCopies
-
-gtkPrintSettingsSetNumberUp
-
-gtkPrintSettingsSetNumberUpLayout
-
-gtkPrintSettingsSetOrientation
-
-gtkPrintSettingsSetOutputBin
-
-gtkPrintSettingsSetPageRanges
-
-gtkPrintSettingsSetPageSet
-
-gtkPrintSettingsSetPaperHeight
-
-gtkPrintSettingsSetPaperSize
-
-gtkPrintSettingsSetPaperWidth
-
-gtkPrintSettingsSetPrintPages
-
-gtkPrintSettingsSetPrinter
-
-gtkPrintSettingsSetPrinterLpi
-
-gtkPrintSettingsSetQuality
-
-gtkPrintSettingsSetResolution
-
-gtkPrintSettingsSetResolutionXy
-
-gtkPrintSettingsSetReverse
-
-gtkPrintSettingsSetScale
-
-gtkPrintSettingsSetUseColor
-
-gtkPrintSettingsToFile
-
-gtkPrintSettingsToGvariant
-
-gtkPrintSettingsToKeyFile
-
-gtkPrintSettingsUnset
-
-gtkPrintSetupGetPageSetup
-
-gtkPrintSetupGetPrintSettings
-
-gtkPrintSetupRef
-
-gtkPrintSetupUnref
 
 gtkProgressBarNew
 
@@ -16760,8 +15512,6 @@ gtkInitCheck
 gtkIsInitialized
 
 gtkParamSpecExpression
-
-gtkPrintRunPageSetupDialog
 
 gtkRenderActivity
 
