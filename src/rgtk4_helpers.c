@@ -279,3 +279,26 @@ SEXP R_g_object_set_string(SEXP s1, SEXP s2, SEXP s3) {
   return R_NilValue;
 }
 
+
+// ============================================================================
+// GtkStringList Helper
+// ============================================================================
+
+// Manual wrapper to avoid variadic issues
+SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type, SEXP buttons, SEXP message) {
+  GtkWindow *parent = (parent_ptr == R_NilValue) ? NULL : (GtkWindow*)R_ExternalPtrAddr(parent_ptr);
+  const char *msg = CHAR(STRING_ELT(message, 0));
+
+  // We pass "%s" as the format to ensure 'msg' is treated as literal text
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+  GtkWidget *dialog = gtk_message_dialog_new(parent,
+                                             asInteger(flags),
+                                             asInteger(type),
+                                             asInteger(buttons),
+                                             "%s", msg);
+#pragma GCC diagnostic pop
+
+  // Use your existing logic to wrap the GObject
+  return make_gobject_ptr(dialog);
+}

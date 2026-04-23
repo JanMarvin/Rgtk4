@@ -319,3 +319,35 @@ gtkTextBufferCreateTag <- function(buffer, tag_name = NULL, ...) {
 gObjectSetString <- function(s1, s2, s3) {
   .Call('R_g_object_set_string', s1, s2, s3)
 }
+
+#' Create a GtkMessageDialog
+#'
+#' @param parent The parent GtkWindow (pointer)
+#' @param flags Dialog flags (e.g., MODAL = 1L)
+#' @param message_type Icon/Message type (e.g., QUESTION = 2L)
+#' @param buttons_type Button set (e.g., YES_NO = 4L)
+#' @param message The text message to display
+#' @export
+gtkMessageDialogNew <- function(parent, flags, message_type, buttons_type, message) {
+
+  flags <- as.integer(flags)
+  message_type <- as.integer(message_type)
+  buttons_type <- as.integer(buttons_type)
+  message <- as.character(message)
+
+  # This manual implementation is provided to handle variadic C arguments that
+  # are not supported by the static generator
+  ptr <- .Call("R_gtk_message_dialog_new_safe",
+               parent,
+               flags,
+               message_type,
+               buttons_type,
+               message)
+
+  if (!is.null(ptr)) {
+    attr(ptr, "glib_type") <- "GtkMessageDialog"
+    class(ptr) <- c("GtkMessageDialog", "GtkDialog", "GtkWidget", "GObject")
+  }
+
+  return(ptr)
+}
