@@ -4976,7 +4976,7 @@ SEXP R_gtk_cell_area_get_cell_allocation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
   gtk_cell_area_get_cell_allocation(v1, v2, v3, v4, v5, &_out_allocation);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_allocation), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_allocation, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -5003,7 +5003,7 @@ SEXP R_gtk_cell_area_get_cell_at_position(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("CellRenderer"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_alloc_area), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_alloc_area, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -5255,7 +5255,7 @@ SEXP R_gtk_cell_area_inner_cell_area(SEXP s1, SEXP s2, SEXP s3) {
   gtk_cell_area_inner_cell_area(v1, v2, v3, &_out_inner_area);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_inner_area), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_inner_area, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -5799,7 +5799,7 @@ SEXP R_gtk_cell_renderer_get_aligned_area(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gtk_cell_renderer_get_aligned_area(v1, v2, v3, v4, &_out_aligned_area);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_aligned_area), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_aligned_area, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -7189,7 +7189,7 @@ SEXP R_gtk_color_chooser_get_rgba(SEXP s1) {
   gtk_color_chooser_get_rgba(v1, &_out_color);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_color), R_NilValue, R_NilValue), "Gdk.RGBA"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_color, sizeof(GdkRGBA)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -11371,7 +11371,7 @@ SEXP R_gtk_entry_get_icon_area(SEXP s1, SEXP s2) {
   gtk_entry_get_icon_area(v1, v2, &_out_icon_area);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_icon_area), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_icon_area, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -16415,7 +16415,7 @@ SEXP R_gtk_gesture_get_bounding_box(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_rect), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_rect, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -18910,7 +18910,7 @@ SEXP R_gtk_icon_view_get_cell_rect(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_rect), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_rect, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -26233,7 +26233,7 @@ SEXP R_gtk_popover_get_pointing_to(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_rect), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_rect, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -26975,7 +26975,7 @@ SEXP R_gtk_range_get_range_rect(SEXP s1) {
   gtk_range_get_range_rect(v1, &_out_range_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_range_rect), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_range_rect, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -32515,7 +32515,7 @@ SEXP R_gtk_style_context_get_color(SEXP s1) {
   gtk_style_context_get_color(v1, &_out_color);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_color), R_NilValue, R_NilValue), "Gdk.RGBA"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_color, sizeof(GdkRGBA)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -32637,7 +32637,7 @@ SEXP R_gtk_style_context_lookup_color(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_color), R_NilValue, R_NilValue), "Gdk.RGBA"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_color, sizeof(GdkRGBA)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -33142,12 +33142,12 @@ SEXP R_gtk_text_compute_cursor_extents(SEXP s1, SEXP s2) {
   gtk_text_compute_cursor_extents(v1, v2, &_out_strong, &_out_weak);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_strong), R_NilValue, R_NilValue), "Graphene.Rect"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_strong, sizeof(graphene_rect_t)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Rect"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("strong"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_weak), R_NilValue, R_NilValue), "Graphene.Rect"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_weak, sizeof(graphene_rect_t)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Graphene.Rect"));
   }
@@ -33799,12 +33799,12 @@ SEXP R_gtk_text_buffer_get_bounds(SEXP s1) {
   gtk_text_buffer_get_bounds(v1, &_out_start, &_out_end);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_start), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_start, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("start"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_end), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_end, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -33885,7 +33885,7 @@ SEXP R_gtk_text_buffer_get_end_iter(SEXP s1) {
   gtk_text_buffer_get_end_iter(v1, &_out_iter);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -33935,7 +33935,7 @@ SEXP R_gtk_text_buffer_get_iter_at_child_anchor(SEXP s1, SEXP s2) {
   gtk_text_buffer_get_iter_at_child_anchor(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -33958,7 +33958,7 @@ SEXP R_gtk_text_buffer_get_iter_at_line(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -33982,7 +33982,7 @@ SEXP R_gtk_text_buffer_get_iter_at_line_index(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -34006,7 +34006,7 @@ SEXP R_gtk_text_buffer_get_iter_at_line_offset(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -34024,7 +34024,7 @@ SEXP R_gtk_text_buffer_get_iter_at_mark(SEXP s1, SEXP s2) {
   gtk_text_buffer_get_iter_at_mark(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -34042,7 +34042,7 @@ SEXP R_gtk_text_buffer_get_iter_at_offset(SEXP s1, SEXP s2) {
   gtk_text_buffer_get_iter_at_offset(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -34146,12 +34146,12 @@ SEXP R_gtk_text_buffer_get_selection_bounds(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_start), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_start, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("start"));
-  SET_VECTOR_ELT(_ans, 2, tag_pointer(R_MakeExternalPtr((void*)(&_out_end), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_end, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -34203,7 +34203,7 @@ SEXP R_gtk_text_buffer_get_start_iter(SEXP s1) {
   gtk_text_buffer_get_start_iter(v1, &_out_iter);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -34713,12 +34713,12 @@ SEXP R_gtk_text_iter_backward_search(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_match_start), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_match_start, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("match_start"));
-  SET_VECTOR_ELT(_ans, 2, tag_pointer(R_MakeExternalPtr((void*)(&_out_match_end), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_match_end, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -35193,12 +35193,12 @@ SEXP R_gtk_text_iter_forward_search(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_match_start), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_match_start, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("match_start"));
-  SET_VECTOR_ELT(_ans, 2, tag_pointer(R_MakeExternalPtr((void*)(&_out_match_end), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_match_end, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -36436,12 +36436,12 @@ SEXP R_gtk_text_view_get_cursor_locations(SEXP s1, SEXP s2) {
   gtk_text_view_get_cursor_locations(v1, v2, &_out_strong, &_out_weak);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_strong), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_strong, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("strong"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_weak), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_weak, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -36578,7 +36578,7 @@ SEXP R_gtk_text_view_get_iter_at_location(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -36603,7 +36603,7 @@ SEXP R_gtk_text_view_get_iter_at_position(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -36626,7 +36626,7 @@ SEXP R_gtk_text_view_get_iter_location(SEXP s1, SEXP s2) {
   gtk_text_view_get_iter_location(v1, v2, &_out_location);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_location), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_location, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -36677,7 +36677,7 @@ SEXP R_gtk_text_view_get_line_at_y(SEXP s1, SEXP s2) {
   gtk_text_view_get_line_at_y(v1, &_out_target_iter, v2, &_out_line_top);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_target_iter), R_NilValue, R_NilValue), "TextIter"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_target_iter, sizeof(GtkTextIter)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -36906,7 +36906,7 @@ SEXP R_gtk_text_view_get_visible_rect(SEXP s1) {
   gtk_text_view_get_visible_rect(v1, &_out_visible_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_visible_rect), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_visible_rect, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -39917,7 +39917,7 @@ SEXP R_gtk_tree_view_get_background_area(SEXP s1, SEXP s2, SEXP s3) {
   gtk_tree_view_get_background_area(v1, v2, v3, &_out_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_rect), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_rect, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -39936,7 +39936,7 @@ SEXP R_gtk_tree_view_get_cell_area(SEXP s1, SEXP s2, SEXP s3) {
   gtk_tree_view_get_cell_area(v1, v2, v3, &_out_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_rect), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_rect, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -40473,7 +40473,7 @@ SEXP R_gtk_tree_view_get_visible_rect(SEXP s1) {
   gtk_tree_view_get_visible_rect(v1, &_out_visible_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_visible_rect), R_NilValue, R_NilValue), "Gdk.Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_visible_rect, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Rectangle"));
   }
@@ -42114,7 +42114,7 @@ SEXP R_gtk_widget_compute_bounds(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_out_bounds), R_NilValue, R_NilValue), "Graphene.Rect"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_out_bounds, sizeof(graphene_rect_t)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Graphene.Rect"));
   }
@@ -42155,7 +42155,7 @@ SEXP R_gtk_widget_compute_point(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_out_point), R_NilValue, R_NilValue), "Graphene.Point"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_out_point, sizeof(graphene_point_t)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Graphene.Point"));
   }
@@ -42443,7 +42443,7 @@ SEXP R_gtk_widget_get_color(SEXP s1) {
   gtk_widget_get_color(v1, &_out_color);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_color), R_NilValue, R_NilValue), "Gdk.RGBA"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_color, sizeof(GdkRGBA)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }

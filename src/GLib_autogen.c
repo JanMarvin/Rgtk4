@@ -5995,7 +5995,7 @@ SEXP R_g_main_context_query(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("timeout_"));
-  SET_VECTOR_ELT(_ans, 2, tag_pointer(R_MakeExternalPtr((void*)(&_out_fds), R_NilValue, R_NilValue), "PollFD"));
+  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_fds, sizeof(GPollFD)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("PollFD"));
   }
@@ -11159,7 +11159,7 @@ SEXP R_g_time_val_from_iso8601(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_time_), R_NilValue, R_NilValue), "TimeVal"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_time_, sizeof(GTimeVal)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TimeVal"));
   }

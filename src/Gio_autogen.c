@@ -11018,7 +11018,7 @@ SEXP R_g_file_info_get_modification_time(SEXP s1) {
   g_file_info_get_modification_time(v1, &_out_result);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_result), R_NilValue, R_NilValue), "GLib.TimeVal"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_result, sizeof(GTimeVal)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.TimeVal"));
   }

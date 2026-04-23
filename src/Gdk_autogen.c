@@ -5430,7 +5430,7 @@ SEXP R_gdk_monitor_get_geometry(SEXP s1) {
   gdk_monitor_get_geometry(v1, &_out_geometry);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_geometry), R_NilValue, R_NilValue), "Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_geometry, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rectangle"));
   }
@@ -6343,7 +6343,7 @@ SEXP R_gdk_rectangle_intersect(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_dest), R_NilValue, R_NilValue), "Rectangle"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_dest, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Rectangle"));
   }
@@ -6361,7 +6361,7 @@ SEXP R_gdk_rectangle_union(SEXP s1, SEXP s2) {
   gdk_rectangle_union(v1, v2, &_out_dest);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_dest), R_NilValue, R_NilValue), "Rectangle"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_dest, sizeof(GdkRectangle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rectangle"));
   }
