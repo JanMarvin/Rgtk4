@@ -26,16 +26,6 @@ extern SEXP R_gdk_clipboard_set_content(SEXP s1, SEXP s2);
 extern SEXP R_gdk_clipboard_set_value(SEXP s1, SEXP s2);
 extern SEXP R_gdk_clipboard_store_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gdk_clipboard_store_finish(SEXP s1, SEXP s2);
-extern SEXP R_gdk_color_state_equal(SEXP s1, SEXP s2);
-extern SEXP R_gdk_color_state_equivalent(SEXP s1, SEXP s2);
-extern SEXP R_gdk_color_state_ref(SEXP s1);
-extern SEXP R_gdk_color_state_unref(SEXP s1);
-extern SEXP R_gdk_color_state_get_oklab(void);
-extern SEXP R_gdk_color_state_get_oklch(void);
-extern SEXP R_gdk_color_state_get_rec2100_linear(void);
-extern SEXP R_gdk_color_state_get_rec2100_pq(void);
-extern SEXP R_gdk_color_state_get_srgb(void);
-extern SEXP R_gdk_color_state_get_srgb_linear(void);
 extern SEXP R_gdk_content_deserializer_get_cancellable(SEXP s1);
 extern SEXP R_gdk_content_deserializer_get_gtype(SEXP s1);
 extern SEXP R_gdk_content_deserializer_get_input_stream(SEXP s1);
@@ -53,7 +43,6 @@ extern SEXP R_gdk_content_formats_contain_gtype(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_formats_contain_mime_type(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_formats_get_gtypes(SEXP s1);
 extern SEXP R_gdk_content_formats_get_mime_types(SEXP s1);
-extern SEXP R_gdk_content_formats_is_empty(SEXP s1);
 extern SEXP R_gdk_content_formats_match(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_formats_match_gtype(SEXP s1, SEXP s2);
 extern SEXP R_gdk_content_formats_match_mime_type(SEXP s1, SEXP s2);
@@ -97,7 +86,6 @@ extern SEXP R_gdk_content_serializer_set_task_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_crossing_event_get_detail(SEXP s1);
 extern SEXP R_gdk_crossing_event_get_focus(SEXP s1);
 extern SEXP R_gdk_crossing_event_get_mode(SEXP s1);
-extern SEXP R_gdk_cursor_new_from_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_cursor_new_from_name(SEXP s1, SEXP s2);
 extern SEXP R_gdk_cursor_new_from_texture(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_cursor_get_fallback(SEXP s1);
@@ -106,13 +94,11 @@ extern SEXP R_gdk_cursor_get_hotspot_y(SEXP s1);
 extern SEXP R_gdk_cursor_get_name(SEXP s1);
 extern SEXP R_gdk_cursor_get_texture(SEXP s1);
 extern SEXP R_gdk_dnd_event_get_drop(SEXP s1);
-extern SEXP R_gdk_device_get_active_layout_index(SEXP s1);
 extern SEXP R_gdk_device_get_caps_lock_state(SEXP s1);
 extern SEXP R_gdk_device_get_device_tool(SEXP s1);
 extern SEXP R_gdk_device_get_direction(SEXP s1);
 extern SEXP R_gdk_device_get_display(SEXP s1);
 extern SEXP R_gdk_device_get_has_cursor(SEXP s1);
-extern SEXP R_gdk_device_get_layout_names(SEXP s1);
 extern SEXP R_gdk_device_get_modifier_state(SEXP s1);
 extern SEXP R_gdk_device_get_name(SEXP s1);
 extern SEXP R_gdk_device_get_num_lock_state(SEXP s1);
@@ -143,7 +129,6 @@ extern SEXP R_gdk_display_flush(SEXP s1);
 extern SEXP R_gdk_display_get_app_launch_context(SEXP s1);
 extern SEXP R_gdk_display_get_clipboard(SEXP s1);
 extern SEXP R_gdk_display_get_default_seat(SEXP s1);
-extern SEXP R_gdk_display_get_dmabuf_formats(SEXP s1);
 extern SEXP R_gdk_display_get_monitor_at_surface(SEXP s1, SEXP s2);
 extern SEXP R_gdk_display_get_monitors(SEXP s1);
 extern SEXP R_gdk_display_get_name(SEXP s1);
@@ -160,7 +145,6 @@ extern SEXP R_gdk_display_notify_startup_complete(SEXP s1, SEXP s2);
 extern SEXP R_gdk_display_prepare_gl(SEXP s1);
 extern SEXP R_gdk_display_put_event(SEXP s1, SEXP s2);
 extern SEXP R_gdk_display_supports_input_shapes(SEXP s1);
-extern SEXP R_gdk_display_supports_shadow_width(SEXP s1);
 extern SEXP R_gdk_display_sync(SEXP s1);
 extern SEXP R_gdk_display_translate_key(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gdk_display_manager_get(void);
@@ -169,12 +153,6 @@ extern SEXP R_gdk_display_manager_list_displays(SEXP s1);
 extern SEXP R_gdk_display_manager_open_display(SEXP s1, SEXP s2);
 extern SEXP R_gdk_display_manager_set_default_display(SEXP s1, SEXP s2);
 extern SEXP R_gdk_dmabuf_error_quark(void);
-extern SEXP R_gdk_dmabuf_formats_contains(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_dmabuf_formats_equal(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_formats_get_format(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_formats_get_n_formats(SEXP s1);
-extern SEXP R_gdk_dmabuf_formats_ref(SEXP s1);
-extern SEXP R_gdk_dmabuf_formats_unref(SEXP s1);
 extern SEXP R_gdk_drag_begin(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gdk_drag_drop_done(SEXP s1, SEXP s2);
 extern SEXP R_gdk_drag_get_actions(SEXP s1);
@@ -272,7 +250,6 @@ extern SEXP R_gdk_gl_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
 extern SEXP R_gdk_gl_texture_release(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_new(void);
 extern SEXP R_gdk_gl_texture_builder_build(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_gl_texture_builder_get_color_state(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_get_context(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_get_format(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_get_has_mipmap(SEXP s1);
@@ -282,7 +259,6 @@ extern SEXP R_gdk_gl_texture_builder_get_sync(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_get_update_region(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_get_update_texture(SEXP s1);
 extern SEXP R_gdk_gl_texture_builder_get_width(SEXP s1);
-extern SEXP R_gdk_gl_texture_builder_set_color_state(SEXP s1, SEXP s2);
 extern SEXP R_gdk_gl_texture_builder_set_context(SEXP s1, SEXP s2);
 extern SEXP R_gdk_gl_texture_builder_set_format(SEXP s1, SEXP s2);
 extern SEXP R_gdk_gl_texture_builder_set_has_mipmap(SEXP s1, SEXP s2);
@@ -303,28 +279,6 @@ extern SEXP R_gdk_key_event_get_match(SEXP s1);
 extern SEXP R_gdk_key_event_is_modifier(SEXP s1);
 extern SEXP R_gdk_key_event_matches(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_memory_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gdk_memory_texture_builder_new(void);
-extern SEXP R_gdk_memory_texture_builder_build(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_get_bytes(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_get_color_state(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_get_format(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_get_height(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_get_offset(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_get_stride(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_get_stride_for_plane(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_get_update_region(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_get_update_texture(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_get_width(SEXP s1);
-extern SEXP R_gdk_memory_texture_builder_set_bytes(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_set_color_state(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_set_format(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_set_height(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_set_offset(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_memory_texture_builder_set_stride(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_set_stride_for_plane(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_memory_texture_builder_set_update_region(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_set_update_texture(SEXP s1, SEXP s2);
-extern SEXP R_gdk_memory_texture_builder_set_width(SEXP s1, SEXP s2);
 extern SEXP R_gdk_monitor_get_connector(SEXP s1);
 extern SEXP R_gdk_monitor_get_description(SEXP s1);
 extern SEXP R_gdk_monitor_get_display(SEXP s1);
@@ -333,7 +287,6 @@ extern SEXP R_gdk_monitor_get_height_mm(SEXP s1);
 extern SEXP R_gdk_monitor_get_manufacturer(SEXP s1);
 extern SEXP R_gdk_monitor_get_model(SEXP s1);
 extern SEXP R_gdk_monitor_get_refresh_rate(SEXP s1);
-extern SEXP R_gdk_monitor_get_scale(SEXP s1);
 extern SEXP R_gdk_monitor_get_scale_factor(SEXP s1);
 extern SEXP R_gdk_monitor_get_subpixel_layout(SEXP s1);
 extern SEXP R_gdk_monitor_get_width_mm(SEXP s1);
@@ -390,7 +343,6 @@ extern SEXP R_gdk_rectangle_intersect(SEXP s1, SEXP s2);
 extern SEXP R_gdk_rectangle_union(SEXP s1, SEXP s2);
 extern SEXP R_gdk_scroll_event_get_deltas(SEXP s1);
 extern SEXP R_gdk_scroll_event_get_direction(SEXP s1);
-extern SEXP R_gdk_scroll_event_get_relative_direction(SEXP s1);
 extern SEXP R_gdk_scroll_event_get_unit(SEXP s1);
 extern SEXP R_gdk_scroll_event_is_stop(SEXP s1);
 extern SEXP R_gdk_seat_get_capabilities(SEXP s1);
@@ -432,7 +384,6 @@ extern SEXP R_gdk_texture_new_from_file(SEXP s1);
 extern SEXP R_gdk_texture_new_from_filename(SEXP s1);
 extern SEXP R_gdk_texture_new_from_resource(SEXP s1);
 extern SEXP R_gdk_texture_download(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_texture_get_color_state(SEXP s1);
 extern SEXP R_gdk_texture_get_format(SEXP s1);
 extern SEXP R_gdk_texture_get_height(SEXP s1);
 extern SEXP R_gdk_texture_get_width(SEXP s1);
@@ -443,21 +394,16 @@ extern SEXP R_gdk_texture_save_to_tiff_bytes(SEXP s1);
 extern SEXP R_gdk_texture_downloader_new(SEXP s1);
 extern SEXP R_gdk_texture_downloader_copy(SEXP s1);
 extern SEXP R_gdk_texture_downloader_download_bytes(SEXP s1);
-extern SEXP R_gdk_texture_downloader_download_bytes_with_planes(SEXP s1);
 extern SEXP R_gdk_texture_downloader_download_into(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_texture_downloader_free(SEXP s1);
-extern SEXP R_gdk_texture_downloader_get_color_state(SEXP s1);
 extern SEXP R_gdk_texture_downloader_get_format(SEXP s1);
 extern SEXP R_gdk_texture_downloader_get_texture(SEXP s1);
-extern SEXP R_gdk_texture_downloader_set_color_state(SEXP s1, SEXP s2);
 extern SEXP R_gdk_texture_downloader_set_format(SEXP s1, SEXP s2);
 extern SEXP R_gdk_texture_downloader_set_texture(SEXP s1, SEXP s2);
 extern SEXP R_gdk_texture_error_quark(void);
 extern SEXP R_gdk_toplevel_begin_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gdk_toplevel_begin_resize(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gdk_toplevel_focus(SEXP s1, SEXP s2);
-extern SEXP R_gdk_toplevel_get_capabilities(SEXP s1);
-extern SEXP R_gdk_toplevel_get_gravity(SEXP s1);
 extern SEXP R_gdk_toplevel_get_state(SEXP s1);
 extern SEXP R_gdk_toplevel_inhibit_system_shortcuts(SEXP s1, SEXP s2);
 extern SEXP R_gdk_toplevel_lower(SEXP s1);
@@ -466,7 +412,6 @@ extern SEXP R_gdk_toplevel_present(SEXP s1, SEXP s2);
 extern SEXP R_gdk_toplevel_restore_system_shortcuts(SEXP s1);
 extern SEXP R_gdk_toplevel_set_decorated(SEXP s1, SEXP s2);
 extern SEXP R_gdk_toplevel_set_deletable(SEXP s1, SEXP s2);
-extern SEXP R_gdk_toplevel_set_gravity(SEXP s1, SEXP s2);
 extern SEXP R_gdk_toplevel_set_icon_list(SEXP s1, SEXP s2);
 extern SEXP R_gdk_toplevel_set_modal(SEXP s1, SEXP s2);
 extern SEXP R_gdk_toplevel_set_startup_id(SEXP s1, SEXP s2);
@@ -3585,8 +3530,6 @@ extern SEXP R_gtk_about_dialog_set_version(SEXP s1, SEXP s2);
 extern SEXP R_gtk_about_dialog_set_website(SEXP s1, SEXP s2);
 extern SEXP R_gtk_about_dialog_set_website_label(SEXP s1, SEXP s2);
 extern SEXP R_gtk_about_dialog_set_wrap_license(SEXP s1, SEXP s2);
-extern SEXP R_gtk_accessible_announce(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_accessible_get_accessible_id(SEXP s1);
 extern SEXP R_gtk_accessible_get_accessible_parent(SEXP s1);
 extern SEXP R_gtk_accessible_get_accessible_role(SEXP s1);
 extern SEXP R_gtk_accessible_get_at_context(SEXP s1);
@@ -3599,21 +3542,12 @@ extern SEXP R_gtk_accessible_reset_relation(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accessible_reset_state(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accessible_set_accessible_parent(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_accessible_update_next_accessible_sibling(SEXP s1, SEXP s2);
-extern SEXP R_gtk_accessible_update_platform_state(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accessible_update_property_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_accessible_update_relation_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_accessible_update_state_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_accessible_hyperlink_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_accessible_hyperlink_set_platform_state(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_accessible_list_new_from_array(SEXP s1, SEXP s2);
-extern SEXP R_gtk_accessible_list_new_from_list(SEXP s1);
-extern SEXP R_gtk_accessible_list_get_objects(SEXP s1);
 extern SEXP R_gtk_accessible_property_init_value(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accessible_relation_init_value(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accessible_state_init_value(SEXP s1, SEXP s2);
-extern SEXP R_gtk_accessible_text_update_caret_position(SEXP s1);
-extern SEXP R_gtk_accessible_text_update_contents(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_accessible_text_update_selection_bound(SEXP s1);
 extern SEXP R_gtk_action_bar_new(void);
 extern SEXP R_gtk_action_bar_get_center_widget(SEXP s1);
 extern SEXP R_gtk_action_bar_get_revealed(SEXP s1);
@@ -3886,22 +3820,15 @@ extern SEXP R_gtk_cclosure_expression_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
 extern SEXP R_gtk_calendar_new(void);
 extern SEXP R_gtk_calendar_clear_marks(SEXP s1);
 extern SEXP R_gtk_calendar_get_date(SEXP s1);
-extern SEXP R_gtk_calendar_get_day(SEXP s1);
 extern SEXP R_gtk_calendar_get_day_is_marked(SEXP s1, SEXP s2);
-extern SEXP R_gtk_calendar_get_month(SEXP s1);
 extern SEXP R_gtk_calendar_get_show_day_names(SEXP s1);
 extern SEXP R_gtk_calendar_get_show_heading(SEXP s1);
 extern SEXP R_gtk_calendar_get_show_week_numbers(SEXP s1);
-extern SEXP R_gtk_calendar_get_year(SEXP s1);
 extern SEXP R_gtk_calendar_mark_day(SEXP s1, SEXP s2);
 extern SEXP R_gtk_calendar_select_day(SEXP s1, SEXP s2);
-extern SEXP R_gtk_calendar_set_date(SEXP s1, SEXP s2);
-extern SEXP R_gtk_calendar_set_day(SEXP s1, SEXP s2);
-extern SEXP R_gtk_calendar_set_month(SEXP s1, SEXP s2);
 extern SEXP R_gtk_calendar_set_show_day_names(SEXP s1, SEXP s2);
 extern SEXP R_gtk_calendar_set_show_heading(SEXP s1, SEXP s2);
 extern SEXP R_gtk_calendar_set_show_week_numbers(SEXP s1, SEXP s2);
-extern SEXP R_gtk_calendar_set_year(SEXP s1, SEXP s2);
 extern SEXP R_gtk_calendar_unmark_day(SEXP s1, SEXP s2);
 extern SEXP R_gtk_callback_action_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_cell_area_activate(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
@@ -4248,8 +4175,6 @@ extern SEXP R_gtk_css_provider_load_from_string(SEXP s1, SEXP s2);
 extern SEXP R_gtk_css_provider_load_named(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_css_provider_to_string(SEXP s1);
 extern SEXP R_gtk_css_section_new(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_css_section_new_with_bytes(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_css_section_get_bytes(SEXP s1);
 extern SEXP R_gtk_css_section_get_end_location(SEXP s1);
 extern SEXP R_gtk_css_section_get_file(SEXP s1);
 extern SEXP R_gtk_css_section_get_parent(SEXP s1);
@@ -4403,7 +4328,6 @@ extern SEXP R_gtk_entry_get_input_hints(SEXP s1);
 extern SEXP R_gtk_entry_get_input_purpose(SEXP s1);
 extern SEXP R_gtk_entry_get_invisible_char(SEXP s1);
 extern SEXP R_gtk_entry_get_max_length(SEXP s1);
-extern SEXP R_gtk_entry_get_menu_entry_icon_text(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_get_overwrite_mode(SEXP s1);
 extern SEXP R_gtk_entry_get_placeholder_text(SEXP s1);
 extern SEXP R_gtk_entry_get_progress_fraction(SEXP s1);
@@ -4433,7 +4357,6 @@ extern SEXP R_gtk_entry_set_input_hints(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_set_input_purpose(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_set_invisible_char(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_set_max_length(SEXP s1, SEXP s2);
-extern SEXP R_gtk_entry_set_menu_entry_icon_text(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_entry_set_overwrite_mode(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_set_placeholder_text(SEXP s1, SEXP s2);
 extern SEXP R_gtk_entry_set_progress_fraction(SEXP s1, SEXP s2);
@@ -4578,14 +4501,8 @@ extern SEXP R_gtk_file_dialog_open(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_open_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_dialog_open_multiple(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_open_multiple_finish(SEXP s1, SEXP s2);
-extern SEXP R_gtk_file_dialog_open_multiple_text_files(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gtk_file_dialog_open_multiple_text_files_finish(SEXP s1, SEXP s2);
-extern SEXP R_gtk_file_dialog_open_text_file(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gtk_file_dialog_open_text_file_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_dialog_save(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_save_finish(SEXP s1, SEXP s2);
-extern SEXP R_gtk_file_dialog_save_text_file(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gtk_file_dialog_save_text_file_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_dialog_select_folder(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_dialog_select_folder_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_dialog_select_multiple_folders(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
@@ -4601,7 +4518,6 @@ extern SEXP R_gtk_file_dialog_set_title(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_filter_new(void);
 extern SEXP R_gtk_file_filter_new_from_gvariant(SEXP s1);
 extern SEXP R_gtk_file_filter_add_mime_type(SEXP s1, SEXP s2);
-extern SEXP R_gtk_file_filter_add_mime_types(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_filter_add_pattern(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_filter_add_pixbuf_formats(SEXP s1);
 extern SEXP R_gtk_file_filter_add_suffix(SEXP s1, SEXP s2);
@@ -4612,14 +4528,12 @@ extern SEXP R_gtk_file_filter_to_gvariant(SEXP s1);
 extern SEXP R_gtk_file_launcher_new(SEXP s1);
 extern SEXP R_gtk_file_launcher_get_always_ask(SEXP s1);
 extern SEXP R_gtk_file_launcher_get_file(SEXP s1);
-extern SEXP R_gtk_file_launcher_get_writable(SEXP s1);
 extern SEXP R_gtk_file_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_launcher_launch_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_launcher_open_containing_folder(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_file_launcher_open_containing_folder_finish(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_launcher_set_always_ask(SEXP s1, SEXP s2);
 extern SEXP R_gtk_file_launcher_set_file(SEXP s1, SEXP s2);
-extern SEXP R_gtk_file_launcher_set_writable(SEXP s1, SEXP s2);
 extern SEXP R_gtk_filter_changed(SEXP s1, SEXP s2);
 extern SEXP R_gtk_filter_get_strictness(SEXP s1);
 extern SEXP R_gtk_filter_match(SEXP s1, SEXP s2);
@@ -4628,11 +4542,9 @@ extern SEXP R_gtk_filter_list_model_get_filter(SEXP s1);
 extern SEXP R_gtk_filter_list_model_get_incremental(SEXP s1);
 extern SEXP R_gtk_filter_list_model_get_model(SEXP s1);
 extern SEXP R_gtk_filter_list_model_get_pending(SEXP s1);
-extern SEXP R_gtk_filter_list_model_get_watch_items(SEXP s1);
 extern SEXP R_gtk_filter_list_model_set_filter(SEXP s1, SEXP s2);
 extern SEXP R_gtk_filter_list_model_set_incremental(SEXP s1, SEXP s2);
 extern SEXP R_gtk_filter_list_model_set_model(SEXP s1, SEXP s2);
-extern SEXP R_gtk_filter_list_model_set_watch_items(SEXP s1, SEXP s2);
 extern SEXP R_gtk_fixed_new(void);
 extern SEXP R_gtk_fixed_get_child_position(SEXP s1, SEXP s2);
 extern SEXP R_gtk_fixed_get_child_transform(SEXP s1, SEXP s2);
@@ -4830,13 +4742,6 @@ extern SEXP R_gtk_gesture_swipe_new(void);
 extern SEXP R_gtk_gesture_swipe_get_velocity(SEXP s1);
 extern SEXP R_gtk_gesture_zoom_new(void);
 extern SEXP R_gtk_gesture_zoom_get_scale_delta(SEXP s1);
-extern SEXP R_gtk_graphics_offload_new(SEXP s1);
-extern SEXP R_gtk_graphics_offload_get_black_background(SEXP s1);
-extern SEXP R_gtk_graphics_offload_get_child(SEXP s1);
-extern SEXP R_gtk_graphics_offload_get_enabled(SEXP s1);
-extern SEXP R_gtk_graphics_offload_set_black_background(SEXP s1, SEXP s2);
-extern SEXP R_gtk_graphics_offload_set_child(SEXP s1, SEXP s2);
-extern SEXP R_gtk_graphics_offload_set_enabled(SEXP s1, SEXP s2);
 extern SEXP R_gtk_grid_new(void);
 extern SEXP R_gtk_grid_attach(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_grid_attach_next_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
@@ -4901,15 +4806,12 @@ extern SEXP R_gtk_header_bar_new(void);
 extern SEXP R_gtk_header_bar_get_decoration_layout(SEXP s1);
 extern SEXP R_gtk_header_bar_get_show_title_buttons(SEXP s1);
 extern SEXP R_gtk_header_bar_get_title_widget(SEXP s1);
-extern SEXP R_gtk_header_bar_get_use_native_controls(SEXP s1);
 extern SEXP R_gtk_header_bar_pack_end(SEXP s1, SEXP s2);
 extern SEXP R_gtk_header_bar_pack_start(SEXP s1, SEXP s2);
 extern SEXP R_gtk_header_bar_remove(SEXP s1, SEXP s2);
 extern SEXP R_gtk_header_bar_set_decoration_layout(SEXP s1, SEXP s2);
 extern SEXP R_gtk_header_bar_set_show_title_buttons(SEXP s1, SEXP s2);
 extern SEXP R_gtk_header_bar_set_title_widget(SEXP s1, SEXP s2);
-extern SEXP R_gtk_header_bar_set_use_native_controls(SEXP s1, SEXP s2);
-extern SEXP R_gtk_im_context_activate_osk(SEXP s1, SEXP s2);
 extern SEXP R_gtk_im_context_delete_surrounding(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_im_context_filter_key(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_gtk_im_context_filter_keypress(SEXP s1, SEXP s2);
@@ -5169,7 +5071,6 @@ extern SEXP R_gtk_list_box_get_selected_row(SEXP s1);
 extern SEXP R_gtk_list_box_get_selected_rows(SEXP s1);
 extern SEXP R_gtk_list_box_get_selection_mode(SEXP s1);
 extern SEXP R_gtk_list_box_get_show_separators(SEXP s1);
-extern SEXP R_gtk_list_box_get_tab_behavior(SEXP s1);
 extern SEXP R_gtk_list_box_insert(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_list_box_invalidate_filter(SEXP s1);
 extern SEXP R_gtk_list_box_invalidate_headers(SEXP s1);
@@ -5188,7 +5089,6 @@ extern SEXP R_gtk_list_box_set_placeholder(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_set_selection_mode(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_set_show_separators(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_list_box_set_tab_behavior(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_unselect_all(SEXP s1);
 extern SEXP R_gtk_list_box_unselect_row(SEXP s1, SEXP s2);
 extern SEXP R_gtk_list_box_row_new(void);
@@ -5509,7 +5409,6 @@ extern SEXP R_gtk_picture_get_alternative_text(SEXP s1);
 extern SEXP R_gtk_picture_get_can_shrink(SEXP s1);
 extern SEXP R_gtk_picture_get_content_fit(SEXP s1);
 extern SEXP R_gtk_picture_get_file(SEXP s1);
-extern SEXP R_gtk_picture_get_isolate_contents(SEXP s1);
 extern SEXP R_gtk_picture_get_keep_aspect_ratio(SEXP s1);
 extern SEXP R_gtk_picture_get_paintable(SEXP s1);
 extern SEXP R_gtk_picture_set_alternative_text(SEXP s1, SEXP s2);
@@ -5517,7 +5416,6 @@ extern SEXP R_gtk_picture_set_can_shrink(SEXP s1, SEXP s2);
 extern SEXP R_gtk_picture_set_content_fit(SEXP s1, SEXP s2);
 extern SEXP R_gtk_picture_set_file(SEXP s1, SEXP s2);
 extern SEXP R_gtk_picture_set_filename(SEXP s1, SEXP s2);
-extern SEXP R_gtk_picture_set_isolate_contents(SEXP s1, SEXP s2);
 extern SEXP R_gtk_picture_set_keep_aspect_ratio(SEXP s1, SEXP s2);
 extern SEXP R_gtk_picture_set_paintable(SEXP s1, SEXP s2);
 extern SEXP R_gtk_picture_set_pixbuf(SEXP s1, SEXP s2);
@@ -5543,24 +5441,12 @@ extern SEXP R_gtk_popover_set_mnemonics_visible(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_set_offset(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_popover_set_pointing_to(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_set_position(SEXP s1, SEXP s2);
-extern SEXP R_gtk_popover_bin_new(void);
-extern SEXP R_gtk_popover_bin_get_child(SEXP s1);
 extern SEXP R_gtk_popover_bin_get_handle_input(SEXP s1);
-extern SEXP R_gtk_popover_bin_get_menu_model(SEXP s1);
-extern SEXP R_gtk_popover_bin_get_popover(SEXP s1);
-extern SEXP R_gtk_popover_bin_popdown(SEXP s1);
-extern SEXP R_gtk_popover_bin_popup(SEXP s1);
-extern SEXP R_gtk_popover_bin_set_child(SEXP s1, SEXP s2);
-extern SEXP R_gtk_popover_bin_set_handle_input(SEXP s1, SEXP s2);
-extern SEXP R_gtk_popover_bin_set_menu_model(SEXP s1, SEXP s2);
-extern SEXP R_gtk_popover_bin_set_popover(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_menu_new_from_model(SEXP s1);
 extern SEXP R_gtk_popover_menu_new_from_model_full(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_menu_add_child(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_popover_menu_get_flags(SEXP s1);
 extern SEXP R_gtk_popover_menu_get_menu_model(SEXP s1);
 extern SEXP R_gtk_popover_menu_remove_child(SEXP s1, SEXP s2);
-extern SEXP R_gtk_popover_menu_set_flags(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_menu_set_menu_model(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_menu_bar_new_from_model(SEXP s1);
 extern SEXP R_gtk_popover_menu_bar_add_child(SEXP s1, SEXP s2, SEXP s3);
@@ -5676,13 +5562,11 @@ extern SEXP R_gtk_scale_set_value_pos(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scale_button_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_scale_button_get_active(SEXP s1);
 extern SEXP R_gtk_scale_button_get_adjustment(SEXP s1);
-extern SEXP R_gtk_scale_button_get_has_frame(SEXP s1);
 extern SEXP R_gtk_scale_button_get_minus_button(SEXP s1);
 extern SEXP R_gtk_scale_button_get_plus_button(SEXP s1);
 extern SEXP R_gtk_scale_button_get_popup(SEXP s1);
 extern SEXP R_gtk_scale_button_get_value(SEXP s1);
 extern SEXP R_gtk_scale_button_set_adjustment(SEXP s1, SEXP s2);
-extern SEXP R_gtk_scale_button_set_has_frame(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scale_button_set_icons(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scale_button_set_value(SEXP s1, SEXP s2);
 extern SEXP R_gtk_scroll_info_new(void);
@@ -5747,13 +5631,9 @@ extern SEXP R_gtk_search_bar_set_key_capture_widget(SEXP s1, SEXP s2);
 extern SEXP R_gtk_search_bar_set_search_mode(SEXP s1, SEXP s2);
 extern SEXP R_gtk_search_bar_set_show_close_button(SEXP s1, SEXP s2);
 extern SEXP R_gtk_search_entry_new(void);
-extern SEXP R_gtk_search_entry_get_input_hints(SEXP s1);
-extern SEXP R_gtk_search_entry_get_input_purpose(SEXP s1);
 extern SEXP R_gtk_search_entry_get_key_capture_widget(SEXP s1);
 extern SEXP R_gtk_search_entry_get_placeholder_text(SEXP s1);
 extern SEXP R_gtk_search_entry_get_search_delay(SEXP s1);
-extern SEXP R_gtk_search_entry_set_input_hints(SEXP s1, SEXP s2);
-extern SEXP R_gtk_search_entry_set_input_purpose(SEXP s1, SEXP s2);
 extern SEXP R_gtk_search_entry_set_key_capture_widget(SEXP s1, SEXP s2);
 extern SEXP R_gtk_search_entry_set_placeholder_text(SEXP s1, SEXP s2);
 extern SEXP R_gtk_search_entry_set_search_delay(SEXP s1, SEXP s2);
@@ -5810,9 +5690,6 @@ extern SEXP R_gtk_shortcut_trigger_print_label(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_shortcut_trigger_to_label(SEXP s1, SEXP s2);
 extern SEXP R_gtk_shortcut_trigger_to_string(SEXP s1);
 extern SEXP R_gtk_shortcut_trigger_trigger(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_shortcuts_group_add_shortcut(SEXP s1, SEXP s2);
-extern SEXP R_gtk_shortcuts_section_add_group(SEXP s1, SEXP s2);
-extern SEXP R_gtk_shortcuts_window_add_section(SEXP s1, SEXP s2);
 extern SEXP R_gtk_signal_action_new(SEXP s1);
 extern SEXP R_gtk_signal_action_get_signal_name(SEXP s1);
 extern SEXP R_gtk_signal_list_item_factory_new(void);
@@ -5844,18 +5721,15 @@ extern SEXP R_gtk_snapshot_append_border(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_snapshot_append_cairo(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_append_color(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_snapshot_append_conic_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_gtk_snapshot_append_fill(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_snapshot_append_inset_shadow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gtk_snapshot_append_layout(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_snapshot_append_linear_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_snapshot_append_node(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_append_outset_shadow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_gtk_snapshot_append_paste(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_snapshot_append_radial_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_gtk_snapshot_append_repeating_linear_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_snapshot_append_repeating_radial_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_gtk_snapshot_append_scaled_texture(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_snapshot_append_stroke(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_snapshot_append_texture(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_snapshot_gl_shader_pop_texture(SEXP s1);
 extern SEXP R_gtk_snapshot_perspective(SEXP s1, SEXP s2);
@@ -5864,19 +5738,13 @@ extern SEXP R_gtk_snapshot_push_blend(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_push_blur(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_push_clip(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_push_color_matrix(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_snapshot_push_component_transfer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gtk_snapshot_push_composite(SEXP s1, SEXP s2);
-extern SEXP R_gtk_snapshot_push_copy(SEXP s1);
 extern SEXP R_gtk_snapshot_push_cross_fade(SEXP s1, SEXP s2);
-extern SEXP R_gtk_snapshot_push_fill(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_snapshot_push_gl_shader(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_snapshot_push_isolation(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_push_mask(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_push_opacity(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_push_repeat(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_snapshot_push_rounded_clip(SEXP s1, SEXP s2);
 extern SEXP R_gtk_snapshot_push_shadow(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_snapshot_push_stroke(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_snapshot_render_background(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_snapshot_render_focus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_snapshot_render_frame(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
@@ -5910,7 +5778,6 @@ extern SEXP R_gtk_sorter_get_order(SEXP s1);
 extern SEXP R_gtk_spin_button_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_spin_button_new_with_range(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_spin_button_configure(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gtk_spin_button_get_activates_default(SEXP s1);
 extern SEXP R_gtk_spin_button_get_adjustment(SEXP s1);
 extern SEXP R_gtk_spin_button_get_climb_rate(SEXP s1);
 extern SEXP R_gtk_spin_button_get_digits(SEXP s1);
@@ -5922,7 +5789,6 @@ extern SEXP R_gtk_spin_button_get_update_policy(SEXP s1);
 extern SEXP R_gtk_spin_button_get_value(SEXP s1);
 extern SEXP R_gtk_spin_button_get_value_as_int(SEXP s1);
 extern SEXP R_gtk_spin_button_get_wrap(SEXP s1);
-extern SEXP R_gtk_spin_button_set_activates_default(SEXP s1, SEXP s2);
 extern SEXP R_gtk_spin_button_set_adjustment(SEXP s1, SEXP s2);
 extern SEXP R_gtk_spin_button_set_climb_rate(SEXP s1, SEXP s2);
 extern SEXP R_gtk_spin_button_set_digits(SEXP s1, SEXP s2);
@@ -6000,7 +5866,6 @@ extern SEXP R_gtk_string_filter_set_match_mode(SEXP s1, SEXP s2);
 extern SEXP R_gtk_string_filter_set_search(SEXP s1, SEXP s2);
 extern SEXP R_gtk_string_list_new(SEXP s1);
 extern SEXP R_gtk_string_list_append(SEXP s1, SEXP s2);
-extern SEXP R_gtk_string_list_find(SEXP s1, SEXP s2);
 extern SEXP R_gtk_string_list_get_string(SEXP s1, SEXP s2);
 extern SEXP R_gtk_string_list_remove(SEXP s1, SEXP s2);
 extern SEXP R_gtk_string_list_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -6035,27 +5900,6 @@ extern SEXP R_gtk_style_context_set_display(SEXP s1, SEXP s2);
 extern SEXP R_gtk_style_context_set_scale(SEXP s1, SEXP s2);
 extern SEXP R_gtk_style_context_set_state(SEXP s1, SEXP s2);
 extern SEXP R_gtk_style_context_to_string(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_new(void);
-extern SEXP R_gtk_svg_new_from_bytes(SEXP s1);
-extern SEXP R_gtk_svg_new_from_resource(SEXP s1);
-extern SEXP R_gtk_svg_get_features(SEXP s1);
-extern SEXP R_gtk_svg_get_state(SEXP s1);
-extern SEXP R_gtk_svg_get_state_names(SEXP s1);
-extern SEXP R_gtk_svg_get_weight(SEXP s1);
-extern SEXP R_gtk_svg_load_from_bytes(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_load_from_resource(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_pause(SEXP s1);
-extern SEXP R_gtk_svg_play(SEXP s1);
-extern SEXP R_gtk_svg_serialize(SEXP s1);
-extern SEXP R_gtk_svg_set_features(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_set_frame_clock(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_set_state(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_set_weight(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_write_to_file(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_error_get_attribute(SEXP s1);
-extern SEXP R_gtk_svg_error_get_element(SEXP s1);
-extern SEXP R_gtk_svg_error_get_end(SEXP s1);
-extern SEXP R_gtk_svg_error_get_start(SEXP s1);
 extern SEXP R_gtk_svg_error_quark(void);
 extern SEXP R_gtk_switch_new(void);
 extern SEXP R_gtk_switch_get_active(SEXP s1);
@@ -6063,7 +5907,6 @@ extern SEXP R_gtk_switch_get_state(SEXP s1);
 extern SEXP R_gtk_switch_set_active(SEXP s1, SEXP s2);
 extern SEXP R_gtk_switch_set_state(SEXP s1, SEXP s2);
 extern SEXP R_gtk_symbolic_paintable_snapshot_symbolic(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_gtk_symbolic_paintable_snapshot_with_weight(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gtk_text_new(void);
 extern SEXP R_gtk_text_new_with_buffer(SEXP s1);
 extern SEXP R_gtk_text_compute_cursor_extents(SEXP s1, SEXP s2);
@@ -6101,7 +5944,6 @@ extern SEXP R_gtk_text_set_truncate_multiline(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_set_visibility(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_unset_invisible_char(SEXP s1);
 extern SEXP R_gtk_text_buffer_new(SEXP s1);
-extern SEXP R_gtk_text_buffer_add_commit_notify(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_text_buffer_add_mark(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_text_buffer_add_selection_clipboard(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_buffer_apply_tag(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -6160,7 +6002,6 @@ extern SEXP R_gtk_text_buffer_paste_clipboard(SEXP s1, SEXP s2, SEXP s3, SEXP s4
 extern SEXP R_gtk_text_buffer_place_cursor(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_buffer_redo(SEXP s1);
 extern SEXP R_gtk_text_buffer_remove_all_tags(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gtk_text_buffer_remove_commit_notify(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_buffer_remove_selection_clipboard(SEXP s1, SEXP s2);
 extern SEXP R_gtk_text_buffer_remove_tag(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_gtk_text_buffer_remove_tag_by_name(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -6318,7 +6159,6 @@ extern SEXP R_gtk_text_view_get_right_margin(SEXP s1);
 extern SEXP R_gtk_text_view_get_rtl_context(SEXP s1);
 extern SEXP R_gtk_text_view_get_tabs(SEXP s1);
 extern SEXP R_gtk_text_view_get_top_margin(SEXP s1);
-extern SEXP R_gtk_text_view_get_visible_offset(SEXP s1);
 extern SEXP R_gtk_text_view_get_visible_rect(SEXP s1);
 extern SEXP R_gtk_text_view_get_wrap_mode(SEXP s1);
 extern SEXP R_gtk_text_view_im_context_filter_keypress(SEXP s1, SEXP s2);
@@ -6659,9 +6499,7 @@ extern SEXP R_gtk_tree_view_column_set_spacing(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_column_set_title(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_column_set_visible(SEXP s1, SEXP s2);
 extern SEXP R_gtk_tree_view_column_set_widget(SEXP s1, SEXP s2);
-extern SEXP R_gtk_try_expression_new(SEXP s1, SEXP s2);
 extern SEXP R_gtk_uri_launcher_new(SEXP s1);
-extern SEXP R_gtk_uri_launcher_can_launch(SEXP s1, SEXP s2);
 extern SEXP R_gtk_uri_launcher_get_uri(SEXP s1);
 extern SEXP R_gtk_uri_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gtk_uri_launcher_launch_finish(SEXP s1, SEXP s2);
@@ -6673,13 +6511,11 @@ extern SEXP R_gtk_video_new_for_media_stream(SEXP s1);
 extern SEXP R_gtk_video_new_for_resource(SEXP s1);
 extern SEXP R_gtk_video_get_autoplay(SEXP s1);
 extern SEXP R_gtk_video_get_file(SEXP s1);
-extern SEXP R_gtk_video_get_graphics_offload(SEXP s1);
 extern SEXP R_gtk_video_get_loop(SEXP s1);
 extern SEXP R_gtk_video_get_media_stream(SEXP s1);
 extern SEXP R_gtk_video_set_autoplay(SEXP s1, SEXP s2);
 extern SEXP R_gtk_video_set_file(SEXP s1, SEXP s2);
 extern SEXP R_gtk_video_set_filename(SEXP s1, SEXP s2);
-extern SEXP R_gtk_video_set_graphics_offload(SEXP s1, SEXP s2);
 extern SEXP R_gtk_video_set_loop(SEXP s1, SEXP s2);
 extern SEXP R_gtk_video_set_media_stream(SEXP s1, SEXP s2);
 extern SEXP R_gtk_video_set_resource(SEXP s1, SEXP s2);
@@ -6742,7 +6578,6 @@ extern SEXP R_gtk_widget_get_hexpand(SEXP s1);
 extern SEXP R_gtk_widget_get_hexpand_set(SEXP s1);
 extern SEXP R_gtk_widget_get_last_child(SEXP s1);
 extern SEXP R_gtk_widget_get_layout_manager(SEXP s1);
-extern SEXP R_gtk_widget_get_limit_events(SEXP s1);
 extern SEXP R_gtk_widget_get_mapped(SEXP s1);
 extern SEXP R_gtk_widget_get_margin_bottom(SEXP s1);
 extern SEXP R_gtk_widget_get_margin_end(SEXP s1);
@@ -6826,7 +6661,6 @@ extern SEXP R_gtk_widget_set_has_tooltip(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_set_hexpand(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_set_hexpand_set(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_set_layout_manager(SEXP s1, SEXP s2);
-extern SEXP R_gtk_widget_set_limit_events(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_set_margin_bottom(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_set_margin_end(SEXP s1, SEXP s2);
 extern SEXP R_gtk_widget_set_margin_start(SEXP s1, SEXP s2);
@@ -6896,7 +6730,6 @@ extern SEXP R_gtk_window_get_deletable(SEXP s1);
 extern SEXP R_gtk_window_get_destroy_with_parent(SEXP s1);
 extern SEXP R_gtk_window_get_focus(SEXP s1);
 extern SEXP R_gtk_window_get_focus_visible(SEXP s1);
-extern SEXP R_gtk_window_get_gravity(SEXP s1);
 extern SEXP R_gtk_window_get_group(SEXP s1);
 extern SEXP R_gtk_window_get_handle_menubar_accel(SEXP s1);
 extern SEXP R_gtk_window_get_hide_on_close(SEXP s1);
@@ -6926,7 +6759,6 @@ extern SEXP R_gtk_window_set_destroy_with_parent(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_set_display(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_set_focus(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_set_focus_visible(SEXP s1, SEXP s2);
-extern SEXP R_gtk_window_set_gravity(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_set_handle_menubar_accel(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_set_hide_on_close(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_set_icon_name(SEXP s1, SEXP s2);
@@ -6944,10 +6776,8 @@ extern SEXP R_gtk_window_controls_new(SEXP s1);
 extern SEXP R_gtk_window_controls_get_decoration_layout(SEXP s1);
 extern SEXP R_gtk_window_controls_get_empty(SEXP s1);
 extern SEXP R_gtk_window_controls_get_side(SEXP s1);
-extern SEXP R_gtk_window_controls_get_use_native_controls(SEXP s1);
 extern SEXP R_gtk_window_controls_set_decoration_layout(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_controls_set_side(SEXP s1, SEXP s2);
-extern SEXP R_gtk_window_controls_set_use_native_controls(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_group_new(void);
 extern SEXP R_gtk_window_group_add_window(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_group_list_windows(SEXP s1);
@@ -6955,7 +6785,6 @@ extern SEXP R_gtk_window_group_remove_window(SEXP s1, SEXP s2);
 extern SEXP R_gtk_window_handle_new(void);
 extern SEXP R_gtk_window_handle_get_child(SEXP s1);
 extern SEXP R_gtk_window_handle_set_child(SEXP s1, SEXP s2);
-extern SEXP R_gtk_accelerator_get_accessible_label(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accelerator_get_default_mod_mask(void);
 extern SEXP R_gtk_accelerator_get_label(SEXP s1, SEXP s2);
 extern SEXP R_gtk_accelerator_get_label_with_keycode(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -6967,8 +6796,6 @@ extern SEXP R_gtk_accelerator_valid(SEXP s1, SEXP s2);
 extern SEXP R_gtk_check_version(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_css_parser_error_quark(void);
 extern SEXP R_gtk_css_parser_warning_quark(void);
-extern SEXP R_gtk_disable_portal_interfaces(SEXP s1);
-extern SEXP R_gtk_disable_portals(void);
 extern SEXP R_gtk_disable_setlocale(void);
 extern SEXP R_gtk_distribute_natural_allocation(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_get_binary_age(void);
@@ -7060,16 +6887,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_clipboard_set_value", (DL_FUNC) &R_gdk_clipboard_set_value, 2},
     {"R_gdk_clipboard_store_async", (DL_FUNC) &R_gdk_clipboard_store_async, 5},
     {"R_gdk_clipboard_store_finish", (DL_FUNC) &R_gdk_clipboard_store_finish, 2},
-    {"R_gdk_color_state_equal", (DL_FUNC) &R_gdk_color_state_equal, 2},
-    {"R_gdk_color_state_equivalent", (DL_FUNC) &R_gdk_color_state_equivalent, 2},
-    {"R_gdk_color_state_ref", (DL_FUNC) &R_gdk_color_state_ref, 1},
-    {"R_gdk_color_state_unref", (DL_FUNC) &R_gdk_color_state_unref, 1},
-    {"R_gdk_color_state_get_oklab", (DL_FUNC) &R_gdk_color_state_get_oklab, 0},
-    {"R_gdk_color_state_get_oklch", (DL_FUNC) &R_gdk_color_state_get_oklch, 0},
-    {"R_gdk_color_state_get_rec2100_linear", (DL_FUNC) &R_gdk_color_state_get_rec2100_linear, 0},
-    {"R_gdk_color_state_get_rec2100_pq", (DL_FUNC) &R_gdk_color_state_get_rec2100_pq, 0},
-    {"R_gdk_color_state_get_srgb", (DL_FUNC) &R_gdk_color_state_get_srgb, 0},
-    {"R_gdk_color_state_get_srgb_linear", (DL_FUNC) &R_gdk_color_state_get_srgb_linear, 0},
     {"R_gdk_content_deserializer_get_cancellable", (DL_FUNC) &R_gdk_content_deserializer_get_cancellable, 1},
     {"R_gdk_content_deserializer_get_gtype", (DL_FUNC) &R_gdk_content_deserializer_get_gtype, 1},
     {"R_gdk_content_deserializer_get_input_stream", (DL_FUNC) &R_gdk_content_deserializer_get_input_stream, 1},
@@ -7087,7 +6904,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_content_formats_contain_mime_type", (DL_FUNC) &R_gdk_content_formats_contain_mime_type, 2},
     {"R_gdk_content_formats_get_gtypes", (DL_FUNC) &R_gdk_content_formats_get_gtypes, 1},
     {"R_gdk_content_formats_get_mime_types", (DL_FUNC) &R_gdk_content_formats_get_mime_types, 1},
-    {"R_gdk_content_formats_is_empty", (DL_FUNC) &R_gdk_content_formats_is_empty, 1},
     {"R_gdk_content_formats_match", (DL_FUNC) &R_gdk_content_formats_match, 2},
     {"R_gdk_content_formats_match_gtype", (DL_FUNC) &R_gdk_content_formats_match_gtype, 2},
     {"R_gdk_content_formats_match_mime_type", (DL_FUNC) &R_gdk_content_formats_match_mime_type, 2},
@@ -7131,7 +6947,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_crossing_event_get_detail", (DL_FUNC) &R_gdk_crossing_event_get_detail, 1},
     {"R_gdk_crossing_event_get_focus", (DL_FUNC) &R_gdk_crossing_event_get_focus, 1},
     {"R_gdk_crossing_event_get_mode", (DL_FUNC) &R_gdk_crossing_event_get_mode, 1},
-    {"R_gdk_cursor_new_from_callback", (DL_FUNC) &R_gdk_cursor_new_from_callback, 4},
     {"R_gdk_cursor_new_from_name", (DL_FUNC) &R_gdk_cursor_new_from_name, 2},
     {"R_gdk_cursor_new_from_texture", (DL_FUNC) &R_gdk_cursor_new_from_texture, 4},
     {"R_gdk_cursor_get_fallback", (DL_FUNC) &R_gdk_cursor_get_fallback, 1},
@@ -7140,13 +6955,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_cursor_get_name", (DL_FUNC) &R_gdk_cursor_get_name, 1},
     {"R_gdk_cursor_get_texture", (DL_FUNC) &R_gdk_cursor_get_texture, 1},
     {"R_gdk_dnd_event_get_drop", (DL_FUNC) &R_gdk_dnd_event_get_drop, 1},
-    {"R_gdk_device_get_active_layout_index", (DL_FUNC) &R_gdk_device_get_active_layout_index, 1},
     {"R_gdk_device_get_caps_lock_state", (DL_FUNC) &R_gdk_device_get_caps_lock_state, 1},
     {"R_gdk_device_get_device_tool", (DL_FUNC) &R_gdk_device_get_device_tool, 1},
     {"R_gdk_device_get_direction", (DL_FUNC) &R_gdk_device_get_direction, 1},
     {"R_gdk_device_get_display", (DL_FUNC) &R_gdk_device_get_display, 1},
     {"R_gdk_device_get_has_cursor", (DL_FUNC) &R_gdk_device_get_has_cursor, 1},
-    {"R_gdk_device_get_layout_names", (DL_FUNC) &R_gdk_device_get_layout_names, 1},
     {"R_gdk_device_get_modifier_state", (DL_FUNC) &R_gdk_device_get_modifier_state, 1},
     {"R_gdk_device_get_name", (DL_FUNC) &R_gdk_device_get_name, 1},
     {"R_gdk_device_get_num_lock_state", (DL_FUNC) &R_gdk_device_get_num_lock_state, 1},
@@ -7177,7 +6990,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_display_get_app_launch_context", (DL_FUNC) &R_gdk_display_get_app_launch_context, 1},
     {"R_gdk_display_get_clipboard", (DL_FUNC) &R_gdk_display_get_clipboard, 1},
     {"R_gdk_display_get_default_seat", (DL_FUNC) &R_gdk_display_get_default_seat, 1},
-    {"R_gdk_display_get_dmabuf_formats", (DL_FUNC) &R_gdk_display_get_dmabuf_formats, 1},
     {"R_gdk_display_get_monitor_at_surface", (DL_FUNC) &R_gdk_display_get_monitor_at_surface, 2},
     {"R_gdk_display_get_monitors", (DL_FUNC) &R_gdk_display_get_monitors, 1},
     {"R_gdk_display_get_name", (DL_FUNC) &R_gdk_display_get_name, 1},
@@ -7194,7 +7006,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_display_prepare_gl", (DL_FUNC) &R_gdk_display_prepare_gl, 1},
     {"R_gdk_display_put_event", (DL_FUNC) &R_gdk_display_put_event, 2},
     {"R_gdk_display_supports_input_shapes", (DL_FUNC) &R_gdk_display_supports_input_shapes, 1},
-    {"R_gdk_display_supports_shadow_width", (DL_FUNC) &R_gdk_display_supports_shadow_width, 1},
     {"R_gdk_display_sync", (DL_FUNC) &R_gdk_display_sync, 1},
     {"R_gdk_display_translate_key", (DL_FUNC) &R_gdk_display_translate_key, 4},
     {"R_gdk_display_manager_get", (DL_FUNC) &R_gdk_display_manager_get, 0},
@@ -7203,12 +7014,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_display_manager_open_display", (DL_FUNC) &R_gdk_display_manager_open_display, 2},
     {"R_gdk_display_manager_set_default_display", (DL_FUNC) &R_gdk_display_manager_set_default_display, 2},
     {"R_gdk_dmabuf_error_quark", (DL_FUNC) &R_gdk_dmabuf_error_quark, 0},
-    {"R_gdk_dmabuf_formats_contains", (DL_FUNC) &R_gdk_dmabuf_formats_contains, 3},
-    {"R_gdk_dmabuf_formats_equal", (DL_FUNC) &R_gdk_dmabuf_formats_equal, 2},
-    {"R_gdk_dmabuf_formats_get_format", (DL_FUNC) &R_gdk_dmabuf_formats_get_format, 2},
-    {"R_gdk_dmabuf_formats_get_n_formats", (DL_FUNC) &R_gdk_dmabuf_formats_get_n_formats, 1},
-    {"R_gdk_dmabuf_formats_ref", (DL_FUNC) &R_gdk_dmabuf_formats_ref, 1},
-    {"R_gdk_dmabuf_formats_unref", (DL_FUNC) &R_gdk_dmabuf_formats_unref, 1},
     {"R_gdk_drag_begin", (DL_FUNC) &R_gdk_drag_begin, 6},
     {"R_gdk_drag_drop_done", (DL_FUNC) &R_gdk_drag_drop_done, 2},
     {"R_gdk_drag_get_actions", (DL_FUNC) &R_gdk_drag_get_actions, 1},
@@ -7306,7 +7111,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_gl_texture_release", (DL_FUNC) &R_gdk_gl_texture_release, 1},
     {"R_gdk_gl_texture_builder_new", (DL_FUNC) &R_gdk_gl_texture_builder_new, 0},
     {"R_gdk_gl_texture_builder_build", (DL_FUNC) &R_gdk_gl_texture_builder_build, 3},
-    {"R_gdk_gl_texture_builder_get_color_state", (DL_FUNC) &R_gdk_gl_texture_builder_get_color_state, 1},
     {"R_gdk_gl_texture_builder_get_context", (DL_FUNC) &R_gdk_gl_texture_builder_get_context, 1},
     {"R_gdk_gl_texture_builder_get_format", (DL_FUNC) &R_gdk_gl_texture_builder_get_format, 1},
     {"R_gdk_gl_texture_builder_get_has_mipmap", (DL_FUNC) &R_gdk_gl_texture_builder_get_has_mipmap, 1},
@@ -7316,7 +7120,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_gl_texture_builder_get_update_region", (DL_FUNC) &R_gdk_gl_texture_builder_get_update_region, 1},
     {"R_gdk_gl_texture_builder_get_update_texture", (DL_FUNC) &R_gdk_gl_texture_builder_get_update_texture, 1},
     {"R_gdk_gl_texture_builder_get_width", (DL_FUNC) &R_gdk_gl_texture_builder_get_width, 1},
-    {"R_gdk_gl_texture_builder_set_color_state", (DL_FUNC) &R_gdk_gl_texture_builder_set_color_state, 2},
     {"R_gdk_gl_texture_builder_set_context", (DL_FUNC) &R_gdk_gl_texture_builder_set_context, 2},
     {"R_gdk_gl_texture_builder_set_format", (DL_FUNC) &R_gdk_gl_texture_builder_set_format, 2},
     {"R_gdk_gl_texture_builder_set_has_mipmap", (DL_FUNC) &R_gdk_gl_texture_builder_set_has_mipmap, 2},
@@ -7337,28 +7140,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_key_event_is_modifier", (DL_FUNC) &R_gdk_key_event_is_modifier, 1},
     {"R_gdk_key_event_matches", (DL_FUNC) &R_gdk_key_event_matches, 3},
     {"R_gdk_memory_texture_new", (DL_FUNC) &R_gdk_memory_texture_new, 5},
-    {"R_gdk_memory_texture_builder_new", (DL_FUNC) &R_gdk_memory_texture_builder_new, 0},
-    {"R_gdk_memory_texture_builder_build", (DL_FUNC) &R_gdk_memory_texture_builder_build, 1},
-    {"R_gdk_memory_texture_builder_get_bytes", (DL_FUNC) &R_gdk_memory_texture_builder_get_bytes, 1},
-    {"R_gdk_memory_texture_builder_get_color_state", (DL_FUNC) &R_gdk_memory_texture_builder_get_color_state, 1},
-    {"R_gdk_memory_texture_builder_get_format", (DL_FUNC) &R_gdk_memory_texture_builder_get_format, 1},
-    {"R_gdk_memory_texture_builder_get_height", (DL_FUNC) &R_gdk_memory_texture_builder_get_height, 1},
-    {"R_gdk_memory_texture_builder_get_offset", (DL_FUNC) &R_gdk_memory_texture_builder_get_offset, 2},
-    {"R_gdk_memory_texture_builder_get_stride", (DL_FUNC) &R_gdk_memory_texture_builder_get_stride, 1},
-    {"R_gdk_memory_texture_builder_get_stride_for_plane", (DL_FUNC) &R_gdk_memory_texture_builder_get_stride_for_plane, 2},
-    {"R_gdk_memory_texture_builder_get_update_region", (DL_FUNC) &R_gdk_memory_texture_builder_get_update_region, 1},
-    {"R_gdk_memory_texture_builder_get_update_texture", (DL_FUNC) &R_gdk_memory_texture_builder_get_update_texture, 1},
-    {"R_gdk_memory_texture_builder_get_width", (DL_FUNC) &R_gdk_memory_texture_builder_get_width, 1},
-    {"R_gdk_memory_texture_builder_set_bytes", (DL_FUNC) &R_gdk_memory_texture_builder_set_bytes, 2},
-    {"R_gdk_memory_texture_builder_set_color_state", (DL_FUNC) &R_gdk_memory_texture_builder_set_color_state, 2},
-    {"R_gdk_memory_texture_builder_set_format", (DL_FUNC) &R_gdk_memory_texture_builder_set_format, 2},
-    {"R_gdk_memory_texture_builder_set_height", (DL_FUNC) &R_gdk_memory_texture_builder_set_height, 2},
-    {"R_gdk_memory_texture_builder_set_offset", (DL_FUNC) &R_gdk_memory_texture_builder_set_offset, 3},
-    {"R_gdk_memory_texture_builder_set_stride", (DL_FUNC) &R_gdk_memory_texture_builder_set_stride, 2},
-    {"R_gdk_memory_texture_builder_set_stride_for_plane", (DL_FUNC) &R_gdk_memory_texture_builder_set_stride_for_plane, 3},
-    {"R_gdk_memory_texture_builder_set_update_region", (DL_FUNC) &R_gdk_memory_texture_builder_set_update_region, 2},
-    {"R_gdk_memory_texture_builder_set_update_texture", (DL_FUNC) &R_gdk_memory_texture_builder_set_update_texture, 2},
-    {"R_gdk_memory_texture_builder_set_width", (DL_FUNC) &R_gdk_memory_texture_builder_set_width, 2},
     {"R_gdk_monitor_get_connector", (DL_FUNC) &R_gdk_monitor_get_connector, 1},
     {"R_gdk_monitor_get_description", (DL_FUNC) &R_gdk_monitor_get_description, 1},
     {"R_gdk_monitor_get_display", (DL_FUNC) &R_gdk_monitor_get_display, 1},
@@ -7367,7 +7148,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_monitor_get_manufacturer", (DL_FUNC) &R_gdk_monitor_get_manufacturer, 1},
     {"R_gdk_monitor_get_model", (DL_FUNC) &R_gdk_monitor_get_model, 1},
     {"R_gdk_monitor_get_refresh_rate", (DL_FUNC) &R_gdk_monitor_get_refresh_rate, 1},
-    {"R_gdk_monitor_get_scale", (DL_FUNC) &R_gdk_monitor_get_scale, 1},
     {"R_gdk_monitor_get_scale_factor", (DL_FUNC) &R_gdk_monitor_get_scale_factor, 1},
     {"R_gdk_monitor_get_subpixel_layout", (DL_FUNC) &R_gdk_monitor_get_subpixel_layout, 1},
     {"R_gdk_monitor_get_width_mm", (DL_FUNC) &R_gdk_monitor_get_width_mm, 1},
@@ -7424,7 +7204,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_rectangle_union", (DL_FUNC) &R_gdk_rectangle_union, 2},
     {"R_gdk_scroll_event_get_deltas", (DL_FUNC) &R_gdk_scroll_event_get_deltas, 1},
     {"R_gdk_scroll_event_get_direction", (DL_FUNC) &R_gdk_scroll_event_get_direction, 1},
-    {"R_gdk_scroll_event_get_relative_direction", (DL_FUNC) &R_gdk_scroll_event_get_relative_direction, 1},
     {"R_gdk_scroll_event_get_unit", (DL_FUNC) &R_gdk_scroll_event_get_unit, 1},
     {"R_gdk_scroll_event_is_stop", (DL_FUNC) &R_gdk_scroll_event_is_stop, 1},
     {"R_gdk_seat_get_capabilities", (DL_FUNC) &R_gdk_seat_get_capabilities, 1},
@@ -7466,7 +7245,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_texture_new_from_filename", (DL_FUNC) &R_gdk_texture_new_from_filename, 1},
     {"R_gdk_texture_new_from_resource", (DL_FUNC) &R_gdk_texture_new_from_resource, 1},
     {"R_gdk_texture_download", (DL_FUNC) &R_gdk_texture_download, 3},
-    {"R_gdk_texture_get_color_state", (DL_FUNC) &R_gdk_texture_get_color_state, 1},
     {"R_gdk_texture_get_format", (DL_FUNC) &R_gdk_texture_get_format, 1},
     {"R_gdk_texture_get_height", (DL_FUNC) &R_gdk_texture_get_height, 1},
     {"R_gdk_texture_get_width", (DL_FUNC) &R_gdk_texture_get_width, 1},
@@ -7477,21 +7255,16 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_texture_downloader_new", (DL_FUNC) &R_gdk_texture_downloader_new, 1},
     {"R_gdk_texture_downloader_copy", (DL_FUNC) &R_gdk_texture_downloader_copy, 1},
     {"R_gdk_texture_downloader_download_bytes", (DL_FUNC) &R_gdk_texture_downloader_download_bytes, 1},
-    {"R_gdk_texture_downloader_download_bytes_with_planes", (DL_FUNC) &R_gdk_texture_downloader_download_bytes_with_planes, 1},
     {"R_gdk_texture_downloader_download_into", (DL_FUNC) &R_gdk_texture_downloader_download_into, 3},
     {"R_gdk_texture_downloader_free", (DL_FUNC) &R_gdk_texture_downloader_free, 1},
-    {"R_gdk_texture_downloader_get_color_state", (DL_FUNC) &R_gdk_texture_downloader_get_color_state, 1},
     {"R_gdk_texture_downloader_get_format", (DL_FUNC) &R_gdk_texture_downloader_get_format, 1},
     {"R_gdk_texture_downloader_get_texture", (DL_FUNC) &R_gdk_texture_downloader_get_texture, 1},
-    {"R_gdk_texture_downloader_set_color_state", (DL_FUNC) &R_gdk_texture_downloader_set_color_state, 2},
     {"R_gdk_texture_downloader_set_format", (DL_FUNC) &R_gdk_texture_downloader_set_format, 2},
     {"R_gdk_texture_downloader_set_texture", (DL_FUNC) &R_gdk_texture_downloader_set_texture, 2},
     {"R_gdk_texture_error_quark", (DL_FUNC) &R_gdk_texture_error_quark, 0},
     {"R_gdk_toplevel_begin_move", (DL_FUNC) &R_gdk_toplevel_begin_move, 6},
     {"R_gdk_toplevel_begin_resize", (DL_FUNC) &R_gdk_toplevel_begin_resize, 7},
     {"R_gdk_toplevel_focus", (DL_FUNC) &R_gdk_toplevel_focus, 2},
-    {"R_gdk_toplevel_get_capabilities", (DL_FUNC) &R_gdk_toplevel_get_capabilities, 1},
-    {"R_gdk_toplevel_get_gravity", (DL_FUNC) &R_gdk_toplevel_get_gravity, 1},
     {"R_gdk_toplevel_get_state", (DL_FUNC) &R_gdk_toplevel_get_state, 1},
     {"R_gdk_toplevel_inhibit_system_shortcuts", (DL_FUNC) &R_gdk_toplevel_inhibit_system_shortcuts, 2},
     {"R_gdk_toplevel_lower", (DL_FUNC) &R_gdk_toplevel_lower, 1},
@@ -7500,7 +7273,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_toplevel_restore_system_shortcuts", (DL_FUNC) &R_gdk_toplevel_restore_system_shortcuts, 1},
     {"R_gdk_toplevel_set_decorated", (DL_FUNC) &R_gdk_toplevel_set_decorated, 2},
     {"R_gdk_toplevel_set_deletable", (DL_FUNC) &R_gdk_toplevel_set_deletable, 2},
-    {"R_gdk_toplevel_set_gravity", (DL_FUNC) &R_gdk_toplevel_set_gravity, 2},
     {"R_gdk_toplevel_set_icon_list", (DL_FUNC) &R_gdk_toplevel_set_icon_list, 2},
     {"R_gdk_toplevel_set_modal", (DL_FUNC) &R_gdk_toplevel_set_modal, 2},
     {"R_gdk_toplevel_set_startup_id", (DL_FUNC) &R_gdk_toplevel_set_startup_id, 2},
@@ -10619,8 +10391,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_about_dialog_set_website", (DL_FUNC) &R_gtk_about_dialog_set_website, 2},
     {"R_gtk_about_dialog_set_website_label", (DL_FUNC) &R_gtk_about_dialog_set_website_label, 2},
     {"R_gtk_about_dialog_set_wrap_license", (DL_FUNC) &R_gtk_about_dialog_set_wrap_license, 2},
-    {"R_gtk_accessible_announce", (DL_FUNC) &R_gtk_accessible_announce, 3},
-    {"R_gtk_accessible_get_accessible_id", (DL_FUNC) &R_gtk_accessible_get_accessible_id, 1},
     {"R_gtk_accessible_get_accessible_parent", (DL_FUNC) &R_gtk_accessible_get_accessible_parent, 1},
     {"R_gtk_accessible_get_accessible_role", (DL_FUNC) &R_gtk_accessible_get_accessible_role, 1},
     {"R_gtk_accessible_get_at_context", (DL_FUNC) &R_gtk_accessible_get_at_context, 1},
@@ -10633,21 +10403,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_accessible_reset_state", (DL_FUNC) &R_gtk_accessible_reset_state, 2},
     {"R_gtk_accessible_set_accessible_parent", (DL_FUNC) &R_gtk_accessible_set_accessible_parent, 3},
     {"R_gtk_accessible_update_next_accessible_sibling", (DL_FUNC) &R_gtk_accessible_update_next_accessible_sibling, 2},
-    {"R_gtk_accessible_update_platform_state", (DL_FUNC) &R_gtk_accessible_update_platform_state, 2},
     {"R_gtk_accessible_update_property_value", (DL_FUNC) &R_gtk_accessible_update_property_value, 4},
     {"R_gtk_accessible_update_relation_value", (DL_FUNC) &R_gtk_accessible_update_relation_value, 4},
     {"R_gtk_accessible_update_state_value", (DL_FUNC) &R_gtk_accessible_update_state_value, 4},
-    {"R_gtk_accessible_hyperlink_new", (DL_FUNC) &R_gtk_accessible_hyperlink_new, 4},
-    {"R_gtk_accessible_hyperlink_set_platform_state", (DL_FUNC) &R_gtk_accessible_hyperlink_set_platform_state, 3},
-    {"R_gtk_accessible_list_new_from_array", (DL_FUNC) &R_gtk_accessible_list_new_from_array, 2},
-    {"R_gtk_accessible_list_new_from_list", (DL_FUNC) &R_gtk_accessible_list_new_from_list, 1},
-    {"R_gtk_accessible_list_get_objects", (DL_FUNC) &R_gtk_accessible_list_get_objects, 1},
     {"R_gtk_accessible_property_init_value", (DL_FUNC) &R_gtk_accessible_property_init_value, 2},
     {"R_gtk_accessible_relation_init_value", (DL_FUNC) &R_gtk_accessible_relation_init_value, 2},
     {"R_gtk_accessible_state_init_value", (DL_FUNC) &R_gtk_accessible_state_init_value, 2},
-    {"R_gtk_accessible_text_update_caret_position", (DL_FUNC) &R_gtk_accessible_text_update_caret_position, 1},
-    {"R_gtk_accessible_text_update_contents", (DL_FUNC) &R_gtk_accessible_text_update_contents, 4},
-    {"R_gtk_accessible_text_update_selection_bound", (DL_FUNC) &R_gtk_accessible_text_update_selection_bound, 1},
     {"R_gtk_action_bar_new", (DL_FUNC) &R_gtk_action_bar_new, 0},
     {"R_gtk_action_bar_get_center_widget", (DL_FUNC) &R_gtk_action_bar_get_center_widget, 1},
     {"R_gtk_action_bar_get_revealed", (DL_FUNC) &R_gtk_action_bar_get_revealed, 1},
@@ -10920,22 +10681,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_calendar_new", (DL_FUNC) &R_gtk_calendar_new, 0},
     {"R_gtk_calendar_clear_marks", (DL_FUNC) &R_gtk_calendar_clear_marks, 1},
     {"R_gtk_calendar_get_date", (DL_FUNC) &R_gtk_calendar_get_date, 1},
-    {"R_gtk_calendar_get_day", (DL_FUNC) &R_gtk_calendar_get_day, 1},
     {"R_gtk_calendar_get_day_is_marked", (DL_FUNC) &R_gtk_calendar_get_day_is_marked, 2},
-    {"R_gtk_calendar_get_month", (DL_FUNC) &R_gtk_calendar_get_month, 1},
     {"R_gtk_calendar_get_show_day_names", (DL_FUNC) &R_gtk_calendar_get_show_day_names, 1},
     {"R_gtk_calendar_get_show_heading", (DL_FUNC) &R_gtk_calendar_get_show_heading, 1},
     {"R_gtk_calendar_get_show_week_numbers", (DL_FUNC) &R_gtk_calendar_get_show_week_numbers, 1},
-    {"R_gtk_calendar_get_year", (DL_FUNC) &R_gtk_calendar_get_year, 1},
     {"R_gtk_calendar_mark_day", (DL_FUNC) &R_gtk_calendar_mark_day, 2},
     {"R_gtk_calendar_select_day", (DL_FUNC) &R_gtk_calendar_select_day, 2},
-    {"R_gtk_calendar_set_date", (DL_FUNC) &R_gtk_calendar_set_date, 2},
-    {"R_gtk_calendar_set_day", (DL_FUNC) &R_gtk_calendar_set_day, 2},
-    {"R_gtk_calendar_set_month", (DL_FUNC) &R_gtk_calendar_set_month, 2},
     {"R_gtk_calendar_set_show_day_names", (DL_FUNC) &R_gtk_calendar_set_show_day_names, 2},
     {"R_gtk_calendar_set_show_heading", (DL_FUNC) &R_gtk_calendar_set_show_heading, 2},
     {"R_gtk_calendar_set_show_week_numbers", (DL_FUNC) &R_gtk_calendar_set_show_week_numbers, 2},
-    {"R_gtk_calendar_set_year", (DL_FUNC) &R_gtk_calendar_set_year, 2},
     {"R_gtk_calendar_unmark_day", (DL_FUNC) &R_gtk_calendar_unmark_day, 2},
     {"R_gtk_callback_action_new", (DL_FUNC) &R_gtk_callback_action_new, 3},
     {"R_gtk_cell_area_activate", (DL_FUNC) &R_gtk_cell_area_activate, 6},
@@ -11282,8 +11036,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_css_provider_load_named", (DL_FUNC) &R_gtk_css_provider_load_named, 3},
     {"R_gtk_css_provider_to_string", (DL_FUNC) &R_gtk_css_provider_to_string, 1},
     {"R_gtk_css_section_new", (DL_FUNC) &R_gtk_css_section_new, 3},
-    {"R_gtk_css_section_new_with_bytes", (DL_FUNC) &R_gtk_css_section_new_with_bytes, 4},
-    {"R_gtk_css_section_get_bytes", (DL_FUNC) &R_gtk_css_section_get_bytes, 1},
     {"R_gtk_css_section_get_end_location", (DL_FUNC) &R_gtk_css_section_get_end_location, 1},
     {"R_gtk_css_section_get_file", (DL_FUNC) &R_gtk_css_section_get_file, 1},
     {"R_gtk_css_section_get_parent", (DL_FUNC) &R_gtk_css_section_get_parent, 1},
@@ -11437,7 +11189,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_entry_get_input_purpose", (DL_FUNC) &R_gtk_entry_get_input_purpose, 1},
     {"R_gtk_entry_get_invisible_char", (DL_FUNC) &R_gtk_entry_get_invisible_char, 1},
     {"R_gtk_entry_get_max_length", (DL_FUNC) &R_gtk_entry_get_max_length, 1},
-    {"R_gtk_entry_get_menu_entry_icon_text", (DL_FUNC) &R_gtk_entry_get_menu_entry_icon_text, 2},
     {"R_gtk_entry_get_overwrite_mode", (DL_FUNC) &R_gtk_entry_get_overwrite_mode, 1},
     {"R_gtk_entry_get_placeholder_text", (DL_FUNC) &R_gtk_entry_get_placeholder_text, 1},
     {"R_gtk_entry_get_progress_fraction", (DL_FUNC) &R_gtk_entry_get_progress_fraction, 1},
@@ -11467,7 +11218,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_entry_set_input_purpose", (DL_FUNC) &R_gtk_entry_set_input_purpose, 2},
     {"R_gtk_entry_set_invisible_char", (DL_FUNC) &R_gtk_entry_set_invisible_char, 2},
     {"R_gtk_entry_set_max_length", (DL_FUNC) &R_gtk_entry_set_max_length, 2},
-    {"R_gtk_entry_set_menu_entry_icon_text", (DL_FUNC) &R_gtk_entry_set_menu_entry_icon_text, 3},
     {"R_gtk_entry_set_overwrite_mode", (DL_FUNC) &R_gtk_entry_set_overwrite_mode, 2},
     {"R_gtk_entry_set_placeholder_text", (DL_FUNC) &R_gtk_entry_set_placeholder_text, 2},
     {"R_gtk_entry_set_progress_fraction", (DL_FUNC) &R_gtk_entry_set_progress_fraction, 2},
@@ -11612,14 +11362,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_file_dialog_open_finish", (DL_FUNC) &R_gtk_file_dialog_open_finish, 2},
     {"R_gtk_file_dialog_open_multiple", (DL_FUNC) &R_gtk_file_dialog_open_multiple, 5},
     {"R_gtk_file_dialog_open_multiple_finish", (DL_FUNC) &R_gtk_file_dialog_open_multiple_finish, 2},
-    {"R_gtk_file_dialog_open_multiple_text_files", (DL_FUNC) &R_gtk_file_dialog_open_multiple_text_files, 5},
-    {"R_gtk_file_dialog_open_multiple_text_files_finish", (DL_FUNC) &R_gtk_file_dialog_open_multiple_text_files_finish, 2},
-    {"R_gtk_file_dialog_open_text_file", (DL_FUNC) &R_gtk_file_dialog_open_text_file, 5},
-    {"R_gtk_file_dialog_open_text_file_finish", (DL_FUNC) &R_gtk_file_dialog_open_text_file_finish, 2},
     {"R_gtk_file_dialog_save", (DL_FUNC) &R_gtk_file_dialog_save, 5},
     {"R_gtk_file_dialog_save_finish", (DL_FUNC) &R_gtk_file_dialog_save_finish, 2},
-    {"R_gtk_file_dialog_save_text_file", (DL_FUNC) &R_gtk_file_dialog_save_text_file, 5},
-    {"R_gtk_file_dialog_save_text_file_finish", (DL_FUNC) &R_gtk_file_dialog_save_text_file_finish, 2},
     {"R_gtk_file_dialog_select_folder", (DL_FUNC) &R_gtk_file_dialog_select_folder, 5},
     {"R_gtk_file_dialog_select_folder_finish", (DL_FUNC) &R_gtk_file_dialog_select_folder_finish, 2},
     {"R_gtk_file_dialog_select_multiple_folders", (DL_FUNC) &R_gtk_file_dialog_select_multiple_folders, 5},
@@ -11635,7 +11379,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_file_filter_new", (DL_FUNC) &R_gtk_file_filter_new, 0},
     {"R_gtk_file_filter_new_from_gvariant", (DL_FUNC) &R_gtk_file_filter_new_from_gvariant, 1},
     {"R_gtk_file_filter_add_mime_type", (DL_FUNC) &R_gtk_file_filter_add_mime_type, 2},
-    {"R_gtk_file_filter_add_mime_types", (DL_FUNC) &R_gtk_file_filter_add_mime_types, 2},
     {"R_gtk_file_filter_add_pattern", (DL_FUNC) &R_gtk_file_filter_add_pattern, 2},
     {"R_gtk_file_filter_add_pixbuf_formats", (DL_FUNC) &R_gtk_file_filter_add_pixbuf_formats, 1},
     {"R_gtk_file_filter_add_suffix", (DL_FUNC) &R_gtk_file_filter_add_suffix, 2},
@@ -11646,14 +11389,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_file_launcher_new", (DL_FUNC) &R_gtk_file_launcher_new, 1},
     {"R_gtk_file_launcher_get_always_ask", (DL_FUNC) &R_gtk_file_launcher_get_always_ask, 1},
     {"R_gtk_file_launcher_get_file", (DL_FUNC) &R_gtk_file_launcher_get_file, 1},
-    {"R_gtk_file_launcher_get_writable", (DL_FUNC) &R_gtk_file_launcher_get_writable, 1},
     {"R_gtk_file_launcher_launch", (DL_FUNC) &R_gtk_file_launcher_launch, 5},
     {"R_gtk_file_launcher_launch_finish", (DL_FUNC) &R_gtk_file_launcher_launch_finish, 2},
     {"R_gtk_file_launcher_open_containing_folder", (DL_FUNC) &R_gtk_file_launcher_open_containing_folder, 5},
     {"R_gtk_file_launcher_open_containing_folder_finish", (DL_FUNC) &R_gtk_file_launcher_open_containing_folder_finish, 2},
     {"R_gtk_file_launcher_set_always_ask", (DL_FUNC) &R_gtk_file_launcher_set_always_ask, 2},
     {"R_gtk_file_launcher_set_file", (DL_FUNC) &R_gtk_file_launcher_set_file, 2},
-    {"R_gtk_file_launcher_set_writable", (DL_FUNC) &R_gtk_file_launcher_set_writable, 2},
     {"R_gtk_filter_changed", (DL_FUNC) &R_gtk_filter_changed, 2},
     {"R_gtk_filter_get_strictness", (DL_FUNC) &R_gtk_filter_get_strictness, 1},
     {"R_gtk_filter_match", (DL_FUNC) &R_gtk_filter_match, 2},
@@ -11662,11 +11403,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_filter_list_model_get_incremental", (DL_FUNC) &R_gtk_filter_list_model_get_incremental, 1},
     {"R_gtk_filter_list_model_get_model", (DL_FUNC) &R_gtk_filter_list_model_get_model, 1},
     {"R_gtk_filter_list_model_get_pending", (DL_FUNC) &R_gtk_filter_list_model_get_pending, 1},
-    {"R_gtk_filter_list_model_get_watch_items", (DL_FUNC) &R_gtk_filter_list_model_get_watch_items, 1},
     {"R_gtk_filter_list_model_set_filter", (DL_FUNC) &R_gtk_filter_list_model_set_filter, 2},
     {"R_gtk_filter_list_model_set_incremental", (DL_FUNC) &R_gtk_filter_list_model_set_incremental, 2},
     {"R_gtk_filter_list_model_set_model", (DL_FUNC) &R_gtk_filter_list_model_set_model, 2},
-    {"R_gtk_filter_list_model_set_watch_items", (DL_FUNC) &R_gtk_filter_list_model_set_watch_items, 2},
     {"R_gtk_fixed_new", (DL_FUNC) &R_gtk_fixed_new, 0},
     {"R_gtk_fixed_get_child_position", (DL_FUNC) &R_gtk_fixed_get_child_position, 2},
     {"R_gtk_fixed_get_child_transform", (DL_FUNC) &R_gtk_fixed_get_child_transform, 2},
@@ -11864,13 +11603,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_gesture_swipe_get_velocity", (DL_FUNC) &R_gtk_gesture_swipe_get_velocity, 1},
     {"R_gtk_gesture_zoom_new", (DL_FUNC) &R_gtk_gesture_zoom_new, 0},
     {"R_gtk_gesture_zoom_get_scale_delta", (DL_FUNC) &R_gtk_gesture_zoom_get_scale_delta, 1},
-    {"R_gtk_graphics_offload_new", (DL_FUNC) &R_gtk_graphics_offload_new, 1},
-    {"R_gtk_graphics_offload_get_black_background", (DL_FUNC) &R_gtk_graphics_offload_get_black_background, 1},
-    {"R_gtk_graphics_offload_get_child", (DL_FUNC) &R_gtk_graphics_offload_get_child, 1},
-    {"R_gtk_graphics_offload_get_enabled", (DL_FUNC) &R_gtk_graphics_offload_get_enabled, 1},
-    {"R_gtk_graphics_offload_set_black_background", (DL_FUNC) &R_gtk_graphics_offload_set_black_background, 2},
-    {"R_gtk_graphics_offload_set_child", (DL_FUNC) &R_gtk_graphics_offload_set_child, 2},
-    {"R_gtk_graphics_offload_set_enabled", (DL_FUNC) &R_gtk_graphics_offload_set_enabled, 2},
     {"R_gtk_grid_new", (DL_FUNC) &R_gtk_grid_new, 0},
     {"R_gtk_grid_attach", (DL_FUNC) &R_gtk_grid_attach, 6},
     {"R_gtk_grid_attach_next_to", (DL_FUNC) &R_gtk_grid_attach_next_to, 6},
@@ -11935,15 +11667,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_header_bar_get_decoration_layout", (DL_FUNC) &R_gtk_header_bar_get_decoration_layout, 1},
     {"R_gtk_header_bar_get_show_title_buttons", (DL_FUNC) &R_gtk_header_bar_get_show_title_buttons, 1},
     {"R_gtk_header_bar_get_title_widget", (DL_FUNC) &R_gtk_header_bar_get_title_widget, 1},
-    {"R_gtk_header_bar_get_use_native_controls", (DL_FUNC) &R_gtk_header_bar_get_use_native_controls, 1},
     {"R_gtk_header_bar_pack_end", (DL_FUNC) &R_gtk_header_bar_pack_end, 2},
     {"R_gtk_header_bar_pack_start", (DL_FUNC) &R_gtk_header_bar_pack_start, 2},
     {"R_gtk_header_bar_remove", (DL_FUNC) &R_gtk_header_bar_remove, 2},
     {"R_gtk_header_bar_set_decoration_layout", (DL_FUNC) &R_gtk_header_bar_set_decoration_layout, 2},
     {"R_gtk_header_bar_set_show_title_buttons", (DL_FUNC) &R_gtk_header_bar_set_show_title_buttons, 2},
     {"R_gtk_header_bar_set_title_widget", (DL_FUNC) &R_gtk_header_bar_set_title_widget, 2},
-    {"R_gtk_header_bar_set_use_native_controls", (DL_FUNC) &R_gtk_header_bar_set_use_native_controls, 2},
-    {"R_gtk_im_context_activate_osk", (DL_FUNC) &R_gtk_im_context_activate_osk, 2},
     {"R_gtk_im_context_delete_surrounding", (DL_FUNC) &R_gtk_im_context_delete_surrounding, 3},
     {"R_gtk_im_context_filter_key", (DL_FUNC) &R_gtk_im_context_filter_key, 8},
     {"R_gtk_im_context_filter_keypress", (DL_FUNC) &R_gtk_im_context_filter_keypress, 2},
@@ -12203,7 +11932,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_list_box_get_selected_rows", (DL_FUNC) &R_gtk_list_box_get_selected_rows, 1},
     {"R_gtk_list_box_get_selection_mode", (DL_FUNC) &R_gtk_list_box_get_selection_mode, 1},
     {"R_gtk_list_box_get_show_separators", (DL_FUNC) &R_gtk_list_box_get_show_separators, 1},
-    {"R_gtk_list_box_get_tab_behavior", (DL_FUNC) &R_gtk_list_box_get_tab_behavior, 1},
     {"R_gtk_list_box_insert", (DL_FUNC) &R_gtk_list_box_insert, 3},
     {"R_gtk_list_box_invalidate_filter", (DL_FUNC) &R_gtk_list_box_invalidate_filter, 1},
     {"R_gtk_list_box_invalidate_headers", (DL_FUNC) &R_gtk_list_box_invalidate_headers, 1},
@@ -12222,7 +11950,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_list_box_set_selection_mode", (DL_FUNC) &R_gtk_list_box_set_selection_mode, 2},
     {"R_gtk_list_box_set_show_separators", (DL_FUNC) &R_gtk_list_box_set_show_separators, 2},
     {"R_gtk_list_box_set_sort_func", (DL_FUNC) &R_gtk_list_box_set_sort_func, 4},
-    {"R_gtk_list_box_set_tab_behavior", (DL_FUNC) &R_gtk_list_box_set_tab_behavior, 2},
     {"R_gtk_list_box_unselect_all", (DL_FUNC) &R_gtk_list_box_unselect_all, 1},
     {"R_gtk_list_box_unselect_row", (DL_FUNC) &R_gtk_list_box_unselect_row, 2},
     {"R_gtk_list_box_row_new", (DL_FUNC) &R_gtk_list_box_row_new, 0},
@@ -12543,7 +12270,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_picture_get_can_shrink", (DL_FUNC) &R_gtk_picture_get_can_shrink, 1},
     {"R_gtk_picture_get_content_fit", (DL_FUNC) &R_gtk_picture_get_content_fit, 1},
     {"R_gtk_picture_get_file", (DL_FUNC) &R_gtk_picture_get_file, 1},
-    {"R_gtk_picture_get_isolate_contents", (DL_FUNC) &R_gtk_picture_get_isolate_contents, 1},
     {"R_gtk_picture_get_keep_aspect_ratio", (DL_FUNC) &R_gtk_picture_get_keep_aspect_ratio, 1},
     {"R_gtk_picture_get_paintable", (DL_FUNC) &R_gtk_picture_get_paintable, 1},
     {"R_gtk_picture_set_alternative_text", (DL_FUNC) &R_gtk_picture_set_alternative_text, 2},
@@ -12551,7 +12277,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_picture_set_content_fit", (DL_FUNC) &R_gtk_picture_set_content_fit, 2},
     {"R_gtk_picture_set_file", (DL_FUNC) &R_gtk_picture_set_file, 2},
     {"R_gtk_picture_set_filename", (DL_FUNC) &R_gtk_picture_set_filename, 2},
-    {"R_gtk_picture_set_isolate_contents", (DL_FUNC) &R_gtk_picture_set_isolate_contents, 2},
     {"R_gtk_picture_set_keep_aspect_ratio", (DL_FUNC) &R_gtk_picture_set_keep_aspect_ratio, 2},
     {"R_gtk_picture_set_paintable", (DL_FUNC) &R_gtk_picture_set_paintable, 2},
     {"R_gtk_picture_set_pixbuf", (DL_FUNC) &R_gtk_picture_set_pixbuf, 2},
@@ -12577,24 +12302,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_popover_set_offset", (DL_FUNC) &R_gtk_popover_set_offset, 3},
     {"R_gtk_popover_set_pointing_to", (DL_FUNC) &R_gtk_popover_set_pointing_to, 2},
     {"R_gtk_popover_set_position", (DL_FUNC) &R_gtk_popover_set_position, 2},
-    {"R_gtk_popover_bin_new", (DL_FUNC) &R_gtk_popover_bin_new, 0},
-    {"R_gtk_popover_bin_get_child", (DL_FUNC) &R_gtk_popover_bin_get_child, 1},
     {"R_gtk_popover_bin_get_handle_input", (DL_FUNC) &R_gtk_popover_bin_get_handle_input, 1},
-    {"R_gtk_popover_bin_get_menu_model", (DL_FUNC) &R_gtk_popover_bin_get_menu_model, 1},
-    {"R_gtk_popover_bin_get_popover", (DL_FUNC) &R_gtk_popover_bin_get_popover, 1},
-    {"R_gtk_popover_bin_popdown", (DL_FUNC) &R_gtk_popover_bin_popdown, 1},
-    {"R_gtk_popover_bin_popup", (DL_FUNC) &R_gtk_popover_bin_popup, 1},
-    {"R_gtk_popover_bin_set_child", (DL_FUNC) &R_gtk_popover_bin_set_child, 2},
-    {"R_gtk_popover_bin_set_handle_input", (DL_FUNC) &R_gtk_popover_bin_set_handle_input, 2},
-    {"R_gtk_popover_bin_set_menu_model", (DL_FUNC) &R_gtk_popover_bin_set_menu_model, 2},
-    {"R_gtk_popover_bin_set_popover", (DL_FUNC) &R_gtk_popover_bin_set_popover, 2},
     {"R_gtk_popover_menu_new_from_model", (DL_FUNC) &R_gtk_popover_menu_new_from_model, 1},
     {"R_gtk_popover_menu_new_from_model_full", (DL_FUNC) &R_gtk_popover_menu_new_from_model_full, 2},
     {"R_gtk_popover_menu_add_child", (DL_FUNC) &R_gtk_popover_menu_add_child, 3},
-    {"R_gtk_popover_menu_get_flags", (DL_FUNC) &R_gtk_popover_menu_get_flags, 1},
     {"R_gtk_popover_menu_get_menu_model", (DL_FUNC) &R_gtk_popover_menu_get_menu_model, 1},
     {"R_gtk_popover_menu_remove_child", (DL_FUNC) &R_gtk_popover_menu_remove_child, 2},
-    {"R_gtk_popover_menu_set_flags", (DL_FUNC) &R_gtk_popover_menu_set_flags, 2},
     {"R_gtk_popover_menu_set_menu_model", (DL_FUNC) &R_gtk_popover_menu_set_menu_model, 2},
     {"R_gtk_popover_menu_bar_new_from_model", (DL_FUNC) &R_gtk_popover_menu_bar_new_from_model, 1},
     {"R_gtk_popover_menu_bar_add_child", (DL_FUNC) &R_gtk_popover_menu_bar_add_child, 3},
@@ -12710,13 +12423,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_scale_button_new", (DL_FUNC) &R_gtk_scale_button_new, 4},
     {"R_gtk_scale_button_get_active", (DL_FUNC) &R_gtk_scale_button_get_active, 1},
     {"R_gtk_scale_button_get_adjustment", (DL_FUNC) &R_gtk_scale_button_get_adjustment, 1},
-    {"R_gtk_scale_button_get_has_frame", (DL_FUNC) &R_gtk_scale_button_get_has_frame, 1},
     {"R_gtk_scale_button_get_minus_button", (DL_FUNC) &R_gtk_scale_button_get_minus_button, 1},
     {"R_gtk_scale_button_get_plus_button", (DL_FUNC) &R_gtk_scale_button_get_plus_button, 1},
     {"R_gtk_scale_button_get_popup", (DL_FUNC) &R_gtk_scale_button_get_popup, 1},
     {"R_gtk_scale_button_get_value", (DL_FUNC) &R_gtk_scale_button_get_value, 1},
     {"R_gtk_scale_button_set_adjustment", (DL_FUNC) &R_gtk_scale_button_set_adjustment, 2},
-    {"R_gtk_scale_button_set_has_frame", (DL_FUNC) &R_gtk_scale_button_set_has_frame, 2},
     {"R_gtk_scale_button_set_icons", (DL_FUNC) &R_gtk_scale_button_set_icons, 2},
     {"R_gtk_scale_button_set_value", (DL_FUNC) &R_gtk_scale_button_set_value, 2},
     {"R_gtk_scroll_info_new", (DL_FUNC) &R_gtk_scroll_info_new, 0},
@@ -12781,13 +12492,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_search_bar_set_search_mode", (DL_FUNC) &R_gtk_search_bar_set_search_mode, 2},
     {"R_gtk_search_bar_set_show_close_button", (DL_FUNC) &R_gtk_search_bar_set_show_close_button, 2},
     {"R_gtk_search_entry_new", (DL_FUNC) &R_gtk_search_entry_new, 0},
-    {"R_gtk_search_entry_get_input_hints", (DL_FUNC) &R_gtk_search_entry_get_input_hints, 1},
-    {"R_gtk_search_entry_get_input_purpose", (DL_FUNC) &R_gtk_search_entry_get_input_purpose, 1},
     {"R_gtk_search_entry_get_key_capture_widget", (DL_FUNC) &R_gtk_search_entry_get_key_capture_widget, 1},
     {"R_gtk_search_entry_get_placeholder_text", (DL_FUNC) &R_gtk_search_entry_get_placeholder_text, 1},
     {"R_gtk_search_entry_get_search_delay", (DL_FUNC) &R_gtk_search_entry_get_search_delay, 1},
-    {"R_gtk_search_entry_set_input_hints", (DL_FUNC) &R_gtk_search_entry_set_input_hints, 2},
-    {"R_gtk_search_entry_set_input_purpose", (DL_FUNC) &R_gtk_search_entry_set_input_purpose, 2},
     {"R_gtk_search_entry_set_key_capture_widget", (DL_FUNC) &R_gtk_search_entry_set_key_capture_widget, 2},
     {"R_gtk_search_entry_set_placeholder_text", (DL_FUNC) &R_gtk_search_entry_set_placeholder_text, 2},
     {"R_gtk_search_entry_set_search_delay", (DL_FUNC) &R_gtk_search_entry_set_search_delay, 2},
@@ -12844,9 +12551,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_shortcut_trigger_to_label", (DL_FUNC) &R_gtk_shortcut_trigger_to_label, 2},
     {"R_gtk_shortcut_trigger_to_string", (DL_FUNC) &R_gtk_shortcut_trigger_to_string, 1},
     {"R_gtk_shortcut_trigger_trigger", (DL_FUNC) &R_gtk_shortcut_trigger_trigger, 3},
-    {"R_gtk_shortcuts_group_add_shortcut", (DL_FUNC) &R_gtk_shortcuts_group_add_shortcut, 2},
-    {"R_gtk_shortcuts_section_add_group", (DL_FUNC) &R_gtk_shortcuts_section_add_group, 2},
-    {"R_gtk_shortcuts_window_add_section", (DL_FUNC) &R_gtk_shortcuts_window_add_section, 2},
     {"R_gtk_signal_action_new", (DL_FUNC) &R_gtk_signal_action_new, 1},
     {"R_gtk_signal_action_get_signal_name", (DL_FUNC) &R_gtk_signal_action_get_signal_name, 1},
     {"R_gtk_signal_list_item_factory_new", (DL_FUNC) &R_gtk_signal_list_item_factory_new, 0},
@@ -12878,18 +12582,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_snapshot_append_cairo", (DL_FUNC) &R_gtk_snapshot_append_cairo, 2},
     {"R_gtk_snapshot_append_color", (DL_FUNC) &R_gtk_snapshot_append_color, 3},
     {"R_gtk_snapshot_append_conic_gradient", (DL_FUNC) &R_gtk_snapshot_append_conic_gradient, 6},
-    {"R_gtk_snapshot_append_fill", (DL_FUNC) &R_gtk_snapshot_append_fill, 4},
     {"R_gtk_snapshot_append_inset_shadow", (DL_FUNC) &R_gtk_snapshot_append_inset_shadow, 7},
     {"R_gtk_snapshot_append_layout", (DL_FUNC) &R_gtk_snapshot_append_layout, 3},
     {"R_gtk_snapshot_append_linear_gradient", (DL_FUNC) &R_gtk_snapshot_append_linear_gradient, 6},
     {"R_gtk_snapshot_append_node", (DL_FUNC) &R_gtk_snapshot_append_node, 2},
     {"R_gtk_snapshot_append_outset_shadow", (DL_FUNC) &R_gtk_snapshot_append_outset_shadow, 7},
-    {"R_gtk_snapshot_append_paste", (DL_FUNC) &R_gtk_snapshot_append_paste, 3},
     {"R_gtk_snapshot_append_radial_gradient", (DL_FUNC) &R_gtk_snapshot_append_radial_gradient, 9},
     {"R_gtk_snapshot_append_repeating_linear_gradient", (DL_FUNC) &R_gtk_snapshot_append_repeating_linear_gradient, 6},
     {"R_gtk_snapshot_append_repeating_radial_gradient", (DL_FUNC) &R_gtk_snapshot_append_repeating_radial_gradient, 9},
     {"R_gtk_snapshot_append_scaled_texture", (DL_FUNC) &R_gtk_snapshot_append_scaled_texture, 4},
-    {"R_gtk_snapshot_append_stroke", (DL_FUNC) &R_gtk_snapshot_append_stroke, 4},
     {"R_gtk_snapshot_append_texture", (DL_FUNC) &R_gtk_snapshot_append_texture, 3},
     {"R_gtk_snapshot_gl_shader_pop_texture", (DL_FUNC) &R_gtk_snapshot_gl_shader_pop_texture, 1},
     {"R_gtk_snapshot_perspective", (DL_FUNC) &R_gtk_snapshot_perspective, 2},
@@ -12898,19 +12599,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_snapshot_push_blur", (DL_FUNC) &R_gtk_snapshot_push_blur, 2},
     {"R_gtk_snapshot_push_clip", (DL_FUNC) &R_gtk_snapshot_push_clip, 2},
     {"R_gtk_snapshot_push_color_matrix", (DL_FUNC) &R_gtk_snapshot_push_color_matrix, 3},
-    {"R_gtk_snapshot_push_component_transfer", (DL_FUNC) &R_gtk_snapshot_push_component_transfer, 5},
-    {"R_gtk_snapshot_push_composite", (DL_FUNC) &R_gtk_snapshot_push_composite, 2},
-    {"R_gtk_snapshot_push_copy", (DL_FUNC) &R_gtk_snapshot_push_copy, 1},
     {"R_gtk_snapshot_push_cross_fade", (DL_FUNC) &R_gtk_snapshot_push_cross_fade, 2},
-    {"R_gtk_snapshot_push_fill", (DL_FUNC) &R_gtk_snapshot_push_fill, 3},
     {"R_gtk_snapshot_push_gl_shader", (DL_FUNC) &R_gtk_snapshot_push_gl_shader, 4},
-    {"R_gtk_snapshot_push_isolation", (DL_FUNC) &R_gtk_snapshot_push_isolation, 2},
     {"R_gtk_snapshot_push_mask", (DL_FUNC) &R_gtk_snapshot_push_mask, 2},
     {"R_gtk_snapshot_push_opacity", (DL_FUNC) &R_gtk_snapshot_push_opacity, 2},
     {"R_gtk_snapshot_push_repeat", (DL_FUNC) &R_gtk_snapshot_push_repeat, 3},
     {"R_gtk_snapshot_push_rounded_clip", (DL_FUNC) &R_gtk_snapshot_push_rounded_clip, 2},
     {"R_gtk_snapshot_push_shadow", (DL_FUNC) &R_gtk_snapshot_push_shadow, 3},
-    {"R_gtk_snapshot_push_stroke", (DL_FUNC) &R_gtk_snapshot_push_stroke, 3},
     {"R_gtk_snapshot_render_background", (DL_FUNC) &R_gtk_snapshot_render_background, 6},
     {"R_gtk_snapshot_render_focus", (DL_FUNC) &R_gtk_snapshot_render_focus, 6},
     {"R_gtk_snapshot_render_frame", (DL_FUNC) &R_gtk_snapshot_render_frame, 6},
@@ -12944,7 +12639,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_spin_button_new", (DL_FUNC) &R_gtk_spin_button_new, 3},
     {"R_gtk_spin_button_new_with_range", (DL_FUNC) &R_gtk_spin_button_new_with_range, 3},
     {"R_gtk_spin_button_configure", (DL_FUNC) &R_gtk_spin_button_configure, 4},
-    {"R_gtk_spin_button_get_activates_default", (DL_FUNC) &R_gtk_spin_button_get_activates_default, 1},
     {"R_gtk_spin_button_get_adjustment", (DL_FUNC) &R_gtk_spin_button_get_adjustment, 1},
     {"R_gtk_spin_button_get_climb_rate", (DL_FUNC) &R_gtk_spin_button_get_climb_rate, 1},
     {"R_gtk_spin_button_get_digits", (DL_FUNC) &R_gtk_spin_button_get_digits, 1},
@@ -12956,7 +12650,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_spin_button_get_value", (DL_FUNC) &R_gtk_spin_button_get_value, 1},
     {"R_gtk_spin_button_get_value_as_int", (DL_FUNC) &R_gtk_spin_button_get_value_as_int, 1},
     {"R_gtk_spin_button_get_wrap", (DL_FUNC) &R_gtk_spin_button_get_wrap, 1},
-    {"R_gtk_spin_button_set_activates_default", (DL_FUNC) &R_gtk_spin_button_set_activates_default, 2},
     {"R_gtk_spin_button_set_adjustment", (DL_FUNC) &R_gtk_spin_button_set_adjustment, 2},
     {"R_gtk_spin_button_set_climb_rate", (DL_FUNC) &R_gtk_spin_button_set_climb_rate, 2},
     {"R_gtk_spin_button_set_digits", (DL_FUNC) &R_gtk_spin_button_set_digits, 2},
@@ -13034,7 +12727,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_string_filter_set_search", (DL_FUNC) &R_gtk_string_filter_set_search, 2},
     {"R_gtk_string_list_new", (DL_FUNC) &R_gtk_string_list_new, 1},
     {"R_gtk_string_list_append", (DL_FUNC) &R_gtk_string_list_append, 2},
-    {"R_gtk_string_list_find", (DL_FUNC) &R_gtk_string_list_find, 2},
     {"R_gtk_string_list_get_string", (DL_FUNC) &R_gtk_string_list_get_string, 2},
     {"R_gtk_string_list_remove", (DL_FUNC) &R_gtk_string_list_remove, 2},
     {"R_gtk_string_list_splice", (DL_FUNC) &R_gtk_string_list_splice, 4},
@@ -13069,27 +12761,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_style_context_set_scale", (DL_FUNC) &R_gtk_style_context_set_scale, 2},
     {"R_gtk_style_context_set_state", (DL_FUNC) &R_gtk_style_context_set_state, 2},
     {"R_gtk_style_context_to_string", (DL_FUNC) &R_gtk_style_context_to_string, 2},
-    {"R_gtk_svg_new", (DL_FUNC) &R_gtk_svg_new, 0},
-    {"R_gtk_svg_new_from_bytes", (DL_FUNC) &R_gtk_svg_new_from_bytes, 1},
-    {"R_gtk_svg_new_from_resource", (DL_FUNC) &R_gtk_svg_new_from_resource, 1},
-    {"R_gtk_svg_get_features", (DL_FUNC) &R_gtk_svg_get_features, 1},
-    {"R_gtk_svg_get_state", (DL_FUNC) &R_gtk_svg_get_state, 1},
-    {"R_gtk_svg_get_state_names", (DL_FUNC) &R_gtk_svg_get_state_names, 1},
-    {"R_gtk_svg_get_weight", (DL_FUNC) &R_gtk_svg_get_weight, 1},
-    {"R_gtk_svg_load_from_bytes", (DL_FUNC) &R_gtk_svg_load_from_bytes, 2},
-    {"R_gtk_svg_load_from_resource", (DL_FUNC) &R_gtk_svg_load_from_resource, 2},
-    {"R_gtk_svg_pause", (DL_FUNC) &R_gtk_svg_pause, 1},
-    {"R_gtk_svg_play", (DL_FUNC) &R_gtk_svg_play, 1},
-    {"R_gtk_svg_serialize", (DL_FUNC) &R_gtk_svg_serialize, 1},
-    {"R_gtk_svg_set_features", (DL_FUNC) &R_gtk_svg_set_features, 2},
-    {"R_gtk_svg_set_frame_clock", (DL_FUNC) &R_gtk_svg_set_frame_clock, 2},
-    {"R_gtk_svg_set_state", (DL_FUNC) &R_gtk_svg_set_state, 2},
-    {"R_gtk_svg_set_weight", (DL_FUNC) &R_gtk_svg_set_weight, 2},
-    {"R_gtk_svg_write_to_file", (DL_FUNC) &R_gtk_svg_write_to_file, 2},
-    {"R_gtk_svg_error_get_attribute", (DL_FUNC) &R_gtk_svg_error_get_attribute, 1},
-    {"R_gtk_svg_error_get_element", (DL_FUNC) &R_gtk_svg_error_get_element, 1},
-    {"R_gtk_svg_error_get_end", (DL_FUNC) &R_gtk_svg_error_get_end, 1},
-    {"R_gtk_svg_error_get_start", (DL_FUNC) &R_gtk_svg_error_get_start, 1},
     {"R_gtk_svg_error_quark", (DL_FUNC) &R_gtk_svg_error_quark, 0},
     {"R_gtk_switch_new", (DL_FUNC) &R_gtk_switch_new, 0},
     {"R_gtk_switch_get_active", (DL_FUNC) &R_gtk_switch_get_active, 1},
@@ -13097,7 +12768,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_switch_set_active", (DL_FUNC) &R_gtk_switch_set_active, 2},
     {"R_gtk_switch_set_state", (DL_FUNC) &R_gtk_switch_set_state, 2},
     {"R_gtk_symbolic_paintable_snapshot_symbolic", (DL_FUNC) &R_gtk_symbolic_paintable_snapshot_symbolic, 6},
-    {"R_gtk_symbolic_paintable_snapshot_with_weight", (DL_FUNC) &R_gtk_symbolic_paintable_snapshot_with_weight, 7},
     {"R_gtk_text_new", (DL_FUNC) &R_gtk_text_new, 0},
     {"R_gtk_text_new_with_buffer", (DL_FUNC) &R_gtk_text_new_with_buffer, 1},
     {"R_gtk_text_compute_cursor_extents", (DL_FUNC) &R_gtk_text_compute_cursor_extents, 2},
@@ -13135,7 +12805,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_text_set_visibility", (DL_FUNC) &R_gtk_text_set_visibility, 2},
     {"R_gtk_text_unset_invisible_char", (DL_FUNC) &R_gtk_text_unset_invisible_char, 1},
     {"R_gtk_text_buffer_new", (DL_FUNC) &R_gtk_text_buffer_new, 1},
-    {"R_gtk_text_buffer_add_commit_notify", (DL_FUNC) &R_gtk_text_buffer_add_commit_notify, 5},
     {"R_gtk_text_buffer_add_mark", (DL_FUNC) &R_gtk_text_buffer_add_mark, 3},
     {"R_gtk_text_buffer_add_selection_clipboard", (DL_FUNC) &R_gtk_text_buffer_add_selection_clipboard, 2},
     {"R_gtk_text_buffer_apply_tag", (DL_FUNC) &R_gtk_text_buffer_apply_tag, 4},
@@ -13194,7 +12863,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_text_buffer_place_cursor", (DL_FUNC) &R_gtk_text_buffer_place_cursor, 2},
     {"R_gtk_text_buffer_redo", (DL_FUNC) &R_gtk_text_buffer_redo, 1},
     {"R_gtk_text_buffer_remove_all_tags", (DL_FUNC) &R_gtk_text_buffer_remove_all_tags, 3},
-    {"R_gtk_text_buffer_remove_commit_notify", (DL_FUNC) &R_gtk_text_buffer_remove_commit_notify, 2},
     {"R_gtk_text_buffer_remove_selection_clipboard", (DL_FUNC) &R_gtk_text_buffer_remove_selection_clipboard, 2},
     {"R_gtk_text_buffer_remove_tag", (DL_FUNC) &R_gtk_text_buffer_remove_tag, 4},
     {"R_gtk_text_buffer_remove_tag_by_name", (DL_FUNC) &R_gtk_text_buffer_remove_tag_by_name, 4},
@@ -13352,7 +13020,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_text_view_get_rtl_context", (DL_FUNC) &R_gtk_text_view_get_rtl_context, 1},
     {"R_gtk_text_view_get_tabs", (DL_FUNC) &R_gtk_text_view_get_tabs, 1},
     {"R_gtk_text_view_get_top_margin", (DL_FUNC) &R_gtk_text_view_get_top_margin, 1},
-    {"R_gtk_text_view_get_visible_offset", (DL_FUNC) &R_gtk_text_view_get_visible_offset, 1},
     {"R_gtk_text_view_get_visible_rect", (DL_FUNC) &R_gtk_text_view_get_visible_rect, 1},
     {"R_gtk_text_view_get_wrap_mode", (DL_FUNC) &R_gtk_text_view_get_wrap_mode, 1},
     {"R_gtk_text_view_im_context_filter_keypress", (DL_FUNC) &R_gtk_text_view_im_context_filter_keypress, 2},
@@ -13693,9 +13360,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_tree_view_column_set_title", (DL_FUNC) &R_gtk_tree_view_column_set_title, 2},
     {"R_gtk_tree_view_column_set_visible", (DL_FUNC) &R_gtk_tree_view_column_set_visible, 2},
     {"R_gtk_tree_view_column_set_widget", (DL_FUNC) &R_gtk_tree_view_column_set_widget, 2},
-    {"R_gtk_try_expression_new", (DL_FUNC) &R_gtk_try_expression_new, 2},
     {"R_gtk_uri_launcher_new", (DL_FUNC) &R_gtk_uri_launcher_new, 1},
-    {"R_gtk_uri_launcher_can_launch", (DL_FUNC) &R_gtk_uri_launcher_can_launch, 2},
     {"R_gtk_uri_launcher_get_uri", (DL_FUNC) &R_gtk_uri_launcher_get_uri, 1},
     {"R_gtk_uri_launcher_launch", (DL_FUNC) &R_gtk_uri_launcher_launch, 5},
     {"R_gtk_uri_launcher_launch_finish", (DL_FUNC) &R_gtk_uri_launcher_launch_finish, 2},
@@ -13707,13 +13372,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_video_new_for_resource", (DL_FUNC) &R_gtk_video_new_for_resource, 1},
     {"R_gtk_video_get_autoplay", (DL_FUNC) &R_gtk_video_get_autoplay, 1},
     {"R_gtk_video_get_file", (DL_FUNC) &R_gtk_video_get_file, 1},
-    {"R_gtk_video_get_graphics_offload", (DL_FUNC) &R_gtk_video_get_graphics_offload, 1},
     {"R_gtk_video_get_loop", (DL_FUNC) &R_gtk_video_get_loop, 1},
     {"R_gtk_video_get_media_stream", (DL_FUNC) &R_gtk_video_get_media_stream, 1},
     {"R_gtk_video_set_autoplay", (DL_FUNC) &R_gtk_video_set_autoplay, 2},
     {"R_gtk_video_set_file", (DL_FUNC) &R_gtk_video_set_file, 2},
     {"R_gtk_video_set_filename", (DL_FUNC) &R_gtk_video_set_filename, 2},
-    {"R_gtk_video_set_graphics_offload", (DL_FUNC) &R_gtk_video_set_graphics_offload, 2},
     {"R_gtk_video_set_loop", (DL_FUNC) &R_gtk_video_set_loop, 2},
     {"R_gtk_video_set_media_stream", (DL_FUNC) &R_gtk_video_set_media_stream, 2},
     {"R_gtk_video_set_resource", (DL_FUNC) &R_gtk_video_set_resource, 2},
@@ -13776,7 +13439,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_widget_get_hexpand_set", (DL_FUNC) &R_gtk_widget_get_hexpand_set, 1},
     {"R_gtk_widget_get_last_child", (DL_FUNC) &R_gtk_widget_get_last_child, 1},
     {"R_gtk_widget_get_layout_manager", (DL_FUNC) &R_gtk_widget_get_layout_manager, 1},
-    {"R_gtk_widget_get_limit_events", (DL_FUNC) &R_gtk_widget_get_limit_events, 1},
     {"R_gtk_widget_get_mapped", (DL_FUNC) &R_gtk_widget_get_mapped, 1},
     {"R_gtk_widget_get_margin_bottom", (DL_FUNC) &R_gtk_widget_get_margin_bottom, 1},
     {"R_gtk_widget_get_margin_end", (DL_FUNC) &R_gtk_widget_get_margin_end, 1},
@@ -13860,7 +13522,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_widget_set_hexpand", (DL_FUNC) &R_gtk_widget_set_hexpand, 2},
     {"R_gtk_widget_set_hexpand_set", (DL_FUNC) &R_gtk_widget_set_hexpand_set, 2},
     {"R_gtk_widget_set_layout_manager", (DL_FUNC) &R_gtk_widget_set_layout_manager, 2},
-    {"R_gtk_widget_set_limit_events", (DL_FUNC) &R_gtk_widget_set_limit_events, 2},
     {"R_gtk_widget_set_margin_bottom", (DL_FUNC) &R_gtk_widget_set_margin_bottom, 2},
     {"R_gtk_widget_set_margin_end", (DL_FUNC) &R_gtk_widget_set_margin_end, 2},
     {"R_gtk_widget_set_margin_start", (DL_FUNC) &R_gtk_widget_set_margin_start, 2},
@@ -13930,7 +13591,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_window_get_destroy_with_parent", (DL_FUNC) &R_gtk_window_get_destroy_with_parent, 1},
     {"R_gtk_window_get_focus", (DL_FUNC) &R_gtk_window_get_focus, 1},
     {"R_gtk_window_get_focus_visible", (DL_FUNC) &R_gtk_window_get_focus_visible, 1},
-    {"R_gtk_window_get_gravity", (DL_FUNC) &R_gtk_window_get_gravity, 1},
     {"R_gtk_window_get_group", (DL_FUNC) &R_gtk_window_get_group, 1},
     {"R_gtk_window_get_handle_menubar_accel", (DL_FUNC) &R_gtk_window_get_handle_menubar_accel, 1},
     {"R_gtk_window_get_hide_on_close", (DL_FUNC) &R_gtk_window_get_hide_on_close, 1},
@@ -13960,7 +13620,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_window_set_display", (DL_FUNC) &R_gtk_window_set_display, 2},
     {"R_gtk_window_set_focus", (DL_FUNC) &R_gtk_window_set_focus, 2},
     {"R_gtk_window_set_focus_visible", (DL_FUNC) &R_gtk_window_set_focus_visible, 2},
-    {"R_gtk_window_set_gravity", (DL_FUNC) &R_gtk_window_set_gravity, 2},
     {"R_gtk_window_set_handle_menubar_accel", (DL_FUNC) &R_gtk_window_set_handle_menubar_accel, 2},
     {"R_gtk_window_set_hide_on_close", (DL_FUNC) &R_gtk_window_set_hide_on_close, 2},
     {"R_gtk_window_set_icon_name", (DL_FUNC) &R_gtk_window_set_icon_name, 2},
@@ -13978,10 +13637,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_window_controls_get_decoration_layout", (DL_FUNC) &R_gtk_window_controls_get_decoration_layout, 1},
     {"R_gtk_window_controls_get_empty", (DL_FUNC) &R_gtk_window_controls_get_empty, 1},
     {"R_gtk_window_controls_get_side", (DL_FUNC) &R_gtk_window_controls_get_side, 1},
-    {"R_gtk_window_controls_get_use_native_controls", (DL_FUNC) &R_gtk_window_controls_get_use_native_controls, 1},
     {"R_gtk_window_controls_set_decoration_layout", (DL_FUNC) &R_gtk_window_controls_set_decoration_layout, 2},
     {"R_gtk_window_controls_set_side", (DL_FUNC) &R_gtk_window_controls_set_side, 2},
-    {"R_gtk_window_controls_set_use_native_controls", (DL_FUNC) &R_gtk_window_controls_set_use_native_controls, 2},
     {"R_gtk_window_group_new", (DL_FUNC) &R_gtk_window_group_new, 0},
     {"R_gtk_window_group_add_window", (DL_FUNC) &R_gtk_window_group_add_window, 2},
     {"R_gtk_window_group_list_windows", (DL_FUNC) &R_gtk_window_group_list_windows, 1},
@@ -13989,7 +13646,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_window_handle_new", (DL_FUNC) &R_gtk_window_handle_new, 0},
     {"R_gtk_window_handle_get_child", (DL_FUNC) &R_gtk_window_handle_get_child, 1},
     {"R_gtk_window_handle_set_child", (DL_FUNC) &R_gtk_window_handle_set_child, 2},
-    {"R_gtk_accelerator_get_accessible_label", (DL_FUNC) &R_gtk_accelerator_get_accessible_label, 2},
     {"R_gtk_accelerator_get_default_mod_mask", (DL_FUNC) &R_gtk_accelerator_get_default_mod_mask, 0},
     {"R_gtk_accelerator_get_label", (DL_FUNC) &R_gtk_accelerator_get_label, 2},
     {"R_gtk_accelerator_get_label_with_keycode", (DL_FUNC) &R_gtk_accelerator_get_label_with_keycode, 4},
@@ -14001,8 +13657,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_check_version", (DL_FUNC) &R_gtk_check_version, 3},
     {"R_gtk_css_parser_error_quark", (DL_FUNC) &R_gtk_css_parser_error_quark, 0},
     {"R_gtk_css_parser_warning_quark", (DL_FUNC) &R_gtk_css_parser_warning_quark, 0},
-    {"R_gtk_disable_portal_interfaces", (DL_FUNC) &R_gtk_disable_portal_interfaces, 1},
-    {"R_gtk_disable_portals", (DL_FUNC) &R_gtk_disable_portals, 0},
     {"R_gtk_disable_setlocale", (DL_FUNC) &R_gtk_disable_setlocale, 0},
     {"R_gtk_distribute_natural_allocation", (DL_FUNC) &R_gtk_distribute_natural_allocation, 3},
     {"R_gtk_get_binary_age", (DL_FUNC) &R_gtk_get_binary_age, 0},

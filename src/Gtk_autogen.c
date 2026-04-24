@@ -542,31 +542,6 @@ SEXP R_gtk_about_dialog_set_wrap_license(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_accessible_announce(SEXP s1, SEXP s2, SEXP s3) {
-  GtkAccessible* v1 = (GtkAccessible*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GtkAccessibleAnnouncementPriority v3 = (GtkAccessibleAnnouncementPriority)((GtkAccessibleAnnouncementPriority)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gtk_accessible_announce(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_accessible_get_accessible_id(SEXP s1) {
-  GtkAccessible* v1 = (GtkAccessible*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_accessible_get_accessible_id(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_accessible_get_accessible_parent(SEXP s1) {
   GtkAccessible* v1 = (GtkAccessible*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_accessible_get_accessible_parent(v1);
@@ -745,14 +720,6 @@ SEXP R_gtk_accessible_update_next_accessible_sibling(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_accessible_update_platform_state(SEXP s1, SEXP s2) {
-  GtkAccessible* v1 = (GtkAccessible*)(get_ptr(s1)); (void)v1;
-  GtkAccessiblePlatformState v2 = (GtkAccessiblePlatformState)((GtkAccessiblePlatformState)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_accessible_update_platform_state(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_accessible_update_property_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkAccessible* v1 = (GtkAccessible*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
@@ -783,83 +750,6 @@ SEXP R_gtk_accessible_update_state_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_gtk_accessible_hyperlink_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GtkAccessibleHypertext* v1 = (GtkAccessibleHypertext*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  GtkAccessibleTextRange* v4 = (GtkAccessibleTextRange*)(get_ptr(s4)); (void)v4;
-  gconstpointer _ret = (gconstpointer)gtk_accessible_hyperlink_new(v1, v2, v3, v4);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("AccessibleHyperlink"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_accessible_hyperlink_set_platform_state(SEXP s1, SEXP s2, SEXP s3) {
-  GtkAccessibleHyperlink* v1 = (GtkAccessibleHyperlink*)(get_ptr(s1)); (void)v1;
-  GtkAccessiblePlatformState v2 = (GtkAccessiblePlatformState)((GtkAccessiblePlatformState)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
-  gtk_accessible_hyperlink_set_platform_state(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_accessible_list_new_from_array(SEXP s1, SEXP s2) {
-  GtkAccessible** v1 = (GtkAccessible**)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gconstpointer _ret = (gconstpointer)gtk_accessible_list_new_from_array(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("AccessibleList"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_accessible_list_new_from_list(SEXP s1) {
-  GList* v1 = (GList*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_accessible_list_new_from_list(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("AccessibleList"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_accessible_list_get_objects(SEXP s1) {
-  GtkAccessibleList* v1 = (GtkAccessibleList*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_accessible_list_get_objects(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_accessible_property_init_value(SEXP s1, SEXP s2) {
   GtkAccessibleProperty v1 = (GtkAccessibleProperty)((GtkAccessibleProperty)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
@@ -880,30 +770,6 @@ SEXP R_gtk_accessible_state_init_value(SEXP s1, SEXP s2) {
   GtkAccessibleState v1 = (GtkAccessibleState)((GtkAccessibleState)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   gtk_accessible_state_init_value(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_accessible_text_update_caret_position(SEXP s1) {
-  GtkAccessibleText* v1 = (GtkAccessibleText*)(get_ptr(s1)); (void)v1;
-  gtk_accessible_text_update_caret_position(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_accessible_text_update_contents(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GtkAccessibleText* v1 = (GtkAccessibleText*)(get_ptr(s1)); (void)v1;
-  GtkAccessibleTextContentChange v2 = (GtkAccessibleTextContentChange)((GtkAccessibleTextContentChange)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  guint v4 = (guint)((guint)INTEGER(s4)[0]); (void)v4;
-  gtk_accessible_text_update_contents(v1, v2, v3, v4);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_accessible_text_update_selection_bound(SEXP s1) {
-  GtkAccessibleText* v1 = (GtkAccessibleText*)(get_ptr(s1)); (void)v1;
-  gtk_accessible_text_update_selection_bound(v1);
   return R_NilValue;
 }
 
@@ -4565,22 +4431,6 @@ SEXP R_gtk_calendar_get_date(SEXP s1) {
 }
 
 
-SEXP R_gtk_calendar_get_day(SEXP s1) {
-  GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  int _ret = (int)gtk_calendar_get_day(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_calendar_get_day_is_marked(SEXP s1, SEXP s2) {
   GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
@@ -4590,22 +4440,6 @@ SEXP R_gtk_calendar_get_day_is_marked(SEXP s1, SEXP s2) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_calendar_get_month(SEXP s1) {
-  GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  int _ret = (int)gtk_calendar_get_month(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -4662,22 +4496,6 @@ SEXP R_gtk_calendar_get_show_week_numbers(SEXP s1) {
 }
 
 
-SEXP R_gtk_calendar_get_year(SEXP s1) {
-  GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  int _ret = (int)gtk_calendar_get_year(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_calendar_mark_day(SEXP s1, SEXP s2) {
   GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
@@ -4690,30 +4508,6 @@ SEXP R_gtk_calendar_select_day(SEXP s1, SEXP s2) {
   GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
   GDateTime* v2 = (GDateTime*)(get_ptr(s2)); (void)v2;
   gtk_calendar_select_day(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_calendar_set_date(SEXP s1, SEXP s2) {
-  GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  GDateTime* v2 = (GDateTime*)(get_ptr(s2)); (void)v2;
-  gtk_calendar_set_date(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_calendar_set_day(SEXP s1, SEXP s2) {
-  GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gtk_calendar_set_day(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_calendar_set_month(SEXP s1, SEXP s2) {
-  GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gtk_calendar_set_month(v1, v2);
   return R_NilValue;
 }
 
@@ -4738,14 +4532,6 @@ SEXP R_gtk_calendar_set_show_week_numbers(SEXP s1, SEXP s2) {
   GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gtk_calendar_set_show_week_numbers(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_calendar_set_year(SEXP s1, SEXP s2) {
-  GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gtk_calendar_set_year(v1, v2);
   return R_NilValue;
 }
 
@@ -9473,41 +9259,6 @@ SEXP R_gtk_css_section_new(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_css_section_new_with_bytes(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GFile* v1 = (s1 != R_NilValue) ? (GFile*)(get_ptr(s1)) : NULL; (void)v1;
-  GBytes* v2 = (s2 != R_NilValue) ? (GBytes*)(get_ptr(s2)) : NULL; (void)v2;
-  const GtkCssLocation* v3 = (const GtkCssLocation*)(get_ptr(s3)); (void)v3;
-  const GtkCssLocation* v4 = (const GtkCssLocation*)(get_ptr(s4)); (void)v4;
-  gconstpointer _ret = (gconstpointer)gtk_css_section_new_with_bytes(v1, v2, v3, v4);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("CssSection"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_css_section_get_bytes(SEXP s1) {
-  const GtkCssSection* v1 = (const GtkCssSection*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_css_section_get_bytes(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Bytes"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_css_section_get_end_location(SEXP s1) {
   const GtkCssSection* v1 = (const GtkCssSection*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_css_section_get_end_location(v1);
@@ -11613,23 +11364,6 @@ SEXP R_gtk_entry_get_max_length(SEXP s1) {
 }
 
 
-SEXP R_gtk_entry_get_menu_entry_icon_text(SEXP s1, SEXP s2) {
-  GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
-  GtkEntryIconPosition v2 = (GtkEntryIconPosition)((GtkEntryIconPosition)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gconstpointer _ret = (gconstpointer)gtk_entry_get_menu_entry_icon_text(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_entry_get_overwrite_mode(SEXP s1) {
   GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gtk_entry_get_overwrite_mode(v1);
@@ -11929,15 +11663,6 @@ SEXP R_gtk_entry_set_max_length(SEXP s1, SEXP s2) {
   GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
   gtk_entry_set_max_length(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_entry_set_menu_entry_icon_text(SEXP s1, SEXP s2, SEXP s3) {
-  GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
-  GtkEntryIconPosition v2 = (GtkEntryIconPosition)((GtkEntryIconPosition)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gtk_entry_set_menu_entry_icon_text(v1, v2, v3);
   return R_NilValue;
 }
 
@@ -13866,76 +13591,6 @@ SEXP R_gtk_file_dialog_open_multiple_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_file_dialog_open_multiple_text_files(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
-  GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
-  GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_dialog_open_multiple_text_files(v1, v2, v3, v4, v5);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_file_dialog_open_multiple_text_files_finish(SEXP s1, SEXP s2) {
-  GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
-  GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
-  const char* _out_encoding = 0; (void)_out_encoding;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)gtk_file_dialog_open_multiple_text_files_finish(v1, v2, &_out_encoding, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gio.ListModel"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_encoding == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_encoding ? (const char*)_out_encoding : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("encoding"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_file_dialog_open_text_file(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
-  GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
-  GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_dialog_open_text_file(v1, v2, v3, v4, v5);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_file_dialog_open_text_file_finish(SEXP s1, SEXP s2) {
-  GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
-  GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
-  const char* _out_encoding = 0; (void)_out_encoding;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)gtk_file_dialog_open_text_file_finish(v1, v2, &_out_encoding, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gio.File"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_encoding == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_encoding ? (const char*)_out_encoding : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("encoding"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_file_dialog_save(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
@@ -13959,47 +13614,6 @@ SEXP R_gtk_file_dialog_save_finish(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gio.File"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_file_dialog_save_text_file(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
-  GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
-  GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_dialog_save_text_file(v1, v2, v3, v4, v5);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_file_dialog_save_text_file_finish(SEXP s1, SEXP s2) {
-  GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
-  GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
-  const char* _out_encoding = 0; (void)_out_encoding;
-  const char* _out_line_ending = 0; (void)_out_line_ending;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)gtk_file_dialog_save_text_file_finish(v1, v2, &_out_encoding, &_out_line_ending, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gio.File"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_encoding == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_encoding ? (const char*)_out_encoding : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("encoding"));
-  SET_VECTOR_ELT(_ans, 2, (_out_line_ending == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_line_ending ? (const char*)_out_line_ending : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("line_ending"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
@@ -14168,14 +13782,6 @@ SEXP R_gtk_file_filter_add_mime_type(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_file_filter_add_mime_types(SEXP s1, SEXP s2) {
-  GtkFileFilter* v1 = (GtkFileFilter*)(get_ptr(s1)); (void)v1;
-  const char** v2 = (const char**)(get_ptr(s2)); (void)v2;
-  gtk_file_filter_add_mime_types(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_file_filter_add_pattern(SEXP s1, SEXP s2) {
   GtkFileFilter* v1 = (GtkFileFilter*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
@@ -14303,22 +13909,6 @@ SEXP R_gtk_file_launcher_get_file(SEXP s1) {
 }
 
 
-SEXP R_gtk_file_launcher_get_writable(SEXP s1) {
-  GtkFileLauncher* v1 = (GtkFileLauncher*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_file_launcher_get_writable(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_file_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkFileLauncher* v1 = (GtkFileLauncher*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
@@ -14389,14 +13979,6 @@ SEXP R_gtk_file_launcher_set_file(SEXP s1, SEXP s2) {
   GtkFileLauncher* v1 = (GtkFileLauncher*)(get_ptr(s1)); (void)v1;
   GFile* v2 = (s2 != R_NilValue) ? (GFile*)(get_ptr(s2)) : NULL; (void)v2;
   gtk_file_launcher_set_file(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_file_launcher_set_writable(SEXP s1, SEXP s2) {
-  GtkFileLauncher* v1 = (GtkFileLauncher*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_file_launcher_set_writable(v1, v2);
   return R_NilValue;
 }
 
@@ -14523,22 +14105,6 @@ SEXP R_gtk_filter_list_model_get_pending(SEXP s1) {
 }
 
 
-SEXP R_gtk_filter_list_model_get_watch_items(SEXP s1) {
-  GtkFilterListModel* v1 = (GtkFilterListModel*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_filter_list_model_get_watch_items(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_filter_list_model_set_filter(SEXP s1, SEXP s2) {
   GtkFilterListModel* v1 = (GtkFilterListModel*)(get_ptr(s1)); (void)v1;
   GtkFilter* v2 = (s2 != R_NilValue) ? (GtkFilter*)(get_ptr(s2)) : NULL; (void)v2;
@@ -14559,14 +14125,6 @@ SEXP R_gtk_filter_list_model_set_model(SEXP s1, SEXP s2) {
   GtkFilterListModel* v1 = (GtkFilterListModel*)(get_ptr(s1)); (void)v1;
   GListModel* v2 = (s2 != R_NilValue) ? (GListModel*)(get_ptr(s2)) : NULL; (void)v2;
   gtk_filter_list_model_set_model(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_filter_list_model_set_watch_items(SEXP s1, SEXP s2) {
-  GtkFilterListModel* v1 = (GtkFilterListModel*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_filter_list_model_set_watch_items(v1, v2);
   return R_NilValue;
 }
 
@@ -17237,94 +16795,6 @@ SEXP R_gtk_gesture_zoom_get_scale_delta(SEXP s1) {
 }
 
 
-SEXP R_gtk_graphics_offload_new(SEXP s1) {
-  GtkWidget* v1 = (s1 != R_NilValue) ? (GtkWidget*)(get_ptr(s1)) : NULL; (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_graphics_offload_new(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Widget"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_graphics_offload_get_black_background(SEXP s1) {
-  GtkGraphicsOffload* v1 = (GtkGraphicsOffload*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_graphics_offload_get_black_background(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_graphics_offload_get_child(SEXP s1) {
-  GtkGraphicsOffload* v1 = (GtkGraphicsOffload*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_graphics_offload_get_child(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Widget"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_graphics_offload_get_enabled(SEXP s1) {
-  GtkGraphicsOffload* v1 = (GtkGraphicsOffload*)(get_ptr(s1)); (void)v1;
-  GtkGraphicsOffloadEnabled _ret = (GtkGraphicsOffloadEnabled)gtk_graphics_offload_get_enabled(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "GraphicsOffloadEnabled"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GraphicsOffloadEnabled"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_graphics_offload_set_black_background(SEXP s1, SEXP s2) {
-  GtkGraphicsOffload* v1 = (GtkGraphicsOffload*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_graphics_offload_set_black_background(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_graphics_offload_set_child(SEXP s1, SEXP s2) {
-  GtkGraphicsOffload* v1 = (GtkGraphicsOffload*)(get_ptr(s1)); (void)v1;
-  GtkWidget* v2 = (s2 != R_NilValue) ? (GtkWidget*)(get_ptr(s2)) : NULL; (void)v2;
-  gtk_graphics_offload_set_child(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_graphics_offload_set_enabled(SEXP s1, SEXP s2) {
-  GtkGraphicsOffload* v1 = (GtkGraphicsOffload*)(get_ptr(s1)); (void)v1;
-  GtkGraphicsOffloadEnabled v2 = (GtkGraphicsOffloadEnabled)((GtkGraphicsOffloadEnabled)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_graphics_offload_set_enabled(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_grid_new(void) {
 
   gconstpointer _ret = (gconstpointer)gtk_grid_new();
@@ -18131,22 +17601,6 @@ SEXP R_gtk_header_bar_get_title_widget(SEXP s1) {
 }
 
 
-SEXP R_gtk_header_bar_get_use_native_controls(SEXP s1) {
-  GtkHeaderBar* v1 = (GtkHeaderBar*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_header_bar_get_use_native_controls(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_header_bar_pack_end(SEXP s1, SEXP s2) {
   GtkHeaderBar* v1 = (GtkHeaderBar*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
@@ -18192,31 +17646,6 @@ SEXP R_gtk_header_bar_set_title_widget(SEXP s1, SEXP s2) {
   GtkWidget* v2 = (s2 != R_NilValue) ? (GtkWidget*)(get_ptr(s2)) : NULL; (void)v2;
   gtk_header_bar_set_title_widget(v1, v2);
   return R_NilValue;
-}
-
-
-SEXP R_gtk_header_bar_set_use_native_controls(SEXP s1, SEXP s2) {
-  GtkHeaderBar* v1 = (GtkHeaderBar*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_header_bar_set_use_native_controls(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_im_context_activate_osk(SEXP s1, SEXP s2) {
-  GtkIMContext* v1 = (GtkIMContext*)(get_ptr(s1)); (void)v1;
-  GdkEvent* v2 = (s2 != R_NilValue) ? (GdkEvent*)(get_ptr(s2)) : NULL; (void)v2;
-  gboolean _ret = (gboolean)gtk_im_context_activate_osk(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -21681,22 +21110,6 @@ SEXP R_gtk_list_box_get_show_separators(SEXP s1) {
 }
 
 
-SEXP R_gtk_list_box_get_tab_behavior(SEXP s1) {
-  GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
-  GtkListTabBehavior _ret = (GtkListTabBehavior)gtk_list_box_get_tab_behavior(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "ListTabBehavior"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ListTabBehavior"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_list_box_insert(SEXP s1, SEXP s2, SEXP s3) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
@@ -21840,14 +21253,6 @@ SEXP R_gtk_list_box_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
   GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
   gtk_list_box_set_sort_func(v1, v2, v3, v4);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_list_box_set_tab_behavior(SEXP s1, SEXP s2) {
-  GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
-  GtkListTabBehavior v2 = (GtkListTabBehavior)((GtkListTabBehavior)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_list_box_set_tab_behavior(v1, v2);
   return R_NilValue;
 }
 
@@ -26005,22 +25410,6 @@ SEXP R_gtk_picture_get_file(SEXP s1) {
 }
 
 
-SEXP R_gtk_picture_get_isolate_contents(SEXP s1) {
-  GtkPicture* v1 = (GtkPicture*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_picture_get_isolate_contents(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_picture_get_keep_aspect_ratio(SEXP s1) {
   GtkPicture* v1 = (GtkPicture*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gtk_picture_get_keep_aspect_ratio(v1);
@@ -26089,14 +25478,6 @@ SEXP R_gtk_picture_set_filename(SEXP s1, SEXP s2) {
   GtkPicture* v1 = (GtkPicture*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gtk_picture_set_filename(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_picture_set_isolate_contents(SEXP s1, SEXP s2) {
-  GtkPicture* v1 = (GtkPicture*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_picture_set_isolate_contents(v1, v2);
   return R_NilValue;
 }
 
@@ -26384,38 +25765,6 @@ SEXP R_gtk_popover_set_position(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_popover_bin_new(void) {
-
-  gconstpointer _ret = (gconstpointer)gtk_popover_bin_new();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Widget"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_popover_bin_get_child(SEXP s1) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_popover_bin_get_child(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Widget"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_popover_bin_get_handle_input(SEXP s1) {
   GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gtk_popover_bin_get_handle_input(v1);
@@ -26429,84 +25778,6 @@ SEXP R_gtk_popover_bin_get_handle_input(SEXP s1) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_gtk_popover_bin_get_menu_model(SEXP s1) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_popover_bin_get_menu_model(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gio.MenuModel"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_popover_bin_get_popover(SEXP s1) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_popover_bin_get_popover(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Popover"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_popover_bin_popdown(SEXP s1) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  gtk_popover_bin_popdown(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_popover_bin_popup(SEXP s1) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  gtk_popover_bin_popup(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_popover_bin_set_child(SEXP s1, SEXP s2) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  GtkWidget* v2 = (s2 != R_NilValue) ? (GtkWidget*)(get_ptr(s2)) : NULL; (void)v2;
-  gtk_popover_bin_set_child(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_popover_bin_set_handle_input(SEXP s1, SEXP s2) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_popover_bin_set_handle_input(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_popover_bin_set_menu_model(SEXP s1, SEXP s2) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  GMenuModel* v2 = (s2 != R_NilValue) ? (GMenuModel*)(get_ptr(s2)) : NULL; (void)v2;
-  gtk_popover_bin_set_menu_model(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_popover_bin_set_popover(SEXP s1, SEXP s2) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  GtkWidget* v2 = (s2 != R_NilValue) ? (GtkWidget*)(get_ptr(s2)) : NULL; (void)v2;
-  gtk_popover_bin_set_popover(v1, v2);
-  return R_NilValue;
 }
 
 
@@ -26561,22 +25832,6 @@ SEXP R_gtk_popover_menu_add_child(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_popover_menu_get_flags(SEXP s1) {
-  GtkPopoverMenu* v1 = (GtkPopoverMenu*)(get_ptr(s1)); (void)v1;
-  GtkPopoverMenuFlags _ret = (GtkPopoverMenuFlags)gtk_popover_menu_get_flags(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "PopoverMenuFlags"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("PopoverMenuFlags"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_popover_menu_get_menu_model(SEXP s1) {
   GtkPopoverMenu* v1 = (GtkPopoverMenu*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_popover_menu_get_menu_model(v1);
@@ -26607,14 +25862,6 @@ SEXP R_gtk_popover_menu_remove_child(SEXP s1, SEXP s2) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_gtk_popover_menu_set_flags(SEXP s1, SEXP s2) {
-  GtkPopoverMenu* v1 = (GtkPopoverMenu*)(get_ptr(s1)); (void)v1;
-  GtkPopoverMenuFlags v2 = (GtkPopoverMenuFlags)((GtkPopoverMenuFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_popover_menu_set_flags(v1, v2);
-  return R_NilValue;
 }
 
 
@@ -28264,22 +27511,6 @@ SEXP R_gtk_scale_button_get_adjustment(SEXP s1) {
 }
 
 
-SEXP R_gtk_scale_button_get_has_frame(SEXP s1) {
-  GtkScaleButton* v1 = (GtkScaleButton*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_scale_button_get_has_frame(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_scale_button_get_minus_button(SEXP s1) {
   GtkScaleButton* v1 = (GtkScaleButton*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_scale_button_get_minus_button(v1);
@@ -28348,14 +27579,6 @@ SEXP R_gtk_scale_button_set_adjustment(SEXP s1, SEXP s2) {
   GtkScaleButton* v1 = (GtkScaleButton*)(get_ptr(s1)); (void)v1;
   GtkAdjustment* v2 = (GtkAdjustment*)(get_ptr(s2)); (void)v2;
   gtk_scale_button_set_adjustment(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_scale_button_set_has_frame(SEXP s1, SEXP s2) {
-  GtkScaleButton* v1 = (GtkScaleButton*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_scale_button_set_has_frame(v1, v2);
   return R_NilValue;
 }
 
@@ -29157,38 +28380,6 @@ SEXP R_gtk_search_entry_new(void) {
 }
 
 
-SEXP R_gtk_search_entry_get_input_hints(SEXP s1) {
-  GtkSearchEntry* v1 = (GtkSearchEntry*)(get_ptr(s1)); (void)v1;
-  GtkInputHints _ret = (GtkInputHints)gtk_search_entry_get_input_hints(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "InputHints"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("InputHints"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_search_entry_get_input_purpose(SEXP s1) {
-  GtkSearchEntry* v1 = (GtkSearchEntry*)(get_ptr(s1)); (void)v1;
-  GtkInputPurpose _ret = (GtkInputPurpose)gtk_search_entry_get_input_purpose(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "InputPurpose"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("InputPurpose"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_search_entry_get_key_capture_widget(SEXP s1) {
   GtkSearchEntry* v1 = (GtkSearchEntry*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_search_entry_get_key_capture_widget(v1);
@@ -29234,22 +28425,6 @@ SEXP R_gtk_search_entry_get_search_delay(SEXP s1) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_gtk_search_entry_set_input_hints(SEXP s1, SEXP s2) {
-  GtkSearchEntry* v1 = (GtkSearchEntry*)(get_ptr(s1)); (void)v1;
-  GtkInputHints v2 = (GtkInputHints)((GtkInputHints)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_search_entry_set_input_hints(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_search_entry_set_input_purpose(SEXP s1, SEXP s2) {
-  GtkSearchEntry* v1 = (GtkSearchEntry*)(get_ptr(s1)); (void)v1;
-  GtkInputPurpose v2 = (GtkInputPurpose)((GtkInputPurpose)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_search_entry_set_input_purpose(v1, v2);
-  return R_NilValue;
 }
 
 
@@ -30039,30 +29214,6 @@ SEXP R_gtk_shortcut_trigger_trigger(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_shortcuts_group_add_shortcut(SEXP s1, SEXP s2) {
-  GtkShortcutsGroup* v1 = (GtkShortcutsGroup*)(get_ptr(s1)); (void)v1;
-  GtkShortcutsShortcut* v2 = (GtkShortcutsShortcut*)(get_ptr(s2)); (void)v2;
-  gtk_shortcuts_group_add_shortcut(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_shortcuts_section_add_group(SEXP s1, SEXP s2) {
-  GtkShortcutsSection* v1 = (GtkShortcutsSection*)(get_ptr(s1)); (void)v1;
-  GtkShortcutsGroup* v2 = (GtkShortcutsGroup*)(get_ptr(s2)); (void)v2;
-  gtk_shortcuts_section_add_group(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_shortcuts_window_add_section(SEXP s1, SEXP s2) {
-  GtkShortcutsWindow* v1 = (GtkShortcutsWindow*)(get_ptr(s1)); (void)v1;
-  GtkShortcutsSection* v2 = (GtkShortcutsSection*)(get_ptr(s2)); (void)v2;
-  gtk_shortcuts_window_add_section(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_signal_action_new(SEXP s1) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_signal_action_new(v1);
@@ -30465,16 +29616,6 @@ SEXP R_gtk_snapshot_append_conic_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
 }
 
 
-SEXP R_gtk_snapshot_append_fill(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  GskPath* v2 = (GskPath*)(get_ptr(s2)); (void)v2;
-  GskFillRule v3 = (GskFillRule)(get_ptr(s3)); (void)v3;
-  const GdkRGBA* v4 = (const GdkRGBA*)(get_ptr(s4)); (void)v4;
-  gtk_snapshot_append_fill(v1, v2, v3, v4);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_snapshot_append_inset_shadow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   const GskRoundedRect* v2 = (const GskRoundedRect*)(get_ptr(s2)); (void)v2;
@@ -30530,15 +29671,6 @@ SEXP R_gtk_snapshot_append_outset_shadow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
 }
 
 
-SEXP R_gtk_snapshot_append_paste(SEXP s1, SEXP s2, SEXP s3) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gtk_snapshot_append_paste(v1, v2, v3);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_snapshot_append_radial_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
@@ -30587,16 +29719,6 @@ SEXP R_gtk_snapshot_append_scaled_texture(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GskScalingFilter v3 = (GskScalingFilter)(get_ptr(s3)); (void)v3;
   const graphene_rect_t* v4 = (const graphene_rect_t*)(get_ptr(s4)); (void)v4;
   gtk_snapshot_append_scaled_texture(v1, v2, v3, v4);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_snapshot_append_stroke(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  GskPath* v2 = (GskPath*)(get_ptr(s2)); (void)v2;
-  const GskStroke* v3 = (const GskStroke*)(get_ptr(s3)); (void)v3;
-  const GdkRGBA* v4 = (const GdkRGBA*)(get_ptr(s4)); (void)v4;
-  gtk_snapshot_append_stroke(v1, v2, v3, v4);
   return R_NilValue;
 }
 
@@ -30665,45 +29787,10 @@ SEXP R_gtk_snapshot_push_color_matrix(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_snapshot_push_component_transfer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  const GskComponentTransfer* v2 = (const GskComponentTransfer*)(get_ptr(s2)); (void)v2;
-  const GskComponentTransfer* v3 = (const GskComponentTransfer*)(get_ptr(s3)); (void)v3;
-  const GskComponentTransfer* v4 = (const GskComponentTransfer*)(get_ptr(s4)); (void)v4;
-  const GskComponentTransfer* v5 = (const GskComponentTransfer*)(get_ptr(s5)); (void)v5;
-  gtk_snapshot_push_component_transfer(v1, v2, v3, v4, v5);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_snapshot_push_composite(SEXP s1, SEXP s2) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  GskPorterDuff v2 = (GskPorterDuff)(get_ptr(s2)); (void)v2;
-  gtk_snapshot_push_composite(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_snapshot_push_copy(SEXP s1) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gtk_snapshot_push_copy(v1);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_snapshot_push_cross_fade(SEXP s1, SEXP s2) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
   gtk_snapshot_push_cross_fade(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_snapshot_push_fill(SEXP s1, SEXP s2, SEXP s3) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  GskPath* v2 = (GskPath*)(get_ptr(s2)); (void)v2;
-  GskFillRule v3 = (GskFillRule)(get_ptr(s3)); (void)v3;
-  gtk_snapshot_push_fill(v1, v2, v3);
   return R_NilValue;
 }
 
@@ -30714,14 +29801,6 @@ SEXP R_gtk_snapshot_push_gl_shader(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const graphene_rect_t* v3 = (const graphene_rect_t*)(get_ptr(s3)); (void)v3;
   GBytes* v4 = (GBytes*)(get_ptr(s4)); (void)v4;
   gtk_snapshot_push_gl_shader(v1, v2, v3, v4);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_snapshot_push_isolation(SEXP s1, SEXP s2) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  GskIsolation v2 = (GskIsolation)(get_ptr(s2)); (void)v2;
-  gtk_snapshot_push_isolation(v1, v2);
   return R_NilValue;
 }
 
@@ -30764,15 +29843,6 @@ SEXP R_gtk_snapshot_push_shadow(SEXP s1, SEXP s2, SEXP s3) {
   const GskShadow* v2 = (const GskShadow*)(get_ptr(s2)); (void)v2;
   gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
   gtk_snapshot_push_shadow(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_snapshot_push_stroke(SEXP s1, SEXP s2, SEXP s3) {
-  GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  GskPath* v2 = (GskPath*)(get_ptr(s2)); (void)v2;
-  const GskStroke* v3 = (const GskStroke*)(get_ptr(s3)); (void)v3;
-  gtk_snapshot_push_stroke(v1, v2, v3);
   return R_NilValue;
 }
 
@@ -31169,22 +30239,6 @@ SEXP R_gtk_spin_button_configure(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_gtk_spin_button_get_activates_default(SEXP s1) {
-  GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_spin_button_get_activates_default(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_spin_button_get_adjustment(SEXP s1) {
   GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_spin_button_get_adjustment(v1);
@@ -31372,14 +30426,6 @@ SEXP R_gtk_spin_button_get_wrap(SEXP s1) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_gtk_spin_button_set_activates_default(SEXP s1, SEXP s2) {
-  GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_spin_button_set_activates_default(v1, v2);
-  return R_NilValue;
 }
 
 
@@ -32308,23 +31354,6 @@ SEXP R_gtk_string_list_append(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_string_list_find(SEXP s1, SEXP s2) {
-  GtkStringList* v1 = (GtkStringList*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint _ret = (guint)gtk_string_list_find(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_string_list_get_string(SEXP s1, SEXP s2) {
   GtkStringList* v1 = (GtkStringList*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
@@ -32749,284 +31778,6 @@ SEXP R_gtk_style_context_to_string(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_svg_new(void) {
-
-  gconstpointer _ret = (gconstpointer)gtk_svg_new();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Svg"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_new_from_bytes(SEXP s1) {
-  GBytes* v1 = (GBytes*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_svg_new_from_bytes(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Svg"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_new_from_resource(SEXP s1) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_svg_new_from_resource(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Svg"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_get_features(SEXP s1) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  GtkSvgFeatures _ret = (GtkSvgFeatures)gtk_svg_get_features(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "SvgFeatures"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("SvgFeatures"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_get_state(SEXP s1) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  unsigned int _ret = (unsigned int)gtk_svg_get_state(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(Rf_ScalarInteger((int)(size_t)(_ret)), "guint"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_get_state_names(SEXP s1) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  unsigned int _out_length = {0}; (void)_out_length;
-  gconstpointer _ret = (gconstpointer)gtk_svg_get_state_names(v1, &_out_length);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_ret ? (const char*)_ret : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(Rf_ScalarInteger((int)(size_t)(_out_length)), "guint"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("length"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_get_weight(SEXP s1) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  double _ret = (double)gtk_svg_get_weight(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_load_from_bytes(SEXP s1, SEXP s2) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
-  gtk_svg_load_from_bytes(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_svg_load_from_resource(SEXP s1, SEXP s2) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gtk_svg_load_from_resource(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_svg_pause(SEXP s1) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  gtk_svg_pause(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_svg_play(SEXP s1) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  gtk_svg_play(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_svg_serialize(SEXP s1) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_svg_serialize(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Bytes"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_set_features(SEXP s1, SEXP s2) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  GtkSvgFeatures v2 = (GtkSvgFeatures)((GtkSvgFeatures)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_svg_set_features(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_svg_set_frame_clock(SEXP s1, SEXP s2) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  GdkFrameClock* v2 = (GdkFrameClock*)(get_ptr(s2)); (void)v2;
-  gtk_svg_set_frame_clock(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_svg_set_state(SEXP s1, SEXP s2) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gtk_svg_set_state(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_svg_set_weight(SEXP s1, SEXP s2) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gtk_svg_set_weight(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_svg_write_to_file(SEXP s1, SEXP s2) {
-  GtkSvg* v1 = (GtkSvg*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)gtk_svg_write_to_file(v1, v2, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_error_get_attribute(SEXP s1) {
-  const GError* v1 = (const GError*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_svg_error_get_attribute(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_error_get_element(SEXP s1) {
-  const GError* v1 = (const GError*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_svg_error_get_element(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_error_get_end(SEXP s1) {
-  const GError* v1 = (const GError*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_svg_error_get_end(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("SvgLocation"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_svg_error_get_start(SEXP s1) {
-  const GError* v1 = (const GError*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gtk_svg_error_get_start(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("SvgLocation"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_svg_error_quark(void) {
 
   GQuark _ret = (GQuark)gtk_svg_error_quark();
@@ -33115,19 +31866,6 @@ SEXP R_gtk_symbolic_paintable_snapshot_symbolic(SEXP s1, SEXP s2, SEXP s3, SEXP 
   const GdkRGBA* v5 = (const GdkRGBA*)(get_ptr(s5)); (void)v5;
   gsize v6 = (gsize)((gsize)REAL(s6)[0]); (void)v6;
   gtk_symbolic_paintable_snapshot_symbolic(v1, v2, v3, v4, v5, v6);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_symbolic_paintable_snapshot_with_weight(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  GtkSymbolicPaintable* v1 = (GtkSymbolicPaintable*)(get_ptr(s1)); (void)v1;
-  GdkSnapshot* v2 = (GdkSnapshot*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  const GdkRGBA* v5 = (const GdkRGBA*)(get_ptr(s5)); (void)v5;
-  gsize v6 = (gsize)((gsize)REAL(s6)[0]); (void)v6;
-  gdouble v7 = (gdouble)((gdouble)REAL(s7)[0]); (void)v7;
-  gtk_symbolic_paintable_snapshot_with_weight(v1, v2, v3, v4, v5, v6, v7);
   return R_NilValue;
 }
 
@@ -33595,26 +32333,6 @@ SEXP R_gtk_text_buffer_new(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextBuffer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_text_buffer_add_commit_notify(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
-  GtkTextBufferNotifyFlags v2 = (GtkTextBufferNotifyFlags)((GtkTextBufferNotifyFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  GtkTextBufferCommitNotify v3 = (GtkTextBufferCommitNotify)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  guint _ret = (guint)gtk_text_buffer_add_commit_notify(v1, v2, v3, v4, v5);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -34443,14 +33161,6 @@ SEXP R_gtk_text_buffer_remove_all_tags(SEXP s1, SEXP s2, SEXP s3) {
   const GtkTextIter* v2 = (const GtkTextIter*)(get_ptr(s2)); (void)v2;
   const GtkTextIter* v3 = (const GtkTextIter*)(get_ptr(s3)); (void)v3;
   gtk_text_buffer_remove_all_tags(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_text_buffer_remove_commit_notify(SEXP s1, SEXP s2) {
-  GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gtk_text_buffer_remove_commit_notify(v1, v2);
   return R_NilValue;
 }
 
@@ -36901,29 +35611,6 @@ SEXP R_gtk_text_view_get_top_margin(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_text_view_get_visible_offset(SEXP s1) {
-  GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  double _out_x_offset = 0; (void)_out_x_offset;
-  double _out_y_offset = 0; (void)_out_y_offset;
-  gtk_text_view_get_visible_offset(v1, &_out_x_offset, &_out_y_offset);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x_offset)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("x_offset"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y_offset)));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("y_offset"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
@@ -41579,23 +40266,6 @@ SEXP R_gtk_tree_view_column_set_widget(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_try_expression_new(SEXP s1, SEXP s2) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
-  GtkExpression** v2 = (GtkExpression**)(get_ptr(s2)); (void)v2;
-  gconstpointer _ret = (gconstpointer)gtk_try_expression_new(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TryExpression"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_uri_launcher_new(SEXP s1) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_uri_launcher_new(v1);
@@ -41604,23 +40274,6 @@ SEXP R_gtk_uri_launcher_new(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("UriLauncher"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_uri_launcher_can_launch(SEXP s1, SEXP s2) {
-  GtkUriLauncher* v1 = (GtkUriLauncher*)(get_ptr(s1)); (void)v1;
-  GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
-  gboolean _ret = (gboolean)gtk_uri_launcher_can_launch(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -41794,22 +40447,6 @@ SEXP R_gtk_video_get_file(SEXP s1) {
 }
 
 
-SEXP R_gtk_video_get_graphics_offload(SEXP s1) {
-  GtkVideo* v1 = (GtkVideo*)(get_ptr(s1)); (void)v1;
-  GtkGraphicsOffloadEnabled _ret = (GtkGraphicsOffloadEnabled)gtk_video_get_graphics_offload(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "GraphicsOffloadEnabled"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GraphicsOffloadEnabled"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_video_get_loop(SEXP s1) {
   GtkVideo* v1 = (GtkVideo*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gtk_video_get_loop(v1);
@@ -41862,14 +40499,6 @@ SEXP R_gtk_video_set_filename(SEXP s1, SEXP s2) {
   GtkVideo* v1 = (GtkVideo*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gtk_video_set_filename(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_video_set_graphics_offload(SEXP s1, SEXP s2) {
-  GtkVideo* v1 = (GtkVideo*)(get_ptr(s1)); (void)v1;
-  GtkGraphicsOffloadEnabled v2 = (GtkGraphicsOffloadEnabled)((GtkGraphicsOffloadEnabled)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_video_set_graphics_offload(v1, v2);
   return R_NilValue;
 }
 
@@ -42780,22 +41409,6 @@ SEXP R_gtk_widget_get_layout_manager(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("LayoutManager"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_widget_get_limit_events(SEXP s1) {
-  GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_widget_get_limit_events(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -43925,14 +42538,6 @@ SEXP R_gtk_widget_set_layout_manager(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_widget_set_limit_events(SEXP s1, SEXP s2) {
-  GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_widget_set_limit_events(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_widget_set_margin_bottom(SEXP s1, SEXP s2) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
@@ -44707,22 +43312,6 @@ SEXP R_gtk_window_get_focus_visible(SEXP s1) {
 }
 
 
-SEXP R_gtk_window_get_gravity(SEXP s1) {
-  GtkWindow* v1 = (GtkWindow*)(get_ptr(s1)); (void)v1;
-  GtkWindowGravity _ret = (GtkWindowGravity)gtk_window_get_gravity(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "WindowGravity"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("WindowGravity"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_window_get_group(SEXP s1) {
   GtkWindow* v1 = (s1 != R_NilValue) ? (GtkWindow*)(get_ptr(s1)) : NULL; (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_window_get_group(v1);
@@ -45073,14 +43662,6 @@ SEXP R_gtk_window_set_focus_visible(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_window_set_gravity(SEXP s1, SEXP s2) {
-  GtkWindow* v1 = (GtkWindow*)(get_ptr(s1)); (void)v1;
-  GtkWindowGravity v2 = (GtkWindowGravity)((GtkWindowGravity)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gtk_window_set_gravity(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_gtk_window_set_handle_menubar_accel(SEXP s1, SEXP s2) {
   GtkWindow* v1 = (GtkWindow*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
@@ -45246,22 +43827,6 @@ SEXP R_gtk_window_controls_get_side(SEXP s1) {
 }
 
 
-SEXP R_gtk_window_controls_get_use_native_controls(SEXP s1) {
-  GtkWindowControls* v1 = (GtkWindowControls*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_window_controls_get_use_native_controls(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_window_controls_set_decoration_layout(SEXP s1, SEXP s2) {
   GtkWindowControls* v1 = (GtkWindowControls*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
@@ -45274,14 +43839,6 @@ SEXP R_gtk_window_controls_set_side(SEXP s1, SEXP s2) {
   GtkWindowControls* v1 = (GtkWindowControls*)(get_ptr(s1)); (void)v1;
   GtkPackType v2 = (GtkPackType)((GtkPackType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gtk_window_controls_set_side(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_window_controls_set_use_native_controls(SEXP s1, SEXP s2) {
-  GtkWindowControls* v1 = (GtkWindowControls*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gtk_window_controls_set_use_native_controls(v1, v2);
   return R_NilValue;
 }
 
@@ -45371,23 +43928,6 @@ SEXP R_gtk_window_handle_set_child(SEXP s1, SEXP s2) {
   GtkWidget* v2 = (s2 != R_NilValue) ? (GtkWidget*)(get_ptr(s2)) : NULL; (void)v2;
   gtk_window_handle_set_child(v1, v2);
   return R_NilValue;
-}
-
-
-SEXP R_gtk_accelerator_get_accessible_label(SEXP s1, SEXP s2) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
-  GdkModifierType v2 = (GdkModifierType)((GdkModifierType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gconstpointer _ret = (gconstpointer)gtk_accelerator_get_accessible_label(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -45606,20 +44146,6 @@ SEXP R_gtk_css_parser_warning_quark(void) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_gtk_disable_portal_interfaces(SEXP s1) {
-  const char** v1 = (const char**)(get_ptr(s1)); (void)v1;
-  gtk_disable_portal_interfaces(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_disable_portals(void) {
-
-  gtk_disable_portals();
-  return R_NilValue;
 }
 
 

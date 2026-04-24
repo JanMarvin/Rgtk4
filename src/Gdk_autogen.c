@@ -403,159 +403,6 @@ SEXP R_gdk_clipboard_store_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gdk_color_state_equal(SEXP s1, SEXP s2) {
-  GdkColorState* v1 = (GdkColorState*)(get_ptr(s1)); (void)v1;
-  GdkColorState* v2 = (GdkColorState*)(get_ptr(s2)); (void)v2;
-  gboolean _ret = (gboolean)gdk_color_state_equal(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_color_state_equivalent(SEXP s1, SEXP s2) {
-  GdkColorState* v1 = (GdkColorState*)(get_ptr(s1)); (void)v1;
-  GdkColorState* v2 = (GdkColorState*)(get_ptr(s2)); (void)v2;
-  gboolean _ret = (gboolean)gdk_color_state_equivalent(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_color_state_ref(SEXP s1) {
-  GdkColorState* v1 = (GdkColorState*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_color_state_ref(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_color_state_unref(SEXP s1) {
-  GdkColorState* v1 = (GdkColorState*)(get_ptr(s1)); (void)v1;
-  gdk_color_state_unref(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_color_state_get_oklab(void) {
-
-  gconstpointer _ret = (gconstpointer)gdk_color_state_get_oklab();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_color_state_get_oklch(void) {
-
-  gconstpointer _ret = (gconstpointer)gdk_color_state_get_oklch();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_color_state_get_rec2100_linear(void) {
-
-  gconstpointer _ret = (gconstpointer)gdk_color_state_get_rec2100_linear();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_color_state_get_rec2100_pq(void) {
-
-  gconstpointer _ret = (gconstpointer)gdk_color_state_get_rec2100_pq();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_color_state_get_srgb(void) {
-
-  gconstpointer _ret = (gconstpointer)gdk_color_state_get_srgb();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_color_state_get_srgb_linear(void) {
-
-  gconstpointer _ret = (gconstpointer)gdk_color_state_get_srgb_linear();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_content_deserializer_get_cancellable(SEXP s1) {
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_deserializer_get_cancellable(v1);
@@ -813,22 +660,6 @@ SEXP R_gdk_content_formats_get_mime_types(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gsize"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("n_mime_types"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_content_formats_is_empty(SEXP s1) {
-  GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gdk_content_formats_is_empty(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
@@ -1452,25 +1283,6 @@ SEXP R_gdk_crossing_event_get_mode(SEXP s1) {
 }
 
 
-SEXP R_gdk_cursor_new_from_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GdkCursorGetTextureCallback v1 = (GdkCursorGetTextureCallback)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GDestroyNotify v3 = (GDestroyNotify)(get_ptr(s3)); (void)v3;
-  GdkCursor* v4 = (s4 != R_NilValue) ? (GdkCursor*)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)gdk_cursor_new_from_callback(v1, v2, v3, v4);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Cursor"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_cursor_new_from_name(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GdkCursor* v2 = (s2 != R_NilValue) ? (GdkCursor*)(get_ptr(s2)) : NULL; (void)v2;
@@ -1603,22 +1415,6 @@ SEXP R_gdk_dnd_event_get_drop(SEXP s1) {
 }
 
 
-SEXP R_gdk_device_get_active_layout_index(SEXP s1) {
-  GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
-  gint _ret = (gint)gdk_device_get_active_layout_index(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_device_get_caps_lock_state(SEXP s1) {
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_device_get_caps_lock_state(v1);
@@ -1691,22 +1487,6 @@ SEXP R_gdk_device_get_has_cursor(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_device_get_layout_names(SEXP s1) {
-  GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_device_get_layout_names(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_ret ? (const char*)_ret : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -2186,22 +1966,6 @@ SEXP R_gdk_display_get_default_seat(SEXP s1) {
 }
 
 
-SEXP R_gdk_display_get_dmabuf_formats(SEXP s1) {
-  GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_display_get_dmabuf_formats(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("DmabufFormats"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_display_get_monitor_at_surface(SEXP s1, SEXP s2) {
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   GdkSurface* v2 = (GdkSurface*)(get_ptr(s2)); (void)v2;
@@ -2478,22 +2242,6 @@ SEXP R_gdk_display_supports_input_shapes(SEXP s1) {
 }
 
 
-SEXP R_gdk_display_supports_shadow_width(SEXP s1) {
-  GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gdk_display_supports_shadow_width(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_display_sync(SEXP s1) {
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gdk_display_sync(v1);
@@ -2630,104 +2378,6 @@ SEXP R_gdk_dmabuf_error_quark(void) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_gdk_dmabuf_formats_contains(SEXP s1, SEXP s2, SEXP s3) {
-  GdkDmabufFormats* v1 = (GdkDmabufFormats*)(get_ptr(s1)); (void)v1;
-  guint32 v2 = (guint32)((guint32)INTEGER(s2)[0]); (void)v2;
-  guint64 v3 = (guint64)((guint64)REAL(s3)[0]); (void)v3;
-  gboolean _ret = (gboolean)gdk_dmabuf_formats_contains(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_dmabuf_formats_equal(SEXP s1, SEXP s2) {
-  const GdkDmabufFormats* v1 = (s1 != R_NilValue) ? (const GdkDmabufFormats*)(get_ptr(s1)) : NULL; (void)v1;
-  const GdkDmabufFormats* v2 = (s2 != R_NilValue) ? (const GdkDmabufFormats*)(get_ptr(s2)) : NULL; (void)v2;
-  gboolean _ret = (gboolean)gdk_dmabuf_formats_equal(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_dmabuf_formats_get_format(SEXP s1, SEXP s2) {
-  GdkDmabufFormats* v1 = (GdkDmabufFormats*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  guint32 _out_fourcc = 0; (void)_out_fourcc;
-  guint64 _out_modifier = 0; (void)_out_modifier;
-  gdk_dmabuf_formats_get_format(v1, v2, &_out_fourcc, &_out_modifier);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_fourcc)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint32"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("fourcc"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_modifier)));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint64"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("modifier"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_dmabuf_formats_get_n_formats(SEXP s1) {
-  GdkDmabufFormats* v1 = (GdkDmabufFormats*)(get_ptr(s1)); (void)v1;
-  gsize _ret = (gsize)gdk_dmabuf_formats_get_n_formats(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_dmabuf_formats_ref(SEXP s1) {
-  GdkDmabufFormats* v1 = (GdkDmabufFormats*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_dmabuf_formats_ref(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("DmabufFormats"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_dmabuf_formats_unref(SEXP s1) {
-  GdkDmabufFormats* v1 = (GdkDmabufFormats*)(get_ptr(s1)); (void)v1;
-  gdk_dmabuf_formats_unref(v1);
-  return R_NilValue;
 }
 
 
@@ -4198,22 +3848,6 @@ SEXP R_gdk_gl_texture_builder_build(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gdk_gl_texture_builder_get_color_state(SEXP s1) {
-  GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_gl_texture_builder_get_color_state(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_gl_texture_builder_get_context(SEXP s1) {
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_gl_texture_builder_get_context(v1);
@@ -4355,14 +3989,6 @@ SEXP R_gdk_gl_texture_builder_get_width(SEXP s1) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_gdk_gl_texture_builder_set_color_state(SEXP s1, SEXP s2) {
-  GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
-  GdkColorState* v2 = (GdkColorState*)(get_ptr(s2)); (void)v2;
-  gdk_gl_texture_builder_set_color_state(v1, v2);
-  return R_NilValue;
 }
 
 
@@ -4632,282 +4258,6 @@ SEXP R_gdk_memory_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 }
 
 
-SEXP R_gdk_memory_texture_builder_new(void) {
-
-  gconstpointer _ret = (gconstpointer)gdk_memory_texture_builder_new();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("MemoryTextureBuilder"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_build(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_memory_texture_builder_build(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Texture"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_bytes(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_memory_texture_builder_get_bytes(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Bytes"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_color_state(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_memory_texture_builder_get_color_state(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_format(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  GdkMemoryFormat _ret = (GdkMemoryFormat)gdk_memory_texture_builder_get_format(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "MemoryFormat"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("MemoryFormat"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_height(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  int _ret = (int)gdk_memory_texture_builder_get_height(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_offset(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gsize _ret = (gsize)gdk_memory_texture_builder_get_offset(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_stride(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gsize _ret = (gsize)gdk_memory_texture_builder_get_stride(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_stride_for_plane(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gsize _ret = (gsize)gdk_memory_texture_builder_get_stride_for_plane(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_update_region(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_memory_texture_builder_get_update_region(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("cairo.Region"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_update_texture(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_memory_texture_builder_get_update_texture(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Texture"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_get_width(SEXP s1) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  int _ret = (int)gdk_memory_texture_builder_get_width(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_bytes(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  GBytes* v2 = (s2 != R_NilValue) ? (GBytes*)(get_ptr(s2)) : NULL; (void)v2;
-  gdk_memory_texture_builder_set_bytes(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_color_state(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  GdkColorState* v2 = (GdkColorState*)(get_ptr(s2)); (void)v2;
-  gdk_memory_texture_builder_set_color_state(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_format(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  GdkMemoryFormat v2 = (GdkMemoryFormat)((GdkMemoryFormat)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gdk_memory_texture_builder_set_format(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_height(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gdk_memory_texture_builder_set_height(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_offset(SEXP s1, SEXP s2, SEXP s3) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gdk_memory_texture_builder_set_offset(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_stride(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gdk_memory_texture_builder_set_stride(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_stride_for_plane(SEXP s1, SEXP s2, SEXP s3) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gdk_memory_texture_builder_set_stride_for_plane(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_update_region(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  cairo_region_t* v2 = (s2 != R_NilValue) ? (cairo_region_t*)(get_ptr(s2)) : NULL; (void)v2;
-  gdk_memory_texture_builder_set_update_region(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_update_texture(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  GdkTexture* v2 = (s2 != R_NilValue) ? (GdkTexture*)(get_ptr(s2)) : NULL; (void)v2;
-  gdk_memory_texture_builder_set_update_texture(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_memory_texture_builder_set_width(SEXP s1, SEXP s2) {
-  GdkMemoryTextureBuilder* v1 = (GdkMemoryTextureBuilder*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gdk_memory_texture_builder_set_width(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_gdk_monitor_get_connector(SEXP s1) {
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_monitor_get_connector(v1);
@@ -5029,22 +4379,6 @@ SEXP R_gdk_monitor_get_refresh_rate(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_monitor_get_scale(SEXP s1) {
-  GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
-  double _ret = (double)gdk_monitor_get_scale(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -5943,22 +5277,6 @@ SEXP R_gdk_scroll_event_get_direction(SEXP s1) {
 }
 
 
-SEXP R_gdk_scroll_event_get_relative_direction(SEXP s1) {
-  GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
-  GdkScrollRelativeDirection _ret = (GdkScrollRelativeDirection)gdk_scroll_event_get_relative_direction(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "ScrollRelativeDirection"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ScrollRelativeDirection"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_scroll_event_get_unit(SEXP s1) {
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkScrollUnit _ret = (GdkScrollUnit)gdk_scroll_event_get_unit(v1);
@@ -6575,22 +5893,6 @@ SEXP R_gdk_texture_download(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gdk_texture_get_color_state(SEXP s1) {
-  GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_texture_get_color_state(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_texture_get_format(SEXP s1) {
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   GdkMemoryFormat _ret = (GdkMemoryFormat)gdk_texture_get_format(v1);
@@ -6759,34 +6061,6 @@ SEXP R_gdk_texture_downloader_download_bytes(SEXP s1) {
 }
 
 
-SEXP R_gdk_texture_downloader_download_bytes_with_planes(SEXP s1) {
-  const GdkTextureDownloader* v1 = (const GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
-  gsize _out_out_offsets = 0; (void)_out_out_offsets;
-  gsize _out_out_strides = 0; (void)_out_out_strides;
-  gconstpointer _ret = (gconstpointer)gdk_texture_downloader_download_bytes_with_planes(v1, &_out_out_offsets, &_out_out_strides);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Bytes"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_out_offsets)));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("out_offsets"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_out_strides)));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("out_strides"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_texture_downloader_download_into(SEXP s1, SEXP s2, SEXP s3) {
   const GdkTextureDownloader* v1 = (const GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   guchar* v2 = (guchar*)(get_ptr(s2)); (void)v2;
@@ -6800,22 +6074,6 @@ SEXP R_gdk_texture_downloader_free(SEXP s1) {
   GdkTextureDownloader* v1 = (GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   gdk_texture_downloader_free(v1);
   return R_NilValue;
-}
-
-
-SEXP R_gdk_texture_downloader_get_color_state(SEXP s1) {
-  const GdkTextureDownloader* v1 = (const GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)gdk_texture_downloader_get_color_state(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ColorState"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -6848,14 +6106,6 @@ SEXP R_gdk_texture_downloader_get_texture(SEXP s1) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_gdk_texture_downloader_set_color_state(SEXP s1, SEXP s2) {
-  GdkTextureDownloader* v1 = (GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
-  GdkColorState* v2 = (GdkColorState*)(get_ptr(s2)); (void)v2;
-  gdk_texture_downloader_set_color_state(v1, v2);
-  return R_NilValue;
 }
 
 
@@ -6921,38 +6171,6 @@ SEXP R_gdk_toplevel_focus(SEXP s1, SEXP s2) {
   guint32 v2 = (guint32)((guint32)INTEGER(s2)[0]); (void)v2;
   gdk_toplevel_focus(v1, v2);
   return R_NilValue;
-}
-
-
-SEXP R_gdk_toplevel_get_capabilities(SEXP s1) {
-  GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
-  GdkToplevelCapabilities _ret = (GdkToplevelCapabilities)gdk_toplevel_get_capabilities(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "ToplevelCapabilities"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("ToplevelCapabilities"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gdk_toplevel_get_gravity(SEXP s1) {
-  GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
-  GdkGravity _ret = (GdkGravity)gdk_toplevel_get_gravity(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "Gravity"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gravity"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -7039,14 +6257,6 @@ SEXP R_gdk_toplevel_set_deletable(SEXP s1, SEXP s2) {
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_toplevel_set_deletable(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gdk_toplevel_set_gravity(SEXP s1, SEXP s2) {
-  GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
-  GdkGravity v2 = (GdkGravity)((GdkGravity)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gdk_toplevel_set_gravity(v1, v2);
   return R_NilValue;
 }
 
