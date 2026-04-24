@@ -9634,24 +9634,6 @@ SEXP R_g_source_add_poll(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_source_add_unix_fd(SEXP s1, SEXP s2, SEXP s3) {
-  GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  GIOCondition v3 = (GIOCondition)((GIOCondition)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gpointer _ret = (gpointer)g_source_add_unix_fd(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_source_attach(SEXP s1, SEXP s2) {
   GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
   GMainContext* v2 = (s2 != R_NilValue) ? (GMainContext*)(get_ptr(s2)) : NULL; (void)v2;
@@ -9828,32 +9810,6 @@ SEXP R_g_source_is_destroyed(SEXP s1) {
 }
 
 
-SEXP R_g_source_modify_unix_fd(SEXP s1, SEXP s2, SEXP s3) {
-  GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
-  GIOCondition v3 = (GIOCondition)((GIOCondition)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  g_source_modify_unix_fd(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_g_source_query_unix_fd(SEXP s1, SEXP s2) {
-  GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
-  GIOCondition _ret = (GIOCondition)g_source_query_unix_fd(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "IOCondition"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("IOCondition"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_source_ref(SEXP s1) {
   GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_source_ref(v1);
@@ -9882,14 +9838,6 @@ SEXP R_g_source_remove_poll(SEXP s1, SEXP s2) {
   GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
   GPollFD* v2 = (GPollFD*)(get_ptr(s2)); (void)v2;
   g_source_remove_poll(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_g_source_remove_unix_fd(SEXP s1, SEXP s2) {
-  GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
-  g_source_remove_unix_fd(v1, v2);
   return R_NilValue;
 }
 

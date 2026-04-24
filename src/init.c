@@ -746,240 +746,9 @@ extern SEXP R_g_converter_input_stream_get_converter(SEXP s1);
 extern SEXP R_g_converter_output_stream_new(SEXP s1, SEXP s2);
 extern SEXP R_g_converter_output_stream_get_converter(SEXP s1);
 extern SEXP R_g_credentials_new(void);
-extern SEXP R_g_credentials_get_unix_pid(SEXP s1);
-extern SEXP R_g_credentials_get_unix_user(SEXP s1);
 extern SEXP R_g_credentials_is_same_user(SEXP s1, SEXP s2);
 extern SEXP R_g_credentials_set_native(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_credentials_set_unix_user(SEXP s1, SEXP s2);
 extern SEXP R_g_credentials_to_string(SEXP s1);
-extern SEXP R_g_dbus_action_group_get(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_annotation_info_ref(SEXP s1);
-extern SEXP R_g_dbus_annotation_info_unref(SEXP s1);
-extern SEXP R_g_dbus_annotation_info_lookup(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_arg_info_ref(SEXP s1);
-extern SEXP R_g_dbus_arg_info_unref(SEXP s1);
-extern SEXP R_g_dbus_auth_observer_new(void);
-extern SEXP R_g_dbus_auth_observer_allow_mechanism(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_auth_observer_authorize_authenticated_peer(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_connection_new_finish(SEXP s1);
-extern SEXP R_g_dbus_connection_new_for_address_finish(SEXP s1);
-extern SEXP R_g_dbus_connection_new_for_address_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_dbus_connection_new_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_dbus_connection_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_dbus_connection_new_for_address(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_dbus_connection_add_filter(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_dbus_connection_call(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12);
-extern SEXP R_g_dbus_connection_call_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_call_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
-extern SEXP R_g_dbus_connection_call_with_unix_fd_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12, SEXP s13);
-extern SEXP R_g_dbus_connection_call_with_unix_fd_list_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_call_with_unix_fd_list_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11);
-extern SEXP R_g_dbus_connection_close(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_dbus_connection_close_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_close_sync(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_emit_signal(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_dbus_connection_export_action_group(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_connection_export_menu_model(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_connection_flush(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_dbus_connection_flush_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_flush_sync(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_get_capabilities(SEXP s1);
-extern SEXP R_g_dbus_connection_get_exit_on_close(SEXP s1);
-extern SEXP R_g_dbus_connection_get_flags(SEXP s1);
-extern SEXP R_g_dbus_connection_get_guid(SEXP s1);
-extern SEXP R_g_dbus_connection_get_last_serial(SEXP s1);
-extern SEXP R_g_dbus_connection_get_peer_credentials(SEXP s1);
-extern SEXP R_g_dbus_connection_get_stream(SEXP s1);
-extern SEXP R_g_dbus_connection_get_unique_name(SEXP s1);
-extern SEXP R_g_dbus_connection_is_closed(SEXP s1);
-extern SEXP R_g_dbus_connection_register_object(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_dbus_connection_register_object_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_dbus_connection_register_object_with_closures2(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_dbus_connection_register_subtree(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_dbus_connection_remove_filter(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_send_message(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_connection_send_message_with_reply(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_dbus_connection_send_message_with_reply_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_send_message_with_reply_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_dbus_connection_set_exit_on_close(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_signal_subscribe(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
-extern SEXP R_g_dbus_connection_signal_unsubscribe(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_start_message_processing(SEXP s1);
-extern SEXP R_g_dbus_connection_unexport_action_group(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_unexport_menu_model(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_unregister_object(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_connection_unregister_subtree(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_error_encode_gerror(SEXP s1);
-extern SEXP R_g_dbus_error_get_remote_error(SEXP s1);
-extern SEXP R_g_dbus_error_is_remote_error(SEXP s1);
-extern SEXP R_g_dbus_error_new_for_dbus_error(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_error_quark(void);
-extern SEXP R_g_dbus_error_register_error(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_error_register_error_domain(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_error_strip_remote_error(SEXP s1);
-extern SEXP R_g_dbus_error_unregister_error(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_interface_dup_object(SEXP s1);
-extern SEXP R_g_dbus_interface_get_info(SEXP s1);
-extern SEXP R_g_dbus_interface_set_object(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_interface_info_cache_build(SEXP s1);
-extern SEXP R_g_dbus_interface_info_cache_release(SEXP s1);
-extern SEXP R_g_dbus_interface_info_generate_xml(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_interface_info_lookup_method(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_interface_info_lookup_property(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_interface_info_lookup_signal(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_interface_info_ref(SEXP s1);
-extern SEXP R_g_dbus_interface_info_unref(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_export(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_interface_skeleton_flush(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_get_connection(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_get_connections(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_get_flags(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_get_info(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_get_object_path(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_get_properties(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_get_vtable(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_has_connection(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_interface_skeleton_set_flags(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_interface_skeleton_unexport(SEXP s1);
-extern SEXP R_g_dbus_interface_skeleton_unexport_from_connection(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_menu_model_get(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_message_new(void);
-extern SEXP R_g_dbus_message_new_from_blob(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_message_new_method_call(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_dbus_message_new_signal(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_message_bytes_needed(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_copy(SEXP s1);
-extern SEXP R_g_dbus_message_get_arg0(SEXP s1);
-extern SEXP R_g_dbus_message_get_arg0_path(SEXP s1);
-extern SEXP R_g_dbus_message_get_body(SEXP s1);
-extern SEXP R_g_dbus_message_get_byte_order(SEXP s1);
-extern SEXP R_g_dbus_message_get_destination(SEXP s1);
-extern SEXP R_g_dbus_message_get_error_name(SEXP s1);
-extern SEXP R_g_dbus_message_get_flags(SEXP s1);
-extern SEXP R_g_dbus_message_get_header(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_get_header_fields(SEXP s1);
-extern SEXP R_g_dbus_message_get_interface(SEXP s1);
-extern SEXP R_g_dbus_message_get_locked(SEXP s1);
-extern SEXP R_g_dbus_message_get_member(SEXP s1);
-extern SEXP R_g_dbus_message_get_message_type(SEXP s1);
-extern SEXP R_g_dbus_message_get_num_unix_fds(SEXP s1);
-extern SEXP R_g_dbus_message_get_path(SEXP s1);
-extern SEXP R_g_dbus_message_get_reply_serial(SEXP s1);
-extern SEXP R_g_dbus_message_get_sender(SEXP s1);
-extern SEXP R_g_dbus_message_get_serial(SEXP s1);
-extern SEXP R_g_dbus_message_get_signature(SEXP s1);
-extern SEXP R_g_dbus_message_get_unix_fd_list(SEXP s1);
-extern SEXP R_g_dbus_message_lock(SEXP s1);
-extern SEXP R_g_dbus_message_new_method_error_literal(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_message_new_method_reply(SEXP s1);
-extern SEXP R_g_dbus_message_print(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_body(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_byte_order(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_destination(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_error_name(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_flags(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_header(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_message_set_interface(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_member(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_message_type(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_num_unix_fds(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_path(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_reply_serial(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_sender(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_serial(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_signature(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_set_unix_fd_list(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_to_blob(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_message_to_gerror(SEXP s1);
-extern SEXP R_g_dbus_method_info_ref(SEXP s1);
-extern SEXP R_g_dbus_method_info_unref(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_connection(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_interface_name(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_message(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_method_info(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_method_name(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_object_path(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_parameters(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_property_info(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_get_sender(SEXP s1);
-extern SEXP R_g_dbus_method_invocation_return_dbus_error(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_method_invocation_return_error_literal(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_dbus_method_invocation_return_gerror(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_method_invocation_return_value(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_method_invocation_return_value_with_unix_fd_list(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_node_info_new_for_xml(SEXP s1);
-extern SEXP R_g_dbus_node_info_generate_xml(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_node_info_lookup_interface(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_node_info_ref(SEXP s1);
-extern SEXP R_g_dbus_node_info_unref(SEXP s1);
-extern SEXP R_g_dbus_object_get_interface(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_get_interfaces(SEXP s1);
-extern SEXP R_g_dbus_object_get_object_path(SEXP s1);
-extern SEXP R_g_dbus_object_manager_get_interface(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_object_manager_get_object(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_manager_get_object_path(SEXP s1);
-extern SEXP R_g_dbus_object_manager_get_objects(SEXP s1);
-extern SEXP R_g_dbus_object_manager_client_new_finish(SEXP s1);
-extern SEXP R_g_dbus_object_manager_client_new_for_bus_finish(SEXP s1);
-extern SEXP R_g_dbus_object_manager_client_new_for_bus_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
-extern SEXP R_g_dbus_object_manager_client_new_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
-extern SEXP R_g_dbus_object_manager_client_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
-extern SEXP R_g_dbus_object_manager_client_new_for_bus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
-extern SEXP R_g_dbus_object_manager_client_get_connection(SEXP s1);
-extern SEXP R_g_dbus_object_manager_client_get_flags(SEXP s1);
-extern SEXP R_g_dbus_object_manager_client_get_name(SEXP s1);
-extern SEXP R_g_dbus_object_manager_client_get_name_owner(SEXP s1);
-extern SEXP R_g_dbus_object_manager_server_new(SEXP s1);
-extern SEXP R_g_dbus_object_manager_server_export(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_manager_server_export_uniquely(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_manager_server_get_connection(SEXP s1);
-extern SEXP R_g_dbus_object_manager_server_is_exported(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_manager_server_set_connection(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_manager_server_unexport(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_proxy_new(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_proxy_get_connection(SEXP s1);
-extern SEXP R_g_dbus_object_skeleton_new(SEXP s1);
-extern SEXP R_g_dbus_object_skeleton_add_interface(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_skeleton_flush(SEXP s1);
-extern SEXP R_g_dbus_object_skeleton_remove_interface(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_skeleton_remove_interface_by_name(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_object_skeleton_set_object_path(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_property_info_ref(SEXP s1);
-extern SEXP R_g_dbus_property_info_unref(SEXP s1);
-extern SEXP R_g_dbus_proxy_new_finish(SEXP s1);
-extern SEXP R_g_dbus_proxy_new_for_bus_finish(SEXP s1);
-extern SEXP R_g_dbus_proxy_new_for_bus_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_dbus_proxy_new_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_dbus_proxy_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
-extern SEXP R_g_dbus_proxy_new_for_bus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
-extern SEXP R_g_dbus_proxy_call(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
-extern SEXP R_g_dbus_proxy_call_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_proxy_call_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_dbus_proxy_call_with_unix_fd_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
-extern SEXP R_g_dbus_proxy_call_with_unix_fd_list_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_proxy_call_with_unix_fd_list_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_dbus_proxy_get_cached_property(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_proxy_get_cached_property_names(SEXP s1);
-extern SEXP R_g_dbus_proxy_get_connection(SEXP s1);
-extern SEXP R_g_dbus_proxy_get_default_timeout(SEXP s1);
-extern SEXP R_g_dbus_proxy_get_flags(SEXP s1);
-extern SEXP R_g_dbus_proxy_get_interface_info(SEXP s1);
-extern SEXP R_g_dbus_proxy_get_interface_name(SEXP s1);
-extern SEXP R_g_dbus_proxy_get_name(SEXP s1);
-extern SEXP R_g_dbus_proxy_get_name_owner(SEXP s1);
-extern SEXP R_g_dbus_proxy_get_object_path(SEXP s1);
-extern SEXP R_g_dbus_proxy_set_cached_property(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_dbus_proxy_set_default_timeout(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_proxy_set_interface_info(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_server_new_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_dbus_server_get_client_address(SEXP s1);
-extern SEXP R_g_dbus_server_get_flags(SEXP s1);
-extern SEXP R_g_dbus_server_get_guid(SEXP s1);
-extern SEXP R_g_dbus_server_is_active(SEXP s1);
-extern SEXP R_g_dbus_server_start(SEXP s1);
-extern SEXP R_g_dbus_server_stop(SEXP s1);
-extern SEXP R_g_dbus_signal_info_ref(SEXP s1);
-extern SEXP R_g_dbus_signal_info_unref(SEXP s1);
 extern SEXP R_g_data_input_stream_new(SEXP s1);
 extern SEXP R_g_data_input_stream_get_byte_order(SEXP s1);
 extern SEXP R_g_data_input_stream_get_newline_type(SEXP s1);
@@ -1927,47 +1696,6 @@ extern SEXP R_g_srv_target_get_weight(SEXP s1);
 extern SEXP R_g_static_resource_fini(SEXP s1);
 extern SEXP R_g_static_resource_get_resource(SEXP s1);
 extern SEXP R_g_static_resource_init(SEXP s1);
-extern SEXP R_g_subprocess_newv(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_communicate(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_subprocess_communicate_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_subprocess_communicate_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_communicate_utf8(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_subprocess_communicate_utf8_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_subprocess_communicate_utf8_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_force_exit(SEXP s1);
-extern SEXP R_g_subprocess_get_exit_status(SEXP s1);
-extern SEXP R_g_subprocess_get_identifier(SEXP s1);
-extern SEXP R_g_subprocess_get_if_exited(SEXP s1);
-extern SEXP R_g_subprocess_get_if_signaled(SEXP s1);
-extern SEXP R_g_subprocess_get_status(SEXP s1);
-extern SEXP R_g_subprocess_get_stderr_pipe(SEXP s1);
-extern SEXP R_g_subprocess_get_stdin_pipe(SEXP s1);
-extern SEXP R_g_subprocess_get_stdout_pipe(SEXP s1);
-extern SEXP R_g_subprocess_get_successful(SEXP s1);
-extern SEXP R_g_subprocess_get_term_sig(SEXP s1);
-extern SEXP R_g_subprocess_send_signal(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_wait(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_wait_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_subprocess_wait_check(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_wait_check_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_subprocess_wait_check_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_wait_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_new(SEXP s1);
-extern SEXP R_g_subprocess_launcher_close(SEXP s1);
-extern SEXP R_g_subprocess_launcher_getenv(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_set_cwd(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_set_environ(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_set_flags(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_set_stderr_file_path(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_set_stdin_file_path(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_set_stdout_file_path(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_setenv(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_subprocess_launcher_spawnv(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_take_fd(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_subprocess_launcher_take_stderr_fd(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_take_stdin_fd(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_take_stdout_fd(SEXP s1, SEXP s2);
-extern SEXP R_g_subprocess_launcher_unsetenv(SEXP s1, SEXP s2);
 extern SEXP R_g_task_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_task_is_valid(SEXP s1, SEXP s2);
 extern SEXP R_g_task_report_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
@@ -2092,25 +1820,6 @@ extern SEXP R_g_content_type_is_mime_type(SEXP s1, SEXP s2);
 extern SEXP R_g_content_type_is_unknown(SEXP s1);
 extern SEXP R_g_content_type_set_mime_dirs(SEXP s1);
 extern SEXP R_g_content_types_get_registered(void);
-extern SEXP R_g_dbus_address_escape_value(SEXP s1);
-extern SEXP R_g_dbus_address_get_for_bus_sync(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_address_get_stream(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_dbus_address_get_stream_finish(SEXP s1);
-extern SEXP R_g_dbus_address_get_stream_sync(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_escape_object_path(SEXP s1);
-extern SEXP R_g_dbus_escape_object_path_bytestring(SEXP s1);
-extern SEXP R_g_dbus_generate_guid(void);
-extern SEXP R_g_dbus_gvalue_to_gvariant(SEXP s1, SEXP s2);
-extern SEXP R_g_dbus_gvariant_to_gvalue(SEXP s1);
-extern SEXP R_g_dbus_is_address(SEXP s1);
-extern SEXP R_g_dbus_is_error_name(SEXP s1);
-extern SEXP R_g_dbus_is_guid(SEXP s1);
-extern SEXP R_g_dbus_is_interface_name(SEXP s1);
-extern SEXP R_g_dbus_is_member_name(SEXP s1);
-extern SEXP R_g_dbus_is_name(SEXP s1);
-extern SEXP R_g_dbus_is_supported_address(SEXP s1);
-extern SEXP R_g_dbus_is_unique_name(SEXP s1);
-extern SEXP R_g_dbus_unescape_object_path(SEXP s1);
 extern SEXP R_g_io_error_from_errno(SEXP s1);
 extern SEXP R_g_io_error_from_file_error(SEXP s1);
 extern SEXP R_g_io_error_quark(void);
@@ -2793,7 +2502,6 @@ extern SEXP R_g_sequence_iter_prev(SEXP s1);
 extern SEXP R_g_source_new(SEXP s1, SEXP s2);
 extern SEXP R_g_source_add_child_source(SEXP s1, SEXP s2);
 extern SEXP R_g_source_add_poll(SEXP s1, SEXP s2);
-extern SEXP R_g_source_add_unix_fd(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_source_attach(SEXP s1, SEXP s2);
 extern SEXP R_g_source_destroy(SEXP s1);
 extern SEXP R_g_source_dup_context(SEXP s1);
@@ -2806,12 +2514,9 @@ extern SEXP R_g_source_get_priority(SEXP s1);
 extern SEXP R_g_source_get_ready_time(SEXP s1);
 extern SEXP R_g_source_get_time(SEXP s1);
 extern SEXP R_g_source_is_destroyed(SEXP s1);
-extern SEXP R_g_source_modify_unix_fd(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_source_query_unix_fd(SEXP s1, SEXP s2);
 extern SEXP R_g_source_ref(SEXP s1);
 extern SEXP R_g_source_remove_child_source(SEXP s1, SEXP s2);
 extern SEXP R_g_source_remove_poll(SEXP s1, SEXP s2);
-extern SEXP R_g_source_remove_unix_fd(SEXP s1, SEXP s2);
 extern SEXP R_g_source_set_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_source_set_callback_indirect(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_source_set_can_recurse(SEXP s1, SEXP s2);
@@ -8114,240 +7819,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_converter_output_stream_new", (DL_FUNC) &R_g_converter_output_stream_new, 2},
     {"R_g_converter_output_stream_get_converter", (DL_FUNC) &R_g_converter_output_stream_get_converter, 1},
     {"R_g_credentials_new", (DL_FUNC) &R_g_credentials_new, 0},
-    {"R_g_credentials_get_unix_pid", (DL_FUNC) &R_g_credentials_get_unix_pid, 1},
-    {"R_g_credentials_get_unix_user", (DL_FUNC) &R_g_credentials_get_unix_user, 1},
     {"R_g_credentials_is_same_user", (DL_FUNC) &R_g_credentials_is_same_user, 2},
     {"R_g_credentials_set_native", (DL_FUNC) &R_g_credentials_set_native, 3},
-    {"R_g_credentials_set_unix_user", (DL_FUNC) &R_g_credentials_set_unix_user, 2},
     {"R_g_credentials_to_string", (DL_FUNC) &R_g_credentials_to_string, 1},
-    {"R_g_dbus_action_group_get", (DL_FUNC) &R_g_dbus_action_group_get, 3},
-    {"R_g_dbus_annotation_info_ref", (DL_FUNC) &R_g_dbus_annotation_info_ref, 1},
-    {"R_g_dbus_annotation_info_unref", (DL_FUNC) &R_g_dbus_annotation_info_unref, 1},
-    {"R_g_dbus_annotation_info_lookup", (DL_FUNC) &R_g_dbus_annotation_info_lookup, 2},
-    {"R_g_dbus_arg_info_ref", (DL_FUNC) &R_g_dbus_arg_info_ref, 1},
-    {"R_g_dbus_arg_info_unref", (DL_FUNC) &R_g_dbus_arg_info_unref, 1},
-    {"R_g_dbus_auth_observer_new", (DL_FUNC) &R_g_dbus_auth_observer_new, 0},
-    {"R_g_dbus_auth_observer_allow_mechanism", (DL_FUNC) &R_g_dbus_auth_observer_allow_mechanism, 2},
-    {"R_g_dbus_auth_observer_authorize_authenticated_peer", (DL_FUNC) &R_g_dbus_auth_observer_authorize_authenticated_peer, 3},
-    {"R_g_dbus_connection_new_finish", (DL_FUNC) &R_g_dbus_connection_new_finish, 1},
-    {"R_g_dbus_connection_new_for_address_finish", (DL_FUNC) &R_g_dbus_connection_new_for_address_finish, 1},
-    {"R_g_dbus_connection_new_for_address_sync", (DL_FUNC) &R_g_dbus_connection_new_for_address_sync, 4},
-    {"R_g_dbus_connection_new_sync", (DL_FUNC) &R_g_dbus_connection_new_sync, 5},
-    {"R_g_dbus_connection_new", (DL_FUNC) &R_g_dbus_connection_new, 7},
-    {"R_g_dbus_connection_new_for_address", (DL_FUNC) &R_g_dbus_connection_new_for_address, 6},
-    {"R_g_dbus_connection_add_filter", (DL_FUNC) &R_g_dbus_connection_add_filter, 4},
-    {"R_g_dbus_connection_call", (DL_FUNC) &R_g_dbus_connection_call, 12},
-    {"R_g_dbus_connection_call_finish", (DL_FUNC) &R_g_dbus_connection_call_finish, 2},
-    {"R_g_dbus_connection_call_sync", (DL_FUNC) &R_g_dbus_connection_call_sync, 10},
-    {"R_g_dbus_connection_call_with_unix_fd_list", (DL_FUNC) &R_g_dbus_connection_call_with_unix_fd_list, 13},
-    {"R_g_dbus_connection_call_with_unix_fd_list_finish", (DL_FUNC) &R_g_dbus_connection_call_with_unix_fd_list_finish, 2},
-    {"R_g_dbus_connection_call_with_unix_fd_list_sync", (DL_FUNC) &R_g_dbus_connection_call_with_unix_fd_list_sync, 11},
-    {"R_g_dbus_connection_close", (DL_FUNC) &R_g_dbus_connection_close, 4},
-    {"R_g_dbus_connection_close_finish", (DL_FUNC) &R_g_dbus_connection_close_finish, 2},
-    {"R_g_dbus_connection_close_sync", (DL_FUNC) &R_g_dbus_connection_close_sync, 2},
-    {"R_g_dbus_connection_emit_signal", (DL_FUNC) &R_g_dbus_connection_emit_signal, 6},
-    {"R_g_dbus_connection_export_action_group", (DL_FUNC) &R_g_dbus_connection_export_action_group, 3},
-    {"R_g_dbus_connection_export_menu_model", (DL_FUNC) &R_g_dbus_connection_export_menu_model, 3},
-    {"R_g_dbus_connection_flush", (DL_FUNC) &R_g_dbus_connection_flush, 4},
-    {"R_g_dbus_connection_flush_finish", (DL_FUNC) &R_g_dbus_connection_flush_finish, 2},
-    {"R_g_dbus_connection_flush_sync", (DL_FUNC) &R_g_dbus_connection_flush_sync, 2},
-    {"R_g_dbus_connection_get_capabilities", (DL_FUNC) &R_g_dbus_connection_get_capabilities, 1},
-    {"R_g_dbus_connection_get_exit_on_close", (DL_FUNC) &R_g_dbus_connection_get_exit_on_close, 1},
-    {"R_g_dbus_connection_get_flags", (DL_FUNC) &R_g_dbus_connection_get_flags, 1},
-    {"R_g_dbus_connection_get_guid", (DL_FUNC) &R_g_dbus_connection_get_guid, 1},
-    {"R_g_dbus_connection_get_last_serial", (DL_FUNC) &R_g_dbus_connection_get_last_serial, 1},
-    {"R_g_dbus_connection_get_peer_credentials", (DL_FUNC) &R_g_dbus_connection_get_peer_credentials, 1},
-    {"R_g_dbus_connection_get_stream", (DL_FUNC) &R_g_dbus_connection_get_stream, 1},
-    {"R_g_dbus_connection_get_unique_name", (DL_FUNC) &R_g_dbus_connection_get_unique_name, 1},
-    {"R_g_dbus_connection_is_closed", (DL_FUNC) &R_g_dbus_connection_is_closed, 1},
-    {"R_g_dbus_connection_register_object", (DL_FUNC) &R_g_dbus_connection_register_object, 6},
-    {"R_g_dbus_connection_register_object_with_closures", (DL_FUNC) &R_g_dbus_connection_register_object_with_closures, 6},
-    {"R_g_dbus_connection_register_object_with_closures2", (DL_FUNC) &R_g_dbus_connection_register_object_with_closures2, 6},
-    {"R_g_dbus_connection_register_subtree", (DL_FUNC) &R_g_dbus_connection_register_subtree, 6},
-    {"R_g_dbus_connection_remove_filter", (DL_FUNC) &R_g_dbus_connection_remove_filter, 2},
-    {"R_g_dbus_connection_send_message", (DL_FUNC) &R_g_dbus_connection_send_message, 3},
-    {"R_g_dbus_connection_send_message_with_reply", (DL_FUNC) &R_g_dbus_connection_send_message_with_reply, 7},
-    {"R_g_dbus_connection_send_message_with_reply_finish", (DL_FUNC) &R_g_dbus_connection_send_message_with_reply_finish, 2},
-    {"R_g_dbus_connection_send_message_with_reply_sync", (DL_FUNC) &R_g_dbus_connection_send_message_with_reply_sync, 5},
-    {"R_g_dbus_connection_set_exit_on_close", (DL_FUNC) &R_g_dbus_connection_set_exit_on_close, 2},
-    {"R_g_dbus_connection_signal_subscribe", (DL_FUNC) &R_g_dbus_connection_signal_subscribe, 10},
-    {"R_g_dbus_connection_signal_unsubscribe", (DL_FUNC) &R_g_dbus_connection_signal_unsubscribe, 2},
-    {"R_g_dbus_connection_start_message_processing", (DL_FUNC) &R_g_dbus_connection_start_message_processing, 1},
-    {"R_g_dbus_connection_unexport_action_group", (DL_FUNC) &R_g_dbus_connection_unexport_action_group, 2},
-    {"R_g_dbus_connection_unexport_menu_model", (DL_FUNC) &R_g_dbus_connection_unexport_menu_model, 2},
-    {"R_g_dbus_connection_unregister_object", (DL_FUNC) &R_g_dbus_connection_unregister_object, 2},
-    {"R_g_dbus_connection_unregister_subtree", (DL_FUNC) &R_g_dbus_connection_unregister_subtree, 2},
-    {"R_g_dbus_error_encode_gerror", (DL_FUNC) &R_g_dbus_error_encode_gerror, 1},
-    {"R_g_dbus_error_get_remote_error", (DL_FUNC) &R_g_dbus_error_get_remote_error, 1},
-    {"R_g_dbus_error_is_remote_error", (DL_FUNC) &R_g_dbus_error_is_remote_error, 1},
-    {"R_g_dbus_error_new_for_dbus_error", (DL_FUNC) &R_g_dbus_error_new_for_dbus_error, 2},
-    {"R_g_dbus_error_quark", (DL_FUNC) &R_g_dbus_error_quark, 0},
-    {"R_g_dbus_error_register_error", (DL_FUNC) &R_g_dbus_error_register_error, 3},
-    {"R_g_dbus_error_register_error_domain", (DL_FUNC) &R_g_dbus_error_register_error_domain, 3},
-    {"R_g_dbus_error_strip_remote_error", (DL_FUNC) &R_g_dbus_error_strip_remote_error, 1},
-    {"R_g_dbus_error_unregister_error", (DL_FUNC) &R_g_dbus_error_unregister_error, 3},
-    {"R_g_dbus_interface_dup_object", (DL_FUNC) &R_g_dbus_interface_dup_object, 1},
-    {"R_g_dbus_interface_get_info", (DL_FUNC) &R_g_dbus_interface_get_info, 1},
-    {"R_g_dbus_interface_set_object", (DL_FUNC) &R_g_dbus_interface_set_object, 2},
-    {"R_g_dbus_interface_info_cache_build", (DL_FUNC) &R_g_dbus_interface_info_cache_build, 1},
-    {"R_g_dbus_interface_info_cache_release", (DL_FUNC) &R_g_dbus_interface_info_cache_release, 1},
-    {"R_g_dbus_interface_info_generate_xml", (DL_FUNC) &R_g_dbus_interface_info_generate_xml, 3},
-    {"R_g_dbus_interface_info_lookup_method", (DL_FUNC) &R_g_dbus_interface_info_lookup_method, 2},
-    {"R_g_dbus_interface_info_lookup_property", (DL_FUNC) &R_g_dbus_interface_info_lookup_property, 2},
-    {"R_g_dbus_interface_info_lookup_signal", (DL_FUNC) &R_g_dbus_interface_info_lookup_signal, 2},
-    {"R_g_dbus_interface_info_ref", (DL_FUNC) &R_g_dbus_interface_info_ref, 1},
-    {"R_g_dbus_interface_info_unref", (DL_FUNC) &R_g_dbus_interface_info_unref, 1},
-    {"R_g_dbus_interface_skeleton_export", (DL_FUNC) &R_g_dbus_interface_skeleton_export, 3},
-    {"R_g_dbus_interface_skeleton_flush", (DL_FUNC) &R_g_dbus_interface_skeleton_flush, 1},
-    {"R_g_dbus_interface_skeleton_get_connection", (DL_FUNC) &R_g_dbus_interface_skeleton_get_connection, 1},
-    {"R_g_dbus_interface_skeleton_get_connections", (DL_FUNC) &R_g_dbus_interface_skeleton_get_connections, 1},
-    {"R_g_dbus_interface_skeleton_get_flags", (DL_FUNC) &R_g_dbus_interface_skeleton_get_flags, 1},
-    {"R_g_dbus_interface_skeleton_get_info", (DL_FUNC) &R_g_dbus_interface_skeleton_get_info, 1},
-    {"R_g_dbus_interface_skeleton_get_object_path", (DL_FUNC) &R_g_dbus_interface_skeleton_get_object_path, 1},
-    {"R_g_dbus_interface_skeleton_get_properties", (DL_FUNC) &R_g_dbus_interface_skeleton_get_properties, 1},
-    {"R_g_dbus_interface_skeleton_get_vtable", (DL_FUNC) &R_g_dbus_interface_skeleton_get_vtable, 1},
-    {"R_g_dbus_interface_skeleton_has_connection", (DL_FUNC) &R_g_dbus_interface_skeleton_has_connection, 2},
-    {"R_g_dbus_interface_skeleton_set_flags", (DL_FUNC) &R_g_dbus_interface_skeleton_set_flags, 2},
-    {"R_g_dbus_interface_skeleton_unexport", (DL_FUNC) &R_g_dbus_interface_skeleton_unexport, 1},
-    {"R_g_dbus_interface_skeleton_unexport_from_connection", (DL_FUNC) &R_g_dbus_interface_skeleton_unexport_from_connection, 2},
-    {"R_g_dbus_menu_model_get", (DL_FUNC) &R_g_dbus_menu_model_get, 3},
-    {"R_g_dbus_message_new", (DL_FUNC) &R_g_dbus_message_new, 0},
-    {"R_g_dbus_message_new_from_blob", (DL_FUNC) &R_g_dbus_message_new_from_blob, 3},
-    {"R_g_dbus_message_new_method_call", (DL_FUNC) &R_g_dbus_message_new_method_call, 4},
-    {"R_g_dbus_message_new_signal", (DL_FUNC) &R_g_dbus_message_new_signal, 3},
-    {"R_g_dbus_message_bytes_needed", (DL_FUNC) &R_g_dbus_message_bytes_needed, 2},
-    {"R_g_dbus_message_copy", (DL_FUNC) &R_g_dbus_message_copy, 1},
-    {"R_g_dbus_message_get_arg0", (DL_FUNC) &R_g_dbus_message_get_arg0, 1},
-    {"R_g_dbus_message_get_arg0_path", (DL_FUNC) &R_g_dbus_message_get_arg0_path, 1},
-    {"R_g_dbus_message_get_body", (DL_FUNC) &R_g_dbus_message_get_body, 1},
-    {"R_g_dbus_message_get_byte_order", (DL_FUNC) &R_g_dbus_message_get_byte_order, 1},
-    {"R_g_dbus_message_get_destination", (DL_FUNC) &R_g_dbus_message_get_destination, 1},
-    {"R_g_dbus_message_get_error_name", (DL_FUNC) &R_g_dbus_message_get_error_name, 1},
-    {"R_g_dbus_message_get_flags", (DL_FUNC) &R_g_dbus_message_get_flags, 1},
-    {"R_g_dbus_message_get_header", (DL_FUNC) &R_g_dbus_message_get_header, 2},
-    {"R_g_dbus_message_get_header_fields", (DL_FUNC) &R_g_dbus_message_get_header_fields, 1},
-    {"R_g_dbus_message_get_interface", (DL_FUNC) &R_g_dbus_message_get_interface, 1},
-    {"R_g_dbus_message_get_locked", (DL_FUNC) &R_g_dbus_message_get_locked, 1},
-    {"R_g_dbus_message_get_member", (DL_FUNC) &R_g_dbus_message_get_member, 1},
-    {"R_g_dbus_message_get_message_type", (DL_FUNC) &R_g_dbus_message_get_message_type, 1},
-    {"R_g_dbus_message_get_num_unix_fds", (DL_FUNC) &R_g_dbus_message_get_num_unix_fds, 1},
-    {"R_g_dbus_message_get_path", (DL_FUNC) &R_g_dbus_message_get_path, 1},
-    {"R_g_dbus_message_get_reply_serial", (DL_FUNC) &R_g_dbus_message_get_reply_serial, 1},
-    {"R_g_dbus_message_get_sender", (DL_FUNC) &R_g_dbus_message_get_sender, 1},
-    {"R_g_dbus_message_get_serial", (DL_FUNC) &R_g_dbus_message_get_serial, 1},
-    {"R_g_dbus_message_get_signature", (DL_FUNC) &R_g_dbus_message_get_signature, 1},
-    {"R_g_dbus_message_get_unix_fd_list", (DL_FUNC) &R_g_dbus_message_get_unix_fd_list, 1},
-    {"R_g_dbus_message_lock", (DL_FUNC) &R_g_dbus_message_lock, 1},
-    {"R_g_dbus_message_new_method_error_literal", (DL_FUNC) &R_g_dbus_message_new_method_error_literal, 3},
-    {"R_g_dbus_message_new_method_reply", (DL_FUNC) &R_g_dbus_message_new_method_reply, 1},
-    {"R_g_dbus_message_print", (DL_FUNC) &R_g_dbus_message_print, 2},
-    {"R_g_dbus_message_set_body", (DL_FUNC) &R_g_dbus_message_set_body, 2},
-    {"R_g_dbus_message_set_byte_order", (DL_FUNC) &R_g_dbus_message_set_byte_order, 2},
-    {"R_g_dbus_message_set_destination", (DL_FUNC) &R_g_dbus_message_set_destination, 2},
-    {"R_g_dbus_message_set_error_name", (DL_FUNC) &R_g_dbus_message_set_error_name, 2},
-    {"R_g_dbus_message_set_flags", (DL_FUNC) &R_g_dbus_message_set_flags, 2},
-    {"R_g_dbus_message_set_header", (DL_FUNC) &R_g_dbus_message_set_header, 3},
-    {"R_g_dbus_message_set_interface", (DL_FUNC) &R_g_dbus_message_set_interface, 2},
-    {"R_g_dbus_message_set_member", (DL_FUNC) &R_g_dbus_message_set_member, 2},
-    {"R_g_dbus_message_set_message_type", (DL_FUNC) &R_g_dbus_message_set_message_type, 2},
-    {"R_g_dbus_message_set_num_unix_fds", (DL_FUNC) &R_g_dbus_message_set_num_unix_fds, 2},
-    {"R_g_dbus_message_set_path", (DL_FUNC) &R_g_dbus_message_set_path, 2},
-    {"R_g_dbus_message_set_reply_serial", (DL_FUNC) &R_g_dbus_message_set_reply_serial, 2},
-    {"R_g_dbus_message_set_sender", (DL_FUNC) &R_g_dbus_message_set_sender, 2},
-    {"R_g_dbus_message_set_serial", (DL_FUNC) &R_g_dbus_message_set_serial, 2},
-    {"R_g_dbus_message_set_signature", (DL_FUNC) &R_g_dbus_message_set_signature, 2},
-    {"R_g_dbus_message_set_unix_fd_list", (DL_FUNC) &R_g_dbus_message_set_unix_fd_list, 2},
-    {"R_g_dbus_message_to_blob", (DL_FUNC) &R_g_dbus_message_to_blob, 2},
-    {"R_g_dbus_message_to_gerror", (DL_FUNC) &R_g_dbus_message_to_gerror, 1},
-    {"R_g_dbus_method_info_ref", (DL_FUNC) &R_g_dbus_method_info_ref, 1},
-    {"R_g_dbus_method_info_unref", (DL_FUNC) &R_g_dbus_method_info_unref, 1},
-    {"R_g_dbus_method_invocation_get_connection", (DL_FUNC) &R_g_dbus_method_invocation_get_connection, 1},
-    {"R_g_dbus_method_invocation_get_interface_name", (DL_FUNC) &R_g_dbus_method_invocation_get_interface_name, 1},
-    {"R_g_dbus_method_invocation_get_message", (DL_FUNC) &R_g_dbus_method_invocation_get_message, 1},
-    {"R_g_dbus_method_invocation_get_method_info", (DL_FUNC) &R_g_dbus_method_invocation_get_method_info, 1},
-    {"R_g_dbus_method_invocation_get_method_name", (DL_FUNC) &R_g_dbus_method_invocation_get_method_name, 1},
-    {"R_g_dbus_method_invocation_get_object_path", (DL_FUNC) &R_g_dbus_method_invocation_get_object_path, 1},
-    {"R_g_dbus_method_invocation_get_parameters", (DL_FUNC) &R_g_dbus_method_invocation_get_parameters, 1},
-    {"R_g_dbus_method_invocation_get_property_info", (DL_FUNC) &R_g_dbus_method_invocation_get_property_info, 1},
-    {"R_g_dbus_method_invocation_get_sender", (DL_FUNC) &R_g_dbus_method_invocation_get_sender, 1},
-    {"R_g_dbus_method_invocation_return_dbus_error", (DL_FUNC) &R_g_dbus_method_invocation_return_dbus_error, 3},
-    {"R_g_dbus_method_invocation_return_error_literal", (DL_FUNC) &R_g_dbus_method_invocation_return_error_literal, 4},
-    {"R_g_dbus_method_invocation_return_gerror", (DL_FUNC) &R_g_dbus_method_invocation_return_gerror, 2},
-    {"R_g_dbus_method_invocation_return_value", (DL_FUNC) &R_g_dbus_method_invocation_return_value, 2},
-    {"R_g_dbus_method_invocation_return_value_with_unix_fd_list", (DL_FUNC) &R_g_dbus_method_invocation_return_value_with_unix_fd_list, 3},
-    {"R_g_dbus_node_info_new_for_xml", (DL_FUNC) &R_g_dbus_node_info_new_for_xml, 1},
-    {"R_g_dbus_node_info_generate_xml", (DL_FUNC) &R_g_dbus_node_info_generate_xml, 3},
-    {"R_g_dbus_node_info_lookup_interface", (DL_FUNC) &R_g_dbus_node_info_lookup_interface, 2},
-    {"R_g_dbus_node_info_ref", (DL_FUNC) &R_g_dbus_node_info_ref, 1},
-    {"R_g_dbus_node_info_unref", (DL_FUNC) &R_g_dbus_node_info_unref, 1},
-    {"R_g_dbus_object_get_interface", (DL_FUNC) &R_g_dbus_object_get_interface, 2},
-    {"R_g_dbus_object_get_interfaces", (DL_FUNC) &R_g_dbus_object_get_interfaces, 1},
-    {"R_g_dbus_object_get_object_path", (DL_FUNC) &R_g_dbus_object_get_object_path, 1},
-    {"R_g_dbus_object_manager_get_interface", (DL_FUNC) &R_g_dbus_object_manager_get_interface, 3},
-    {"R_g_dbus_object_manager_get_object", (DL_FUNC) &R_g_dbus_object_manager_get_object, 2},
-    {"R_g_dbus_object_manager_get_object_path", (DL_FUNC) &R_g_dbus_object_manager_get_object_path, 1},
-    {"R_g_dbus_object_manager_get_objects", (DL_FUNC) &R_g_dbus_object_manager_get_objects, 1},
-    {"R_g_dbus_object_manager_client_new_finish", (DL_FUNC) &R_g_dbus_object_manager_client_new_finish, 1},
-    {"R_g_dbus_object_manager_client_new_for_bus_finish", (DL_FUNC) &R_g_dbus_object_manager_client_new_for_bus_finish, 1},
-    {"R_g_dbus_object_manager_client_new_for_bus_sync", (DL_FUNC) &R_g_dbus_object_manager_client_new_for_bus_sync, 8},
-    {"R_g_dbus_object_manager_client_new_sync", (DL_FUNC) &R_g_dbus_object_manager_client_new_sync, 8},
-    {"R_g_dbus_object_manager_client_new", (DL_FUNC) &R_g_dbus_object_manager_client_new, 10},
-    {"R_g_dbus_object_manager_client_new_for_bus", (DL_FUNC) &R_g_dbus_object_manager_client_new_for_bus, 10},
-    {"R_g_dbus_object_manager_client_get_connection", (DL_FUNC) &R_g_dbus_object_manager_client_get_connection, 1},
-    {"R_g_dbus_object_manager_client_get_flags", (DL_FUNC) &R_g_dbus_object_manager_client_get_flags, 1},
-    {"R_g_dbus_object_manager_client_get_name", (DL_FUNC) &R_g_dbus_object_manager_client_get_name, 1},
-    {"R_g_dbus_object_manager_client_get_name_owner", (DL_FUNC) &R_g_dbus_object_manager_client_get_name_owner, 1},
-    {"R_g_dbus_object_manager_server_new", (DL_FUNC) &R_g_dbus_object_manager_server_new, 1},
-    {"R_g_dbus_object_manager_server_export", (DL_FUNC) &R_g_dbus_object_manager_server_export, 2},
-    {"R_g_dbus_object_manager_server_export_uniquely", (DL_FUNC) &R_g_dbus_object_manager_server_export_uniquely, 2},
-    {"R_g_dbus_object_manager_server_get_connection", (DL_FUNC) &R_g_dbus_object_manager_server_get_connection, 1},
-    {"R_g_dbus_object_manager_server_is_exported", (DL_FUNC) &R_g_dbus_object_manager_server_is_exported, 2},
-    {"R_g_dbus_object_manager_server_set_connection", (DL_FUNC) &R_g_dbus_object_manager_server_set_connection, 2},
-    {"R_g_dbus_object_manager_server_unexport", (DL_FUNC) &R_g_dbus_object_manager_server_unexport, 2},
-    {"R_g_dbus_object_proxy_new", (DL_FUNC) &R_g_dbus_object_proxy_new, 2},
-    {"R_g_dbus_object_proxy_get_connection", (DL_FUNC) &R_g_dbus_object_proxy_get_connection, 1},
-    {"R_g_dbus_object_skeleton_new", (DL_FUNC) &R_g_dbus_object_skeleton_new, 1},
-    {"R_g_dbus_object_skeleton_add_interface", (DL_FUNC) &R_g_dbus_object_skeleton_add_interface, 2},
-    {"R_g_dbus_object_skeleton_flush", (DL_FUNC) &R_g_dbus_object_skeleton_flush, 1},
-    {"R_g_dbus_object_skeleton_remove_interface", (DL_FUNC) &R_g_dbus_object_skeleton_remove_interface, 2},
-    {"R_g_dbus_object_skeleton_remove_interface_by_name", (DL_FUNC) &R_g_dbus_object_skeleton_remove_interface_by_name, 2},
-    {"R_g_dbus_object_skeleton_set_object_path", (DL_FUNC) &R_g_dbus_object_skeleton_set_object_path, 2},
-    {"R_g_dbus_property_info_ref", (DL_FUNC) &R_g_dbus_property_info_ref, 1},
-    {"R_g_dbus_property_info_unref", (DL_FUNC) &R_g_dbus_property_info_unref, 1},
-    {"R_g_dbus_proxy_new_finish", (DL_FUNC) &R_g_dbus_proxy_new_finish, 1},
-    {"R_g_dbus_proxy_new_for_bus_finish", (DL_FUNC) &R_g_dbus_proxy_new_for_bus_finish, 1},
-    {"R_g_dbus_proxy_new_for_bus_sync", (DL_FUNC) &R_g_dbus_proxy_new_for_bus_sync, 7},
-    {"R_g_dbus_proxy_new_sync", (DL_FUNC) &R_g_dbus_proxy_new_sync, 7},
-    {"R_g_dbus_proxy_new", (DL_FUNC) &R_g_dbus_proxy_new, 9},
-    {"R_g_dbus_proxy_new_for_bus", (DL_FUNC) &R_g_dbus_proxy_new_for_bus, 9},
-    {"R_g_dbus_proxy_call", (DL_FUNC) &R_g_dbus_proxy_call, 8},
-    {"R_g_dbus_proxy_call_finish", (DL_FUNC) &R_g_dbus_proxy_call_finish, 2},
-    {"R_g_dbus_proxy_call_sync", (DL_FUNC) &R_g_dbus_proxy_call_sync, 6},
-    {"R_g_dbus_proxy_call_with_unix_fd_list", (DL_FUNC) &R_g_dbus_proxy_call_with_unix_fd_list, 9},
-    {"R_g_dbus_proxy_call_with_unix_fd_list_finish", (DL_FUNC) &R_g_dbus_proxy_call_with_unix_fd_list_finish, 2},
-    {"R_g_dbus_proxy_call_with_unix_fd_list_sync", (DL_FUNC) &R_g_dbus_proxy_call_with_unix_fd_list_sync, 7},
-    {"R_g_dbus_proxy_get_cached_property", (DL_FUNC) &R_g_dbus_proxy_get_cached_property, 2},
-    {"R_g_dbus_proxy_get_cached_property_names", (DL_FUNC) &R_g_dbus_proxy_get_cached_property_names, 1},
-    {"R_g_dbus_proxy_get_connection", (DL_FUNC) &R_g_dbus_proxy_get_connection, 1},
-    {"R_g_dbus_proxy_get_default_timeout", (DL_FUNC) &R_g_dbus_proxy_get_default_timeout, 1},
-    {"R_g_dbus_proxy_get_flags", (DL_FUNC) &R_g_dbus_proxy_get_flags, 1},
-    {"R_g_dbus_proxy_get_interface_info", (DL_FUNC) &R_g_dbus_proxy_get_interface_info, 1},
-    {"R_g_dbus_proxy_get_interface_name", (DL_FUNC) &R_g_dbus_proxy_get_interface_name, 1},
-    {"R_g_dbus_proxy_get_name", (DL_FUNC) &R_g_dbus_proxy_get_name, 1},
-    {"R_g_dbus_proxy_get_name_owner", (DL_FUNC) &R_g_dbus_proxy_get_name_owner, 1},
-    {"R_g_dbus_proxy_get_object_path", (DL_FUNC) &R_g_dbus_proxy_get_object_path, 1},
-    {"R_g_dbus_proxy_set_cached_property", (DL_FUNC) &R_g_dbus_proxy_set_cached_property, 3},
-    {"R_g_dbus_proxy_set_default_timeout", (DL_FUNC) &R_g_dbus_proxy_set_default_timeout, 2},
-    {"R_g_dbus_proxy_set_interface_info", (DL_FUNC) &R_g_dbus_proxy_set_interface_info, 2},
-    {"R_g_dbus_server_new_sync", (DL_FUNC) &R_g_dbus_server_new_sync, 5},
-    {"R_g_dbus_server_get_client_address", (DL_FUNC) &R_g_dbus_server_get_client_address, 1},
-    {"R_g_dbus_server_get_flags", (DL_FUNC) &R_g_dbus_server_get_flags, 1},
-    {"R_g_dbus_server_get_guid", (DL_FUNC) &R_g_dbus_server_get_guid, 1},
-    {"R_g_dbus_server_is_active", (DL_FUNC) &R_g_dbus_server_is_active, 1},
-    {"R_g_dbus_server_start", (DL_FUNC) &R_g_dbus_server_start, 1},
-    {"R_g_dbus_server_stop", (DL_FUNC) &R_g_dbus_server_stop, 1},
-    {"R_g_dbus_signal_info_ref", (DL_FUNC) &R_g_dbus_signal_info_ref, 1},
-    {"R_g_dbus_signal_info_unref", (DL_FUNC) &R_g_dbus_signal_info_unref, 1},
     {"R_g_data_input_stream_new", (DL_FUNC) &R_g_data_input_stream_new, 1},
     {"R_g_data_input_stream_get_byte_order", (DL_FUNC) &R_g_data_input_stream_get_byte_order, 1},
     {"R_g_data_input_stream_get_newline_type", (DL_FUNC) &R_g_data_input_stream_get_newline_type, 1},
@@ -9295,47 +8769,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_static_resource_fini", (DL_FUNC) &R_g_static_resource_fini, 1},
     {"R_g_static_resource_get_resource", (DL_FUNC) &R_g_static_resource_get_resource, 1},
     {"R_g_static_resource_init", (DL_FUNC) &R_g_static_resource_init, 1},
-    {"R_g_subprocess_newv", (DL_FUNC) &R_g_subprocess_newv, 2},
-    {"R_g_subprocess_communicate", (DL_FUNC) &R_g_subprocess_communicate, 3},
-    {"R_g_subprocess_communicate_async", (DL_FUNC) &R_g_subprocess_communicate_async, 5},
-    {"R_g_subprocess_communicate_finish", (DL_FUNC) &R_g_subprocess_communicate_finish, 2},
-    {"R_g_subprocess_communicate_utf8", (DL_FUNC) &R_g_subprocess_communicate_utf8, 3},
-    {"R_g_subprocess_communicate_utf8_async", (DL_FUNC) &R_g_subprocess_communicate_utf8_async, 5},
-    {"R_g_subprocess_communicate_utf8_finish", (DL_FUNC) &R_g_subprocess_communicate_utf8_finish, 2},
-    {"R_g_subprocess_force_exit", (DL_FUNC) &R_g_subprocess_force_exit, 1},
-    {"R_g_subprocess_get_exit_status", (DL_FUNC) &R_g_subprocess_get_exit_status, 1},
-    {"R_g_subprocess_get_identifier", (DL_FUNC) &R_g_subprocess_get_identifier, 1},
-    {"R_g_subprocess_get_if_exited", (DL_FUNC) &R_g_subprocess_get_if_exited, 1},
-    {"R_g_subprocess_get_if_signaled", (DL_FUNC) &R_g_subprocess_get_if_signaled, 1},
-    {"R_g_subprocess_get_status", (DL_FUNC) &R_g_subprocess_get_status, 1},
-    {"R_g_subprocess_get_stderr_pipe", (DL_FUNC) &R_g_subprocess_get_stderr_pipe, 1},
-    {"R_g_subprocess_get_stdin_pipe", (DL_FUNC) &R_g_subprocess_get_stdin_pipe, 1},
-    {"R_g_subprocess_get_stdout_pipe", (DL_FUNC) &R_g_subprocess_get_stdout_pipe, 1},
-    {"R_g_subprocess_get_successful", (DL_FUNC) &R_g_subprocess_get_successful, 1},
-    {"R_g_subprocess_get_term_sig", (DL_FUNC) &R_g_subprocess_get_term_sig, 1},
-    {"R_g_subprocess_send_signal", (DL_FUNC) &R_g_subprocess_send_signal, 2},
-    {"R_g_subprocess_wait", (DL_FUNC) &R_g_subprocess_wait, 2},
-    {"R_g_subprocess_wait_async", (DL_FUNC) &R_g_subprocess_wait_async, 4},
-    {"R_g_subprocess_wait_check", (DL_FUNC) &R_g_subprocess_wait_check, 2},
-    {"R_g_subprocess_wait_check_async", (DL_FUNC) &R_g_subprocess_wait_check_async, 4},
-    {"R_g_subprocess_wait_check_finish", (DL_FUNC) &R_g_subprocess_wait_check_finish, 2},
-    {"R_g_subprocess_wait_finish", (DL_FUNC) &R_g_subprocess_wait_finish, 2},
-    {"R_g_subprocess_launcher_new", (DL_FUNC) &R_g_subprocess_launcher_new, 1},
-    {"R_g_subprocess_launcher_close", (DL_FUNC) &R_g_subprocess_launcher_close, 1},
-    {"R_g_subprocess_launcher_getenv", (DL_FUNC) &R_g_subprocess_launcher_getenv, 2},
-    {"R_g_subprocess_launcher_set_cwd", (DL_FUNC) &R_g_subprocess_launcher_set_cwd, 2},
-    {"R_g_subprocess_launcher_set_environ", (DL_FUNC) &R_g_subprocess_launcher_set_environ, 2},
-    {"R_g_subprocess_launcher_set_flags", (DL_FUNC) &R_g_subprocess_launcher_set_flags, 2},
-    {"R_g_subprocess_launcher_set_stderr_file_path", (DL_FUNC) &R_g_subprocess_launcher_set_stderr_file_path, 2},
-    {"R_g_subprocess_launcher_set_stdin_file_path", (DL_FUNC) &R_g_subprocess_launcher_set_stdin_file_path, 2},
-    {"R_g_subprocess_launcher_set_stdout_file_path", (DL_FUNC) &R_g_subprocess_launcher_set_stdout_file_path, 2},
-    {"R_g_subprocess_launcher_setenv", (DL_FUNC) &R_g_subprocess_launcher_setenv, 4},
-    {"R_g_subprocess_launcher_spawnv", (DL_FUNC) &R_g_subprocess_launcher_spawnv, 2},
-    {"R_g_subprocess_launcher_take_fd", (DL_FUNC) &R_g_subprocess_launcher_take_fd, 3},
-    {"R_g_subprocess_launcher_take_stderr_fd", (DL_FUNC) &R_g_subprocess_launcher_take_stderr_fd, 2},
-    {"R_g_subprocess_launcher_take_stdin_fd", (DL_FUNC) &R_g_subprocess_launcher_take_stdin_fd, 2},
-    {"R_g_subprocess_launcher_take_stdout_fd", (DL_FUNC) &R_g_subprocess_launcher_take_stdout_fd, 2},
-    {"R_g_subprocess_launcher_unsetenv", (DL_FUNC) &R_g_subprocess_launcher_unsetenv, 2},
     {"R_g_task_new", (DL_FUNC) &R_g_task_new, 4},
     {"R_g_task_is_valid", (DL_FUNC) &R_g_task_is_valid, 2},
     {"R_g_task_report_error", (DL_FUNC) &R_g_task_report_error, 5},
@@ -9460,25 +8893,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_content_type_is_unknown", (DL_FUNC) &R_g_content_type_is_unknown, 1},
     {"R_g_content_type_set_mime_dirs", (DL_FUNC) &R_g_content_type_set_mime_dirs, 1},
     {"R_g_content_types_get_registered", (DL_FUNC) &R_g_content_types_get_registered, 0},
-    {"R_g_dbus_address_escape_value", (DL_FUNC) &R_g_dbus_address_escape_value, 1},
-    {"R_g_dbus_address_get_for_bus_sync", (DL_FUNC) &R_g_dbus_address_get_for_bus_sync, 2},
-    {"R_g_dbus_address_get_stream", (DL_FUNC) &R_g_dbus_address_get_stream, 4},
-    {"R_g_dbus_address_get_stream_finish", (DL_FUNC) &R_g_dbus_address_get_stream_finish, 1},
-    {"R_g_dbus_address_get_stream_sync", (DL_FUNC) &R_g_dbus_address_get_stream_sync, 2},
-    {"R_g_dbus_escape_object_path", (DL_FUNC) &R_g_dbus_escape_object_path, 1},
-    {"R_g_dbus_escape_object_path_bytestring", (DL_FUNC) &R_g_dbus_escape_object_path_bytestring, 1},
-    {"R_g_dbus_generate_guid", (DL_FUNC) &R_g_dbus_generate_guid, 0},
-    {"R_g_dbus_gvalue_to_gvariant", (DL_FUNC) &R_g_dbus_gvalue_to_gvariant, 2},
-    {"R_g_dbus_gvariant_to_gvalue", (DL_FUNC) &R_g_dbus_gvariant_to_gvalue, 1},
-    {"R_g_dbus_is_address", (DL_FUNC) &R_g_dbus_is_address, 1},
-    {"R_g_dbus_is_error_name", (DL_FUNC) &R_g_dbus_is_error_name, 1},
-    {"R_g_dbus_is_guid", (DL_FUNC) &R_g_dbus_is_guid, 1},
-    {"R_g_dbus_is_interface_name", (DL_FUNC) &R_g_dbus_is_interface_name, 1},
-    {"R_g_dbus_is_member_name", (DL_FUNC) &R_g_dbus_is_member_name, 1},
-    {"R_g_dbus_is_name", (DL_FUNC) &R_g_dbus_is_name, 1},
-    {"R_g_dbus_is_supported_address", (DL_FUNC) &R_g_dbus_is_supported_address, 1},
-    {"R_g_dbus_is_unique_name", (DL_FUNC) &R_g_dbus_is_unique_name, 1},
-    {"R_g_dbus_unescape_object_path", (DL_FUNC) &R_g_dbus_unescape_object_path, 1},
     {"R_g_io_error_from_errno", (DL_FUNC) &R_g_io_error_from_errno, 1},
     {"R_g_io_error_from_file_error", (DL_FUNC) &R_g_io_error_from_file_error, 1},
     {"R_g_io_error_quark", (DL_FUNC) &R_g_io_error_quark, 0},
@@ -10161,7 +9575,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_source_new", (DL_FUNC) &R_g_source_new, 2},
     {"R_g_source_add_child_source", (DL_FUNC) &R_g_source_add_child_source, 2},
     {"R_g_source_add_poll", (DL_FUNC) &R_g_source_add_poll, 2},
-    {"R_g_source_add_unix_fd", (DL_FUNC) &R_g_source_add_unix_fd, 3},
     {"R_g_source_attach", (DL_FUNC) &R_g_source_attach, 2},
     {"R_g_source_destroy", (DL_FUNC) &R_g_source_destroy, 1},
     {"R_g_source_dup_context", (DL_FUNC) &R_g_source_dup_context, 1},
@@ -10174,12 +9587,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_source_get_ready_time", (DL_FUNC) &R_g_source_get_ready_time, 1},
     {"R_g_source_get_time", (DL_FUNC) &R_g_source_get_time, 1},
     {"R_g_source_is_destroyed", (DL_FUNC) &R_g_source_is_destroyed, 1},
-    {"R_g_source_modify_unix_fd", (DL_FUNC) &R_g_source_modify_unix_fd, 3},
-    {"R_g_source_query_unix_fd", (DL_FUNC) &R_g_source_query_unix_fd, 2},
     {"R_g_source_ref", (DL_FUNC) &R_g_source_ref, 1},
     {"R_g_source_remove_child_source", (DL_FUNC) &R_g_source_remove_child_source, 2},
     {"R_g_source_remove_poll", (DL_FUNC) &R_g_source_remove_poll, 2},
-    {"R_g_source_remove_unix_fd", (DL_FUNC) &R_g_source_remove_unix_fd, 2},
     {"R_g_source_set_callback", (DL_FUNC) &R_g_source_set_callback, 4},
     {"R_g_source_set_callback_indirect", (DL_FUNC) &R_g_source_set_callback_indirect, 3},
     {"R_g_source_set_can_recurse", (DL_FUNC) &R_g_source_set_can_recurse, 2},
