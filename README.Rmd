@@ -1,5 +1,17 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # Rgtk4
 
@@ -7,58 +19,44 @@ Modern GTK4 bindings for R with comprehensive platform integration.
 
 ## Overview
 
-Rgtk4 provides complete, automatically-generated R bindings for GTK4,
-GLib, GObject, Gio, Pango, GdkPixbuf, and Cairo. Unlike traditional
-hand-written bindings, Rgtk4 uses GObject Introspection (GIR) to
-generate bindings directly from GTK’s metadata, ensuring complete API
-coverage and easy updates.
+Rgtk4 provides complete, automatically-generated R bindings for GTK4, GLib, GObject, Gio, Pango, GdkPixbuf, and Cairo. Unlike traditional hand-written bindings, Rgtk4 uses GObject Introspection (GIR) to generate bindings directly from GTK's metadata, ensuring complete API coverage and easy updates.
 
 ## Acknowledgments
 
-**This project builds on the pioneering work of the RGtk2 team**,
-particularly **Michael Lawrence**, whose original RGtk2 package
-demonstrated the viability of GTK bindings for R. Without RGtk2, Rgtk4
-would not exist.
+**This project builds on the pioneering work of the RGtk2 team**, particularly **Michael Lawrence**, whose original RGtk2 package demonstrated the viability of GTK bindings for R. Without RGtk2, Rgtk4 would not exist.
 
 ## Features
 
 - **Complete API Coverage**: Auto-generated from GIR files
-- **Meaningful Parameter Names**: Parameters use descriptive names from
-  GIR metadata
-- **Event Loop Integration**: Native R event loop integration for
-  responsive UIs
-- **macOS Integration**: Automatic dock icon management and native
-  shortcuts
-- **Clean Architecture**: Separate generator and package for
-  maintainability
+- **Meaningful Parameter Names**: Parameters use descriptive names from GIR metadata
+- **Event Loop Integration**: Native R event loop integration for responsive UIs
+- **macOS Integration**: Automatic dock icon management and native shortcuts
+- **Clean Architecture**: Separate generator and package for maintainability
 
 ## Installation
 
 ### Prerequisites
 
 #### Debian/Ubuntu
-
-``` bash
+```bash
 sudo apt-get update
 sudo apt-get install libgtk-4-dev gobject-introspection \
   libgirepository1.0-dev pkg-config r-base-dev
 ```
 
 #### Arch Linux
-
-``` bash
+```bash
 sudo pacman -S gtk4 gobject-introspection pkgconf r
 ```
 
 ### Building Rgtk4
 
-1.  **Generate Bindings** (RGirGen package)
+1. **Generate Bindings** (RGirGen package)
 
 This creates all auto-generated bindings in the Rgtk4 package.
 
-2.  **Build and Install Rgtk4**:
-
-``` r
+2. **Build and Install Rgtk4**:
+```r
 # From R
 install.packages("Rgtk4", repos = NULL, type = "source")
 
@@ -69,7 +67,7 @@ R CMD INSTALL Rgtk4_0.1.0.tar.gz
 
 ## Quick Start
 
-``` r
+```{r}
 library(Rgtk4)
 
 # Initialize GTK and start event loop
@@ -106,32 +104,28 @@ gtkWindowPresent(window)
 Rgtk4 uses a two-package architecture:
 
 ### RGirGen (Generator)
-
 - Parses GIR XML files from GObject Introspection
 - Generates C wrappers with proper type conversions
 - Generates R functions with meaningful parameter names
 - Filters platform-specific functions
 
 ### Rgtk4 (Package)
-
 - Contains all auto-generated bindings
-- Provides custom helpers (event loop, macOS integration, signal
-  handling)
+- Provides custom helpers (event loop, macOS integration, signal handling)
 - Includes utility functions
 
 ## Documentation
 
-- GTK4 Documentation: <https://docs.gtk.org/gtk4/>
-- GObject Introspection: <https://gi.readthedocs.io/>
+- GTK4 Documentation: https://docs.gtk.org/gtk4/
+- GObject Introspection: https://gi.readthedocs.io/
 
 ## Contributing
 
-Contributions welcome! The clean architecture makes it easy to add new
-helper functions or improve the generator.
+Contributions welcome! The clean architecture makes it easy to add new helper functions or improve the generator.
 
 ## License
 
-GPL-2 \| GPL-3 (following R and GTK licensing)
+GPL-2 | GPL-3 (following R and GTK licensing)
 
 ## Version
 
@@ -139,16 +133,14 @@ GPL-2 \| GPL-3 (following R and GTK licensing)
 
 ## System Requirements
 
-- R \>= 4.0.0
-- GTK4 \>= 4.0.0
-- GObject Introspection \>= 1.0.0
+- R >= 4.0.0
+- GTK4 >= 4.0.0
+- GObject Introspection >= 1.0.0
 
 ## Troubleshooting
 
-### “GTK not found” errors
-
-Ensure `pkg-config --modversion gtk4` returns a version number. If not,
-GTK4 is not properly installed or not in your PATH.
+### "GTK not found" errors
+Ensure `pkg-config --modversion gtk4` returns a version number. If not, GTK4 is not properly installed or not in your PATH.
 
 ## Credits
 
