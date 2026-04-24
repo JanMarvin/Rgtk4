@@ -3,6 +3,7 @@
 #include <R.h>
 #include <Rinternals.h>
 #include <gtk/gtk.h>
+#include <string.h>
 
 #ifndef G_OS_WIN32
 #include <R_ext/eventloop.h>

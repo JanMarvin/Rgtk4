@@ -4,6 +4,7 @@
 #include <Rinternals.h>
 #include <gio/gio.h>
 #include <gtk/gtk.h>
+#include <string.h>
 
 typedef struct { SEXP fun; } RClosure;
 

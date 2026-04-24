@@ -4,6 +4,7 @@
 #include <gtk/gtk.h>
 #include <glib.h>
 #include <stdint.h>
+#include <string.h>
 
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));

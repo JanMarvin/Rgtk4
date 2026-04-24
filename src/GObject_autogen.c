@@ -4,6 +4,7 @@
 #include <gtk/gtk.h>
 #include <glib.h>
 #include <stdint.h>
+#include <string.h>
 #include <glib-object.h>
 
 /* Safe pointer extraction with validation */

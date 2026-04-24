@@ -4,6 +4,7 @@
 #include <gtk/gtk.h>
 #include <glib.h>
 #include <stdint.h>
+#include <string.h>
 #include <gio/gio.h>
 #define G_SETTINGS_ENABLE_BACKEND
 #include <gio/gsettingsbackend.h>
