@@ -293,9 +293,8 @@ gtkWindowPresentAndProcess <- function(window) {
   invisible(NULL)
 }
 
-# varadic template function that is not generated
-#' @export
-gtkTextBufferCreateTag <- function(buffer, tag_name = NULL, ...) {
+# varadic template function that is not generated - internal use only
+.gtkTextBufferCreateTag <- function(buffer, tag_name = NULL, ...) {
   tag <- .Call("R_gtk_text_buffer_create_tag_simple", buffer, tag_name)
   if (is.null(tag)) return(NULL)
   props <- list(...)
@@ -307,8 +306,8 @@ gtkTextBufferCreateTag <- function(buffer, tag_name = NULL, ...) {
   tag
 }
 
-#' @export
-gObjectSetString <- function(s1, s2, s3) {
+# Internal helper for setting string properties
+.gObjectSetString <- function(s1, s2, s3) {
   .Call('R_g_object_set_string', s1, s2, s3)
 }
 
@@ -342,4 +341,26 @@ gtkMessageDialogNew <- function(parent, flags, message_type, buttons_type, messa
   }
 
   return(ptr)
+}
+
+#' Print method for GObject external pointers
+#' @param x External pointer with glib_type attribute
+#' @param ... Additional arguments (ignored)
+#' @export
+print.GObject <- function(x, ...) {
+  if (typeof(x) != "externalptr") {
+    NextMethod()
+    return(invisible(x))
+  }
+
+  classes <- class(x)
+  type_name <- classes[1]
+
+  addr <- .Call("R_extptr_address", x, PACKAGE = "Rgtk4")
+  if (!is.null(addr)) {
+    cat(sprintf("<%s %s>\n", type_name, addr))
+  } else {
+    cat(sprintf("<%s>\n", type_name))
+  }
+  invisible(x)
 }

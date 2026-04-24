@@ -7356,6 +7356,7 @@ extern SEXP R_gtk_hide_from_dock(void);
 extern SEXP R_gtk_window_track(SEXP s_window);
 extern SEXP R_gtk_main_iteration(void);
 extern SEXP R_gtk_main_iteration_do(SEXP s_blocking);
+extern SEXP R_extptr_address(SEXP s);
 extern SEXP R_gtk_window_add_close_shortcut(SEXP s_window);
 extern SEXP R_gtk_get_ui_state(SEXP s_widgets);
 extern SEXP R_gtk_string_list_new_from_vector(SEXP s_strings);
@@ -14719,6 +14720,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_window_track", (DL_FUNC) &R_gtk_window_track, 1},
     {"R_gtk_main_iteration", (DL_FUNC) &R_gtk_main_iteration, 0},
     {"R_gtk_main_iteration_do", (DL_FUNC) &R_gtk_main_iteration_do, 1},
+    {"R_extptr_address", (DL_FUNC) &R_extptr_address, 1},
     {"R_gtk_window_add_close_shortcut", (DL_FUNC) &R_gtk_window_add_close_shortcut, 1},
     {"R_gtk_get_ui_state", (DL_FUNC) &R_gtk_get_ui_state, 1},
     {"R_gtk_string_list_new_from_vector", (DL_FUNC) &R_gtk_string_list_new_from_vector, 1},

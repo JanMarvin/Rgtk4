@@ -55,14 +55,26 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
 
   // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
   if ((uintptr_t)obj < 0x1000) {
-    Rf_setAttrib(ptr, R_ClassSymbol, Rf_mkString(fallback_name));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
+    SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    Rf_setAttrib(ptr, R_ClassSymbol, classes);
+    UNPROTECT(1);
     return ptr;
   }
 
   if (G_IS_OBJECT(obj)) {
-    Rf_setAttrib(ptr, R_ClassSymbol, Rf_mkString(G_OBJECT_TYPE_NAME(obj)));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
+    SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    Rf_setAttrib(ptr, R_ClassSymbol, classes);
+    UNPROTECT(1);
   } else {
-    Rf_setAttrib(ptr, R_ClassSymbol, Rf_mkString(fallback_name));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
+    SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    Rf_setAttrib(ptr, R_ClassSymbol, classes);
+    UNPROTECT(1);
   }
   return ptr;
 }
@@ -71,6 +83,7 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
+#pragma GCC diagnostic ignored "-Wimplicit-enum-enum-cast"
 
 
 SEXP R_g_allocator_free(SEXP s1) {

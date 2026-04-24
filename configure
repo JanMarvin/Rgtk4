@@ -42,9 +42,6 @@ else
   fi
 fi
 
-# Add extra warnings suppressions for GTK4
-PKG_CFLAGS="${PKG_CFLAGS} -Wno-extra-semi -Wno-implicit-enum-enum-cast"
-
 # Write to src/Makevars
 sed -e "s|@cflags@|${PKG_CFLAGS}|" -e "s|@libs@|${PKG_LIBS}|" src/Makevars.in > src/Makevars
 

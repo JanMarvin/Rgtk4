@@ -48,6 +48,12 @@ SEXP make_gobject_ptr(gpointer obj) {
     }
     ptr = PROTECT(R_MakeExternalPtr(obj, R_NilValue, R_NilValue));
     R_RegisterCFinalizerEx(ptr, gobject_finalizer, TRUE);
+
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
+    SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    Rf_setAttrib(ptr, R_ClassSymbol, classes);
+    UNPROTECT(1);
   } else {
     ptr = PROTECT(R_MakeExternalPtr(obj, R_NilValue, R_NilValue));
   }
@@ -81,6 +87,18 @@ SEXP make_boxed_struct(const void *src, size_t size) {
   R_RegisterCFinalizerEx(ptr, boxed_struct_finalizer, TRUE);
   UNPROTECT(1);
   return ptr;
+}
+
+// Helper to get external pointer address as hex string
+SEXP R_extptr_address(SEXP s) {
+  if (TYPEOF(s) != EXTPTRSXP) {
+    return R_NilValue;
+  }
+
+  void *ptr = R_ExternalPtrAddr(s);
+  char buf[32];
+  snprintf(buf, sizeof(buf), "%p", ptr);
+  return Rf_mkString(buf);
 }
 
 // ============================================================================
