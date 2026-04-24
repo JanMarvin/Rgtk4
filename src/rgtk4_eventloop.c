@@ -41,6 +41,18 @@ static void _rgtk_macos_activate(void) {
 }
 #endif
 
+static inline void* get_ptr_internal(SEXP s, const char* func) {
+  if (s == R_NilValue) return NULL;
+
+  if (TYPEOF(s) != EXTPTRSXP) {
+    Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
+  }
+
+  return R_ExternalPtrAddr(s);
+}
+
+#define get_ptr(s) get_ptr_internal(s, __func__)
+
 #ifndef G_OS_WIN32
 // Unix/macOS event loop implementation
 static int _rgtk_ifd = -1, _rgtk_ofd = -1;
@@ -198,7 +210,6 @@ SEXP R_gtk_hide_from_dock(void) {
   return R_NilValue;
 }
 
-// Window untrack must come BEFORE window track since track references it
 static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) {
 #if defined(__APPLE__) && !defined(G_OS_WIN32)
   (void)window;
@@ -217,18 +228,17 @@ static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) {
 
 void R_gtk_window_untrack(SEXP s_window) {
 #if defined(__APPLE__) && !defined(G_OS_WIN32)
-  GtkWindow *window = (GtkWindow *)R_ExternalPtrAddr(s_window);
-  if (!window || !GTK_IS_WINDOW(window)) return;
+  GtkWindow *window = (GtkWindow*)get_ptr(s_window);
+  if (!window) return;
 
   _rgtk_window_untrack_cb(window, NULL);
 #endif
 }
 
-// Track window visibility for dock icon management
 SEXP R_gtk_window_track(SEXP s_window) {
 #if defined(__APPLE__) && !defined(G_OS_WIN32)
-  GtkWindow *window = (GtkWindow *)R_ExternalPtrAddr(s_window);
-  if (!window || !GTK_IS_WINDOW(window)) {
+  GtkWindow *window = (GtkWindow*)get_ptr(s_window);
+  if (!window) {
     Rf_error("Invalid GtkWindow pointer");
   }
 

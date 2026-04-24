@@ -7,6 +7,23 @@
 
 typedef struct { SEXP fun; } RClosure;
 
+static inline void* get_ptr_internal(SEXP s, const char* func) {
+  if (s == R_NilValue) return NULL;
+
+  if (TYPEOF(s) != EXTPTRSXP) {
+    Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
+  }
+
+  void* ptr = R_ExternalPtrAddr(s);
+  if (!ptr) {
+    Rf_error("%s: NULL pointer", func);
+  }
+
+  return ptr;
+}
+
+#define get_ptr(s) get_ptr_internal(s, __func__)
+
 // GTK signal callbacks receive the widget as first parameter
 static void _rgtk_r_callback(GtkWidget *widget, gpointer user_data) {
   RClosure *rc = (RClosure *)user_data;
@@ -80,24 +97,28 @@ static void _rgtk_r_callback_response(gpointer dialog, gint response_id, gpointe
 }
 
 SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
-  gpointer    obj = R_ExternalPtrAddr(s_obj);
+  gpointer obj = get_ptr(s_obj);
+
+  if (TYPEOF(s_signal) != STRSXP || LENGTH(s_signal) != 1) {
+    Rf_error("signal must be a single character string");
+  }
   const char *sig = CHAR(STRING_ELT(s_signal, 0));
 
-  RClosure   *rc  = g_new0(RClosure, 1);
-  rc->fun         = s_fun;
+  if (!Rf_isFunction(s_fun)) {
+    Rf_error("fun must be a function");
+  }
 
-  // Preserve the R function so GC doesn't collect it
+  RClosure *rc = g_new0(RClosure, 1);
+  rc->fun = s_fun;
+
   R_PreserveObject(s_fun);
 
   gulong id;
 
-  // Use different callback based on signal name
   if (strcmp(sig, "response") == 0) {
-    // "response" signal passes (dialog, response_id)
     id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_response),
                                rc, (GClosureNotify)_rgtk_r_closure_free, 0);
   } else {
-    // Default: single widget parameter
     id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback),
                                rc, (GClosureNotify)_rgtk_r_closure_free, 0);
   }
@@ -105,15 +126,21 @@ SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
   return Rf_ScalarReal((double)id);
 }
 
-// Signal connection for signals that return gboolean (like close-request)
 SEXP R_g_signal_connect_r_boolean(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
-  gpointer    obj = R_ExternalPtrAddr(s_obj);
+  gpointer obj = get_ptr(s_obj);
+
+  if (TYPEOF(s_signal) != STRSXP || LENGTH(s_signal) != 1) {
+    Rf_error("signal must be a single character string");
+  }
   const char *sig = CHAR(STRING_ELT(s_signal, 0));
 
-  RClosure   *rc  = g_new0(RClosure, 1);
-  rc->fun         = s_fun;
+  if (!Rf_isFunction(s_fun)) {
+    Rf_error("fun must be a function");
+  }
 
-  // Preserve the R function so GC doesn't collect it
+  RClosure *rc = g_new0(RClosure, 1);
+  rc->fun = s_fun;
+
   R_PreserveObject(s_fun);
 
   gulong id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_boolean),

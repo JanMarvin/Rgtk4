@@ -6,6 +6,17 @@
 #include <stdint.h>
 #include <glib-object.h>
 
+/* Safe pointer extraction with validation */
+static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
+static inline void* get_ptr_internal(SEXP s, const char* func) {
+  if (s == R_NilValue) return NULL;
+  if (TYPEOF(s) != EXTPTRSXP) {
+    Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
+  }
+  return R_ExternalPtrAddr(s);
+}
+#define get_ptr(s) get_ptr_internal(s, __func__)
+
 /* Finalizer for heap-allocated value structs */
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
@@ -55,7 +66,7 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
 
 
 SEXP R_g_binding_dup_source(SEXP s1) {
-  GBinding* v1 = (GBinding*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBinding* v1 = (GBinding*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_binding_dup_source(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -71,7 +82,7 @@ SEXP R_g_binding_dup_source(SEXP s1) {
 
 
 SEXP R_g_binding_dup_target(SEXP s1) {
-  GBinding* v1 = (GBinding*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBinding* v1 = (GBinding*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_binding_dup_target(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -87,7 +98,7 @@ SEXP R_g_binding_dup_target(SEXP s1) {
 
 
 SEXP R_g_binding_get_flags(SEXP s1) {
-  GBinding* v1 = (GBinding*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBinding* v1 = (GBinding*)(get_ptr(s1)); (void)v1;
   GBindingFlags _ret = (GBindingFlags)g_binding_get_flags(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -103,7 +114,7 @@ SEXP R_g_binding_get_flags(SEXP s1) {
 
 
 SEXP R_g_binding_get_source(SEXP s1) {
-  GBinding* v1 = (GBinding*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBinding* v1 = (GBinding*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_binding_get_source(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -119,7 +130,7 @@ SEXP R_g_binding_get_source(SEXP s1) {
 
 
 SEXP R_g_binding_get_source_property(SEXP s1) {
-  GBinding* v1 = (GBinding*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBinding* v1 = (GBinding*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_binding_get_source_property(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -135,7 +146,7 @@ SEXP R_g_binding_get_source_property(SEXP s1) {
 
 
 SEXP R_g_binding_get_target(SEXP s1) {
-  GBinding* v1 = (GBinding*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBinding* v1 = (GBinding*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_binding_get_target(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -151,7 +162,7 @@ SEXP R_g_binding_get_target(SEXP s1) {
 
 
 SEXP R_g_binding_get_target_property(SEXP s1) {
-  GBinding* v1 = (GBinding*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBinding* v1 = (GBinding*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_binding_get_target_property(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -167,7 +178,7 @@ SEXP R_g_binding_get_target_property(SEXP s1) {
 
 
 SEXP R_g_binding_unbind(SEXP s1) {
-  GBinding* v1 = (GBinding*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBinding* v1 = (GBinding*)(get_ptr(s1)); (void)v1;
   g_binding_unbind(v1);
   return R_NilValue;
 }
@@ -190,9 +201,9 @@ SEXP R_g_binding_group_new(void) {
 
 
 SEXP R_g_binding_group_bind(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GBindingGroup* v1 = (GBindingGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBindingGroup* v1 = (GBindingGroup*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gpointer v3 = (gpointer)(R_ExternalPtrAddr(s3)); (void)v3;
+  gpointer v3 = (gpointer)(get_ptr(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   GBindingFlags v5 = (GBindingFlags)((GBindingFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   g_binding_group_bind(v1, v2, v3, v4, v5);
@@ -201,35 +212,35 @@ SEXP R_g_binding_group_bind(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_g_binding_group_bind_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
-  GBindingGroup* v1 = (GBindingGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBindingGroup* v1 = (GBindingGroup*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gpointer v3 = (gpointer)(R_ExternalPtrAddr(s3)); (void)v3;
+  gpointer v3 = (gpointer)(get_ptr(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   GBindingFlags v5 = (GBindingFlags)((GBindingFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
-  GBindingTransformFunc v6 = (s6 != R_NilValue) ? (GBindingTransformFunc)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
-  GBindingTransformFunc v7 = (s7 != R_NilValue) ? (GBindingTransformFunc)(R_ExternalPtrAddr(s7)) : NULL; (void)v7;
-  gpointer v8 = (s8 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s8)) : NULL; (void)v8;
-  GDestroyNotify v9 = (GDestroyNotify)(R_ExternalPtrAddr(s9)); (void)v9;
+  GBindingTransformFunc v6 = (s6 != R_NilValue) ? (GBindingTransformFunc)(get_ptr(s6)) : NULL; (void)v6;
+  GBindingTransformFunc v7 = (s7 != R_NilValue) ? (GBindingTransformFunc)(get_ptr(s7)) : NULL; (void)v7;
+  gpointer v8 = (s8 != R_NilValue) ? (gpointer)(get_ptr(s8)) : NULL; (void)v8;
+  GDestroyNotify v9 = (GDestroyNotify)(get_ptr(s9)); (void)v9;
   g_binding_group_bind_full(v1, v2, v3, v4, v5, v6, v7, v8, v9);
   return R_NilValue;
 }
 
 
 SEXP R_g_binding_group_bind_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  GBindingGroup* v1 = (GBindingGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBindingGroup* v1 = (GBindingGroup*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gpointer v3 = (gpointer)(R_ExternalPtrAddr(s3)); (void)v3;
+  gpointer v3 = (gpointer)(get_ptr(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   GBindingFlags v5 = (GBindingFlags)((GBindingFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
-  GClosure* v6 = (s6 != R_NilValue) ? (GClosure*)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
-  GClosure* v7 = (s7 != R_NilValue) ? (GClosure*)(R_ExternalPtrAddr(s7)) : NULL; (void)v7;
+  GClosure* v6 = (s6 != R_NilValue) ? (GClosure*)(get_ptr(s6)) : NULL; (void)v6;
+  GClosure* v7 = (s7 != R_NilValue) ? (GClosure*)(get_ptr(s7)) : NULL; (void)v7;
   g_binding_group_bind_with_closures(v1, v2, v3, v4, v5, v6, v7);
   return R_NilValue;
 }
 
 
 SEXP R_g_binding_group_dup_source(SEXP s1) {
-  GBindingGroup* v1 = (GBindingGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GBindingGroup* v1 = (GBindingGroup*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_binding_group_dup_source(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -245,284 +256,284 @@ SEXP R_g_binding_group_dup_source(SEXP s1) {
 
 
 SEXP R_g_binding_group_set_source(SEXP s1, SEXP s2) {
-  GBindingGroup* v1 = (GBindingGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GBindingGroup* v1 = (GBindingGroup*)(get_ptr(s1)); (void)v1;
+  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_binding_group_set_source(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_BOOLEAN__BOXED_BOXED(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_BOOLEAN__BOXED_BOXED(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_BOOLEAN__FLAGS(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_BOOLEAN__FLAGS(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_STRING__OBJECT_POINTER(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_STRING__OBJECT_POINTER(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__BOOLEAN(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__BOOLEAN(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__BOXED(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__BOXED(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__CHAR(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__CHAR(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__DOUBLE(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__DOUBLE(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__ENUM(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__ENUM(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__FLAGS(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__FLAGS(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__FLOAT(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__FLOAT(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__INT(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__INT(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__LONG(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__LONG(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__OBJECT(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__OBJECT(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__PARAM(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__PARAM(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__POINTER(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__POINTER(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__STRING(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__STRING(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__UCHAR(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__UCHAR(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__UINT(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__UINT(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__UINT_POINTER(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__UINT_POINTER(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__ULONG(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__ULONG(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__VARIANT(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__VARIANT(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_VOID__VOID(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_VOID__VOID(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_g_cclosure_marshal_generic(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  const GValue* v4 = (const GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
+  const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
+  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_cclosure_marshal_generic(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -530,7 +541,7 @@ SEXP R_g_cclosure_marshal_generic(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
 
 SEXP R_g_closure_new_object(SEXP s1, SEXP s2) {
   guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
-  GObject* v2 = (GObject*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GObject* v2 = (GObject*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_closure_new_object(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -547,7 +558,7 @@ SEXP R_g_closure_new_object(SEXP s1, SEXP s2) {
 
 SEXP R_g_closure_new_simple(SEXP s1, SEXP s2) {
   guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   gconstpointer _ret = (gconstpointer)g_closure_new_simple(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -563,18 +574,18 @@ SEXP R_g_closure_new_simple(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_closure_invalidate(SEXP s1) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
   g_closure_invalidate(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_closure_invoke(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
   GValue _out_return_value = {0}; (void)_out_return_value;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  const GValue* v3 = (const GValue*)(R_ExternalPtrAddr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s4)) : NULL; (void)v4;
+  const GValue* v3 = (const GValue*)(get_ptr(s3)); (void)v3;
+  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   g_closure_invoke(v1, &_out_return_value, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -590,7 +601,7 @@ SEXP R_g_closure_invoke(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_g_closure_ref(SEXP s1) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_closure_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -606,14 +617,14 @@ SEXP R_g_closure_ref(SEXP s1) {
 
 
 SEXP R_g_closure_sink(SEXP s1) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
   g_closure_sink(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_closure_unref(SEXP s1) {
-  GClosure* v1 = (GClosure*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GClosure* v1 = (GClosure*)(get_ptr(s1)); (void)v1;
   g_closure_unref(v1);
   return R_NilValue;
 }
@@ -622,7 +633,7 @@ SEXP R_g_closure_unref(SEXP s1) {
 SEXP R_g_object_newv(SEXP s1, SEXP s2, SEXP s3) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  GParameter* v3 = (GParameter*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GParameter* v3 = (GParameter*)(get_ptr(s3)); (void)v3;
   gpointer _ret = (gpointer)g_object_newv(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -639,7 +650,7 @@ SEXP R_g_object_newv(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_object_compat_control(SEXP s1, SEXP s2) {
   gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   gsize _ret = (gsize)g_object_compat_control(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -655,7 +666,7 @@ SEXP R_g_object_compat_control(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_object_interface_find_property(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gconstpointer _ret = (gconstpointer)g_object_interface_find_property(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -672,15 +683,15 @@ SEXP R_g_object_interface_find_property(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_object_interface_install_property(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
-  GParamSpec* v2 = (GParamSpec*)(R_ExternalPtrAddr(s2)); (void)v2;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
+  GParamSpec* v2 = (GParamSpec*)(get_ptr(s2)); (void)v2;
   g_object_interface_install_property(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_interface_list_properties(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   guint _out_n_properties_p = 0; (void)_out_n_properties_p;
   gconstpointer _ret = (gconstpointer)g_object_interface_list_properties(v1, &_out_n_properties_p);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -702,9 +713,9 @@ SEXP R_g_object_interface_list_properties(SEXP s1) {
 
 
 SEXP R_g_object_bind_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gpointer v3 = (gpointer)(R_ExternalPtrAddr(s3)); (void)v3;
+  gpointer v3 = (gpointer)(get_ptr(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   GBindingFlags v5 = (GBindingFlags)((GBindingFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   gconstpointer _ret = (gconstpointer)g_object_bind_property(v1, v2, v3, v4, v5);
@@ -722,15 +733,15 @@ SEXP R_g_object_bind_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_g_object_bind_property_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gpointer v3 = (gpointer)(R_ExternalPtrAddr(s3)); (void)v3;
+  gpointer v3 = (gpointer)(get_ptr(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   GBindingFlags v5 = (GBindingFlags)((GBindingFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
-  GBindingTransformFunc v6 = (s6 != R_NilValue) ? (GBindingTransformFunc)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
-  GBindingTransformFunc v7 = (s7 != R_NilValue) ? (GBindingTransformFunc)(R_ExternalPtrAddr(s7)) : NULL; (void)v7;
-  gpointer v8 = (s8 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s8)) : NULL; (void)v8;
-  GDestroyNotify v9 = (s9 != R_NilValue) ? (GDestroyNotify)(R_ExternalPtrAddr(s9)) : NULL; (void)v9;
+  GBindingTransformFunc v6 = (s6 != R_NilValue) ? (GBindingTransformFunc)(get_ptr(s6)) : NULL; (void)v6;
+  GBindingTransformFunc v7 = (s7 != R_NilValue) ? (GBindingTransformFunc)(get_ptr(s7)) : NULL; (void)v7;
+  gpointer v8 = (s8 != R_NilValue) ? (gpointer)(get_ptr(s8)) : NULL; (void)v8;
+  GDestroyNotify v9 = (s9 != R_NilValue) ? (GDestroyNotify)(get_ptr(s9)) : NULL; (void)v9;
   gconstpointer _ret = (gconstpointer)g_object_bind_property_full(v1, v2, v3, v4, v5, v6, v7, v8, v9);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -746,13 +757,13 @@ SEXP R_g_object_bind_property_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
 
 
 SEXP R_g_object_bind_property_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gpointer v3 = (gpointer)(R_ExternalPtrAddr(s3)); (void)v3;
+  gpointer v3 = (gpointer)(get_ptr(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   GBindingFlags v5 = (GBindingFlags)((GBindingFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
-  GClosure* v6 = (GClosure*)(R_ExternalPtrAddr(s6)); (void)v6;
-  GClosure* v7 = (GClosure*)(R_ExternalPtrAddr(s7)); (void)v7;
+  GClosure* v6 = (GClosure*)(get_ptr(s6)); (void)v6;
+  GClosure* v7 = (GClosure*)(get_ptr(s7)); (void)v7;
   gconstpointer _ret = (gconstpointer)g_object_bind_property_with_closures(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -768,21 +779,21 @@ SEXP R_g_object_bind_property_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, 
 
 
 SEXP R_g_object_force_floating(SEXP s1) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   g_object_force_floating(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_freeze_notify(SEXP s1) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   g_object_freeze_notify(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_get_data(SEXP s1, SEXP s2) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gpointer _ret = (gpointer)g_object_get_data(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -799,16 +810,16 @@ SEXP R_g_object_get_data(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_object_get_property(SEXP s1, SEXP s2, SEXP s3) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GValue* v3 = (GValue*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GValue* v3 = (GValue*)(get_ptr(s3)); (void)v3;
   g_object_get_property(v1, v2, v3);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_get_qdata(SEXP s1, SEXP s2) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   GQuark v2 = (GQuark)((GQuark)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gpointer _ret = (gpointer)g_object_get_qdata(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -825,17 +836,17 @@ SEXP R_g_object_get_qdata(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_object_getv(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  const gchar** v3 = (const gchar**)(R_ExternalPtrAddr(s3)); (void)v3;
-  GValue* v4 = (GValue*)(R_ExternalPtrAddr(s4)); (void)v4;
+  const gchar** v3 = (const gchar**)(get_ptr(s3)); (void)v3;
+  GValue* v4 = (GValue*)(get_ptr(s4)); (void)v4;
   g_object_getv(v1, v2, v3, v4);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_is_floating(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)g_object_is_floating(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -851,7 +862,7 @@ SEXP R_g_object_is_floating(SEXP s1) {
 
 
 SEXP R_g_object_notify(SEXP s1, SEXP s2) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   g_object_notify(v1, v2);
   return R_NilValue;
@@ -859,15 +870,15 @@ SEXP R_g_object_notify(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_object_notify_by_pspec(SEXP s1, SEXP s2) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GParamSpec* v2 = (GParamSpec*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
+  GParamSpec* v2 = (GParamSpec*)(get_ptr(s2)); (void)v2;
   g_object_notify_by_pspec(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_ref(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_object_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -883,7 +894,7 @@ SEXP R_g_object_ref(SEXP s1) {
 
 
 SEXP R_g_object_ref_sink(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_object_ref_sink(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -899,32 +910,32 @@ SEXP R_g_object_ref_sink(SEXP s1) {
 
 
 SEXP R_g_object_run_dispose(SEXP s1) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   g_object_run_dispose(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_set_data(SEXP s1, SEXP s2, SEXP s3) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s3)) : NULL; (void)v3;
+  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
   g_object_set_data(v1, v2, v3);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_set_property(SEXP s1, SEXP s2, SEXP s3) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const GValue* v3 = (const GValue*)(R_ExternalPtrAddr(s3)); (void)v3;
+  const GValue* v3 = (const GValue*)(get_ptr(s3)); (void)v3;
   g_object_set_property(v1, v2, v3);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_steal_data(SEXP s1, SEXP s2) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gpointer _ret = (gpointer)g_object_steal_data(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -941,7 +952,7 @@ SEXP R_g_object_steal_data(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_object_steal_qdata(SEXP s1, SEXP s2) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   GQuark v2 = (GQuark)((GQuark)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gpointer _ret = (gpointer)g_object_steal_qdata(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -958,29 +969,29 @@ SEXP R_g_object_steal_qdata(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_object_thaw_notify(SEXP s1) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
   g_object_thaw_notify(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_unref(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   g_object_unref(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_watch_closure(SEXP s1, SEXP s2) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GClosure* v2 = (GClosure*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
+  GClosure* v2 = (GClosure*)(get_ptr(s2)); (void)v2;
   g_object_watch_closure(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_class_find_property(SEXP s1, SEXP s2) {
-  GObjectClass* v1 = (GObjectClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObjectClass* v1 = (GObjectClass*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gconstpointer _ret = (gconstpointer)g_object_class_find_property(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -997,25 +1008,25 @@ SEXP R_g_object_class_find_property(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_object_class_install_properties(SEXP s1, SEXP s2, SEXP s3) {
-  GObjectClass* v1 = (GObjectClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObjectClass* v1 = (GObjectClass*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  GParamSpec** v3 = (GParamSpec**)(R_ExternalPtrAddr(s3)); (void)v3;
+  GParamSpec** v3 = (GParamSpec**)(get_ptr(s3)); (void)v3;
   g_object_class_install_properties(v1, v2, v3);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_class_install_property(SEXP s1, SEXP s2, SEXP s3) {
-  GObjectClass* v1 = (GObjectClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObjectClass* v1 = (GObjectClass*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  GParamSpec* v3 = (GParamSpec*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GParamSpec* v3 = (GParamSpec*)(get_ptr(s3)); (void)v3;
   g_object_class_install_property(v1, v2, v3);
   return R_NilValue;
 }
 
 
 SEXP R_g_object_class_list_properties(SEXP s1) {
-  GObjectClass* v1 = (GObjectClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObjectClass* v1 = (GObjectClass*)(get_ptr(s1)); (void)v1;
   guint _out_n_properties = 0; (void)_out_n_properties;
   gconstpointer _ret = (gconstpointer)g_object_class_list_properties(v1, &_out_n_properties);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -1037,7 +1048,7 @@ SEXP R_g_object_class_list_properties(SEXP s1) {
 
 
 SEXP R_g_object_class_override_property(SEXP s1, SEXP s2, SEXP s3) {
-  GObjectClass* v1 = (GObjectClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GObjectClass* v1 = (GObjectClass*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   g_object_class_override_property(v1, v2, v3);
@@ -1062,7 +1073,7 @@ SEXP R_g_param_spec_is_valid_name(SEXP s1) {
 
 
 SEXP R_g_param_spec_get_blurb(SEXP s1) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_param_spec_get_blurb(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1078,7 +1089,7 @@ SEXP R_g_param_spec_get_blurb(SEXP s1) {
 
 
 SEXP R_g_param_spec_get_default_value(SEXP s1) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_param_spec_get_default_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1094,7 +1105,7 @@ SEXP R_g_param_spec_get_default_value(SEXP s1) {
 
 
 SEXP R_g_param_spec_get_name(SEXP s1) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_param_spec_get_name(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1110,7 +1121,7 @@ SEXP R_g_param_spec_get_name(SEXP s1) {
 
 
 SEXP R_g_param_spec_get_name_quark(SEXP s1) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   GQuark _ret = (GQuark)g_param_spec_get_name_quark(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1126,7 +1137,7 @@ SEXP R_g_param_spec_get_name_quark(SEXP s1) {
 
 
 SEXP R_g_param_spec_get_nick(SEXP s1) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_param_spec_get_nick(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1142,7 +1153,7 @@ SEXP R_g_param_spec_get_nick(SEXP s1) {
 
 
 SEXP R_g_param_spec_get_qdata(SEXP s1, SEXP s2) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   GQuark v2 = (GQuark)((GQuark)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gpointer _ret = (gpointer)g_param_spec_get_qdata(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1159,7 +1170,7 @@ SEXP R_g_param_spec_get_qdata(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_param_spec_get_redirect_target(SEXP s1) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_param_spec_get_redirect_target(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1175,23 +1186,23 @@ SEXP R_g_param_spec_get_redirect_target(SEXP s1) {
 
 
 SEXP R_g_param_spec_set_qdata(SEXP s1, SEXP s2, SEXP s3) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   GQuark v2 = (GQuark)((GQuark)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s3)) : NULL; (void)v3;
+  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
   g_param_spec_set_qdata(v1, v2, v3);
   return R_NilValue;
 }
 
 
 SEXP R_g_param_spec_sink(SEXP s1) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   g_param_spec_sink(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_param_spec_steal_qdata(SEXP s1, SEXP s2) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
   GQuark v2 = (GQuark)((GQuark)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gpointer _ret = (gpointer)g_param_spec_steal_qdata(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1208,15 +1219,15 @@ SEXP R_g_param_spec_steal_qdata(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_param_spec_pool_free(SEXP s1) {
-  GParamSpecPool* v1 = (GParamSpecPool*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpecPool* v1 = (GParamSpecPool*)(get_ptr(s1)); (void)v1;
   g_param_spec_pool_free(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_param_spec_pool_insert(SEXP s1, SEXP s2, SEXP s3) {
-  GParamSpecPool* v1 = (GParamSpecPool*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GParamSpec* v2 = (GParamSpec*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GParamSpecPool* v1 = (GParamSpecPool*)(get_ptr(s1)); (void)v1;
+  GParamSpec* v2 = (GParamSpec*)(get_ptr(s2)); (void)v2;
   GType v3 = (GType)((GType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : REAL(s3)[0])); (void)v3;
   g_param_spec_pool_insert(v1, v2, v3);
   return R_NilValue;
@@ -1224,7 +1235,7 @@ SEXP R_g_param_spec_pool_insert(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_param_spec_pool_list(SEXP s1, SEXP s2) {
-  GParamSpecPool* v1 = (GParamSpecPool*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpecPool* v1 = (GParamSpecPool*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   guint _out_n_pspecs_p = 0; (void)_out_n_pspecs_p;
   gconstpointer _ret = (gconstpointer)g_param_spec_pool_list(v1, v2, &_out_n_pspecs_p);
@@ -1247,7 +1258,7 @@ SEXP R_g_param_spec_pool_list(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_param_spec_pool_list_owned(SEXP s1, SEXP s2) {
-  GParamSpecPool* v1 = (GParamSpecPool*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpecPool* v1 = (GParamSpecPool*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)g_param_spec_pool_list_owned(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1264,7 +1275,7 @@ SEXP R_g_param_spec_pool_list_owned(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_param_spec_pool_lookup(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GParamSpecPool* v1 = (GParamSpecPool*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GParamSpecPool* v1 = (GParamSpecPool*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GType v3 = (GType)((GType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : REAL(s3)[0])); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
@@ -1283,8 +1294,8 @@ SEXP R_g_param_spec_pool_lookup(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_g_param_spec_pool_remove(SEXP s1, SEXP s2) {
-  GParamSpecPool* v1 = (GParamSpecPool*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GParamSpec* v2 = (GParamSpec*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GParamSpecPool* v1 = (GParamSpecPool*)(get_ptr(s1)); (void)v1;
+  GParamSpec* v2 = (GParamSpec*)(get_ptr(s2)); (void)v2;
   g_param_spec_pool_remove(v1, v2);
   return R_NilValue;
 }
@@ -1307,16 +1318,16 @@ SEXP R_g_signal_group_new(SEXP s1) {
 
 
 SEXP R_g_signal_group_block(SEXP s1) {
-  GSignalGroup* v1 = (GSignalGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GSignalGroup* v1 = (GSignalGroup*)(get_ptr(s1)); (void)v1;
   g_signal_group_block(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_signal_group_connect_closure(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GSignalGroup* v1 = (GSignalGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GSignalGroup* v1 = (GSignalGroup*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GClosure* v3 = (GClosure*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GClosure* v3 = (GClosure*)(get_ptr(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   g_signal_group_connect_closure(v1, v2, v3, v4);
   return R_NilValue;
@@ -1324,11 +1335,11 @@ SEXP R_g_signal_group_connect_closure(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_g_signal_group_connect_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GSignalGroup* v1 = (GSignalGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GSignalGroup* v1 = (GSignalGroup*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GCallback v3 = (GCallback)(R_ExternalPtrAddr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s4)) : NULL; (void)v4;
-  GClosureNotify v5 = (GClosureNotify)(R_ExternalPtrAddr(s5)); (void)v5;
+  GCallback v3 = (GCallback)(get_ptr(s3)); (void)v3;
+  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
+  GClosureNotify v5 = (GClosureNotify)(get_ptr(s5)); (void)v5;
   GConnectFlags v6 = (GConnectFlags)((GConnectFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
   g_signal_group_connect_data(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
@@ -1336,17 +1347,17 @@ SEXP R_g_signal_group_connect_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
 
 
 SEXP R_g_signal_group_connect_swapped(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GSignalGroup* v1 = (GSignalGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GSignalGroup* v1 = (GSignalGroup*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GCallback v3 = (GCallback)(R_ExternalPtrAddr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s4)) : NULL; (void)v4;
+  GCallback v3 = (GCallback)(get_ptr(s3)); (void)v3;
+  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   g_signal_group_connect_swapped(v1, v2, v3, v4);
   return R_NilValue;
 }
 
 
 SEXP R_g_signal_group_dup_target(SEXP s1) {
-  GSignalGroup* v1 = (GSignalGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GSignalGroup* v1 = (GSignalGroup*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_signal_group_dup_target(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1362,37 +1373,37 @@ SEXP R_g_signal_group_dup_target(SEXP s1) {
 
 
 SEXP R_g_signal_group_set_target(SEXP s1, SEXP s2) {
-  GSignalGroup* v1 = (GSignalGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GSignalGroup* v1 = (GSignalGroup*)(get_ptr(s1)); (void)v1;
+  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_signal_group_set_target(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_signal_group_unblock(SEXP s1) {
-  GSignalGroup* v1 = (GSignalGroup*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GSignalGroup* v1 = (GSignalGroup*)(get_ptr(s1)); (void)v1;
   g_signal_group_unblock(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_source_set_closure(SEXP s1, SEXP s2) {
-  GSource* v1 = (GSource*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GClosure* v2 = (GClosure*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
+  GClosure* v2 = (GClosure*)(get_ptr(s2)); (void)v2;
   g_source_set_closure(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_source_set_dummy_callback(SEXP s1) {
-  GSource* v1 = (GSource*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
   g_source_set_dummy_callback(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_type_class_add_private(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
   g_type_class_add_private(v1, v2);
   return R_NilValue;
@@ -1400,7 +1411,7 @@ SEXP R_g_type_class_add_private(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_type_class_get_private(SEXP s1, SEXP s2) {
-  GTypeClass* v1 = (GTypeClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeClass* v1 = (GTypeClass*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gpointer _ret = (gpointer)g_type_class_get_private(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1417,7 +1428,7 @@ SEXP R_g_type_class_get_private(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_type_class_peek_parent(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_type_class_peek_parent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1433,14 +1444,14 @@ SEXP R_g_type_class_peek_parent(SEXP s1) {
 
 
 SEXP R_g_type_class_unref(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   g_type_class_unref(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_type_class_adjust_private_offset(SEXP s1, SEXP s2) {
-  gpointer v1 = (s1 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s1)) : NULL; (void)v1;
+  gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
   gint* v2 = (gint*)((gint*)INTEGER(s2)); (void)v2;
   g_type_class_adjust_private_offset(v1, v2);
   return R_NilValue;
@@ -1512,7 +1523,7 @@ SEXP R_g_type_class_ref(SEXP s1) {
 
 
 SEXP R_g_type_instance_get_private(SEXP s1, SEXP s2) {
-  GTypeInstance* v1 = (GTypeInstance*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeInstance* v1 = (GTypeInstance*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gpointer _ret = (gpointer)g_type_instance_get_private(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1529,7 +1540,7 @@ SEXP R_g_type_instance_get_private(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_type_interface_peek_parent(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_type_interface_peek_parent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1586,7 +1597,7 @@ SEXP R_g_type_interface_instantiatable_prerequisite(SEXP s1) {
 
 
 SEXP R_g_type_interface_peek(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gpointer _ret = (gpointer)g_type_interface_peek(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1625,19 +1636,19 @@ SEXP R_g_type_interface_prerequisites(SEXP s1) {
 
 
 SEXP R_g_type_module_add_interface(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GTypeModule* v1 = (s1 != R_NilValue) ? (GTypeModule*)(R_ExternalPtrAddr(s1)) : NULL; (void)v1;
+  GTypeModule* v1 = (s1 != R_NilValue) ? (GTypeModule*)(get_ptr(s1)) : NULL; (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   GType v3 = (GType)((GType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : REAL(s3)[0])); (void)v3;
-  const GInterfaceInfo* v4 = (const GInterfaceInfo*)(R_ExternalPtrAddr(s4)); (void)v4;
+  const GInterfaceInfo* v4 = (const GInterfaceInfo*)(get_ptr(s4)); (void)v4;
   g_type_module_add_interface(v1, v2, v3, v4);
   return R_NilValue;
 }
 
 
 SEXP R_g_type_module_register_enum(SEXP s1, SEXP s2, SEXP s3) {
-  GTypeModule* v1 = (s1 != R_NilValue) ? (GTypeModule*)(R_ExternalPtrAddr(s1)) : NULL; (void)v1;
+  GTypeModule* v1 = (s1 != R_NilValue) ? (GTypeModule*)(get_ptr(s1)) : NULL; (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const GEnumValue* v3 = (const GEnumValue*)(R_ExternalPtrAddr(s3)); (void)v3;
+  const GEnumValue* v3 = (const GEnumValue*)(get_ptr(s3)); (void)v3;
   GType _ret = (GType)g_type_module_register_enum(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1653,9 +1664,9 @@ SEXP R_g_type_module_register_enum(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_type_module_register_flags(SEXP s1, SEXP s2, SEXP s3) {
-  GTypeModule* v1 = (s1 != R_NilValue) ? (GTypeModule*)(R_ExternalPtrAddr(s1)) : NULL; (void)v1;
+  GTypeModule* v1 = (s1 != R_NilValue) ? (GTypeModule*)(get_ptr(s1)) : NULL; (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const GFlagsValue* v3 = (const GFlagsValue*)(R_ExternalPtrAddr(s3)); (void)v3;
+  const GFlagsValue* v3 = (const GFlagsValue*)(get_ptr(s3)); (void)v3;
   GType _ret = (GType)g_type_module_register_flags(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1671,10 +1682,10 @@ SEXP R_g_type_module_register_flags(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_type_module_register_type(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GTypeModule* v1 = (s1 != R_NilValue) ? (GTypeModule*)(R_ExternalPtrAddr(s1)) : NULL; (void)v1;
+  GTypeModule* v1 = (s1 != R_NilValue) ? (GTypeModule*)(get_ptr(s1)) : NULL; (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  const GTypeInfo* v4 = (const GTypeInfo*)(R_ExternalPtrAddr(s4)); (void)v4;
+  const GTypeInfo* v4 = (const GTypeInfo*)(get_ptr(s4)); (void)v4;
   GTypeFlags v5 = (GTypeFlags)((GTypeFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   GType _ret = (GType)g_type_module_register_type(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1691,7 +1702,7 @@ SEXP R_g_type_module_register_type(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 
 
 SEXP R_g_type_module_set_name(SEXP s1, SEXP s2) {
-  GTypeModule* v1 = (GTypeModule*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeModule* v1 = (GTypeModule*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   g_type_module_set_name(v1, v2);
   return R_NilValue;
@@ -1699,14 +1710,14 @@ SEXP R_g_type_module_set_name(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_type_module_unuse(SEXP s1) {
-  GTypeModule* v1 = (GTypeModule*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeModule* v1 = (GTypeModule*)(get_ptr(s1)); (void)v1;
   g_type_module_unuse(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_type_module_use(SEXP s1) {
-  GTypeModule* v1 = (GTypeModule*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeModule* v1 = (GTypeModule*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)g_type_module_use(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1722,49 +1733,49 @@ SEXP R_g_type_module_use(SEXP s1) {
 
 
 SEXP R_g_type_plugin_complete_interface_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GTypePlugin* v1 = (GTypePlugin*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypePlugin* v1 = (GTypePlugin*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   GType v3 = (GType)((GType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : REAL(s3)[0])); (void)v3;
-  GInterfaceInfo* v4 = (GInterfaceInfo*)(R_ExternalPtrAddr(s4)); (void)v4;
+  GInterfaceInfo* v4 = (GInterfaceInfo*)(get_ptr(s4)); (void)v4;
   g_type_plugin_complete_interface_info(v1, v2, v3, v4);
   return R_NilValue;
 }
 
 
 SEXP R_g_type_plugin_complete_type_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GTypePlugin* v1 = (GTypePlugin*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypePlugin* v1 = (GTypePlugin*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
-  GTypeInfo* v3 = (GTypeInfo*)(R_ExternalPtrAddr(s3)); (void)v3;
-  GTypeValueTable* v4 = (GTypeValueTable*)(R_ExternalPtrAddr(s4)); (void)v4;
+  GTypeInfo* v3 = (GTypeInfo*)(get_ptr(s3)); (void)v3;
+  GTypeValueTable* v4 = (GTypeValueTable*)(get_ptr(s4)); (void)v4;
   g_type_plugin_complete_type_info(v1, v2, v3, v4);
   return R_NilValue;
 }
 
 
 SEXP R_g_type_plugin_unuse(SEXP s1) {
-  GTypePlugin* v1 = (GTypePlugin*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypePlugin* v1 = (GTypePlugin*)(get_ptr(s1)); (void)v1;
   g_type_plugin_unuse(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_type_plugin_use(SEXP s1) {
-  GTypePlugin* v1 = (GTypePlugin*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypePlugin* v1 = (GTypePlugin*)(get_ptr(s1)); (void)v1;
   g_type_plugin_use(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_copy(SEXP s1, SEXP s2) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   g_value_copy(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_dup_object(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_value_dup_object(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1780,7 +1791,7 @@ SEXP R_g_value_dup_object(SEXP s1) {
 
 
 SEXP R_g_value_dup_string(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_value_dup_string(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1796,7 +1807,7 @@ SEXP R_g_value_dup_string(SEXP s1) {
 
 
 SEXP R_g_value_dup_variant(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_value_dup_variant(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1812,7 +1823,7 @@ SEXP R_g_value_dup_variant(SEXP s1) {
 
 
 SEXP R_g_value_fits_pointer(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)g_value_fits_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1828,7 +1839,7 @@ SEXP R_g_value_fits_pointer(SEXP s1) {
 
 
 SEXP R_g_value_get_boolean(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)g_value_get_boolean(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1844,7 +1855,7 @@ SEXP R_g_value_get_boolean(SEXP s1) {
 
 
 SEXP R_g_value_get_boxed(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_value_get_boxed(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1860,7 +1871,7 @@ SEXP R_g_value_get_boxed(SEXP s1) {
 
 
 SEXP R_g_value_get_char(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gchar _ret = (gchar)g_value_get_char(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1876,7 +1887,7 @@ SEXP R_g_value_get_char(SEXP s1) {
 
 
 SEXP R_g_value_get_double(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gdouble _ret = (gdouble)g_value_get_double(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1892,7 +1903,7 @@ SEXP R_g_value_get_double(SEXP s1) {
 
 
 SEXP R_g_value_get_enum(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gint _ret = (gint)g_value_get_enum(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1908,7 +1919,7 @@ SEXP R_g_value_get_enum(SEXP s1) {
 
 
 SEXP R_g_value_get_flags(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)g_value_get_flags(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1924,7 +1935,7 @@ SEXP R_g_value_get_flags(SEXP s1) {
 
 
 SEXP R_g_value_get_float(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gfloat _ret = (gfloat)g_value_get_float(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1940,7 +1951,7 @@ SEXP R_g_value_get_float(SEXP s1) {
 
 
 SEXP R_g_value_get_gtype(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   GType _ret = (GType)g_value_get_gtype(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1956,7 +1967,7 @@ SEXP R_g_value_get_gtype(SEXP s1) {
 
 
 SEXP R_g_value_get_int(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gint _ret = (gint)g_value_get_int(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1972,7 +1983,7 @@ SEXP R_g_value_get_int(SEXP s1) {
 
 
 SEXP R_g_value_get_int64(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)g_value_get_int64(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1988,7 +1999,7 @@ SEXP R_g_value_get_int64(SEXP s1) {
 
 
 SEXP R_g_value_get_long(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   glong _ret = (glong)g_value_get_long(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2004,7 +2015,7 @@ SEXP R_g_value_get_long(SEXP s1) {
 
 
 SEXP R_g_value_get_object(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_value_get_object(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2020,7 +2031,7 @@ SEXP R_g_value_get_object(SEXP s1) {
 
 
 SEXP R_g_value_get_param(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_value_get_param(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2036,7 +2047,7 @@ SEXP R_g_value_get_param(SEXP s1) {
 
 
 SEXP R_g_value_get_pointer(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_value_get_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2052,7 +2063,7 @@ SEXP R_g_value_get_pointer(SEXP s1) {
 
 
 SEXP R_g_value_get_schar(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gint8 _ret = (gint8)g_value_get_schar(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2068,7 +2079,7 @@ SEXP R_g_value_get_schar(SEXP s1) {
 
 
 SEXP R_g_value_get_string(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_value_get_string(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2084,7 +2095,7 @@ SEXP R_g_value_get_string(SEXP s1) {
 
 
 SEXP R_g_value_get_uchar(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   guchar _ret = (guchar)g_value_get_uchar(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2100,7 +2111,7 @@ SEXP R_g_value_get_uchar(SEXP s1) {
 
 
 SEXP R_g_value_get_uint(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)g_value_get_uint(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2116,7 +2127,7 @@ SEXP R_g_value_get_uint(SEXP s1) {
 
 
 SEXP R_g_value_get_uint64(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   guint64 _ret = (guint64)g_value_get_uint64(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2132,7 +2143,7 @@ SEXP R_g_value_get_uint64(SEXP s1) {
 
 
 SEXP R_g_value_get_ulong(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gulong _ret = (gulong)g_value_get_ulong(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2148,7 +2159,7 @@ SEXP R_g_value_get_ulong(SEXP s1) {
 
 
 SEXP R_g_value_get_variant(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_value_get_variant(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2164,7 +2175,7 @@ SEXP R_g_value_get_variant(SEXP s1) {
 
 
 SEXP R_g_value_init(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)g_value_init(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2181,15 +2192,15 @@ SEXP R_g_value_init(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_init_from_instance(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gpointer v2 = (gpointer)(R_ExternalPtrAddr(s2)); (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
   g_value_init_from_instance(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_peek_pointer(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)g_value_peek_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2205,7 +2216,7 @@ SEXP R_g_value_peek_pointer(SEXP s1) {
 
 
 SEXP R_g_value_reset(SEXP s1) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_value_reset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2221,7 +2232,7 @@ SEXP R_g_value_reset(SEXP s1) {
 
 
 SEXP R_g_value_set_boolean(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   g_value_set_boolean(v1, v2);
   return R_NilValue;
@@ -2229,23 +2240,23 @@ SEXP R_g_value_set_boolean(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_boxed(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_value_set_boxed(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_set_boxed_take_ownership(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_value_set_boxed_take_ownership(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_set_char(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gchar v2 = (gchar)((gchar)INTEGER(s2)[0]); (void)v2;
   g_value_set_char(v1, v2);
   return R_NilValue;
@@ -2253,7 +2264,7 @@ SEXP R_g_value_set_char(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_double(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
   g_value_set_double(v1, v2);
   return R_NilValue;
@@ -2261,7 +2272,7 @@ SEXP R_g_value_set_double(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_enum(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
   g_value_set_enum(v1, v2);
   return R_NilValue;
@@ -2269,7 +2280,7 @@ SEXP R_g_value_set_enum(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_flags(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   g_value_set_flags(v1, v2);
   return R_NilValue;
@@ -2277,7 +2288,7 @@ SEXP R_g_value_set_flags(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_float(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
   g_value_set_float(v1, v2);
   return R_NilValue;
@@ -2285,7 +2296,7 @@ SEXP R_g_value_set_float(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_gtype(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   g_value_set_gtype(v1, v2);
   return R_NilValue;
@@ -2293,15 +2304,15 @@ SEXP R_g_value_set_gtype(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_instance(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_value_set_instance(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_set_int(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
   g_value_set_int(v1, v2);
   return R_NilValue;
@@ -2309,7 +2320,7 @@ SEXP R_g_value_set_int(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_int64(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
   g_value_set_int64(v1, v2);
   return R_NilValue;
@@ -2317,7 +2328,7 @@ SEXP R_g_value_set_int64(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_interned_string(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   g_value_set_interned_string(v1, v2);
   return R_NilValue;
@@ -2325,7 +2336,7 @@ SEXP R_g_value_set_interned_string(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_long(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
   g_value_set_long(v1, v2);
   return R_NilValue;
@@ -2333,31 +2344,31 @@ SEXP R_g_value_set_long(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_object(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_value_set_object(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_set_param(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GParamSpec* v2 = (s2 != R_NilValue) ? (GParamSpec*)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  GParamSpec* v2 = (s2 != R_NilValue) ? (GParamSpec*)(get_ptr(s2)) : NULL; (void)v2;
   g_value_set_param(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_set_pointer(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_value_set_pointer(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_set_schar(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gint8 v2 = (gint8)((gint8)INTEGER(s2)[0]); (void)v2;
   g_value_set_schar(v1, v2);
   return R_NilValue;
@@ -2365,15 +2376,15 @@ SEXP R_g_value_set_schar(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_static_boxed(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_value_set_static_boxed(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_set_static_string(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   g_value_set_static_string(v1, v2);
   return R_NilValue;
@@ -2381,7 +2392,7 @@ SEXP R_g_value_set_static_string(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_string(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   g_value_set_string(v1, v2);
   return R_NilValue;
@@ -2389,7 +2400,7 @@ SEXP R_g_value_set_string(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_string_take_ownership(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gchar* v2 = (s2 != R_NilValue) ? (gchar*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   g_value_set_string_take_ownership(v1, v2);
   return R_NilValue;
@@ -2397,7 +2408,7 @@ SEXP R_g_value_set_string_take_ownership(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_uchar(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   guint8 v2 = (guint8)((guint8)INTEGER(s2)[0]); (void)v2;
   g_value_set_uchar(v1, v2);
   return R_NilValue;
@@ -2405,7 +2416,7 @@ SEXP R_g_value_set_uchar(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_uint(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   g_value_set_uint(v1, v2);
   return R_NilValue;
@@ -2413,7 +2424,7 @@ SEXP R_g_value_set_uint(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_uint64(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   guint64 v2 = (guint64)((guint64)REAL(s2)[0]); (void)v2;
   g_value_set_uint64(v1, v2);
   return R_NilValue;
@@ -2421,7 +2432,7 @@ SEXP R_g_value_set_uint64(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_ulong(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gulong v2 = (gulong)((gulong)REAL(s2)[0]); (void)v2;
   g_value_set_ulong(v1, v2);
   return R_NilValue;
@@ -2429,15 +2440,15 @@ SEXP R_g_value_set_ulong(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_set_variant(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GVariant* v2 = (s2 != R_NilValue) ? (GVariant*)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  GVariant* v2 = (s2 != R_NilValue) ? (GVariant*)(get_ptr(s2)) : NULL; (void)v2;
   g_value_set_variant(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_steal_string(SEXP s1) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_value_steal_string(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2453,15 +2464,15 @@ SEXP R_g_value_steal_string(SEXP s1) {
 
 
 SEXP R_g_value_take_boxed(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_value_take_boxed(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_take_string(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   gchar* v2 = (s2 != R_NilValue) ? (gchar*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   g_value_take_string(v1, v2);
   return R_NilValue;
@@ -2469,16 +2480,16 @@ SEXP R_g_value_take_string(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_take_variant(SEXP s1, SEXP s2) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GVariant* v2 = (s2 != R_NilValue) ? (GVariant*)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
+  GVariant* v2 = (s2 != R_NilValue) ? (GVariant*)(get_ptr(s2)) : NULL; (void)v2;
   g_value_take_variant(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_value_transform(SEXP s1, SEXP s2) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)g_value_transform(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2494,7 +2505,7 @@ SEXP R_g_value_transform(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_unset(SEXP s1) {
-  GValue* v1 = (GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   g_value_unset(v1);
   return R_NilValue;
 }
@@ -2551,8 +2562,8 @@ SEXP R_g_value_array_new(SEXP s1) {
 
 
 SEXP R_g_value_array_append(SEXP s1, SEXP s2) {
-  GValueArray* v1 = (GValueArray*)(R_ExternalPtrAddr(s1)); (void)v1;
-  const GValue* v2 = (s2 != R_NilValue) ? (const GValue*)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValueArray* v1 = (GValueArray*)(get_ptr(s1)); (void)v1;
+  const GValue* v2 = (s2 != R_NilValue) ? (const GValue*)(get_ptr(s2)) : NULL; (void)v2;
   gconstpointer _ret = (gconstpointer)g_value_array_append(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2568,7 +2579,7 @@ SEXP R_g_value_array_append(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_array_copy(SEXP s1) {
-  const GValueArray* v1 = (const GValueArray*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValueArray* v1 = (const GValueArray*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_value_array_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2584,7 +2595,7 @@ SEXP R_g_value_array_copy(SEXP s1) {
 
 
 SEXP R_g_value_array_get_nth(SEXP s1, SEXP s2) {
-  GValueArray* v1 = (GValueArray*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValueArray* v1 = (GValueArray*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)g_value_array_get_nth(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2601,9 +2612,9 @@ SEXP R_g_value_array_get_nth(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_array_insert(SEXP s1, SEXP s2, SEXP s3) {
-  GValueArray* v1 = (GValueArray*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValueArray* v1 = (GValueArray*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  const GValue* v3 = (s3 != R_NilValue) ? (const GValue*)(R_ExternalPtrAddr(s3)) : NULL; (void)v3;
+  const GValue* v3 = (s3 != R_NilValue) ? (const GValue*)(get_ptr(s3)) : NULL; (void)v3;
   gconstpointer _ret = (gconstpointer)g_value_array_insert(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2619,8 +2630,8 @@ SEXP R_g_value_array_insert(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_value_array_prepend(SEXP s1, SEXP s2) {
-  GValueArray* v1 = (GValueArray*)(R_ExternalPtrAddr(s1)); (void)v1;
-  const GValue* v2 = (s2 != R_NilValue) ? (const GValue*)(R_ExternalPtrAddr(s2)) : NULL; (void)v2;
+  GValueArray* v1 = (GValueArray*)(get_ptr(s1)); (void)v1;
+  const GValue* v2 = (s2 != R_NilValue) ? (const GValue*)(get_ptr(s2)) : NULL; (void)v2;
   gconstpointer _ret = (gconstpointer)g_value_array_prepend(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2636,7 +2647,7 @@ SEXP R_g_value_array_prepend(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_array_remove(SEXP s1, SEXP s2) {
-  GValueArray* v1 = (GValueArray*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GValueArray* v1 = (GValueArray*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)g_value_array_remove(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2653,8 +2664,8 @@ SEXP R_g_value_array_remove(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_array_sort(SEXP s1, SEXP s2) {
-  GValueArray* v1 = (GValueArray*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GCompareFunc v2 = (GCompareFunc)(R_ExternalPtrAddr(s2)); (void)v2;
+  GValueArray* v1 = (GValueArray*)(get_ptr(s1)); (void)v1;
+  GCompareFunc v2 = (GCompareFunc)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_value_array_sort(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2670,9 +2681,9 @@ SEXP R_g_value_array_sort(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_value_array_sort_with_data(SEXP s1, SEXP s2, SEXP s3) {
-  GValueArray* v1 = (GValueArray*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GCompareDataFunc v2 = (GCompareDataFunc)(R_ExternalPtrAddr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s3)) : NULL; (void)v3;
+  GValueArray* v1 = (GValueArray*)(get_ptr(s1)); (void)v1;
+  GCompareDataFunc v2 = (GCompareDataFunc)(get_ptr(s2)); (void)v2;
+  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
   gconstpointer _ret = (gconstpointer)g_value_array_sort_with_data(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2689,7 +2700,7 @@ SEXP R_g_value_array_sort_with_data(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_boxed_copy(SEXP s1, SEXP s2) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
-  gconstpointer v2 = (gconstpointer)(R_ExternalPtrAddr(s2)); (void)v2;
+  gconstpointer v2 = (gconstpointer)(get_ptr(s2)); (void)v2;
   gpointer _ret = (gpointer)g_boxed_copy(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2706,7 +2717,7 @@ SEXP R_g_boxed_copy(SEXP s1, SEXP s2) {
 
 SEXP R_g_boxed_free(SEXP s1, SEXP s2) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
-  gpointer v2 = (gpointer)(R_ExternalPtrAddr(s2)); (void)v2;
+  gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
   g_boxed_free(v1, v2);
   return R_NilValue;
 }
@@ -2714,8 +2725,8 @@ SEXP R_g_boxed_free(SEXP s1, SEXP s2) {
 
 SEXP R_g_boxed_type_register_static(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  GBoxedCopyFunc v2 = (GBoxedCopyFunc)(R_ExternalPtrAddr(s2)); (void)v2;
-  GBoxedFreeFunc v3 = (GBoxedFreeFunc)(R_ExternalPtrAddr(s3)); (void)v3;
+  GBoxedCopyFunc v2 = (GBoxedCopyFunc)(get_ptr(s2)); (void)v2;
+  GBoxedFreeFunc v3 = (GBoxedFreeFunc)(get_ptr(s3)); (void)v3;
   GType _ret = (GType)g_boxed_type_register_static(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2731,8 +2742,8 @@ SEXP R_g_boxed_type_register_static(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_clear_signal_handler(SEXP s1, SEXP s2) {
-  gulong* v1 = (gulong*)(R_ExternalPtrAddr(s1)); (void)v1;
-  gpointer v2 = (gpointer)(R_ExternalPtrAddr(s2)); (void)v2;
+  gulong* v1 = (gulong*)(get_ptr(s1)); (void)v1;
+  gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
   g_clear_signal_handler(v1, v2);
   return R_NilValue;
 }
@@ -2741,7 +2752,7 @@ SEXP R_g_clear_signal_handler(SEXP s1, SEXP s2) {
 SEXP R_g_enum_complete_type_info(SEXP s1, SEXP s2) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   GTypeInfo _out_info = {0}; (void)_out_info;
-  const GEnumValue* v2 = (const GEnumValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  const GEnumValue* v2 = (const GEnumValue*)(get_ptr(s2)); (void)v2;
   g_enum_complete_type_info(v1, &_out_info, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2757,7 +2768,7 @@ SEXP R_g_enum_complete_type_info(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_enum_get_value(SEXP s1, SEXP s2) {
-  GEnumClass* v1 = (GEnumClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GEnumClass* v1 = (GEnumClass*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)g_enum_get_value(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2774,7 +2785,7 @@ SEXP R_g_enum_get_value(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_enum_get_value_by_name(SEXP s1, SEXP s2) {
-  GEnumClass* v1 = (GEnumClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GEnumClass* v1 = (GEnumClass*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gconstpointer _ret = (gconstpointer)g_enum_get_value_by_name(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2791,7 +2802,7 @@ SEXP R_g_enum_get_value_by_name(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_enum_get_value_by_nick(SEXP s1, SEXP s2) {
-  GEnumClass* v1 = (GEnumClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GEnumClass* v1 = (GEnumClass*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gconstpointer _ret = (gconstpointer)g_enum_get_value_by_nick(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2809,7 +2820,7 @@ SEXP R_g_enum_get_value_by_nick(SEXP s1, SEXP s2) {
 
 SEXP R_g_enum_register_static(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  const GEnumValue* v2 = (const GEnumValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  const GEnumValue* v2 = (const GEnumValue*)(get_ptr(s2)); (void)v2;
   GType _ret = (GType)g_enum_register_static(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2844,7 +2855,7 @@ SEXP R_g_enum_to_string(SEXP s1, SEXP s2) {
 SEXP R_g_flags_complete_type_info(SEXP s1, SEXP s2) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   GTypeInfo _out_info = {0}; (void)_out_info;
-  const GFlagsValue* v2 = (const GFlagsValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  const GFlagsValue* v2 = (const GFlagsValue*)(get_ptr(s2)); (void)v2;
   g_flags_complete_type_info(v1, &_out_info, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2860,7 +2871,7 @@ SEXP R_g_flags_complete_type_info(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_flags_get_first_value(SEXP s1, SEXP s2) {
-  GFlagsClass* v1 = (GFlagsClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GFlagsClass* v1 = (GFlagsClass*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)g_flags_get_first_value(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2877,7 +2888,7 @@ SEXP R_g_flags_get_first_value(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_flags_get_value_by_name(SEXP s1, SEXP s2) {
-  GFlagsClass* v1 = (GFlagsClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GFlagsClass* v1 = (GFlagsClass*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gconstpointer _ret = (gconstpointer)g_flags_get_value_by_name(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2894,7 +2905,7 @@ SEXP R_g_flags_get_value_by_name(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_flags_get_value_by_nick(SEXP s1, SEXP s2) {
-  GFlagsClass* v1 = (GFlagsClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GFlagsClass* v1 = (GFlagsClass*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gconstpointer _ret = (gconstpointer)g_flags_get_value_by_nick(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2912,7 +2923,7 @@ SEXP R_g_flags_get_value_by_nick(SEXP s1, SEXP s2) {
 
 SEXP R_g_flags_register_static(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  const GFlagsValue* v2 = (const GFlagsValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  const GFlagsValue* v2 = (const GFlagsValue*)(get_ptr(s2)); (void)v2;
   GType _ret = (GType)g_flags_register_static(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3385,8 +3396,8 @@ SEXP R_g_param_spec_variant(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  const GVariantType* v4 = (const GVariantType*)(R_ExternalPtrAddr(s4)); (void)v4;
-  GVariant* v5 = (s5 != R_NilValue) ? (GVariant*)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
+  const GVariantType* v4 = (const GVariantType*)(get_ptr(s4)); (void)v4;
+  GVariant* v5 = (s5 != R_NilValue) ? (GVariant*)(get_ptr(s5)) : NULL; (void)v5;
   GParamFlags v6 = (GParamFlags)((GParamFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
   gconstpointer _ret = (gconstpointer)g_param_spec_variant(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3404,7 +3415,7 @@ SEXP R_g_param_spec_variant(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6
 
 SEXP R_g_param_type_register_static(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  const GParamSpecTypeInfo* v2 = (const GParamSpecTypeInfo*)(R_ExternalPtrAddr(s2)); (void)v2;
+  const GParamSpecTypeInfo* v2 = (const GParamSpecTypeInfo*)(get_ptr(s2)); (void)v2;
   GType _ret = (GType)g_param_type_register_static(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3420,9 +3431,9 @@ SEXP R_g_param_type_register_static(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_param_value_convert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
-  const GValue* v2 = (const GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
-  GValue* v3 = (GValue*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
+  const GValue* v2 = (const GValue*)(get_ptr(s2)); (void)v2;
+  GValue* v3 = (GValue*)(get_ptr(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   gboolean _ret = (gboolean)g_param_value_convert(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3439,8 +3450,8 @@ SEXP R_g_param_value_convert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_g_param_value_defaults(SEXP s1, SEXP s2) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
-  const GValue* v2 = (const GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
+  const GValue* v2 = (const GValue*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)g_param_value_defaults(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3456,8 +3467,8 @@ SEXP R_g_param_value_defaults(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_param_value_is_valid(SEXP s1, SEXP s2) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
-  const GValue* v2 = (const GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
+  const GValue* v2 = (const GValue*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)g_param_value_is_valid(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3473,16 +3484,16 @@ SEXP R_g_param_value_is_valid(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_param_value_set_default(SEXP s1, SEXP s2) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   g_param_value_set_default(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_param_value_validate(SEXP s1, SEXP s2) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)g_param_value_validate(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3498,9 +3509,9 @@ SEXP R_g_param_value_validate(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_param_values_cmp(SEXP s1, SEXP s2, SEXP s3) {
-  GParamSpec* v1 = (GParamSpec*)(R_ExternalPtrAddr(s1)); (void)v1;
-  const GValue* v2 = (const GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
-  const GValue* v3 = (const GValue*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GParamSpec* v1 = (GParamSpec*)(get_ptr(s1)); (void)v1;
+  const GValue* v2 = (const GValue*)(get_ptr(s2)); (void)v2;
+  const GValue* v3 = (const GValue*)(get_ptr(s3)); (void)v3;
   gint _ret = (gint)g_param_values_cmp(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3532,10 +3543,10 @@ SEXP R_g_pointer_type_register_static(SEXP s1) {
 
 
 SEXP R_g_signal_accumulator_first_wins(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GSignalInvocationHint* v1 = (GSignalInvocationHint*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
-  const GValue* v3 = (const GValue*)(R_ExternalPtrAddr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s4)) : NULL; (void)v4;
+  GSignalInvocationHint* v1 = (GSignalInvocationHint*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
+  const GValue* v3 = (const GValue*)(get_ptr(s3)); (void)v3;
+  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   gboolean _ret = (gboolean)g_signal_accumulator_first_wins(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3551,10 +3562,10 @@ SEXP R_g_signal_accumulator_first_wins(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_g_signal_accumulator_true_handled(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GSignalInvocationHint* v1 = (GSignalInvocationHint*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
-  const GValue* v3 = (const GValue*)(R_ExternalPtrAddr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s4)) : NULL; (void)v4;
+  GSignalInvocationHint* v1 = (GSignalInvocationHint*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
+  const GValue* v3 = (const GValue*)(get_ptr(s3)); (void)v3;
+  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   gboolean _ret = (gboolean)g_signal_accumulator_true_handled(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3572,9 +3583,9 @@ SEXP R_g_signal_accumulator_true_handled(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_signal_add_emission_hook(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
   GQuark v2 = (GQuark)((GQuark)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  GSignalEmissionHook v3 = (GSignalEmissionHook)(R_ExternalPtrAddr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
+  GSignalEmissionHook v3 = (GSignalEmissionHook)(get_ptr(s3)); (void)v3;
+  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
+  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
   gulong _ret = (gulong)g_signal_add_emission_hook(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3590,17 +3601,17 @@ SEXP R_g_signal_add_emission_hook(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_g_signal_chain_from_overridden(SEXP s1, SEXP s2) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
-  GValue* v2 = (GValue*)(R_ExternalPtrAddr(s2)); (void)v2;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
+  GValue* v2 = (GValue*)(get_ptr(s2)); (void)v2;
   g_signal_chain_from_overridden(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_signal_connect_closure(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GClosure* v3 = (GClosure*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GClosure* v3 = (GClosure*)(get_ptr(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   gulong _ret = (gulong)g_signal_connect_closure(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3617,10 +3628,10 @@ SEXP R_g_signal_connect_closure(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_g_signal_connect_closure_by_id(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   GQuark v3 = (GQuark)((GQuark)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  GClosure* v4 = (GClosure*)(R_ExternalPtrAddr(s4)); (void)v4;
+  GClosure* v4 = (GClosure*)(get_ptr(s4)); (void)v4;
   gboolean v5 = (gboolean)((gboolean)LOGICAL(s5)[0]); (void)v5;
   gulong _ret = (gulong)g_signal_connect_closure_by_id(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3637,7 +3648,7 @@ SEXP R_g_signal_connect_closure_by_id(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
 
 
 SEXP R_g_signal_emitv(SEXP s1, SEXP s2, SEXP s3) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   GQuark v3 = (GQuark)((GQuark)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GValue _out_return_value = {0}; (void)_out_return_value;
@@ -3656,7 +3667,7 @@ SEXP R_g_signal_emitv(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_signal_get_invocation_hint(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_signal_get_invocation_hint(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3672,7 +3683,7 @@ SEXP R_g_signal_get_invocation_hint(SEXP s1) {
 
 
 SEXP R_g_signal_handler_block(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gulong v2 = (gulong)((gulong)REAL(s2)[0]); (void)v2;
   g_signal_handler_block(v1, v2);
   return R_NilValue;
@@ -3680,7 +3691,7 @@ SEXP R_g_signal_handler_block(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_signal_handler_disconnect(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gulong v2 = (gulong)((gulong)REAL(s2)[0]); (void)v2;
   g_signal_handler_disconnect(v1, v2);
   return R_NilValue;
@@ -3688,13 +3699,13 @@ SEXP R_g_signal_handler_disconnect(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_signal_handler_find(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   GSignalMatchType v2 = (GSignalMatchType)((GSignalMatchType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
   GQuark v4 = (GQuark)((GQuark)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GClosure* v5 = (s5 != R_NilValue) ? (GClosure*)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s7)) : NULL; (void)v7;
+  GClosure* v5 = (s5 != R_NilValue) ? (GClosure*)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
   gulong _ret = (gulong)g_signal_handler_find(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3710,7 +3721,7 @@ SEXP R_g_signal_handler_find(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s
 
 
 SEXP R_g_signal_handler_is_connected(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gulong v2 = (gulong)((gulong)REAL(s2)[0]); (void)v2;
   gboolean _ret = (gboolean)g_signal_handler_is_connected(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3727,7 +3738,7 @@ SEXP R_g_signal_handler_is_connected(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_signal_handler_unblock(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   gulong v2 = (gulong)((gulong)REAL(s2)[0]); (void)v2;
   g_signal_handler_unblock(v1, v2);
   return R_NilValue;
@@ -3735,13 +3746,13 @@ SEXP R_g_signal_handler_unblock(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_signal_handlers_block_matched(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   GSignalMatchType v2 = (GSignalMatchType)((GSignalMatchType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
   GQuark v4 = (GQuark)((GQuark)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GClosure* v5 = (s5 != R_NilValue) ? (GClosure*)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s7)) : NULL; (void)v7;
+  GClosure* v5 = (s5 != R_NilValue) ? (GClosure*)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
   guint _ret = (guint)g_signal_handlers_block_matched(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3757,20 +3768,20 @@ SEXP R_g_signal_handlers_block_matched(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP 
 
 
 SEXP R_g_signal_handlers_destroy(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   g_signal_handlers_destroy(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_signal_handlers_disconnect_matched(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   GSignalMatchType v2 = (GSignalMatchType)((GSignalMatchType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
   GQuark v4 = (GQuark)((GQuark)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GClosure* v5 = (s5 != R_NilValue) ? (GClosure*)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s7)) : NULL; (void)v7;
+  GClosure* v5 = (s5 != R_NilValue) ? (GClosure*)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
   guint _ret = (guint)g_signal_handlers_disconnect_matched(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3786,13 +3797,13 @@ SEXP R_g_signal_handlers_disconnect_matched(SEXP s1, SEXP s2, SEXP s3, SEXP s4, 
 
 
 SEXP R_g_signal_handlers_unblock_matched(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   GSignalMatchType v2 = (GSignalMatchType)((GSignalMatchType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
   GQuark v4 = (GQuark)((GQuark)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GClosure* v5 = (s5 != R_NilValue) ? (GClosure*)(R_ExternalPtrAddr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s7)) : NULL; (void)v7;
+  GClosure* v5 = (s5 != R_NilValue) ? (GClosure*)(get_ptr(s5)) : NULL; (void)v5;
+  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
   guint _ret = (guint)g_signal_handlers_unblock_matched(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3808,7 +3819,7 @@ SEXP R_g_signal_handlers_unblock_matched(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
 
 
 SEXP R_g_signal_has_handler_pending(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   GQuark v3 = (GQuark)((GQuark)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
@@ -3900,7 +3911,7 @@ SEXP R_g_signal_name(SEXP s1) {
 SEXP R_g_signal_override_class_closure(SEXP s1, SEXP s2, SEXP s3) {
   guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
-  GClosure* v3 = (GClosure*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GClosure* v3 = (GClosure*)(get_ptr(s3)); (void)v3;
   g_signal_override_class_closure(v1, v2, v3);
   return R_NilValue;
 }
@@ -3909,7 +3920,7 @@ SEXP R_g_signal_override_class_closure(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_signal_override_class_handler(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
-  GCallback v3 = (GCallback)(R_ExternalPtrAddr(s3)); (void)v3;
+  GCallback v3 = (GCallback)(get_ptr(s3)); (void)v3;
   g_signal_override_class_handler(v1, v2, v3);
   return R_NilValue;
 }
@@ -3971,7 +3982,7 @@ SEXP R_g_signal_remove_emission_hook(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_signal_stop_emission(SEXP s1, SEXP s2, SEXP s3) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   GQuark v3 = (GQuark)((GQuark)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   g_signal_stop_emission(v1, v2, v3);
@@ -3980,7 +3991,7 @@ SEXP R_g_signal_stop_emission(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_signal_stop_emission_by_name(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   g_signal_stop_emission_by_name(v1, v2);
   return R_NilValue;
@@ -4005,7 +4016,7 @@ SEXP R_g_signal_type_cclosure_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_strdup_value_contents(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_strdup_value_contents(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -4048,7 +4059,7 @@ SEXP R_g_type_add_instance_private(SEXP s1, SEXP s2) {
 SEXP R_g_type_add_interface_dynamic(SEXP s1, SEXP s2, SEXP s3) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
-  GTypePlugin* v3 = (GTypePlugin*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GTypePlugin* v3 = (GTypePlugin*)(get_ptr(s3)); (void)v3;
   g_type_add_interface_dynamic(v1, v2, v3);
   return R_NilValue;
 }
@@ -4057,14 +4068,14 @@ SEXP R_g_type_add_interface_dynamic(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_type_add_interface_static(SEXP s1, SEXP s2, SEXP s3) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
-  const GInterfaceInfo* v3 = (const GInterfaceInfo*)(R_ExternalPtrAddr(s3)); (void)v3;
+  const GInterfaceInfo* v3 = (const GInterfaceInfo*)(get_ptr(s3)); (void)v3;
   g_type_add_interface_static(v1, v2, v3);
   return R_NilValue;
 }
 
 
 SEXP R_g_type_check_class_is_a(SEXP s1, SEXP s2) {
-  GTypeClass* v1 = (GTypeClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeClass* v1 = (GTypeClass*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gboolean _ret = (gboolean)g_type_check_class_is_a(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4081,7 +4092,7 @@ SEXP R_g_type_check_class_is_a(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_type_check_instance(SEXP s1) {
-  GTypeInstance* v1 = (GTypeInstance*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeInstance* v1 = (GTypeInstance*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)g_type_check_instance(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -4097,7 +4108,7 @@ SEXP R_g_type_check_instance(SEXP s1) {
 
 
 SEXP R_g_type_check_instance_is_a(SEXP s1, SEXP s2) {
-  GTypeInstance* v1 = (GTypeInstance*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeInstance* v1 = (GTypeInstance*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gboolean _ret = (gboolean)g_type_check_instance_is_a(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4114,7 +4125,7 @@ SEXP R_g_type_check_instance_is_a(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_type_check_instance_is_fundamentally_a(SEXP s1, SEXP s2) {
-  GTypeInstance* v1 = (GTypeInstance*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeInstance* v1 = (GTypeInstance*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gboolean _ret = (gboolean)g_type_check_instance_is_fundamentally_a(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4147,7 +4158,7 @@ SEXP R_g_type_check_is_value_type(SEXP s1) {
 
 
 SEXP R_g_type_check_value(SEXP s1) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)g_type_check_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -4163,7 +4174,7 @@ SEXP R_g_type_check_value(SEXP s1) {
 
 
 SEXP R_g_type_check_value_holds(SEXP s1, SEXP s2) {
-  const GValue* v1 = (const GValue*)(R_ExternalPtrAddr(s1)); (void)v1;
+  const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gboolean _ret = (gboolean)g_type_check_value_holds(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4250,7 +4261,7 @@ SEXP R_g_type_default_interface_ref(SEXP s1) {
 
 
 SEXP R_g_type_default_interface_unref(SEXP s1) {
-  gpointer v1 = (gpointer)(R_ExternalPtrAddr(s1)); (void)v1;
+  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
   g_type_default_interface_unref(v1);
   return R_NilValue;
 }
@@ -4280,7 +4291,7 @@ SEXP R_g_type_ensure(SEXP s1) {
 
 
 SEXP R_g_type_free_instance(SEXP s1) {
-  GTypeInstance* v1 = (GTypeInstance*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeInstance* v1 = (GTypeInstance*)(get_ptr(s1)); (void)v1;
   g_type_free_instance(v1);
   return R_NilValue;
 }
@@ -4469,7 +4480,7 @@ SEXP R_g_type_name(SEXP s1) {
 
 
 SEXP R_g_type_name_from_class(SEXP s1) {
-  GTypeClass* v1 = (GTypeClass*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeClass* v1 = (GTypeClass*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_type_name_from_class(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -4485,7 +4496,7 @@ SEXP R_g_type_name_from_class(SEXP s1) {
 
 
 SEXP R_g_type_name_from_instance(SEXP s1) {
-  GTypeInstance* v1 = (GTypeInstance*)(R_ExternalPtrAddr(s1)); (void)v1;
+  GTypeInstance* v1 = (GTypeInstance*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_type_name_from_instance(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -4569,7 +4580,7 @@ SEXP R_g_type_query(SEXP s1) {
 SEXP R_g_type_register_dynamic(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GTypePlugin* v3 = (GTypePlugin*)(R_ExternalPtrAddr(s3)); (void)v3;
+  GTypePlugin* v3 = (GTypePlugin*)(get_ptr(s3)); (void)v3;
   GTypeFlags v4 = (GTypeFlags)((GTypeFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GType _ret = (GType)g_type_register_dynamic(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4588,8 +4599,8 @@ SEXP R_g_type_register_dynamic(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_type_register_fundamental(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const GTypeInfo* v3 = (const GTypeInfo*)(R_ExternalPtrAddr(s3)); (void)v3;
-  const GTypeFundamentalInfo* v4 = (const GTypeFundamentalInfo*)(R_ExternalPtrAddr(s4)); (void)v4;
+  const GTypeInfo* v3 = (const GTypeInfo*)(get_ptr(s3)); (void)v3;
+  const GTypeFundamentalInfo* v4 = (const GTypeFundamentalInfo*)(get_ptr(s4)); (void)v4;
   GTypeFlags v5 = (GTypeFlags)((GTypeFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   GType _ret = (GType)g_type_register_fundamental(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4608,7 +4619,7 @@ SEXP R_g_type_register_fundamental(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 SEXP R_g_type_register_static(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const GTypeInfo* v3 = (const GTypeInfo*)(R_ExternalPtrAddr(s3)); (void)v3;
+  const GTypeInfo* v3 = (const GTypeInfo*)(get_ptr(s3)); (void)v3;
   GTypeFlags v4 = (GTypeFlags)((GTypeFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GType _ret = (GType)g_type_register_static(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4627,7 +4638,7 @@ SEXP R_g_type_register_static(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_type_set_qdata(SEXP s1, SEXP s2, SEXP s3) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   GQuark v2 = (GQuark)((GQuark)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(R_ExternalPtrAddr(s3)) : NULL; (void)v3;
+  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
   g_type_set_qdata(v1, v2, v3);
   return R_NilValue;
 }

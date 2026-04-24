@@ -5,13 +5,29 @@
 #include <gdk/gdkkeysyms.h>
 
 // ============================================================================
+// Safe Pointer Extraction
+// ============================================================================
+
+static inline void* get_ptr_internal(SEXP s, const char* func) {
+  if (s == R_NilValue) return NULL;
+
+  if (TYPEOF(s) != EXTPTRSXP) {
+    Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
+  }
+
+  return R_ExternalPtrAddr(s);
+}
+
+#define get_ptr(s) get_ptr_internal(s, __func__)
+
+// ============================================================================
 // GObject Reference Counting
 // ============================================================================
 
 // Finalizer for GObject external pointers
 static void gobject_finalizer(SEXP ext_ptr) {
   GObject *obj = R_ExternalPtrAddr(ext_ptr);
-  if (obj && G_IS_OBJECT(obj)) {
+  if (obj) {
     g_object_unref(obj);
     R_ClearExternalPtr(ext_ptr);
   }
@@ -97,8 +113,8 @@ static gboolean key_pressed_cb(GtkEventControllerKey *controller,
 
 // Add close shortcut to window
 SEXP R_gtk_window_add_close_shortcut(SEXP s_window) {
-  GtkWindow *window = (GtkWindow *)R_ExternalPtrAddr(s_window);
-  if (!window || !GTK_IS_WINDOW(window)) {
+  GtkWindow *window = (GtkWindow*)get_ptr(s_window);
+  if (!window) {
     Rf_error("Invalid GtkWindow pointer");
   }
 
@@ -124,13 +140,12 @@ SEXP R_gtk_get_ui_state(SEXP s_widgets) {
   for (int i = 0; i < n; i++) {
     SEXP widget_ptr = is_list ? VECTOR_ELT(s_widgets, i) : s_widgets;
 
-    // Check if it's an external pointer
-    if (TYPEOF(widget_ptr) != EXTPTRSXP) {
+    if (widget_ptr == R_NilValue || TYPEOF(widget_ptr) != EXTPTRSXP) {
       SET_VECTOR_ELT(result, i, R_NilValue);
       continue;
     }
 
-    GObject *obj = G_OBJECT(R_ExternalPtrAddr(widget_ptr));
+    GObject *obj = (GObject*)get_ptr(widget_ptr);
 
     if (!obj) {
       SET_VECTOR_ELT(result, i, R_NilValue);
@@ -262,18 +277,23 @@ SEXP R_gtk_string_list_new_from_vector(SEXP s_strings) {
 }
 
 SEXP R_gtk_text_buffer_create_tag_simple(SEXP s_buffer, SEXP s_tag_name) {
-  GtkTextBuffer* buffer = (GtkTextBuffer*)R_ExternalPtrAddr(s_buffer);
+  GtkTextBuffer* buffer = (GtkTextBuffer*)get_ptr(s_buffer);
+  if (!buffer) {
+    Rf_error("Invalid GtkTextBuffer pointer");
+  }
   const char* tag_name = (s_tag_name == R_NilValue) ? NULL : CHAR(STRING_ELT(s_tag_name, 0));
   GtkTextTag* tag = gtk_text_buffer_create_tag(buffer, tag_name, NULL);
   return R_MakeExternalPtr((void*)tag, R_NilValue, R_NilValue);
 }
 
 SEXP R_g_object_set_string(SEXP s1, SEXP s2, SEXP s3) {
-  GObject* v1 = (GObject*)(R_ExternalPtrAddr(s1));
+  GObject* v1 = (GObject*)get_ptr(s1);
+  if (!v1) {
+    Rf_error("Invalid GObject pointer");
+  }
   const char* property_name = (const char*)(CHAR(STRING_ELT(s2,0)));
   const char* value = (const char*)(CHAR(STRING_ELT(s3,0)));
 
-  // Use g_object_set which handles the string-to-GValue conversion for you
   g_object_set(v1, property_name, value, NULL);
 
   return R_NilValue;
@@ -284,12 +304,13 @@ SEXP R_g_object_set_string(SEXP s1, SEXP s2, SEXP s3) {
 // GtkStringList Helper
 // ============================================================================
 
-// Manual wrapper to avoid variadic issues
 SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type, SEXP buttons, SEXP message) {
-  GtkWindow *parent = (parent_ptr == R_NilValue) ? NULL : (GtkWindow*)R_ExternalPtrAddr(parent_ptr);
+  GtkWindow *parent = NULL;
+  if (parent_ptr != R_NilValue) {
+    parent = (GtkWindow*)get_ptr(parent_ptr);
+  }
   const char *msg = CHAR(STRING_ELT(message, 0));
 
-  // We pass "%s" as the format to ensure 'msg' is treated as literal text
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
   GtkWidget *dialog = gtk_message_dialog_new(parent,
@@ -299,6 +320,5 @@ SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type, SEXP 
                                              "%s", msg);
 #pragma GCC diagnostic pop
 
-  // Use your existing logic to wrap the GObject
   return make_gobject_ptr(dialog);
 }
