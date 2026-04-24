@@ -75,7 +75,12 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #pragma GCC diagnostic ignored "-Wint-to-pointer-cast"
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
+#ifdef __clang__
 #pragma GCC diagnostic ignored "-Wimplicit-enum-enum-cast"
+#endif
+#if defined(__GNUC__) && !defined(__clang__)
+#pragma GCC diagnostic ignored "-Wstringop-overflow"
+#endif
 
 
 SEXP R_gtk_at_context_create(SEXP s1, SEXP s2, SEXP s3) {
