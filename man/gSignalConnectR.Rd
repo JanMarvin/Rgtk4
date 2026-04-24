@@ -19,5 +19,6 @@ FALSE to allow default behavior.}
 handler id (numeric) - invisibly
 }
 \description{
-Connect an R function to a GObject signal
+Automatically detects the signal signature and handles callbacks with
+different numbers of arguments.
 }

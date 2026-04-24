@@ -87,6 +87,10 @@ gtkStringListFromVector <- function(strings) {
 }
 
 #' Connect an R function to a GObject signal
+#'
+#' Automatically detects the signal signature and handles callbacks with
+#' different numbers of arguments.
+#'
 #' @param obj External pointer to a GObject
 #' @param signal Signal name (character)
 #' @param fun R function to invoke on signal. For signals that expect a boolean return
@@ -282,7 +286,16 @@ gtkWindowPresentAndProcess <- function(window) {
 }
 
 # varadic template function that is not generated - internal use only
-.gtkTextBufferCreateTag <- function(buffer, tag_name = NULL, ...) {
+#' Create a text tag with properties
+#'
+#' Convenience wrapper for creating GtkTextTag with properties.
+#'
+#' @param buffer GtkTextBuffer
+#' @param tag_name Tag name (character) or NULL for anonymous tag
+#' @param ... Named properties to set (e.g., foreground = "red", font = "Monospace 12")
+#' @return GtkTextTag
+#' @export
+gtkTextBufferCreateTag <- function(buffer, tag_name = NULL, ...) {
   tag <- .Call("R_gtk_text_buffer_create_tag_simple", buffer, tag_name)
   if (is.null(tag)) return(NULL)
   props <- list(...)
@@ -292,11 +305,6 @@ gtkWindowPresentAndProcess <- function(window) {
     }
   }
   tag
-}
-
-# Internal helper for setting string properties
-.gObjectSetString <- function(s1, s2, s3) {
-  .Call('R_g_object_set_string', s1, s2, s3)
 }
 
 #' Create a GtkMessageDialog
@@ -329,6 +337,19 @@ gtkMessageDialogNew <- function(parent, flags, message_type, buttons_type, messa
   }
 
   return(ptr)
+}
+
+#' Set a string property on a GObject
+#'
+#' Convenience function for setting properties that accept string values
+#' like colors, fonts, CSS classes, etc.
+#'
+#' @param object GObject external pointer
+#' @param property Property name (character)
+#' @param value String value to set
+#' @export
+gObjectSetString <- function(object, property, value) {
+  invisible(.Call("R_g_object_set_string", object, property, value))
 }
 
 #' Print method for GObject external pointers
