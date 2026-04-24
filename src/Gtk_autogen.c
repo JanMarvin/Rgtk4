@@ -6,6 +6,9 @@
 #include <stdint.h>
 #include <string.h>
 
+/* Suppress pedantic warnings in auto-generated GTK glue code */
+#pragma GCC diagnostic ignored "-Wpedantic"
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -42,7 +45,7 @@ static SEXP _box_GStrv(char **strv) {
 /* Helper to add an S3 class to an external pointer for easier debugging */
 static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
-  
+
   void *obj = R_ExternalPtrAddr(ptr);
 
   // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
@@ -77,9 +80,6 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
 #pragma GCC diagnostic ignored "-Wpointer-to-int-cast"
 #ifdef __clang__
 #pragma GCC diagnostic ignored "-Wimplicit-enum-enum-cast"
-#endif
-#if defined(__GNUC__) && !defined(__clang__)
-#pragma GCC diagnostic ignored "-Wstringop-overflow"
 #endif
 
 
