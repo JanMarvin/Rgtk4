@@ -10,16 +10,6 @@ extern SEXP R_gdk_app_launch_context_set_icon_name(SEXP s1, SEXP s2);
 extern SEXP R_gdk_app_launch_context_set_timestamp(SEXP s1, SEXP s2);
 extern SEXP R_gdk_button_event_get_button(SEXP s1);
 extern SEXP R_gdk_cairo_context_cairo_create(SEXP s1);
-extern SEXP R_gdk_cicp_params_new(void);
-extern SEXP R_gdk_cicp_params_build_color_state(SEXP s1);
-extern SEXP R_gdk_cicp_params_get_color_primaries(SEXP s1);
-extern SEXP R_gdk_cicp_params_get_matrix_coefficients(SEXP s1);
-extern SEXP R_gdk_cicp_params_get_range(SEXP s1);
-extern SEXP R_gdk_cicp_params_get_transfer_function(SEXP s1);
-extern SEXP R_gdk_cicp_params_set_color_primaries(SEXP s1, SEXP s2);
-extern SEXP R_gdk_cicp_params_set_matrix_coefficients(SEXP s1, SEXP s2);
-extern SEXP R_gdk_cicp_params_set_range(SEXP s1, SEXP s2);
-extern SEXP R_gdk_cicp_params_set_transfer_function(SEXP s1, SEXP s2);
 extern SEXP R_gdk_clipboard_get_content(SEXP s1);
 extern SEXP R_gdk_clipboard_get_display(SEXP s1);
 extern SEXP R_gdk_clipboard_get_formats(SEXP s1);
@@ -36,7 +26,6 @@ extern SEXP R_gdk_clipboard_set_content(SEXP s1, SEXP s2);
 extern SEXP R_gdk_clipboard_set_value(SEXP s1, SEXP s2);
 extern SEXP R_gdk_clipboard_store_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gdk_clipboard_store_finish(SEXP s1, SEXP s2);
-extern SEXP R_gdk_color_state_create_cicp_params(SEXP s1);
 extern SEXP R_gdk_color_state_equal(SEXP s1, SEXP s2);
 extern SEXP R_gdk_color_state_equivalent(SEXP s1, SEXP s2);
 extern SEXP R_gdk_color_state_ref(SEXP s1);
@@ -186,34 +175,6 @@ extern SEXP R_gdk_dmabuf_formats_get_format(SEXP s1, SEXP s2);
 extern SEXP R_gdk_dmabuf_formats_get_n_formats(SEXP s1);
 extern SEXP R_gdk_dmabuf_formats_ref(SEXP s1);
 extern SEXP R_gdk_dmabuf_formats_unref(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_new(void);
-extern SEXP R_gdk_dmabuf_texture_builder_build(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_dmabuf_texture_builder_get_color_state(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_display(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_fd(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_get_fourcc(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_height(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_modifier(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_n_planes(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_offset(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_get_premultiplied(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_stride(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_get_update_region(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_update_texture(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_get_width(SEXP s1);
-extern SEXP R_gdk_dmabuf_texture_builder_set_color_state(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_display(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_fd(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_dmabuf_texture_builder_set_fourcc(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_height(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_modifier(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_n_planes(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_offset(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_dmabuf_texture_builder_set_premultiplied(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_stride(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gdk_dmabuf_texture_builder_set_update_region(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_update_texture(SEXP s1, SEXP s2);
-extern SEXP R_gdk_dmabuf_texture_builder_set_width(SEXP s1, SEXP s2);
 extern SEXP R_gdk_drag_begin(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gdk_drag_drop_done(SEXP s1, SEXP s2);
 extern SEXP R_gdk_drag_get_actions(SEXP s1);
@@ -7083,16 +7044,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_app_launch_context_set_timestamp", (DL_FUNC) &R_gdk_app_launch_context_set_timestamp, 2},
     {"R_gdk_button_event_get_button", (DL_FUNC) &R_gdk_button_event_get_button, 1},
     {"R_gdk_cairo_context_cairo_create", (DL_FUNC) &R_gdk_cairo_context_cairo_create, 1},
-    {"R_gdk_cicp_params_new", (DL_FUNC) &R_gdk_cicp_params_new, 0},
-    {"R_gdk_cicp_params_build_color_state", (DL_FUNC) &R_gdk_cicp_params_build_color_state, 1},
-    {"R_gdk_cicp_params_get_color_primaries", (DL_FUNC) &R_gdk_cicp_params_get_color_primaries, 1},
-    {"R_gdk_cicp_params_get_matrix_coefficients", (DL_FUNC) &R_gdk_cicp_params_get_matrix_coefficients, 1},
-    {"R_gdk_cicp_params_get_range", (DL_FUNC) &R_gdk_cicp_params_get_range, 1},
-    {"R_gdk_cicp_params_get_transfer_function", (DL_FUNC) &R_gdk_cicp_params_get_transfer_function, 1},
-    {"R_gdk_cicp_params_set_color_primaries", (DL_FUNC) &R_gdk_cicp_params_set_color_primaries, 2},
-    {"R_gdk_cicp_params_set_matrix_coefficients", (DL_FUNC) &R_gdk_cicp_params_set_matrix_coefficients, 2},
-    {"R_gdk_cicp_params_set_range", (DL_FUNC) &R_gdk_cicp_params_set_range, 2},
-    {"R_gdk_cicp_params_set_transfer_function", (DL_FUNC) &R_gdk_cicp_params_set_transfer_function, 2},
     {"R_gdk_clipboard_get_content", (DL_FUNC) &R_gdk_clipboard_get_content, 1},
     {"R_gdk_clipboard_get_display", (DL_FUNC) &R_gdk_clipboard_get_display, 1},
     {"R_gdk_clipboard_get_formats", (DL_FUNC) &R_gdk_clipboard_get_formats, 1},
@@ -7109,7 +7060,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_clipboard_set_value", (DL_FUNC) &R_gdk_clipboard_set_value, 2},
     {"R_gdk_clipboard_store_async", (DL_FUNC) &R_gdk_clipboard_store_async, 5},
     {"R_gdk_clipboard_store_finish", (DL_FUNC) &R_gdk_clipboard_store_finish, 2},
-    {"R_gdk_color_state_create_cicp_params", (DL_FUNC) &R_gdk_color_state_create_cicp_params, 1},
     {"R_gdk_color_state_equal", (DL_FUNC) &R_gdk_color_state_equal, 2},
     {"R_gdk_color_state_equivalent", (DL_FUNC) &R_gdk_color_state_equivalent, 2},
     {"R_gdk_color_state_ref", (DL_FUNC) &R_gdk_color_state_ref, 1},
@@ -7259,34 +7209,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_dmabuf_formats_get_n_formats", (DL_FUNC) &R_gdk_dmabuf_formats_get_n_formats, 1},
     {"R_gdk_dmabuf_formats_ref", (DL_FUNC) &R_gdk_dmabuf_formats_ref, 1},
     {"R_gdk_dmabuf_formats_unref", (DL_FUNC) &R_gdk_dmabuf_formats_unref, 1},
-    {"R_gdk_dmabuf_texture_builder_new", (DL_FUNC) &R_gdk_dmabuf_texture_builder_new, 0},
-    {"R_gdk_dmabuf_texture_builder_build", (DL_FUNC) &R_gdk_dmabuf_texture_builder_build, 3},
-    {"R_gdk_dmabuf_texture_builder_get_color_state", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_color_state, 1},
-    {"R_gdk_dmabuf_texture_builder_get_display", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_display, 1},
-    {"R_gdk_dmabuf_texture_builder_get_fd", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_fd, 2},
-    {"R_gdk_dmabuf_texture_builder_get_fourcc", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_fourcc, 1},
-    {"R_gdk_dmabuf_texture_builder_get_height", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_height, 1},
-    {"R_gdk_dmabuf_texture_builder_get_modifier", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_modifier, 1},
-    {"R_gdk_dmabuf_texture_builder_get_n_planes", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_n_planes, 1},
-    {"R_gdk_dmabuf_texture_builder_get_offset", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_offset, 2},
-    {"R_gdk_dmabuf_texture_builder_get_premultiplied", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_premultiplied, 1},
-    {"R_gdk_dmabuf_texture_builder_get_stride", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_stride, 2},
-    {"R_gdk_dmabuf_texture_builder_get_update_region", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_update_region, 1},
-    {"R_gdk_dmabuf_texture_builder_get_update_texture", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_update_texture, 1},
-    {"R_gdk_dmabuf_texture_builder_get_width", (DL_FUNC) &R_gdk_dmabuf_texture_builder_get_width, 1},
-    {"R_gdk_dmabuf_texture_builder_set_color_state", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_color_state, 2},
-    {"R_gdk_dmabuf_texture_builder_set_display", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_display, 2},
-    {"R_gdk_dmabuf_texture_builder_set_fd", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_fd, 3},
-    {"R_gdk_dmabuf_texture_builder_set_fourcc", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_fourcc, 2},
-    {"R_gdk_dmabuf_texture_builder_set_height", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_height, 2},
-    {"R_gdk_dmabuf_texture_builder_set_modifier", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_modifier, 2},
-    {"R_gdk_dmabuf_texture_builder_set_n_planes", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_n_planes, 2},
-    {"R_gdk_dmabuf_texture_builder_set_offset", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_offset, 3},
-    {"R_gdk_dmabuf_texture_builder_set_premultiplied", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_premultiplied, 2},
-    {"R_gdk_dmabuf_texture_builder_set_stride", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_stride, 3},
-    {"R_gdk_dmabuf_texture_builder_set_update_region", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_update_region, 2},
-    {"R_gdk_dmabuf_texture_builder_set_update_texture", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_update_texture, 2},
-    {"R_gdk_dmabuf_texture_builder_set_width", (DL_FUNC) &R_gdk_dmabuf_texture_builder_set_width, 2},
     {"R_gdk_drag_begin", (DL_FUNC) &R_gdk_drag_begin, 6},
     {"R_gdk_drag_drop_done", (DL_FUNC) &R_gdk_drag_drop_done, 2},
     {"R_gdk_drag_get_actions", (DL_FUNC) &R_gdk_drag_get_actions, 1},
