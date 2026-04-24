@@ -1,2 +1,0 @@
-PKG_CFLAGS = $(shell pkg-config --cflags gtk4 gio-2.0) -Wno-extra-semi -Wno-implicit-enum-enum-cast
-PKG_LIBS = $(shell pkg-config --libs gtk4 gio-2.0)

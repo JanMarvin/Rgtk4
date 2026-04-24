@@ -15,6 +15,8 @@ Rprof.out
 src/*.o
 src/*.so
 src/*.dll
+src/Makevars
+src/Makevars.win
 src-i386/*.o
 src-i386/*.so
 src-i386/*.dll

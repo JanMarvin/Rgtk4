@@ -1,0 +1,5 @@
+#!/bin/sh
+# Remove configure-generated files
+
+rm -f src/Makevars
+echo "Cleaned up src/Makevars"

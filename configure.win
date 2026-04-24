@@ -1,0 +1,83 @@
+#!/bin/sh
+# Anticonf script for Rgtk4 - Windows
+# Based on Jeroen Ooms' anticonf pattern
+
+PKG_CONFIG_NAME="gtk4"
+
+# Function to check if a file exists (no wildcard)
+file_exists() {
+  test -f "$1"
+}
+
+# Function to check if a directory exists (no wildcard)
+dir_exists() {
+  test -d "$1"
+}
+
+# Try to find pkg-config in common MSYS2 locations
+if file_exists "C:/msys64/mingw64/bin/pkg-config.exe"; then
+  PKGCONFIG="C:/msys64/mingw64/bin/pkg-config.exe"
+elif file_exists "C:/msys2/mingw64/bin/pkg-config.exe"; then
+  PKGCONFIG="C:/msys2/mingw64/bin/pkg-config.exe"
+else
+  PKGCONFIG="pkg-config"
+fi
+
+# Try pkg-config first
+if [ $(command -v ${PKGCONFIG}) ]; then
+  PKG_CFLAGS=$($PKGCONFIG --cflags ${PKG_CONFIG_NAME} gio-2.0 2>/dev/null)
+  PKG_LIBS=$($PKGCONFIG --libs ${PKG_CONFIG_NAME} gio-2.0 2>/dev/null)
+fi
+
+# If pkg-config failed, try manual detection
+if [ -z "$PKG_CFLAGS" ]; then
+  echo "pkg-config failed, trying manual MSYS2 detection..."
+  
+  # Detect MSYS2 installation
+  if dir_exists "C:/msys64/mingw64"; then
+    MSYS2="C:/msys64/mingw64"
+  elif dir_exists "C:/msys2/mingw64"; then
+    MSYS2="C:/msys2/mingw64"
+  else
+    echo "------------------------- CONFIGURATION ERROR -------------------------"
+    echo "GTK4 not found. Please install MSYS2 and GTK4:"
+    echo ""
+    echo "1. Install MSYS2 from https://www.msys2.org/"
+    echo "2. Open 'MSYS2 MINGW64' terminal and run:"
+    echo "   pacman -Syu"
+    echo "   pacman -S mingw-w64-x86_64-gtk4 mingw-w64-x86_64-pkg-config"
+    echo "3. Add to Windows PATH: C:\\msys64\\mingw64\\bin"
+    echo "------------------------------------------------------------------------"
+    exit 1
+  fi
+  
+  # Manually construct flags
+  PKG_CFLAGS="-I${MSYS2}/include/gtk-4.0"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/include/pango-1.0"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/include/glib-2.0"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/lib/glib-2.0/include"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/include/harfbuzz"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/include/cairo"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/include/gdk-pixbuf-2.0"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/include/graphene-1.0"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/lib/graphene-1.0/include"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/include/freetype2"
+  PKG_CFLAGS="${PKG_CFLAGS} -I${MSYS2}/include/libpng16"
+  
+  PKG_LIBS="-L${MSYS2}/lib"
+  PKG_LIBS="${PKG_LIBS} -lgtk-4 -lpangowin32-1.0 -lpangocairo-1.0 -lpango-1.0"
+  PKG_LIBS="${PKG_LIBS} -lharfbuzz -lgdk_pixbuf-2.0 -lcairo-gobject -lcairo"
+  PKG_LIBS="${PKG_LIBS} -lgraphene-1.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0"
+  PKG_LIBS="${PKG_LIBS} -lintl -lwinmm"
+fi
+
+# Windows-specific flags
+PKG_CFLAGS="${PKG_CFLAGS} -DWIN32"
+PKG_LIBS="${PKG_LIBS} -Wl,--export-all-symbols -Wl,--enable-auto-import"
+
+# Write to src/Makevars.win
+sed -e "s|@cflags@|${PKG_CFLAGS}|" -e "s|@libs@|${PKG_LIBS}|" src/Makevars.in > src/Makevars.win
+
+# Success
+echo "Using PKG_CFLAGS=${PKG_CFLAGS}"
+echo "Using PKG_LIBS=${PKG_LIBS}"

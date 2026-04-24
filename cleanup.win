@@ -1,0 +1,5 @@
+#!/bin/sh
+# Remove configure-generated files on Windows
+
+rm -f src/Makevars.win
+echo "Cleaned up src/Makevars.win"

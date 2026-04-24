@@ -1,0 +1,53 @@
+#!/bin/sh
+# Anticonf script for Rgtk4 - Unix/macOS
+# Based on Jeroen Ooms' anticonf pattern
+
+PKG_CONFIG_NAME="gtk4"
+PKG_DEB_NAME="libgtk-4-dev"
+PKG_RPM_NAME="gtk4-devel"
+PKG_BREW_NAME="gtk4"
+PKG_TEST_HEADER="<gtk/gtk.h>"
+PKG_LIBS="-lgtk-4"
+
+# Use pkg-config if available
+if [ $(command -v pkg-config) ]; then
+  PKGCONFIG_CFLAGS=$(pkg-config --cflags ${PKG_CONFIG_NAME} gio-2.0 2>/dev/null)
+  PKGCONFIG_LIBS=$(pkg-config --libs ${PKG_CONFIG_NAME} gio-2.0 2>/dev/null)
+fi
+
+# Check if pkg-config succeeded
+if [ "$PKGCONFIG_CFLAGS" ] && [ "$PKGCONFIG_LIBS" ]; then
+  echo "Found pkg-config cflags and libs!"
+  PKG_CFLAGS="${PKGCONFIG_CFLAGS}"
+  PKG_LIBS="${PKGCONFIG_LIBS}"
+else
+  echo "pkg-config not found or failed, trying fallback..."
+  
+  # Try common install locations
+  if [ -d /usr/local/include/gtk-4.0 ]; then
+    PKG_CFLAGS="-I/usr/local/include/gtk-4.0 -I/usr/local/include/glib-2.0 -I/usr/local/lib/glib-2.0/include"
+    PKG_LIBS="-L/usr/local/lib ${PKG_LIBS} -lglib-2.0 -lgobject-2.0 -lgio-2.0"
+  elif [ -d /opt/homebrew/include/gtk-4.0 ]; then
+    PKG_CFLAGS="-I/opt/homebrew/include/gtk-4.0 -I/opt/homebrew/include/glib-2.0 -I/opt/homebrew/lib/glib-2.0/include"
+    PKG_LIBS="-L/opt/homebrew/lib ${PKG_LIBS} -lglib-2.0 -lgobject-2.0 -lgio-2.0"
+  else
+    echo "------------------------- CONFIGURATION ERROR -------------------------"
+    echo "Cannot find GTK4. Please install:"
+    echo " * deb: ${PKG_DEB_NAME} (Debian, Ubuntu)"
+    echo " * rpm: ${PKG_RPM_NAME} (Fedora, CentOS, RHEL)"
+    echo " * brew: ${PKG_BREW_NAME} (macOS)"
+    echo "If GTK4 is installed in a non-standard location, set PKG_CONFIG_PATH."
+    echo "------------------------------------------------------------------------"
+    exit 1
+  fi
+fi
+
+# Add extra warnings suppressions for GTK4
+PKG_CFLAGS="${PKG_CFLAGS} -Wno-extra-semi -Wno-implicit-enum-enum-cast"
+
+# Write to src/Makevars
+sed -e "s|@cflags@|${PKG_CFLAGS}|" -e "s|@libs@|${PKG_LIBS}|" src/Makevars.in > src/Makevars
+
+# Success
+echo "Using PKG_CFLAGS=${PKG_CFLAGS}"
+echo "Using PKG_LIBS=${PKG_LIBS}"
