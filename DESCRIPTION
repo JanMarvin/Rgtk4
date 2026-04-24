@@ -18,8 +18,10 @@ Imports: utils
 Suggests: 
     knitr,
     later,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://github.com/JanMarvin/Rgtk4
 BugReports: https://github.com/JanMarvin/Rgtk4/issues
 RoxygenNote: 7.3.3
+Config/testthat/edition: 3
