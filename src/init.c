@@ -7349,6 +7349,10 @@ extern SEXP R_gtk_value_dup_expression(SEXP s1);
 extern SEXP R_gtk_value_get_expression(SEXP s1);
 extern SEXP R_gtk_value_set_expression(SEXP s1, SEXP s2);
 extern SEXP R_gtk_value_take_expression(SEXP s1, SEXP s2);
+extern SEXP R_g_timeout_add(SEXP s_interval, SEXP s_fun);
+extern SEXP R_g_idle_add(SEXP s_fun);
+extern SEXP R_gtk_dialog_run(SEXP s_dialog);
+extern SEXP R_gtk_file_chooser_dialog_run(SEXP s_parent, SEXP s_title, SEXP s_action);
 extern SEXP R_gtk_start_event_loop(void);
 extern SEXP R_gtk_stop_event_loop(void);
 extern SEXP R_gtk_force_foreground(void);
@@ -14713,6 +14717,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_value_get_expression", (DL_FUNC) &R_gtk_value_get_expression, 1},
     {"R_gtk_value_set_expression", (DL_FUNC) &R_gtk_value_set_expression, 2},
     {"R_gtk_value_take_expression", (DL_FUNC) &R_gtk_value_take_expression, 2},
+    {"R_g_timeout_add", (DL_FUNC) &R_g_timeout_add, 2},
+    {"R_g_idle_add", (DL_FUNC) &R_g_idle_add, 1},
+    {"R_gtk_dialog_run", (DL_FUNC) &R_gtk_dialog_run, 1},
+    {"R_gtk_file_chooser_dialog_run", (DL_FUNC) &R_gtk_file_chooser_dialog_run, 3},
     {"R_gtk_start_event_loop", (DL_FUNC) &R_gtk_start_event_loop, 0},
     {"R_gtk_stop_event_loop", (DL_FUNC) &R_gtk_stop_event_loop, 0},
     {"R_gtk_force_foreground", (DL_FUNC) &R_gtk_force_foreground, 0},
