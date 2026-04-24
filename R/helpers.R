@@ -293,14 +293,6 @@ gtkWindowPresentAndProcess <- function(window) {
   invisible(NULL)
 }
 
-#' Run a GApplication (simple wrapper without command-line args)
-#' @param app GApplication pointer
-#' @return exit code (integer)
-#' @export
-gApplicationRunSimple <- function(app) {
-  .Call('R_g_application_run_simple', app)
-}
-
 # varadic template function that is not generated
 #' @export
 gtkTextBufferCreateTag <- function(buffer, tag_name = NULL, ...) {

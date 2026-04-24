@@ -11,7 +11,7 @@
 // Finalizer for GObject external pointers
 static void gobject_finalizer(SEXP ext_ptr) {
   GObject *obj = R_ExternalPtrAddr(ext_ptr);
-  if (obj) {
+  if (obj && G_IS_OBJECT(obj)) {
     g_object_unref(obj);
     R_ClearExternalPtr(ext_ptr);
   }

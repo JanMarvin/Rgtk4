@@ -199,17 +199,28 @@ SEXP R_gtk_hide_from_dock(void) {
 }
 
 // Window untrack must come BEFORE window track since track references it
-void R_gtk_window_untrack(SEXP s_window) {
+static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) {
 #if defined(__APPLE__) && !defined(G_OS_WIN32)
+  (void)window;
+  (void)user_data;
+
   pthread_mutex_lock(&_rgtk_window_mutex);
   _rgtk_window_count--;
   int count = _rgtk_window_count;
   pthread_mutex_unlock(&_rgtk_window_mutex);
 
-  // Hide dock icon when last window closes
   if (count == 0) {
-    _rgtk_macos_set_policy(1);  // NSApplicationActivationPolicyAccessory
+    _rgtk_macos_set_policy(1);
   }
+#endif
+}
+
+void R_gtk_window_untrack(SEXP s_window) {
+#if defined(__APPLE__) && !defined(G_OS_WIN32)
+  GtkWindow *window = (GtkWindow *)R_ExternalPtrAddr(s_window);
+  if (!window || !GTK_IS_WINDOW(window)) return;
+
+  _rgtk_window_untrack_cb(window, NULL);
 #endif
 }
 
@@ -226,16 +237,14 @@ SEXP R_gtk_window_track(SEXP s_window) {
   int count = _rgtk_window_count;
   pthread_mutex_unlock(&_rgtk_window_mutex);
 
-  // Show dock icon when first window appears
   if (count == 1) {
-    _rgtk_macos_set_policy(0);  // NSApplicationActivationPolicyRegular
+    _rgtk_macos_set_policy(0);
     _rgtk_macos_activate();
   }
 
-  // Connect to destroy signal to decrement count
-  g_signal_connect_swapped(window, "destroy",
-                           G_CALLBACK(R_gtk_window_untrack),
-                           s_window);
+  g_signal_connect(window, "destroy",
+                   G_CALLBACK(_rgtk_window_untrack_cb),
+                   NULL);
 #endif
   return R_NilValue;
 }
