@@ -16,7 +16,7 @@ gtkWindowSetDefaultSize(window, 300L, 200L)
 gSignalConnectR(window, "close-request", function(w) {
   cat("\nWindow closing...\n")
   keep_running <<- FALSE
-  return(TRUE)  # Allow window to close
+  return(FALSE)  # Allow window to close
 })
 
 # 2. Layout Container
