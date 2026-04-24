@@ -335,7 +335,6 @@ extern SEXP R_gdk_rgba_hash(SEXP s1);
 extern SEXP R_gdk_rgba_is_clear(SEXP s1);
 extern SEXP R_gdk_rgba_is_opaque(SEXP s1);
 extern SEXP R_gdk_rgba_parse(SEXP s1, SEXP s2);
-extern SEXP R_gdk_rgba_print(SEXP s1, SEXP s2);
 extern SEXP R_gdk_rgba_to_string(SEXP s1);
 extern SEXP R_gdk_rectangle_contains_point(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gdk_rectangle_equal(SEXP s1, SEXP s2);
@@ -497,16 +496,11 @@ extern SEXP R_g_action_map_add_action(SEXP s1, SEXP s2);
 extern SEXP R_g_action_map_add_action_entries(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_action_map_lookup_action(SEXP s1, SEXP s2);
 extern SEXP R_g_action_map_remove_action(SEXP s1, SEXP s2);
-extern SEXP R_g_action_map_remove_action_entries(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_app_info_create_from_commandline(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_app_info_get_all(void);
 extern SEXP R_g_app_info_get_all_for_type(SEXP s1);
 extern SEXP R_g_app_info_get_default_for_type(SEXP s1, SEXP s2);
-extern SEXP R_g_app_info_get_default_for_type_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_app_info_get_default_for_type_finish(SEXP s1);
 extern SEXP R_g_app_info_get_default_for_uri_scheme(SEXP s1);
-extern SEXP R_g_app_info_get_default_for_uri_scheme_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_app_info_get_default_for_uri_scheme_finish(SEXP s1);
 extern SEXP R_g_app_info_get_fallback_for_type(SEXP s1);
 extern SEXP R_g_app_info_get_recommended_for_type(SEXP s1);
 extern SEXP R_g_app_info_launch_default_for_uri(SEXP s1, SEXP s2);
@@ -529,8 +523,6 @@ extern SEXP R_g_app_info_get_name(SEXP s1);
 extern SEXP R_g_app_info_get_supported_types(SEXP s1);
 extern SEXP R_g_app_info_launch(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_app_info_launch_uris(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_app_info_launch_uris_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_app_info_launch_uris_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_app_info_remove_supports_type(SEXP s1, SEXP s2);
 extern SEXP R_g_app_info_set_as_default_for_extension(SEXP s1, SEXP s2);
 extern SEXP R_g_app_info_set_as_default_for_type(SEXP s1, SEXP s2);
@@ -563,7 +555,6 @@ extern SEXP R_g_application_get_is_busy(SEXP s1);
 extern SEXP R_g_application_get_is_registered(SEXP s1);
 extern SEXP R_g_application_get_is_remote(SEXP s1);
 extern SEXP R_g_application_get_resource_base_path(SEXP s1);
-extern SEXP R_g_application_get_version(SEXP s1);
 extern SEXP R_g_application_hold(SEXP s1);
 extern SEXP R_g_application_mark_busy(SEXP s1);
 extern SEXP R_g_application_open(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -581,12 +572,10 @@ extern SEXP R_g_application_set_option_context_description(SEXP s1, SEXP s2);
 extern SEXP R_g_application_set_option_context_parameter_string(SEXP s1, SEXP s2);
 extern SEXP R_g_application_set_option_context_summary(SEXP s1, SEXP s2);
 extern SEXP R_g_application_set_resource_base_path(SEXP s1, SEXP s2);
-extern SEXP R_g_application_set_version(SEXP s1, SEXP s2);
 extern SEXP R_g_application_unbind_busy_property(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_application_unmark_busy(SEXP s1);
 extern SEXP R_g_application_withdraw_notification(SEXP s1, SEXP s2);
 extern SEXP R_g_application_command_line_create_file_for_arg(SEXP s1, SEXP s2);
-extern SEXP R_g_application_command_line_done(SEXP s1);
 extern SEXP R_g_application_command_line_get_arguments(SEXP s1);
 extern SEXP R_g_application_command_line_get_cwd(SEXP s1);
 extern SEXP R_g_application_command_line_get_environ(SEXP s1);
@@ -596,8 +585,6 @@ extern SEXP R_g_application_command_line_get_options_dict(SEXP s1);
 extern SEXP R_g_application_command_line_get_platform_data(SEXP s1);
 extern SEXP R_g_application_command_line_get_stdin(SEXP s1);
 extern SEXP R_g_application_command_line_getenv(SEXP s1, SEXP s2);
-extern SEXP R_g_application_command_line_print_literal(SEXP s1, SEXP s2);
-extern SEXP R_g_application_command_line_printerr_literal(SEXP s1, SEXP s2);
 extern SEXP R_g_application_command_line_set_exit_status(SEXP s1, SEXP s2);
 extern SEXP R_g_async_initable_newv_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_async_initable_init_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
@@ -645,7 +632,6 @@ extern SEXP R_g_charset_converter_get_num_fallbacks(SEXP s1);
 extern SEXP R_g_charset_converter_get_use_fallback(SEXP s1);
 extern SEXP R_g_charset_converter_set_use_fallback(SEXP s1, SEXP s2);
 extern SEXP R_g_converter_convert(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_converter_convert_bytes(SEXP s1, SEXP s2);
 extern SEXP R_g_converter_reset(SEXP s1);
 extern SEXP R_g_converter_input_stream_new(SEXP s1, SEXP s2);
 extern SEXP R_g_converter_input_stream_get_converter(SEXP s1);
@@ -694,10 +680,6 @@ extern SEXP R_g_datagram_based_condition_wait(SEXP s1, SEXP s2, SEXP s3, SEXP s4
 extern SEXP R_g_datagram_based_create_source(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_datagram_based_receive_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_datagram_based_send_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_debug_controller_get_debug_enabled(SEXP s1);
-extern SEXP R_g_debug_controller_set_debug_enabled(SEXP s1, SEXP s2);
-extern SEXP R_g_debug_controller_dbus_new(SEXP s1, SEXP s2);
-extern SEXP R_g_debug_controller_dbus_stop(SEXP s1);
 extern SEXP R_g_drive_can_eject(SEXP s1);
 extern SEXP R_g_drive_can_poll_for_media(SEXP s1);
 extern SEXP R_g_drive_can_start(SEXP s1);
@@ -735,24 +717,17 @@ extern SEXP R_g_emblemed_icon_add_emblem(SEXP s1, SEXP s2);
 extern SEXP R_g_emblemed_icon_clear_emblems(SEXP s1);
 extern SEXP R_g_emblemed_icon_get_emblems(SEXP s1);
 extern SEXP R_g_emblemed_icon_get_icon(SEXP s1);
-extern SEXP R_g_file_new_build_filenamev(SEXP s1);
 extern SEXP R_g_file_new_for_commandline_arg(SEXP s1);
 extern SEXP R_g_file_new_for_commandline_arg_and_cwd(SEXP s1, SEXP s2);
 extern SEXP R_g_file_new_for_path(SEXP s1);
 extern SEXP R_g_file_new_for_uri(SEXP s1);
 extern SEXP R_g_file_new_tmp(SEXP s1);
-extern SEXP R_g_file_new_tmp_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_file_new_tmp_dir_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_file_new_tmp_dir_finish(SEXP s1);
-extern SEXP R_g_file_new_tmp_finish(SEXP s1);
 extern SEXP R_g_file_parse_name(SEXP s1);
 extern SEXP R_g_file_append_to(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_append_to_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_append_to_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_file_build_attribute_list_for_copy(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_copy(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_copy_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
-extern SEXP R_g_file_copy_async_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_file_copy_attributes(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_file_copy_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_create(SEXP s1, SEXP s2, SEXP s3);
@@ -802,8 +777,6 @@ extern SEXP R_g_file_make_directory_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
 extern SEXP R_g_file_make_directory_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_make_directory_with_parents(SEXP s1, SEXP s2);
 extern SEXP R_g_file_make_symbolic_link(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_file_make_symbolic_link_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_file_make_symbolic_link_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_measure_disk_usage(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_measure_disk_usage_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_monitor(SEXP s1, SEXP s2, SEXP s3);
@@ -814,9 +787,6 @@ extern SEXP R_g_file_mount_enclosing_volume_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_mount_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_file_mount_mountable_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_file_move_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
-extern SEXP R_g_file_move_async_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_file_move_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_open_readwrite(SEXP s1, SEXP s2);
 extern SEXP R_g_file_open_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_open_readwrite_finish(SEXP s1, SEXP s2);
@@ -824,8 +794,6 @@ extern SEXP R_g_file_peek_path(SEXP s1);
 extern SEXP R_g_file_poll_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_file_poll_mountable_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_default_handler(SEXP s1, SEXP s2);
-extern SEXP R_g_file_query_default_handler_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_file_query_default_handler_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_exists(SEXP s1, SEXP s2);
 extern SEXP R_g_file_query_file_type(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_query_filesystem_info(SEXP s1, SEXP s2, SEXP s3);
@@ -912,12 +880,10 @@ extern SEXP R_g_file_info_new(void);
 extern SEXP R_g_file_info_clear_status(SEXP s1);
 extern SEXP R_g_file_info_copy_into(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_dup(SEXP s1);
-extern SEXP R_g_file_info_get_access_date_time(SEXP s1);
 extern SEXP R_g_file_info_get_attribute_as_string(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_boolean(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_byte_string(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_data(SEXP s1, SEXP s2);
-extern SEXP R_g_file_info_get_attribute_file_path(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_int32(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_int64(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_object(SEXP s1, SEXP s2);
@@ -928,7 +894,6 @@ extern SEXP R_g_file_info_get_attribute_type(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_uint32(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_attribute_uint64(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_get_content_type(SEXP s1);
-extern SEXP R_g_file_info_get_creation_date_time(SEXP s1);
 extern SEXP R_g_file_info_get_deletion_date(SEXP s1);
 extern SEXP R_g_file_info_get_display_name(SEXP s1);
 extern SEXP R_g_file_info_get_edit_name(SEXP s1);
@@ -938,7 +903,6 @@ extern SEXP R_g_file_info_get_icon(SEXP s1);
 extern SEXP R_g_file_info_get_is_backup(SEXP s1);
 extern SEXP R_g_file_info_get_is_hidden(SEXP s1);
 extern SEXP R_g_file_info_get_is_symlink(SEXP s1);
-extern SEXP R_g_file_info_get_modification_date_time(SEXP s1);
 extern SEXP R_g_file_info_get_modification_time(SEXP s1);
 extern SEXP R_g_file_info_get_name(SEXP s1);
 extern SEXP R_g_file_info_get_size(SEXP s1);
@@ -949,11 +913,9 @@ extern SEXP R_g_file_info_has_attribute(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_has_namespace(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_list_attributes(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_remove_attribute(SEXP s1, SEXP s2);
-extern SEXP R_g_file_info_set_access_date_time(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_attribute(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_file_info_set_attribute_boolean(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_info_set_attribute_byte_string(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_file_info_set_attribute_file_path(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_info_set_attribute_int32(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_info_set_attribute_int64(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_info_set_attribute_mask(SEXP s1, SEXP s2);
@@ -964,14 +926,12 @@ extern SEXP R_g_file_info_set_attribute_stringv(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_info_set_attribute_uint32(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_info_set_attribute_uint64(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_file_info_set_content_type(SEXP s1, SEXP s2);
-extern SEXP R_g_file_info_set_creation_date_time(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_display_name(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_edit_name(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_file_type(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_icon(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_is_hidden(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_is_symlink(SEXP s1, SEXP s2);
-extern SEXP R_g_file_info_set_modification_date_time(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_modification_time(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_name(SEXP s1, SEXP s2);
 extern SEXP R_g_file_info_set_size(SEXP s1, SEXP s2);
@@ -1023,12 +983,6 @@ extern SEXP R_g_io_stream_has_pending(SEXP s1);
 extern SEXP R_g_io_stream_is_closed(SEXP s1);
 extern SEXP R_g_io_stream_set_pending(SEXP s1);
 extern SEXP R_g_io_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_ip_tos_message_new(SEXP s1, SEXP s2);
-extern SEXP R_g_ip_tos_message_get_dscp(SEXP s1);
-extern SEXP R_g_ip_tos_message_get_ecn(SEXP s1);
-extern SEXP R_g_ipv6_tclass_message_new(SEXP s1, SEXP s2);
-extern SEXP R_g_ipv6_tclass_message_get_dscp(SEXP s1);
-extern SEXP R_g_ipv6_tclass_message_get_ecn(SEXP s1);
 extern SEXP R_g_icon_deserialize(SEXP s1);
 extern SEXP R_g_icon_new_for_string(SEXP s1);
 extern SEXP R_g_icon_equal(SEXP s1, SEXP s2);
@@ -1037,12 +991,10 @@ extern SEXP R_g_icon_serialize(SEXP s1);
 extern SEXP R_g_icon_to_string(SEXP s1);
 extern SEXP R_g_inet_address_new_any(SEXP s1);
 extern SEXP R_g_inet_address_new_from_bytes(SEXP s1, SEXP s2);
-extern SEXP R_g_inet_address_new_from_bytes_with_ipv6_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_inet_address_new_from_string(SEXP s1);
 extern SEXP R_g_inet_address_new_loopback(SEXP s1);
 extern SEXP R_g_inet_address_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_inet_address_get_family(SEXP s1);
-extern SEXP R_g_inet_address_get_flowinfo(SEXP s1);
 extern SEXP R_g_inet_address_get_is_any(SEXP s1);
 extern SEXP R_g_inet_address_get_is_link_local(SEXP s1);
 extern SEXP R_g_inet_address_get_is_loopback(SEXP s1);
@@ -1054,7 +1006,6 @@ extern SEXP R_g_inet_address_get_is_mc_site_local(SEXP s1);
 extern SEXP R_g_inet_address_get_is_multicast(SEXP s1);
 extern SEXP R_g_inet_address_get_is_site_local(SEXP s1);
 extern SEXP R_g_inet_address_get_native_size(SEXP s1);
-extern SEXP R_g_inet_address_get_scope_id(SEXP s1);
 extern SEXP R_g_inet_address_to_string(SEXP s1);
 extern SEXP R_g_inet_address_mask_new(SEXP s1, SEXP s2);
 extern SEXP R_g_inet_address_mask_new_from_string(SEXP s1);
@@ -1097,9 +1048,6 @@ extern SEXP R_g_list_model_get_object(SEXP s1, SEXP s2);
 extern SEXP R_g_list_model_items_changed(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_list_store_new(SEXP s1);
 extern SEXP R_g_list_store_append(SEXP s1, SEXP s2);
-extern SEXP R_g_list_store_find(SEXP s1, SEXP s2);
-extern SEXP R_g_list_store_find_with_equal_func(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_list_store_find_with_equal_func_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_list_store_insert(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_list_store_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_list_store_remove(SEXP s1, SEXP s2);
@@ -1114,7 +1062,6 @@ extern SEXP R_g_memory_input_stream_new_from_bytes(SEXP s1);
 extern SEXP R_g_memory_input_stream_new_from_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_memory_input_stream_add_bytes(SEXP s1, SEXP s2);
 extern SEXP R_g_memory_input_stream_add_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_memory_monitor_dup_default(void);
 extern SEXP R_g_memory_output_stream_new_resizable(void);
 extern SEXP R_g_memory_output_stream_get_data(SEXP s1);
 extern SEXP R_g_memory_output_stream_get_data_size(SEXP s1);
@@ -1197,21 +1144,15 @@ extern SEXP R_g_mount_operation_new(void);
 extern SEXP R_g_mount_operation_get_anonymous(SEXP s1);
 extern SEXP R_g_mount_operation_get_choice(SEXP s1);
 extern SEXP R_g_mount_operation_get_domain(SEXP s1);
-extern SEXP R_g_mount_operation_get_is_tcrypt_hidden_volume(SEXP s1);
-extern SEXP R_g_mount_operation_get_is_tcrypt_system_volume(SEXP s1);
 extern SEXP R_g_mount_operation_get_password(SEXP s1);
 extern SEXP R_g_mount_operation_get_password_save(SEXP s1);
-extern SEXP R_g_mount_operation_get_pim(SEXP s1);
 extern SEXP R_g_mount_operation_get_username(SEXP s1);
 extern SEXP R_g_mount_operation_reply(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_operation_set_anonymous(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_operation_set_choice(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_operation_set_domain(SEXP s1, SEXP s2);
-extern SEXP R_g_mount_operation_set_is_tcrypt_hidden_volume(SEXP s1, SEXP s2);
-extern SEXP R_g_mount_operation_set_is_tcrypt_system_volume(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_operation_set_password(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_operation_set_password_save(SEXP s1, SEXP s2);
-extern SEXP R_g_mount_operation_set_pim(SEXP s1, SEXP s2);
 extern SEXP R_g_mount_operation_set_username(SEXP s1, SEXP s2);
 extern SEXP R_g_native_socket_address_new(SEXP s1, SEXP s2);
 extern SEXP R_g_network_address_new(SEXP s1, SEXP s2);
@@ -1238,7 +1179,6 @@ extern SEXP R_g_notification_new(SEXP s1);
 extern SEXP R_g_notification_add_button(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_notification_add_button_with_target_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_notification_set_body(SEXP s1, SEXP s2);
-extern SEXP R_g_notification_set_category(SEXP s1, SEXP s2);
 extern SEXP R_g_notification_set_default_action(SEXP s1, SEXP s2);
 extern SEXP R_g_notification_set_default_action_and_target_value(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_notification_set_icon(SEXP s1, SEXP s2);
@@ -1268,12 +1208,6 @@ extern SEXP R_g_output_stream_write_bytes(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_output_stream_write_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_output_stream_write_bytes_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_output_stream_write_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_output_stream_writev(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_output_stream_writev_all(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_output_stream_writev_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_output_stream_writev_all_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_output_stream_writev_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_output_stream_writev_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_permission_acquire(SEXP s1, SEXP s2);
 extern SEXP R_g_permission_acquire_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_permission_acquire_finish(SEXP s1, SEXP s2);
@@ -1292,9 +1226,6 @@ extern SEXP R_g_pollable_output_stream_can_poll(SEXP s1);
 extern SEXP R_g_pollable_output_stream_create_source(SEXP s1, SEXP s2);
 extern SEXP R_g_pollable_output_stream_is_writable(SEXP s1);
 extern SEXP R_g_pollable_output_stream_write_nonblocking(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_pollable_output_stream_writev_nonblocking(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_power_profile_monitor_dup_default(void);
-extern SEXP R_g_power_profile_monitor_get_power_saver_enabled(SEXP s1);
 extern SEXP R_g_property_action_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_proxy_get_default_for_protocol(SEXP s1);
 extern SEXP R_g_proxy_connect(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -1317,16 +1248,12 @@ extern SEXP R_g_proxy_resolver_lookup_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_remote_action_group_activate_action_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_remote_action_group_change_action_state_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_resolver_get_default(void);
-extern SEXP R_g_resolver_get_timeout(SEXP s1);
 extern SEXP R_g_resolver_lookup_by_address(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_resolver_lookup_by_address_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_resolver_lookup_by_address_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_lookup_by_name(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_resolver_lookup_by_name_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_resolver_lookup_by_name_finish(SEXP s1, SEXP s2);
-extern SEXP R_g_resolver_lookup_by_name_with_flags(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_resolver_lookup_by_name_with_flags_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_resolver_lookup_by_name_with_flags_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_lookup_records(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_resolver_lookup_records_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_resolver_lookup_records_finish(SEXP s1, SEXP s2);
@@ -1334,12 +1261,10 @@ extern SEXP R_g_resolver_lookup_service(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP
 extern SEXP R_g_resolver_lookup_service_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_resolver_lookup_service_finish(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_set_default(SEXP s1);
-extern SEXP R_g_resolver_set_timeout(SEXP s1, SEXP s2);
 extern SEXP R_g_resolver_error_quark(void);
 extern SEXP R_g_resource_new_from_data(SEXP s1);
 extern SEXP R_g_resource_enumerate_children(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_resource_get_info(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_resource_has_children(SEXP s1, SEXP s2);
 extern SEXP R_g_resource_lookup_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_resource_open_stream(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_resource_ref(SEXP s1);
@@ -1362,7 +1287,6 @@ extern SEXP R_g_settings_sync(void);
 extern SEXP R_g_settings_unbind(SEXP s1, SEXP s2);
 extern SEXP R_g_settings_apply(SEXP s1);
 extern SEXP R_g_settings_bind(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_settings_bind_with_mapping_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_settings_bind_writable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_settings_create_action(SEXP s1, SEXP s2);
 extern SEXP R_g_settings_delay(SEXP s1);
@@ -1496,15 +1420,12 @@ extern SEXP R_g_socket_leave_multicast_group(SEXP s1, SEXP s2, SEXP s3, SEXP s4)
 extern SEXP R_g_socket_leave_multicast_group_ssm(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_listen(SEXP s1);
 extern SEXP R_g_socket_receive(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_socket_receive_bytes(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_socket_receive_bytes_from(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_receive_from(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_socket_receive_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_receive_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_socket_receive_with_blocking(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_send(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_socket_send_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
-extern SEXP R_g_socket_send_message_with_timeout(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_g_socket_send_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_socket_send_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_socket_send_with_blocking(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
@@ -1609,7 +1530,6 @@ extern SEXP R_g_task_get_cancellable(SEXP s1);
 extern SEXP R_g_task_get_check_cancellable(SEXP s1);
 extern SEXP R_g_task_get_completed(SEXP s1);
 extern SEXP R_g_task_get_context(SEXP s1);
-extern SEXP R_g_task_get_name(SEXP s1);
 extern SEXP R_g_task_get_priority(SEXP s1);
 extern SEXP R_g_task_get_return_on_cancel(SEXP s1);
 extern SEXP R_g_task_get_source_object(SEXP s1);
@@ -1619,22 +1539,17 @@ extern SEXP R_g_task_had_error(SEXP s1);
 extern SEXP R_g_task_propagate_boolean(SEXP s1);
 extern SEXP R_g_task_propagate_int(SEXP s1);
 extern SEXP R_g_task_propagate_pointer(SEXP s1);
-extern SEXP R_g_task_propagate_value(SEXP s1);
 extern SEXP R_g_task_return_boolean(SEXP s1, SEXP s2);
 extern SEXP R_g_task_return_error(SEXP s1, SEXP s2);
 extern SEXP R_g_task_return_error_if_cancelled(SEXP s1);
 extern SEXP R_g_task_return_int(SEXP s1, SEXP s2);
-extern SEXP R_g_task_return_new_error_literal(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_task_return_pointer(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_task_return_value(SEXP s1, SEXP s2);
 extern SEXP R_g_task_run_in_thread(SEXP s1, SEXP s2);
 extern SEXP R_g_task_run_in_thread_sync(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_check_cancellable(SEXP s1, SEXP s2);
-extern SEXP R_g_task_set_name(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_priority(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_return_on_cancel(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_source_tag(SEXP s1, SEXP s2);
-extern SEXP R_g_task_set_static_name(SEXP s1, SEXP s2);
 extern SEXP R_g_task_set_task_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tcp_connection_get_graceful_disconnect(SEXP s1);
 extern SEXP R_g_tcp_connection_set_graceful_disconnect(SEXP s1, SEXP s2);
@@ -1692,9 +1607,7 @@ extern SEXP R_g_volume_monitor_get_volume_for_uuid(SEXP s1, SEXP s2);
 extern SEXP R_g_volume_monitor_get_volumes(SEXP s1);
 extern SEXP R_g_zlib_compressor_new(SEXP s1, SEXP s2);
 extern SEXP R_g_zlib_compressor_get_file_info(SEXP s1);
-extern SEXP R_g_zlib_compressor_get_os(SEXP s1);
 extern SEXP R_g_zlib_compressor_set_file_info(SEXP s1, SEXP s2);
-extern SEXP R_g_zlib_compressor_set_os(SEXP s1, SEXP s2);
 extern SEXP R_g_zlib_decompressor_new(SEXP s1);
 extern SEXP R_g_zlib_decompressor_get_file_info(SEXP s1);
 extern SEXP R_g_bus_get(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -1716,7 +1629,6 @@ extern SEXP R_g_content_type_from_mime_type(SEXP s1);
 extern SEXP R_g_content_type_get_description(SEXP s1);
 extern SEXP R_g_content_type_get_generic_icon_name(SEXP s1);
 extern SEXP R_g_content_type_get_icon(SEXP s1);
-extern SEXP R_g_content_type_get_mime_dirs(void);
 extern SEXP R_g_content_type_get_mime_type(SEXP s1);
 extern SEXP R_g_content_type_get_symbolic_icon(SEXP s1);
 extern SEXP R_g_content_type_guess(SEXP s1, SEXP s2, SEXP s3);
@@ -1724,10 +1636,8 @@ extern SEXP R_g_content_type_guess_for_tree(SEXP s1);
 extern SEXP R_g_content_type_is_a(SEXP s1, SEXP s2);
 extern SEXP R_g_content_type_is_mime_type(SEXP s1, SEXP s2);
 extern SEXP R_g_content_type_is_unknown(SEXP s1);
-extern SEXP R_g_content_type_set_mime_dirs(SEXP s1);
 extern SEXP R_g_content_types_get_registered(void);
 extern SEXP R_g_io_error_from_errno(SEXP s1);
-extern SEXP R_g_io_error_from_file_error(SEXP s1);
 extern SEXP R_g_io_error_quark(void);
 extern SEXP R_g_io_modules_load_all_in_directory(SEXP s1);
 extern SEXP R_g_io_modules_load_all_in_directory_with_scope(SEXP s1, SEXP s2);
@@ -1746,7 +1656,6 @@ extern SEXP R_g_pollable_stream_write(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
 extern SEXP R_g_pollable_stream_write_all(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_resources_enumerate_children(SEXP s1, SEXP s2);
 extern SEXP R_g_resources_get_info(SEXP s1, SEXP s2);
-extern SEXP R_g_resources_has_children(SEXP s1);
 extern SEXP R_g_resources_lookup_data(SEXP s1, SEXP s2);
 extern SEXP R_g_resources_open_stream(SEXP s1, SEXP s2);
 extern SEXP R_g_simple_async_report_gerror_in_idle(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -1782,12 +1691,9 @@ extern SEXP R_g_async_queue_new_full(SEXP s1);
 extern SEXP R_g_bookmark_file_new(void);
 extern SEXP R_g_bookmark_file_add_application(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_bookmark_file_add_group(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_bookmark_file_copy(SEXP s1);
 extern SEXP R_g_bookmark_file_free(SEXP s1);
 extern SEXP R_g_bookmark_file_get_added(SEXP s1, SEXP s2);
-extern SEXP R_g_bookmark_file_get_added_date_time(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_app_info(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_bookmark_file_get_application_info(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_get_applications(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_description(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_groups(SEXP s1, SEXP s2);
@@ -1795,12 +1701,10 @@ extern SEXP R_g_bookmark_file_get_icon(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_is_private(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_mime_type(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_modified(SEXP s1, SEXP s2);
-extern SEXP R_g_bookmark_file_get_modified_date_time(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_size(SEXP s1);
 extern SEXP R_g_bookmark_file_get_title(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_get_uris(SEXP s1);
 extern SEXP R_g_bookmark_file_get_visited(SEXP s1, SEXP s2);
-extern SEXP R_g_bookmark_file_get_visited_date_time(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_has_application(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_has_group(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_has_item(SEXP s1, SEXP s2);
@@ -1812,19 +1716,15 @@ extern SEXP R_g_bookmark_file_remove_application(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_remove_group(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_remove_item(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_set_added(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_bookmark_file_set_added_date_time(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_set_app_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_bookmark_file_set_application_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_bookmark_file_set_description(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_set_groups(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_bookmark_file_set_icon(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_bookmark_file_set_is_private(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_set_mime_type(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_set_modified(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_bookmark_file_set_modified_date_time(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_set_title(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_set_visited(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_bookmark_file_set_visited_date_time(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_bookmark_file_to_data(SEXP s1);
 extern SEXP R_g_bookmark_file_to_file(SEXP s1, SEXP s2);
 extern SEXP R_g_bookmark_file_error_quark(void);
@@ -1842,7 +1742,6 @@ extern SEXP R_g_byte_array_set_size(SEXP s1, SEXP s2);
 extern SEXP R_g_byte_array_sized_new(SEXP s1);
 extern SEXP R_g_byte_array_sort(SEXP s1, SEXP s2);
 extern SEXP R_g_byte_array_sort_with_data(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_byte_array_steal(SEXP s1);
 extern SEXP R_g_byte_array_unref(SEXP s1);
 extern SEXP R_g_bytes_new(SEXP s1, SEXP s2);
 extern SEXP R_g_bytes_new_from_bytes(SEXP s1, SEXP s2, SEXP s3);
@@ -1850,7 +1749,6 @@ extern SEXP R_g_bytes_new_take(SEXP s1, SEXP s2);
 extern SEXP R_g_bytes_compare(SEXP s1, SEXP s2);
 extern SEXP R_g_bytes_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_bytes_get_data(SEXP s1);
-extern SEXP R_g_bytes_get_region(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_bytes_get_size(SEXP s1);
 extern SEXP R_g_bytes_hash(SEXP s1);
 extern SEXP R_g_bytes_ref(SEXP s1);
@@ -1897,7 +1795,6 @@ extern SEXP R_g_date_get_julian(SEXP s1);
 extern SEXP R_g_date_get_monday_week_of_year(SEXP s1);
 extern SEXP R_g_date_get_month(SEXP s1);
 extern SEXP R_g_date_get_sunday_week_of_year(SEXP s1);
-extern SEXP R_g_date_get_week_of_year(SEXP s1, SEXP s2);
 extern SEXP R_g_date_get_weekday(SEXP s1);
 extern SEXP R_g_date_get_year(SEXP s1);
 extern SEXP R_g_date_is_first_of_month(SEXP s1);
@@ -1920,7 +1817,6 @@ extern SEXP R_g_date_valid(SEXP s1);
 extern SEXP R_g_date_get_days_in_month(SEXP s1, SEXP s2);
 extern SEXP R_g_date_get_monday_weeks_in_year(SEXP s1);
 extern SEXP R_g_date_get_sunday_weeks_in_year(SEXP s1);
-extern SEXP R_g_date_get_weeks_in_year(SEXP s1, SEXP s2);
 extern SEXP R_g_date_is_leap_year(SEXP s1);
 extern SEXP R_g_date_strftime(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_date_valid_day(SEXP s1);
@@ -1934,9 +1830,7 @@ extern SEXP R_g_date_time_new_from_iso8601(SEXP s1, SEXP s2);
 extern SEXP R_g_date_time_new_from_timeval_local(SEXP s1);
 extern SEXP R_g_date_time_new_from_timeval_utc(SEXP s1);
 extern SEXP R_g_date_time_new_from_unix_local(SEXP s1);
-extern SEXP R_g_date_time_new_from_unix_local_usec(SEXP s1);
 extern SEXP R_g_date_time_new_from_unix_utc(SEXP s1);
-extern SEXP R_g_date_time_new_from_unix_utc_usec(SEXP s1);
 extern SEXP R_g_date_time_new_local(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_date_time_new_now(SEXP s1);
 extern SEXP R_g_date_time_new_now_local(void);
@@ -1955,7 +1849,6 @@ extern SEXP R_g_date_time_compare(SEXP s1, SEXP s2);
 extern SEXP R_g_date_time_difference(SEXP s1, SEXP s2);
 extern SEXP R_g_date_time_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_date_time_format(SEXP s1, SEXP s2);
-extern SEXP R_g_date_time_format_iso8601(SEXP s1);
 extern SEXP R_g_date_time_get_day_of_month(SEXP s1);
 extern SEXP R_g_date_time_get_day_of_week(SEXP s1);
 extern SEXP R_g_date_time_get_day_of_year(SEXP s1);
@@ -1965,7 +1858,6 @@ extern SEXP R_g_date_time_get_minute(SEXP s1);
 extern SEXP R_g_date_time_get_month(SEXP s1);
 extern SEXP R_g_date_time_get_second(SEXP s1);
 extern SEXP R_g_date_time_get_seconds(SEXP s1);
-extern SEXP R_g_date_time_get_timezone(SEXP s1);
 extern SEXP R_g_date_time_get_timezone_abbreviation(SEXP s1);
 extern SEXP R_g_date_time_get_utc_offset(SEXP s1);
 extern SEXP R_g_date_time_get_week_numbering_year(SEXP s1);
@@ -1979,22 +1871,17 @@ extern SEXP R_g_date_time_to_local(SEXP s1);
 extern SEXP R_g_date_time_to_timeval(SEXP s1, SEXP s2);
 extern SEXP R_g_date_time_to_timezone(SEXP s1, SEXP s2);
 extern SEXP R_g_date_time_to_unix(SEXP s1);
-extern SEXP R_g_date_time_to_unix_usec(SEXP s1);
 extern SEXP R_g_date_time_to_utc(SEXP s1);
 extern SEXP R_g_date_time_unref(SEXP s1);
 extern SEXP R_g_dir_open(SEXP s1, SEXP s2);
 extern SEXP R_g_dir_close(SEXP s1);
 extern SEXP R_g_dir_read_name(SEXP s1);
-extern SEXP R_g_dir_ref(SEXP s1);
 extern SEXP R_g_dir_rewind(SEXP s1);
-extern SEXP R_g_dir_unref(SEXP s1);
 extern SEXP R_g_dir_make_tmp(SEXP s1);
 extern SEXP R_g_error_new_literal(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_error_copy(SEXP s1);
 extern SEXP R_g_error_free(SEXP s1);
 extern SEXP R_g_error_matches(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_error_domain_register(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_error_domain_register_static(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_hash_table_add(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_contains(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_destroy(SEXP s1);
@@ -2005,7 +1892,6 @@ extern SEXP R_g_hash_table_foreach_steal(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_hash_table_insert(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_hash_table_lookup(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_lookup_extended(SEXP s1, SEXP s2);
-extern SEXP R_g_hash_table_new_similar(SEXP s1);
 extern SEXP R_g_hash_table_ref(SEXP s1);
 extern SEXP R_g_hash_table_remove(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_remove_all(SEXP s1);
@@ -2013,7 +1899,6 @@ extern SEXP R_g_hash_table_replace(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_hash_table_size(SEXP s1);
 extern SEXP R_g_hash_table_steal(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_steal_all(SEXP s1);
-extern SEXP R_g_hash_table_steal_extended(SEXP s1, SEXP s2);
 extern SEXP R_g_hash_table_unref(SEXP s1);
 extern SEXP R_g_hash_table_iter_get_hash_table(SEXP s1);
 extern SEXP R_g_hash_table_iter_init(SEXP s1, SEXP s2);
@@ -2127,7 +2012,6 @@ extern SEXP R_g_key_file_error_quark(void);
 extern SEXP R_g_list_pop_allocator(void);
 extern SEXP R_g_list_push_allocator(SEXP s1);
 extern SEXP R_g_main_context_new(void);
-extern SEXP R_g_main_context_new_with_flags(SEXP s1);
 extern SEXP R_g_main_context_acquire(SEXP s1);
 extern SEXP R_g_main_context_add_poll(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_main_context_check(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -2142,7 +2026,6 @@ extern SEXP R_g_main_context_pending(SEXP s1);
 extern SEXP R_g_main_context_pop_thread_default(SEXP s1);
 extern SEXP R_g_main_context_prepare(SEXP s1);
 extern SEXP R_g_main_context_push_thread_default(SEXP s1);
-extern SEXP R_g_main_context_pusher_new(SEXP s1);
 extern SEXP R_g_main_context_query(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_main_context_ref(SEXP s1);
 extern SEXP R_g_main_context_release(SEXP s1);
@@ -2173,9 +2056,7 @@ extern SEXP R_g_markup_parse_context_end_parse(SEXP s1);
 extern SEXP R_g_markup_parse_context_free(SEXP s1);
 extern SEXP R_g_markup_parse_context_get_element(SEXP s1);
 extern SEXP R_g_markup_parse_context_get_element_stack(SEXP s1);
-extern SEXP R_g_markup_parse_context_get_offset(SEXP s1);
 extern SEXP R_g_markup_parse_context_get_position(SEXP s1);
-extern SEXP R_g_markup_parse_context_get_tag_start(SEXP s1);
 extern SEXP R_g_markup_parse_context_get_user_data(SEXP s1);
 extern SEXP R_g_markup_parse_context_parse(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_markup_parse_context_pop(SEXP s1);
@@ -2251,29 +2132,13 @@ extern SEXP R_g_option_group_ref(SEXP s1);
 extern SEXP R_g_option_group_set_translate_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_option_group_set_translation_domain(SEXP s1, SEXP s2);
 extern SEXP R_g_option_group_unref(SEXP s1);
-extern SEXP R_g_path_buf_clear(SEXP s1);
-extern SEXP R_g_path_buf_clear_to_path(SEXP s1);
-extern SEXP R_g_path_buf_free(SEXP s1);
-extern SEXP R_g_path_buf_free_to_path(SEXP s1);
-extern SEXP R_g_path_buf_init(SEXP s1);
-extern SEXP R_g_path_buf_init_from_path(SEXP s1, SEXP s2);
-extern SEXP R_g_path_buf_pop(SEXP s1);
-extern SEXP R_g_path_buf_push(SEXP s1, SEXP s2);
-extern SEXP R_g_path_buf_set_extension(SEXP s1, SEXP s2);
-extern SEXP R_g_path_buf_set_filename(SEXP s1, SEXP s2);
-extern SEXP R_g_path_buf_to_path(SEXP s1);
-extern SEXP R_g_path_buf_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_pattern_spec_new(SEXP s1);
-extern SEXP R_g_pattern_spec_copy(SEXP s1);
 extern SEXP R_g_pattern_spec_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_pattern_spec_free(SEXP s1);
-extern SEXP R_g_pattern_spec_match(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_pattern_spec_match_string(SEXP s1, SEXP s2);
 extern SEXP R_g_private_get(SEXP s1);
 extern SEXP R_g_private_replace(SEXP s1, SEXP s2);
 extern SEXP R_g_private_set(SEXP s1, SEXP s2);
 extern SEXP R_g_queue_clear(SEXP s1);
-extern SEXP R_g_queue_clear_full(SEXP s1, SEXP s2);
 extern SEXP R_g_queue_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_queue_free(SEXP s1);
 extern SEXP R_g_queue_free_full(SEXP s1, SEXP s2);
@@ -2410,7 +2275,6 @@ extern SEXP R_g_source_add_child_source(SEXP s1, SEXP s2);
 extern SEXP R_g_source_add_poll(SEXP s1, SEXP s2);
 extern SEXP R_g_source_attach(SEXP s1, SEXP s2);
 extern SEXP R_g_source_destroy(SEXP s1);
-extern SEXP R_g_source_dup_context(SEXP s1);
 extern SEXP R_g_source_get_can_recurse(SEXP s1);
 extern SEXP R_g_source_get_context(SEXP s1);
 extern SEXP R_g_source_get_current_time(SEXP s1, SEXP s2);
@@ -2430,7 +2294,6 @@ extern SEXP R_g_source_set_funcs(SEXP s1, SEXP s2);
 extern SEXP R_g_source_set_name(SEXP s1, SEXP s2);
 extern SEXP R_g_source_set_priority(SEXP s1, SEXP s2);
 extern SEXP R_g_source_set_ready_time(SEXP s1, SEXP s2);
-extern SEXP R_g_source_set_static_name(SEXP s1, SEXP s2);
 extern SEXP R_g_source_unref(SEXP s1);
 extern SEXP R_g_source_remove(SEXP s1);
 extern SEXP R_g_source_remove_by_funcs_user_data(SEXP s1, SEXP s2);
@@ -2439,7 +2302,6 @@ extern SEXP R_g_source_set_name_by_id(SEXP s1, SEXP s2);
 extern SEXP R_g_static_mutex_get_mutex_impl(SEXP s1);
 extern SEXP R_g_string_new(SEXP s1);
 extern SEXP R_g_string_new_len(SEXP s1, SEXP s2);
-extern SEXP R_g_string_new_take(SEXP s1);
 extern SEXP R_g_string_sized_new(SEXP s1);
 extern SEXP R_g_string_append(SEXP s1, SEXP s2);
 extern SEXP R_g_string_append_c(SEXP s1, SEXP s2);
@@ -2449,12 +2311,10 @@ extern SEXP R_g_string_append_uri_escaped(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_string_ascii_down(SEXP s1);
 extern SEXP R_g_string_ascii_up(SEXP s1);
 extern SEXP R_g_string_assign(SEXP s1, SEXP s2);
-extern SEXP R_g_string_copy(SEXP s1);
 extern SEXP R_g_string_down(SEXP s1);
 extern SEXP R_g_string_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_string_erase(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_string_free(SEXP s1, SEXP s2);
-extern SEXP R_g_string_free_and_steal(SEXP s1);
 extern SEXP R_g_string_free_to_bytes(SEXP s1);
 extern SEXP R_g_string_hash(SEXP s1);
 extern SEXP R_g_string_insert(SEXP s1, SEXP s2, SEXP s3);
@@ -2467,7 +2327,6 @@ extern SEXP R_g_string_prepend(SEXP s1, SEXP s2);
 extern SEXP R_g_string_prepend_c(SEXP s1, SEXP s2);
 extern SEXP R_g_string_prepend_len(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_string_prepend_unichar(SEXP s1, SEXP s2);
-extern SEXP R_g_string_replace(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_string_set_size(SEXP s1, SEXP s2);
 extern SEXP R_g_string_truncate(SEXP s1, SEXP s2);
 extern SEXP R_g_string_up(SEXP s1);
@@ -2476,24 +2335,17 @@ extern SEXP R_g_string_chunk_free(SEXP s1);
 extern SEXP R_g_string_chunk_insert(SEXP s1, SEXP s2);
 extern SEXP R_g_string_chunk_insert_const(SEXP s1, SEXP s2);
 extern SEXP R_g_string_chunk_insert_len(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_strv_builder_new(void);
 extern SEXP R_g_strv_builder_add(SEXP s1, SEXP s2);
 extern SEXP R_g_strv_builder_addv(SEXP s1, SEXP s2);
 extern SEXP R_g_strv_builder_end(SEXP s1);
-extern SEXP R_g_strv_builder_ref(SEXP s1);
 extern SEXP R_g_strv_builder_take(SEXP s1, SEXP s2);
-extern SEXP R_g_strv_builder_unref(SEXP s1);
-extern SEXP R_g_strv_builder_unref_to_strv(SEXP s1);
-extern SEXP R_g_test_case_free(SEXP s1);
 extern SEXP R_g_test_log_buffer_free(SEXP s1);
 extern SEXP R_g_test_log_buffer_push(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_test_log_msg_free(SEXP s1);
 extern SEXP R_g_test_suite_add(SEXP s1, SEXP s2);
 extern SEXP R_g_test_suite_add_suite(SEXP s1, SEXP s2);
-extern SEXP R_g_test_suite_free(SEXP s1);
 extern SEXP R_g_thread_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_thread_try_new(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_thread_get_name(SEXP s1);
 extern SEXP R_g_thread_join(SEXP s1);
 extern SEXP R_g_thread_ref(SEXP s1);
 extern SEXP R_g_thread_unref(SEXP s1);
@@ -2518,14 +2370,11 @@ extern SEXP R_g_time_val_add(SEXP s1, SEXP s2);
 extern SEXP R_g_time_val_to_iso8601(SEXP s1);
 extern SEXP R_g_time_val_from_iso8601(SEXP s1);
 extern SEXP R_g_time_zone_new(SEXP s1);
-extern SEXP R_g_time_zone_new_identifier(SEXP s1);
 extern SEXP R_g_time_zone_new_local(void);
-extern SEXP R_g_time_zone_new_offset(SEXP s1);
 extern SEXP R_g_time_zone_new_utc(void);
 extern SEXP R_g_time_zone_adjust_time(SEXP s1, SEXP s2);
 extern SEXP R_g_time_zone_find_interval(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_time_zone_get_abbreviation(SEXP s1, SEXP s2);
-extern SEXP R_g_time_zone_get_identifier(SEXP s1);
 extern SEXP R_g_time_zone_get_offset(SEXP s1, SEXP s2);
 extern SEXP R_g_time_zone_is_dst(SEXP s1, SEXP s2);
 extern SEXP R_g_time_zone_ref(SEXP s1);
@@ -2533,7 +2382,6 @@ extern SEXP R_g_time_zone_unref(SEXP s1);
 extern SEXP R_g_timer_continue(SEXP s1);
 extern SEXP R_g_timer_destroy(SEXP s1);
 extern SEXP R_g_timer_elapsed(SEXP s1, SEXP s2);
-extern SEXP R_g_timer_is_active(SEXP s1);
 extern SEXP R_g_timer_reset(SEXP s1);
 extern SEXP R_g_timer_start(SEXP s1);
 extern SEXP R_g_timer_stop(SEXP s1);
@@ -2544,72 +2392,28 @@ extern SEXP R_g_trash_stack_push(SEXP s1, SEXP s2);
 extern SEXP R_g_tree_new_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_tree_destroy(SEXP s1);
 extern SEXP R_g_tree_foreach(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tree_foreach_node(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tree_height(SEXP s1);
 extern SEXP R_g_tree_insert(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tree_insert_node(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tree_lookup(SEXP s1, SEXP s2);
 extern SEXP R_g_tree_lookup_extended(SEXP s1, SEXP s2);
-extern SEXP R_g_tree_lookup_node(SEXP s1, SEXP s2);
-extern SEXP R_g_tree_lower_bound(SEXP s1, SEXP s2);
 extern SEXP R_g_tree_nnodes(SEXP s1);
-extern SEXP R_g_tree_node_first(SEXP s1);
-extern SEXP R_g_tree_node_last(SEXP s1);
 extern SEXP R_g_tree_ref(SEXP s1);
 extern SEXP R_g_tree_remove(SEXP s1, SEXP s2);
-extern SEXP R_g_tree_remove_all(SEXP s1);
 extern SEXP R_g_tree_replace(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tree_replace_node(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tree_search(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_tree_search_node(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_tree_steal(SEXP s1, SEXP s2);
 extern SEXP R_g_tree_traverse(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_tree_unref(SEXP s1);
-extern SEXP R_g_tree_upper_bound(SEXP s1, SEXP s2);
-extern SEXP R_g_tree_node_key(SEXP s1);
-extern SEXP R_g_tree_node_next(SEXP s1);
-extern SEXP R_g_tree_node_previous(SEXP s1);
-extern SEXP R_g_tree_node_value(SEXP s1);
 extern SEXP R_g_tuples_destroy(SEXP s1);
 extern SEXP R_g_tuples_index(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_unicode_script_from_iso15924(SEXP s1);
 extern SEXP R_g_unicode_script_to_iso15924(SEXP s1);
-extern SEXP R_g_uri_get_auth_params(SEXP s1);
-extern SEXP R_g_uri_get_flags(SEXP s1);
-extern SEXP R_g_uri_get_fragment(SEXP s1);
-extern SEXP R_g_uri_get_host(SEXP s1);
-extern SEXP R_g_uri_get_password(SEXP s1);
-extern SEXP R_g_uri_get_path(SEXP s1);
-extern SEXP R_g_uri_get_port(SEXP s1);
-extern SEXP R_g_uri_get_query(SEXP s1);
-extern SEXP R_g_uri_get_scheme(SEXP s1);
-extern SEXP R_g_uri_get_user(SEXP s1);
-extern SEXP R_g_uri_get_userinfo(SEXP s1);
-extern SEXP R_g_uri_parse_relative(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_uri_to_string(SEXP s1);
-extern SEXP R_g_uri_to_string_partial(SEXP s1, SEXP s2);
-extern SEXP R_g_uri_build(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
-extern SEXP R_g_uri_build_with_user(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
 extern SEXP R_g_uri_error_quark(void);
-extern SEXP R_g_uri_escape_bytes(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_uri_escape_string(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_uri_is_valid(SEXP s1, SEXP s2);
-extern SEXP R_g_uri_join(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
-extern SEXP R_g_uri_join_with_user(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10);
 extern SEXP R_g_uri_list_extract_uris(SEXP s1);
-extern SEXP R_g_uri_parse(SEXP s1, SEXP s2);
-extern SEXP R_g_uri_parse_params(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_uri_parse_scheme(SEXP s1);
-extern SEXP R_g_uri_peek_scheme(SEXP s1);
-extern SEXP R_g_uri_resolve_relative(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_uri_split(SEXP s1, SEXP s2);
-extern SEXP R_g_uri_split_network(SEXP s1, SEXP s2);
-extern SEXP R_g_uri_split_with_user(SEXP s1, SEXP s2);
-extern SEXP R_g_uri_unescape_bytes(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_uri_unescape_segment(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_uri_unescape_string(SEXP s1, SEXP s2);
-extern SEXP R_g_uri_params_iter_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_uri_params_iter_next(SEXP s1);
 extern SEXP R_g_variant_new_array(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_variant_new_boolean(SEXP s1);
 extern SEXP R_g_variant_new_byte(SEXP s1);
@@ -2738,10 +2542,6 @@ extern SEXP R_g_variant_type_string_get_depth_(SEXP s1);
 extern SEXP R_g_variant_type_string_is_valid(SEXP s1);
 extern SEXP R_g_variant_type_string_scan(SEXP s1, SEXP s2);
 extern SEXP R_g_access(SEXP s1, SEXP s2);
-extern SEXP R_g_aligned_alloc(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_aligned_alloc0(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_aligned_free(SEXP s1);
-extern SEXP R_g_aligned_free_sized(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_ascii_digit_value(SEXP s1);
 extern SEXP R_g_ascii_dtostr(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_ascii_formatd(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -2771,17 +2571,14 @@ extern SEXP R_g_base64_encode_close(SEXP s1);
 extern SEXP R_g_base64_encode_step(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_basename(SEXP s1);
 extern SEXP R_g_bit_lock(SEXP s1, SEXP s2);
-extern SEXP R_g_bit_lock_and_get(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_nth_lsf(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_nth_msf(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_storage(SEXP s1);
 extern SEXP R_g_bit_trylock(SEXP s1, SEXP s2);
 extern SEXP R_g_bit_unlock(SEXP s1, SEXP s2);
-extern SEXP R_g_bit_unlock_and_set(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_blow_chunks(void);
 extern SEXP R_g_build_filenamev(SEXP s1);
 extern SEXP R_g_build_pathv(SEXP s1, SEXP s2);
-extern SEXP R_g_canonicalize_filename(SEXP s1, SEXP s2);
 extern SEXP R_g_chdir(SEXP s1);
 extern SEXP R_glib_check_version(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_child_watch_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
@@ -2803,7 +2600,6 @@ extern SEXP R_g_datalist_foreach(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_datalist_get_data(SEXP s1, SEXP s2);
 extern SEXP R_g_datalist_get_flags(SEXP s1);
 extern SEXP R_g_datalist_id_get_data(SEXP s1, SEXP s2);
-extern SEXP R_g_datalist_id_remove_multiple(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_datalist_set_flags(SEXP s1, SEXP s2);
 extern SEXP R_g_datalist_unset_flags(SEXP s1, SEXP s2);
 extern SEXP R_g_dataset_destroy(SEXP s1);
@@ -2827,7 +2623,6 @@ extern SEXP R_g_file_get_contents(SEXP s1);
 extern SEXP R_g_file_open_tmp(SEXP s1);
 extern SEXP R_g_file_read_link(SEXP s1);
 extern SEXP R_g_file_set_contents(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_file_set_contents_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_file_test(SEXP s1, SEXP s2);
 extern SEXP R_g_filename_display_basename(SEXP s1);
 extern SEXP R_g_filename_display_name(SEXP s1);
@@ -2841,13 +2636,10 @@ extern SEXP R_g_format_size(SEXP s1);
 extern SEXP R_g_format_size_for_display(SEXP s1);
 extern SEXP R_g_format_size_full(SEXP s1, SEXP s2);
 extern SEXP R_g_free(SEXP s1);
-extern SEXP R_g_free_sized(SEXP s1, SEXP s2);
 extern SEXP R_g_freopen(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_fsync(SEXP s1);
 extern SEXP R_g_get_application_name(void);
 extern SEXP R_g_get_charset(void);
 extern SEXP R_g_get_codeset(void);
-extern SEXP R_g_get_console_charset(void);
 extern SEXP R_g_get_current_dir(void);
 extern SEXP R_g_get_current_time(SEXP s1);
 extern SEXP R_g_get_environ(void);
@@ -2855,12 +2647,9 @@ extern SEXP R_g_get_filename_charsets(void);
 extern SEXP R_g_get_home_dir(void);
 extern SEXP R_g_get_host_name(void);
 extern SEXP R_g_get_language_names(void);
-extern SEXP R_g_get_language_names_with_category(SEXP s1);
 extern SEXP R_g_get_locale_variants(SEXP s1);
 extern SEXP R_g_get_monotonic_time(void);
-extern SEXP R_g_get_monotonic_time_ns(void);
 extern SEXP R_g_get_num_processors(void);
-extern SEXP R_g_get_os_info(SEXP s1);
 extern SEXP R_g_get_prgname(void);
 extern SEXP R_g_get_real_name(void);
 extern SEXP R_g_get_real_time(void);
@@ -2873,7 +2662,6 @@ extern SEXP R_g_get_user_data_dir(void);
 extern SEXP R_g_get_user_name(void);
 extern SEXP R_g_get_user_runtime_dir(void);
 extern SEXP R_g_get_user_special_dir(SEXP s1);
-extern SEXP R_g_get_user_state_dir(void);
 extern SEXP R_g_getenv(SEXP s1);
 extern SEXP R_g_hostname_is_ascii_encoded(SEXP s1);
 extern SEXP R_g_hostname_is_ip_address(SEXP s1);
@@ -2895,26 +2683,19 @@ extern SEXP R_g_listenv(void);
 extern SEXP R_g_locale_from_utf8(SEXP s1, SEXP s2);
 extern SEXP R_g_locale_to_utf8(SEXP s1, SEXP s2);
 extern SEXP R_g_log_default_handler(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_log_get_always_fatal(void);
-extern SEXP R_g_log_get_debug_enabled(void);
 extern SEXP R_g_log_remove_handler(SEXP s1, SEXP s2);
 extern SEXP R_g_log_set_always_fatal(SEXP s1);
-extern SEXP R_g_log_set_debug_enabled(SEXP s1);
 extern SEXP R_g_log_set_fatal_mask(SEXP s1, SEXP s2);
 extern SEXP R_g_log_set_handler_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_log_set_writer_func(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_log_structured_array(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_log_variant(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_log_writer_default(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_log_writer_default_set_debug_domains(SEXP s1);
-extern SEXP R_g_log_writer_default_set_use_stderr(SEXP s1);
-extern SEXP R_g_log_writer_default_would_drop(SEXP s1, SEXP s2);
 extern SEXP R_g_log_writer_format_fields(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_log_writer_is_journald(SEXP s1);
 extern SEXP R_g_log_writer_journald(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_log_writer_standard_streams(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_log_writer_supports_color(SEXP s1);
-extern SEXP R_g_log_writer_syslog(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_lstat(SEXP s1, SEXP s2);
 extern SEXP R_g_main_current_source(void);
 extern SEXP R_g_main_depth(void);
@@ -2928,7 +2709,6 @@ extern SEXP R_g_mem_is_system_malloc(void);
 extern SEXP R_g_mem_profile(void);
 extern SEXP R_g_mem_set_vtable(SEXP s1);
 extern SEXP R_g_memdup(SEXP s1, SEXP s2);
-extern SEXP R_g_memdup2(SEXP s1, SEXP s2);
 extern SEXP R_g_mkdir(SEXP s1, SEXP s2);
 extern SEXP R_g_mkdir_with_parents(SEXP s1, SEXP s2);
 extern SEXP R_g_nullify_pointer(SEXP s1);
@@ -2944,7 +2724,6 @@ extern SEXP R_g_path_is_absolute(SEXP s1);
 extern SEXP R_g_path_skip_root(SEXP s1);
 extern SEXP R_g_pattern_match_simple(SEXP s1, SEXP s2);
 extern SEXP R_g_poll(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_prefix_error_literal(SEXP s1);
 extern SEXP R_g_propagate_error(SEXP s1);
 extern SEXP R_g_qsort_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_quark_from_static_string(SEXP s1);
@@ -2956,26 +2735,8 @@ extern SEXP R_g_random_double_range(SEXP s1, SEXP s2);
 extern SEXP R_g_random_int(void);
 extern SEXP R_g_random_int_range(SEXP s1, SEXP s2);
 extern SEXP R_g_random_set_seed(SEXP s1);
-extern SEXP R_g_rc_box_acquire(SEXP s1);
-extern SEXP R_g_rc_box_alloc(SEXP s1);
-extern SEXP R_g_rc_box_alloc0(SEXP s1);
-extern SEXP R_g_rc_box_dup(SEXP s1, SEXP s2);
-extern SEXP R_g_rc_box_get_size(SEXP s1);
-extern SEXP R_g_rc_box_release(SEXP s1);
-extern SEXP R_g_rc_box_release_full(SEXP s1, SEXP s2);
 extern SEXP R_g_realloc(SEXP s1, SEXP s2);
 extern SEXP R_g_realloc_n(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_ref_count_compare(SEXP s1, SEXP s2);
-extern SEXP R_g_ref_count_dec(void);
-extern SEXP R_g_ref_count_inc(void);
-extern SEXP R_g_ref_count_init(void);
-extern SEXP R_g_ref_string_acquire(SEXP s1);
-extern SEXP R_g_ref_string_equal(SEXP s1, SEXP s2);
-extern SEXP R_g_ref_string_length(SEXP s1);
-extern SEXP R_g_ref_string_new(SEXP s1);
-extern SEXP R_g_ref_string_new_intern(SEXP s1);
-extern SEXP R_g_ref_string_new_len(SEXP s1, SEXP s2);
-extern SEXP R_g_ref_string_release(SEXP s1);
 extern SEXP R_g_reload_user_special_dirs_cache(void);
 extern SEXP R_g_remove(SEXP s1);
 extern SEXP R_g_rename(SEXP s1, SEXP s2);
@@ -2998,11 +2759,8 @@ extern SEXP R_g_slice_get_config_state(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_slice_set_config(SEXP s1, SEXP s2);
 extern SEXP R_g_spaced_primes_closest(SEXP s1);
 extern SEXP R_g_spawn_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_spawn_async_with_fds(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
 extern SEXP R_g_spawn_async_with_pipes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_spawn_async_with_pipes_and_fds(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12);
 extern SEXP R_g_spawn_check_exit_status(SEXP s1);
-extern SEXP R_g_spawn_check_wait_status(SEXP s1);
 extern SEXP R_g_spawn_close_pid(SEXP s1);
 extern SEXP R_g_spawn_command_line_async(SEXP s1);
 extern SEXP R_g_spawn_command_line_sync(SEXP s1);
@@ -3049,7 +2807,6 @@ extern SEXP R_g_strstr_len(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_strtod(SEXP s1);
 extern SEXP R_g_strup(SEXP s1);
 extern SEXP R_g_strv_contains(SEXP s1, SEXP s2);
-extern SEXP R_g_strv_equal(SEXP s1, SEXP s2);
 extern SEXP R_g_strv_get_type(void);
 extern SEXP R_g_strv_length(SEXP s1);
 extern SEXP R_g_test_add_data_func(SEXP s1, SEXP s2, SEXP s3);
@@ -3058,12 +2815,10 @@ extern SEXP R_g_test_add_func(SEXP s1, SEXP s2);
 extern SEXP R_g_test_assert_expected_messages_internal(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_test_bug(SEXP s1);
 extern SEXP R_g_test_bug_base(SEXP s1);
-extern SEXP R_g_test_disable_crash_reporting(void);
 extern SEXP R_g_test_expect_message(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_test_fail(void);
 extern SEXP R_g_test_failed(void);
 extern SEXP R_g_test_get_dir(SEXP s1);
-extern SEXP R_g_test_get_path(void);
 extern SEXP R_g_test_incomplete(SEXP s1);
 extern SEXP R_g_test_log_type_name(SEXP s1);
 extern SEXP R_g_test_queue_destroy(SEXP s1, SEXP s2);
@@ -3077,17 +2832,14 @@ extern SEXP R_g_test_run_suite(SEXP s1);
 extern SEXP R_g_test_set_nonfatal_assertions(void);
 extern SEXP R_g_test_skip(SEXP s1);
 extern SEXP R_g_test_subprocess(void);
-extern SEXP R_g_test_summary(SEXP s1);
 extern SEXP R_g_test_timer_elapsed(void);
 extern SEXP R_g_test_timer_last(void);
 extern SEXP R_g_test_timer_start(void);
 extern SEXP R_g_test_trap_assertions(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_test_trap_fork(SEXP s1, SEXP s2);
 extern SEXP R_g_test_trap_has_passed(void);
-extern SEXP R_g_test_trap_has_skipped(void);
 extern SEXP R_g_test_trap_reached_timeout(void);
 extern SEXP R_g_test_trap_subprocess(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_test_trap_subprocess_with_envp(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_timeout_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_timeout_add_seconds_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_g_timeout_source_new(SEXP s1);
@@ -3163,27 +2915,17 @@ extern SEXP R_g_utf8_substring(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_utf8_to_ucs4(SEXP s1, SEXP s2);
 extern SEXP R_g_utf8_to_ucs4_fast(SEXP s1, SEXP s2);
 extern SEXP R_g_utf8_to_utf16(SEXP s1, SEXP s2);
-extern SEXP R_g_utf8_truncate_middle(SEXP s1, SEXP s2);
 extern SEXP R_g_utf8_validate(SEXP s1, SEXP s2);
-extern SEXP R_g_utf8_validate_len(SEXP s1, SEXP s2);
 extern SEXP R_g_utime(SEXP s1, SEXP s2);
 extern SEXP R_g_uuid_string_is_valid(SEXP s1);
 extern SEXP R_g_uuid_string_random(void);
 extern SEXP R_g_variant_get_gtype(void);
-extern SEXP R_g_binding_dup_source(SEXP s1);
-extern SEXP R_g_binding_dup_target(SEXP s1);
 extern SEXP R_g_binding_get_flags(SEXP s1);
 extern SEXP R_g_binding_get_source(SEXP s1);
 extern SEXP R_g_binding_get_source_property(SEXP s1);
 extern SEXP R_g_binding_get_target(SEXP s1);
 extern SEXP R_g_binding_get_target_property(SEXP s1);
 extern SEXP R_g_binding_unbind(SEXP s1);
-extern SEXP R_g_binding_group_new(void);
-extern SEXP R_g_binding_group_bind(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_g_binding_group_bind_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
-extern SEXP R_g_binding_group_bind_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_g_binding_group_dup_source(SEXP s1);
-extern SEXP R_g_binding_group_set_source(SEXP s1, SEXP s2);
 extern SEXP R_g_cclosure_marshal_BOOLEAN__BOXED_BOXED(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_cclosure_marshal_BOOLEAN__FLAGS(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_g_cclosure_marshal_STRING__OBJECT_POINTER(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
@@ -3246,7 +2988,6 @@ extern SEXP R_g_object_class_install_properties(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_object_class_install_property(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_object_class_list_properties(SEXP s1);
 extern SEXP R_g_object_class_override_property(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_param_spec_is_valid_name(SEXP s1);
 extern SEXP R_g_param_spec_get_blurb(SEXP s1);
 extern SEXP R_g_param_spec_get_default_value(SEXP s1);
 extern SEXP R_g_param_spec_get_name(SEXP s1);
@@ -3257,20 +2998,11 @@ extern SEXP R_g_param_spec_get_redirect_target(SEXP s1);
 extern SEXP R_g_param_spec_set_qdata(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_param_spec_sink(SEXP s1);
 extern SEXP R_g_param_spec_steal_qdata(SEXP s1, SEXP s2);
-extern SEXP R_g_param_spec_pool_free(SEXP s1);
 extern SEXP R_g_param_spec_pool_insert(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_param_spec_pool_list(SEXP s1, SEXP s2);
 extern SEXP R_g_param_spec_pool_list_owned(SEXP s1, SEXP s2);
 extern SEXP R_g_param_spec_pool_lookup(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_param_spec_pool_remove(SEXP s1, SEXP s2);
-extern SEXP R_g_signal_group_new(SEXP s1);
-extern SEXP R_g_signal_group_block(SEXP s1);
-extern SEXP R_g_signal_group_connect_closure(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_signal_group_connect_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_g_signal_group_connect_swapped(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_signal_group_dup_target(SEXP s1);
-extern SEXP R_g_signal_group_set_target(SEXP s1, SEXP s2);
-extern SEXP R_g_signal_group_unblock(SEXP s1);
 extern SEXP R_g_source_set_closure(SEXP s1, SEXP s2);
 extern SEXP R_g_source_set_dummy_callback(SEXP s1);
 extern SEXP R_g_type_class_add_private(SEXP s1, SEXP s2);
@@ -3278,7 +3010,6 @@ extern SEXP R_g_type_class_get_private(SEXP s1, SEXP s2);
 extern SEXP R_g_type_class_peek_parent(SEXP s1);
 extern SEXP R_g_type_class_unref(SEXP s1);
 extern SEXP R_g_type_class_adjust_private_offset(SEXP s1, SEXP s2);
-extern SEXP R_g_type_class_get(SEXP s1);
 extern SEXP R_g_type_class_peek(SEXP s1);
 extern SEXP R_g_type_class_peek_static(SEXP s1);
 extern SEXP R_g_type_class_ref(SEXP s1);
@@ -3286,7 +3017,6 @@ extern SEXP R_g_type_instance_get_private(SEXP s1, SEXP s2);
 extern SEXP R_g_type_interface_peek_parent(SEXP s1);
 extern SEXP R_g_type_interface_add_prerequisite(SEXP s1, SEXP s2);
 extern SEXP R_g_type_interface_get_plugin(SEXP s1, SEXP s2);
-extern SEXP R_g_type_interface_instantiatable_prerequisite(SEXP s1);
 extern SEXP R_g_type_interface_peek(SEXP s1, SEXP s2);
 extern SEXP R_g_type_interface_prerequisites(SEXP s1);
 extern SEXP R_g_type_module_add_interface(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
@@ -3342,7 +3072,6 @@ extern SEXP R_g_value_set_gtype(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_instance(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_int(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_int64(SEXP s1, SEXP s2);
-extern SEXP R_g_value_set_interned_string(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_long(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_object(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_param(SEXP s1, SEXP s2);
@@ -3357,7 +3086,6 @@ extern SEXP R_g_value_set_uint(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_uint64(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_ulong(SEXP s1, SEXP s2);
 extern SEXP R_g_value_set_variant(SEXP s1, SEXP s2);
-extern SEXP R_g_value_steal_string(SEXP s1);
 extern SEXP R_g_value_take_boxed(SEXP s1, SEXP s2);
 extern SEXP R_g_value_take_string(SEXP s1, SEXP s2);
 extern SEXP R_g_value_take_variant(SEXP s1, SEXP s2);
@@ -3377,7 +3105,6 @@ extern SEXP R_g_value_array_sort_with_data(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_boxed_copy(SEXP s1, SEXP s2);
 extern SEXP R_g_boxed_free(SEXP s1, SEXP s2);
 extern SEXP R_g_boxed_type_register_static(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_g_clear_signal_handler(SEXP s1, SEXP s2);
 extern SEXP R_g_enum_complete_type_info(SEXP s1, SEXP s2);
 extern SEXP R_g_enum_get_value(SEXP s1, SEXP s2);
 extern SEXP R_g_enum_get_value_by_name(SEXP s1, SEXP s2);
@@ -3415,7 +3142,6 @@ extern SEXP R_g_param_spec_variant(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
 extern SEXP R_g_param_type_register_static(SEXP s1, SEXP s2);
 extern SEXP R_g_param_value_convert(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_param_value_defaults(SEXP s1, SEXP s2);
-extern SEXP R_g_param_value_is_valid(SEXP s1, SEXP s2);
 extern SEXP R_g_param_value_set_default(SEXP s1, SEXP s2);
 extern SEXP R_g_param_value_validate(SEXP s1, SEXP s2);
 extern SEXP R_g_param_values_cmp(SEXP s1, SEXP s2, SEXP s3);
@@ -3438,7 +3164,6 @@ extern SEXP R_g_signal_handlers_destroy(SEXP s1);
 extern SEXP R_g_signal_handlers_disconnect_matched(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_signal_handlers_unblock_matched(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_g_signal_has_handler_pending(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_g_signal_is_valid_name(SEXP s1);
 extern SEXP R_g_signal_list_ids(SEXP s1);
 extern SEXP R_g_signal_lookup(SEXP s1, SEXP s2);
 extern SEXP R_g_signal_name(SEXP s1);
@@ -3463,7 +3188,6 @@ extern SEXP R_g_type_check_is_value_type(SEXP s1);
 extern SEXP R_g_type_check_value(SEXP s1);
 extern SEXP R_g_type_check_value_holds(SEXP s1, SEXP s2);
 extern SEXP R_g_type_children(SEXP s1);
-extern SEXP R_g_type_default_interface_get(SEXP s1);
 extern SEXP R_g_type_default_interface_peek(SEXP s1);
 extern SEXP R_g_type_default_interface_ref(SEXP s1);
 extern SEXP R_g_type_default_interface_unref(SEXP s1);
@@ -5441,7 +5165,6 @@ extern SEXP R_gtk_popover_set_mnemonics_visible(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_set_offset(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_popover_set_pointing_to(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_set_position(SEXP s1, SEXP s2);
-extern SEXP R_gtk_popover_bin_get_handle_input(SEXP s1);
 extern SEXP R_gtk_popover_menu_new_from_model(SEXP s1);
 extern SEXP R_gtk_popover_menu_new_from_model_full(SEXP s1, SEXP s2);
 extern SEXP R_gtk_popover_menu_add_child(SEXP s1, SEXP s2, SEXP s3);
@@ -5900,13 +5623,11 @@ extern SEXP R_gtk_style_context_set_display(SEXP s1, SEXP s2);
 extern SEXP R_gtk_style_context_set_scale(SEXP s1, SEXP s2);
 extern SEXP R_gtk_style_context_set_state(SEXP s1, SEXP s2);
 extern SEXP R_gtk_style_context_to_string(SEXP s1, SEXP s2);
-extern SEXP R_gtk_svg_error_quark(void);
 extern SEXP R_gtk_switch_new(void);
 extern SEXP R_gtk_switch_get_active(SEXP s1);
 extern SEXP R_gtk_switch_get_state(SEXP s1);
 extern SEXP R_gtk_switch_set_active(SEXP s1, SEXP s2);
 extern SEXP R_gtk_switch_set_state(SEXP s1, SEXP s2);
-extern SEXP R_gtk_symbolic_paintable_snapshot_symbolic(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
 extern SEXP R_gtk_text_new(void);
 extern SEXP R_gtk_text_new_with_buffer(SEXP s1);
 extern SEXP R_gtk_text_compute_cursor_extents(SEXP s1, SEXP s2);
@@ -7196,7 +6917,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_rgba_is_clear", (DL_FUNC) &R_gdk_rgba_is_clear, 1},
     {"R_gdk_rgba_is_opaque", (DL_FUNC) &R_gdk_rgba_is_opaque, 1},
     {"R_gdk_rgba_parse", (DL_FUNC) &R_gdk_rgba_parse, 2},
-    {"R_gdk_rgba_print", (DL_FUNC) &R_gdk_rgba_print, 2},
     {"R_gdk_rgba_to_string", (DL_FUNC) &R_gdk_rgba_to_string, 1},
     {"R_gdk_rectangle_contains_point", (DL_FUNC) &R_gdk_rectangle_contains_point, 3},
     {"R_gdk_rectangle_equal", (DL_FUNC) &R_gdk_rectangle_equal, 2},
@@ -7358,16 +7078,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_action_map_add_action_entries", (DL_FUNC) &R_g_action_map_add_action_entries, 4},
     {"R_g_action_map_lookup_action", (DL_FUNC) &R_g_action_map_lookup_action, 2},
     {"R_g_action_map_remove_action", (DL_FUNC) &R_g_action_map_remove_action, 2},
-    {"R_g_action_map_remove_action_entries", (DL_FUNC) &R_g_action_map_remove_action_entries, 3},
     {"R_g_app_info_create_from_commandline", (DL_FUNC) &R_g_app_info_create_from_commandline, 3},
     {"R_g_app_info_get_all", (DL_FUNC) &R_g_app_info_get_all, 0},
     {"R_g_app_info_get_all_for_type", (DL_FUNC) &R_g_app_info_get_all_for_type, 1},
     {"R_g_app_info_get_default_for_type", (DL_FUNC) &R_g_app_info_get_default_for_type, 2},
-    {"R_g_app_info_get_default_for_type_async", (DL_FUNC) &R_g_app_info_get_default_for_type_async, 5},
-    {"R_g_app_info_get_default_for_type_finish", (DL_FUNC) &R_g_app_info_get_default_for_type_finish, 1},
     {"R_g_app_info_get_default_for_uri_scheme", (DL_FUNC) &R_g_app_info_get_default_for_uri_scheme, 1},
-    {"R_g_app_info_get_default_for_uri_scheme_async", (DL_FUNC) &R_g_app_info_get_default_for_uri_scheme_async, 4},
-    {"R_g_app_info_get_default_for_uri_scheme_finish", (DL_FUNC) &R_g_app_info_get_default_for_uri_scheme_finish, 1},
     {"R_g_app_info_get_fallback_for_type", (DL_FUNC) &R_g_app_info_get_fallback_for_type, 1},
     {"R_g_app_info_get_recommended_for_type", (DL_FUNC) &R_g_app_info_get_recommended_for_type, 1},
     {"R_g_app_info_launch_default_for_uri", (DL_FUNC) &R_g_app_info_launch_default_for_uri, 2},
@@ -7390,8 +7105,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_app_info_get_supported_types", (DL_FUNC) &R_g_app_info_get_supported_types, 1},
     {"R_g_app_info_launch", (DL_FUNC) &R_g_app_info_launch, 3},
     {"R_g_app_info_launch_uris", (DL_FUNC) &R_g_app_info_launch_uris, 3},
-    {"R_g_app_info_launch_uris_async", (DL_FUNC) &R_g_app_info_launch_uris_async, 6},
-    {"R_g_app_info_launch_uris_finish", (DL_FUNC) &R_g_app_info_launch_uris_finish, 2},
     {"R_g_app_info_remove_supports_type", (DL_FUNC) &R_g_app_info_remove_supports_type, 2},
     {"R_g_app_info_set_as_default_for_extension", (DL_FUNC) &R_g_app_info_set_as_default_for_extension, 2},
     {"R_g_app_info_set_as_default_for_type", (DL_FUNC) &R_g_app_info_set_as_default_for_type, 2},
@@ -7424,7 +7137,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_application_get_is_registered", (DL_FUNC) &R_g_application_get_is_registered, 1},
     {"R_g_application_get_is_remote", (DL_FUNC) &R_g_application_get_is_remote, 1},
     {"R_g_application_get_resource_base_path", (DL_FUNC) &R_g_application_get_resource_base_path, 1},
-    {"R_g_application_get_version", (DL_FUNC) &R_g_application_get_version, 1},
     {"R_g_application_hold", (DL_FUNC) &R_g_application_hold, 1},
     {"R_g_application_mark_busy", (DL_FUNC) &R_g_application_mark_busy, 1},
     {"R_g_application_open", (DL_FUNC) &R_g_application_open, 4},
@@ -7442,12 +7154,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_application_set_option_context_parameter_string", (DL_FUNC) &R_g_application_set_option_context_parameter_string, 2},
     {"R_g_application_set_option_context_summary", (DL_FUNC) &R_g_application_set_option_context_summary, 2},
     {"R_g_application_set_resource_base_path", (DL_FUNC) &R_g_application_set_resource_base_path, 2},
-    {"R_g_application_set_version", (DL_FUNC) &R_g_application_set_version, 2},
     {"R_g_application_unbind_busy_property", (DL_FUNC) &R_g_application_unbind_busy_property, 3},
     {"R_g_application_unmark_busy", (DL_FUNC) &R_g_application_unmark_busy, 1},
     {"R_g_application_withdraw_notification", (DL_FUNC) &R_g_application_withdraw_notification, 2},
     {"R_g_application_command_line_create_file_for_arg", (DL_FUNC) &R_g_application_command_line_create_file_for_arg, 2},
-    {"R_g_application_command_line_done", (DL_FUNC) &R_g_application_command_line_done, 1},
     {"R_g_application_command_line_get_arguments", (DL_FUNC) &R_g_application_command_line_get_arguments, 1},
     {"R_g_application_command_line_get_cwd", (DL_FUNC) &R_g_application_command_line_get_cwd, 1},
     {"R_g_application_command_line_get_environ", (DL_FUNC) &R_g_application_command_line_get_environ, 1},
@@ -7457,8 +7167,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_application_command_line_get_platform_data", (DL_FUNC) &R_g_application_command_line_get_platform_data, 1},
     {"R_g_application_command_line_get_stdin", (DL_FUNC) &R_g_application_command_line_get_stdin, 1},
     {"R_g_application_command_line_getenv", (DL_FUNC) &R_g_application_command_line_getenv, 2},
-    {"R_g_application_command_line_print_literal", (DL_FUNC) &R_g_application_command_line_print_literal, 2},
-    {"R_g_application_command_line_printerr_literal", (DL_FUNC) &R_g_application_command_line_printerr_literal, 2},
     {"R_g_application_command_line_set_exit_status", (DL_FUNC) &R_g_application_command_line_set_exit_status, 2},
     {"R_g_async_initable_newv_async", (DL_FUNC) &R_g_async_initable_newv_async, 7},
     {"R_g_async_initable_init_async", (DL_FUNC) &R_g_async_initable_init_async, 5},
@@ -7506,7 +7214,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_charset_converter_get_use_fallback", (DL_FUNC) &R_g_charset_converter_get_use_fallback, 1},
     {"R_g_charset_converter_set_use_fallback", (DL_FUNC) &R_g_charset_converter_set_use_fallback, 2},
     {"R_g_converter_convert", (DL_FUNC) &R_g_converter_convert, 6},
-    {"R_g_converter_convert_bytes", (DL_FUNC) &R_g_converter_convert_bytes, 2},
     {"R_g_converter_reset", (DL_FUNC) &R_g_converter_reset, 1},
     {"R_g_converter_input_stream_new", (DL_FUNC) &R_g_converter_input_stream_new, 2},
     {"R_g_converter_input_stream_get_converter", (DL_FUNC) &R_g_converter_input_stream_get_converter, 1},
@@ -7555,10 +7262,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_datagram_based_create_source", (DL_FUNC) &R_g_datagram_based_create_source, 3},
     {"R_g_datagram_based_receive_messages", (DL_FUNC) &R_g_datagram_based_receive_messages, 6},
     {"R_g_datagram_based_send_messages", (DL_FUNC) &R_g_datagram_based_send_messages, 6},
-    {"R_g_debug_controller_get_debug_enabled", (DL_FUNC) &R_g_debug_controller_get_debug_enabled, 1},
-    {"R_g_debug_controller_set_debug_enabled", (DL_FUNC) &R_g_debug_controller_set_debug_enabled, 2},
-    {"R_g_debug_controller_dbus_new", (DL_FUNC) &R_g_debug_controller_dbus_new, 2},
-    {"R_g_debug_controller_dbus_stop", (DL_FUNC) &R_g_debug_controller_dbus_stop, 1},
     {"R_g_drive_can_eject", (DL_FUNC) &R_g_drive_can_eject, 1},
     {"R_g_drive_can_poll_for_media", (DL_FUNC) &R_g_drive_can_poll_for_media, 1},
     {"R_g_drive_can_start", (DL_FUNC) &R_g_drive_can_start, 1},
@@ -7596,24 +7299,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_emblemed_icon_clear_emblems", (DL_FUNC) &R_g_emblemed_icon_clear_emblems, 1},
     {"R_g_emblemed_icon_get_emblems", (DL_FUNC) &R_g_emblemed_icon_get_emblems, 1},
     {"R_g_emblemed_icon_get_icon", (DL_FUNC) &R_g_emblemed_icon_get_icon, 1},
-    {"R_g_file_new_build_filenamev", (DL_FUNC) &R_g_file_new_build_filenamev, 1},
     {"R_g_file_new_for_commandline_arg", (DL_FUNC) &R_g_file_new_for_commandline_arg, 1},
     {"R_g_file_new_for_commandline_arg_and_cwd", (DL_FUNC) &R_g_file_new_for_commandline_arg_and_cwd, 2},
     {"R_g_file_new_for_path", (DL_FUNC) &R_g_file_new_for_path, 1},
     {"R_g_file_new_for_uri", (DL_FUNC) &R_g_file_new_for_uri, 1},
     {"R_g_file_new_tmp", (DL_FUNC) &R_g_file_new_tmp, 1},
-    {"R_g_file_new_tmp_async", (DL_FUNC) &R_g_file_new_tmp_async, 5},
-    {"R_g_file_new_tmp_dir_async", (DL_FUNC) &R_g_file_new_tmp_dir_async, 5},
-    {"R_g_file_new_tmp_dir_finish", (DL_FUNC) &R_g_file_new_tmp_dir_finish, 1},
-    {"R_g_file_new_tmp_finish", (DL_FUNC) &R_g_file_new_tmp_finish, 1},
     {"R_g_file_parse_name", (DL_FUNC) &R_g_file_parse_name, 1},
     {"R_g_file_append_to", (DL_FUNC) &R_g_file_append_to, 3},
     {"R_g_file_append_to_async", (DL_FUNC) &R_g_file_append_to_async, 6},
     {"R_g_file_append_to_finish", (DL_FUNC) &R_g_file_append_to_finish, 2},
-    {"R_g_file_build_attribute_list_for_copy", (DL_FUNC) &R_g_file_build_attribute_list_for_copy, 3},
     {"R_g_file_copy", (DL_FUNC) &R_g_file_copy, 6},
     {"R_g_file_copy_async", (DL_FUNC) &R_g_file_copy_async, 9},
-    {"R_g_file_copy_async_with_closures", (DL_FUNC) &R_g_file_copy_async_with_closures, 7},
     {"R_g_file_copy_attributes", (DL_FUNC) &R_g_file_copy_attributes, 4},
     {"R_g_file_copy_finish", (DL_FUNC) &R_g_file_copy_finish, 2},
     {"R_g_file_create", (DL_FUNC) &R_g_file_create, 3},
@@ -7663,8 +7359,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_make_directory_finish", (DL_FUNC) &R_g_file_make_directory_finish, 2},
     {"R_g_file_make_directory_with_parents", (DL_FUNC) &R_g_file_make_directory_with_parents, 2},
     {"R_g_file_make_symbolic_link", (DL_FUNC) &R_g_file_make_symbolic_link, 3},
-    {"R_g_file_make_symbolic_link_async", (DL_FUNC) &R_g_file_make_symbolic_link_async, 6},
-    {"R_g_file_make_symbolic_link_finish", (DL_FUNC) &R_g_file_make_symbolic_link_finish, 2},
     {"R_g_file_measure_disk_usage", (DL_FUNC) &R_g_file_measure_disk_usage, 5},
     {"R_g_file_measure_disk_usage_finish", (DL_FUNC) &R_g_file_measure_disk_usage_finish, 2},
     {"R_g_file_monitor", (DL_FUNC) &R_g_file_monitor, 3},
@@ -7675,9 +7369,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_mount_mountable", (DL_FUNC) &R_g_file_mount_mountable, 6},
     {"R_g_file_mount_mountable_finish", (DL_FUNC) &R_g_file_mount_mountable_finish, 2},
     {"R_g_file_move", (DL_FUNC) &R_g_file_move, 6},
-    {"R_g_file_move_async", (DL_FUNC) &R_g_file_move_async, 9},
-    {"R_g_file_move_async_with_closures", (DL_FUNC) &R_g_file_move_async_with_closures, 7},
-    {"R_g_file_move_finish", (DL_FUNC) &R_g_file_move_finish, 2},
     {"R_g_file_open_readwrite", (DL_FUNC) &R_g_file_open_readwrite, 2},
     {"R_g_file_open_readwrite_async", (DL_FUNC) &R_g_file_open_readwrite_async, 5},
     {"R_g_file_open_readwrite_finish", (DL_FUNC) &R_g_file_open_readwrite_finish, 2},
@@ -7685,8 +7376,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_poll_mountable", (DL_FUNC) &R_g_file_poll_mountable, 4},
     {"R_g_file_poll_mountable_finish", (DL_FUNC) &R_g_file_poll_mountable_finish, 2},
     {"R_g_file_query_default_handler", (DL_FUNC) &R_g_file_query_default_handler, 2},
-    {"R_g_file_query_default_handler_async", (DL_FUNC) &R_g_file_query_default_handler_async, 5},
-    {"R_g_file_query_default_handler_finish", (DL_FUNC) &R_g_file_query_default_handler_finish, 2},
     {"R_g_file_query_exists", (DL_FUNC) &R_g_file_query_exists, 2},
     {"R_g_file_query_file_type", (DL_FUNC) &R_g_file_query_file_type, 3},
     {"R_g_file_query_filesystem_info", (DL_FUNC) &R_g_file_query_filesystem_info, 3},
@@ -7773,12 +7462,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_info_clear_status", (DL_FUNC) &R_g_file_info_clear_status, 1},
     {"R_g_file_info_copy_into", (DL_FUNC) &R_g_file_info_copy_into, 2},
     {"R_g_file_info_dup", (DL_FUNC) &R_g_file_info_dup, 1},
-    {"R_g_file_info_get_access_date_time", (DL_FUNC) &R_g_file_info_get_access_date_time, 1},
     {"R_g_file_info_get_attribute_as_string", (DL_FUNC) &R_g_file_info_get_attribute_as_string, 2},
     {"R_g_file_info_get_attribute_boolean", (DL_FUNC) &R_g_file_info_get_attribute_boolean, 2},
     {"R_g_file_info_get_attribute_byte_string", (DL_FUNC) &R_g_file_info_get_attribute_byte_string, 2},
     {"R_g_file_info_get_attribute_data", (DL_FUNC) &R_g_file_info_get_attribute_data, 2},
-    {"R_g_file_info_get_attribute_file_path", (DL_FUNC) &R_g_file_info_get_attribute_file_path, 2},
     {"R_g_file_info_get_attribute_int32", (DL_FUNC) &R_g_file_info_get_attribute_int32, 2},
     {"R_g_file_info_get_attribute_int64", (DL_FUNC) &R_g_file_info_get_attribute_int64, 2},
     {"R_g_file_info_get_attribute_object", (DL_FUNC) &R_g_file_info_get_attribute_object, 2},
@@ -7789,7 +7476,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_info_get_attribute_uint32", (DL_FUNC) &R_g_file_info_get_attribute_uint32, 2},
     {"R_g_file_info_get_attribute_uint64", (DL_FUNC) &R_g_file_info_get_attribute_uint64, 2},
     {"R_g_file_info_get_content_type", (DL_FUNC) &R_g_file_info_get_content_type, 1},
-    {"R_g_file_info_get_creation_date_time", (DL_FUNC) &R_g_file_info_get_creation_date_time, 1},
     {"R_g_file_info_get_deletion_date", (DL_FUNC) &R_g_file_info_get_deletion_date, 1},
     {"R_g_file_info_get_display_name", (DL_FUNC) &R_g_file_info_get_display_name, 1},
     {"R_g_file_info_get_edit_name", (DL_FUNC) &R_g_file_info_get_edit_name, 1},
@@ -7799,7 +7485,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_info_get_is_backup", (DL_FUNC) &R_g_file_info_get_is_backup, 1},
     {"R_g_file_info_get_is_hidden", (DL_FUNC) &R_g_file_info_get_is_hidden, 1},
     {"R_g_file_info_get_is_symlink", (DL_FUNC) &R_g_file_info_get_is_symlink, 1},
-    {"R_g_file_info_get_modification_date_time", (DL_FUNC) &R_g_file_info_get_modification_date_time, 1},
     {"R_g_file_info_get_modification_time", (DL_FUNC) &R_g_file_info_get_modification_time, 1},
     {"R_g_file_info_get_name", (DL_FUNC) &R_g_file_info_get_name, 1},
     {"R_g_file_info_get_size", (DL_FUNC) &R_g_file_info_get_size, 1},
@@ -7810,11 +7495,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_info_has_namespace", (DL_FUNC) &R_g_file_info_has_namespace, 2},
     {"R_g_file_info_list_attributes", (DL_FUNC) &R_g_file_info_list_attributes, 2},
     {"R_g_file_info_remove_attribute", (DL_FUNC) &R_g_file_info_remove_attribute, 2},
-    {"R_g_file_info_set_access_date_time", (DL_FUNC) &R_g_file_info_set_access_date_time, 2},
     {"R_g_file_info_set_attribute", (DL_FUNC) &R_g_file_info_set_attribute, 4},
     {"R_g_file_info_set_attribute_boolean", (DL_FUNC) &R_g_file_info_set_attribute_boolean, 3},
     {"R_g_file_info_set_attribute_byte_string", (DL_FUNC) &R_g_file_info_set_attribute_byte_string, 3},
-    {"R_g_file_info_set_attribute_file_path", (DL_FUNC) &R_g_file_info_set_attribute_file_path, 3},
     {"R_g_file_info_set_attribute_int32", (DL_FUNC) &R_g_file_info_set_attribute_int32, 3},
     {"R_g_file_info_set_attribute_int64", (DL_FUNC) &R_g_file_info_set_attribute_int64, 3},
     {"R_g_file_info_set_attribute_mask", (DL_FUNC) &R_g_file_info_set_attribute_mask, 2},
@@ -7825,14 +7508,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_info_set_attribute_uint32", (DL_FUNC) &R_g_file_info_set_attribute_uint32, 3},
     {"R_g_file_info_set_attribute_uint64", (DL_FUNC) &R_g_file_info_set_attribute_uint64, 3},
     {"R_g_file_info_set_content_type", (DL_FUNC) &R_g_file_info_set_content_type, 2},
-    {"R_g_file_info_set_creation_date_time", (DL_FUNC) &R_g_file_info_set_creation_date_time, 2},
     {"R_g_file_info_set_display_name", (DL_FUNC) &R_g_file_info_set_display_name, 2},
     {"R_g_file_info_set_edit_name", (DL_FUNC) &R_g_file_info_set_edit_name, 2},
     {"R_g_file_info_set_file_type", (DL_FUNC) &R_g_file_info_set_file_type, 2},
     {"R_g_file_info_set_icon", (DL_FUNC) &R_g_file_info_set_icon, 2},
     {"R_g_file_info_set_is_hidden", (DL_FUNC) &R_g_file_info_set_is_hidden, 2},
     {"R_g_file_info_set_is_symlink", (DL_FUNC) &R_g_file_info_set_is_symlink, 2},
-    {"R_g_file_info_set_modification_date_time", (DL_FUNC) &R_g_file_info_set_modification_date_time, 2},
     {"R_g_file_info_set_modification_time", (DL_FUNC) &R_g_file_info_set_modification_time, 2},
     {"R_g_file_info_set_name", (DL_FUNC) &R_g_file_info_set_name, 2},
     {"R_g_file_info_set_size", (DL_FUNC) &R_g_file_info_set_size, 2},
@@ -7884,12 +7565,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_io_stream_is_closed", (DL_FUNC) &R_g_io_stream_is_closed, 1},
     {"R_g_io_stream_set_pending", (DL_FUNC) &R_g_io_stream_set_pending, 1},
     {"R_g_io_stream_splice_async", (DL_FUNC) &R_g_io_stream_splice_async, 7},
-    {"R_g_ip_tos_message_new", (DL_FUNC) &R_g_ip_tos_message_new, 2},
-    {"R_g_ip_tos_message_get_dscp", (DL_FUNC) &R_g_ip_tos_message_get_dscp, 1},
-    {"R_g_ip_tos_message_get_ecn", (DL_FUNC) &R_g_ip_tos_message_get_ecn, 1},
-    {"R_g_ipv6_tclass_message_new", (DL_FUNC) &R_g_ipv6_tclass_message_new, 2},
-    {"R_g_ipv6_tclass_message_get_dscp", (DL_FUNC) &R_g_ipv6_tclass_message_get_dscp, 1},
-    {"R_g_ipv6_tclass_message_get_ecn", (DL_FUNC) &R_g_ipv6_tclass_message_get_ecn, 1},
     {"R_g_icon_deserialize", (DL_FUNC) &R_g_icon_deserialize, 1},
     {"R_g_icon_new_for_string", (DL_FUNC) &R_g_icon_new_for_string, 1},
     {"R_g_icon_equal", (DL_FUNC) &R_g_icon_equal, 2},
@@ -7898,12 +7573,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_icon_to_string", (DL_FUNC) &R_g_icon_to_string, 1},
     {"R_g_inet_address_new_any", (DL_FUNC) &R_g_inet_address_new_any, 1},
     {"R_g_inet_address_new_from_bytes", (DL_FUNC) &R_g_inet_address_new_from_bytes, 2},
-    {"R_g_inet_address_new_from_bytes_with_ipv6_info", (DL_FUNC) &R_g_inet_address_new_from_bytes_with_ipv6_info, 4},
     {"R_g_inet_address_new_from_string", (DL_FUNC) &R_g_inet_address_new_from_string, 1},
     {"R_g_inet_address_new_loopback", (DL_FUNC) &R_g_inet_address_new_loopback, 1},
     {"R_g_inet_address_equal", (DL_FUNC) &R_g_inet_address_equal, 2},
     {"R_g_inet_address_get_family", (DL_FUNC) &R_g_inet_address_get_family, 1},
-    {"R_g_inet_address_get_flowinfo", (DL_FUNC) &R_g_inet_address_get_flowinfo, 1},
     {"R_g_inet_address_get_is_any", (DL_FUNC) &R_g_inet_address_get_is_any, 1},
     {"R_g_inet_address_get_is_link_local", (DL_FUNC) &R_g_inet_address_get_is_link_local, 1},
     {"R_g_inet_address_get_is_loopback", (DL_FUNC) &R_g_inet_address_get_is_loopback, 1},
@@ -7915,7 +7588,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_inet_address_get_is_multicast", (DL_FUNC) &R_g_inet_address_get_is_multicast, 1},
     {"R_g_inet_address_get_is_site_local", (DL_FUNC) &R_g_inet_address_get_is_site_local, 1},
     {"R_g_inet_address_get_native_size", (DL_FUNC) &R_g_inet_address_get_native_size, 1},
-    {"R_g_inet_address_get_scope_id", (DL_FUNC) &R_g_inet_address_get_scope_id, 1},
     {"R_g_inet_address_to_string", (DL_FUNC) &R_g_inet_address_to_string, 1},
     {"R_g_inet_address_mask_new", (DL_FUNC) &R_g_inet_address_mask_new, 2},
     {"R_g_inet_address_mask_new_from_string", (DL_FUNC) &R_g_inet_address_mask_new_from_string, 1},
@@ -7958,9 +7630,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_list_model_items_changed", (DL_FUNC) &R_g_list_model_items_changed, 4},
     {"R_g_list_store_new", (DL_FUNC) &R_g_list_store_new, 1},
     {"R_g_list_store_append", (DL_FUNC) &R_g_list_store_append, 2},
-    {"R_g_list_store_find", (DL_FUNC) &R_g_list_store_find, 2},
-    {"R_g_list_store_find_with_equal_func", (DL_FUNC) &R_g_list_store_find_with_equal_func, 3},
-    {"R_g_list_store_find_with_equal_func_full", (DL_FUNC) &R_g_list_store_find_with_equal_func_full, 4},
     {"R_g_list_store_insert", (DL_FUNC) &R_g_list_store_insert, 3},
     {"R_g_list_store_insert_sorted", (DL_FUNC) &R_g_list_store_insert_sorted, 4},
     {"R_g_list_store_remove", (DL_FUNC) &R_g_list_store_remove, 2},
@@ -7975,7 +7644,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_memory_input_stream_new_from_data", (DL_FUNC) &R_g_memory_input_stream_new_from_data, 3},
     {"R_g_memory_input_stream_add_bytes", (DL_FUNC) &R_g_memory_input_stream_add_bytes, 2},
     {"R_g_memory_input_stream_add_data", (DL_FUNC) &R_g_memory_input_stream_add_data, 4},
-    {"R_g_memory_monitor_dup_default", (DL_FUNC) &R_g_memory_monitor_dup_default, 0},
     {"R_g_memory_output_stream_new_resizable", (DL_FUNC) &R_g_memory_output_stream_new_resizable, 0},
     {"R_g_memory_output_stream_get_data", (DL_FUNC) &R_g_memory_output_stream_get_data, 1},
     {"R_g_memory_output_stream_get_data_size", (DL_FUNC) &R_g_memory_output_stream_get_data_size, 1},
@@ -8058,21 +7726,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_mount_operation_get_anonymous", (DL_FUNC) &R_g_mount_operation_get_anonymous, 1},
     {"R_g_mount_operation_get_choice", (DL_FUNC) &R_g_mount_operation_get_choice, 1},
     {"R_g_mount_operation_get_domain", (DL_FUNC) &R_g_mount_operation_get_domain, 1},
-    {"R_g_mount_operation_get_is_tcrypt_hidden_volume", (DL_FUNC) &R_g_mount_operation_get_is_tcrypt_hidden_volume, 1},
-    {"R_g_mount_operation_get_is_tcrypt_system_volume", (DL_FUNC) &R_g_mount_operation_get_is_tcrypt_system_volume, 1},
     {"R_g_mount_operation_get_password", (DL_FUNC) &R_g_mount_operation_get_password, 1},
     {"R_g_mount_operation_get_password_save", (DL_FUNC) &R_g_mount_operation_get_password_save, 1},
-    {"R_g_mount_operation_get_pim", (DL_FUNC) &R_g_mount_operation_get_pim, 1},
     {"R_g_mount_operation_get_username", (DL_FUNC) &R_g_mount_operation_get_username, 1},
     {"R_g_mount_operation_reply", (DL_FUNC) &R_g_mount_operation_reply, 2},
     {"R_g_mount_operation_set_anonymous", (DL_FUNC) &R_g_mount_operation_set_anonymous, 2},
     {"R_g_mount_operation_set_choice", (DL_FUNC) &R_g_mount_operation_set_choice, 2},
     {"R_g_mount_operation_set_domain", (DL_FUNC) &R_g_mount_operation_set_domain, 2},
-    {"R_g_mount_operation_set_is_tcrypt_hidden_volume", (DL_FUNC) &R_g_mount_operation_set_is_tcrypt_hidden_volume, 2},
-    {"R_g_mount_operation_set_is_tcrypt_system_volume", (DL_FUNC) &R_g_mount_operation_set_is_tcrypt_system_volume, 2},
     {"R_g_mount_operation_set_password", (DL_FUNC) &R_g_mount_operation_set_password, 2},
     {"R_g_mount_operation_set_password_save", (DL_FUNC) &R_g_mount_operation_set_password_save, 2},
-    {"R_g_mount_operation_set_pim", (DL_FUNC) &R_g_mount_operation_set_pim, 2},
     {"R_g_mount_operation_set_username", (DL_FUNC) &R_g_mount_operation_set_username, 2},
     {"R_g_native_socket_address_new", (DL_FUNC) &R_g_native_socket_address_new, 2},
     {"R_g_network_address_new", (DL_FUNC) &R_g_network_address_new, 2},
@@ -8099,7 +7761,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_notification_add_button", (DL_FUNC) &R_g_notification_add_button, 3},
     {"R_g_notification_add_button_with_target_value", (DL_FUNC) &R_g_notification_add_button_with_target_value, 4},
     {"R_g_notification_set_body", (DL_FUNC) &R_g_notification_set_body, 2},
-    {"R_g_notification_set_category", (DL_FUNC) &R_g_notification_set_category, 2},
     {"R_g_notification_set_default_action", (DL_FUNC) &R_g_notification_set_default_action, 2},
     {"R_g_notification_set_default_action_and_target_value", (DL_FUNC) &R_g_notification_set_default_action_and_target_value, 3},
     {"R_g_notification_set_icon", (DL_FUNC) &R_g_notification_set_icon, 2},
@@ -8129,12 +7790,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_output_stream_write_bytes_async", (DL_FUNC) &R_g_output_stream_write_bytes_async, 6},
     {"R_g_output_stream_write_bytes_finish", (DL_FUNC) &R_g_output_stream_write_bytes_finish, 2},
     {"R_g_output_stream_write_finish", (DL_FUNC) &R_g_output_stream_write_finish, 2},
-    {"R_g_output_stream_writev", (DL_FUNC) &R_g_output_stream_writev, 4},
-    {"R_g_output_stream_writev_all", (DL_FUNC) &R_g_output_stream_writev_all, 4},
-    {"R_g_output_stream_writev_all_async", (DL_FUNC) &R_g_output_stream_writev_all_async, 7},
-    {"R_g_output_stream_writev_all_finish", (DL_FUNC) &R_g_output_stream_writev_all_finish, 2},
-    {"R_g_output_stream_writev_async", (DL_FUNC) &R_g_output_stream_writev_async, 7},
-    {"R_g_output_stream_writev_finish", (DL_FUNC) &R_g_output_stream_writev_finish, 2},
     {"R_g_permission_acquire", (DL_FUNC) &R_g_permission_acquire, 2},
     {"R_g_permission_acquire_async", (DL_FUNC) &R_g_permission_acquire_async, 4},
     {"R_g_permission_acquire_finish", (DL_FUNC) &R_g_permission_acquire_finish, 2},
@@ -8153,9 +7808,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_pollable_output_stream_create_source", (DL_FUNC) &R_g_pollable_output_stream_create_source, 2},
     {"R_g_pollable_output_stream_is_writable", (DL_FUNC) &R_g_pollable_output_stream_is_writable, 1},
     {"R_g_pollable_output_stream_write_nonblocking", (DL_FUNC) &R_g_pollable_output_stream_write_nonblocking, 4},
-    {"R_g_pollable_output_stream_writev_nonblocking", (DL_FUNC) &R_g_pollable_output_stream_writev_nonblocking, 4},
-    {"R_g_power_profile_monitor_dup_default", (DL_FUNC) &R_g_power_profile_monitor_dup_default, 0},
-    {"R_g_power_profile_monitor_get_power_saver_enabled", (DL_FUNC) &R_g_power_profile_monitor_get_power_saver_enabled, 1},
     {"R_g_property_action_new", (DL_FUNC) &R_g_property_action_new, 3},
     {"R_g_proxy_get_default_for_protocol", (DL_FUNC) &R_g_proxy_get_default_for_protocol, 1},
     {"R_g_proxy_connect", (DL_FUNC) &R_g_proxy_connect, 4},
@@ -8178,16 +7830,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_remote_action_group_activate_action_full", (DL_FUNC) &R_g_remote_action_group_activate_action_full, 4},
     {"R_g_remote_action_group_change_action_state_full", (DL_FUNC) &R_g_remote_action_group_change_action_state_full, 4},
     {"R_g_resolver_get_default", (DL_FUNC) &R_g_resolver_get_default, 0},
-    {"R_g_resolver_get_timeout", (DL_FUNC) &R_g_resolver_get_timeout, 1},
     {"R_g_resolver_lookup_by_address", (DL_FUNC) &R_g_resolver_lookup_by_address, 3},
     {"R_g_resolver_lookup_by_address_async", (DL_FUNC) &R_g_resolver_lookup_by_address_async, 5},
     {"R_g_resolver_lookup_by_address_finish", (DL_FUNC) &R_g_resolver_lookup_by_address_finish, 2},
     {"R_g_resolver_lookup_by_name", (DL_FUNC) &R_g_resolver_lookup_by_name, 3},
     {"R_g_resolver_lookup_by_name_async", (DL_FUNC) &R_g_resolver_lookup_by_name_async, 5},
     {"R_g_resolver_lookup_by_name_finish", (DL_FUNC) &R_g_resolver_lookup_by_name_finish, 2},
-    {"R_g_resolver_lookup_by_name_with_flags", (DL_FUNC) &R_g_resolver_lookup_by_name_with_flags, 4},
-    {"R_g_resolver_lookup_by_name_with_flags_async", (DL_FUNC) &R_g_resolver_lookup_by_name_with_flags_async, 6},
-    {"R_g_resolver_lookup_by_name_with_flags_finish", (DL_FUNC) &R_g_resolver_lookup_by_name_with_flags_finish, 2},
     {"R_g_resolver_lookup_records", (DL_FUNC) &R_g_resolver_lookup_records, 4},
     {"R_g_resolver_lookup_records_async", (DL_FUNC) &R_g_resolver_lookup_records_async, 6},
     {"R_g_resolver_lookup_records_finish", (DL_FUNC) &R_g_resolver_lookup_records_finish, 2},
@@ -8195,12 +7843,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_resolver_lookup_service_async", (DL_FUNC) &R_g_resolver_lookup_service_async, 7},
     {"R_g_resolver_lookup_service_finish", (DL_FUNC) &R_g_resolver_lookup_service_finish, 2},
     {"R_g_resolver_set_default", (DL_FUNC) &R_g_resolver_set_default, 1},
-    {"R_g_resolver_set_timeout", (DL_FUNC) &R_g_resolver_set_timeout, 2},
     {"R_g_resolver_error_quark", (DL_FUNC) &R_g_resolver_error_quark, 0},
     {"R_g_resource_new_from_data", (DL_FUNC) &R_g_resource_new_from_data, 1},
     {"R_g_resource_enumerate_children", (DL_FUNC) &R_g_resource_enumerate_children, 3},
     {"R_g_resource_get_info", (DL_FUNC) &R_g_resource_get_info, 3},
-    {"R_g_resource_has_children", (DL_FUNC) &R_g_resource_has_children, 2},
     {"R_g_resource_lookup_data", (DL_FUNC) &R_g_resource_lookup_data, 3},
     {"R_g_resource_open_stream", (DL_FUNC) &R_g_resource_open_stream, 3},
     {"R_g_resource_ref", (DL_FUNC) &R_g_resource_ref, 1},
@@ -8223,7 +7869,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_settings_unbind", (DL_FUNC) &R_g_settings_unbind, 2},
     {"R_g_settings_apply", (DL_FUNC) &R_g_settings_apply, 1},
     {"R_g_settings_bind", (DL_FUNC) &R_g_settings_bind, 5},
-    {"R_g_settings_bind_with_mapping_closures", (DL_FUNC) &R_g_settings_bind_with_mapping_closures, 7},
     {"R_g_settings_bind_writable", (DL_FUNC) &R_g_settings_bind_writable, 5},
     {"R_g_settings_create_action", (DL_FUNC) &R_g_settings_create_action, 2},
     {"R_g_settings_delay", (DL_FUNC) &R_g_settings_delay, 1},
@@ -8357,15 +8002,12 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_socket_leave_multicast_group_ssm", (DL_FUNC) &R_g_socket_leave_multicast_group_ssm, 4},
     {"R_g_socket_listen", (DL_FUNC) &R_g_socket_listen, 1},
     {"R_g_socket_receive", (DL_FUNC) &R_g_socket_receive, 3},
-    {"R_g_socket_receive_bytes", (DL_FUNC) &R_g_socket_receive_bytes, 4},
-    {"R_g_socket_receive_bytes_from", (DL_FUNC) &R_g_socket_receive_bytes_from, 4},
     {"R_g_socket_receive_from", (DL_FUNC) &R_g_socket_receive_from, 3},
     {"R_g_socket_receive_message", (DL_FUNC) &R_g_socket_receive_message, 4},
     {"R_g_socket_receive_messages", (DL_FUNC) &R_g_socket_receive_messages, 5},
     {"R_g_socket_receive_with_blocking", (DL_FUNC) &R_g_socket_receive_with_blocking, 4},
     {"R_g_socket_send", (DL_FUNC) &R_g_socket_send, 4},
     {"R_g_socket_send_message", (DL_FUNC) &R_g_socket_send_message, 8},
-    {"R_g_socket_send_message_with_timeout", (DL_FUNC) &R_g_socket_send_message_with_timeout, 9},
     {"R_g_socket_send_messages", (DL_FUNC) &R_g_socket_send_messages, 5},
     {"R_g_socket_send_to", (DL_FUNC) &R_g_socket_send_to, 5},
     {"R_g_socket_send_with_blocking", (DL_FUNC) &R_g_socket_send_with_blocking, 5},
@@ -8470,7 +8112,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_task_get_check_cancellable", (DL_FUNC) &R_g_task_get_check_cancellable, 1},
     {"R_g_task_get_completed", (DL_FUNC) &R_g_task_get_completed, 1},
     {"R_g_task_get_context", (DL_FUNC) &R_g_task_get_context, 1},
-    {"R_g_task_get_name", (DL_FUNC) &R_g_task_get_name, 1},
     {"R_g_task_get_priority", (DL_FUNC) &R_g_task_get_priority, 1},
     {"R_g_task_get_return_on_cancel", (DL_FUNC) &R_g_task_get_return_on_cancel, 1},
     {"R_g_task_get_source_object", (DL_FUNC) &R_g_task_get_source_object, 1},
@@ -8480,22 +8121,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_task_propagate_boolean", (DL_FUNC) &R_g_task_propagate_boolean, 1},
     {"R_g_task_propagate_int", (DL_FUNC) &R_g_task_propagate_int, 1},
     {"R_g_task_propagate_pointer", (DL_FUNC) &R_g_task_propagate_pointer, 1},
-    {"R_g_task_propagate_value", (DL_FUNC) &R_g_task_propagate_value, 1},
     {"R_g_task_return_boolean", (DL_FUNC) &R_g_task_return_boolean, 2},
     {"R_g_task_return_error", (DL_FUNC) &R_g_task_return_error, 2},
     {"R_g_task_return_error_if_cancelled", (DL_FUNC) &R_g_task_return_error_if_cancelled, 1},
     {"R_g_task_return_int", (DL_FUNC) &R_g_task_return_int, 2},
-    {"R_g_task_return_new_error_literal", (DL_FUNC) &R_g_task_return_new_error_literal, 4},
     {"R_g_task_return_pointer", (DL_FUNC) &R_g_task_return_pointer, 3},
-    {"R_g_task_return_value", (DL_FUNC) &R_g_task_return_value, 2},
     {"R_g_task_run_in_thread", (DL_FUNC) &R_g_task_run_in_thread, 2},
     {"R_g_task_run_in_thread_sync", (DL_FUNC) &R_g_task_run_in_thread_sync, 2},
     {"R_g_task_set_check_cancellable", (DL_FUNC) &R_g_task_set_check_cancellable, 2},
-    {"R_g_task_set_name", (DL_FUNC) &R_g_task_set_name, 2},
     {"R_g_task_set_priority", (DL_FUNC) &R_g_task_set_priority, 2},
     {"R_g_task_set_return_on_cancel", (DL_FUNC) &R_g_task_set_return_on_cancel, 2},
     {"R_g_task_set_source_tag", (DL_FUNC) &R_g_task_set_source_tag, 2},
-    {"R_g_task_set_static_name", (DL_FUNC) &R_g_task_set_static_name, 2},
     {"R_g_task_set_task_data", (DL_FUNC) &R_g_task_set_task_data, 3},
     {"R_g_tcp_connection_get_graceful_disconnect", (DL_FUNC) &R_g_tcp_connection_get_graceful_disconnect, 1},
     {"R_g_tcp_connection_set_graceful_disconnect", (DL_FUNC) &R_g_tcp_connection_set_graceful_disconnect, 2},
@@ -8553,9 +8189,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_volume_monitor_get_volumes", (DL_FUNC) &R_g_volume_monitor_get_volumes, 1},
     {"R_g_zlib_compressor_new", (DL_FUNC) &R_g_zlib_compressor_new, 2},
     {"R_g_zlib_compressor_get_file_info", (DL_FUNC) &R_g_zlib_compressor_get_file_info, 1},
-    {"R_g_zlib_compressor_get_os", (DL_FUNC) &R_g_zlib_compressor_get_os, 1},
     {"R_g_zlib_compressor_set_file_info", (DL_FUNC) &R_g_zlib_compressor_set_file_info, 2},
-    {"R_g_zlib_compressor_set_os", (DL_FUNC) &R_g_zlib_compressor_set_os, 2},
     {"R_g_zlib_decompressor_new", (DL_FUNC) &R_g_zlib_decompressor_new, 1},
     {"R_g_zlib_decompressor_get_file_info", (DL_FUNC) &R_g_zlib_decompressor_get_file_info, 1},
     {"R_g_bus_get", (DL_FUNC) &R_g_bus_get, 4},
@@ -8577,7 +8211,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_content_type_get_description", (DL_FUNC) &R_g_content_type_get_description, 1},
     {"R_g_content_type_get_generic_icon_name", (DL_FUNC) &R_g_content_type_get_generic_icon_name, 1},
     {"R_g_content_type_get_icon", (DL_FUNC) &R_g_content_type_get_icon, 1},
-    {"R_g_content_type_get_mime_dirs", (DL_FUNC) &R_g_content_type_get_mime_dirs, 0},
     {"R_g_content_type_get_mime_type", (DL_FUNC) &R_g_content_type_get_mime_type, 1},
     {"R_g_content_type_get_symbolic_icon", (DL_FUNC) &R_g_content_type_get_symbolic_icon, 1},
     {"R_g_content_type_guess", (DL_FUNC) &R_g_content_type_guess, 3},
@@ -8585,10 +8218,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_content_type_is_a", (DL_FUNC) &R_g_content_type_is_a, 2},
     {"R_g_content_type_is_mime_type", (DL_FUNC) &R_g_content_type_is_mime_type, 2},
     {"R_g_content_type_is_unknown", (DL_FUNC) &R_g_content_type_is_unknown, 1},
-    {"R_g_content_type_set_mime_dirs", (DL_FUNC) &R_g_content_type_set_mime_dirs, 1},
     {"R_g_content_types_get_registered", (DL_FUNC) &R_g_content_types_get_registered, 0},
     {"R_g_io_error_from_errno", (DL_FUNC) &R_g_io_error_from_errno, 1},
-    {"R_g_io_error_from_file_error", (DL_FUNC) &R_g_io_error_from_file_error, 1},
     {"R_g_io_error_quark", (DL_FUNC) &R_g_io_error_quark, 0},
     {"R_g_io_modules_load_all_in_directory", (DL_FUNC) &R_g_io_modules_load_all_in_directory, 1},
     {"R_g_io_modules_load_all_in_directory_with_scope", (DL_FUNC) &R_g_io_modules_load_all_in_directory_with_scope, 2},
@@ -8607,7 +8238,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_pollable_stream_write_all", (DL_FUNC) &R_g_pollable_stream_write_all, 5},
     {"R_g_resources_enumerate_children", (DL_FUNC) &R_g_resources_enumerate_children, 2},
     {"R_g_resources_get_info", (DL_FUNC) &R_g_resources_get_info, 2},
-    {"R_g_resources_has_children", (DL_FUNC) &R_g_resources_has_children, 1},
     {"R_g_resources_lookup_data", (DL_FUNC) &R_g_resources_lookup_data, 2},
     {"R_g_resources_open_stream", (DL_FUNC) &R_g_resources_open_stream, 2},
     {"R_g_simple_async_report_gerror_in_idle", (DL_FUNC) &R_g_simple_async_report_gerror_in_idle, 4},
@@ -8643,12 +8273,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_bookmark_file_new", (DL_FUNC) &R_g_bookmark_file_new, 0},
     {"R_g_bookmark_file_add_application", (DL_FUNC) &R_g_bookmark_file_add_application, 4},
     {"R_g_bookmark_file_add_group", (DL_FUNC) &R_g_bookmark_file_add_group, 3},
-    {"R_g_bookmark_file_copy", (DL_FUNC) &R_g_bookmark_file_copy, 1},
     {"R_g_bookmark_file_free", (DL_FUNC) &R_g_bookmark_file_free, 1},
     {"R_g_bookmark_file_get_added", (DL_FUNC) &R_g_bookmark_file_get_added, 2},
-    {"R_g_bookmark_file_get_added_date_time", (DL_FUNC) &R_g_bookmark_file_get_added_date_time, 2},
     {"R_g_bookmark_file_get_app_info", (DL_FUNC) &R_g_bookmark_file_get_app_info, 3},
-    {"R_g_bookmark_file_get_application_info", (DL_FUNC) &R_g_bookmark_file_get_application_info, 3},
     {"R_g_bookmark_file_get_applications", (DL_FUNC) &R_g_bookmark_file_get_applications, 2},
     {"R_g_bookmark_file_get_description", (DL_FUNC) &R_g_bookmark_file_get_description, 2},
     {"R_g_bookmark_file_get_groups", (DL_FUNC) &R_g_bookmark_file_get_groups, 2},
@@ -8656,12 +8283,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_bookmark_file_get_is_private", (DL_FUNC) &R_g_bookmark_file_get_is_private, 2},
     {"R_g_bookmark_file_get_mime_type", (DL_FUNC) &R_g_bookmark_file_get_mime_type, 2},
     {"R_g_bookmark_file_get_modified", (DL_FUNC) &R_g_bookmark_file_get_modified, 2},
-    {"R_g_bookmark_file_get_modified_date_time", (DL_FUNC) &R_g_bookmark_file_get_modified_date_time, 2},
     {"R_g_bookmark_file_get_size", (DL_FUNC) &R_g_bookmark_file_get_size, 1},
     {"R_g_bookmark_file_get_title", (DL_FUNC) &R_g_bookmark_file_get_title, 2},
     {"R_g_bookmark_file_get_uris", (DL_FUNC) &R_g_bookmark_file_get_uris, 1},
     {"R_g_bookmark_file_get_visited", (DL_FUNC) &R_g_bookmark_file_get_visited, 2},
-    {"R_g_bookmark_file_get_visited_date_time", (DL_FUNC) &R_g_bookmark_file_get_visited_date_time, 2},
     {"R_g_bookmark_file_has_application", (DL_FUNC) &R_g_bookmark_file_has_application, 3},
     {"R_g_bookmark_file_has_group", (DL_FUNC) &R_g_bookmark_file_has_group, 3},
     {"R_g_bookmark_file_has_item", (DL_FUNC) &R_g_bookmark_file_has_item, 2},
@@ -8673,19 +8298,15 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_bookmark_file_remove_group", (DL_FUNC) &R_g_bookmark_file_remove_group, 3},
     {"R_g_bookmark_file_remove_item", (DL_FUNC) &R_g_bookmark_file_remove_item, 2},
     {"R_g_bookmark_file_set_added", (DL_FUNC) &R_g_bookmark_file_set_added, 3},
-    {"R_g_bookmark_file_set_added_date_time", (DL_FUNC) &R_g_bookmark_file_set_added_date_time, 3},
     {"R_g_bookmark_file_set_app_info", (DL_FUNC) &R_g_bookmark_file_set_app_info, 6},
-    {"R_g_bookmark_file_set_application_info", (DL_FUNC) &R_g_bookmark_file_set_application_info, 6},
     {"R_g_bookmark_file_set_description", (DL_FUNC) &R_g_bookmark_file_set_description, 3},
     {"R_g_bookmark_file_set_groups", (DL_FUNC) &R_g_bookmark_file_set_groups, 4},
     {"R_g_bookmark_file_set_icon", (DL_FUNC) &R_g_bookmark_file_set_icon, 4},
     {"R_g_bookmark_file_set_is_private", (DL_FUNC) &R_g_bookmark_file_set_is_private, 3},
     {"R_g_bookmark_file_set_mime_type", (DL_FUNC) &R_g_bookmark_file_set_mime_type, 3},
     {"R_g_bookmark_file_set_modified", (DL_FUNC) &R_g_bookmark_file_set_modified, 3},
-    {"R_g_bookmark_file_set_modified_date_time", (DL_FUNC) &R_g_bookmark_file_set_modified_date_time, 3},
     {"R_g_bookmark_file_set_title", (DL_FUNC) &R_g_bookmark_file_set_title, 3},
     {"R_g_bookmark_file_set_visited", (DL_FUNC) &R_g_bookmark_file_set_visited, 3},
-    {"R_g_bookmark_file_set_visited_date_time", (DL_FUNC) &R_g_bookmark_file_set_visited_date_time, 3},
     {"R_g_bookmark_file_to_data", (DL_FUNC) &R_g_bookmark_file_to_data, 1},
     {"R_g_bookmark_file_to_file", (DL_FUNC) &R_g_bookmark_file_to_file, 2},
     {"R_g_bookmark_file_error_quark", (DL_FUNC) &R_g_bookmark_file_error_quark, 0},
@@ -8703,7 +8324,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_byte_array_sized_new", (DL_FUNC) &R_g_byte_array_sized_new, 1},
     {"R_g_byte_array_sort", (DL_FUNC) &R_g_byte_array_sort, 2},
     {"R_g_byte_array_sort_with_data", (DL_FUNC) &R_g_byte_array_sort_with_data, 3},
-    {"R_g_byte_array_steal", (DL_FUNC) &R_g_byte_array_steal, 1},
     {"R_g_byte_array_unref", (DL_FUNC) &R_g_byte_array_unref, 1},
     {"R_g_bytes_new", (DL_FUNC) &R_g_bytes_new, 2},
     {"R_g_bytes_new_from_bytes", (DL_FUNC) &R_g_bytes_new_from_bytes, 3},
@@ -8711,7 +8331,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_bytes_compare", (DL_FUNC) &R_g_bytes_compare, 2},
     {"R_g_bytes_equal", (DL_FUNC) &R_g_bytes_equal, 2},
     {"R_g_bytes_get_data", (DL_FUNC) &R_g_bytes_get_data, 1},
-    {"R_g_bytes_get_region", (DL_FUNC) &R_g_bytes_get_region, 4},
     {"R_g_bytes_get_size", (DL_FUNC) &R_g_bytes_get_size, 1},
     {"R_g_bytes_hash", (DL_FUNC) &R_g_bytes_hash, 1},
     {"R_g_bytes_ref", (DL_FUNC) &R_g_bytes_ref, 1},
@@ -8758,7 +8377,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_date_get_monday_week_of_year", (DL_FUNC) &R_g_date_get_monday_week_of_year, 1},
     {"R_g_date_get_month", (DL_FUNC) &R_g_date_get_month, 1},
     {"R_g_date_get_sunday_week_of_year", (DL_FUNC) &R_g_date_get_sunday_week_of_year, 1},
-    {"R_g_date_get_week_of_year", (DL_FUNC) &R_g_date_get_week_of_year, 2},
     {"R_g_date_get_weekday", (DL_FUNC) &R_g_date_get_weekday, 1},
     {"R_g_date_get_year", (DL_FUNC) &R_g_date_get_year, 1},
     {"R_g_date_is_first_of_month", (DL_FUNC) &R_g_date_is_first_of_month, 1},
@@ -8781,7 +8399,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_date_get_days_in_month", (DL_FUNC) &R_g_date_get_days_in_month, 2},
     {"R_g_date_get_monday_weeks_in_year", (DL_FUNC) &R_g_date_get_monday_weeks_in_year, 1},
     {"R_g_date_get_sunday_weeks_in_year", (DL_FUNC) &R_g_date_get_sunday_weeks_in_year, 1},
-    {"R_g_date_get_weeks_in_year", (DL_FUNC) &R_g_date_get_weeks_in_year, 2},
     {"R_g_date_is_leap_year", (DL_FUNC) &R_g_date_is_leap_year, 1},
     {"R_g_date_strftime", (DL_FUNC) &R_g_date_strftime, 4},
     {"R_g_date_valid_day", (DL_FUNC) &R_g_date_valid_day, 1},
@@ -8795,9 +8412,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_date_time_new_from_timeval_local", (DL_FUNC) &R_g_date_time_new_from_timeval_local, 1},
     {"R_g_date_time_new_from_timeval_utc", (DL_FUNC) &R_g_date_time_new_from_timeval_utc, 1},
     {"R_g_date_time_new_from_unix_local", (DL_FUNC) &R_g_date_time_new_from_unix_local, 1},
-    {"R_g_date_time_new_from_unix_local_usec", (DL_FUNC) &R_g_date_time_new_from_unix_local_usec, 1},
     {"R_g_date_time_new_from_unix_utc", (DL_FUNC) &R_g_date_time_new_from_unix_utc, 1},
-    {"R_g_date_time_new_from_unix_utc_usec", (DL_FUNC) &R_g_date_time_new_from_unix_utc_usec, 1},
     {"R_g_date_time_new_local", (DL_FUNC) &R_g_date_time_new_local, 6},
     {"R_g_date_time_new_now", (DL_FUNC) &R_g_date_time_new_now, 1},
     {"R_g_date_time_new_now_local", (DL_FUNC) &R_g_date_time_new_now_local, 0},
@@ -8816,7 +8431,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_date_time_difference", (DL_FUNC) &R_g_date_time_difference, 2},
     {"R_g_date_time_equal", (DL_FUNC) &R_g_date_time_equal, 2},
     {"R_g_date_time_format", (DL_FUNC) &R_g_date_time_format, 2},
-    {"R_g_date_time_format_iso8601", (DL_FUNC) &R_g_date_time_format_iso8601, 1},
     {"R_g_date_time_get_day_of_month", (DL_FUNC) &R_g_date_time_get_day_of_month, 1},
     {"R_g_date_time_get_day_of_week", (DL_FUNC) &R_g_date_time_get_day_of_week, 1},
     {"R_g_date_time_get_day_of_year", (DL_FUNC) &R_g_date_time_get_day_of_year, 1},
@@ -8826,7 +8440,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_date_time_get_month", (DL_FUNC) &R_g_date_time_get_month, 1},
     {"R_g_date_time_get_second", (DL_FUNC) &R_g_date_time_get_second, 1},
     {"R_g_date_time_get_seconds", (DL_FUNC) &R_g_date_time_get_seconds, 1},
-    {"R_g_date_time_get_timezone", (DL_FUNC) &R_g_date_time_get_timezone, 1},
     {"R_g_date_time_get_timezone_abbreviation", (DL_FUNC) &R_g_date_time_get_timezone_abbreviation, 1},
     {"R_g_date_time_get_utc_offset", (DL_FUNC) &R_g_date_time_get_utc_offset, 1},
     {"R_g_date_time_get_week_numbering_year", (DL_FUNC) &R_g_date_time_get_week_numbering_year, 1},
@@ -8840,22 +8453,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_date_time_to_timeval", (DL_FUNC) &R_g_date_time_to_timeval, 2},
     {"R_g_date_time_to_timezone", (DL_FUNC) &R_g_date_time_to_timezone, 2},
     {"R_g_date_time_to_unix", (DL_FUNC) &R_g_date_time_to_unix, 1},
-    {"R_g_date_time_to_unix_usec", (DL_FUNC) &R_g_date_time_to_unix_usec, 1},
     {"R_g_date_time_to_utc", (DL_FUNC) &R_g_date_time_to_utc, 1},
     {"R_g_date_time_unref", (DL_FUNC) &R_g_date_time_unref, 1},
     {"R_g_dir_open", (DL_FUNC) &R_g_dir_open, 2},
     {"R_g_dir_close", (DL_FUNC) &R_g_dir_close, 1},
     {"R_g_dir_read_name", (DL_FUNC) &R_g_dir_read_name, 1},
-    {"R_g_dir_ref", (DL_FUNC) &R_g_dir_ref, 1},
     {"R_g_dir_rewind", (DL_FUNC) &R_g_dir_rewind, 1},
-    {"R_g_dir_unref", (DL_FUNC) &R_g_dir_unref, 1},
     {"R_g_dir_make_tmp", (DL_FUNC) &R_g_dir_make_tmp, 1},
     {"R_g_error_new_literal", (DL_FUNC) &R_g_error_new_literal, 3},
     {"R_g_error_copy", (DL_FUNC) &R_g_error_copy, 1},
     {"R_g_error_free", (DL_FUNC) &R_g_error_free, 1},
     {"R_g_error_matches", (DL_FUNC) &R_g_error_matches, 3},
-    {"R_g_error_domain_register", (DL_FUNC) &R_g_error_domain_register, 5},
-    {"R_g_error_domain_register_static", (DL_FUNC) &R_g_error_domain_register_static, 5},
     {"R_g_hash_table_add", (DL_FUNC) &R_g_hash_table_add, 2},
     {"R_g_hash_table_contains", (DL_FUNC) &R_g_hash_table_contains, 2},
     {"R_g_hash_table_destroy", (DL_FUNC) &R_g_hash_table_destroy, 1},
@@ -8866,7 +8474,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_hash_table_insert", (DL_FUNC) &R_g_hash_table_insert, 3},
     {"R_g_hash_table_lookup", (DL_FUNC) &R_g_hash_table_lookup, 2},
     {"R_g_hash_table_lookup_extended", (DL_FUNC) &R_g_hash_table_lookup_extended, 2},
-    {"R_g_hash_table_new_similar", (DL_FUNC) &R_g_hash_table_new_similar, 1},
     {"R_g_hash_table_ref", (DL_FUNC) &R_g_hash_table_ref, 1},
     {"R_g_hash_table_remove", (DL_FUNC) &R_g_hash_table_remove, 2},
     {"R_g_hash_table_remove_all", (DL_FUNC) &R_g_hash_table_remove_all, 1},
@@ -8874,7 +8481,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_hash_table_size", (DL_FUNC) &R_g_hash_table_size, 1},
     {"R_g_hash_table_steal", (DL_FUNC) &R_g_hash_table_steal, 2},
     {"R_g_hash_table_steal_all", (DL_FUNC) &R_g_hash_table_steal_all, 1},
-    {"R_g_hash_table_steal_extended", (DL_FUNC) &R_g_hash_table_steal_extended, 2},
     {"R_g_hash_table_unref", (DL_FUNC) &R_g_hash_table_unref, 1},
     {"R_g_hash_table_iter_get_hash_table", (DL_FUNC) &R_g_hash_table_iter_get_hash_table, 1},
     {"R_g_hash_table_iter_init", (DL_FUNC) &R_g_hash_table_iter_init, 2},
@@ -8988,7 +8594,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_list_pop_allocator", (DL_FUNC) &R_g_list_pop_allocator, 0},
     {"R_g_list_push_allocator", (DL_FUNC) &R_g_list_push_allocator, 1},
     {"R_g_main_context_new", (DL_FUNC) &R_g_main_context_new, 0},
-    {"R_g_main_context_new_with_flags", (DL_FUNC) &R_g_main_context_new_with_flags, 1},
     {"R_g_main_context_acquire", (DL_FUNC) &R_g_main_context_acquire, 1},
     {"R_g_main_context_add_poll", (DL_FUNC) &R_g_main_context_add_poll, 3},
     {"R_g_main_context_check", (DL_FUNC) &R_g_main_context_check, 4},
@@ -9003,7 +8608,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_main_context_pop_thread_default", (DL_FUNC) &R_g_main_context_pop_thread_default, 1},
     {"R_g_main_context_prepare", (DL_FUNC) &R_g_main_context_prepare, 1},
     {"R_g_main_context_push_thread_default", (DL_FUNC) &R_g_main_context_push_thread_default, 1},
-    {"R_g_main_context_pusher_new", (DL_FUNC) &R_g_main_context_pusher_new, 1},
     {"R_g_main_context_query", (DL_FUNC) &R_g_main_context_query, 3},
     {"R_g_main_context_ref", (DL_FUNC) &R_g_main_context_ref, 1},
     {"R_g_main_context_release", (DL_FUNC) &R_g_main_context_release, 1},
@@ -9034,9 +8638,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_markup_parse_context_free", (DL_FUNC) &R_g_markup_parse_context_free, 1},
     {"R_g_markup_parse_context_get_element", (DL_FUNC) &R_g_markup_parse_context_get_element, 1},
     {"R_g_markup_parse_context_get_element_stack", (DL_FUNC) &R_g_markup_parse_context_get_element_stack, 1},
-    {"R_g_markup_parse_context_get_offset", (DL_FUNC) &R_g_markup_parse_context_get_offset, 1},
     {"R_g_markup_parse_context_get_position", (DL_FUNC) &R_g_markup_parse_context_get_position, 1},
-    {"R_g_markup_parse_context_get_tag_start", (DL_FUNC) &R_g_markup_parse_context_get_tag_start, 1},
     {"R_g_markup_parse_context_get_user_data", (DL_FUNC) &R_g_markup_parse_context_get_user_data, 1},
     {"R_g_markup_parse_context_parse", (DL_FUNC) &R_g_markup_parse_context_parse, 3},
     {"R_g_markup_parse_context_pop", (DL_FUNC) &R_g_markup_parse_context_pop, 1},
@@ -9112,29 +8714,13 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_option_group_set_translate_func", (DL_FUNC) &R_g_option_group_set_translate_func, 4},
     {"R_g_option_group_set_translation_domain", (DL_FUNC) &R_g_option_group_set_translation_domain, 2},
     {"R_g_option_group_unref", (DL_FUNC) &R_g_option_group_unref, 1},
-    {"R_g_path_buf_clear", (DL_FUNC) &R_g_path_buf_clear, 1},
-    {"R_g_path_buf_clear_to_path", (DL_FUNC) &R_g_path_buf_clear_to_path, 1},
-    {"R_g_path_buf_free", (DL_FUNC) &R_g_path_buf_free, 1},
-    {"R_g_path_buf_free_to_path", (DL_FUNC) &R_g_path_buf_free_to_path, 1},
-    {"R_g_path_buf_init", (DL_FUNC) &R_g_path_buf_init, 1},
-    {"R_g_path_buf_init_from_path", (DL_FUNC) &R_g_path_buf_init_from_path, 2},
-    {"R_g_path_buf_pop", (DL_FUNC) &R_g_path_buf_pop, 1},
-    {"R_g_path_buf_push", (DL_FUNC) &R_g_path_buf_push, 2},
-    {"R_g_path_buf_set_extension", (DL_FUNC) &R_g_path_buf_set_extension, 2},
-    {"R_g_path_buf_set_filename", (DL_FUNC) &R_g_path_buf_set_filename, 2},
-    {"R_g_path_buf_to_path", (DL_FUNC) &R_g_path_buf_to_path, 1},
-    {"R_g_path_buf_equal", (DL_FUNC) &R_g_path_buf_equal, 2},
     {"R_g_pattern_spec_new", (DL_FUNC) &R_g_pattern_spec_new, 1},
-    {"R_g_pattern_spec_copy", (DL_FUNC) &R_g_pattern_spec_copy, 1},
     {"R_g_pattern_spec_equal", (DL_FUNC) &R_g_pattern_spec_equal, 2},
     {"R_g_pattern_spec_free", (DL_FUNC) &R_g_pattern_spec_free, 1},
-    {"R_g_pattern_spec_match", (DL_FUNC) &R_g_pattern_spec_match, 4},
-    {"R_g_pattern_spec_match_string", (DL_FUNC) &R_g_pattern_spec_match_string, 2},
     {"R_g_private_get", (DL_FUNC) &R_g_private_get, 1},
     {"R_g_private_replace", (DL_FUNC) &R_g_private_replace, 2},
     {"R_g_private_set", (DL_FUNC) &R_g_private_set, 2},
     {"R_g_queue_clear", (DL_FUNC) &R_g_queue_clear, 1},
-    {"R_g_queue_clear_full", (DL_FUNC) &R_g_queue_clear_full, 2},
     {"R_g_queue_foreach", (DL_FUNC) &R_g_queue_foreach, 3},
     {"R_g_queue_free", (DL_FUNC) &R_g_queue_free, 1},
     {"R_g_queue_free_full", (DL_FUNC) &R_g_queue_free_full, 2},
@@ -9271,7 +8857,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_source_add_poll", (DL_FUNC) &R_g_source_add_poll, 2},
     {"R_g_source_attach", (DL_FUNC) &R_g_source_attach, 2},
     {"R_g_source_destroy", (DL_FUNC) &R_g_source_destroy, 1},
-    {"R_g_source_dup_context", (DL_FUNC) &R_g_source_dup_context, 1},
     {"R_g_source_get_can_recurse", (DL_FUNC) &R_g_source_get_can_recurse, 1},
     {"R_g_source_get_context", (DL_FUNC) &R_g_source_get_context, 1},
     {"R_g_source_get_current_time", (DL_FUNC) &R_g_source_get_current_time, 2},
@@ -9291,7 +8876,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_source_set_name", (DL_FUNC) &R_g_source_set_name, 2},
     {"R_g_source_set_priority", (DL_FUNC) &R_g_source_set_priority, 2},
     {"R_g_source_set_ready_time", (DL_FUNC) &R_g_source_set_ready_time, 2},
-    {"R_g_source_set_static_name", (DL_FUNC) &R_g_source_set_static_name, 2},
     {"R_g_source_unref", (DL_FUNC) &R_g_source_unref, 1},
     {"R_g_source_remove", (DL_FUNC) &R_g_source_remove, 1},
     {"R_g_source_remove_by_funcs_user_data", (DL_FUNC) &R_g_source_remove_by_funcs_user_data, 2},
@@ -9300,7 +8884,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_static_mutex_get_mutex_impl", (DL_FUNC) &R_g_static_mutex_get_mutex_impl, 1},
     {"R_g_string_new", (DL_FUNC) &R_g_string_new, 1},
     {"R_g_string_new_len", (DL_FUNC) &R_g_string_new_len, 2},
-    {"R_g_string_new_take", (DL_FUNC) &R_g_string_new_take, 1},
     {"R_g_string_sized_new", (DL_FUNC) &R_g_string_sized_new, 1},
     {"R_g_string_append", (DL_FUNC) &R_g_string_append, 2},
     {"R_g_string_append_c", (DL_FUNC) &R_g_string_append_c, 2},
@@ -9310,12 +8893,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_string_ascii_down", (DL_FUNC) &R_g_string_ascii_down, 1},
     {"R_g_string_ascii_up", (DL_FUNC) &R_g_string_ascii_up, 1},
     {"R_g_string_assign", (DL_FUNC) &R_g_string_assign, 2},
-    {"R_g_string_copy", (DL_FUNC) &R_g_string_copy, 1},
     {"R_g_string_down", (DL_FUNC) &R_g_string_down, 1},
     {"R_g_string_equal", (DL_FUNC) &R_g_string_equal, 2},
     {"R_g_string_erase", (DL_FUNC) &R_g_string_erase, 3},
     {"R_g_string_free", (DL_FUNC) &R_g_string_free, 2},
-    {"R_g_string_free_and_steal", (DL_FUNC) &R_g_string_free_and_steal, 1},
     {"R_g_string_free_to_bytes", (DL_FUNC) &R_g_string_free_to_bytes, 1},
     {"R_g_string_hash", (DL_FUNC) &R_g_string_hash, 1},
     {"R_g_string_insert", (DL_FUNC) &R_g_string_insert, 3},
@@ -9328,7 +8909,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_string_prepend_c", (DL_FUNC) &R_g_string_prepend_c, 2},
     {"R_g_string_prepend_len", (DL_FUNC) &R_g_string_prepend_len, 3},
     {"R_g_string_prepend_unichar", (DL_FUNC) &R_g_string_prepend_unichar, 2},
-    {"R_g_string_replace", (DL_FUNC) &R_g_string_replace, 4},
     {"R_g_string_set_size", (DL_FUNC) &R_g_string_set_size, 2},
     {"R_g_string_truncate", (DL_FUNC) &R_g_string_truncate, 2},
     {"R_g_string_up", (DL_FUNC) &R_g_string_up, 1},
@@ -9337,24 +8917,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_string_chunk_insert", (DL_FUNC) &R_g_string_chunk_insert, 2},
     {"R_g_string_chunk_insert_const", (DL_FUNC) &R_g_string_chunk_insert_const, 2},
     {"R_g_string_chunk_insert_len", (DL_FUNC) &R_g_string_chunk_insert_len, 3},
-    {"R_g_strv_builder_new", (DL_FUNC) &R_g_strv_builder_new, 0},
     {"R_g_strv_builder_add", (DL_FUNC) &R_g_strv_builder_add, 2},
     {"R_g_strv_builder_addv", (DL_FUNC) &R_g_strv_builder_addv, 2},
     {"R_g_strv_builder_end", (DL_FUNC) &R_g_strv_builder_end, 1},
-    {"R_g_strv_builder_ref", (DL_FUNC) &R_g_strv_builder_ref, 1},
     {"R_g_strv_builder_take", (DL_FUNC) &R_g_strv_builder_take, 2},
-    {"R_g_strv_builder_unref", (DL_FUNC) &R_g_strv_builder_unref, 1},
-    {"R_g_strv_builder_unref_to_strv", (DL_FUNC) &R_g_strv_builder_unref_to_strv, 1},
-    {"R_g_test_case_free", (DL_FUNC) &R_g_test_case_free, 1},
     {"R_g_test_log_buffer_free", (DL_FUNC) &R_g_test_log_buffer_free, 1},
     {"R_g_test_log_buffer_push", (DL_FUNC) &R_g_test_log_buffer_push, 3},
     {"R_g_test_log_msg_free", (DL_FUNC) &R_g_test_log_msg_free, 1},
     {"R_g_test_suite_add", (DL_FUNC) &R_g_test_suite_add, 2},
     {"R_g_test_suite_add_suite", (DL_FUNC) &R_g_test_suite_add_suite, 2},
-    {"R_g_test_suite_free", (DL_FUNC) &R_g_test_suite_free, 1},
     {"R_g_thread_new", (DL_FUNC) &R_g_thread_new, 3},
     {"R_g_thread_try_new", (DL_FUNC) &R_g_thread_try_new, 3},
-    {"R_g_thread_get_name", (DL_FUNC) &R_g_thread_get_name, 1},
     {"R_g_thread_join", (DL_FUNC) &R_g_thread_join, 1},
     {"R_g_thread_ref", (DL_FUNC) &R_g_thread_ref, 1},
     {"R_g_thread_unref", (DL_FUNC) &R_g_thread_unref, 1},
@@ -9379,14 +8952,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_time_val_to_iso8601", (DL_FUNC) &R_g_time_val_to_iso8601, 1},
     {"R_g_time_val_from_iso8601", (DL_FUNC) &R_g_time_val_from_iso8601, 1},
     {"R_g_time_zone_new", (DL_FUNC) &R_g_time_zone_new, 1},
-    {"R_g_time_zone_new_identifier", (DL_FUNC) &R_g_time_zone_new_identifier, 1},
     {"R_g_time_zone_new_local", (DL_FUNC) &R_g_time_zone_new_local, 0},
-    {"R_g_time_zone_new_offset", (DL_FUNC) &R_g_time_zone_new_offset, 1},
     {"R_g_time_zone_new_utc", (DL_FUNC) &R_g_time_zone_new_utc, 0},
     {"R_g_time_zone_adjust_time", (DL_FUNC) &R_g_time_zone_adjust_time, 2},
     {"R_g_time_zone_find_interval", (DL_FUNC) &R_g_time_zone_find_interval, 3},
     {"R_g_time_zone_get_abbreviation", (DL_FUNC) &R_g_time_zone_get_abbreviation, 2},
-    {"R_g_time_zone_get_identifier", (DL_FUNC) &R_g_time_zone_get_identifier, 1},
     {"R_g_time_zone_get_offset", (DL_FUNC) &R_g_time_zone_get_offset, 2},
     {"R_g_time_zone_is_dst", (DL_FUNC) &R_g_time_zone_is_dst, 2},
     {"R_g_time_zone_ref", (DL_FUNC) &R_g_time_zone_ref, 1},
@@ -9394,7 +8964,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_timer_continue", (DL_FUNC) &R_g_timer_continue, 1},
     {"R_g_timer_destroy", (DL_FUNC) &R_g_timer_destroy, 1},
     {"R_g_timer_elapsed", (DL_FUNC) &R_g_timer_elapsed, 2},
-    {"R_g_timer_is_active", (DL_FUNC) &R_g_timer_is_active, 1},
     {"R_g_timer_reset", (DL_FUNC) &R_g_timer_reset, 1},
     {"R_g_timer_start", (DL_FUNC) &R_g_timer_start, 1},
     {"R_g_timer_stop", (DL_FUNC) &R_g_timer_stop, 1},
@@ -9405,72 +8974,28 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_tree_new_full", (DL_FUNC) &R_g_tree_new_full, 4},
     {"R_g_tree_destroy", (DL_FUNC) &R_g_tree_destroy, 1},
     {"R_g_tree_foreach", (DL_FUNC) &R_g_tree_foreach, 3},
-    {"R_g_tree_foreach_node", (DL_FUNC) &R_g_tree_foreach_node, 3},
     {"R_g_tree_height", (DL_FUNC) &R_g_tree_height, 1},
     {"R_g_tree_insert", (DL_FUNC) &R_g_tree_insert, 3},
-    {"R_g_tree_insert_node", (DL_FUNC) &R_g_tree_insert_node, 3},
     {"R_g_tree_lookup", (DL_FUNC) &R_g_tree_lookup, 2},
     {"R_g_tree_lookup_extended", (DL_FUNC) &R_g_tree_lookup_extended, 2},
-    {"R_g_tree_lookup_node", (DL_FUNC) &R_g_tree_lookup_node, 2},
-    {"R_g_tree_lower_bound", (DL_FUNC) &R_g_tree_lower_bound, 2},
     {"R_g_tree_nnodes", (DL_FUNC) &R_g_tree_nnodes, 1},
-    {"R_g_tree_node_first", (DL_FUNC) &R_g_tree_node_first, 1},
-    {"R_g_tree_node_last", (DL_FUNC) &R_g_tree_node_last, 1},
     {"R_g_tree_ref", (DL_FUNC) &R_g_tree_ref, 1},
     {"R_g_tree_remove", (DL_FUNC) &R_g_tree_remove, 2},
-    {"R_g_tree_remove_all", (DL_FUNC) &R_g_tree_remove_all, 1},
     {"R_g_tree_replace", (DL_FUNC) &R_g_tree_replace, 3},
-    {"R_g_tree_replace_node", (DL_FUNC) &R_g_tree_replace_node, 3},
     {"R_g_tree_search", (DL_FUNC) &R_g_tree_search, 3},
-    {"R_g_tree_search_node", (DL_FUNC) &R_g_tree_search_node, 3},
     {"R_g_tree_steal", (DL_FUNC) &R_g_tree_steal, 2},
     {"R_g_tree_traverse", (DL_FUNC) &R_g_tree_traverse, 4},
     {"R_g_tree_unref", (DL_FUNC) &R_g_tree_unref, 1},
-    {"R_g_tree_upper_bound", (DL_FUNC) &R_g_tree_upper_bound, 2},
-    {"R_g_tree_node_key", (DL_FUNC) &R_g_tree_node_key, 1},
-    {"R_g_tree_node_next", (DL_FUNC) &R_g_tree_node_next, 1},
-    {"R_g_tree_node_previous", (DL_FUNC) &R_g_tree_node_previous, 1},
-    {"R_g_tree_node_value", (DL_FUNC) &R_g_tree_node_value, 1},
     {"R_g_tuples_destroy", (DL_FUNC) &R_g_tuples_destroy, 1},
     {"R_g_tuples_index", (DL_FUNC) &R_g_tuples_index, 3},
     {"R_g_unicode_script_from_iso15924", (DL_FUNC) &R_g_unicode_script_from_iso15924, 1},
     {"R_g_unicode_script_to_iso15924", (DL_FUNC) &R_g_unicode_script_to_iso15924, 1},
-    {"R_g_uri_get_auth_params", (DL_FUNC) &R_g_uri_get_auth_params, 1},
-    {"R_g_uri_get_flags", (DL_FUNC) &R_g_uri_get_flags, 1},
-    {"R_g_uri_get_fragment", (DL_FUNC) &R_g_uri_get_fragment, 1},
-    {"R_g_uri_get_host", (DL_FUNC) &R_g_uri_get_host, 1},
-    {"R_g_uri_get_password", (DL_FUNC) &R_g_uri_get_password, 1},
-    {"R_g_uri_get_path", (DL_FUNC) &R_g_uri_get_path, 1},
-    {"R_g_uri_get_port", (DL_FUNC) &R_g_uri_get_port, 1},
-    {"R_g_uri_get_query", (DL_FUNC) &R_g_uri_get_query, 1},
-    {"R_g_uri_get_scheme", (DL_FUNC) &R_g_uri_get_scheme, 1},
-    {"R_g_uri_get_user", (DL_FUNC) &R_g_uri_get_user, 1},
-    {"R_g_uri_get_userinfo", (DL_FUNC) &R_g_uri_get_userinfo, 1},
-    {"R_g_uri_parse_relative", (DL_FUNC) &R_g_uri_parse_relative, 3},
-    {"R_g_uri_to_string", (DL_FUNC) &R_g_uri_to_string, 1},
-    {"R_g_uri_to_string_partial", (DL_FUNC) &R_g_uri_to_string_partial, 2},
-    {"R_g_uri_build", (DL_FUNC) &R_g_uri_build, 8},
-    {"R_g_uri_build_with_user", (DL_FUNC) &R_g_uri_build_with_user, 10},
     {"R_g_uri_error_quark", (DL_FUNC) &R_g_uri_error_quark, 0},
-    {"R_g_uri_escape_bytes", (DL_FUNC) &R_g_uri_escape_bytes, 3},
     {"R_g_uri_escape_string", (DL_FUNC) &R_g_uri_escape_string, 3},
-    {"R_g_uri_is_valid", (DL_FUNC) &R_g_uri_is_valid, 2},
-    {"R_g_uri_join", (DL_FUNC) &R_g_uri_join, 8},
-    {"R_g_uri_join_with_user", (DL_FUNC) &R_g_uri_join_with_user, 10},
     {"R_g_uri_list_extract_uris", (DL_FUNC) &R_g_uri_list_extract_uris, 1},
-    {"R_g_uri_parse", (DL_FUNC) &R_g_uri_parse, 2},
-    {"R_g_uri_parse_params", (DL_FUNC) &R_g_uri_parse_params, 4},
     {"R_g_uri_parse_scheme", (DL_FUNC) &R_g_uri_parse_scheme, 1},
-    {"R_g_uri_peek_scheme", (DL_FUNC) &R_g_uri_peek_scheme, 1},
-    {"R_g_uri_resolve_relative", (DL_FUNC) &R_g_uri_resolve_relative, 3},
-    {"R_g_uri_split", (DL_FUNC) &R_g_uri_split, 2},
-    {"R_g_uri_split_network", (DL_FUNC) &R_g_uri_split_network, 2},
-    {"R_g_uri_split_with_user", (DL_FUNC) &R_g_uri_split_with_user, 2},
-    {"R_g_uri_unescape_bytes", (DL_FUNC) &R_g_uri_unescape_bytes, 3},
     {"R_g_uri_unescape_segment", (DL_FUNC) &R_g_uri_unescape_segment, 3},
     {"R_g_uri_unescape_string", (DL_FUNC) &R_g_uri_unescape_string, 2},
-    {"R_g_uri_params_iter_init", (DL_FUNC) &R_g_uri_params_iter_init, 5},
-    {"R_g_uri_params_iter_next", (DL_FUNC) &R_g_uri_params_iter_next, 1},
     {"R_g_variant_new_array", (DL_FUNC) &R_g_variant_new_array, 3},
     {"R_g_variant_new_boolean", (DL_FUNC) &R_g_variant_new_boolean, 1},
     {"R_g_variant_new_byte", (DL_FUNC) &R_g_variant_new_byte, 1},
@@ -9599,10 +9124,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_variant_type_string_is_valid", (DL_FUNC) &R_g_variant_type_string_is_valid, 1},
     {"R_g_variant_type_string_scan", (DL_FUNC) &R_g_variant_type_string_scan, 2},
     {"R_g_access", (DL_FUNC) &R_g_access, 2},
-    {"R_g_aligned_alloc", (DL_FUNC) &R_g_aligned_alloc, 3},
-    {"R_g_aligned_alloc0", (DL_FUNC) &R_g_aligned_alloc0, 3},
-    {"R_g_aligned_free", (DL_FUNC) &R_g_aligned_free, 1},
-    {"R_g_aligned_free_sized", (DL_FUNC) &R_g_aligned_free_sized, 3},
     {"R_g_ascii_digit_value", (DL_FUNC) &R_g_ascii_digit_value, 1},
     {"R_g_ascii_dtostr", (DL_FUNC) &R_g_ascii_dtostr, 3},
     {"R_g_ascii_formatd", (DL_FUNC) &R_g_ascii_formatd, 4},
@@ -9632,17 +9153,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_base64_encode_step", (DL_FUNC) &R_g_base64_encode_step, 3},
     {"R_g_basename", (DL_FUNC) &R_g_basename, 1},
     {"R_g_bit_lock", (DL_FUNC) &R_g_bit_lock, 2},
-    {"R_g_bit_lock_and_get", (DL_FUNC) &R_g_bit_lock_and_get, 2},
     {"R_g_bit_nth_lsf", (DL_FUNC) &R_g_bit_nth_lsf, 2},
     {"R_g_bit_nth_msf", (DL_FUNC) &R_g_bit_nth_msf, 2},
     {"R_g_bit_storage", (DL_FUNC) &R_g_bit_storage, 1},
     {"R_g_bit_trylock", (DL_FUNC) &R_g_bit_trylock, 2},
     {"R_g_bit_unlock", (DL_FUNC) &R_g_bit_unlock, 2},
-    {"R_g_bit_unlock_and_set", (DL_FUNC) &R_g_bit_unlock_and_set, 4},
     {"R_g_blow_chunks", (DL_FUNC) &R_g_blow_chunks, 0},
     {"R_g_build_filenamev", (DL_FUNC) &R_g_build_filenamev, 1},
     {"R_g_build_pathv", (DL_FUNC) &R_g_build_pathv, 2},
-    {"R_g_canonicalize_filename", (DL_FUNC) &R_g_canonicalize_filename, 2},
     {"R_g_chdir", (DL_FUNC) &R_g_chdir, 1},
     {"R_glib_check_version", (DL_FUNC) &R_glib_check_version, 3},
     {"R_g_child_watch_add_full", (DL_FUNC) &R_g_child_watch_add_full, 5},
@@ -9664,7 +9182,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_datalist_get_data", (DL_FUNC) &R_g_datalist_get_data, 2},
     {"R_g_datalist_get_flags", (DL_FUNC) &R_g_datalist_get_flags, 1},
     {"R_g_datalist_id_get_data", (DL_FUNC) &R_g_datalist_id_get_data, 2},
-    {"R_g_datalist_id_remove_multiple", (DL_FUNC) &R_g_datalist_id_remove_multiple, 3},
     {"R_g_datalist_set_flags", (DL_FUNC) &R_g_datalist_set_flags, 2},
     {"R_g_datalist_unset_flags", (DL_FUNC) &R_g_datalist_unset_flags, 2},
     {"R_g_dataset_destroy", (DL_FUNC) &R_g_dataset_destroy, 1},
@@ -9688,7 +9205,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_file_open_tmp", (DL_FUNC) &R_g_file_open_tmp, 1},
     {"R_g_file_read_link", (DL_FUNC) &R_g_file_read_link, 1},
     {"R_g_file_set_contents", (DL_FUNC) &R_g_file_set_contents, 3},
-    {"R_g_file_set_contents_full", (DL_FUNC) &R_g_file_set_contents_full, 5},
     {"R_g_file_test", (DL_FUNC) &R_g_file_test, 2},
     {"R_g_filename_display_basename", (DL_FUNC) &R_g_filename_display_basename, 1},
     {"R_g_filename_display_name", (DL_FUNC) &R_g_filename_display_name, 1},
@@ -9702,13 +9218,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_format_size_for_display", (DL_FUNC) &R_g_format_size_for_display, 1},
     {"R_g_format_size_full", (DL_FUNC) &R_g_format_size_full, 2},
     {"R_g_free", (DL_FUNC) &R_g_free, 1},
-    {"R_g_free_sized", (DL_FUNC) &R_g_free_sized, 2},
     {"R_g_freopen", (DL_FUNC) &R_g_freopen, 3},
-    {"R_g_fsync", (DL_FUNC) &R_g_fsync, 1},
     {"R_g_get_application_name", (DL_FUNC) &R_g_get_application_name, 0},
     {"R_g_get_charset", (DL_FUNC) &R_g_get_charset, 0},
     {"R_g_get_codeset", (DL_FUNC) &R_g_get_codeset, 0},
-    {"R_g_get_console_charset", (DL_FUNC) &R_g_get_console_charset, 0},
     {"R_g_get_current_dir", (DL_FUNC) &R_g_get_current_dir, 0},
     {"R_g_get_current_time", (DL_FUNC) &R_g_get_current_time, 1},
     {"R_g_get_environ", (DL_FUNC) &R_g_get_environ, 0},
@@ -9716,12 +9229,9 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_get_home_dir", (DL_FUNC) &R_g_get_home_dir, 0},
     {"R_g_get_host_name", (DL_FUNC) &R_g_get_host_name, 0},
     {"R_g_get_language_names", (DL_FUNC) &R_g_get_language_names, 0},
-    {"R_g_get_language_names_with_category", (DL_FUNC) &R_g_get_language_names_with_category, 1},
     {"R_g_get_locale_variants", (DL_FUNC) &R_g_get_locale_variants, 1},
     {"R_g_get_monotonic_time", (DL_FUNC) &R_g_get_monotonic_time, 0},
-    {"R_g_get_monotonic_time_ns", (DL_FUNC) &R_g_get_monotonic_time_ns, 0},
     {"R_g_get_num_processors", (DL_FUNC) &R_g_get_num_processors, 0},
-    {"R_g_get_os_info", (DL_FUNC) &R_g_get_os_info, 1},
     {"R_g_get_prgname", (DL_FUNC) &R_g_get_prgname, 0},
     {"R_g_get_real_name", (DL_FUNC) &R_g_get_real_name, 0},
     {"R_g_get_real_time", (DL_FUNC) &R_g_get_real_time, 0},
@@ -9734,7 +9244,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_get_user_name", (DL_FUNC) &R_g_get_user_name, 0},
     {"R_g_get_user_runtime_dir", (DL_FUNC) &R_g_get_user_runtime_dir, 0},
     {"R_g_get_user_special_dir", (DL_FUNC) &R_g_get_user_special_dir, 1},
-    {"R_g_get_user_state_dir", (DL_FUNC) &R_g_get_user_state_dir, 0},
     {"R_g_getenv", (DL_FUNC) &R_g_getenv, 1},
     {"R_g_hostname_is_ascii_encoded", (DL_FUNC) &R_g_hostname_is_ascii_encoded, 1},
     {"R_g_hostname_is_ip_address", (DL_FUNC) &R_g_hostname_is_ip_address, 1},
@@ -9756,26 +9265,19 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_locale_from_utf8", (DL_FUNC) &R_g_locale_from_utf8, 2},
     {"R_g_locale_to_utf8", (DL_FUNC) &R_g_locale_to_utf8, 2},
     {"R_g_log_default_handler", (DL_FUNC) &R_g_log_default_handler, 4},
-    {"R_g_log_get_always_fatal", (DL_FUNC) &R_g_log_get_always_fatal, 0},
-    {"R_g_log_get_debug_enabled", (DL_FUNC) &R_g_log_get_debug_enabled, 0},
     {"R_g_log_remove_handler", (DL_FUNC) &R_g_log_remove_handler, 2},
     {"R_g_log_set_always_fatal", (DL_FUNC) &R_g_log_set_always_fatal, 1},
-    {"R_g_log_set_debug_enabled", (DL_FUNC) &R_g_log_set_debug_enabled, 1},
     {"R_g_log_set_fatal_mask", (DL_FUNC) &R_g_log_set_fatal_mask, 2},
     {"R_g_log_set_handler_full", (DL_FUNC) &R_g_log_set_handler_full, 5},
     {"R_g_log_set_writer_func", (DL_FUNC) &R_g_log_set_writer_func, 3},
     {"R_g_log_structured_array", (DL_FUNC) &R_g_log_structured_array, 3},
     {"R_g_log_variant", (DL_FUNC) &R_g_log_variant, 3},
     {"R_g_log_writer_default", (DL_FUNC) &R_g_log_writer_default, 4},
-    {"R_g_log_writer_default_set_debug_domains", (DL_FUNC) &R_g_log_writer_default_set_debug_domains, 1},
-    {"R_g_log_writer_default_set_use_stderr", (DL_FUNC) &R_g_log_writer_default_set_use_stderr, 1},
-    {"R_g_log_writer_default_would_drop", (DL_FUNC) &R_g_log_writer_default_would_drop, 2},
     {"R_g_log_writer_format_fields", (DL_FUNC) &R_g_log_writer_format_fields, 4},
     {"R_g_log_writer_is_journald", (DL_FUNC) &R_g_log_writer_is_journald, 1},
     {"R_g_log_writer_journald", (DL_FUNC) &R_g_log_writer_journald, 4},
     {"R_g_log_writer_standard_streams", (DL_FUNC) &R_g_log_writer_standard_streams, 4},
     {"R_g_log_writer_supports_color", (DL_FUNC) &R_g_log_writer_supports_color, 1},
-    {"R_g_log_writer_syslog", (DL_FUNC) &R_g_log_writer_syslog, 4},
     {"R_g_lstat", (DL_FUNC) &R_g_lstat, 2},
     {"R_g_main_current_source", (DL_FUNC) &R_g_main_current_source, 0},
     {"R_g_main_depth", (DL_FUNC) &R_g_main_depth, 0},
@@ -9789,7 +9291,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_mem_profile", (DL_FUNC) &R_g_mem_profile, 0},
     {"R_g_mem_set_vtable", (DL_FUNC) &R_g_mem_set_vtable, 1},
     {"R_g_memdup", (DL_FUNC) &R_g_memdup, 2},
-    {"R_g_memdup2", (DL_FUNC) &R_g_memdup2, 2},
     {"R_g_mkdir", (DL_FUNC) &R_g_mkdir, 2},
     {"R_g_mkdir_with_parents", (DL_FUNC) &R_g_mkdir_with_parents, 2},
     {"R_g_nullify_pointer", (DL_FUNC) &R_g_nullify_pointer, 1},
@@ -9805,7 +9306,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_path_skip_root", (DL_FUNC) &R_g_path_skip_root, 1},
     {"R_g_pattern_match_simple", (DL_FUNC) &R_g_pattern_match_simple, 2},
     {"R_g_poll", (DL_FUNC) &R_g_poll, 3},
-    {"R_g_prefix_error_literal", (DL_FUNC) &R_g_prefix_error_literal, 1},
     {"R_g_propagate_error", (DL_FUNC) &R_g_propagate_error, 1},
     {"R_g_qsort_with_data", (DL_FUNC) &R_g_qsort_with_data, 5},
     {"R_g_quark_from_static_string", (DL_FUNC) &R_g_quark_from_static_string, 1},
@@ -9817,26 +9317,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_random_int", (DL_FUNC) &R_g_random_int, 0},
     {"R_g_random_int_range", (DL_FUNC) &R_g_random_int_range, 2},
     {"R_g_random_set_seed", (DL_FUNC) &R_g_random_set_seed, 1},
-    {"R_g_rc_box_acquire", (DL_FUNC) &R_g_rc_box_acquire, 1},
-    {"R_g_rc_box_alloc", (DL_FUNC) &R_g_rc_box_alloc, 1},
-    {"R_g_rc_box_alloc0", (DL_FUNC) &R_g_rc_box_alloc0, 1},
-    {"R_g_rc_box_dup", (DL_FUNC) &R_g_rc_box_dup, 2},
-    {"R_g_rc_box_get_size", (DL_FUNC) &R_g_rc_box_get_size, 1},
-    {"R_g_rc_box_release", (DL_FUNC) &R_g_rc_box_release, 1},
-    {"R_g_rc_box_release_full", (DL_FUNC) &R_g_rc_box_release_full, 2},
     {"R_g_realloc", (DL_FUNC) &R_g_realloc, 2},
     {"R_g_realloc_n", (DL_FUNC) &R_g_realloc_n, 3},
-    {"R_g_ref_count_compare", (DL_FUNC) &R_g_ref_count_compare, 2},
-    {"R_g_ref_count_dec", (DL_FUNC) &R_g_ref_count_dec, 0},
-    {"R_g_ref_count_inc", (DL_FUNC) &R_g_ref_count_inc, 0},
-    {"R_g_ref_count_init", (DL_FUNC) &R_g_ref_count_init, 0},
-    {"R_g_ref_string_acquire", (DL_FUNC) &R_g_ref_string_acquire, 1},
-    {"R_g_ref_string_equal", (DL_FUNC) &R_g_ref_string_equal, 2},
-    {"R_g_ref_string_length", (DL_FUNC) &R_g_ref_string_length, 1},
-    {"R_g_ref_string_new", (DL_FUNC) &R_g_ref_string_new, 1},
-    {"R_g_ref_string_new_intern", (DL_FUNC) &R_g_ref_string_new_intern, 1},
-    {"R_g_ref_string_new_len", (DL_FUNC) &R_g_ref_string_new_len, 2},
-    {"R_g_ref_string_release", (DL_FUNC) &R_g_ref_string_release, 1},
     {"R_g_reload_user_special_dirs_cache", (DL_FUNC) &R_g_reload_user_special_dirs_cache, 0},
     {"R_g_remove", (DL_FUNC) &R_g_remove, 1},
     {"R_g_rename", (DL_FUNC) &R_g_rename, 2},
@@ -9859,11 +9341,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_slice_set_config", (DL_FUNC) &R_g_slice_set_config, 2},
     {"R_g_spaced_primes_closest", (DL_FUNC) &R_g_spaced_primes_closest, 1},
     {"R_g_spawn_async", (DL_FUNC) &R_g_spawn_async, 6},
-    {"R_g_spawn_async_with_fds", (DL_FUNC) &R_g_spawn_async_with_fds, 9},
     {"R_g_spawn_async_with_pipes", (DL_FUNC) &R_g_spawn_async_with_pipes, 6},
-    {"R_g_spawn_async_with_pipes_and_fds", (DL_FUNC) &R_g_spawn_async_with_pipes_and_fds, 12},
     {"R_g_spawn_check_exit_status", (DL_FUNC) &R_g_spawn_check_exit_status, 1},
-    {"R_g_spawn_check_wait_status", (DL_FUNC) &R_g_spawn_check_wait_status, 1},
     {"R_g_spawn_close_pid", (DL_FUNC) &R_g_spawn_close_pid, 1},
     {"R_g_spawn_command_line_async", (DL_FUNC) &R_g_spawn_command_line_async, 1},
     {"R_g_spawn_command_line_sync", (DL_FUNC) &R_g_spawn_command_line_sync, 1},
@@ -9910,7 +9389,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_strtod", (DL_FUNC) &R_g_strtod, 1},
     {"R_g_strup", (DL_FUNC) &R_g_strup, 1},
     {"R_g_strv_contains", (DL_FUNC) &R_g_strv_contains, 2},
-    {"R_g_strv_equal", (DL_FUNC) &R_g_strv_equal, 2},
     {"R_g_strv_get_type", (DL_FUNC) &R_g_strv_get_type, 0},
     {"R_g_strv_length", (DL_FUNC) &R_g_strv_length, 1},
     {"R_g_test_add_data_func", (DL_FUNC) &R_g_test_add_data_func, 3},
@@ -9919,12 +9397,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_test_assert_expected_messages_internal", (DL_FUNC) &R_g_test_assert_expected_messages_internal, 4},
     {"R_g_test_bug", (DL_FUNC) &R_g_test_bug, 1},
     {"R_g_test_bug_base", (DL_FUNC) &R_g_test_bug_base, 1},
-    {"R_g_test_disable_crash_reporting", (DL_FUNC) &R_g_test_disable_crash_reporting, 0},
     {"R_g_test_expect_message", (DL_FUNC) &R_g_test_expect_message, 3},
     {"R_g_test_fail", (DL_FUNC) &R_g_test_fail, 0},
     {"R_g_test_failed", (DL_FUNC) &R_g_test_failed, 0},
     {"R_g_test_get_dir", (DL_FUNC) &R_g_test_get_dir, 1},
-    {"R_g_test_get_path", (DL_FUNC) &R_g_test_get_path, 0},
     {"R_g_test_incomplete", (DL_FUNC) &R_g_test_incomplete, 1},
     {"R_g_test_log_type_name", (DL_FUNC) &R_g_test_log_type_name, 1},
     {"R_g_test_queue_destroy", (DL_FUNC) &R_g_test_queue_destroy, 2},
@@ -9938,17 +9414,14 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_test_set_nonfatal_assertions", (DL_FUNC) &R_g_test_set_nonfatal_assertions, 0},
     {"R_g_test_skip", (DL_FUNC) &R_g_test_skip, 1},
     {"R_g_test_subprocess", (DL_FUNC) &R_g_test_subprocess, 0},
-    {"R_g_test_summary", (DL_FUNC) &R_g_test_summary, 1},
     {"R_g_test_timer_elapsed", (DL_FUNC) &R_g_test_timer_elapsed, 0},
     {"R_g_test_timer_last", (DL_FUNC) &R_g_test_timer_last, 0},
     {"R_g_test_timer_start", (DL_FUNC) &R_g_test_timer_start, 0},
     {"R_g_test_trap_assertions", (DL_FUNC) &R_g_test_trap_assertions, 6},
     {"R_g_test_trap_fork", (DL_FUNC) &R_g_test_trap_fork, 2},
     {"R_g_test_trap_has_passed", (DL_FUNC) &R_g_test_trap_has_passed, 0},
-    {"R_g_test_trap_has_skipped", (DL_FUNC) &R_g_test_trap_has_skipped, 0},
     {"R_g_test_trap_reached_timeout", (DL_FUNC) &R_g_test_trap_reached_timeout, 0},
     {"R_g_test_trap_subprocess", (DL_FUNC) &R_g_test_trap_subprocess, 3},
-    {"R_g_test_trap_subprocess_with_envp", (DL_FUNC) &R_g_test_trap_subprocess_with_envp, 4},
     {"R_g_timeout_add_full", (DL_FUNC) &R_g_timeout_add_full, 5},
     {"R_g_timeout_add_seconds_full", (DL_FUNC) &R_g_timeout_add_seconds_full, 5},
     {"R_g_timeout_source_new", (DL_FUNC) &R_g_timeout_source_new, 1},
@@ -10024,27 +9497,17 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_utf8_to_ucs4", (DL_FUNC) &R_g_utf8_to_ucs4, 2},
     {"R_g_utf8_to_ucs4_fast", (DL_FUNC) &R_g_utf8_to_ucs4_fast, 2},
     {"R_g_utf8_to_utf16", (DL_FUNC) &R_g_utf8_to_utf16, 2},
-    {"R_g_utf8_truncate_middle", (DL_FUNC) &R_g_utf8_truncate_middle, 2},
     {"R_g_utf8_validate", (DL_FUNC) &R_g_utf8_validate, 2},
-    {"R_g_utf8_validate_len", (DL_FUNC) &R_g_utf8_validate_len, 2},
     {"R_g_utime", (DL_FUNC) &R_g_utime, 2},
     {"R_g_uuid_string_is_valid", (DL_FUNC) &R_g_uuid_string_is_valid, 1},
     {"R_g_uuid_string_random", (DL_FUNC) &R_g_uuid_string_random, 0},
     {"R_g_variant_get_gtype", (DL_FUNC) &R_g_variant_get_gtype, 0},
-    {"R_g_binding_dup_source", (DL_FUNC) &R_g_binding_dup_source, 1},
-    {"R_g_binding_dup_target", (DL_FUNC) &R_g_binding_dup_target, 1},
     {"R_g_binding_get_flags", (DL_FUNC) &R_g_binding_get_flags, 1},
     {"R_g_binding_get_source", (DL_FUNC) &R_g_binding_get_source, 1},
     {"R_g_binding_get_source_property", (DL_FUNC) &R_g_binding_get_source_property, 1},
     {"R_g_binding_get_target", (DL_FUNC) &R_g_binding_get_target, 1},
     {"R_g_binding_get_target_property", (DL_FUNC) &R_g_binding_get_target_property, 1},
     {"R_g_binding_unbind", (DL_FUNC) &R_g_binding_unbind, 1},
-    {"R_g_binding_group_new", (DL_FUNC) &R_g_binding_group_new, 0},
-    {"R_g_binding_group_bind", (DL_FUNC) &R_g_binding_group_bind, 5},
-    {"R_g_binding_group_bind_full", (DL_FUNC) &R_g_binding_group_bind_full, 9},
-    {"R_g_binding_group_bind_with_closures", (DL_FUNC) &R_g_binding_group_bind_with_closures, 7},
-    {"R_g_binding_group_dup_source", (DL_FUNC) &R_g_binding_group_dup_source, 1},
-    {"R_g_binding_group_set_source", (DL_FUNC) &R_g_binding_group_set_source, 2},
     {"R_g_cclosure_marshal_BOOLEAN__BOXED_BOXED", (DL_FUNC) &R_g_cclosure_marshal_BOOLEAN__BOXED_BOXED, 6},
     {"R_g_cclosure_marshal_BOOLEAN__FLAGS", (DL_FUNC) &R_g_cclosure_marshal_BOOLEAN__FLAGS, 6},
     {"R_g_cclosure_marshal_STRING__OBJECT_POINTER", (DL_FUNC) &R_g_cclosure_marshal_STRING__OBJECT_POINTER, 6},
@@ -10107,7 +9570,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_object_class_install_property", (DL_FUNC) &R_g_object_class_install_property, 3},
     {"R_g_object_class_list_properties", (DL_FUNC) &R_g_object_class_list_properties, 1},
     {"R_g_object_class_override_property", (DL_FUNC) &R_g_object_class_override_property, 3},
-    {"R_g_param_spec_is_valid_name", (DL_FUNC) &R_g_param_spec_is_valid_name, 1},
     {"R_g_param_spec_get_blurb", (DL_FUNC) &R_g_param_spec_get_blurb, 1},
     {"R_g_param_spec_get_default_value", (DL_FUNC) &R_g_param_spec_get_default_value, 1},
     {"R_g_param_spec_get_name", (DL_FUNC) &R_g_param_spec_get_name, 1},
@@ -10118,20 +9580,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_param_spec_set_qdata", (DL_FUNC) &R_g_param_spec_set_qdata, 3},
     {"R_g_param_spec_sink", (DL_FUNC) &R_g_param_spec_sink, 1},
     {"R_g_param_spec_steal_qdata", (DL_FUNC) &R_g_param_spec_steal_qdata, 2},
-    {"R_g_param_spec_pool_free", (DL_FUNC) &R_g_param_spec_pool_free, 1},
     {"R_g_param_spec_pool_insert", (DL_FUNC) &R_g_param_spec_pool_insert, 3},
     {"R_g_param_spec_pool_list", (DL_FUNC) &R_g_param_spec_pool_list, 2},
     {"R_g_param_spec_pool_list_owned", (DL_FUNC) &R_g_param_spec_pool_list_owned, 2},
     {"R_g_param_spec_pool_lookup", (DL_FUNC) &R_g_param_spec_pool_lookup, 4},
     {"R_g_param_spec_pool_remove", (DL_FUNC) &R_g_param_spec_pool_remove, 2},
-    {"R_g_signal_group_new", (DL_FUNC) &R_g_signal_group_new, 1},
-    {"R_g_signal_group_block", (DL_FUNC) &R_g_signal_group_block, 1},
-    {"R_g_signal_group_connect_closure", (DL_FUNC) &R_g_signal_group_connect_closure, 4},
-    {"R_g_signal_group_connect_data", (DL_FUNC) &R_g_signal_group_connect_data, 6},
-    {"R_g_signal_group_connect_swapped", (DL_FUNC) &R_g_signal_group_connect_swapped, 4},
-    {"R_g_signal_group_dup_target", (DL_FUNC) &R_g_signal_group_dup_target, 1},
-    {"R_g_signal_group_set_target", (DL_FUNC) &R_g_signal_group_set_target, 2},
-    {"R_g_signal_group_unblock", (DL_FUNC) &R_g_signal_group_unblock, 1},
     {"R_g_source_set_closure", (DL_FUNC) &R_g_source_set_closure, 2},
     {"R_g_source_set_dummy_callback", (DL_FUNC) &R_g_source_set_dummy_callback, 1},
     {"R_g_type_class_add_private", (DL_FUNC) &R_g_type_class_add_private, 2},
@@ -10139,7 +9592,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_type_class_peek_parent", (DL_FUNC) &R_g_type_class_peek_parent, 1},
     {"R_g_type_class_unref", (DL_FUNC) &R_g_type_class_unref, 1},
     {"R_g_type_class_adjust_private_offset", (DL_FUNC) &R_g_type_class_adjust_private_offset, 2},
-    {"R_g_type_class_get", (DL_FUNC) &R_g_type_class_get, 1},
     {"R_g_type_class_peek", (DL_FUNC) &R_g_type_class_peek, 1},
     {"R_g_type_class_peek_static", (DL_FUNC) &R_g_type_class_peek_static, 1},
     {"R_g_type_class_ref", (DL_FUNC) &R_g_type_class_ref, 1},
@@ -10147,7 +9599,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_type_interface_peek_parent", (DL_FUNC) &R_g_type_interface_peek_parent, 1},
     {"R_g_type_interface_add_prerequisite", (DL_FUNC) &R_g_type_interface_add_prerequisite, 2},
     {"R_g_type_interface_get_plugin", (DL_FUNC) &R_g_type_interface_get_plugin, 2},
-    {"R_g_type_interface_instantiatable_prerequisite", (DL_FUNC) &R_g_type_interface_instantiatable_prerequisite, 1},
     {"R_g_type_interface_peek", (DL_FUNC) &R_g_type_interface_peek, 2},
     {"R_g_type_interface_prerequisites", (DL_FUNC) &R_g_type_interface_prerequisites, 1},
     {"R_g_type_module_add_interface", (DL_FUNC) &R_g_type_module_add_interface, 4},
@@ -10203,7 +9654,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_value_set_instance", (DL_FUNC) &R_g_value_set_instance, 2},
     {"R_g_value_set_int", (DL_FUNC) &R_g_value_set_int, 2},
     {"R_g_value_set_int64", (DL_FUNC) &R_g_value_set_int64, 2},
-    {"R_g_value_set_interned_string", (DL_FUNC) &R_g_value_set_interned_string, 2},
     {"R_g_value_set_long", (DL_FUNC) &R_g_value_set_long, 2},
     {"R_g_value_set_object", (DL_FUNC) &R_g_value_set_object, 2},
     {"R_g_value_set_param", (DL_FUNC) &R_g_value_set_param, 2},
@@ -10218,7 +9668,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_value_set_uint64", (DL_FUNC) &R_g_value_set_uint64, 2},
     {"R_g_value_set_ulong", (DL_FUNC) &R_g_value_set_ulong, 2},
     {"R_g_value_set_variant", (DL_FUNC) &R_g_value_set_variant, 2},
-    {"R_g_value_steal_string", (DL_FUNC) &R_g_value_steal_string, 1},
     {"R_g_value_take_boxed", (DL_FUNC) &R_g_value_take_boxed, 2},
     {"R_g_value_take_string", (DL_FUNC) &R_g_value_take_string, 2},
     {"R_g_value_take_variant", (DL_FUNC) &R_g_value_take_variant, 2},
@@ -10238,7 +9687,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_boxed_copy", (DL_FUNC) &R_g_boxed_copy, 2},
     {"R_g_boxed_free", (DL_FUNC) &R_g_boxed_free, 2},
     {"R_g_boxed_type_register_static", (DL_FUNC) &R_g_boxed_type_register_static, 3},
-    {"R_g_clear_signal_handler", (DL_FUNC) &R_g_clear_signal_handler, 2},
     {"R_g_enum_complete_type_info", (DL_FUNC) &R_g_enum_complete_type_info, 2},
     {"R_g_enum_get_value", (DL_FUNC) &R_g_enum_get_value, 2},
     {"R_g_enum_get_value_by_name", (DL_FUNC) &R_g_enum_get_value_by_name, 2},
@@ -10276,7 +9724,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_param_type_register_static", (DL_FUNC) &R_g_param_type_register_static, 2},
     {"R_g_param_value_convert", (DL_FUNC) &R_g_param_value_convert, 4},
     {"R_g_param_value_defaults", (DL_FUNC) &R_g_param_value_defaults, 2},
-    {"R_g_param_value_is_valid", (DL_FUNC) &R_g_param_value_is_valid, 2},
     {"R_g_param_value_set_default", (DL_FUNC) &R_g_param_value_set_default, 2},
     {"R_g_param_value_validate", (DL_FUNC) &R_g_param_value_validate, 2},
     {"R_g_param_values_cmp", (DL_FUNC) &R_g_param_values_cmp, 3},
@@ -10299,7 +9746,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_signal_handlers_disconnect_matched", (DL_FUNC) &R_g_signal_handlers_disconnect_matched, 7},
     {"R_g_signal_handlers_unblock_matched", (DL_FUNC) &R_g_signal_handlers_unblock_matched, 7},
     {"R_g_signal_has_handler_pending", (DL_FUNC) &R_g_signal_has_handler_pending, 4},
-    {"R_g_signal_is_valid_name", (DL_FUNC) &R_g_signal_is_valid_name, 1},
     {"R_g_signal_list_ids", (DL_FUNC) &R_g_signal_list_ids, 1},
     {"R_g_signal_lookup", (DL_FUNC) &R_g_signal_lookup, 2},
     {"R_g_signal_name", (DL_FUNC) &R_g_signal_name, 1},
@@ -10324,7 +9770,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_type_check_value", (DL_FUNC) &R_g_type_check_value, 1},
     {"R_g_type_check_value_holds", (DL_FUNC) &R_g_type_check_value_holds, 2},
     {"R_g_type_children", (DL_FUNC) &R_g_type_children, 1},
-    {"R_g_type_default_interface_get", (DL_FUNC) &R_g_type_default_interface_get, 1},
     {"R_g_type_default_interface_peek", (DL_FUNC) &R_g_type_default_interface_peek, 1},
     {"R_g_type_default_interface_ref", (DL_FUNC) &R_g_type_default_interface_ref, 1},
     {"R_g_type_default_interface_unref", (DL_FUNC) &R_g_type_default_interface_unref, 1},
@@ -12302,7 +11747,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_popover_set_offset", (DL_FUNC) &R_gtk_popover_set_offset, 3},
     {"R_gtk_popover_set_pointing_to", (DL_FUNC) &R_gtk_popover_set_pointing_to, 2},
     {"R_gtk_popover_set_position", (DL_FUNC) &R_gtk_popover_set_position, 2},
-    {"R_gtk_popover_bin_get_handle_input", (DL_FUNC) &R_gtk_popover_bin_get_handle_input, 1},
     {"R_gtk_popover_menu_new_from_model", (DL_FUNC) &R_gtk_popover_menu_new_from_model, 1},
     {"R_gtk_popover_menu_new_from_model_full", (DL_FUNC) &R_gtk_popover_menu_new_from_model_full, 2},
     {"R_gtk_popover_menu_add_child", (DL_FUNC) &R_gtk_popover_menu_add_child, 3},
@@ -12761,13 +12205,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_style_context_set_scale", (DL_FUNC) &R_gtk_style_context_set_scale, 2},
     {"R_gtk_style_context_set_state", (DL_FUNC) &R_gtk_style_context_set_state, 2},
     {"R_gtk_style_context_to_string", (DL_FUNC) &R_gtk_style_context_to_string, 2},
-    {"R_gtk_svg_error_quark", (DL_FUNC) &R_gtk_svg_error_quark, 0},
     {"R_gtk_switch_new", (DL_FUNC) &R_gtk_switch_new, 0},
     {"R_gtk_switch_get_active", (DL_FUNC) &R_gtk_switch_get_active, 1},
     {"R_gtk_switch_get_state", (DL_FUNC) &R_gtk_switch_get_state, 1},
     {"R_gtk_switch_set_active", (DL_FUNC) &R_gtk_switch_set_active, 2},
     {"R_gtk_switch_set_state", (DL_FUNC) &R_gtk_switch_set_state, 2},
-    {"R_gtk_symbolic_paintable_snapshot_symbolic", (DL_FUNC) &R_gtk_symbolic_paintable_snapshot_symbolic, 6},
     {"R_gtk_text_new", (DL_FUNC) &R_gtk_text_new, 0},
     {"R_gtk_text_new_with_buffer", (DL_FUNC) &R_gtk_text_new_with_buffer, 1},
     {"R_gtk_text_compute_cursor_extents", (DL_FUNC) &R_gtk_text_compute_cursor_extents, 2},

@@ -1,0 +1,107 @@
+# GitHub Actions workflow for R CMD check
+# Checks Rgtk4 package on multiple platforms with GTK4 dependencies
+
+name: R-CMD-check
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+
+jobs:
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (R-${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: ubuntu-latest, r: 'release'}
+          - {os: ubuntu-latest, r: 'devel'}
+          - {os: macos-latest, r: 'release'}
+          - {os: windows-latest, r: 'release'}
+
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install system dependencies (Ubuntu)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-4-dev \
+            gobject-introspection \
+            libgirepository1.0-dev \
+            pkg-config
+
+      - name: Install system dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew install gtk4 gobject-introspection pkgconf
+
+      - name: Install system dependencies (Windows)
+        if: runner.os == 'Windows'
+        id: msys2
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          msystem: UCRT64
+          path-type: inherit
+          install: >-
+            mingw-w64-ucrt-x86_64-gtk4
+            mingw-w64-ucrt-x86_64-gobject-introspection
+            mingw-w64-ucrt-x86_64-pkg-config
+
+
+      - name: Export MSYS2 paths for R build
+        if: runner.os == 'Windows'
+        shell: msys2 {0}
+        run: |
+          WIN_PREFIX=$(cygpath -w "$MSYSTEM_PREFIX")
+          echo "MSYS2_PREFIX=$WIN_PREFIX" >> $GITHUB_ENV
+          echo "PKG_CONFIG=$WIN_PREFIX\\bin\\pkg-config.exe" >> $GITHUB_ENV
+          echo "PKG_CONFIG_PATH=$WIN_PREFIX\\lib\\pkgconfig" >> $GITHUB_ENV
+          echo "$WIN_PREFIX\\bin" >> $GITHUB_PATH
+          echo "prefix is: $WIN_PREFIX"
+
+      - name: Verify GTK4 installation (Windows)
+        if: runner.os == 'Windows'
+        run: |
+          pkg-config --modversion gtk4 || echo "pkg-config failed"
+          ls C:/msys64/ucrt64/include/gtk-4.0/gtk/gtk.h || echo "GTK headers not found"
+        shell: bash
+
+      - name: Setup R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.r }}
+          use-public-rspm: true
+
+      - name: Setup R dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          extra-packages: |
+            any::rcmdcheck
+            any::remotes
+          needs: check
+
+      - name: Check package
+        uses: r-lib/actions/check-r-package@v2
+        with:
+          upload-snapshots: true
+          error-on: '"error"'
+          args: 'c("--no-manual", "--as-cran")'
+
+      - name: Show test output
+        if: always()
+        run: |
+          find . -name '*.Rout' -exec cat {} \;
+        shell: bash

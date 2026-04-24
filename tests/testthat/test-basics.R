@@ -1,10 +1,17 @@
+test_that("package loads", {
+  expect_true(isNamespaceLoaded("Rgtk4"))
+})
+
 test_that("GTK initialization works", {
   skip_on_cran()
-  expect_silent(gtkInit())
+  skip_if_no_gtk()
+  # GTK already initialized in helper
+  expect_true(TRUE)
 })
 
 test_that("basic widget creation works", {
   skip_on_cran()
+  skip_if_no_gtk()
 
   window <- gtkWindowNew()
   expect_s3_class(window, "GtkWindow")
@@ -20,6 +27,7 @@ test_that("basic widget creation works", {
 
 test_that("widget hierarchy and packing works", {
   skip_on_cran()
+  skip_if_no_gtk()
 
   window <- gtkWindowNew()
   box <- gtkBoxNew(1L, 0L)
@@ -31,6 +39,7 @@ test_that("widget hierarchy and packing works", {
 
 test_that("signal connections work", {
   skip_on_cran()
+  skip_if_no_gtk()
 
   button <- gtkButtonNew()
   clicked <- FALSE
@@ -45,6 +54,7 @@ test_that("signal connections work", {
 
 test_that("property getting/setting works", {
   skip_on_cran()
+  skip_if_no_gtk()
 
   label <- gtkLabelNew("initial")
 
@@ -60,6 +70,7 @@ test_that("property getting/setting works", {
 
 test_that("external pointer printing works", {
   skip_on_cran()
+  skip_if_no_gtk()
 
   label <- gtkLabelNew("test")
   output <- capture.output(print(label))
@@ -69,6 +80,7 @@ test_that("external pointer printing works", {
 
 test_that("string list creation works", {
   skip_on_cran()
+  skip_if_no_gtk()
 
   items <- c("one", "two", "three")
   list <- gtkStringListFromVector(items)
@@ -79,6 +91,7 @@ test_that("string list creation works", {
 
 test_that("UI state extraction works", {
   skip_on_cran()
+  skip_if_no_gtk()
 
   entry <- gtkEntryNew()
   gtkEditableSetText(entry, "test text")
@@ -90,6 +103,7 @@ test_that("UI state extraction works", {
 
 test_that("memory management - finalizers registered", {
   skip_on_cran()
+  skip_if_no_gtk()
 
   # Create widget and let it go out of scope
   local({

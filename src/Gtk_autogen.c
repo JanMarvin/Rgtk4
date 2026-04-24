@@ -25765,22 +25765,6 @@ SEXP R_gtk_popover_set_position(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_popover_bin_get_handle_input(SEXP s1) {
-  GtkPopoverBin* v1 = (GtkPopoverBin*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)gtk_popover_bin_get_handle_input(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_popover_menu_new_from_model(SEXP s1) {
   GMenuModel* v1 = (s1 != R_NilValue) ? (GMenuModel*)(get_ptr(s1)) : NULL; (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_popover_menu_new_from_model(v1);
@@ -31778,22 +31762,6 @@ SEXP R_gtk_style_context_to_string(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_svg_error_quark(void) {
-
-  GQuark _ret = (GQuark)gtk_svg_error_quark();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_switch_new(void) {
 
   gconstpointer _ret = (gconstpointer)gtk_switch_new();
@@ -31854,18 +31822,6 @@ SEXP R_gtk_switch_set_state(SEXP s1, SEXP s2) {
   GtkSwitch* v1 = (GtkSwitch*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gtk_switch_set_state(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_gtk_symbolic_paintable_snapshot_symbolic(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GtkSymbolicPaintable* v1 = (GtkSymbolicPaintable*)(get_ptr(s1)); (void)v1;
-  GdkSnapshot* v2 = (GdkSnapshot*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  const GdkRGBA* v5 = (const GdkRGBA*)(get_ptr(s5)); (void)v5;
-  gsize v6 = (gsize)((gsize)REAL(s6)[0]); (void)v6;
-  gtk_symbolic_paintable_snapshot_symbolic(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 

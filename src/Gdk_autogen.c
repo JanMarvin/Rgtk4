@@ -5129,23 +5129,6 @@ SEXP R_gdk_rgba_parse(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gdk_rgba_print(SEXP s1, SEXP s2) {
-  const GdkRGBA* v1 = (const GdkRGBA*)(get_ptr(s1)); (void)v1;
-  GString* v2 = (GString*)(get_ptr(s2)); (void)v2;
-  gconstpointer _ret = (gconstpointer)gdk_rgba_print(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.String"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gdk_rgba_to_string(SEXP s1) {
   const GdkRGBA* v1 = (const GdkRGBA*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_rgba_to_string(v1);

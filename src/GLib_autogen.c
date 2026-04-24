@@ -484,22 +484,6 @@ SEXP R_g_bookmark_file_add_group(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_bookmark_file_copy(SEXP s1) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_bookmark_file_copy(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("BookmarkFile"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_bookmark_file_free(SEXP s1) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   g_bookmark_file_free(v1);
@@ -517,24 +501,6 @@ SEXP R_g_bookmark_file_get_added(SEXP s1, SEXP s2) {
   SET_VECTOR_ELT(_ans, 0, tag_pointer(Rf_ScalarReal((double)(size_t)(_ret)), "time_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("time_t"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_bookmark_file_get_added_date_time(SEXP s1, SEXP s2) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_bookmark_file_get_added_date_time(v1, v2, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("DateTime"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -572,43 +538,6 @@ SEXP R_g_bookmark_file_get_app_info(SEXP s1, SEXP s2, SEXP s3) {
   SET_VECTOR_ELT(_ans, 3, tag_pointer(Rf_ScalarReal((double)(size_t)(_out_stamp)), "time_t"));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("time_t"));
-  }
-  SET_STRING_ELT(_ans_names, 3, Rf_mkChar("stamp"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_bookmark_file_get_application_info(SEXP s1, SEXP s2, SEXP s3) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  char* _out_exec = 0; (void)_out_exec;
-  unsigned int _out_count = {0}; (void)_out_count;
-  GDateTime* _out_stamp = 0; (void)_out_stamp;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_bookmark_file_get_application_info(v1, v2, v3, &_out_exec, &_out_count, &_out_stamp, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_exec == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_exec ? (const char*)_out_exec : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("exec"));
-  SET_VECTOR_ELT(_ans, 2, tag_pointer(Rf_ScalarInteger((int)(size_t)(_out_count)), "guint"));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("count"));
-  SET_VECTOR_ELT(_ans, 3, (_out_stamp == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_out_stamp));
-  if (VECTOR_ELT(_ans, 3) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("DateTime"));
   }
   SET_STRING_ELT(_ans_names, 3, Rf_mkChar("stamp"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -767,24 +696,6 @@ SEXP R_g_bookmark_file_get_modified(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_bookmark_file_get_modified_date_time(SEXP s1, SEXP s2) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_bookmark_file_get_modified_date_time(v1, v2, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("DateTime"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_bookmark_file_get_size(SEXP s1) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   gint _ret = (gint)g_bookmark_file_get_size(v1);
@@ -851,24 +762,6 @@ SEXP R_g_bookmark_file_get_visited(SEXP s1, SEXP s2) {
   SET_VECTOR_ELT(_ans, 0, tag_pointer(Rf_ScalarReal((double)(size_t)(_ret)), "time_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("time_t"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_bookmark_file_get_visited_date_time(SEXP s1, SEXP s2) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_bookmark_file_get_visited_date_time(v1, v2, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("DateTime"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -1077,15 +970,6 @@ SEXP R_g_bookmark_file_set_added(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_bookmark_file_set_added_date_time(SEXP s1, SEXP s2, SEXP s3) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GDateTime* v3 = (GDateTime*)(get_ptr(s3)); (void)v3;
-  g_bookmark_file_set_added_date_time(v1, v2, v3);
-  return R_NilValue;
-}
-
-
 SEXP R_g_bookmark_file_set_app_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
@@ -1095,28 +979,6 @@ SEXP R_g_bookmark_file_set_app_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
   time_t v6 = (time_t)((time_t)REAL(s6)[0]); (void)v6;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_bookmark_file_set_app_info(v1, v2, v3, v4, v5, v6, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_bookmark_file_set_application_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  GDateTime* v6 = (s6 != R_NilValue) ? (GDateTime*)(get_ptr(s6)) : NULL; (void)v6;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_bookmark_file_set_application_info(v1, v2, v3, v4, v5, v6, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -1186,15 +1048,6 @@ SEXP R_g_bookmark_file_set_modified(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_bookmark_file_set_modified_date_time(SEXP s1, SEXP s2, SEXP s3) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GDateTime* v3 = (GDateTime*)(get_ptr(s3)); (void)v3;
-  g_bookmark_file_set_modified_date_time(v1, v2, v3);
-  return R_NilValue;
-}
-
-
 SEXP R_g_bookmark_file_set_title(SEXP s1, SEXP s2, SEXP s3) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
@@ -1209,15 +1062,6 @@ SEXP R_g_bookmark_file_set_visited(SEXP s1, SEXP s2, SEXP s3) {
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   time_t v3 = (time_t)((time_t)REAL(s3)[0]); (void)v3;
   g_bookmark_file_set_visited(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_g_bookmark_file_set_visited_date_time(SEXP s1, SEXP s2, SEXP s3) {
-  GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GDateTime* v3 = (GDateTime*)(get_ptr(s3)); (void)v3;
-  g_bookmark_file_set_visited_date_time(v1, v2, v3);
   return R_NilValue;
 }
 
@@ -1499,28 +1343,6 @@ SEXP R_g_byte_array_sort_with_data(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_byte_array_steal(SEXP s1) {
-  GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
-  gsize _out_len = 0; (void)_out_len;
-  gconstpointer _ret = (gconstpointer)g_byte_array_steal(v1, &_out_len);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : tag_pointer(Rf_ScalarInteger((int)(_ret)), "guint8"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_len)));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("len"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_byte_array_unref(SEXP s1) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
   g_byte_array_unref(v1);
@@ -1630,25 +1452,6 @@ SEXP R_g_bytes_get_data(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gsize"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("size"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_bytes_get_region(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GBytes* v1 = (GBytes*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gsize v4 = (gsize)((gsize)REAL(s4)[0]); (void)v4;
-  gconstpointer _ret = (gconstpointer)g_bytes_get_region(v1, v2, v3, v4);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
@@ -2231,23 +2034,6 @@ SEXP R_g_date_get_sunday_week_of_year(SEXP s1) {
 }
 
 
-SEXP R_g_date_get_week_of_year(SEXP s1, SEXP s2) {
-  const GDate* v1 = (const GDate*)(get_ptr(s1)); (void)v1;
-  GDateWeekday v2 = (GDateWeekday)((GDateWeekday)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  guint _ret = (guint)g_date_get_week_of_year(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_date_get_weekday(SEXP s1) {
   const GDate* v1 = (const GDate*)(get_ptr(s1)); (void)v1;
   GDateWeekday _ret = (GDateWeekday)g_date_get_weekday(v1);
@@ -2491,23 +2277,6 @@ SEXP R_g_date_get_sunday_weeks_in_year(SEXP s1) {
 }
 
 
-SEXP R_g_date_get_weeks_in_year(SEXP s1, SEXP s2) {
-  GDateYear v1 = (GDateYear)((GDateYear)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  GDateWeekday v2 = (GDateWeekday)((GDateWeekday)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  guint8 _ret = (guint8)g_date_get_weeks_in_year(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_date_is_leap_year(SEXP s1) {
   GDateYear v1 = (GDateYear)((GDateYear)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   gboolean _ret = (gboolean)g_date_is_leap_year(v1);
@@ -2728,41 +2497,9 @@ SEXP R_g_date_time_new_from_unix_local(SEXP s1) {
 }
 
 
-SEXP R_g_date_time_new_from_unix_local_usec(SEXP s1) {
-  gint64 v1 = (gint64)((gint64)REAL(s1)[0]); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_date_time_new_from_unix_local_usec(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("DateTime"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_date_time_new_from_unix_utc(SEXP s1) {
   gint64 v1 = (gint64)((gint64)REAL(s1)[0]); (void)v1;
   gconstpointer _ret = (gconstpointer)g_date_time_new_from_unix_utc(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("DateTime"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_date_time_new_from_unix_utc_usec(SEXP s1) {
-  gint64 v1 = (gint64)((gint64)REAL(s1)[0]); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_date_time_new_from_unix_utc_usec(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -3092,22 +2829,6 @@ SEXP R_g_date_time_format(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_date_time_format_iso8601(SEXP s1) {
-  GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_date_time_format_iso8601(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_date_time_get_day_of_month(SEXP s1) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
   gint _ret = (gint)g_date_time_get_day_of_month(v1);
@@ -3244,22 +2965,6 @@ SEXP R_g_date_time_get_seconds(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_date_time_get_timezone(SEXP s1) {
-  GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_date_time_get_timezone(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TimeZone"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -3491,22 +3196,6 @@ SEXP R_g_date_time_to_unix(SEXP s1) {
 }
 
 
-SEXP R_g_date_time_to_unix_usec(SEXP s1) {
-  GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gint64 _ret = (gint64)g_date_time_to_unix_usec(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint64"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_date_time_to_utc(SEXP s1) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_date_time_to_utc(v1);
@@ -3571,32 +3260,9 @@ SEXP R_g_dir_read_name(SEXP s1) {
 }
 
 
-SEXP R_g_dir_ref(SEXP s1) {
-  GDir* v1 = (GDir*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_dir_ref(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Dir"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_dir_rewind(SEXP s1) {
   GDir* v1 = (GDir*)(get_ptr(s1)); (void)v1;
   g_dir_rewind(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_dir_unref(SEXP s1) {
-  GDir* v1 = (GDir*)(get_ptr(s1)); (void)v1;
-  g_dir_unref(v1);
   return R_NilValue;
 }
 
@@ -3669,46 +3335,6 @@ SEXP R_g_error_matches(SEXP s1, SEXP s2, SEXP s3) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_error_domain_register(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  GErrorInitFunc v3 = (GErrorInitFunc)(get_ptr(s3)); (void)v3;
-  GErrorCopyFunc v4 = (GErrorCopyFunc)(get_ptr(s4)); (void)v4;
-  GErrorClearFunc v5 = (GErrorClearFunc)(get_ptr(s5)); (void)v5;
-  GQuark _ret = (GQuark)g_error_domain_register(v1, v2, v3, v4, v5);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quark"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_error_domain_register_static(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  GErrorInitFunc v3 = (GErrorInitFunc)(get_ptr(s3)); (void)v3;
-  GErrorCopyFunc v4 = (GErrorCopyFunc)(get_ptr(s4)); (void)v4;
-  GErrorClearFunc v5 = (GErrorClearFunc)(get_ptr(s5)); (void)v5;
-  GQuark _ret = (GQuark)g_error_domain_register_static(v1, v2, v3, v4, v5);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quark"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -3885,22 +3511,6 @@ SEXP R_g_hash_table_lookup_extended(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_hash_table_new_similar(SEXP s1) {
-  GHashTable* v1 = (GHashTable*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_hash_table_new_similar(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.HashTable"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_hash_table_ref(SEXP s1) {
   GHashTable* v1 = (GHashTable*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_hash_table_ref(v1);
@@ -3996,35 +3606,6 @@ SEXP R_g_hash_table_steal_all(SEXP s1) {
   GHashTable* v1 = (GHashTable*)(get_ptr(s1)); (void)v1;
   g_hash_table_steal_all(v1);
   return R_NilValue;
-}
-
-
-SEXP R_g_hash_table_steal_extended(SEXP s1, SEXP s2) {
-  GHashTable* v1 = (GHashTable*)(get_ptr(s1)); (void)v1;
-  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer _out_stolen_key = 0; (void)_out_stolen_key;
-  gpointer _out_stolen_value = 0; (void)_out_stolen_value;
-  gboolean _ret = (gboolean)g_hash_table_steal_extended(v1, v2, &_out_stolen_key, &_out_stolen_value);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_stolen_key), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("stolen_key"));
-  SET_VECTOR_ELT(_ans, 2, tag_pointer(R_MakeExternalPtr((void*)(&_out_stolen_value), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("stolen_value"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -5775,22 +5356,6 @@ SEXP R_g_main_context_new(void) {
 }
 
 
-SEXP R_g_main_context_new_with_flags(SEXP s1) {
-  GMainContextFlags v1 = (GMainContextFlags)((GMainContextFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_main_context_new_with_flags(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("MainContext"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_main_context_acquire(SEXP s1) {
   GMainContext* v1 = (s1 != R_NilValue) ? (GMainContext*)(get_ptr(s1)) : NULL; (void)v1;
   gboolean _ret = (gboolean)g_main_context_acquire(v1);
@@ -5987,22 +5552,6 @@ SEXP R_g_main_context_push_thread_default(SEXP s1) {
   GMainContext* v1 = (s1 != R_NilValue) ? (GMainContext*)(get_ptr(s1)) : NULL; (void)v1;
   g_main_context_push_thread_default(v1);
   return R_NilValue;
-}
-
-
-SEXP R_g_main_context_pusher_new(SEXP s1) {
-  GMainContext* v1 = (GMainContext*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_main_context_pusher_new(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("MainContextPusher"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -6422,22 +5971,6 @@ SEXP R_g_markup_parse_context_get_element_stack(SEXP s1) {
 }
 
 
-SEXP R_g_markup_parse_context_get_offset(SEXP s1) {
-  GMarkupParseContext* v1 = (GMarkupParseContext*)(get_ptr(s1)); (void)v1;
-  gsize _ret = (gsize)g_markup_parse_context_get_offset(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_markup_parse_context_get_position(SEXP s1) {
   GMarkupParseContext* v1 = (GMarkupParseContext*)(get_ptr(s1)); (void)v1;
   gint _out_line_number = 0; (void)_out_line_number;
@@ -6455,35 +5988,6 @@ SEXP R_g_markup_parse_context_get_position(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("char_number"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_markup_parse_context_get_tag_start(SEXP s1) {
-  GMarkupParseContext* v1 = (GMarkupParseContext*)(get_ptr(s1)); (void)v1;
-  gsize _out_line_number = 0; (void)_out_line_number;
-  gsize _out_char_number = 0; (void)_out_char_number;
-  gsize _out_offset = 0; (void)_out_offset;
-  g_markup_parse_context_get_tag_start(v1, &_out_line_number, &_out_char_number, &_out_offset);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_line_number)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("line_number"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_char_number)));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("char_number"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_offset)));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("offset"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
@@ -7450,204 +6954,9 @@ SEXP R_g_option_group_unref(SEXP s1) {
 }
 
 
-SEXP R_g_path_buf_clear(SEXP s1) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  g_path_buf_clear(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_path_buf_clear_to_path(SEXP s1) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_path_buf_clear_to_path(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("filename"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_free(SEXP s1) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  g_path_buf_free(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_path_buf_free_to_path(SEXP s1) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_path_buf_free_to_path(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("filename"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_init(SEXP s1) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_path_buf_init(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("PathBuf"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_init_from_path(SEXP s1, SEXP s2) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  gconstpointer _ret = (gconstpointer)g_path_buf_init_from_path(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("PathBuf"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_pop(SEXP s1) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)g_path_buf_pop(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_push(SEXP s1, SEXP s2) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gconstpointer _ret = (gconstpointer)g_path_buf_push(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("PathBuf"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_set_extension(SEXP s1, SEXP s2) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  gboolean _ret = (gboolean)g_path_buf_set_extension(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_set_filename(SEXP s1, SEXP s2) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gboolean _ret = (gboolean)g_path_buf_set_filename(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_to_path(SEXP s1) {
-  GPathBuf* v1 = (GPathBuf*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_path_buf_to_path(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("filename"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_path_buf_equal(SEXP s1, SEXP s2) {
-  gconstpointer v1 = (gconstpointer)(get_ptr(s1)); (void)v1;
-  gconstpointer v2 = (gconstpointer)(get_ptr(s2)); (void)v2;
-  gboolean _ret = (gboolean)g_path_buf_equal(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_pattern_spec_new(SEXP s1) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer _ret = (gconstpointer)g_pattern_spec_new(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("PatternSpec"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_pattern_spec_copy(SEXP s1) {
-  GPatternSpec* v1 = (GPatternSpec*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_pattern_spec_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -7682,42 +6991,6 @@ SEXP R_g_pattern_spec_free(SEXP s1) {
   GPatternSpec* v1 = (GPatternSpec*)(get_ptr(s1)); (void)v1;
   g_pattern_spec_free(v1);
   return R_NilValue;
-}
-
-
-SEXP R_g_pattern_spec_match(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GPatternSpec* v1 = (GPatternSpec*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
-  gboolean _ret = (gboolean)g_pattern_spec_match(v1, v2, v3, v4);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_pattern_spec_match_string(SEXP s1, SEXP s2) {
-  GPatternSpec* v1 = (GPatternSpec*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gboolean _ret = (gboolean)g_pattern_spec_match_string(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -7756,14 +7029,6 @@ SEXP R_g_private_set(SEXP s1, SEXP s2) {
 SEXP R_g_queue_clear(SEXP s1) {
   GQueue* v1 = (GQueue*)(get_ptr(s1)); (void)v1;
   g_queue_clear(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_queue_clear_full(SEXP s1, SEXP s2) {
-  GQueue* v1 = (GQueue*)(get_ptr(s1)); (void)v1;
-  GDestroyNotify v2 = (s2 != R_NilValue) ? (GDestroyNotify)(get_ptr(s2)) : NULL; (void)v2;
-  g_queue_clear_full(v1, v2);
   return R_NilValue;
 }
 
@@ -9658,22 +8923,6 @@ SEXP R_g_source_destroy(SEXP s1) {
 }
 
 
-SEXP R_g_source_dup_context(SEXP s1) {
-  GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_source_dup_context(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("MainContext"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_source_get_can_recurse(SEXP s1) {
   GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)g_source_get_can_recurse(v1);
@@ -9901,14 +9150,6 @@ SEXP R_g_source_set_ready_time(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_source_set_static_name(SEXP s1, SEXP s2) {
-  GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  g_source_set_static_name(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_g_source_unref(SEXP s1) {
   GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
   g_source_unref(v1);
@@ -10009,22 +9250,6 @@ SEXP R_g_string_new_len(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_new_len(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("String"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_string_new_take(SEXP s1) {
-  gchar* v1 = (s1 != R_NilValue) ? (gchar*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  gconstpointer _ret = (gconstpointer)g_string_new_take(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -10191,22 +9416,6 @@ SEXP R_g_string_assign(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_string_copy(SEXP s1) {
-  GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_string_copy(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("String"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_string_down(SEXP s1) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_string_down(v1);
@@ -10262,22 +9471,6 @@ SEXP R_g_string_free(SEXP s1, SEXP s2) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_free(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_string_free_and_steal(SEXP s1) {
-  GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_string_free_and_steal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
@@ -10502,25 +9695,6 @@ SEXP R_g_string_prepend_unichar(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_string_replace(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  guint v4 = (guint)((guint)INTEGER(s4)[0]); (void)v4;
-  guint _ret = (guint)g_string_replace(v1, v2, v3, v4);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_string_set_size(SEXP s1, SEXP s2) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
   gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
@@ -10637,22 +9811,6 @@ SEXP R_g_string_chunk_insert_len(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_strv_builder_new(void) {
-
-  gconstpointer _ret = (gconstpointer)g_strv_builder_new();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("StrvBuilder"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_strv_builder_add(SEXP s1, SEXP s2) {
   GStrvBuilder* v1 = (GStrvBuilder*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
@@ -10685,56 +9843,10 @@ SEXP R_g_strv_builder_end(SEXP s1) {
 }
 
 
-SEXP R_g_strv_builder_ref(SEXP s1) {
-  GStrvBuilder* v1 = (GStrvBuilder*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_strv_builder_ref(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("StrvBuilder"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_strv_builder_take(SEXP s1, SEXP s2) {
   GStrvBuilder* v1 = (GStrvBuilder*)(get_ptr(s1)); (void)v1;
   char* v2 = (char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   g_strv_builder_take(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_g_strv_builder_unref(SEXP s1) {
-  GStrvBuilder* v1 = (GStrvBuilder*)(get_ptr(s1)); (void)v1;
-  g_strv_builder_unref(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_strv_builder_unref_to_strv(SEXP s1) {
-  GStrvBuilder* v1 = (GStrvBuilder*)(get_ptr(s1)); (void)v1;
-  GStrv _ret = (GStrv)g_strv_builder_unref_to_strv(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_test_case_free(SEXP s1) {
-  GTestCase* v1 = (GTestCase*)(get_ptr(s1)); (void)v1;
-  g_test_case_free(v1);
   return R_NilValue;
 }
 
@@ -10778,13 +9890,6 @@ SEXP R_g_test_suite_add_suite(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_test_suite_free(SEXP s1) {
-  GTestSuite* v1 = (GTestSuite*)(get_ptr(s1)); (void)v1;
-  g_test_suite_free(v1);
-  return R_NilValue;
-}
-
-
 SEXP R_g_thread_new(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   GThreadFunc v2 = (GThreadFunc)(get_ptr(s2)); (void)v2;
@@ -10814,22 +9919,6 @@ SEXP R_g_thread_try_new(SEXP s1, SEXP s2, SEXP s3) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Thread"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_thread_get_name(SEXP s1) {
-  GThread* v1 = (GThread*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_thread_get_name(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -11164,41 +10253,9 @@ SEXP R_g_time_zone_new(SEXP s1) {
 }
 
 
-SEXP R_g_time_zone_new_identifier(SEXP s1) {
-  const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  gconstpointer _ret = (gconstpointer)g_time_zone_new_identifier(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TimeZone"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_time_zone_new_local(void) {
 
   gconstpointer _ret = (gconstpointer)g_time_zone_new_local();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TimeZone"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_time_zone_new_offset(SEXP s1) {
-  gint32 v1 = (gint32)((gint32)INTEGER(s1)[0]); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_time_zone_new_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -11273,22 +10330,6 @@ SEXP R_g_time_zone_get_abbreviation(SEXP s1, SEXP s2) {
   GTimeZone* v1 = (GTimeZone*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)g_time_zone_get_abbreviation(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_time_zone_get_identifier(SEXP s1) {
-  GTimeZone* v1 = (GTimeZone*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_time_zone_get_identifier(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
@@ -11382,22 +10423,6 @@ SEXP R_g_timer_elapsed(SEXP s1, SEXP s2) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_timer_is_active(SEXP s1) {
-  GTimer* v1 = (GTimer*)(get_ptr(s1)); (void)v1;
-  gboolean _ret = (gboolean)g_timer_is_active(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -11518,15 +10543,6 @@ SEXP R_g_tree_foreach(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_tree_foreach_node(SEXP s1, SEXP s2, SEXP s3) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  GTraverseNodeFunc v2 = (GTraverseNodeFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_tree_foreach_node(v1, v2, v3);
-  return R_NilValue;
-}
-
-
 SEXP R_g_tree_height(SEXP s1) {
   GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
   gint _ret = (gint)g_tree_height(v1);
@@ -11549,24 +10565,6 @@ SEXP R_g_tree_insert(SEXP s1, SEXP s2, SEXP s3) {
   gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
   g_tree_insert(v1, v2, v3);
   return R_NilValue;
-}
-
-
-SEXP R_g_tree_insert_node(SEXP s1, SEXP s2, SEXP s3) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gconstpointer _ret = (gconstpointer)g_tree_insert_node(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -11616,40 +10614,6 @@ SEXP R_g_tree_lookup_extended(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_tree_lookup_node(SEXP s1, SEXP s2) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gconstpointer _ret = (gconstpointer)g_tree_lookup_node(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_tree_lower_bound(SEXP s1, SEXP s2) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gconstpointer _ret = (gconstpointer)g_tree_lower_bound(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_tree_nnodes(SEXP s1) {
   GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
   gint _ret = (gint)g_tree_nnodes(v1);
@@ -11658,38 +10622,6 @@ SEXP R_g_tree_nnodes(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_tree_node_first(SEXP s1) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_tree_node_first(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_tree_node_last(SEXP s1) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_tree_node_last(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -11731,37 +10663,12 @@ SEXP R_g_tree_remove(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_tree_remove_all(SEXP s1) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  g_tree_remove_all(v1);
-  return R_NilValue;
-}
-
-
 SEXP R_g_tree_replace(SEXP s1, SEXP s2, SEXP s3) {
   GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
   g_tree_replace(v1, v2, v3);
   return R_NilValue;
-}
-
-
-SEXP R_g_tree_replace_node(SEXP s1, SEXP s2, SEXP s3) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gconstpointer _ret = (gconstpointer)g_tree_replace_node(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -11775,24 +10682,6 @@ SEXP R_g_tree_search(SEXP s1, SEXP s2, SEXP s3) {
   SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_tree_search_node(SEXP s1, SEXP s2, SEXP s3) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  GCompareFunc v2 = (GCompareFunc)(get_ptr(s2)); (void)v2;
-  gconstpointer v3 = (s3 != R_NilValue) ? (gconstpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gconstpointer _ret = (gconstpointer)g_tree_search_node(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -11832,87 +10721,6 @@ SEXP R_g_tree_unref(SEXP s1) {
   GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
   g_tree_unref(v1);
   return R_NilValue;
-}
-
-
-SEXP R_g_tree_upper_bound(SEXP s1, SEXP s2) {
-  GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gconstpointer _ret = (gconstpointer)g_tree_upper_bound(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_tree_node_key(SEXP s1) {
-  GTreeNode* v1 = (GTreeNode*)(get_ptr(s1)); (void)v1;
-  gpointer _ret = (gpointer)g_tree_node_key(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_tree_node_next(SEXP s1) {
-  GTreeNode* v1 = (GTreeNode*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_tree_node_next(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_tree_node_previous(SEXP s1) {
-  GTreeNode* v1 = (GTreeNode*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_tree_node_previous(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TreeNode"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_tree_node_value(SEXP s1) {
-  GTreeNode* v1 = (GTreeNode*)(get_ptr(s1)); (void)v1;
-  gpointer _ret = (gpointer)g_tree_node_value(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -11973,282 +10781,6 @@ SEXP R_g_unicode_script_to_iso15924(SEXP s1) {
 }
 
 
-SEXP R_g_uri_get_auth_params(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_auth_params(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_flags(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  GUriFlags _ret = (GUriFlags)g_uri_get_flags(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "UriFlags"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("UriFlags"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_fragment(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_fragment(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_host(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_host(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_password(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_password(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_path(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_path(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_port(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gint _ret = (gint)g_uri_get_port(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_query(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_query(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_scheme(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_scheme(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_user(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_user(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_get_userinfo(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_get_userinfo(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_parse_relative(SEXP s1, SEXP s2, SEXP s3) {
-  GUri* v1 = (s1 != R_NilValue) ? (GUri*)(get_ptr(s1)) : NULL; (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GUriFlags v3 = (GUriFlags)((GUriFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_uri_parse_relative(v1, v2, v3, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Uri"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_to_string(SEXP s1) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_to_string(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_to_string_partial(SEXP s1, SEXP s2) {
-  GUri* v1 = (GUri*)(get_ptr(s1)); (void)v1;
-  GUriHideFlags v2 = (GUriHideFlags)((GUriHideFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gconstpointer _ret = (gconstpointer)g_uri_to_string_partial(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_build(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
-  GUriFlags v1 = (GUriFlags)((GUriFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  const char* v6 = (const char*)(CHAR(STRING_ELT(s6,0))); (void)v6;
-  const char* v7 = (s7 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s7,0))) : NULL; (void)v7;
-  const char* v8 = (s8 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s8,0))) : NULL; (void)v8;
-  gconstpointer _ret = (gconstpointer)g_uri_build(v1, v2, v3, v4, v5, v6, v7, v8);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Uri"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_build_with_user(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10) {
-  GUriFlags v1 = (GUriFlags)((GUriFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
-  const char* v5 = (s5 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s5,0))) : NULL; (void)v5;
-  const char* v6 = (s6 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s6,0))) : NULL; (void)v6;
-  gint v7 = (gint)((gint)INTEGER(s7)[0]); (void)v7;
-  const char* v8 = (const char*)(CHAR(STRING_ELT(s8,0))); (void)v8;
-  const char* v9 = (s9 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s9,0))) : NULL; (void)v9;
-  const char* v10 = (s10 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s10,0))) : NULL; (void)v10;
-  gconstpointer _ret = (gconstpointer)g_uri_build_with_user(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Uri"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_uri_error_quark(void) {
 
   GQuark _ret = (GQuark)g_uri_error_quark();
@@ -12265,95 +10797,11 @@ SEXP R_g_uri_error_quark(void) {
 }
 
 
-SEXP R_g_uri_escape_bytes(SEXP s1, SEXP s2, SEXP s3) {
-  const guint8* v1 = (const guint8*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  gconstpointer _ret = (gconstpointer)g_uri_escape_bytes(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_uri_escape_string(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   gconstpointer _ret = (gconstpointer)g_uri_escape_string(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_is_valid(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  GUriFlags v2 = (GUriFlags)((GUriFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_uri_is_valid(v1, v2, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_join(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
-  GUriFlags v1 = (GUriFlags)((GUriFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  const char* v6 = (const char*)(CHAR(STRING_ELT(s6,0))); (void)v6;
-  const char* v7 = (s7 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s7,0))) : NULL; (void)v7;
-  const char* v8 = (s8 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s8,0))) : NULL; (void)v8;
-  gconstpointer _ret = (gconstpointer)g_uri_join(v1, v2, v3, v4, v5, v6, v7, v8);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_join_with_user(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10) {
-  GUriFlags v1 = (GUriFlags)((GUriFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
-  const char* v5 = (s5 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s5,0))) : NULL; (void)v5;
-  const char* v6 = (s6 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s6,0))) : NULL; (void)v6;
-  gint v7 = (gint)((gint)INTEGER(s7)[0]); (void)v7;
-  const char* v8 = (const char*)(CHAR(STRING_ELT(s8,0))); (void)v8;
-  const char* v9 = (s9 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s9,0))) : NULL; (void)v9;
-  const char* v10 = (s10 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s10,0))) : NULL; (void)v10;
-  gconstpointer _ret = (gconstpointer)g_uri_join_with_user(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
@@ -12383,44 +10831,6 @@ SEXP R_g_uri_list_extract_uris(SEXP s1) {
 }
 
 
-SEXP R_g_uri_parse(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  GUriFlags v2 = (GUriFlags)((GUriFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_uri_parse(v1, v2, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Uri"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_parse_params(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  GUriParamsFlags v4 = (GUriParamsFlags)((GUriParamsFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_uri_parse_params(v1, v2, v3, v4, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.HashTable"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_uri_parse_scheme(SEXP s1) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer _ret = (gconstpointer)g_uri_parse_scheme(v1);
@@ -12429,228 +10839,6 @@ SEXP R_g_uri_parse_scheme(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_peek_scheme(SEXP s1) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_uri_peek_scheme(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_resolve_relative(SEXP s1, SEXP s2, SEXP s3) {
-  const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GUriFlags v3 = (GUriFlags)((GUriFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_uri_resolve_relative(v1, v2, v3, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_split(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  GUriFlags v2 = (GUriFlags)((GUriFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gchar* _out_scheme = 0; (void)_out_scheme;
-  gchar* _out_userinfo = 0; (void)_out_userinfo;
-  gchar* _out_host = 0; (void)_out_host;
-  gint _out_port = 0; (void)_out_port;
-  gchar* _out_path = 0; (void)_out_path;
-  gchar* _out_query = 0; (void)_out_query;
-  gchar* _out_fragment = 0; (void)_out_fragment;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_uri_split(v1, v2, &_out_scheme, &_out_userinfo, &_out_host, &_out_port, &_out_path, &_out_query, &_out_fragment, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 8));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 8));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_scheme == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_scheme ? (const char*)_out_scheme : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("scheme"));
-  SET_VECTOR_ELT(_ans, 2, (_out_userinfo == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_userinfo ? (const char*)_out_userinfo : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("userinfo"));
-  SET_VECTOR_ELT(_ans, 3, (_out_host == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_host ? (const char*)_out_host : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 3) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 3, Rf_mkChar("host"));
-  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(_out_port)));
-  if (VECTOR_ELT(_ans, 4) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 4), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 4, Rf_mkChar("port"));
-  SET_VECTOR_ELT(_ans, 5, (_out_path == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_path ? (const char*)_out_path : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 5) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 5), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 5, Rf_mkChar("path"));
-  SET_VECTOR_ELT(_ans, 6, (_out_query == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_query ? (const char*)_out_query : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 6) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 6), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 6, Rf_mkChar("query"));
-  SET_VECTOR_ELT(_ans, 7, (_out_fragment == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_fragment ? (const char*)_out_fragment : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 7) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 7), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 7, Rf_mkChar("fragment"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_split_network(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  GUriFlags v2 = (GUriFlags)((GUriFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gchar* _out_scheme = 0; (void)_out_scheme;
-  gchar* _out_host = 0; (void)_out_host;
-  gint _out_port = 0; (void)_out_port;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_uri_split_network(v1, v2, &_out_scheme, &_out_host, &_out_port, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_scheme == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_scheme ? (const char*)_out_scheme : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("scheme"));
-  SET_VECTOR_ELT(_ans, 2, (_out_host == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_host ? (const char*)_out_host : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("host"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_port)));
-  if (VECTOR_ELT(_ans, 3) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 3, Rf_mkChar("port"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_split_with_user(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  GUriFlags v2 = (GUriFlags)((GUriFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gchar* _out_scheme = 0; (void)_out_scheme;
-  gchar* _out_user = 0; (void)_out_user;
-  gchar* _out_password = 0; (void)_out_password;
-  gchar* _out_auth_params = 0; (void)_out_auth_params;
-  gchar* _out_host = 0; (void)_out_host;
-  gint _out_port = 0; (void)_out_port;
-  gchar* _out_path = 0; (void)_out_path;
-  gchar* _out_query = 0; (void)_out_query;
-  gchar* _out_fragment = 0; (void)_out_fragment;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_uri_split_with_user(v1, v2, &_out_scheme, &_out_user, &_out_password, &_out_auth_params, &_out_host, &_out_port, &_out_path, &_out_query, &_out_fragment, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 10));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 10));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_scheme == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_scheme ? (const char*)_out_scheme : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("scheme"));
-  SET_VECTOR_ELT(_ans, 2, (_out_user == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_user ? (const char*)_out_user : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("user"));
-  SET_VECTOR_ELT(_ans, 3, (_out_password == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_password ? (const char*)_out_password : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 3) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 3, Rf_mkChar("password"));
-  SET_VECTOR_ELT(_ans, 4, (_out_auth_params == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_auth_params ? (const char*)_out_auth_params : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 4) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 4), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 4, Rf_mkChar("auth_params"));
-  SET_VECTOR_ELT(_ans, 5, (_out_host == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_host ? (const char*)_out_host : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 5) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 5), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 5, Rf_mkChar("host"));
-  SET_VECTOR_ELT(_ans, 6, Rf_ScalarInteger((int)(_out_port)));
-  if (VECTOR_ELT(_ans, 6) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 6), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 6, Rf_mkChar("port"));
-  SET_VECTOR_ELT(_ans, 7, (_out_path == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_path ? (const char*)_out_path : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 7) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 7), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 7, Rf_mkChar("path"));
-  SET_VECTOR_ELT(_ans, 8, (_out_query == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_query ? (const char*)_out_query : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 8) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 8), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 8, Rf_mkChar("query"));
-  SET_VECTOR_ELT(_ans, 9, (_out_fragment == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_fragment ? (const char*)_out_fragment : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 9) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 9), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 9, Rf_mkChar("fragment"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_unescape_bytes(SEXP s1, SEXP s2, SEXP s3) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_uri_unescape_bytes(v1, v2, v3, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Bytes"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -12688,46 +10876,6 @@ SEXP R_g_uri_unescape_string(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_uri_params_iter_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GUriParamsIter* v1 = (GUriParamsIter*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
-  GUriParamsFlags v5 = (GUriParamsFlags)((GUriParamsFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
-  g_uri_params_iter_init(v1, v2, v3, v4, v5);
-  return R_NilValue;
-}
-
-
-SEXP R_g_uri_params_iter_next(SEXP s1) {
-  GUriParamsIter* v1 = (GUriParamsIter*)(get_ptr(s1)); (void)v1;
-  gchar* _out_attribute = 0; (void)_out_attribute;
-  gchar* _out_value = 0; (void)_out_value;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_uri_params_iter_next(v1, &_out_attribute, &_out_value, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_attribute == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_attribute ? (const char*)_out_attribute : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("attribute"));
-  SET_VECTOR_ELT(_ans, 2, (_out_value == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_value ? (const char*)_out_value : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("value"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
@@ -14790,58 +12938,6 @@ SEXP R_g_access(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_aligned_alloc(SEXP s1, SEXP s2, SEXP s3) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gpointer _ret = (gpointer)g_aligned_alloc(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_aligned_alloc0(SEXP s1, SEXP s2, SEXP s3) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gpointer _ret = (gpointer)g_aligned_alloc0(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_aligned_free(SEXP s1) {
-  gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  g_aligned_free(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_aligned_free_sized(SEXP s1, SEXP s2, SEXP s3) {
-  gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  g_aligned_free_sized(v1, v2, v3);
-  return R_NilValue;
-}
-
-
 SEXP R_g_ascii_digit_value(SEXP s1) {
   gchar v1 = (gchar)((gchar)INTEGER(s1)[0]); (void)v1;
   gint _ret = (gint)g_ascii_digit_value(v1);
@@ -15378,24 +13474,6 @@ SEXP R_g_bit_lock(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_bit_lock_and_get(SEXP s1, SEXP s2) {
-  gint* v1 = (s1 != R_NilValue) ? (gint*)(get_ptr(s1)) : NULL; (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gint _out_out_val = 0; (void)_out_out_val;
-  g_bit_lock_and_get(v1, v2, &_out_out_val);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_out_val)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("out_val"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_bit_nth_lsf(SEXP s1, SEXP s2) {
   gulong v1 = (gulong)((gulong)REAL(s1)[0]); (void)v1;
   gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
@@ -15471,16 +13549,6 @@ SEXP R_g_bit_unlock(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_bit_unlock_and_set(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  gint* v1 = (s1 != R_NilValue) ? (gint*)(get_ptr(s1)) : NULL; (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  g_bit_unlock_and_set(v1, v2, v3, v4);
-  return R_NilValue;
-}
-
-
 SEXP R_g_blow_chunks(void) {
 
   g_blow_chunks();
@@ -15508,23 +13576,6 @@ SEXP R_g_build_pathv(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gchar** v2 = (gchar**)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_build_pathv(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("filename"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_canonicalize_filename(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  gconstpointer _ret = (gconstpointer)g_canonicalize_filename(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
@@ -15917,15 +13968,6 @@ SEXP R_g_datalist_id_get_data(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_datalist_id_remove_multiple(SEXP s1, SEXP s2, SEXP s3) {
-  GData** v1 = (GData**)(get_ptr(s1)); (void)v1;
-  GQuark* v2 = (GQuark*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  g_datalist_id_remove_multiple(v1, v2, v3);
-  return R_NilValue;
-}
-
-
 SEXP R_g_datalist_set_flags(SEXP s1, SEXP s2) {
   GData** v1 = (GData**)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
@@ -16304,27 +14346,6 @@ SEXP R_g_file_set_contents(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_set_contents_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  GFileSetContentsFlags v4 = (GFileSetContentsFlags)((GFileSetContentsFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_file_set_contents_full(v1, v2, v3, v4, v5, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_file_test(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GFileTest v2 = (GFileTest)((GFileTest)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
@@ -16564,14 +14585,6 @@ SEXP R_g_free(SEXP s1) {
 }
 
 
-SEXP R_g_free_sized(SEXP s1, SEXP s2) {
-  gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  g_free_sized(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_g_freopen(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
@@ -16582,22 +14595,6 @@ SEXP R_g_freopen(SEXP s1, SEXP s2, SEXP s3) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_fsync(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  gint _ret = (gint)g_fsync(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -16653,27 +14650,6 @@ SEXP R_g_get_codeset(void) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_get_console_charset(void) {
-  const char* _out_charset = 0; (void)_out_charset;
-  gboolean _ret = (gboolean)g_get_console_charset(&_out_charset);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_charset == NULL) ? R_NilValue : tag_pointer(Rf_mkString(_out_charset ? (const char*)_out_charset : ""), "utf8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("charset"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
@@ -16788,22 +14764,6 @@ SEXP R_g_get_language_names(void) {
 }
 
 
-SEXP R_g_get_language_names_with_category(SEXP s1) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_get_language_names_with_category(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_get_locale_variants(SEXP s1) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer _ret = (gconstpointer)g_get_locale_variants(v1);
@@ -16836,22 +14796,6 @@ SEXP R_g_get_monotonic_time(void) {
 }
 
 
-SEXP R_g_get_monotonic_time_ns(void) {
-
-  uint64_t _ret = (uint64_t)g_get_monotonic_time_ns();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(Rf_ScalarReal((double)(size_t)(_ret)), "guint64"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint64"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_get_num_processors(void) {
 
   guint _ret = (guint)g_get_num_processors();
@@ -16860,22 +14804,6 @@ SEXP R_g_get_num_processors(void) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_get_os_info(SEXP s1) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_get_os_info(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -17063,22 +14991,6 @@ SEXP R_g_get_user_runtime_dir(void) {
 SEXP R_g_get_user_special_dir(SEXP s1) {
   GUserDirectory v1 = (GUserDirectory)((GUserDirectory)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   gconstpointer _ret = (gconstpointer)g_get_user_special_dir(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("filename"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_get_user_state_dir(void) {
-
-  gconstpointer _ret = (gconstpointer)g_get_user_state_dir();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
@@ -17461,38 +15373,6 @@ SEXP R_g_log_default_handler(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_log_get_always_fatal(void) {
-
-  GLogLevelFlags _ret = (GLogLevelFlags)g_log_get_always_fatal();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "LogLevelFlags"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("LogLevelFlags"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_log_get_debug_enabled(void) {
-
-  gboolean _ret = (gboolean)g_log_get_debug_enabled();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_log_remove_handler(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
@@ -17514,13 +15394,6 @@ SEXP R_g_log_set_always_fatal(SEXP s1) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_g_log_set_debug_enabled(SEXP s1) {
-  gboolean v1 = (gboolean)((gboolean)LOGICAL(s1)[0]); (void)v1;
-  g_log_set_debug_enabled(v1);
-  return R_NilValue;
 }
 
 
@@ -17599,37 +15472,6 @@ SEXP R_g_log_writer_default(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "LogWriterOutput"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("LogWriterOutput"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_log_writer_default_set_debug_domains(SEXP s1) {
-  const gchar* const* v1 = (s1 != R_NilValue) ? (const gchar* const*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  g_log_writer_default_set_debug_domains(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_log_writer_default_set_use_stderr(SEXP s1) {
-  gboolean v1 = (gboolean)((gboolean)LOGICAL(s1)[0]); (void)v1;
-  g_log_writer_default_set_use_stderr(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_log_writer_default_would_drop(SEXP s1, SEXP s2) {
-  GLogLevelFlags v1 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  gboolean _ret = (gboolean)g_log_writer_default_would_drop(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -17719,25 +15561,6 @@ SEXP R_g_log_writer_supports_color(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_log_writer_syslog(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GLogLevelFlags v1 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  const GLogField* v2 = (const GLogField*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GLogWriterOutput _ret = (GLogWriterOutput)g_log_writer_syslog(v1, v2, v3, v4);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "LogWriterOutput"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("LogWriterOutput"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -17928,23 +15751,6 @@ SEXP R_g_memdup(SEXP s1, SEXP s2) {
   gconstpointer v1 = (s1 != R_NilValue) ? (gconstpointer)(get_ptr(s1)) : NULL; (void)v1;
   guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
   gpointer _ret = (gpointer)g_memdup(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_memdup2(SEXP s1, SEXP s2) {
-  gconstpointer v1 = (s1 != R_NilValue) ? (gconstpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gpointer _ret = (gpointer)g_memdup2(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
@@ -18180,23 +15986,6 @@ SEXP R_g_poll(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_prefix_error_literal(SEXP s1) {
-  GError* _out_err = 0; (void)_out_err;
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  g_prefix_error_literal(&_out_err, v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_out_err == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_out_err));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Error"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("err"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_propagate_error(SEXP s1) {
   GError* _out_dest = 0; (void)_out_dest;
   GError* v1 = (GError*)(get_ptr(s1)); (void)v1;
@@ -18362,102 +16151,6 @@ SEXP R_g_random_set_seed(SEXP s1) {
 }
 
 
-SEXP R_g_rc_box_acquire(SEXP s1) {
-  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
-  gpointer _ret = (gpointer)g_rc_box_acquire(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_rc_box_alloc(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gpointer _ret = (gpointer)g_rc_box_alloc(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_rc_box_alloc0(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gpointer _ret = (gpointer)g_rc_box_alloc0(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_rc_box_dup(SEXP s1, SEXP s2) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gconstpointer v2 = (gconstpointer)(get_ptr(s2)); (void)v2;
-  gpointer _ret = (gpointer)g_rc_box_dup(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gpointer"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_rc_box_get_size(SEXP s1) {
-  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
-  gsize _ret = (gsize)g_rc_box_get_size(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_rc_box_release(SEXP s1) {
-  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
-  g_rc_box_release(v1);
-  return R_NilValue;
-}
-
-
-SEXP R_g_rc_box_release_full(SEXP s1, SEXP s2) {
-  gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
-  GDestroyNotify v2 = (GDestroyNotify)(get_ptr(s2)); (void)v2;
-  g_rc_box_release_full(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_g_realloc(SEXP s1, SEXP s2) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
   gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
@@ -18490,181 +16183,6 @@ SEXP R_g_realloc_n(SEXP s1, SEXP s2, SEXP s3) {
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
   UNPROTECT(2);
   return _ans;
-}
-
-
-SEXP R_g_ref_count_compare(SEXP s1, SEXP s2) {
-  grefcount* v1 = (grefcount*)((grefcount*)INTEGER(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gboolean _ret = (gboolean)g_ref_count_compare(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_count_dec(void) {
-  grefcount _out_rc = {0}; (void)_out_rc;
-  gboolean _ret = (gboolean)g_ref_count_dec(&_out_rc);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(Rf_ScalarInteger((int)(size_t)(_out_rc)), "gint"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("rc"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_count_inc(void) {
-  grefcount _out_rc = {0}; (void)_out_rc;
-  g_ref_count_inc(&_out_rc);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(Rf_ScalarInteger((int)(size_t)(_out_rc)), "gint"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("rc"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_count_init(void) {
-  grefcount _out_rc = {0}; (void)_out_rc;
-  g_ref_count_init(&_out_rc);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(Rf_ScalarInteger((int)(size_t)(_out_rc)), "gint"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("rc"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_string_acquire(SEXP s1) {
-  char* v1 = (char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_ref_string_acquire(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_string_equal(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gboolean _ret = (gboolean)g_ref_string_equal(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_string_length(SEXP s1) {
-  char* v1 = (char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gsize _ret = (gsize)g_ref_string_length(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_string_new(SEXP s1) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_ref_string_new(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_string_new_intern(SEXP s1) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gconstpointer _ret = (gconstpointer)g_ref_string_new_intern(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_string_new_len(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  gconstpointer _ret = (gconstpointer)g_ref_string_new_len(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_ref_string_release(SEXP s1) {
-  char* v1 = (char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  g_ref_string_release(v1);
-  return R_NilValue;
 }
 
 
@@ -19005,37 +16523,6 @@ SEXP R_g_spawn_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 }
 
 
-SEXP R_g_spawn_async_with_fds(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
-  const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  gchar** v2 = (gchar**)(get_ptr(s2)); (void)v2;
-  gchar** v3 = (s3 != R_NilValue) ? (gchar**)(get_ptr(s3)) : NULL; (void)v3;
-  GSpawnFlags v4 = (GSpawnFlags)((GSpawnFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GSpawnChildSetupFunc v5 = (s5 != R_NilValue) ? (GSpawnChildSetupFunc)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  GPid _out_child_pid = {0}; (void)_out_child_pid;
-  gint v7 = (gint)((gint)INTEGER(s7)[0]); (void)v7;
-  gint v8 = (gint)((gint)INTEGER(s8)[0]); (void)v8;
-  gint v9 = (gint)((gint)INTEGER(s9)[0]); (void)v9;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_spawn_async_with_fds(v1, v2, v3, v4, v5, v6, &_out_child_pid, v7, v8, v9, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_child_pid), R_NilValue, R_NilValue), "Pid"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Pid"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("child_pid"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_spawn_async_with_pipes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   gchar** v2 = (gchar**)(get_ptr(s2)); (void)v2;
@@ -19082,79 +16569,10 @@ SEXP R_g_spawn_async_with_pipes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEX
 }
 
 
-SEXP R_g_spawn_async_with_pipes_and_fds(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12) {
-  const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  const gchar* const* v2 = (const gchar* const*)(get_ptr(s2)); (void)v2;
-  const gchar* const* v3 = (s3 != R_NilValue) ? (const gchar* const*)(get_ptr(s3)) : NULL; (void)v3;
-  GSpawnFlags v4 = (GSpawnFlags)((GSpawnFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GSpawnChildSetupFunc v5 = (s5 != R_NilValue) ? (GSpawnChildSetupFunc)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gint v7 = (gint)((gint)INTEGER(s7)[0]); (void)v7;
-  gint v8 = (gint)((gint)INTEGER(s8)[0]); (void)v8;
-  gint v9 = (gint)((gint)INTEGER(s9)[0]); (void)v9;
-  const gint* v10 = (s10 != R_NilValue) ? (const gint*)(get_ptr(s10)) : NULL; (void)v10;
-  const gint* v11 = (s11 != R_NilValue) ? (const gint*)(get_ptr(s11)) : NULL; (void)v11;
-  gsize v12 = (gsize)((gsize)REAL(s12)[0]); (void)v12;
-  GPid _out_child_pid_out = {0}; (void)_out_child_pid_out;
-  gint _out_stdin_pipe_out = 0; (void)_out_stdin_pipe_out;
-  gint _out_stdout_pipe_out = 0; (void)_out_stdout_pipe_out;
-  gint _out_stderr_pipe_out = 0; (void)_out_stderr_pipe_out;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_spawn_async_with_pipes_and_fds(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, &_out_child_pid_out, &_out_stdin_pipe_out, &_out_stdout_pipe_out, &_out_stderr_pipe_out, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 5));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 5));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_child_pid_out), R_NilValue, R_NilValue), "Pid"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Pid"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("child_pid_out"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_stdin_pipe_out)));
-  if (VECTOR_ELT(_ans, 2) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 2, Rf_mkChar("stdin_pipe_out"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_stdout_pipe_out)));
-  if (VECTOR_ELT(_ans, 3) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 3, Rf_mkChar("stdout_pipe_out"));
-  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(_out_stderr_pipe_out)));
-  if (VECTOR_ELT(_ans, 4) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 4), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 4, Rf_mkChar("stderr_pipe_out"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_spawn_check_exit_status(SEXP s1) {
   gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_spawn_check_exit_status(v1, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_spawn_check_wait_status(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)g_spawn_check_wait_status(v1, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -19978,23 +17396,6 @@ SEXP R_g_strv_contains(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_strv_equal(SEXP s1, SEXP s2) {
-  const gchar* const* v1 = (const gchar* const*)(get_ptr(s1)); (void)v1;
-  const gchar* const* v2 = (const gchar* const*)(get_ptr(s2)); (void)v2;
-  gboolean _ret = (gboolean)g_strv_equal(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_strv_get_type(void) {
 
   GType _ret = (GType)g_strv_get_type();
@@ -20078,13 +17479,6 @@ SEXP R_g_test_bug_base(SEXP s1) {
 }
 
 
-SEXP R_g_test_disable_crash_reporting(void) {
-
-  g_test_disable_crash_reporting();
-  return R_NilValue;
-}
-
-
 SEXP R_g_test_expect_message(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   GLogLevelFlags v2 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
@@ -20125,22 +17519,6 @@ SEXP R_g_test_get_dir(SEXP s1) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("filename"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_test_get_path(void) {
-
-  gconstpointer _ret = (gconstpointer)g_test_get_path();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -20315,13 +17693,6 @@ SEXP R_g_test_subprocess(void) {
 }
 
 
-SEXP R_g_test_summary(SEXP s1) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  g_test_summary(v1);
-  return R_NilValue;
-}
-
-
 SEXP R_g_test_timer_elapsed(void) {
 
   double _ret = (double)g_test_timer_elapsed();
@@ -20406,22 +17777,6 @@ SEXP R_g_test_trap_has_passed(void) {
 }
 
 
-SEXP R_g_test_trap_has_skipped(void) {
-
-  gboolean _ret = (gboolean)g_test_trap_has_skipped();
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_test_trap_reached_timeout(void) {
 
   gboolean _ret = (gboolean)g_test_trap_reached_timeout();
@@ -20443,16 +17798,6 @@ SEXP R_g_test_trap_subprocess(SEXP s1, SEXP s2, SEXP s3) {
   guint64 v2 = (guint64)((guint64)REAL(s2)[0]); (void)v2;
   GTestSubprocessFlags v3 = (GTestSubprocessFlags)((GTestSubprocessFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   g_test_trap_subprocess(v1, v2, v3);
-  return R_NilValue;
-}
-
-
-SEXP R_g_test_trap_subprocess_with_envp(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  const char* const* v2 = (s2 != R_NilValue) ? (const char* const*)(get_ptr(s2)) : NULL; (void)v2;
-  guint64 v3 = (guint64)((guint64)REAL(s3)[0]); (void)v3;
-  GTestSubprocessFlags v4 = (GTestSubprocessFlags)((GTestSubprocessFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  g_test_trap_subprocess_with_envp(v1, v2, v3, v4);
   return R_NilValue;
 }
 
@@ -21799,51 +19144,11 @@ SEXP R_g_utf8_to_utf16(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_utf8_truncate_middle(SEXP s1, SEXP s2) {
-  const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gconstpointer _ret = (gconstpointer)g_utf8_truncate_middle(v1, v2);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_g_utf8_validate(SEXP s1, SEXP s2) {
   const gchar* v1 = (const gchar*)(get_ptr(s1)); (void)v1;
   gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
   const gchar* _out_end = 0; (void)_out_end;
   gboolean _ret = (gboolean)g_utf8_validate(v1, v2, &_out_end);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, (_out_end == NULL) ? R_NilValue : tag_pointer(Rf_ScalarInteger((int)(_out_end)), "guint8"));
-  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint8"));
-  }
-  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("end"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_utf8_validate_len(SEXP s1, SEXP s2) {
-  const gchar* v1 = (const gchar*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  const gchar* _out_end = 0; (void)_out_end;
-  gboolean _ret = (gboolean)g_utf8_validate_len(v1, v2, &_out_end);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
