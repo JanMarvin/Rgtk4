@@ -28,7 +28,7 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
 // Finalizer for GObject external pointers
 static void gobject_finalizer(SEXP ext_ptr) {
   GObject *obj = R_ExternalPtrAddr(ext_ptr);
-  if (obj) {
+  if (obj && G_IS_OBJECT(obj)) {
     g_object_unref(obj);
     R_ClearExternalPtr(ext_ptr);
   }
@@ -38,15 +38,20 @@ static void gobject_finalizer(SEXP ext_ptr) {
 SEXP make_gobject_ptr(gpointer obj) {
   if (!obj) return R_NilValue;
 
-  // g_object_ref_sink if it's a floating reference
-  if (G_IS_OBJECT(obj) && g_object_is_floating(obj)) {
-    g_object_ref_sink(obj);
-  } else if (G_IS_OBJECT(obj)) {
-    g_object_ref(obj);
+  SEXP ptr;
+
+  if (G_IS_OBJECT(obj)) {
+    if (g_object_is_floating(obj)) {
+      g_object_ref_sink(obj);
+    } else {
+      g_object_ref(obj);
+    }
+    ptr = PROTECT(R_MakeExternalPtr(obj, R_NilValue, R_NilValue));
+    R_RegisterCFinalizerEx(ptr, gobject_finalizer, TRUE);
+  } else {
+    ptr = PROTECT(R_MakeExternalPtr(obj, R_NilValue, R_NilValue));
   }
 
-  SEXP ptr = PROTECT(R_MakeExternalPtr(obj, R_NilValue, R_NilValue));
-  R_RegisterCFinalizerEx(ptr, gobject_finalizer, TRUE);
   UNPROTECT(1);
   return ptr;
 }
