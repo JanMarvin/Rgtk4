@@ -116,6 +116,8 @@ SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
 
   gulong id;
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
   if (strcmp(sig, "response") == 0) {
     id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_response),
                                rc, (GClosureNotify)_rgtk_r_closure_free, 0);
@@ -123,6 +125,7 @@ SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
     id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback),
                                rc, (GClosureNotify)_rgtk_r_closure_free, 0);
   }
+#pragma GCC diagnostic pop
 
   return Rf_ScalarReal((double)id);
 }

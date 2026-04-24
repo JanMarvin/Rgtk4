@@ -143,7 +143,10 @@ SEXP R_gtk_window_add_close_shortcut(SEXP s_window) {
   }
 
   GtkEventController *controller = gtk_event_controller_key_new();
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
   g_signal_connect(controller, "key-pressed", G_CALLBACK(key_pressed_cb), window);
+#pragma GCC diagnostic pop
   gtk_widget_add_controller(GTK_WIDGET(window), controller);
 
   return R_NilValue;

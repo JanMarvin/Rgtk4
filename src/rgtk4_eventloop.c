@@ -211,6 +211,7 @@ SEXP R_gtk_hide_from_dock(void) {
   return R_NilValue;
 }
 
+static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) __attribute__((unused));
 static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) {
 #if defined(__APPLE__) && !defined(G_OS_WIN32)
   (void)window;
@@ -253,9 +254,12 @@ SEXP R_gtk_window_track(SEXP s_window) {
     _rgtk_macos_activate();
   }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
   g_signal_connect(window, "destroy",
                    G_CALLBACK(_rgtk_window_untrack_cb),
                    NULL);
+#pragma GCC diagnostic pop
 #endif
   return R_NilValue;
 }
