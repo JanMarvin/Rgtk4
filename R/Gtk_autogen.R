@@ -54,7 +54,7 @@ gtkAboutDialogNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogAddCreditSection <- function(about, section_name, people) {
-  .Call("R_gtk_about_dialog_add_credit_section", about, section_name, people)
+  invisible(.Call("R_gtk_about_dialog_add_credit_section", about, section_name, people))
 }
 
 
@@ -242,7 +242,7 @@ gtkAboutDialogGetWrapLicense <- function(about) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetArtists <- function(about, artists) {
-  .Call("R_gtk_about_dialog_set_artists", about, artists)
+  invisible(.Call("R_gtk_about_dialog_set_artists", about, artists))
 }
 
 
@@ -254,7 +254,7 @@ gtkAboutDialogSetArtists <- function(about, artists) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetAuthors <- function(about, authors) {
-  .Call("R_gtk_about_dialog_set_authors", about, authors)
+  invisible(.Call("R_gtk_about_dialog_set_authors", about, authors))
 }
 
 
@@ -266,7 +266,7 @@ gtkAboutDialogSetAuthors <- function(about, authors) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetComments <- function(about, comments) {
-  .Call("R_gtk_about_dialog_set_comments", about, comments)
+  invisible(.Call("R_gtk_about_dialog_set_comments", about, comments))
 }
 
 
@@ -278,7 +278,7 @@ gtkAboutDialogSetComments <- function(about, comments) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetCopyright <- function(about, copyright) {
-  .Call("R_gtk_about_dialog_set_copyright", about, copyright)
+  invisible(.Call("R_gtk_about_dialog_set_copyright", about, copyright))
 }
 
 
@@ -290,7 +290,7 @@ gtkAboutDialogSetCopyright <- function(about, copyright) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetDocumenters <- function(about, documenters) {
-  .Call("R_gtk_about_dialog_set_documenters", about, documenters)
+  invisible(.Call("R_gtk_about_dialog_set_documenters", about, documenters))
 }
 
 
@@ -302,7 +302,7 @@ gtkAboutDialogSetDocumenters <- function(about, documenters) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetLicense <- function(about, license) {
-  .Call("R_gtk_about_dialog_set_license", about, license)
+  invisible(.Call("R_gtk_about_dialog_set_license", about, license))
 }
 
 
@@ -314,7 +314,7 @@ gtkAboutDialogSetLicense <- function(about, license) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetLicenseType <- function(about, license_type) {
-  .Call("R_gtk_about_dialog_set_license_type", about, license_type)
+  invisible(.Call("R_gtk_about_dialog_set_license_type", about, license_type))
 }
 
 
@@ -326,7 +326,7 @@ gtkAboutDialogSetLicenseType <- function(about, license_type) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetLogo <- function(about, logo) {
-  .Call("R_gtk_about_dialog_set_logo", about, logo)
+  invisible(.Call("R_gtk_about_dialog_set_logo", about, logo))
 }
 
 
@@ -338,7 +338,7 @@ gtkAboutDialogSetLogo <- function(about, logo) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetLogoIconName <- function(about, icon_name) {
-  .Call("R_gtk_about_dialog_set_logo_icon_name", about, icon_name)
+  invisible(.Call("R_gtk_about_dialog_set_logo_icon_name", about, icon_name))
 }
 
 
@@ -350,7 +350,7 @@ gtkAboutDialogSetLogoIconName <- function(about, icon_name) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetProgramName <- function(about, name) {
-  .Call("R_gtk_about_dialog_set_program_name", about, name)
+  invisible(.Call("R_gtk_about_dialog_set_program_name", about, name))
 }
 
 
@@ -362,7 +362,7 @@ gtkAboutDialogSetProgramName <- function(about, name) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetSystemInformation <- function(about, system_information) {
-  .Call("R_gtk_about_dialog_set_system_information", about, system_information)
+  invisible(.Call("R_gtk_about_dialog_set_system_information", about, system_information))
 }
 
 
@@ -374,7 +374,7 @@ gtkAboutDialogSetSystemInformation <- function(about, system_information) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetTranslatorCredits <- function(about, translator_credits) {
-  .Call("R_gtk_about_dialog_set_translator_credits", about, translator_credits)
+  invisible(.Call("R_gtk_about_dialog_set_translator_credits", about, translator_credits))
 }
 
 
@@ -386,7 +386,7 @@ gtkAboutDialogSetTranslatorCredits <- function(about, translator_credits) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetVersion <- function(about, version) {
-  .Call("R_gtk_about_dialog_set_version", about, version)
+  invisible(.Call("R_gtk_about_dialog_set_version", about, version))
 }
 
 
@@ -398,7 +398,7 @@ gtkAboutDialogSetVersion <- function(about, version) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetWebsite <- function(about, website) {
-  .Call("R_gtk_about_dialog_set_website", about, website)
+  invisible(.Call("R_gtk_about_dialog_set_website", about, website))
 }
 
 
@@ -410,7 +410,7 @@ gtkAboutDialogSetWebsite <- function(about, website) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetWebsiteLabel <- function(about, website_label) {
-  .Call("R_gtk_about_dialog_set_website_label", about, website_label)
+  invisible(.Call("R_gtk_about_dialog_set_website_label", about, website_label))
 }
 
 
@@ -422,7 +422,7 @@ gtkAboutDialogSetWebsiteLabel <- function(about, website_label) {
 #' @return Return value from C function
 #' @export
 gtkAboutDialogSetWrapLicense <- function(about, wrap_license) {
-  .Call("R_gtk_about_dialog_set_wrap_license", about, wrap_license)
+  invisible(.Call("R_gtk_about_dialog_set_wrap_license", about, wrap_license))
 }
 
 
@@ -435,7 +435,7 @@ gtkAboutDialogSetWrapLicense <- function(about, wrap_license) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleAnnounce <- function(self, message, priority) {
-  .Call("R_gtk_accessible_announce", self, message, priority)
+  invisible(.Call("R_gtk_accessible_announce", self, message, priority))
 }
 
 
@@ -536,7 +536,7 @@ gtkAccessibleGetPlatformState <- function(self, state) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleResetProperty <- function(self, property) {
-  .Call("R_gtk_accessible_reset_property", self, property)
+  invisible(.Call("R_gtk_accessible_reset_property", self, property))
 }
 
 
@@ -548,7 +548,7 @@ gtkAccessibleResetProperty <- function(self, property) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleResetRelation <- function(self, relation) {
-  .Call("R_gtk_accessible_reset_relation", self, relation)
+  invisible(.Call("R_gtk_accessible_reset_relation", self, relation))
 }
 
 
@@ -560,7 +560,7 @@ gtkAccessibleResetRelation <- function(self, relation) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleResetState <- function(self, state) {
-  .Call("R_gtk_accessible_reset_state", self, state)
+  invisible(.Call("R_gtk_accessible_reset_state", self, state))
 }
 
 
@@ -573,7 +573,7 @@ gtkAccessibleResetState <- function(self, state) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleSetAccessibleParent <- function(self, parent, next_sibling) {
-  .Call("R_gtk_accessible_set_accessible_parent", self, parent, next_sibling)
+  invisible(.Call("R_gtk_accessible_set_accessible_parent", self, parent, next_sibling))
 }
 
 
@@ -585,7 +585,7 @@ gtkAccessibleSetAccessibleParent <- function(self, parent, next_sibling) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleUpdateNextAccessibleSibling <- function(self, new_sibling) {
-  .Call("R_gtk_accessible_update_next_accessible_sibling", self, new_sibling)
+  invisible(.Call("R_gtk_accessible_update_next_accessible_sibling", self, new_sibling))
 }
 
 
@@ -597,7 +597,7 @@ gtkAccessibleUpdateNextAccessibleSibling <- function(self, new_sibling) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleUpdatePlatformState <- function(self, state) {
-  .Call("R_gtk_accessible_update_platform_state", self, state)
+  invisible(.Call("R_gtk_accessible_update_platform_state", self, state))
 }
 
 
@@ -611,7 +611,7 @@ gtkAccessibleUpdatePlatformState <- function(self, state) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleUpdatePropertyValue <- function(self, n_properties, properties, values) {
-  .Call("R_gtk_accessible_update_property_value", self, n_properties, properties, values)
+  invisible(.Call("R_gtk_accessible_update_property_value", self, as.integer(n_properties), properties, values))
 }
 
 
@@ -625,7 +625,7 @@ gtkAccessibleUpdatePropertyValue <- function(self, n_properties, properties, val
 #' @return Return value from C function
 #' @export
 gtkAccessibleUpdateRelationValue <- function(self, n_relations, relations, values) {
-  .Call("R_gtk_accessible_update_relation_value", self, n_relations, relations, values)
+  invisible(.Call("R_gtk_accessible_update_relation_value", self, as.integer(n_relations), relations, values))
 }
 
 
@@ -639,7 +639,7 @@ gtkAccessibleUpdateRelationValue <- function(self, n_relations, relations, value
 #' @return Return value from C function
 #' @export
 gtkAccessibleUpdateStateValue <- function(self, n_states, states, values) {
-  .Call("R_gtk_accessible_update_state_value", self, n_states, states, values)
+  invisible(.Call("R_gtk_accessible_update_state_value", self, as.integer(n_states), states, values))
 }
 
 
@@ -653,7 +653,7 @@ gtkAccessibleUpdateStateValue <- function(self, n_states, states, values) {
 #' @return AccessibleHyperlink
 #' @export
 gtkAccessibleHyperlinkNew <- function(parent, index, uri, bounds) {
-  .Call("R_gtk_accessible_hyperlink_new", parent, index, uri, bounds)$result
+  .Call("R_gtk_accessible_hyperlink_new", parent, as.integer(index), uri, bounds)$result
 }
 
 
@@ -666,7 +666,7 @@ gtkAccessibleHyperlinkNew <- function(parent, index, uri, bounds) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleHyperlinkSetPlatformState <- function(self, state, enabled) {
-  .Call("R_gtk_accessible_hyperlink_set_platform_state", self, state, enabled)
+  invisible(.Call("R_gtk_accessible_hyperlink_set_platform_state", self, state, enabled))
 }
 
 
@@ -678,7 +678,7 @@ gtkAccessibleHyperlinkSetPlatformState <- function(self, state, enabled) {
 #' @return AccessibleList
 #' @export
 gtkAccessibleListNewFromArray <- function(accessibles, n_accessibles) {
-  .Call("R_gtk_accessible_list_new_from_array", accessibles, n_accessibles)$result
+  .Call("R_gtk_accessible_list_new_from_array", accessibles, as.integer(n_accessibles))$result
 }
 
 
@@ -712,7 +712,7 @@ gtkAccessibleListGetObjects <- function(accessible_list) {
 #' @return Return value from C function
 #' @export
 gtkAccessiblePropertyInitValue <- function(property, value) {
-  .Call("R_gtk_accessible_property_init_value", property, value)
+  invisible(.Call("R_gtk_accessible_property_init_value", property, value))
 }
 
 
@@ -724,7 +724,7 @@ gtkAccessiblePropertyInitValue <- function(property, value) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleRelationInitValue <- function(relation, value) {
-  .Call("R_gtk_accessible_relation_init_value", relation, value)
+  invisible(.Call("R_gtk_accessible_relation_init_value", relation, value))
 }
 
 
@@ -736,7 +736,7 @@ gtkAccessibleRelationInitValue <- function(relation, value) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleStateInitValue <- function(state, value) {
-  .Call("R_gtk_accessible_state_init_value", state, value)
+  invisible(.Call("R_gtk_accessible_state_init_value", state, value))
 }
 
 
@@ -747,7 +747,7 @@ gtkAccessibleStateInitValue <- function(state, value) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleTextUpdateCaretPosition <- function(self) {
-  .Call("R_gtk_accessible_text_update_caret_position", self)
+  invisible(.Call("R_gtk_accessible_text_update_caret_position", self))
 }
 
 
@@ -761,7 +761,7 @@ gtkAccessibleTextUpdateCaretPosition <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleTextUpdateContents <- function(self, change, start, end) {
-  .Call("R_gtk_accessible_text_update_contents", self, change, start, end)
+  invisible(.Call("R_gtk_accessible_text_update_contents", self, change, as.integer(start), as.integer(end)))
 }
 
 
@@ -772,7 +772,7 @@ gtkAccessibleTextUpdateContents <- function(self, change, start, end) {
 #' @return Return value from C function
 #' @export
 gtkAccessibleTextUpdateSelectionBound <- function(self) {
-  .Call("R_gtk_accessible_text_update_selection_bound", self)
+  invisible(.Call("R_gtk_accessible_text_update_selection_bound", self))
 }
 
 
@@ -816,7 +816,7 @@ gtkActionBarGetRevealed <- function(action_bar) {
 #' @return Return value from C function
 #' @export
 gtkActionBarPackEnd <- function(action_bar, child) {
-  .Call("R_gtk_action_bar_pack_end", action_bar, child)
+  invisible(.Call("R_gtk_action_bar_pack_end", action_bar, child))
 }
 
 
@@ -828,7 +828,7 @@ gtkActionBarPackEnd <- function(action_bar, child) {
 #' @return Return value from C function
 #' @export
 gtkActionBarPackStart <- function(action_bar, child) {
-  .Call("R_gtk_action_bar_pack_start", action_bar, child)
+  invisible(.Call("R_gtk_action_bar_pack_start", action_bar, child))
 }
 
 
@@ -840,7 +840,7 @@ gtkActionBarPackStart <- function(action_bar, child) {
 #' @return Return value from C function
 #' @export
 gtkActionBarRemove <- function(action_bar, child) {
-  .Call("R_gtk_action_bar_remove", action_bar, child)
+  invisible(.Call("R_gtk_action_bar_remove", action_bar, child))
 }
 
 
@@ -852,7 +852,7 @@ gtkActionBarRemove <- function(action_bar, child) {
 #' @return Return value from C function
 #' @export
 gtkActionBarSetCenterWidget <- function(action_bar, center_widget) {
-  .Call("R_gtk_action_bar_set_center_widget", action_bar, center_widget)
+  invisible(.Call("R_gtk_action_bar_set_center_widget", action_bar, center_widget))
 }
 
 
@@ -864,7 +864,7 @@ gtkActionBarSetCenterWidget <- function(action_bar, center_widget) {
 #' @return Return value from C function
 #' @export
 gtkActionBarSetRevealed <- function(action_bar, revealed) {
-  .Call("R_gtk_action_bar_set_revealed", action_bar, revealed)
+  invisible(.Call("R_gtk_action_bar_set_revealed", action_bar, revealed))
 }
 
 
@@ -898,7 +898,7 @@ gtkActionableGetActionTargetValue <- function(actionable) {
 #' @return Return value from C function
 #' @export
 gtkActionableSetActionName <- function(actionable, action_name) {
-  .Call("R_gtk_actionable_set_action_name", actionable, action_name)
+  invisible(.Call("R_gtk_actionable_set_action_name", actionable, action_name))
 }
 
 
@@ -910,7 +910,7 @@ gtkActionableSetActionName <- function(actionable, action_name) {
 #' @return Return value from C function
 #' @export
 gtkActionableSetActionTargetValue <- function(actionable, target_value) {
-  .Call("R_gtk_actionable_set_action_target_value", actionable, target_value)
+  invisible(.Call("R_gtk_actionable_set_action_target_value", actionable, target_value))
 }
 
 
@@ -922,7 +922,7 @@ gtkActionableSetActionTargetValue <- function(actionable, target_value) {
 #' @return Return value from C function
 #' @export
 gtkActionableSetDetailedActionName <- function(actionable, detailed_action_name) {
-  .Call("R_gtk_actionable_set_detailed_action_name", actionable, detailed_action_name)
+  invisible(.Call("R_gtk_actionable_set_detailed_action_name", actionable, detailed_action_name))
 }
 
 
@@ -961,7 +961,7 @@ gtkAdjustmentNew <- function(value, lower, upper, step_increment, page_increment
 #' @return Return value from C function
 #' @export
 gtkAdjustmentClampPage <- function(adjustment, lower, upper) {
-  .Call("R_gtk_adjustment_clamp_page", adjustment, lower, upper)
+  invisible(.Call("R_gtk_adjustment_clamp_page", adjustment, lower, upper))
 }
 
 
@@ -978,7 +978,7 @@ gtkAdjustmentClampPage <- function(adjustment, lower, upper) {
 #' @return Return value from C function
 #' @export
 gtkAdjustmentConfigure <- function(adjustment, value, lower, upper, step_increment, page_increment, page_size) {
-  .Call("R_gtk_adjustment_configure", adjustment, value, lower, upper, step_increment, page_increment, page_size)
+  invisible(.Call("R_gtk_adjustment_configure", adjustment, value, lower, upper, step_increment, page_increment, page_size))
 }
 
 
@@ -1067,7 +1067,7 @@ gtkAdjustmentGetValue <- function(adjustment) {
 #' @return Return value from C function
 #' @export
 gtkAdjustmentSetLower <- function(adjustment, lower) {
-  .Call("R_gtk_adjustment_set_lower", adjustment, lower)
+  invisible(.Call("R_gtk_adjustment_set_lower", adjustment, lower))
 }
 
 
@@ -1079,7 +1079,7 @@ gtkAdjustmentSetLower <- function(adjustment, lower) {
 #' @return Return value from C function
 #' @export
 gtkAdjustmentSetPageIncrement <- function(adjustment, page_increment) {
-  .Call("R_gtk_adjustment_set_page_increment", adjustment, page_increment)
+  invisible(.Call("R_gtk_adjustment_set_page_increment", adjustment, page_increment))
 }
 
 
@@ -1091,7 +1091,7 @@ gtkAdjustmentSetPageIncrement <- function(adjustment, page_increment) {
 #' @return Return value from C function
 #' @export
 gtkAdjustmentSetPageSize <- function(adjustment, page_size) {
-  .Call("R_gtk_adjustment_set_page_size", adjustment, page_size)
+  invisible(.Call("R_gtk_adjustment_set_page_size", adjustment, page_size))
 }
 
 
@@ -1103,7 +1103,7 @@ gtkAdjustmentSetPageSize <- function(adjustment, page_size) {
 #' @return Return value from C function
 #' @export
 gtkAdjustmentSetStepIncrement <- function(adjustment, step_increment) {
-  .Call("R_gtk_adjustment_set_step_increment", adjustment, step_increment)
+  invisible(.Call("R_gtk_adjustment_set_step_increment", adjustment, step_increment))
 }
 
 
@@ -1115,7 +1115,7 @@ gtkAdjustmentSetStepIncrement <- function(adjustment, step_increment) {
 #' @return Return value from C function
 #' @export
 gtkAdjustmentSetUpper <- function(adjustment, upper) {
-  .Call("R_gtk_adjustment_set_upper", adjustment, upper)
+  invisible(.Call("R_gtk_adjustment_set_upper", adjustment, upper))
 }
 
 
@@ -1127,7 +1127,7 @@ gtkAdjustmentSetUpper <- function(adjustment, upper) {
 #' @return Return value from C function
 #' @export
 gtkAdjustmentSetValue <- function(adjustment, value) {
-  .Call("R_gtk_adjustment_set_value", adjustment, value)
+  invisible(.Call("R_gtk_adjustment_set_value", adjustment, value))
 }
 
 
@@ -1217,7 +1217,7 @@ gtkAlertDialogGetModal <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkAlertDialogSetButtons <- function(self, labels) {
-  .Call("R_gtk_alert_dialog_set_buttons", self, labels)
+  invisible(.Call("R_gtk_alert_dialog_set_buttons", self, labels))
 }
 
 
@@ -1229,7 +1229,7 @@ gtkAlertDialogSetButtons <- function(self, labels) {
 #' @return Return value from C function
 #' @export
 gtkAlertDialogSetCancelButton <- function(self, button) {
-  .Call("R_gtk_alert_dialog_set_cancel_button", self, button)
+  invisible(.Call("R_gtk_alert_dialog_set_cancel_button", self, as.integer(button)))
 }
 
 
@@ -1241,7 +1241,7 @@ gtkAlertDialogSetCancelButton <- function(self, button) {
 #' @return Return value from C function
 #' @export
 gtkAlertDialogSetDefaultButton <- function(self, button) {
-  .Call("R_gtk_alert_dialog_set_default_button", self, button)
+  invisible(.Call("R_gtk_alert_dialog_set_default_button", self, as.integer(button)))
 }
 
 
@@ -1253,7 +1253,7 @@ gtkAlertDialogSetDefaultButton <- function(self, button) {
 #' @return Return value from C function
 #' @export
 gtkAlertDialogSetDetail <- function(self, detail) {
-  .Call("R_gtk_alert_dialog_set_detail", self, detail)
+  invisible(.Call("R_gtk_alert_dialog_set_detail", self, detail))
 }
 
 
@@ -1265,7 +1265,7 @@ gtkAlertDialogSetDetail <- function(self, detail) {
 #' @return Return value from C function
 #' @export
 gtkAlertDialogSetMessage <- function(self, message) {
-  .Call("R_gtk_alert_dialog_set_message", self, message)
+  invisible(.Call("R_gtk_alert_dialog_set_message", self, message))
 }
 
 
@@ -1277,7 +1277,7 @@ gtkAlertDialogSetMessage <- function(self, message) {
 #' @return Return value from C function
 #' @export
 gtkAlertDialogSetModal <- function(self, modal) {
-  .Call("R_gtk_alert_dialog_set_modal", self, modal)
+  invisible(.Call("R_gtk_alert_dialog_set_modal", self, modal))
 }
 
 
@@ -1289,7 +1289,7 @@ gtkAlertDialogSetModal <- function(self, modal) {
 #' @return Return value from C function
 #' @export
 gtkAlertDialogShow <- function(self, parent) {
-  .Call("R_gtk_alert_dialog_show", self, parent)
+  invisible(.Call("R_gtk_alert_dialog_show", self, parent))
 }
 
 
@@ -1366,7 +1366,7 @@ gtkAppChooserGetContentType <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserRefresh <- function(self) {
-  .Call("R_gtk_app_chooser_refresh", self)
+  invisible(.Call("R_gtk_app_chooser_refresh", self))
 }
 
 
@@ -1391,7 +1391,7 @@ gtkAppChooserButtonNew <- function(content_type) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserButtonAppendCustomItem <- function(self, name, label, icon) {
-  .Call("R_gtk_app_chooser_button_append_custom_item", self, name, label, icon)
+  invisible(.Call("R_gtk_app_chooser_button_append_custom_item", self, name, label, icon))
 }
 
 
@@ -1402,7 +1402,7 @@ gtkAppChooserButtonAppendCustomItem <- function(self, name, label, icon) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserButtonAppendSeparator <- function(self) {
-  .Call("R_gtk_app_chooser_button_append_separator", self)
+  invisible(.Call("R_gtk_app_chooser_button_append_separator", self))
 }
 
 
@@ -1458,7 +1458,7 @@ gtkAppChooserButtonGetShowDialogItem <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserButtonSetActiveCustomItem <- function(self, name) {
-  .Call("R_gtk_app_chooser_button_set_active_custom_item", self, name)
+  invisible(.Call("R_gtk_app_chooser_button_set_active_custom_item", self, name))
 }
 
 
@@ -1470,7 +1470,7 @@ gtkAppChooserButtonSetActiveCustomItem <- function(self, name) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserButtonSetHeading <- function(self, heading) {
-  .Call("R_gtk_app_chooser_button_set_heading", self, heading)
+  invisible(.Call("R_gtk_app_chooser_button_set_heading", self, heading))
 }
 
 
@@ -1482,7 +1482,7 @@ gtkAppChooserButtonSetHeading <- function(self, heading) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserButtonSetModal <- function(self, modal) {
-  .Call("R_gtk_app_chooser_button_set_modal", self, modal)
+  invisible(.Call("R_gtk_app_chooser_button_set_modal", self, modal))
 }
 
 
@@ -1494,7 +1494,7 @@ gtkAppChooserButtonSetModal <- function(self, modal) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserButtonSetShowDefaultItem <- function(self, setting) {
-  .Call("R_gtk_app_chooser_button_set_show_default_item", self, setting)
+  invisible(.Call("R_gtk_app_chooser_button_set_show_default_item", self, setting))
 }
 
 
@@ -1506,7 +1506,7 @@ gtkAppChooserButtonSetShowDefaultItem <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserButtonSetShowDialogItem <- function(self, setting) {
-  .Call("R_gtk_app_chooser_button_set_show_dialog_item", self, setting)
+  invisible(.Call("R_gtk_app_chooser_button_set_show_dialog_item", self, setting))
 }
 
 
@@ -1566,7 +1566,7 @@ gtkAppChooserDialogGetWidget <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserDialogSetHeading <- function(self, heading) {
-  .Call("R_gtk_app_chooser_dialog_set_heading", self, heading)
+  invisible(.Call("R_gtk_app_chooser_dialog_set_heading", self, heading))
 }
 
 
@@ -1655,7 +1655,7 @@ gtkAppChooserWidgetGetShowRecommended <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserWidgetSetDefaultText <- function(self, text) {
-  .Call("R_gtk_app_chooser_widget_set_default_text", self, text)
+  invisible(.Call("R_gtk_app_chooser_widget_set_default_text", self, text))
 }
 
 
@@ -1667,7 +1667,7 @@ gtkAppChooserWidgetSetDefaultText <- function(self, text) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserWidgetSetShowAll <- function(self, setting) {
-  .Call("R_gtk_app_chooser_widget_set_show_all", self, setting)
+  invisible(.Call("R_gtk_app_chooser_widget_set_show_all", self, setting))
 }
 
 
@@ -1679,7 +1679,7 @@ gtkAppChooserWidgetSetShowAll <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserWidgetSetShowDefault <- function(self, setting) {
-  .Call("R_gtk_app_chooser_widget_set_show_default", self, setting)
+  invisible(.Call("R_gtk_app_chooser_widget_set_show_default", self, setting))
 }
 
 
@@ -1691,7 +1691,7 @@ gtkAppChooserWidgetSetShowDefault <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserWidgetSetShowFallback <- function(self, setting) {
-  .Call("R_gtk_app_chooser_widget_set_show_fallback", self, setting)
+  invisible(.Call("R_gtk_app_chooser_widget_set_show_fallback", self, setting))
 }
 
 
@@ -1703,7 +1703,7 @@ gtkAppChooserWidgetSetShowFallback <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserWidgetSetShowOther <- function(self, setting) {
-  .Call("R_gtk_app_chooser_widget_set_show_other", self, setting)
+  invisible(.Call("R_gtk_app_chooser_widget_set_show_other", self, setting))
 }
 
 
@@ -1715,7 +1715,7 @@ gtkAppChooserWidgetSetShowOther <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkAppChooserWidgetSetShowRecommended <- function(self, setting) {
-  .Call("R_gtk_app_chooser_widget_set_show_recommended", self, setting)
+  invisible(.Call("R_gtk_app_chooser_widget_set_show_recommended", self, setting))
 }
 
 
@@ -1739,7 +1739,7 @@ gtkApplicationNew <- function(application_id, flags) {
 #' @return Return value from C function
 #' @export
 gtkApplicationAddWindow <- function(application, window) {
-  .Call("R_gtk_application_add_window", application, window)
+  invisible(.Call("R_gtk_application_add_window", application, window))
 }
 
 
@@ -1809,7 +1809,7 @@ gtkApplicationGetMenubar <- function(application) {
 #' @return Window
 #' @export
 gtkApplicationGetWindowById <- function(application, id) {
-  .Call("R_gtk_application_get_window_by_id", application, id)$result
+  .Call("R_gtk_application_get_window_by_id", application, as.integer(id))$result
 }
 
 
@@ -1857,7 +1857,7 @@ gtkApplicationListActionDescriptions <- function(application) {
 #' @return Return value from C function
 #' @export
 gtkApplicationRemoveWindow <- function(application, window) {
-  .Call("R_gtk_application_remove_window", application, window)
+  invisible(.Call("R_gtk_application_remove_window", application, window))
 }
 
 
@@ -1870,7 +1870,7 @@ gtkApplicationRemoveWindow <- function(application, window) {
 #' @return Return value from C function
 #' @export
 gtkApplicationSetAccelsForAction <- function(application, detailed_action_name, accels) {
-  .Call("R_gtk_application_set_accels_for_action", application, detailed_action_name, accels)
+  invisible(.Call("R_gtk_application_set_accels_for_action", application, detailed_action_name, accels))
 }
 
 
@@ -1882,7 +1882,7 @@ gtkApplicationSetAccelsForAction <- function(application, detailed_action_name, 
 #' @return Return value from C function
 #' @export
 gtkApplicationSetMenubar <- function(application, menubar) {
-  .Call("R_gtk_application_set_menubar", application, menubar)
+  invisible(.Call("R_gtk_application_set_menubar", application, menubar))
 }
 
 
@@ -1894,7 +1894,7 @@ gtkApplicationSetMenubar <- function(application, menubar) {
 #' @return Return value from C function
 #' @export
 gtkApplicationUninhibit <- function(application, cookie) {
-  .Call("R_gtk_application_uninhibit", application, cookie)
+  invisible(.Call("R_gtk_application_uninhibit", application, as.integer(cookie)))
 }
 
 
@@ -1950,7 +1950,7 @@ gtkApplicationWindowGetShowMenubar <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkApplicationWindowSetHelpOverlay <- function(window, help_overlay) {
-  .Call("R_gtk_application_window_set_help_overlay", window, help_overlay)
+  invisible(.Call("R_gtk_application_window_set_help_overlay", window, help_overlay))
 }
 
 
@@ -1962,7 +1962,7 @@ gtkApplicationWindowSetHelpOverlay <- function(window, help_overlay) {
 #' @return Return value from C function
 #' @export
 gtkApplicationWindowSetShowMenubar <- function(window, show_menubar) {
-  .Call("R_gtk_application_window_set_show_menubar", window, show_menubar)
+  invisible(.Call("R_gtk_application_window_set_show_menubar", window, show_menubar))
 }
 
 
@@ -2043,7 +2043,7 @@ gtkAspectFrameGetYalign <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkAspectFrameSetChild <- function(self, child) {
-  .Call("R_gtk_aspect_frame_set_child", self, child)
+  invisible(.Call("R_gtk_aspect_frame_set_child", self, child))
 }
 
 
@@ -2055,7 +2055,7 @@ gtkAspectFrameSetChild <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkAspectFrameSetObeyChild <- function(self, obey_child) {
-  .Call("R_gtk_aspect_frame_set_obey_child", self, obey_child)
+  invisible(.Call("R_gtk_aspect_frame_set_obey_child", self, obey_child))
 }
 
 
@@ -2067,7 +2067,7 @@ gtkAspectFrameSetObeyChild <- function(self, obey_child) {
 #' @return Return value from C function
 #' @export
 gtkAspectFrameSetRatio <- function(self, ratio) {
-  .Call("R_gtk_aspect_frame_set_ratio", self, ratio)
+  invisible(.Call("R_gtk_aspect_frame_set_ratio", self, ratio))
 }
 
 
@@ -2079,7 +2079,7 @@ gtkAspectFrameSetRatio <- function(self, ratio) {
 #' @return Return value from C function
 #' @export
 gtkAspectFrameSetXalign <- function(self, xalign) {
-  .Call("R_gtk_aspect_frame_set_xalign", self, xalign)
+  invisible(.Call("R_gtk_aspect_frame_set_xalign", self, xalign))
 }
 
 
@@ -2091,7 +2091,7 @@ gtkAspectFrameSetXalign <- function(self, xalign) {
 #' @return Return value from C function
 #' @export
 gtkAspectFrameSetYalign <- function(self, yalign) {
-  .Call("R_gtk_aspect_frame_set_yalign", self, yalign)
+  invisible(.Call("R_gtk_aspect_frame_set_yalign", self, yalign))
 }
 
 
@@ -2113,7 +2113,7 @@ gtkAssistantNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkAssistantAddActionWidget <- function(assistant, child) {
-  .Call("R_gtk_assistant_add_action_widget", assistant, child)
+  invisible(.Call("R_gtk_assistant_add_action_widget", assistant, child))
 }
 
 
@@ -2136,7 +2136,7 @@ gtkAssistantAppendPage <- function(assistant, page) {
 #' @return Return value from C function
 #' @export
 gtkAssistantCommit <- function(assistant) {
-  .Call("R_gtk_assistant_commit", assistant)
+  invisible(.Call("R_gtk_assistant_commit", assistant))
 }
 
 
@@ -2170,7 +2170,7 @@ gtkAssistantGetNPages <- function(assistant) {
 #' @return Widget
 #' @export
 gtkAssistantGetNthPage <- function(assistant, page_num) {
-  .Call("R_gtk_assistant_get_nth_page", assistant, page_num)$result
+  .Call("R_gtk_assistant_get_nth_page", assistant, as.integer(page_num))$result
 }
 
 
@@ -2242,7 +2242,7 @@ gtkAssistantGetPages <- function(assistant) {
 #' @return gint
 #' @export
 gtkAssistantInsertPage <- function(assistant, page, position) {
-  .Call("R_gtk_assistant_insert_page", assistant, page, position)$result
+  .Call("R_gtk_assistant_insert_page", assistant, page, as.integer(position))$result
 }
 
 
@@ -2253,7 +2253,7 @@ gtkAssistantInsertPage <- function(assistant, page, position) {
 #' @return Return value from C function
 #' @export
 gtkAssistantNextPage <- function(assistant) {
-  .Call("R_gtk_assistant_next_page", assistant)
+  invisible(.Call("R_gtk_assistant_next_page", assistant))
 }
 
 
@@ -2276,7 +2276,7 @@ gtkAssistantPrependPage <- function(assistant, page) {
 #' @return Return value from C function
 #' @export
 gtkAssistantPreviousPage <- function(assistant) {
-  .Call("R_gtk_assistant_previous_page", assistant)
+  invisible(.Call("R_gtk_assistant_previous_page", assistant))
 }
 
 
@@ -2288,7 +2288,7 @@ gtkAssistantPreviousPage <- function(assistant) {
 #' @return Return value from C function
 #' @export
 gtkAssistantRemoveActionWidget <- function(assistant, child) {
-  .Call("R_gtk_assistant_remove_action_widget", assistant, child)
+  invisible(.Call("R_gtk_assistant_remove_action_widget", assistant, child))
 }
 
 
@@ -2300,7 +2300,7 @@ gtkAssistantRemoveActionWidget <- function(assistant, child) {
 #' @return Return value from C function
 #' @export
 gtkAssistantRemovePage <- function(assistant, page_num) {
-  .Call("R_gtk_assistant_remove_page", assistant, page_num)
+  invisible(.Call("R_gtk_assistant_remove_page", assistant, as.integer(page_num)))
 }
 
 
@@ -2312,7 +2312,7 @@ gtkAssistantRemovePage <- function(assistant, page_num) {
 #' @return Return value from C function
 #' @export
 gtkAssistantSetCurrentPage <- function(assistant, page_num) {
-  .Call("R_gtk_assistant_set_current_page", assistant, page_num)
+  invisible(.Call("R_gtk_assistant_set_current_page", assistant, as.integer(page_num)))
 }
 
 
@@ -2325,7 +2325,7 @@ gtkAssistantSetCurrentPage <- function(assistant, page_num) {
 #' @return Return value from C function
 #' @export
 gtkAssistantSetPageComplete <- function(assistant, page, complete) {
-  .Call("R_gtk_assistant_set_page_complete", assistant, page, complete)
+  invisible(.Call("R_gtk_assistant_set_page_complete", assistant, page, complete))
 }
 
 
@@ -2338,7 +2338,7 @@ gtkAssistantSetPageComplete <- function(assistant, page, complete) {
 #' @return Return value from C function
 #' @export
 gtkAssistantSetPageTitle <- function(assistant, page, title) {
-  .Call("R_gtk_assistant_set_page_title", assistant, page, title)
+  invisible(.Call("R_gtk_assistant_set_page_title", assistant, page, title))
 }
 
 
@@ -2351,7 +2351,7 @@ gtkAssistantSetPageTitle <- function(assistant, page, title) {
 #' @return Return value from C function
 #' @export
 gtkAssistantSetPageType <- function(assistant, page, type) {
-  .Call("R_gtk_assistant_set_page_type", assistant, page, type)
+  invisible(.Call("R_gtk_assistant_set_page_type", assistant, page, type))
 }
 
 
@@ -2362,7 +2362,7 @@ gtkAssistantSetPageType <- function(assistant, page, type) {
 #' @return Return value from C function
 #' @export
 gtkAssistantUpdateButtonsState <- function(assistant) {
-  .Call("R_gtk_assistant_update_buttons_state", assistant)
+  invisible(.Call("R_gtk_assistant_update_buttons_state", assistant))
 }
 
 
@@ -2405,7 +2405,7 @@ gtkBitsetNewEmpty <- function() {
 #' @return Bitset
 #' @export
 gtkBitsetNewRange <- function(start, n_items) {
-  .Call("R_gtk_bitset_new_range", start, n_items)$result
+  .Call("R_gtk_bitset_new_range", as.integer(start), as.integer(n_items))$result
 }
 
 
@@ -2417,7 +2417,7 @@ gtkBitsetNewRange <- function(start, n_items) {
 #' @return gboolean
 #' @export
 gtkBitsetAdd <- function(self, value) {
-  .Call("R_gtk_bitset_add", self, value)$result
+  .Call("R_gtk_bitset_add", self, as.integer(value))$result
 }
 
 
@@ -2430,7 +2430,7 @@ gtkBitsetAdd <- function(self, value) {
 #' @return Return value from C function
 #' @export
 gtkBitsetAddRange <- function(self, start, n_items) {
-  .Call("R_gtk_bitset_add_range", self, start, n_items)
+  invisible(.Call("R_gtk_bitset_add_range", self, as.integer(start), as.integer(n_items)))
 }
 
 
@@ -2443,7 +2443,7 @@ gtkBitsetAddRange <- function(self, start, n_items) {
 #' @return Return value from C function
 #' @export
 gtkBitsetAddRangeClosed <- function(self, first, last) {
-  .Call("R_gtk_bitset_add_range_closed", self, first, last)
+  invisible(.Call("R_gtk_bitset_add_range_closed", self, as.integer(first), as.integer(last)))
 }
 
 
@@ -2458,7 +2458,7 @@ gtkBitsetAddRangeClosed <- function(self, first, last) {
 #' @return Return value from C function
 #' @export
 gtkBitsetAddRectangle <- function(self, start, width, height, stride) {
-  .Call("R_gtk_bitset_add_rectangle", self, start, width, height, stride)
+  invisible(.Call("R_gtk_bitset_add_rectangle", self, as.integer(start), as.integer(width), as.integer(height), as.integer(stride)))
 }
 
 
@@ -2470,7 +2470,7 @@ gtkBitsetAddRectangle <- function(self, start, width, height, stride) {
 #' @return gboolean
 #' @export
 gtkBitsetContains <- function(self, value) {
-  .Call("R_gtk_bitset_contains", self, value)$result
+  .Call("R_gtk_bitset_contains", self, as.integer(value))$result
 }
 
 
@@ -2493,7 +2493,7 @@ gtkBitsetCopy <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkBitsetDifference <- function(self, other) {
-  .Call("R_gtk_bitset_difference", self, other)
+  invisible(.Call("R_gtk_bitset_difference", self, other))
 }
 
 
@@ -2539,7 +2539,7 @@ gtkBitsetGetMinimum <- function(self) {
 #' @return guint
 #' @export
 gtkBitsetGetNth <- function(self, nth) {
-  .Call("R_gtk_bitset_get_nth", self, nth)$result
+  .Call("R_gtk_bitset_get_nth", self, as.integer(nth))$result
 }
 
 
@@ -2563,7 +2563,7 @@ gtkBitsetGetSize <- function(self) {
 #' @return guint64
 #' @export
 gtkBitsetGetSizeInRange <- function(self, first, last) {
-  .Call("R_gtk_bitset_get_size_in_range", self, first, last)$result
+  .Call("R_gtk_bitset_get_size_in_range", self, as.integer(first), as.integer(last))$result
 }
 
 
@@ -2575,7 +2575,7 @@ gtkBitsetGetSizeInRange <- function(self, first, last) {
 #' @return Return value from C function
 #' @export
 gtkBitsetIntersect <- function(self, other) {
-  .Call("R_gtk_bitset_intersect", self, other)
+  invisible(.Call("R_gtk_bitset_intersect", self, other))
 }
 
 
@@ -2609,7 +2609,7 @@ gtkBitsetRef <- function(self) {
 #' @return gboolean
 #' @export
 gtkBitsetRemove <- function(self, value) {
-  .Call("R_gtk_bitset_remove", self, value)$result
+  .Call("R_gtk_bitset_remove", self, as.integer(value))$result
 }
 
 
@@ -2620,7 +2620,7 @@ gtkBitsetRemove <- function(self, value) {
 #' @return Return value from C function
 #' @export
 gtkBitsetRemoveAll <- function(self) {
-  .Call("R_gtk_bitset_remove_all", self)
+  invisible(.Call("R_gtk_bitset_remove_all", self))
 }
 
 
@@ -2633,7 +2633,7 @@ gtkBitsetRemoveAll <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkBitsetRemoveRange <- function(self, start, n_items) {
-  .Call("R_gtk_bitset_remove_range", self, start, n_items)
+  invisible(.Call("R_gtk_bitset_remove_range", self, as.integer(start), as.integer(n_items)))
 }
 
 
@@ -2646,7 +2646,7 @@ gtkBitsetRemoveRange <- function(self, start, n_items) {
 #' @return Return value from C function
 #' @export
 gtkBitsetRemoveRangeClosed <- function(self, first, last) {
-  .Call("R_gtk_bitset_remove_range_closed", self, first, last)
+  invisible(.Call("R_gtk_bitset_remove_range_closed", self, as.integer(first), as.integer(last)))
 }
 
 
@@ -2661,7 +2661,7 @@ gtkBitsetRemoveRangeClosed <- function(self, first, last) {
 #' @return Return value from C function
 #' @export
 gtkBitsetRemoveRectangle <- function(self, start, width, height, stride) {
-  .Call("R_gtk_bitset_remove_rectangle", self, start, width, height, stride)
+  invisible(.Call("R_gtk_bitset_remove_rectangle", self, as.integer(start), as.integer(width), as.integer(height), as.integer(stride)))
 }
 
 
@@ -2673,7 +2673,7 @@ gtkBitsetRemoveRectangle <- function(self, start, width, height, stride) {
 #' @return Return value from C function
 #' @export
 gtkBitsetShiftLeft <- function(self, amount) {
-  .Call("R_gtk_bitset_shift_left", self, amount)
+  invisible(.Call("R_gtk_bitset_shift_left", self, as.integer(amount)))
 }
 
 
@@ -2685,7 +2685,7 @@ gtkBitsetShiftLeft <- function(self, amount) {
 #' @return Return value from C function
 #' @export
 gtkBitsetShiftRight <- function(self, amount) {
-  .Call("R_gtk_bitset_shift_right", self, amount)
+  invisible(.Call("R_gtk_bitset_shift_right", self, as.integer(amount)))
 }
 
 
@@ -2699,7 +2699,7 @@ gtkBitsetShiftRight <- function(self, amount) {
 #' @return Return value from C function
 #' @export
 gtkBitsetSplice <- function(self, position, removed, added) {
-  .Call("R_gtk_bitset_splice", self, position, removed, added)
+  invisible(.Call("R_gtk_bitset_splice", self, as.integer(position), as.integer(removed), as.integer(added)))
 }
 
 
@@ -2711,7 +2711,7 @@ gtkBitsetSplice <- function(self, position, removed, added) {
 #' @return Return value from C function
 #' @export
 gtkBitsetSubtract <- function(self, other) {
-  .Call("R_gtk_bitset_subtract", self, other)
+  invisible(.Call("R_gtk_bitset_subtract", self, other))
 }
 
 
@@ -2723,7 +2723,7 @@ gtkBitsetSubtract <- function(self, other) {
 #' @return Return value from C function
 #' @export
 gtkBitsetUnion <- function(self, other) {
-  .Call("R_gtk_bitset_union", self, other)
+  invisible(.Call("R_gtk_bitset_union", self, other))
 }
 
 
@@ -2734,7 +2734,7 @@ gtkBitsetUnion <- function(self, other) {
 #' @return Return value from C function
 #' @export
 gtkBitsetUnref <- function(self) {
-  .Call("R_gtk_bitset_unref", self)
+  invisible(.Call("R_gtk_bitset_unref", self))
 }
 
 
@@ -2790,7 +2790,7 @@ gtkBitsetIterPrevious <- function(iter) {
 #' @return gboolean
 #' @export
 gtkBitsetIterInitAt <- function(set, target) {
-  .Call("R_gtk_bitset_iter_init_at", set, target)
+  .Call("R_gtk_bitset_iter_init_at", set, as.integer(target))
 }
 
 
@@ -2880,7 +2880,7 @@ gtkBookmarkListIsLoading <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkBookmarkListSetAttributes <- function(self, attributes) {
-  .Call("R_gtk_bookmark_list_set_attributes", self, attributes)
+  invisible(.Call("R_gtk_bookmark_list_set_attributes", self, attributes))
 }
 
 
@@ -2892,7 +2892,7 @@ gtkBookmarkListSetAttributes <- function(self, attributes) {
 #' @return Return value from C function
 #' @export
 gtkBookmarkListSetIoPriority <- function(self, io_priority) {
-  .Call("R_gtk_bookmark_list_set_io_priority", self, io_priority)
+  invisible(.Call("R_gtk_bookmark_list_set_io_priority", self, as.integer(io_priority)))
 }
 
 
@@ -2937,7 +2937,7 @@ gtkBoolFilterGetInvert <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkBoolFilterSetExpression <- function(self, expression) {
-  .Call("R_gtk_bool_filter_set_expression", self, expression)
+  invisible(.Call("R_gtk_bool_filter_set_expression", self, expression))
 }
 
 
@@ -2949,7 +2949,7 @@ gtkBoolFilterSetExpression <- function(self, expression) {
 #' @return Return value from C function
 #' @export
 gtkBoolFilterSetInvert <- function(self, invert) {
-  .Call("R_gtk_bool_filter_set_invert", self, invert)
+  invisible(.Call("R_gtk_bool_filter_set_invert", self, invert))
 }
 
 
@@ -2981,7 +2981,7 @@ gtkBorderCopy <- function(border_) {
 #' @return Return value from C function
 #' @export
 gtkBorderFree <- function(border_) {
-  .Call("R_gtk_border_free", border_)
+  invisible(.Call("R_gtk_border_free", border_))
 }
 
 
@@ -2993,7 +2993,7 @@ gtkBorderFree <- function(border_) {
 #' @return Widget
 #' @export
 gtkBoxNew <- function(orientation, spacing) {
-  .Call("R_gtk_box_new", orientation, spacing)$result
+  .Call("R_gtk_box_new", orientation, as.integer(spacing))$result
 }
 
 
@@ -3005,7 +3005,7 @@ gtkBoxNew <- function(orientation, spacing) {
 #' @return Return value from C function
 #' @export
 gtkBoxAppend <- function(box, child) {
-  .Call("R_gtk_box_append", box, child)
+  invisible(.Call("R_gtk_box_append", box, child))
 }
 
 
@@ -3062,7 +3062,7 @@ gtkBoxGetSpacing <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkBoxInsertChildAfter <- function(box, child, sibling) {
-  .Call("R_gtk_box_insert_child_after", box, child, sibling)
+  invisible(.Call("R_gtk_box_insert_child_after", box, child, sibling))
 }
 
 
@@ -3074,7 +3074,7 @@ gtkBoxInsertChildAfter <- function(box, child, sibling) {
 #' @return Return value from C function
 #' @export
 gtkBoxPrepend <- function(box, child) {
-  .Call("R_gtk_box_prepend", box, child)
+  invisible(.Call("R_gtk_box_prepend", box, child))
 }
 
 
@@ -3086,7 +3086,7 @@ gtkBoxPrepend <- function(box, child) {
 #' @return Return value from C function
 #' @export
 gtkBoxRemove <- function(box, child) {
-  .Call("R_gtk_box_remove", box, child)
+  invisible(.Call("R_gtk_box_remove", box, child))
 }
 
 
@@ -3099,7 +3099,7 @@ gtkBoxRemove <- function(box, child) {
 #' @return Return value from C function
 #' @export
 gtkBoxReorderChildAfter <- function(box, child, sibling) {
-  .Call("R_gtk_box_reorder_child_after", box, child, sibling)
+  invisible(.Call("R_gtk_box_reorder_child_after", box, child, sibling))
 }
 
 
@@ -3111,7 +3111,7 @@ gtkBoxReorderChildAfter <- function(box, child, sibling) {
 #' @return Return value from C function
 #' @export
 gtkBoxSetBaselineChild <- function(box, child) {
-  .Call("R_gtk_box_set_baseline_child", box, child)
+  invisible(.Call("R_gtk_box_set_baseline_child", box, as.integer(child)))
 }
 
 
@@ -3123,7 +3123,7 @@ gtkBoxSetBaselineChild <- function(box, child) {
 #' @return Return value from C function
 #' @export
 gtkBoxSetBaselinePosition <- function(box, position) {
-  .Call("R_gtk_box_set_baseline_position", box, position)
+  invisible(.Call("R_gtk_box_set_baseline_position", box, position))
 }
 
 
@@ -3135,7 +3135,7 @@ gtkBoxSetBaselinePosition <- function(box, position) {
 #' @return Return value from C function
 #' @export
 gtkBoxSetHomogeneous <- function(box, homogeneous) {
-  .Call("R_gtk_box_set_homogeneous", box, homogeneous)
+  invisible(.Call("R_gtk_box_set_homogeneous", box, homogeneous))
 }
 
 
@@ -3147,7 +3147,7 @@ gtkBoxSetHomogeneous <- function(box, homogeneous) {
 #' @return Return value from C function
 #' @export
 gtkBoxSetSpacing <- function(box, spacing) {
-  .Call("R_gtk_box_set_spacing", box, spacing)
+  invisible(.Call("R_gtk_box_set_spacing", box, as.integer(spacing)))
 }
 
 
@@ -3214,7 +3214,7 @@ gtkBoxLayoutGetSpacing <- function(box_layout) {
 #' @return Return value from C function
 #' @export
 gtkBoxLayoutSetBaselineChild <- function(box_layout, child) {
-  .Call("R_gtk_box_layout_set_baseline_child", box_layout, child)
+  invisible(.Call("R_gtk_box_layout_set_baseline_child", box_layout, as.integer(child)))
 }
 
 
@@ -3226,7 +3226,7 @@ gtkBoxLayoutSetBaselineChild <- function(box_layout, child) {
 #' @return Return value from C function
 #' @export
 gtkBoxLayoutSetBaselinePosition <- function(box_layout, position) {
-  .Call("R_gtk_box_layout_set_baseline_position", box_layout, position)
+  invisible(.Call("R_gtk_box_layout_set_baseline_position", box_layout, position))
 }
 
 
@@ -3238,7 +3238,7 @@ gtkBoxLayoutSetBaselinePosition <- function(box_layout, position) {
 #' @return Return value from C function
 #' @export
 gtkBoxLayoutSetHomogeneous <- function(box_layout, homogeneous) {
-  .Call("R_gtk_box_layout_set_homogeneous", box_layout, homogeneous)
+  invisible(.Call("R_gtk_box_layout_set_homogeneous", box_layout, homogeneous))
 }
 
 
@@ -3250,7 +3250,7 @@ gtkBoxLayoutSetHomogeneous <- function(box_layout, homogeneous) {
 #' @return Return value from C function
 #' @export
 gtkBoxLayoutSetSpacing <- function(box_layout, spacing) {
-  .Call("R_gtk_box_layout_set_spacing", box_layout, spacing)
+  invisible(.Call("R_gtk_box_layout_set_spacing", box_layout, as.integer(spacing)))
 }
 
 
@@ -3318,7 +3318,7 @@ gtkBuildableParseContextPop <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkBuildableParseContextPush <- function(context, parser, user_data) {
-  .Call("R_gtk_buildable_parse_context_push", context, parser, user_data)
+  invisible(.Call("R_gtk_buildable_parse_context_push", context, parser, user_data))
 }
 
 
@@ -3362,7 +3362,7 @@ gtkBuilderNewFromResource <- function(resource_path) {
 #' @return Builder
 #' @export
 gtkBuilderNewFromString <- function(string, length) {
-  .Call("R_gtk_builder_new_from_string", string, length)$result
+  .Call("R_gtk_builder_new_from_string", string, as.integer(length))$result
 }
 
 
@@ -3399,7 +3399,7 @@ gtkBuilderAddFromResource <- function(builder, resource_path) {
 #' @return gboolean
 #' @export
 gtkBuilderAddFromString <- function(builder, buffer, length) {
-  .Call("R_gtk_builder_add_from_string", builder, buffer, length)$result
+  .Call("R_gtk_builder_add_from_string", builder, buffer, as.integer(length))$result
 }
 
 
@@ -3439,7 +3439,7 @@ gtkBuilderAddObjectsFromResource <- function(builder, resource_path, object_ids)
 #' @return gboolean
 #' @export
 gtkBuilderAddObjectsFromString <- function(builder, buffer, length, object_ids) {
-  .Call("R_gtk_builder_add_objects_from_string", builder, buffer, length, object_ids)$result
+  .Call("R_gtk_builder_add_objects_from_string", builder, buffer, as.integer(length), object_ids)$result
 }
 
 
@@ -3466,7 +3466,7 @@ gtkBuilderCreateClosure <- function(builder, function_name, flags, object) {
 #' @return Return value from C function
 #' @export
 gtkBuilderExposeObject <- function(builder, name, object) {
-  .Call("R_gtk_builder_expose_object", builder, name, object)
+  invisible(.Call("R_gtk_builder_expose_object", builder, name, object))
 }
 
 
@@ -3481,7 +3481,7 @@ gtkBuilderExposeObject <- function(builder, name, object) {
 #' @return gboolean
 #' @export
 gtkBuilderExtendWithTemplate <- function(builder, object, template_type, buffer, length) {
-  .Call("R_gtk_builder_extend_with_template", builder, object, template_type, buffer, length)$result
+  .Call("R_gtk_builder_extend_with_template", builder, object, template_type, buffer, as.integer(length))$result
 }
 
 
@@ -3561,7 +3561,7 @@ gtkBuilderGetTypeFromName <- function(builder, type_name) {
 #' @return Return value from C function
 #' @export
 gtkBuilderSetCurrentObject <- function(builder, current_object) {
-  .Call("R_gtk_builder_set_current_object", builder, current_object)
+  invisible(.Call("R_gtk_builder_set_current_object", builder, current_object))
 }
 
 
@@ -3573,7 +3573,7 @@ gtkBuilderSetCurrentObject <- function(builder, current_object) {
 #' @return Return value from C function
 #' @export
 gtkBuilderSetScope <- function(builder, scope) {
-  .Call("R_gtk_builder_set_scope", builder, scope)
+  invisible(.Call("R_gtk_builder_set_scope", builder, scope))
 }
 
 
@@ -3585,7 +3585,7 @@ gtkBuilderSetScope <- function(builder, scope) {
 #' @return Return value from C function
 #' @export
 gtkBuilderSetTranslationDomain <- function(builder, domain) {
-  .Call("R_gtk_builder_set_translation_domain", builder, domain)
+  invisible(.Call("R_gtk_builder_set_translation_domain", builder, domain))
 }
 
 
@@ -3809,7 +3809,7 @@ gtkButtonGetUseUnderline <- function(button) {
 #' @return Return value from C function
 #' @export
 gtkButtonSetCanShrink <- function(button, can_shrink) {
-  .Call("R_gtk_button_set_can_shrink", button, can_shrink)
+  invisible(.Call("R_gtk_button_set_can_shrink", button, can_shrink))
 }
 
 
@@ -3821,7 +3821,7 @@ gtkButtonSetCanShrink <- function(button, can_shrink) {
 #' @return Return value from C function
 #' @export
 gtkButtonSetChild <- function(button, child) {
-  .Call("R_gtk_button_set_child", button, child)
+  invisible(.Call("R_gtk_button_set_child", button, child))
 }
 
 
@@ -3833,7 +3833,7 @@ gtkButtonSetChild <- function(button, child) {
 #' @return Return value from C function
 #' @export
 gtkButtonSetHasFrame <- function(button, has_frame) {
-  .Call("R_gtk_button_set_has_frame", button, has_frame)
+  invisible(.Call("R_gtk_button_set_has_frame", button, has_frame))
 }
 
 
@@ -3845,7 +3845,7 @@ gtkButtonSetHasFrame <- function(button, has_frame) {
 #' @return Return value from C function
 #' @export
 gtkButtonSetIconName <- function(button, icon_name) {
-  .Call("R_gtk_button_set_icon_name", button, icon_name)
+  invisible(.Call("R_gtk_button_set_icon_name", button, icon_name))
 }
 
 
@@ -3857,7 +3857,7 @@ gtkButtonSetIconName <- function(button, icon_name) {
 #' @return Return value from C function
 #' @export
 gtkButtonSetLabel <- function(button, label) {
-  .Call("R_gtk_button_set_label", button, label)
+  invisible(.Call("R_gtk_button_set_label", button, label))
 }
 
 
@@ -3869,7 +3869,7 @@ gtkButtonSetLabel <- function(button, label) {
 #' @return Return value from C function
 #' @export
 gtkButtonSetUseUnderline <- function(button, use_underline) {
-  .Call("R_gtk_button_set_use_underline", button, use_underline)
+  invisible(.Call("R_gtk_button_set_use_underline", button, use_underline))
 }
 
 
@@ -3890,7 +3890,7 @@ gtkCalendarNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkCalendarClearMarks <- function(calendar) {
-  .Call("R_gtk_calendar_clear_marks", calendar)
+  invisible(.Call("R_gtk_calendar_clear_marks", calendar))
 }
 
 
@@ -3924,7 +3924,7 @@ gtkCalendarGetDay <- function(self) {
 #' @return gboolean
 #' @export
 gtkCalendarGetDayIsMarked <- function(calendar, day) {
-  .Call("R_gtk_calendar_get_day_is_marked", calendar, day)$result
+  .Call("R_gtk_calendar_get_day_is_marked", calendar, as.integer(day))$result
 }
 
 
@@ -3991,7 +3991,7 @@ gtkCalendarGetYear <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkCalendarMarkDay <- function(calendar, day) {
-  .Call("R_gtk_calendar_mark_day", calendar, day)
+  invisible(.Call("R_gtk_calendar_mark_day", calendar, as.integer(day)))
 }
 
 
@@ -4003,7 +4003,7 @@ gtkCalendarMarkDay <- function(calendar, day) {
 #' @return Return value from C function
 #' @export
 gtkCalendarSelectDay <- function(self, date) {
-  .Call("R_gtk_calendar_select_day", self, date)
+  invisible(.Call("R_gtk_calendar_select_day", self, date))
 }
 
 
@@ -4015,7 +4015,7 @@ gtkCalendarSelectDay <- function(self, date) {
 #' @return Return value from C function
 #' @export
 gtkCalendarSetDate <- function(self, date) {
-  .Call("R_gtk_calendar_set_date", self, date)
+  invisible(.Call("R_gtk_calendar_set_date", self, date))
 }
 
 
@@ -4027,7 +4027,7 @@ gtkCalendarSetDate <- function(self, date) {
 #' @return Return value from C function
 #' @export
 gtkCalendarSetDay <- function(self, day) {
-  .Call("R_gtk_calendar_set_day", self, day)
+  invisible(.Call("R_gtk_calendar_set_day", self, as.integer(day)))
 }
 
 
@@ -4039,7 +4039,7 @@ gtkCalendarSetDay <- function(self, day) {
 #' @return Return value from C function
 #' @export
 gtkCalendarSetMonth <- function(self, month) {
-  .Call("R_gtk_calendar_set_month", self, month)
+  invisible(.Call("R_gtk_calendar_set_month", self, as.integer(month)))
 }
 
 
@@ -4051,7 +4051,7 @@ gtkCalendarSetMonth <- function(self, month) {
 #' @return Return value from C function
 #' @export
 gtkCalendarSetShowDayNames <- function(self, value) {
-  .Call("R_gtk_calendar_set_show_day_names", self, value)
+  invisible(.Call("R_gtk_calendar_set_show_day_names", self, value))
 }
 
 
@@ -4063,7 +4063,7 @@ gtkCalendarSetShowDayNames <- function(self, value) {
 #' @return Return value from C function
 #' @export
 gtkCalendarSetShowHeading <- function(self, value) {
-  .Call("R_gtk_calendar_set_show_heading", self, value)
+  invisible(.Call("R_gtk_calendar_set_show_heading", self, value))
 }
 
 
@@ -4075,7 +4075,7 @@ gtkCalendarSetShowHeading <- function(self, value) {
 #' @return Return value from C function
 #' @export
 gtkCalendarSetShowWeekNumbers <- function(self, value) {
-  .Call("R_gtk_calendar_set_show_week_numbers", self, value)
+  invisible(.Call("R_gtk_calendar_set_show_week_numbers", self, value))
 }
 
 
@@ -4087,7 +4087,7 @@ gtkCalendarSetShowWeekNumbers <- function(self, value) {
 #' @return Return value from C function
 #' @export
 gtkCalendarSetYear <- function(self, year) {
-  .Call("R_gtk_calendar_set_year", self, year)
+  invisible(.Call("R_gtk_calendar_set_year", self, as.integer(year)))
 }
 
 
@@ -4099,7 +4099,7 @@ gtkCalendarSetYear <- function(self, year) {
 #' @return Return value from C function
 #' @export
 gtkCalendarUnmarkDay <- function(calendar, day) {
-  .Call("R_gtk_calendar_unmark_day", calendar, day)
+  invisible(.Call("R_gtk_calendar_unmark_day", calendar, as.integer(day)))
 }
 
 
@@ -4143,7 +4143,7 @@ gtkCellAreaActivateCell <- function(area, widget, renderer, event, cell_area, fl
 #' @return Return value from C function
 #' @export
 gtkCellAreaAdd <- function(area, renderer) {
-  .Call("R_gtk_cell_area_add", area, renderer)
+  invisible(.Call("R_gtk_cell_area_add", area, renderer))
 }
 
 
@@ -4156,7 +4156,7 @@ gtkCellAreaAdd <- function(area, renderer) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaAddFocusSibling <- function(area, renderer, sibling) {
-  .Call("R_gtk_cell_area_add_focus_sibling", area, renderer, sibling)
+  invisible(.Call("R_gtk_cell_area_add_focus_sibling", area, renderer, sibling))
 }
 
 
@@ -4171,7 +4171,7 @@ gtkCellAreaAddFocusSibling <- function(area, renderer, sibling) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaApplyAttributes <- function(area, tree_model, iter, is_expander, is_expanded) {
-  .Call("R_gtk_cell_area_apply_attributes", area, tree_model, iter, is_expander, is_expanded)
+  invisible(.Call("R_gtk_cell_area_apply_attributes", area, tree_model, iter, is_expander, is_expanded))
 }
 
 
@@ -4185,7 +4185,7 @@ gtkCellAreaApplyAttributes <- function(area, tree_model, iter, is_expander, is_e
 #' @return Return value from C function
 #' @export
 gtkCellAreaAttributeConnect <- function(area, renderer, attribute, column) {
-  .Call("R_gtk_cell_area_attribute_connect", area, renderer, attribute, column)
+  invisible(.Call("R_gtk_cell_area_attribute_connect", area, renderer, attribute, as.integer(column)))
 }
 
 
@@ -4198,7 +4198,7 @@ gtkCellAreaAttributeConnect <- function(area, renderer, attribute, column) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaAttributeDisconnect <- function(area, renderer, attribute) {
-  .Call("R_gtk_cell_area_attribute_disconnect", area, renderer, attribute)
+  invisible(.Call("R_gtk_cell_area_attribute_disconnect", area, renderer, attribute))
 }
 
 
@@ -4225,7 +4225,7 @@ gtkCellAreaAttributeGetColumn <- function(area, renderer, attribute) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaCellGetProperty <- function(area, renderer, property_name, value) {
-  .Call("R_gtk_cell_area_cell_get_property", area, renderer, property_name, value)
+  invisible(.Call("R_gtk_cell_area_cell_get_property", area, renderer, property_name, value))
 }
 
 
@@ -4239,7 +4239,7 @@ gtkCellAreaCellGetProperty <- function(area, renderer, property_name, value) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaCellSetProperty <- function(area, renderer, property_name, value) {
-  .Call("R_gtk_cell_area_cell_set_property", area, renderer, property_name, value)
+  invisible(.Call("R_gtk_cell_area_cell_set_property", area, renderer, property_name, value))
 }
 
 
@@ -4321,7 +4321,7 @@ gtkCellAreaGetCellAllocation <- function(area, context, widget, renderer, cell_a
 #' @return CellRenderer
 #' @export
 gtkCellAreaGetCellAtPosition <- function(area, context, widget, cell_area, x, y) {
-  .Call("R_gtk_cell_area_get_cell_at_position", area, context, widget, cell_area, x, y)
+  .Call("R_gtk_cell_area_get_cell_at_position", area, context, widget, cell_area, as.integer(x), as.integer(y))
 }
 
 
@@ -4416,7 +4416,7 @@ gtkCellAreaGetPreferredHeight <- function(area, context, widget) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaGetPreferredHeightForWidth <- function(area, context, widget, width) {
-  .Call("R_gtk_cell_area_get_preferred_height_for_width", area, context, widget, width)
+  .Call("R_gtk_cell_area_get_preferred_height_for_width", area, context, widget, as.integer(width))
 }
 
 
@@ -4443,7 +4443,7 @@ gtkCellAreaGetPreferredWidth <- function(area, context, widget) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaGetPreferredWidthForHeight <- function(area, context, widget, height) {
-  .Call("R_gtk_cell_area_get_preferred_width_for_height", area, context, widget, height)
+  .Call("R_gtk_cell_area_get_preferred_width_for_height", area, context, widget, as.integer(height))
 }
 
 
@@ -4515,7 +4515,7 @@ gtkCellAreaIsFocusSibling <- function(area, renderer, sibling) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaRemove <- function(area, renderer) {
-  .Call("R_gtk_cell_area_remove", area, renderer)
+  invisible(.Call("R_gtk_cell_area_remove", area, renderer))
 }
 
 
@@ -4528,7 +4528,7 @@ gtkCellAreaRemove <- function(area, renderer) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaRemoveFocusSibling <- function(area, renderer, sibling) {
-  .Call("R_gtk_cell_area_remove_focus_sibling", area, renderer, sibling)
+  invisible(.Call("R_gtk_cell_area_remove_focus_sibling", area, renderer, sibling))
 }
 
 
@@ -4543,7 +4543,7 @@ gtkCellAreaRemoveFocusSibling <- function(area, renderer, sibling) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaRequestRenderer <- function(area, renderer, orientation, widget, for_size) {
-  .Call("R_gtk_cell_area_request_renderer", area, renderer, orientation, widget, for_size)
+  .Call("R_gtk_cell_area_request_renderer", area, renderer, orientation, widget, as.integer(for_size))
 }
 
 
@@ -4555,7 +4555,7 @@ gtkCellAreaRequestRenderer <- function(area, renderer, orientation, widget, for_
 #' @return Return value from C function
 #' @export
 gtkCellAreaSetFocusCell <- function(area, renderer) {
-  .Call("R_gtk_cell_area_set_focus_cell", area, renderer)
+  invisible(.Call("R_gtk_cell_area_set_focus_cell", area, renderer))
 }
 
 
@@ -4573,7 +4573,7 @@ gtkCellAreaSetFocusCell <- function(area, renderer) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaSnapshot <- function(area, context, widget, snapshot, background_area, cell_area, flags, paint_focus) {
-  .Call("R_gtk_cell_area_snapshot", area, context, widget, snapshot, background_area, cell_area, flags, paint_focus)
+  invisible(.Call("R_gtk_cell_area_snapshot", area, context, widget, snapshot, background_area, cell_area, flags, paint_focus))
 }
 
 
@@ -4585,7 +4585,7 @@ gtkCellAreaSnapshot <- function(area, context, widget, snapshot, background_area
 #' @return Return value from C function
 #' @export
 gtkCellAreaStopEditing <- function(area, canceled) {
-  .Call("R_gtk_cell_area_stop_editing", area, canceled)
+  invisible(.Call("R_gtk_cell_area_stop_editing", area, canceled))
 }
 
 
@@ -4621,7 +4621,7 @@ gtkCellAreaBoxGetSpacing <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaBoxPackEnd <- function(box, renderer, expand, align, fixed) {
-  .Call("R_gtk_cell_area_box_pack_end", box, renderer, expand, align, fixed)
+  invisible(.Call("R_gtk_cell_area_box_pack_end", box, renderer, expand, align, fixed))
 }
 
 
@@ -4636,7 +4636,7 @@ gtkCellAreaBoxPackEnd <- function(box, renderer, expand, align, fixed) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaBoxPackStart <- function(box, renderer, expand, align, fixed) {
-  .Call("R_gtk_cell_area_box_pack_start", box, renderer, expand, align, fixed)
+  invisible(.Call("R_gtk_cell_area_box_pack_start", box, renderer, expand, align, fixed))
 }
 
 
@@ -4648,7 +4648,7 @@ gtkCellAreaBoxPackStart <- function(box, renderer, expand, align, fixed) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaBoxSetSpacing <- function(box, spacing) {
-  .Call("R_gtk_cell_area_box_set_spacing", box, spacing)
+  invisible(.Call("R_gtk_cell_area_box_set_spacing", box, as.integer(spacing)))
 }
 
 
@@ -4673,7 +4673,7 @@ gtkCellAreaClassFindCellProperty <- function(aclass, property_name) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaClassInstallCellProperty <- function(aclass, property_id, pspec) {
-  .Call("R_gtk_cell_area_class_install_cell_property", aclass, property_id, pspec)
+  invisible(.Call("R_gtk_cell_area_class_install_cell_property", aclass, as.integer(property_id), pspec))
 }
 
 
@@ -4697,7 +4697,7 @@ gtkCellAreaClassListCellProperties <- function(aclass) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaContextAllocate <- function(context, width, height) {
-  .Call("R_gtk_cell_area_context_allocate", context, width, height)
+  invisible(.Call("R_gtk_cell_area_context_allocate", context, as.integer(width), as.integer(height)))
 }
 
 
@@ -4742,7 +4742,7 @@ gtkCellAreaContextGetPreferredHeight <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaContextGetPreferredHeightForWidth <- function(context, width) {
-  .Call("R_gtk_cell_area_context_get_preferred_height_for_width", context, width)
+  .Call("R_gtk_cell_area_context_get_preferred_height_for_width", context, as.integer(width))
 }
 
 
@@ -4765,7 +4765,7 @@ gtkCellAreaContextGetPreferredWidth <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaContextGetPreferredWidthForHeight <- function(context, height) {
-  .Call("R_gtk_cell_area_context_get_preferred_width_for_height", context, height)
+  .Call("R_gtk_cell_area_context_get_preferred_width_for_height", context, as.integer(height))
 }
 
 
@@ -4778,7 +4778,7 @@ gtkCellAreaContextGetPreferredWidthForHeight <- function(context, height) {
 #' @return Return value from C function
 #' @export
 gtkCellAreaContextPushPreferredHeight <- function(context, minimum_height, natural_height) {
-  .Call("R_gtk_cell_area_context_push_preferred_height", context, minimum_height, natural_height)
+  invisible(.Call("R_gtk_cell_area_context_push_preferred_height", context, as.integer(minimum_height), as.integer(natural_height)))
 }
 
 
@@ -4791,7 +4791,7 @@ gtkCellAreaContextPushPreferredHeight <- function(context, minimum_height, natur
 #' @return Return value from C function
 #' @export
 gtkCellAreaContextPushPreferredWidth <- function(context, minimum_width, natural_width) {
-  .Call("R_gtk_cell_area_context_push_preferred_width", context, minimum_width, natural_width)
+  invisible(.Call("R_gtk_cell_area_context_push_preferred_width", context, as.integer(minimum_width), as.integer(natural_width)))
 }
 
 
@@ -4802,7 +4802,7 @@ gtkCellAreaContextPushPreferredWidth <- function(context, minimum_width, natural
 #' @return Return value from C function
 #' @export
 gtkCellAreaContextReset <- function(context) {
-  .Call("R_gtk_cell_area_context_reset", context)
+  invisible(.Call("R_gtk_cell_area_context_reset", context))
 }
 
 
@@ -4813,7 +4813,7 @@ gtkCellAreaContextReset <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkCellEditableEditingDone <- function(cell_editable) {
-  .Call("R_gtk_cell_editable_editing_done", cell_editable)
+  invisible(.Call("R_gtk_cell_editable_editing_done", cell_editable))
 }
 
 
@@ -4824,7 +4824,7 @@ gtkCellEditableEditingDone <- function(cell_editable) {
 #' @return Return value from C function
 #' @export
 gtkCellEditableRemoveWidget <- function(cell_editable) {
-  .Call("R_gtk_cell_editable_remove_widget", cell_editable)
+  invisible(.Call("R_gtk_cell_editable_remove_widget", cell_editable))
 }
 
 
@@ -4836,7 +4836,7 @@ gtkCellEditableRemoveWidget <- function(cell_editable) {
 #' @return Return value from C function
 #' @export
 gtkCellEditableStartEditing <- function(cell_editable, event) {
-  .Call("R_gtk_cell_editable_start_editing", cell_editable, event)
+  invisible(.Call("R_gtk_cell_editable_start_editing", cell_editable, event))
 }
 
 
@@ -4850,7 +4850,7 @@ gtkCellEditableStartEditing <- function(cell_editable, event) {
 #' @return Return value from C function
 #' @export
 gtkCellLayoutAddAttribute <- function(cell_layout, cell, attribute, column) {
-  .Call("R_gtk_cell_layout_add_attribute", cell_layout, cell, attribute, column)
+  invisible(.Call("R_gtk_cell_layout_add_attribute", cell_layout, cell, attribute, as.integer(column)))
 }
 
 
@@ -4861,7 +4861,7 @@ gtkCellLayoutAddAttribute <- function(cell_layout, cell, attribute, column) {
 #' @return Return value from C function
 #' @export
 gtkCellLayoutClear <- function(cell_layout) {
-  .Call("R_gtk_cell_layout_clear", cell_layout)
+  invisible(.Call("R_gtk_cell_layout_clear", cell_layout))
 }
 
 
@@ -4873,7 +4873,7 @@ gtkCellLayoutClear <- function(cell_layout) {
 #' @return Return value from C function
 #' @export
 gtkCellLayoutClearAttributes <- function(cell_layout, cell) {
-  .Call("R_gtk_cell_layout_clear_attributes", cell_layout, cell)
+  invisible(.Call("R_gtk_cell_layout_clear_attributes", cell_layout, cell))
 }
 
 
@@ -4908,7 +4908,7 @@ gtkCellLayoutGetCells <- function(cell_layout) {
 #' @return Return value from C function
 #' @export
 gtkCellLayoutPackEnd <- function(cell_layout, cell, expand) {
-  .Call("R_gtk_cell_layout_pack_end", cell_layout, cell, expand)
+  invisible(.Call("R_gtk_cell_layout_pack_end", cell_layout, cell, expand))
 }
 
 
@@ -4921,7 +4921,7 @@ gtkCellLayoutPackEnd <- function(cell_layout, cell, expand) {
 #' @return Return value from C function
 #' @export
 gtkCellLayoutPackStart <- function(cell_layout, cell, expand) {
-  .Call("R_gtk_cell_layout_pack_start", cell_layout, cell, expand)
+  invisible(.Call("R_gtk_cell_layout_pack_start", cell_layout, cell, expand))
 }
 
 
@@ -4934,7 +4934,7 @@ gtkCellLayoutPackStart <- function(cell_layout, cell, expand) {
 #' @return Return value from C function
 #' @export
 gtkCellLayoutReorder <- function(cell_layout, cell, position) {
-  .Call("R_gtk_cell_layout_reorder", cell_layout, cell, position)
+  invisible(.Call("R_gtk_cell_layout_reorder", cell_layout, cell, as.integer(position)))
 }
 
 
@@ -5045,7 +5045,7 @@ gtkCellRendererGetPreferredHeight <- function(cell, widget) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererGetPreferredHeightForWidth <- function(cell, widget, width) {
-  .Call("R_gtk_cell_renderer_get_preferred_height_for_width", cell, widget, width)
+  .Call("R_gtk_cell_renderer_get_preferred_height_for_width", cell, widget, as.integer(width))
 }
 
 
@@ -5082,7 +5082,7 @@ gtkCellRendererGetPreferredWidth <- function(cell, widget) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererGetPreferredWidthForHeight <- function(cell, widget, height) {
-  .Call("R_gtk_cell_renderer_get_preferred_width_for_height", cell, widget, height)
+  .Call("R_gtk_cell_renderer_get_preferred_width_for_height", cell, widget, as.integer(height))
 }
 
 
@@ -5152,7 +5152,7 @@ gtkCellRendererIsActivatable <- function(cell) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererSetAlignment <- function(cell, xalign, yalign) {
-  .Call("R_gtk_cell_renderer_set_alignment", cell, xalign, yalign)
+  invisible(.Call("R_gtk_cell_renderer_set_alignment", cell, xalign, yalign))
 }
 
 
@@ -5165,7 +5165,7 @@ gtkCellRendererSetAlignment <- function(cell, xalign, yalign) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererSetFixedSize <- function(cell, width, height) {
-  .Call("R_gtk_cell_renderer_set_fixed_size", cell, width, height)
+  invisible(.Call("R_gtk_cell_renderer_set_fixed_size", cell, as.integer(width), as.integer(height)))
 }
 
 
@@ -5177,7 +5177,7 @@ gtkCellRendererSetFixedSize <- function(cell, width, height) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererSetIsExpanded <- function(cell, is_expanded) {
-  .Call("R_gtk_cell_renderer_set_is_expanded", cell, is_expanded)
+  invisible(.Call("R_gtk_cell_renderer_set_is_expanded", cell, is_expanded))
 }
 
 
@@ -5189,7 +5189,7 @@ gtkCellRendererSetIsExpanded <- function(cell, is_expanded) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererSetIsExpander <- function(cell, is_expander) {
-  .Call("R_gtk_cell_renderer_set_is_expander", cell, is_expander)
+  invisible(.Call("R_gtk_cell_renderer_set_is_expander", cell, is_expander))
 }
 
 
@@ -5202,7 +5202,7 @@ gtkCellRendererSetIsExpander <- function(cell, is_expander) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererSetPadding <- function(cell, xpad, ypad) {
-  .Call("R_gtk_cell_renderer_set_padding", cell, xpad, ypad)
+  invisible(.Call("R_gtk_cell_renderer_set_padding", cell, as.integer(xpad), as.integer(ypad)))
 }
 
 
@@ -5214,7 +5214,7 @@ gtkCellRendererSetPadding <- function(cell, xpad, ypad) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererSetSensitive <- function(cell, sensitive) {
-  .Call("R_gtk_cell_renderer_set_sensitive", cell, sensitive)
+  invisible(.Call("R_gtk_cell_renderer_set_sensitive", cell, sensitive))
 }
 
 
@@ -5226,7 +5226,7 @@ gtkCellRendererSetSensitive <- function(cell, sensitive) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererSetVisible <- function(cell, visible) {
-  .Call("R_gtk_cell_renderer_set_visible", cell, visible)
+  invisible(.Call("R_gtk_cell_renderer_set_visible", cell, visible))
 }
 
 
@@ -5242,7 +5242,7 @@ gtkCellRendererSetVisible <- function(cell, visible) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererSnapshot <- function(cell, snapshot, widget, background_area, cell_area, flags) {
-  .Call("R_gtk_cell_renderer_snapshot", cell, snapshot, widget, background_area, cell_area, flags)
+  invisible(.Call("R_gtk_cell_renderer_snapshot", cell, snapshot, widget, background_area, cell_area, flags))
 }
 
 
@@ -5271,7 +5271,7 @@ gtkCellRendererStartEditing <- function(cell, event, widget, path, background_ar
 #' @return Return value from C function
 #' @export
 gtkCellRendererStopEditing <- function(cell, canceled) {
-  .Call("R_gtk_cell_renderer_stop_editing", cell, canceled)
+  invisible(.Call("R_gtk_cell_renderer_stop_editing", cell, canceled))
 }
 
 
@@ -5353,7 +5353,7 @@ gtkCellRendererTextNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkCellRendererTextSetFixedHeightFromFont <- function(renderer, number_of_rows) {
-  .Call("R_gtk_cell_renderer_text_set_fixed_height_from_font", renderer, number_of_rows)
+  invisible(.Call("R_gtk_cell_renderer_text_set_fixed_height_from_font", renderer, as.integer(number_of_rows)))
 }
 
 
@@ -5408,7 +5408,7 @@ gtkCellRendererToggleGetRadio <- function(toggle) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererToggleSetActivatable <- function(toggle, setting) {
-  .Call("R_gtk_cell_renderer_toggle_set_activatable", toggle, setting)
+  invisible(.Call("R_gtk_cell_renderer_toggle_set_activatable", toggle, setting))
 }
 
 
@@ -5420,7 +5420,7 @@ gtkCellRendererToggleSetActivatable <- function(toggle, setting) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererToggleSetActive <- function(toggle, setting) {
-  .Call("R_gtk_cell_renderer_toggle_set_active", toggle, setting)
+  invisible(.Call("R_gtk_cell_renderer_toggle_set_active", toggle, setting))
 }
 
 
@@ -5432,7 +5432,7 @@ gtkCellRendererToggleSetActive <- function(toggle, setting) {
 #' @return Return value from C function
 #' @export
 gtkCellRendererToggleSetRadio <- function(toggle, radio) {
-  .Call("R_gtk_cell_renderer_toggle_set_radio", toggle, radio)
+  invisible(.Call("R_gtk_cell_renderer_toggle_set_radio", toggle, radio))
 }
 
 
@@ -5543,7 +5543,7 @@ gtkCellViewGetModel <- function(cell_view) {
 #' @return Return value from C function
 #' @export
 gtkCellViewSetDisplayedRow <- function(cell_view, path) {
-  .Call("R_gtk_cell_view_set_displayed_row", cell_view, path)
+  invisible(.Call("R_gtk_cell_view_set_displayed_row", cell_view, path))
 }
 
 
@@ -5555,7 +5555,7 @@ gtkCellViewSetDisplayedRow <- function(cell_view, path) {
 #' @return Return value from C function
 #' @export
 gtkCellViewSetDrawSensitive <- function(cell_view, draw_sensitive) {
-  .Call("R_gtk_cell_view_set_draw_sensitive", cell_view, draw_sensitive)
+  invisible(.Call("R_gtk_cell_view_set_draw_sensitive", cell_view, draw_sensitive))
 }
 
 
@@ -5567,7 +5567,7 @@ gtkCellViewSetDrawSensitive <- function(cell_view, draw_sensitive) {
 #' @return Return value from C function
 #' @export
 gtkCellViewSetFitModel <- function(cell_view, fit_model) {
-  .Call("R_gtk_cell_view_set_fit_model", cell_view, fit_model)
+  invisible(.Call("R_gtk_cell_view_set_fit_model", cell_view, fit_model))
 }
 
 
@@ -5579,7 +5579,7 @@ gtkCellViewSetFitModel <- function(cell_view, fit_model) {
 #' @return Return value from C function
 #' @export
 gtkCellViewSetModel <- function(cell_view, model) {
-  .Call("R_gtk_cell_view_set_model", cell_view, model)
+  invisible(.Call("R_gtk_cell_view_set_model", cell_view, model))
 }
 
 
@@ -5656,7 +5656,7 @@ gtkCenterBoxGetStartWidget <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkCenterBoxSetBaselinePosition <- function(self, position) {
-  .Call("R_gtk_center_box_set_baseline_position", self, position)
+  invisible(.Call("R_gtk_center_box_set_baseline_position", self, position))
 }
 
 
@@ -5668,7 +5668,7 @@ gtkCenterBoxSetBaselinePosition <- function(self, position) {
 #' @return Return value from C function
 #' @export
 gtkCenterBoxSetCenterWidget <- function(self, child) {
-  .Call("R_gtk_center_box_set_center_widget", self, child)
+  invisible(.Call("R_gtk_center_box_set_center_widget", self, child))
 }
 
 
@@ -5680,7 +5680,7 @@ gtkCenterBoxSetCenterWidget <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkCenterBoxSetEndWidget <- function(self, child) {
-  .Call("R_gtk_center_box_set_end_widget", self, child)
+  invisible(.Call("R_gtk_center_box_set_end_widget", self, child))
 }
 
 
@@ -5692,7 +5692,7 @@ gtkCenterBoxSetEndWidget <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkCenterBoxSetShrinkCenterLast <- function(self, shrink_center_last) {
-  .Call("R_gtk_center_box_set_shrink_center_last", self, shrink_center_last)
+  invisible(.Call("R_gtk_center_box_set_shrink_center_last", self, shrink_center_last))
 }
 
 
@@ -5704,7 +5704,7 @@ gtkCenterBoxSetShrinkCenterLast <- function(self, shrink_center_last) {
 #' @return Return value from C function
 #' @export
 gtkCenterBoxSetStartWidget <- function(self, child) {
-  .Call("R_gtk_center_box_set_start_widget", self, child)
+  invisible(.Call("R_gtk_center_box_set_start_widget", self, child))
 }
 
 
@@ -5792,7 +5792,7 @@ gtkCenterLayoutGetStartWidget <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkCenterLayoutSetBaselinePosition <- function(self, baseline_position) {
-  .Call("R_gtk_center_layout_set_baseline_position", self, baseline_position)
+  invisible(.Call("R_gtk_center_layout_set_baseline_position", self, baseline_position))
 }
 
 
@@ -5804,7 +5804,7 @@ gtkCenterLayoutSetBaselinePosition <- function(self, baseline_position) {
 #' @return Return value from C function
 #' @export
 gtkCenterLayoutSetCenterWidget <- function(self, widget) {
-  .Call("R_gtk_center_layout_set_center_widget", self, widget)
+  invisible(.Call("R_gtk_center_layout_set_center_widget", self, widget))
 }
 
 
@@ -5816,7 +5816,7 @@ gtkCenterLayoutSetCenterWidget <- function(self, widget) {
 #' @return Return value from C function
 #' @export
 gtkCenterLayoutSetEndWidget <- function(self, widget) {
-  .Call("R_gtk_center_layout_set_end_widget", self, widget)
+  invisible(.Call("R_gtk_center_layout_set_end_widget", self, widget))
 }
 
 
@@ -5828,7 +5828,7 @@ gtkCenterLayoutSetEndWidget <- function(self, widget) {
 #' @return Return value from C function
 #' @export
 gtkCenterLayoutSetOrientation <- function(self, orientation) {
-  .Call("R_gtk_center_layout_set_orientation", self, orientation)
+  invisible(.Call("R_gtk_center_layout_set_orientation", self, orientation))
 }
 
 
@@ -5840,7 +5840,7 @@ gtkCenterLayoutSetOrientation <- function(self, orientation) {
 #' @return Return value from C function
 #' @export
 gtkCenterLayoutSetShrinkCenterLast <- function(self, shrink_center_last) {
-  .Call("R_gtk_center_layout_set_shrink_center_last", self, shrink_center_last)
+  invisible(.Call("R_gtk_center_layout_set_shrink_center_last", self, shrink_center_last))
 }
 
 
@@ -5852,7 +5852,7 @@ gtkCenterLayoutSetShrinkCenterLast <- function(self, shrink_center_last) {
 #' @return Return value from C function
 #' @export
 gtkCenterLayoutSetStartWidget <- function(self, widget) {
-  .Call("R_gtk_center_layout_set_start_widget", self, widget)
+  invisible(.Call("R_gtk_center_layout_set_start_widget", self, widget))
 }
 
 
@@ -5951,7 +5951,7 @@ gtkCheckButtonGetUseUnderline <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkCheckButtonSetActive <- function(self, setting) {
-  .Call("R_gtk_check_button_set_active", self, setting)
+  invisible(.Call("R_gtk_check_button_set_active", self, setting))
 }
 
 
@@ -5963,7 +5963,7 @@ gtkCheckButtonSetActive <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkCheckButtonSetChild <- function(button, child) {
-  .Call("R_gtk_check_button_set_child", button, child)
+  invisible(.Call("R_gtk_check_button_set_child", button, child))
 }
 
 
@@ -5975,7 +5975,7 @@ gtkCheckButtonSetChild <- function(button, child) {
 #' @return Return value from C function
 #' @export
 gtkCheckButtonSetGroup <- function(self, group) {
-  .Call("R_gtk_check_button_set_group", self, group)
+  invisible(.Call("R_gtk_check_button_set_group", self, group))
 }
 
 
@@ -5987,7 +5987,7 @@ gtkCheckButtonSetGroup <- function(self, group) {
 #' @return Return value from C function
 #' @export
 gtkCheckButtonSetInconsistent <- function(check_button, inconsistent) {
-  .Call("R_gtk_check_button_set_inconsistent", check_button, inconsistent)
+  invisible(.Call("R_gtk_check_button_set_inconsistent", check_button, inconsistent))
 }
 
 
@@ -5999,7 +5999,7 @@ gtkCheckButtonSetInconsistent <- function(check_button, inconsistent) {
 #' @return Return value from C function
 #' @export
 gtkCheckButtonSetLabel <- function(self, label) {
-  .Call("R_gtk_check_button_set_label", self, label)
+  invisible(.Call("R_gtk_check_button_set_label", self, label))
 }
 
 
@@ -6011,7 +6011,7 @@ gtkCheckButtonSetLabel <- function(self, label) {
 #' @return Return value from C function
 #' @export
 gtkCheckButtonSetUseUnderline <- function(self, setting) {
-  .Call("R_gtk_check_button_set_use_underline", self, setting)
+  invisible(.Call("R_gtk_check_button_set_use_underline", self, setting))
 }
 
 
@@ -6025,7 +6025,7 @@ gtkCheckButtonSetUseUnderline <- function(self, setting) {
 #' @return ClosureExpression
 #' @export
 gtkClosureExpressionNew <- function(value_type, closure, n_params, params) {
-  .Call("R_gtk_closure_expression_new", value_type, closure, n_params, params)$result
+  .Call("R_gtk_closure_expression_new", value_type, closure, as.integer(n_params), params)$result
 }
 
 
@@ -6080,7 +6080,7 @@ gtkColorButtonGetTitle <- function(button) {
 #' @return Return value from C function
 #' @export
 gtkColorButtonSetModal <- function(button, modal) {
-  .Call("R_gtk_color_button_set_modal", button, modal)
+  invisible(.Call("R_gtk_color_button_set_modal", button, modal))
 }
 
 
@@ -6092,7 +6092,7 @@ gtkColorButtonSetModal <- function(button, modal) {
 #' @return Return value from C function
 #' @export
 gtkColorButtonSetTitle <- function(button, title) {
-  .Call("R_gtk_color_button_set_title", button, title)
+  invisible(.Call("R_gtk_color_button_set_title", button, title))
 }
 
 
@@ -6107,7 +6107,7 @@ gtkColorButtonSetTitle <- function(button, title) {
 #' @return Return value from C function
 #' @export
 gtkColorChooserAddPalette <- function(chooser, orientation, colors_per_line, n_colors, colors) {
-  .Call("R_gtk_color_chooser_add_palette", chooser, orientation, colors_per_line, n_colors, colors)
+  invisible(.Call("R_gtk_color_chooser_add_palette", chooser, orientation, as.integer(colors_per_line), as.integer(n_colors), colors))
 }
 
 
@@ -6141,7 +6141,7 @@ gtkColorChooserGetUseAlpha <- function(chooser) {
 #' @return Return value from C function
 #' @export
 gtkColorChooserSetRgba <- function(chooser, color) {
-  .Call("R_gtk_color_chooser_set_rgba", chooser, color)
+  invisible(.Call("R_gtk_color_chooser_set_rgba", chooser, color))
 }
 
 
@@ -6153,7 +6153,7 @@ gtkColorChooserSetRgba <- function(chooser, color) {
 #' @return Return value from C function
 #' @export
 gtkColorChooserSetUseAlpha <- function(chooser, use_alpha) {
-  .Call("R_gtk_color_chooser_set_use_alpha", chooser, use_alpha)
+  invisible(.Call("R_gtk_color_chooser_set_use_alpha", chooser, use_alpha))
 }
 
 
@@ -6242,7 +6242,7 @@ gtkColorDialogGetWithAlpha <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkColorDialogSetModal <- function(self, modal) {
-  .Call("R_gtk_color_dialog_set_modal", self, modal)
+  invisible(.Call("R_gtk_color_dialog_set_modal", self, modal))
 }
 
 
@@ -6254,7 +6254,7 @@ gtkColorDialogSetModal <- function(self, modal) {
 #' @return Return value from C function
 #' @export
 gtkColorDialogSetTitle <- function(self, title) {
-  .Call("R_gtk_color_dialog_set_title", self, title)
+  invisible(.Call("R_gtk_color_dialog_set_title", self, title))
 }
 
 
@@ -6266,7 +6266,7 @@ gtkColorDialogSetTitle <- function(self, title) {
 #' @return Return value from C function
 #' @export
 gtkColorDialogSetWithAlpha <- function(self, with_alpha) {
-  .Call("R_gtk_color_dialog_set_with_alpha", self, with_alpha)
+  invisible(.Call("R_gtk_color_dialog_set_with_alpha", self, with_alpha))
 }
 
 
@@ -6311,7 +6311,7 @@ gtkColorDialogButtonGetRgba <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkColorDialogButtonSetDialog <- function(self, dialog) {
-  .Call("R_gtk_color_dialog_button_set_dialog", self, dialog)
+  invisible(.Call("R_gtk_color_dialog_button_set_dialog", self, dialog))
 }
 
 
@@ -6323,7 +6323,7 @@ gtkColorDialogButtonSetDialog <- function(self, dialog) {
 #' @return Return value from C function
 #' @export
 gtkColorDialogButtonSetRgba <- function(self, color) {
-  .Call("R_gtk_color_dialog_button_set_rgba", self, color)
+  invisible(.Call("R_gtk_color_dialog_button_set_rgba", self, color))
 }
 
 
@@ -6346,7 +6346,7 @@ gtkColumnViewNew <- function(model) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewAppendColumn <- function(self, column) {
-  .Call("R_gtk_column_view_append_column", self, column)
+  invisible(.Call("R_gtk_column_view_append_column", self, column))
 }
 
 
@@ -6480,7 +6480,7 @@ gtkColumnViewGetTabBehavior <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewInsertColumn <- function(self, position, column) {
-  .Call("R_gtk_column_view_insert_column", self, position, column)
+  invisible(.Call("R_gtk_column_view_insert_column", self, as.integer(position), column))
 }
 
 
@@ -6492,7 +6492,7 @@ gtkColumnViewInsertColumn <- function(self, position, column) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewRemoveColumn <- function(self, column) {
-  .Call("R_gtk_column_view_remove_column", self, column)
+  invisible(.Call("R_gtk_column_view_remove_column", self, column))
 }
 
 
@@ -6507,7 +6507,7 @@ gtkColumnViewRemoveColumn <- function(self, column) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewScrollTo <- function(self, pos, column, flags, scroll) {
-  .Call("R_gtk_column_view_scroll_to", self, pos, column, flags, scroll)
+  invisible(.Call("R_gtk_column_view_scroll_to", self, as.integer(pos), column, flags, scroll))
 }
 
 
@@ -6519,7 +6519,7 @@ gtkColumnViewScrollTo <- function(self, pos, column, flags, scroll) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetEnableRubberband <- function(self, enable_rubberband) {
-  .Call("R_gtk_column_view_set_enable_rubberband", self, enable_rubberband)
+  invisible(.Call("R_gtk_column_view_set_enable_rubberband", self, enable_rubberband))
 }
 
 
@@ -6531,7 +6531,7 @@ gtkColumnViewSetEnableRubberband <- function(self, enable_rubberband) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetHeaderFactory <- function(self, factory) {
-  .Call("R_gtk_column_view_set_header_factory", self, factory)
+  invisible(.Call("R_gtk_column_view_set_header_factory", self, factory))
 }
 
 
@@ -6543,7 +6543,7 @@ gtkColumnViewSetHeaderFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetModel <- function(self, model) {
-  .Call("R_gtk_column_view_set_model", self, model)
+  invisible(.Call("R_gtk_column_view_set_model", self, model))
 }
 
 
@@ -6555,7 +6555,7 @@ gtkColumnViewSetModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetReorderable <- function(self, reorderable) {
-  .Call("R_gtk_column_view_set_reorderable", self, reorderable)
+  invisible(.Call("R_gtk_column_view_set_reorderable", self, reorderable))
 }
 
 
@@ -6567,7 +6567,7 @@ gtkColumnViewSetReorderable <- function(self, reorderable) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetRowFactory <- function(self, factory) {
-  .Call("R_gtk_column_view_set_row_factory", self, factory)
+  invisible(.Call("R_gtk_column_view_set_row_factory", self, factory))
 }
 
 
@@ -6579,7 +6579,7 @@ gtkColumnViewSetRowFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetShowColumnSeparators <- function(self, show_column_separators) {
-  .Call("R_gtk_column_view_set_show_column_separators", self, show_column_separators)
+  invisible(.Call("R_gtk_column_view_set_show_column_separators", self, show_column_separators))
 }
 
 
@@ -6591,7 +6591,7 @@ gtkColumnViewSetShowColumnSeparators <- function(self, show_column_separators) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetShowRowSeparators <- function(self, show_row_separators) {
-  .Call("R_gtk_column_view_set_show_row_separators", self, show_row_separators)
+  invisible(.Call("R_gtk_column_view_set_show_row_separators", self, show_row_separators))
 }
 
 
@@ -6603,7 +6603,7 @@ gtkColumnViewSetShowRowSeparators <- function(self, show_row_separators) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetSingleClickActivate <- function(self, single_click_activate) {
-  .Call("R_gtk_column_view_set_single_click_activate", self, single_click_activate)
+  invisible(.Call("R_gtk_column_view_set_single_click_activate", self, single_click_activate))
 }
 
 
@@ -6615,7 +6615,7 @@ gtkColumnViewSetSingleClickActivate <- function(self, single_click_activate) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSetTabBehavior <- function(self, tab_behavior) {
-  .Call("R_gtk_column_view_set_tab_behavior", self, tab_behavior)
+  invisible(.Call("R_gtk_column_view_set_tab_behavior", self, tab_behavior))
 }
 
 
@@ -6628,7 +6628,7 @@ gtkColumnViewSetTabBehavior <- function(self, tab_behavior) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewSortByColumn <- function(self, column, direction) {
-  .Call("R_gtk_column_view_sort_by_column", self, column, direction)
+  invisible(.Call("R_gtk_column_view_sort_by_column", self, column, direction))
 }
 
 
@@ -6695,7 +6695,7 @@ gtkColumnViewCellGetSelected <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewCellSetChild <- function(self, child) {
-  .Call("R_gtk_column_view_cell_set_child", self, child)
+  invisible(.Call("R_gtk_column_view_cell_set_child", self, child))
 }
 
 
@@ -6707,7 +6707,7 @@ gtkColumnViewCellSetChild <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewCellSetFocusable <- function(self, focusable) {
-  .Call("R_gtk_column_view_cell_set_focusable", self, focusable)
+  invisible(.Call("R_gtk_column_view_cell_set_focusable", self, focusable))
 }
 
 
@@ -6841,7 +6841,7 @@ gtkColumnViewColumnGetVisible <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetExpand <- function(self, expand) {
-  .Call("R_gtk_column_view_column_set_expand", self, expand)
+  invisible(.Call("R_gtk_column_view_column_set_expand", self, expand))
 }
 
 
@@ -6853,7 +6853,7 @@ gtkColumnViewColumnSetExpand <- function(self, expand) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetFactory <- function(self, factory) {
-  .Call("R_gtk_column_view_column_set_factory", self, factory)
+  invisible(.Call("R_gtk_column_view_column_set_factory", self, factory))
 }
 
 
@@ -6865,7 +6865,7 @@ gtkColumnViewColumnSetFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetFixedWidth <- function(self, fixed_width) {
-  .Call("R_gtk_column_view_column_set_fixed_width", self, fixed_width)
+  invisible(.Call("R_gtk_column_view_column_set_fixed_width", self, as.integer(fixed_width)))
 }
 
 
@@ -6877,7 +6877,7 @@ gtkColumnViewColumnSetFixedWidth <- function(self, fixed_width) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetHeaderMenu <- function(self, menu) {
-  .Call("R_gtk_column_view_column_set_header_menu", self, menu)
+  invisible(.Call("R_gtk_column_view_column_set_header_menu", self, menu))
 }
 
 
@@ -6889,7 +6889,7 @@ gtkColumnViewColumnSetHeaderMenu <- function(self, menu) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetId <- function(self, id) {
-  .Call("R_gtk_column_view_column_set_id", self, id)
+  invisible(.Call("R_gtk_column_view_column_set_id", self, id))
 }
 
 
@@ -6901,7 +6901,7 @@ gtkColumnViewColumnSetId <- function(self, id) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetResizable <- function(self, resizable) {
-  .Call("R_gtk_column_view_column_set_resizable", self, resizable)
+  invisible(.Call("R_gtk_column_view_column_set_resizable", self, resizable))
 }
 
 
@@ -6913,7 +6913,7 @@ gtkColumnViewColumnSetResizable <- function(self, resizable) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetSorter <- function(self, sorter) {
-  .Call("R_gtk_column_view_column_set_sorter", self, sorter)
+  invisible(.Call("R_gtk_column_view_column_set_sorter", self, sorter))
 }
 
 
@@ -6925,7 +6925,7 @@ gtkColumnViewColumnSetSorter <- function(self, sorter) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetTitle <- function(self, title) {
-  .Call("R_gtk_column_view_column_set_title", self, title)
+  invisible(.Call("R_gtk_column_view_column_set_title", self, title))
 }
 
 
@@ -6937,7 +6937,7 @@ gtkColumnViewColumnSetTitle <- function(self, title) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewColumnSetVisible <- function(self, visible) {
-  .Call("R_gtk_column_view_column_set_visible", self, visible)
+  invisible(.Call("R_gtk_column_view_column_set_visible", self, visible))
 }
 
 
@@ -7037,7 +7037,7 @@ gtkColumnViewRowGetSelected <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewRowSetAccessibleDescription <- function(self, description) {
-  .Call("R_gtk_column_view_row_set_accessible_description", self, description)
+  invisible(.Call("R_gtk_column_view_row_set_accessible_description", self, description))
 }
 
 
@@ -7049,7 +7049,7 @@ gtkColumnViewRowSetAccessibleDescription <- function(self, description) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewRowSetAccessibleLabel <- function(self, label) {
-  .Call("R_gtk_column_view_row_set_accessible_label", self, label)
+  invisible(.Call("R_gtk_column_view_row_set_accessible_label", self, label))
 }
 
 
@@ -7061,7 +7061,7 @@ gtkColumnViewRowSetAccessibleLabel <- function(self, label) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewRowSetActivatable <- function(self, activatable) {
-  .Call("R_gtk_column_view_row_set_activatable", self, activatable)
+  invisible(.Call("R_gtk_column_view_row_set_activatable", self, activatable))
 }
 
 
@@ -7073,7 +7073,7 @@ gtkColumnViewRowSetActivatable <- function(self, activatable) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewRowSetFocusable <- function(self, focusable) {
-  .Call("R_gtk_column_view_row_set_focusable", self, focusable)
+  invisible(.Call("R_gtk_column_view_row_set_focusable", self, focusable))
 }
 
 
@@ -7085,7 +7085,7 @@ gtkColumnViewRowSetFocusable <- function(self, focusable) {
 #' @return Return value from C function
 #' @export
 gtkColumnViewRowSetSelectable <- function(self, selectable) {
-  .Call("R_gtk_column_view_row_set_selectable", self, selectable)
+  invisible(.Call("R_gtk_column_view_row_set_selectable", self, selectable))
 }
 
 
@@ -7108,7 +7108,7 @@ gtkColumnViewSorterGetNSortColumns <- function(self) {
 #' @return ColumnViewColumn
 #' @export
 gtkColumnViewSorterGetNthSortColumn <- function(self, position) {
-  .Call("R_gtk_column_view_sorter_get_nth_sort_column", self, position)
+  .Call("R_gtk_column_view_sorter_get_nth_sort_column", self, as.integer(position))
 }
 
 
@@ -7293,7 +7293,7 @@ gtkComboBoxGetPopupFixedWidth <- function(combo_box) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxPopdown <- function(combo_box) {
-  .Call("R_gtk_combo_box_popdown", combo_box)
+  invisible(.Call("R_gtk_combo_box_popdown", combo_box))
 }
 
 
@@ -7304,7 +7304,7 @@ gtkComboBoxPopdown <- function(combo_box) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxPopup <- function(combo_box) {
-  .Call("R_gtk_combo_box_popup", combo_box)
+  invisible(.Call("R_gtk_combo_box_popup", combo_box))
 }
 
 
@@ -7316,7 +7316,7 @@ gtkComboBoxPopup <- function(combo_box) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxPopupForDevice <- function(combo_box, device) {
-  .Call("R_gtk_combo_box_popup_for_device", combo_box, device)
+  invisible(.Call("R_gtk_combo_box_popup_for_device", combo_box, device))
 }
 
 
@@ -7328,7 +7328,7 @@ gtkComboBoxPopupForDevice <- function(combo_box, device) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetActive <- function(combo_box, index_) {
-  .Call("R_gtk_combo_box_set_active", combo_box, index_)
+  invisible(.Call("R_gtk_combo_box_set_active", combo_box, as.integer(index_)))
 }
 
 
@@ -7352,7 +7352,7 @@ gtkComboBoxSetActiveId <- function(combo_box, active_id) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetActiveIter <- function(combo_box, iter) {
-  .Call("R_gtk_combo_box_set_active_iter", combo_box, iter)
+  invisible(.Call("R_gtk_combo_box_set_active_iter", combo_box, iter))
 }
 
 
@@ -7364,7 +7364,7 @@ gtkComboBoxSetActiveIter <- function(combo_box, iter) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetButtonSensitivity <- function(combo_box, sensitivity) {
-  .Call("R_gtk_combo_box_set_button_sensitivity", combo_box, sensitivity)
+  invisible(.Call("R_gtk_combo_box_set_button_sensitivity", combo_box, sensitivity))
 }
 
 
@@ -7376,7 +7376,7 @@ gtkComboBoxSetButtonSensitivity <- function(combo_box, sensitivity) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetChild <- function(combo_box, child) {
-  .Call("R_gtk_combo_box_set_child", combo_box, child)
+  invisible(.Call("R_gtk_combo_box_set_child", combo_box, child))
 }
 
 
@@ -7388,7 +7388,7 @@ gtkComboBoxSetChild <- function(combo_box, child) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetEntryTextColumn <- function(combo_box, text_column) {
-  .Call("R_gtk_combo_box_set_entry_text_column", combo_box, text_column)
+  invisible(.Call("R_gtk_combo_box_set_entry_text_column", combo_box, as.integer(text_column)))
 }
 
 
@@ -7400,7 +7400,7 @@ gtkComboBoxSetEntryTextColumn <- function(combo_box, text_column) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetIdColumn <- function(combo_box, id_column) {
-  .Call("R_gtk_combo_box_set_id_column", combo_box, id_column)
+  invisible(.Call("R_gtk_combo_box_set_id_column", combo_box, as.integer(id_column)))
 }
 
 
@@ -7412,7 +7412,7 @@ gtkComboBoxSetIdColumn <- function(combo_box, id_column) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetModel <- function(combo_box, model) {
-  .Call("R_gtk_combo_box_set_model", combo_box, model)
+  invisible(.Call("R_gtk_combo_box_set_model", combo_box, model))
 }
 
 
@@ -7424,7 +7424,7 @@ gtkComboBoxSetModel <- function(combo_box, model) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetPopupFixedWidth <- function(combo_box, fixed) {
-  .Call("R_gtk_combo_box_set_popup_fixed_width", combo_box, fixed)
+  invisible(.Call("R_gtk_combo_box_set_popup_fixed_width", combo_box, fixed))
 }
 
 
@@ -7457,7 +7457,7 @@ gtkComboBoxTextNewWithEntry <- function() {
 #' @return Return value from C function
 #' @export
 gtkComboBoxTextAppend <- function(combo_box, id, text) {
-  .Call("R_gtk_combo_box_text_append", combo_box, id, text)
+  invisible(.Call("R_gtk_combo_box_text_append", combo_box, id, text))
 }
 
 
@@ -7469,7 +7469,7 @@ gtkComboBoxTextAppend <- function(combo_box, id, text) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxTextAppendText <- function(combo_box, text) {
-  .Call("R_gtk_combo_box_text_append_text", combo_box, text)
+  invisible(.Call("R_gtk_combo_box_text_append_text", combo_box, text))
 }
 
 
@@ -7494,7 +7494,7 @@ gtkComboBoxTextGetActiveText <- function(combo_box) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxTextInsert <- function(combo_box, position, id, text) {
-  .Call("R_gtk_combo_box_text_insert", combo_box, position, id, text)
+  invisible(.Call("R_gtk_combo_box_text_insert", combo_box, as.integer(position), id, text))
 }
 
 
@@ -7507,7 +7507,7 @@ gtkComboBoxTextInsert <- function(combo_box, position, id, text) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxTextInsertText <- function(combo_box, position, text) {
-  .Call("R_gtk_combo_box_text_insert_text", combo_box, position, text)
+  invisible(.Call("R_gtk_combo_box_text_insert_text", combo_box, as.integer(position), text))
 }
 
 
@@ -7520,7 +7520,7 @@ gtkComboBoxTextInsertText <- function(combo_box, position, text) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxTextPrepend <- function(combo_box, id, text) {
-  .Call("R_gtk_combo_box_text_prepend", combo_box, id, text)
+  invisible(.Call("R_gtk_combo_box_text_prepend", combo_box, id, text))
 }
 
 
@@ -7532,7 +7532,7 @@ gtkComboBoxTextPrepend <- function(combo_box, id, text) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxTextPrependText <- function(combo_box, text) {
-  .Call("R_gtk_combo_box_text_prepend_text", combo_box, text)
+  invisible(.Call("R_gtk_combo_box_text_prepend_text", combo_box, text))
 }
 
 
@@ -7544,7 +7544,7 @@ gtkComboBoxTextPrependText <- function(combo_box, text) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxTextRemove <- function(combo_box, position) {
-  .Call("R_gtk_combo_box_text_remove", combo_box, position)
+  invisible(.Call("R_gtk_combo_box_text_remove", combo_box, as.integer(position)))
 }
 
 
@@ -7555,7 +7555,7 @@ gtkComboBoxTextRemove <- function(combo_box, position) {
 #' @return Return value from C function
 #' @export
 gtkComboBoxTextRemoveAll <- function(combo_box) {
-  .Call("R_gtk_combo_box_text_remove_all", combo_box)
+  invisible(.Call("R_gtk_combo_box_text_remove_all", combo_box))
 }
 
 
@@ -7595,7 +7595,7 @@ gtkConstantExpressionGetValue <- function(expression) {
 #' @return Constraint
 #' @export
 gtkConstraintNew <- function(target, target_attribute, relation, source, source_attribute, multiplier, constant, strength) {
-  .Call("R_gtk_constraint_new", target, target_attribute, relation, source, source_attribute, multiplier, constant, strength)$result
+  .Call("R_gtk_constraint_new", target, target_attribute, relation, source, source_attribute, multiplier, constant, as.integer(strength))$result
 }
 
 
@@ -7610,7 +7610,7 @@ gtkConstraintNew <- function(target, target_attribute, relation, source, source_
 #' @return Constraint
 #' @export
 gtkConstraintNewConstant <- function(target, target_attribute, relation, constant, strength) {
-  .Call("R_gtk_constraint_new_constant", target, target_attribute, relation, constant, strength)$result
+  .Call("R_gtk_constraint_new_constant", target, target_attribute, relation, constant, as.integer(strength))$result
 }
 
 
@@ -7809,7 +7809,7 @@ gtkConstraintGuideGetStrength <- function(guide) {
 #' @return Return value from C function
 #' @export
 gtkConstraintGuideSetMaxSize <- function(guide, width, height) {
-  .Call("R_gtk_constraint_guide_set_max_size", guide, width, height)
+  invisible(.Call("R_gtk_constraint_guide_set_max_size", guide, as.integer(width), as.integer(height)))
 }
 
 
@@ -7822,7 +7822,7 @@ gtkConstraintGuideSetMaxSize <- function(guide, width, height) {
 #' @return Return value from C function
 #' @export
 gtkConstraintGuideSetMinSize <- function(guide, width, height) {
-  .Call("R_gtk_constraint_guide_set_min_size", guide, width, height)
+  invisible(.Call("R_gtk_constraint_guide_set_min_size", guide, as.integer(width), as.integer(height)))
 }
 
 
@@ -7834,7 +7834,7 @@ gtkConstraintGuideSetMinSize <- function(guide, width, height) {
 #' @return Return value from C function
 #' @export
 gtkConstraintGuideSetName <- function(guide, name) {
-  .Call("R_gtk_constraint_guide_set_name", guide, name)
+  invisible(.Call("R_gtk_constraint_guide_set_name", guide, name))
 }
 
 
@@ -7847,7 +7847,7 @@ gtkConstraintGuideSetName <- function(guide, name) {
 #' @return Return value from C function
 #' @export
 gtkConstraintGuideSetNatSize <- function(guide, width, height) {
-  .Call("R_gtk_constraint_guide_set_nat_size", guide, width, height)
+  invisible(.Call("R_gtk_constraint_guide_set_nat_size", guide, as.integer(width), as.integer(height)))
 }
 
 
@@ -7859,7 +7859,7 @@ gtkConstraintGuideSetNatSize <- function(guide, width, height) {
 #' @return Return value from C function
 #' @export
 gtkConstraintGuideSetStrength <- function(guide, strength) {
-  .Call("R_gtk_constraint_guide_set_strength", guide, strength)
+  invisible(.Call("R_gtk_constraint_guide_set_strength", guide, strength))
 }
 
 
@@ -7881,7 +7881,7 @@ gtkConstraintLayoutNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkConstraintLayoutAddConstraint <- function(layout, constraint) {
-  .Call("R_gtk_constraint_layout_add_constraint", layout, constraint)
+  invisible(.Call("R_gtk_constraint_layout_add_constraint", layout, constraint))
 }
 
 
@@ -7897,7 +7897,7 @@ gtkConstraintLayoutAddConstraint <- function(layout, constraint) {
 #' @return GLib.List
 #' @export
 gtkConstraintLayoutAddConstraintsFromDescriptionv <- function(layout, lines, n_lines, hspacing, vspacing, views) {
-  .Call("R_gtk_constraint_layout_add_constraints_from_descriptionv", layout, lines, n_lines, hspacing, vspacing, views)$result
+  .Call("R_gtk_constraint_layout_add_constraints_from_descriptionv", layout, lines, as.integer(n_lines), as.integer(hspacing), as.integer(vspacing), views)$result
 }
 
 
@@ -7909,7 +7909,7 @@ gtkConstraintLayoutAddConstraintsFromDescriptionv <- function(layout, lines, n_l
 #' @return Return value from C function
 #' @export
 gtkConstraintLayoutAddGuide <- function(layout, guide) {
-  .Call("R_gtk_constraint_layout_add_guide", layout, guide)
+  invisible(.Call("R_gtk_constraint_layout_add_guide", layout, guide))
 }
 
 
@@ -7942,7 +7942,7 @@ gtkConstraintLayoutObserveGuides <- function(layout) {
 #' @return Return value from C function
 #' @export
 gtkConstraintLayoutRemoveAllConstraints <- function(layout) {
-  .Call("R_gtk_constraint_layout_remove_all_constraints", layout)
+  invisible(.Call("R_gtk_constraint_layout_remove_all_constraints", layout))
 }
 
 
@@ -7954,7 +7954,7 @@ gtkConstraintLayoutRemoveAllConstraints <- function(layout) {
 #' @return Return value from C function
 #' @export
 gtkConstraintLayoutRemoveConstraint <- function(layout, constraint) {
-  .Call("R_gtk_constraint_layout_remove_constraint", layout, constraint)
+  invisible(.Call("R_gtk_constraint_layout_remove_constraint", layout, constraint))
 }
 
 
@@ -7966,7 +7966,7 @@ gtkConstraintLayoutRemoveConstraint <- function(layout, constraint) {
 #' @return Return value from C function
 #' @export
 gtkConstraintLayoutRemoveGuide <- function(layout, guide) {
-  .Call("R_gtk_constraint_layout_remove_guide", layout, guide)
+  invisible(.Call("R_gtk_constraint_layout_remove_guide", layout, guide))
 }
 
 
@@ -7998,7 +7998,7 @@ gtkCssProviderNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkCssProviderLoadFromBytes <- function(css_provider, data) {
-  .Call("R_gtk_css_provider_load_from_bytes", css_provider, data)
+  invisible(.Call("R_gtk_css_provider_load_from_bytes", css_provider, data))
 }
 
 
@@ -8011,7 +8011,7 @@ gtkCssProviderLoadFromBytes <- function(css_provider, data) {
 #' @return Return value from C function
 #' @export
 gtkCssProviderLoadFromData <- function(css_provider, data, length) {
-  .Call("R_gtk_css_provider_load_from_data", css_provider, data, length)
+  invisible(.Call("R_gtk_css_provider_load_from_data", css_provider, data, as.integer(length)))
 }
 
 
@@ -8023,7 +8023,7 @@ gtkCssProviderLoadFromData <- function(css_provider, data, length) {
 #' @return Return value from C function
 #' @export
 gtkCssProviderLoadFromFile <- function(css_provider, file) {
-  .Call("R_gtk_css_provider_load_from_file", css_provider, file)
+  invisible(.Call("R_gtk_css_provider_load_from_file", css_provider, file))
 }
 
 
@@ -8035,7 +8035,7 @@ gtkCssProviderLoadFromFile <- function(css_provider, file) {
 #' @return Return value from C function
 #' @export
 gtkCssProviderLoadFromPath <- function(css_provider, path) {
-  .Call("R_gtk_css_provider_load_from_path", css_provider, path)
+  invisible(.Call("R_gtk_css_provider_load_from_path", css_provider, path))
 }
 
 
@@ -8047,7 +8047,7 @@ gtkCssProviderLoadFromPath <- function(css_provider, path) {
 #' @return Return value from C function
 #' @export
 gtkCssProviderLoadFromResource <- function(css_provider, resource_path) {
-  .Call("R_gtk_css_provider_load_from_resource", css_provider, resource_path)
+  invisible(.Call("R_gtk_css_provider_load_from_resource", css_provider, resource_path))
 }
 
 
@@ -8059,7 +8059,7 @@ gtkCssProviderLoadFromResource <- function(css_provider, resource_path) {
 #' @return Return value from C function
 #' @export
 gtkCssProviderLoadFromString <- function(css_provider, string) {
-  .Call("R_gtk_css_provider_load_from_string", css_provider, string)
+  invisible(.Call("R_gtk_css_provider_load_from_string", css_provider, string))
 }
 
 
@@ -8072,7 +8072,7 @@ gtkCssProviderLoadFromString <- function(css_provider, string) {
 #' @return Return value from C function
 #' @export
 gtkCssProviderLoadNamed <- function(provider, name, variant) {
-  .Call("R_gtk_css_provider_load_named", provider, name, variant)
+  invisible(.Call("R_gtk_css_provider_load_named", provider, name, variant))
 }
 
 
@@ -8177,7 +8177,7 @@ gtkCssSectionGetStartLocation <- function(section) {
 #' @return Return value from C function
 #' @export
 gtkCssSectionPrint <- function(section, string) {
-  .Call("R_gtk_css_section_print", section, string)
+  invisible(.Call("R_gtk_css_section_print", section, string))
 }
 
 
@@ -8210,7 +8210,7 @@ gtkCssSectionToString <- function(section) {
 #' @return Return value from C function
 #' @export
 gtkCssSectionUnref <- function(section) {
-  .Call("R_gtk_css_section_unref", section)
+  invisible(.Call("R_gtk_css_section_unref", section))
 }
 
 
@@ -8233,7 +8233,7 @@ gtkDialogNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkDialogAddActionWidget <- function(dialog, child, response_id) {
-  .Call("R_gtk_dialog_add_action_widget", dialog, child, response_id)
+  invisible(.Call("R_gtk_dialog_add_action_widget", dialog, child, as.integer(response_id)))
 }
 
 
@@ -8246,7 +8246,7 @@ gtkDialogAddActionWidget <- function(dialog, child, response_id) {
 #' @return Widget
 #' @export
 gtkDialogAddButton <- function(dialog, button_text, response_id) {
-  .Call("R_gtk_dialog_add_button", dialog, button_text, response_id)$result
+  .Call("R_gtk_dialog_add_button", dialog, button_text, as.integer(response_id))$result
 }
 
 
@@ -8292,7 +8292,7 @@ gtkDialogGetResponseForWidget <- function(dialog, widget) {
 #' @return Widget
 #' @export
 gtkDialogGetWidgetForResponse <- function(dialog, response_id) {
-  .Call("R_gtk_dialog_get_widget_for_response", dialog, response_id)$result
+  .Call("R_gtk_dialog_get_widget_for_response", dialog, as.integer(response_id))$result
 }
 
 
@@ -8304,7 +8304,7 @@ gtkDialogGetWidgetForResponse <- function(dialog, response_id) {
 #' @return Return value from C function
 #' @export
 gtkDialogResponse <- function(dialog, response_id) {
-  .Call("R_gtk_dialog_response", dialog, response_id)
+  invisible(.Call("R_gtk_dialog_response", dialog, as.integer(response_id)))
 }
 
 
@@ -8316,7 +8316,7 @@ gtkDialogResponse <- function(dialog, response_id) {
 #' @return Return value from C function
 #' @export
 gtkDialogSetDefaultResponse <- function(dialog, response_id) {
-  .Call("R_gtk_dialog_set_default_response", dialog, response_id)
+  invisible(.Call("R_gtk_dialog_set_default_response", dialog, as.integer(response_id)))
 }
 
 
@@ -8329,7 +8329,7 @@ gtkDialogSetDefaultResponse <- function(dialog, response_id) {
 #' @return Return value from C function
 #' @export
 gtkDialogSetResponseSensitive <- function(dialog, response_id, setting) {
-  .Call("R_gtk_dialog_set_response_sensitive", dialog, response_id, setting)
+  invisible(.Call("R_gtk_dialog_set_response_sensitive", dialog, as.integer(response_id), setting))
 }
 
 
@@ -8429,7 +8429,7 @@ gtkDirectoryListIsLoading <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkDirectoryListSetAttributes <- function(self, attributes) {
-  .Call("R_gtk_directory_list_set_attributes", self, attributes)
+  invisible(.Call("R_gtk_directory_list_set_attributes", self, attributes))
 }
 
 
@@ -8441,7 +8441,7 @@ gtkDirectoryListSetAttributes <- function(self, attributes) {
 #' @return Return value from C function
 #' @export
 gtkDirectoryListSetFile <- function(self, file) {
-  .Call("R_gtk_directory_list_set_file", self, file)
+  invisible(.Call("R_gtk_directory_list_set_file", self, file))
 }
 
 
@@ -8453,7 +8453,7 @@ gtkDirectoryListSetFile <- function(self, file) {
 #' @return Return value from C function
 #' @export
 gtkDirectoryListSetIoPriority <- function(self, io_priority) {
-  .Call("R_gtk_directory_list_set_io_priority", self, io_priority)
+  invisible(.Call("R_gtk_directory_list_set_io_priority", self, as.integer(io_priority)))
 }
 
 
@@ -8465,7 +8465,7 @@ gtkDirectoryListSetIoPriority <- function(self, io_priority) {
 #' @return Return value from C function
 #' @export
 gtkDirectoryListSetMonitored <- function(self, monitored) {
-  .Call("R_gtk_directory_list_set_monitored", self, monitored)
+  invisible(.Call("R_gtk_directory_list_set_monitored", self, monitored))
 }
 
 
@@ -8501,7 +8501,7 @@ gtkDragIconCreateWidgetForValue <- function(value) {
 #' @return Return value from C function
 #' @export
 gtkDragIconSetFromPaintable <- function(drag, paintable, hot_x, hot_y) {
-  .Call("R_gtk_drag_icon_set_from_paintable", drag, paintable, hot_x, hot_y)
+  invisible(.Call("R_gtk_drag_icon_set_from_paintable", drag, paintable, as.integer(hot_x), as.integer(hot_y)))
 }
 
 
@@ -8524,7 +8524,7 @@ gtkDragIconGetChild <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkDragIconSetChild <- function(self, child) {
-  .Call("R_gtk_drag_icon_set_child", self, child)
+  invisible(.Call("R_gtk_drag_icon_set_child", self, child))
 }
 
 
@@ -8545,7 +8545,7 @@ gtkDragSourceNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkDragSourceDragCancel <- function(source) {
-  .Call("R_gtk_drag_source_drag_cancel", source)
+  invisible(.Call("R_gtk_drag_source_drag_cancel", source))
 }
 
 
@@ -8590,7 +8590,7 @@ gtkDragSourceGetDrag <- function(source) {
 #' @return Return value from C function
 #' @export
 gtkDragSourceSetActions <- function(source, actions) {
-  .Call("R_gtk_drag_source_set_actions", source, actions)
+  invisible(.Call("R_gtk_drag_source_set_actions", source, actions))
 }
 
 
@@ -8602,7 +8602,7 @@ gtkDragSourceSetActions <- function(source, actions) {
 #' @return Return value from C function
 #' @export
 gtkDragSourceSetContent <- function(source, content) {
-  .Call("R_gtk_drag_source_set_content", source, content)
+  invisible(.Call("R_gtk_drag_source_set_content", source, content))
 }
 
 
@@ -8616,7 +8616,7 @@ gtkDragSourceSetContent <- function(source, content) {
 #' @return Return value from C function
 #' @export
 gtkDragSourceSetIcon <- function(source, paintable, hot_x, hot_y) {
-  .Call("R_gtk_drag_source_set_icon", source, paintable, hot_x, hot_y)
+  invisible(.Call("R_gtk_drag_source_set_icon", source, paintable, as.integer(hot_x), as.integer(hot_y)))
 }
 
 
@@ -8660,7 +8660,7 @@ gtkDrawingAreaGetContentWidth <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkDrawingAreaSetContentHeight <- function(self, height) {
-  .Call("R_gtk_drawing_area_set_content_height", self, height)
+  invisible(.Call("R_gtk_drawing_area_set_content_height", self, as.integer(height)))
 }
 
 
@@ -8672,7 +8672,7 @@ gtkDrawingAreaSetContentHeight <- function(self, height) {
 #' @return Return value from C function
 #' @export
 gtkDrawingAreaSetContentWidth <- function(self, width) {
-  .Call("R_gtk_drawing_area_set_content_width", self, width)
+  invisible(.Call("R_gtk_drawing_area_set_content_width", self, as.integer(width)))
 }
 
 
@@ -8860,7 +8860,7 @@ gtkDropDownGetShowArrow <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetEnableSearch <- function(self, enable_search) {
-  .Call("R_gtk_drop_down_set_enable_search", self, enable_search)
+  invisible(.Call("R_gtk_drop_down_set_enable_search", self, enable_search))
 }
 
 
@@ -8872,7 +8872,7 @@ gtkDropDownSetEnableSearch <- function(self, enable_search) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetExpression <- function(self, expression) {
-  .Call("R_gtk_drop_down_set_expression", self, expression)
+  invisible(.Call("R_gtk_drop_down_set_expression", self, expression))
 }
 
 
@@ -8884,7 +8884,7 @@ gtkDropDownSetExpression <- function(self, expression) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetFactory <- function(self, factory) {
-  .Call("R_gtk_drop_down_set_factory", self, factory)
+  invisible(.Call("R_gtk_drop_down_set_factory", self, factory))
 }
 
 
@@ -8896,7 +8896,7 @@ gtkDropDownSetFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetHeaderFactory <- function(self, factory) {
-  .Call("R_gtk_drop_down_set_header_factory", self, factory)
+  invisible(.Call("R_gtk_drop_down_set_header_factory", self, factory))
 }
 
 
@@ -8908,7 +8908,7 @@ gtkDropDownSetHeaderFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetListFactory <- function(self, factory) {
-  .Call("R_gtk_drop_down_set_list_factory", self, factory)
+  invisible(.Call("R_gtk_drop_down_set_list_factory", self, factory))
 }
 
 
@@ -8920,7 +8920,7 @@ gtkDropDownSetListFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetModel <- function(self, model) {
-  .Call("R_gtk_drop_down_set_model", self, model)
+  invisible(.Call("R_gtk_drop_down_set_model", self, model))
 }
 
 
@@ -8932,7 +8932,7 @@ gtkDropDownSetModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetSearchMatchMode <- function(self, search_match_mode) {
-  .Call("R_gtk_drop_down_set_search_match_mode", self, search_match_mode)
+  invisible(.Call("R_gtk_drop_down_set_search_match_mode", self, search_match_mode))
 }
 
 
@@ -8944,7 +8944,7 @@ gtkDropDownSetSearchMatchMode <- function(self, search_match_mode) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetSelected <- function(self, position) {
-  .Call("R_gtk_drop_down_set_selected", self, position)
+  invisible(.Call("R_gtk_drop_down_set_selected", self, as.integer(position)))
 }
 
 
@@ -8956,7 +8956,7 @@ gtkDropDownSetSelected <- function(self, position) {
 #' @return Return value from C function
 #' @export
 gtkDropDownSetShowArrow <- function(self, show_arrow) {
-  .Call("R_gtk_drop_down_set_show_arrow", self, show_arrow)
+  invisible(.Call("R_gtk_drop_down_set_show_arrow", self, show_arrow))
 }
 
 
@@ -9056,7 +9056,7 @@ gtkDropTargetGetValue <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkDropTargetReject <- function(self) {
-  .Call("R_gtk_drop_target_reject", self)
+  invisible(.Call("R_gtk_drop_target_reject", self))
 }
 
 
@@ -9068,7 +9068,7 @@ gtkDropTargetReject <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkDropTargetSetActions <- function(self, actions) {
-  .Call("R_gtk_drop_target_set_actions", self, actions)
+  invisible(.Call("R_gtk_drop_target_set_actions", self, actions))
 }
 
 
@@ -9081,7 +9081,7 @@ gtkDropTargetSetActions <- function(self, actions) {
 #' @return Return value from C function
 #' @export
 gtkDropTargetSetGtypes <- function(self, types, n_types) {
-  .Call("R_gtk_drop_target_set_gtypes", self, types, n_types)
+  invisible(.Call("R_gtk_drop_target_set_gtypes", self, types, as.integer(n_types)))
 }
 
 
@@ -9093,7 +9093,7 @@ gtkDropTargetSetGtypes <- function(self, types, n_types) {
 #' @return Return value from C function
 #' @export
 gtkDropTargetSetPreload <- function(self, preload) {
-  .Call("R_gtk_drop_target_set_preload", self, preload)
+  invisible(.Call("R_gtk_drop_target_set_preload", self, preload))
 }
 
 
@@ -9139,7 +9139,7 @@ gtkDropTargetAsyncGetFormats <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkDropTargetAsyncRejectDrop <- function(self, drop) {
-  .Call("R_gtk_drop_target_async_reject_drop", self, drop)
+  invisible(.Call("R_gtk_drop_target_async_reject_drop", self, drop))
 }
 
 
@@ -9151,7 +9151,7 @@ gtkDropTargetAsyncRejectDrop <- function(self, drop) {
 #' @return Return value from C function
 #' @export
 gtkDropTargetAsyncSetActions <- function(self, actions) {
-  .Call("R_gtk_drop_target_async_set_actions", self, actions)
+  invisible(.Call("R_gtk_drop_target_async_set_actions", self, actions))
 }
 
 
@@ -9163,7 +9163,7 @@ gtkDropTargetAsyncSetActions <- function(self, actions) {
 #' @return Return value from C function
 #' @export
 gtkDropTargetAsyncSetFormats <- function(self, formats) {
-  .Call("R_gtk_drop_target_async_set_formats", self, formats)
+  invisible(.Call("R_gtk_drop_target_async_set_formats", self, formats))
 }
 
 
@@ -9177,7 +9177,7 @@ gtkDropTargetAsyncSetFormats <- function(self, formats) {
 #' @return gboolean
 #' @export
 gtkEditableDelegateGetProperty <- function(object, prop_id, value, pspec) {
-  .Call("R_gtk_editable_delegate_get_property", object, prop_id, value, pspec)$result
+  .Call("R_gtk_editable_delegate_get_property", object, as.integer(prop_id), value, pspec)$result
 }
 
 
@@ -9191,7 +9191,7 @@ gtkEditableDelegateGetProperty <- function(object, prop_id, value, pspec) {
 #' @return gboolean
 #' @export
 gtkEditableDelegateSetProperty <- function(object, prop_id, value, pspec) {
-  .Call("R_gtk_editable_delegate_set_property", object, prop_id, value, pspec)$result
+  .Call("R_gtk_editable_delegate_set_property", object, as.integer(prop_id), value, pspec)$result
 }
 
 
@@ -9203,7 +9203,7 @@ gtkEditableDelegateSetProperty <- function(object, prop_id, value, pspec) {
 #' @return guint
 #' @export
 gtkEditableInstallProperties <- function(object_class, first_prop) {
-  .Call("R_gtk_editable_install_properties", object_class, first_prop)$result
+  .Call("R_gtk_editable_install_properties", object_class, as.integer(first_prop))$result
 }
 
 
@@ -9226,7 +9226,7 @@ gtkEditableDelegateGetAccessiblePlatformState <- function(editable, state) {
 #' @return Return value from C function
 #' @export
 gtkEditableDeleteSelection <- function(editable) {
-  .Call("R_gtk_editable_delete_selection", editable)
+  invisible(.Call("R_gtk_editable_delete_selection", editable))
 }
 
 
@@ -9239,7 +9239,7 @@ gtkEditableDeleteSelection <- function(editable) {
 #' @return Return value from C function
 #' @export
 gtkEditableDeleteText <- function(editable, start_pos, end_pos) {
-  .Call("R_gtk_editable_delete_text", editable, start_pos, end_pos)
+  invisible(.Call("R_gtk_editable_delete_text", editable, as.integer(start_pos), as.integer(end_pos)))
 }
 
 
@@ -9250,7 +9250,7 @@ gtkEditableDeleteText <- function(editable, start_pos, end_pos) {
 #' @return Return value from C function
 #' @export
 gtkEditableFinishDelegate <- function(editable) {
-  .Call("R_gtk_editable_finish_delegate", editable)
+  invisible(.Call("R_gtk_editable_finish_delegate", editable))
 }
 
 
@@ -9274,7 +9274,7 @@ gtkEditableGetAlignment <- function(editable) {
 #' @return utf8
 #' @export
 gtkEditableGetChars <- function(editable, start_pos, end_pos) {
-  .Call("R_gtk_editable_get_chars", editable, start_pos, end_pos)$result
+  .Call("R_gtk_editable_get_chars", editable, as.integer(start_pos), as.integer(end_pos))$result
 }
 
 
@@ -9373,7 +9373,7 @@ gtkEditableGetWidthChars <- function(editable) {
 #' @return Return value from C function
 #' @export
 gtkEditableInitDelegate <- function(editable) {
-  .Call("R_gtk_editable_init_delegate", editable)
+  invisible(.Call("R_gtk_editable_init_delegate", editable))
 }
 
 
@@ -9386,7 +9386,7 @@ gtkEditableInitDelegate <- function(editable) {
 #' @return Return value from C function
 #' @export
 gtkEditableInsertText <- function(editable, text, length) {
-  .Call("R_gtk_editable_insert_text", editable, text, length)$position
+  .Call("R_gtk_editable_insert_text", editable, text, as.integer(length))$position
 }
 
 
@@ -9399,7 +9399,7 @@ gtkEditableInsertText <- function(editable, text, length) {
 #' @return Return value from C function
 #' @export
 gtkEditableSelectRegion <- function(editable, start_pos, end_pos) {
-  .Call("R_gtk_editable_select_region", editable, start_pos, end_pos)
+  invisible(.Call("R_gtk_editable_select_region", editable, as.integer(start_pos), as.integer(end_pos)))
 }
 
 
@@ -9411,7 +9411,7 @@ gtkEditableSelectRegion <- function(editable, start_pos, end_pos) {
 #' @return Return value from C function
 #' @export
 gtkEditableSetAlignment <- function(editable, xalign) {
-  .Call("R_gtk_editable_set_alignment", editable, xalign)
+  invisible(.Call("R_gtk_editable_set_alignment", editable, xalign))
 }
 
 
@@ -9423,7 +9423,7 @@ gtkEditableSetAlignment <- function(editable, xalign) {
 #' @return Return value from C function
 #' @export
 gtkEditableSetEditable <- function(editable, is_editable) {
-  .Call("R_gtk_editable_set_editable", editable, is_editable)
+  invisible(.Call("R_gtk_editable_set_editable", editable, is_editable))
 }
 
 
@@ -9435,7 +9435,7 @@ gtkEditableSetEditable <- function(editable, is_editable) {
 #' @return Return value from C function
 #' @export
 gtkEditableSetEnableUndo <- function(editable, enable_undo) {
-  .Call("R_gtk_editable_set_enable_undo", editable, enable_undo)
+  invisible(.Call("R_gtk_editable_set_enable_undo", editable, enable_undo))
 }
 
 
@@ -9447,7 +9447,7 @@ gtkEditableSetEnableUndo <- function(editable, enable_undo) {
 #' @return Return value from C function
 #' @export
 gtkEditableSetMaxWidthChars <- function(editable, n_chars) {
-  .Call("R_gtk_editable_set_max_width_chars", editable, n_chars)
+  invisible(.Call("R_gtk_editable_set_max_width_chars", editable, as.integer(n_chars)))
 }
 
 
@@ -9459,7 +9459,7 @@ gtkEditableSetMaxWidthChars <- function(editable, n_chars) {
 #' @return Return value from C function
 #' @export
 gtkEditableSetPosition <- function(editable, position) {
-  .Call("R_gtk_editable_set_position", editable, position)
+  invisible(.Call("R_gtk_editable_set_position", editable, as.integer(position)))
 }
 
 
@@ -9471,7 +9471,7 @@ gtkEditableSetPosition <- function(editable, position) {
 #' @return Return value from C function
 #' @export
 gtkEditableSetText <- function(editable, text) {
-  .Call("R_gtk_editable_set_text", editable, text)
+  invisible(.Call("R_gtk_editable_set_text", editable, text))
 }
 
 
@@ -9483,7 +9483,7 @@ gtkEditableSetText <- function(editable, text) {
 #' @return Return value from C function
 #' @export
 gtkEditableSetWidthChars <- function(editable, n_chars) {
-  .Call("R_gtk_editable_set_width_chars", editable, n_chars)
+  invisible(.Call("R_gtk_editable_set_width_chars", editable, as.integer(n_chars)))
 }
 
 
@@ -9516,7 +9516,7 @@ gtkEditableLabelGetEditing <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkEditableLabelStartEditing <- function(self) {
-  .Call("R_gtk_editable_label_start_editing", self)
+  invisible(.Call("R_gtk_editable_label_start_editing", self))
 }
 
 
@@ -9528,7 +9528,7 @@ gtkEditableLabelStartEditing <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkEditableLabelStopEditing <- function(self, commit) {
-  .Call("R_gtk_editable_label_stop_editing", self, commit)
+  invisible(.Call("R_gtk_editable_label_stop_editing", self, commit))
 }
 
 
@@ -9684,7 +9684,7 @@ gtkEntryGetIconArea <- function(entry, icon_pos) {
 #' @return gint
 #' @export
 gtkEntryGetIconAtPos <- function(entry, x, y) {
-  .Call("R_gtk_entry_get_icon_at_pos", entry, x, y)$result
+  .Call("R_gtk_entry_get_icon_at_pos", entry, as.integer(x), as.integer(y))$result
 }
 
 
@@ -9923,7 +9923,7 @@ gtkEntryGrabFocusWithoutSelecting <- function(entry) {
 #' @return Return value from C function
 #' @export
 gtkEntryProgressPulse <- function(entry) {
-  .Call("R_gtk_entry_progress_pulse", entry)
+  invisible(.Call("R_gtk_entry_progress_pulse", entry))
 }
 
 
@@ -9934,7 +9934,7 @@ gtkEntryProgressPulse <- function(entry) {
 #' @return Return value from C function
 #' @export
 gtkEntryResetImContext <- function(entry) {
-  .Call("R_gtk_entry_reset_im_context", entry)
+  invisible(.Call("R_gtk_entry_reset_im_context", entry))
 }
 
 
@@ -9946,7 +9946,7 @@ gtkEntryResetImContext <- function(entry) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetActivatesDefault <- function(entry, setting) {
-  .Call("R_gtk_entry_set_activates_default", entry, setting)
+  invisible(.Call("R_gtk_entry_set_activates_default", entry, setting))
 }
 
 
@@ -9958,7 +9958,7 @@ gtkEntrySetActivatesDefault <- function(entry, setting) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetAlignment <- function(entry, xalign) {
-  .Call("R_gtk_entry_set_alignment", entry, xalign)
+  invisible(.Call("R_gtk_entry_set_alignment", entry, xalign))
 }
 
 
@@ -9970,7 +9970,7 @@ gtkEntrySetAlignment <- function(entry, xalign) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetAttributes <- function(entry, attrs) {
-  .Call("R_gtk_entry_set_attributes", entry, attrs)
+  invisible(.Call("R_gtk_entry_set_attributes", entry, attrs))
 }
 
 
@@ -9982,7 +9982,7 @@ gtkEntrySetAttributes <- function(entry, attrs) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetBuffer <- function(entry, buffer) {
-  .Call("R_gtk_entry_set_buffer", entry, buffer)
+  invisible(.Call("R_gtk_entry_set_buffer", entry, buffer))
 }
 
 
@@ -9994,7 +9994,7 @@ gtkEntrySetBuffer <- function(entry, buffer) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetCompletion <- function(entry, completion) {
-  .Call("R_gtk_entry_set_completion", entry, completion)
+  invisible(.Call("R_gtk_entry_set_completion", entry, completion))
 }
 
 
@@ -10006,7 +10006,7 @@ gtkEntrySetCompletion <- function(entry, completion) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetExtraMenu <- function(entry, model) {
-  .Call("R_gtk_entry_set_extra_menu", entry, model)
+  invisible(.Call("R_gtk_entry_set_extra_menu", entry, model))
 }
 
 
@@ -10018,7 +10018,7 @@ gtkEntrySetExtraMenu <- function(entry, model) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetHasFrame <- function(entry, setting) {
-  .Call("R_gtk_entry_set_has_frame", entry, setting)
+  invisible(.Call("R_gtk_entry_set_has_frame", entry, setting))
 }
 
 
@@ -10031,7 +10031,7 @@ gtkEntrySetHasFrame <- function(entry, setting) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetIconActivatable <- function(entry, icon_pos, activatable) {
-  .Call("R_gtk_entry_set_icon_activatable", entry, icon_pos, activatable)
+  invisible(.Call("R_gtk_entry_set_icon_activatable", entry, icon_pos, activatable))
 }
 
 
@@ -10045,7 +10045,7 @@ gtkEntrySetIconActivatable <- function(entry, icon_pos, activatable) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetIconDragSource <- function(entry, icon_pos, provider, actions) {
-  .Call("R_gtk_entry_set_icon_drag_source", entry, icon_pos, provider, actions)
+  invisible(.Call("R_gtk_entry_set_icon_drag_source", entry, icon_pos, provider, actions))
 }
 
 
@@ -10058,7 +10058,7 @@ gtkEntrySetIconDragSource <- function(entry, icon_pos, provider, actions) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetIconFromGicon <- function(entry, icon_pos, icon) {
-  .Call("R_gtk_entry_set_icon_from_gicon", entry, icon_pos, icon)
+  invisible(.Call("R_gtk_entry_set_icon_from_gicon", entry, icon_pos, icon))
 }
 
 
@@ -10071,7 +10071,7 @@ gtkEntrySetIconFromGicon <- function(entry, icon_pos, icon) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetIconFromIconName <- function(entry, icon_pos, icon_name) {
-  .Call("R_gtk_entry_set_icon_from_icon_name", entry, icon_pos, icon_name)
+  invisible(.Call("R_gtk_entry_set_icon_from_icon_name", entry, icon_pos, icon_name))
 }
 
 
@@ -10084,7 +10084,7 @@ gtkEntrySetIconFromIconName <- function(entry, icon_pos, icon_name) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetIconFromPaintable <- function(entry, icon_pos, paintable) {
-  .Call("R_gtk_entry_set_icon_from_paintable", entry, icon_pos, paintable)
+  invisible(.Call("R_gtk_entry_set_icon_from_paintable", entry, icon_pos, paintable))
 }
 
 
@@ -10097,7 +10097,7 @@ gtkEntrySetIconFromPaintable <- function(entry, icon_pos, paintable) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetIconSensitive <- function(entry, icon_pos, sensitive) {
-  .Call("R_gtk_entry_set_icon_sensitive", entry, icon_pos, sensitive)
+  invisible(.Call("R_gtk_entry_set_icon_sensitive", entry, icon_pos, sensitive))
 }
 
 
@@ -10110,7 +10110,7 @@ gtkEntrySetIconSensitive <- function(entry, icon_pos, sensitive) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetIconTooltipMarkup <- function(entry, icon_pos, tooltip) {
-  .Call("R_gtk_entry_set_icon_tooltip_markup", entry, icon_pos, tooltip)
+  invisible(.Call("R_gtk_entry_set_icon_tooltip_markup", entry, icon_pos, tooltip))
 }
 
 
@@ -10123,7 +10123,7 @@ gtkEntrySetIconTooltipMarkup <- function(entry, icon_pos, tooltip) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetIconTooltipText <- function(entry, icon_pos, tooltip) {
-  .Call("R_gtk_entry_set_icon_tooltip_text", entry, icon_pos, tooltip)
+  invisible(.Call("R_gtk_entry_set_icon_tooltip_text", entry, icon_pos, tooltip))
 }
 
 
@@ -10135,7 +10135,7 @@ gtkEntrySetIconTooltipText <- function(entry, icon_pos, tooltip) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetInputHints <- function(entry, hints) {
-  .Call("R_gtk_entry_set_input_hints", entry, hints)
+  invisible(.Call("R_gtk_entry_set_input_hints", entry, hints))
 }
 
 
@@ -10147,7 +10147,7 @@ gtkEntrySetInputHints <- function(entry, hints) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetInputPurpose <- function(entry, purpose) {
-  .Call("R_gtk_entry_set_input_purpose", entry, purpose)
+  invisible(.Call("R_gtk_entry_set_input_purpose", entry, purpose))
 }
 
 
@@ -10159,7 +10159,7 @@ gtkEntrySetInputPurpose <- function(entry, purpose) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetInvisibleChar <- function(entry, ch) {
-  .Call("R_gtk_entry_set_invisible_char", entry, ch)
+  invisible(.Call("R_gtk_entry_set_invisible_char", entry, ch))
 }
 
 
@@ -10171,7 +10171,7 @@ gtkEntrySetInvisibleChar <- function(entry, ch) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetMaxLength <- function(entry, max) {
-  .Call("R_gtk_entry_set_max_length", entry, max)
+  invisible(.Call("R_gtk_entry_set_max_length", entry, as.integer(max)))
 }
 
 
@@ -10184,7 +10184,7 @@ gtkEntrySetMaxLength <- function(entry, max) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetMenuEntryIconText <- function(entry, icon_pos, text) {
-  .Call("R_gtk_entry_set_menu_entry_icon_text", entry, icon_pos, text)
+  invisible(.Call("R_gtk_entry_set_menu_entry_icon_text", entry, icon_pos, text))
 }
 
 
@@ -10196,7 +10196,7 @@ gtkEntrySetMenuEntryIconText <- function(entry, icon_pos, text) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetOverwriteMode <- function(entry, overwrite) {
-  .Call("R_gtk_entry_set_overwrite_mode", entry, overwrite)
+  invisible(.Call("R_gtk_entry_set_overwrite_mode", entry, overwrite))
 }
 
 
@@ -10208,7 +10208,7 @@ gtkEntrySetOverwriteMode <- function(entry, overwrite) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetPlaceholderText <- function(entry, text) {
-  .Call("R_gtk_entry_set_placeholder_text", entry, text)
+  invisible(.Call("R_gtk_entry_set_placeholder_text", entry, text))
 }
 
 
@@ -10220,7 +10220,7 @@ gtkEntrySetPlaceholderText <- function(entry, text) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetProgressFraction <- function(entry, fraction) {
-  .Call("R_gtk_entry_set_progress_fraction", entry, fraction)
+  invisible(.Call("R_gtk_entry_set_progress_fraction", entry, fraction))
 }
 
 
@@ -10232,7 +10232,7 @@ gtkEntrySetProgressFraction <- function(entry, fraction) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetProgressPulseStep <- function(entry, fraction) {
-  .Call("R_gtk_entry_set_progress_pulse_step", entry, fraction)
+  invisible(.Call("R_gtk_entry_set_progress_pulse_step", entry, fraction))
 }
 
 
@@ -10244,7 +10244,7 @@ gtkEntrySetProgressPulseStep <- function(entry, fraction) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetTabs <- function(entry, tabs) {
-  .Call("R_gtk_entry_set_tabs", entry, tabs)
+  invisible(.Call("R_gtk_entry_set_tabs", entry, tabs))
 }
 
 
@@ -10256,7 +10256,7 @@ gtkEntrySetTabs <- function(entry, tabs) {
 #' @return Return value from C function
 #' @export
 gtkEntrySetVisibility <- function(entry, visible) {
-  .Call("R_gtk_entry_set_visibility", entry, visible)
+  invisible(.Call("R_gtk_entry_set_visibility", entry, visible))
 }
 
 
@@ -10267,7 +10267,7 @@ gtkEntrySetVisibility <- function(entry, visible) {
 #' @return Return value from C function
 #' @export
 gtkEntryUnsetInvisibleChar <- function(entry) {
-  .Call("R_gtk_entry_unset_invisible_char", entry)
+  invisible(.Call("R_gtk_entry_unset_invisible_char", entry))
 }
 
 
@@ -10279,7 +10279,7 @@ gtkEntryUnsetInvisibleChar <- function(entry) {
 #' @return EntryBuffer
 #' @export
 gtkEntryBufferNew <- function(initial_chars, n_initial_chars) {
-  .Call("R_gtk_entry_buffer_new", initial_chars, n_initial_chars)$result
+  .Call("R_gtk_entry_buffer_new", initial_chars, as.integer(n_initial_chars))$result
 }
 
 
@@ -10292,7 +10292,7 @@ gtkEntryBufferNew <- function(initial_chars, n_initial_chars) {
 #' @return guint
 #' @export
 gtkEntryBufferDeleteText <- function(buffer, position, n_chars) {
-  .Call("R_gtk_entry_buffer_delete_text", buffer, position, n_chars)$result
+  .Call("R_gtk_entry_buffer_delete_text", buffer, as.integer(position), as.integer(n_chars))$result
 }
 
 
@@ -10305,7 +10305,7 @@ gtkEntryBufferDeleteText <- function(buffer, position, n_chars) {
 #' @return Return value from C function
 #' @export
 gtkEntryBufferEmitDeletedText <- function(buffer, position, n_chars) {
-  .Call("R_gtk_entry_buffer_emit_deleted_text", buffer, position, n_chars)
+  invisible(.Call("R_gtk_entry_buffer_emit_deleted_text", buffer, as.integer(position), as.integer(n_chars)))
 }
 
 
@@ -10319,7 +10319,7 @@ gtkEntryBufferEmitDeletedText <- function(buffer, position, n_chars) {
 #' @return Return value from C function
 #' @export
 gtkEntryBufferEmitInsertedText <- function(buffer, position, chars, n_chars) {
-  .Call("R_gtk_entry_buffer_emit_inserted_text", buffer, position, chars, n_chars)
+  invisible(.Call("R_gtk_entry_buffer_emit_inserted_text", buffer, as.integer(position), chars, as.integer(n_chars)))
 }
 
 
@@ -10377,7 +10377,7 @@ gtkEntryBufferGetText <- function(buffer) {
 #' @return guint
 #' @export
 gtkEntryBufferInsertText <- function(buffer, position, chars, n_chars) {
-  .Call("R_gtk_entry_buffer_insert_text", buffer, position, chars, n_chars)$result
+  .Call("R_gtk_entry_buffer_insert_text", buffer, as.integer(position), chars, as.integer(n_chars))$result
 }
 
 
@@ -10389,7 +10389,7 @@ gtkEntryBufferInsertText <- function(buffer, position, chars, n_chars) {
 #' @return Return value from C function
 #' @export
 gtkEntryBufferSetMaxLength <- function(buffer, max_length) {
-  .Call("R_gtk_entry_buffer_set_max_length", buffer, max_length)
+  invisible(.Call("R_gtk_entry_buffer_set_max_length", buffer, as.integer(max_length)))
 }
 
 
@@ -10402,7 +10402,7 @@ gtkEntryBufferSetMaxLength <- function(buffer, max_length) {
 #' @return Return value from C function
 #' @export
 gtkEntryBufferSetText <- function(buffer, chars, n_chars) {
-  .Call("R_gtk_entry_buffer_set_text", buffer, chars, n_chars)
+  invisible(.Call("R_gtk_entry_buffer_set_text", buffer, chars, as.integer(n_chars)))
 }
 
 
@@ -10434,7 +10434,7 @@ gtkEntryCompletionNewWithArea <- function(area) {
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionComplete <- function(completion) {
-  .Call("R_gtk_entry_completion_complete", completion)
+  invisible(.Call("R_gtk_entry_completion_complete", completion))
 }
 
 
@@ -10567,7 +10567,7 @@ gtkEntryCompletionGetTextColumn <- function(completion) {
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionInsertPrefix <- function(completion) {
-  .Call("R_gtk_entry_completion_insert_prefix", completion)
+  invisible(.Call("R_gtk_entry_completion_insert_prefix", completion))
 }
 
 
@@ -10579,7 +10579,7 @@ gtkEntryCompletionInsertPrefix <- function(completion) {
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetInlineCompletion <- function(completion, inline_completion) {
-  .Call("R_gtk_entry_completion_set_inline_completion", completion, inline_completion)
+  invisible(.Call("R_gtk_entry_completion_set_inline_completion", completion, inline_completion))
 }
 
 
@@ -10591,7 +10591,7 @@ gtkEntryCompletionSetInlineCompletion <- function(completion, inline_completion)
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetInlineSelection <- function(completion, inline_selection) {
-  .Call("R_gtk_entry_completion_set_inline_selection", completion, inline_selection)
+  invisible(.Call("R_gtk_entry_completion_set_inline_selection", completion, inline_selection))
 }
 
 
@@ -10603,7 +10603,7 @@ gtkEntryCompletionSetInlineSelection <- function(completion, inline_selection) {
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetMinimumKeyLength <- function(completion, length) {
-  .Call("R_gtk_entry_completion_set_minimum_key_length", completion, length)
+  invisible(.Call("R_gtk_entry_completion_set_minimum_key_length", completion, as.integer(length)))
 }
 
 
@@ -10615,7 +10615,7 @@ gtkEntryCompletionSetMinimumKeyLength <- function(completion, length) {
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetModel <- function(completion, model) {
-  .Call("R_gtk_entry_completion_set_model", completion, model)
+  invisible(.Call("R_gtk_entry_completion_set_model", completion, model))
 }
 
 
@@ -10627,7 +10627,7 @@ gtkEntryCompletionSetModel <- function(completion, model) {
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetPopupCompletion <- function(completion, popup_completion) {
-  .Call("R_gtk_entry_completion_set_popup_completion", completion, popup_completion)
+  invisible(.Call("R_gtk_entry_completion_set_popup_completion", completion, popup_completion))
 }
 
 
@@ -10639,7 +10639,7 @@ gtkEntryCompletionSetPopupCompletion <- function(completion, popup_completion) {
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetPopupSetWidth <- function(completion, popup_set_width) {
-  .Call("R_gtk_entry_completion_set_popup_set_width", completion, popup_set_width)
+  invisible(.Call("R_gtk_entry_completion_set_popup_set_width", completion, popup_set_width))
 }
 
 
@@ -10651,7 +10651,7 @@ gtkEntryCompletionSetPopupSetWidth <- function(completion, popup_set_width) {
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetPopupSingleMatch <- function(completion, popup_single_match) {
-  .Call("R_gtk_entry_completion_set_popup_single_match", completion, popup_single_match)
+  invisible(.Call("R_gtk_entry_completion_set_popup_single_match", completion, popup_single_match))
 }
 
 
@@ -10663,7 +10663,7 @@ gtkEntryCompletionSetPopupSingleMatch <- function(completion, popup_single_match
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetTextColumn <- function(completion, column) {
-  .Call("R_gtk_entry_completion_set_text_column", completion, column)
+  invisible(.Call("R_gtk_entry_completion_set_text_column", completion, as.integer(column)))
 }
 
 
@@ -10762,7 +10762,7 @@ gtkEventControllerGetWidget <- function(controller) {
 #' @return Return value from C function
 #' @export
 gtkEventControllerReset <- function(controller) {
-  .Call("R_gtk_event_controller_reset", controller)
+  invisible(.Call("R_gtk_event_controller_reset", controller))
 }
 
 
@@ -10774,7 +10774,7 @@ gtkEventControllerReset <- function(controller) {
 #' @return Return value from C function
 #' @export
 gtkEventControllerSetName <- function(controller, name) {
-  .Call("R_gtk_event_controller_set_name", controller, name)
+  invisible(.Call("R_gtk_event_controller_set_name", controller, name))
 }
 
 
@@ -10786,7 +10786,7 @@ gtkEventControllerSetName <- function(controller, name) {
 #' @return Return value from C function
 #' @export
 gtkEventControllerSetPropagationLimit <- function(controller, limit) {
-  .Call("R_gtk_event_controller_set_propagation_limit", controller, limit)
+  invisible(.Call("R_gtk_event_controller_set_propagation_limit", controller, limit))
 }
 
 
@@ -10798,7 +10798,7 @@ gtkEventControllerSetPropagationLimit <- function(controller, limit) {
 #' @return Return value from C function
 #' @export
 gtkEventControllerSetPropagationPhase <- function(controller, phase) {
-  .Call("R_gtk_event_controller_set_propagation_phase", controller, phase)
+  invisible(.Call("R_gtk_event_controller_set_propagation_phase", controller, phase))
 }
 
 
@@ -10810,7 +10810,7 @@ gtkEventControllerSetPropagationPhase <- function(controller, phase) {
 #' @return Return value from C function
 #' @export
 gtkEventControllerSetStaticName <- function(controller, name) {
-  .Call("R_gtk_event_controller_set_static_name", controller, name)
+  invisible(.Call("R_gtk_event_controller_set_static_name", controller, name))
 }
 
 
@@ -10898,7 +10898,7 @@ gtkEventControllerKeyGetImContext <- function(controller) {
 #' @return Return value from C function
 #' @export
 gtkEventControllerKeySetImContext <- function(controller, im_context) {
-  .Call("R_gtk_event_controller_key_set_im_context", controller, im_context)
+  invisible(.Call("R_gtk_event_controller_key_set_im_context", controller, im_context))
 }
 
 
@@ -10985,7 +10985,7 @@ gtkEventControllerScrollGetUnit <- function(scroll) {
 #' @return Return value from C function
 #' @export
 gtkEventControllerScrollSetFlags <- function(scroll, flags) {
-  .Call("R_gtk_event_controller_scroll_set_flags", scroll, flags)
+  invisible(.Call("R_gtk_event_controller_scroll_set_flags", scroll, flags))
 }
 
 
@@ -11106,7 +11106,7 @@ gtkExpanderGetUseUnderline <- function(expander) {
 #' @return Return value from C function
 #' @export
 gtkExpanderSetChild <- function(expander, child) {
-  .Call("R_gtk_expander_set_child", expander, child)
+  invisible(.Call("R_gtk_expander_set_child", expander, child))
 }
 
 
@@ -11118,7 +11118,7 @@ gtkExpanderSetChild <- function(expander, child) {
 #' @return Return value from C function
 #' @export
 gtkExpanderSetExpanded <- function(expander, expanded) {
-  .Call("R_gtk_expander_set_expanded", expander, expanded)
+  invisible(.Call("R_gtk_expander_set_expanded", expander, expanded))
 }
 
 
@@ -11130,7 +11130,7 @@ gtkExpanderSetExpanded <- function(expander, expanded) {
 #' @return Return value from C function
 #' @export
 gtkExpanderSetLabel <- function(expander, label) {
-  .Call("R_gtk_expander_set_label", expander, label)
+  invisible(.Call("R_gtk_expander_set_label", expander, label))
 }
 
 
@@ -11142,7 +11142,7 @@ gtkExpanderSetLabel <- function(expander, label) {
 #' @return Return value from C function
 #' @export
 gtkExpanderSetLabelWidget <- function(expander, label_widget) {
-  .Call("R_gtk_expander_set_label_widget", expander, label_widget)
+  invisible(.Call("R_gtk_expander_set_label_widget", expander, label_widget))
 }
 
 
@@ -11154,7 +11154,7 @@ gtkExpanderSetLabelWidget <- function(expander, label_widget) {
 #' @return Return value from C function
 #' @export
 gtkExpanderSetResizeToplevel <- function(expander, resize_toplevel) {
-  .Call("R_gtk_expander_set_resize_toplevel", expander, resize_toplevel)
+  invisible(.Call("R_gtk_expander_set_resize_toplevel", expander, resize_toplevel))
 }
 
 
@@ -11166,7 +11166,7 @@ gtkExpanderSetResizeToplevel <- function(expander, resize_toplevel) {
 #' @return Return value from C function
 #' @export
 gtkExpanderSetUseMarkup <- function(expander, use_markup) {
-  .Call("R_gtk_expander_set_use_markup", expander, use_markup)
+  invisible(.Call("R_gtk_expander_set_use_markup", expander, use_markup))
 }
 
 
@@ -11178,7 +11178,7 @@ gtkExpanderSetUseMarkup <- function(expander, use_markup) {
 #' @return Return value from C function
 #' @export
 gtkExpanderSetUseUnderline <- function(expander, use_underline) {
-  .Call("R_gtk_expander_set_use_underline", expander, use_underline)
+  invisible(.Call("R_gtk_expander_set_use_underline", expander, use_underline))
 }
 
 
@@ -11249,7 +11249,7 @@ gtkExpressionRef <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkExpressionUnref <- function(self) {
-  .Call("R_gtk_expression_unref", self)
+  invisible(.Call("R_gtk_expression_unref", self))
 }
 
 
@@ -11283,7 +11283,7 @@ gtkExpressionWatchRef <- function(watch) {
 #' @return Return value from C function
 #' @export
 gtkExpressionWatchUnref <- function(watch) {
-  .Call("R_gtk_expression_watch_unref", watch)
+  invisible(.Call("R_gtk_expression_watch_unref", watch))
 }
 
 
@@ -11294,7 +11294,7 @@ gtkExpressionWatchUnref <- function(watch) {
 #' @return Return value from C function
 #' @export
 gtkExpressionWatchUnwatch <- function(watch) {
-  .Call("R_gtk_expression_watch_unwatch", watch)
+  invisible(.Call("R_gtk_expression_watch_unwatch", watch))
 }
 
 
@@ -11309,7 +11309,7 @@ gtkExpressionWatchUnwatch <- function(watch) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserAddChoice <- function(chooser, id, label, options, option_labels) {
-  .Call("R_gtk_file_chooser_add_choice", chooser, id, label, options, option_labels)
+  invisible(.Call("R_gtk_file_chooser_add_choice", chooser, id, label, options, option_labels))
 }
 
 
@@ -11321,7 +11321,7 @@ gtkFileChooserAddChoice <- function(chooser, id, label, options, option_labels) 
 #' @return Return value from C function
 #' @export
 gtkFileChooserAddFilter <- function(chooser, filter) {
-  .Call("R_gtk_file_chooser_add_filter", chooser, filter)
+  invisible(.Call("R_gtk_file_chooser_add_filter", chooser, filter))
 }
 
 
@@ -11467,7 +11467,7 @@ gtkFileChooserGetShortcutFolders <- function(chooser) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserRemoveChoice <- function(chooser, id) {
-  .Call("R_gtk_file_chooser_remove_choice", chooser, id)
+  invisible(.Call("R_gtk_file_chooser_remove_choice", chooser, id))
 }
 
 
@@ -11479,7 +11479,7 @@ gtkFileChooserRemoveChoice <- function(chooser, id) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserRemoveFilter <- function(chooser, filter) {
-  .Call("R_gtk_file_chooser_remove_filter", chooser, filter)
+  invisible(.Call("R_gtk_file_chooser_remove_filter", chooser, filter))
 }
 
 
@@ -11503,7 +11503,7 @@ gtkFileChooserRemoveShortcutFolder <- function(chooser, folder) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserSetAction <- function(chooser, action) {
-  .Call("R_gtk_file_chooser_set_action", chooser, action)
+  invisible(.Call("R_gtk_file_chooser_set_action", chooser, action))
 }
 
 
@@ -11516,7 +11516,7 @@ gtkFileChooserSetAction <- function(chooser, action) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserSetChoice <- function(chooser, id, option) {
-  .Call("R_gtk_file_chooser_set_choice", chooser, id, option)
+  invisible(.Call("R_gtk_file_chooser_set_choice", chooser, id, option))
 }
 
 
@@ -11528,7 +11528,7 @@ gtkFileChooserSetChoice <- function(chooser, id, option) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserSetCreateFolders <- function(chooser, create_folders) {
-  .Call("R_gtk_file_chooser_set_create_folders", chooser, create_folders)
+  invisible(.Call("R_gtk_file_chooser_set_create_folders", chooser, create_folders))
 }
 
 
@@ -11552,7 +11552,7 @@ gtkFileChooserSetCurrentFolder <- function(chooser, file) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserSetCurrentName <- function(chooser, name) {
-  .Call("R_gtk_file_chooser_set_current_name", chooser, name)
+  invisible(.Call("R_gtk_file_chooser_set_current_name", chooser, name))
 }
 
 
@@ -11576,7 +11576,7 @@ gtkFileChooserSetFile <- function(chooser, file) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserSetFilter <- function(chooser, filter) {
-  .Call("R_gtk_file_chooser_set_filter", chooser, filter)
+  invisible(.Call("R_gtk_file_chooser_set_filter", chooser, filter))
 }
 
 
@@ -11588,7 +11588,7 @@ gtkFileChooserSetFilter <- function(chooser, filter) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserSetSelectMultiple <- function(chooser, select_multiple) {
-  .Call("R_gtk_file_chooser_set_select_multiple", chooser, select_multiple)
+  invisible(.Call("R_gtk_file_chooser_set_select_multiple", chooser, select_multiple))
 }
 
 
@@ -11647,7 +11647,7 @@ gtkFileChooserNativeGetCancelLabel <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserNativeSetAcceptLabel <- function(self, accept_label) {
-  .Call("R_gtk_file_chooser_native_set_accept_label", self, accept_label)
+  invisible(.Call("R_gtk_file_chooser_native_set_accept_label", self, accept_label))
 }
 
 
@@ -11659,7 +11659,7 @@ gtkFileChooserNativeSetAcceptLabel <- function(self, accept_label) {
 #' @return Return value from C function
 #' @export
 gtkFileChooserNativeSetCancelLabel <- function(self, cancel_label) {
-  .Call("R_gtk_file_chooser_native_set_cancel_label", self, cancel_label)
+  invisible(.Call("R_gtk_file_chooser_native_set_cancel_label", self, cancel_label))
 }
 
 
@@ -11876,7 +11876,7 @@ gtkFileDialogSelectMultipleFoldersFinish <- function(self, result) {
 #' @return Return value from C function
 #' @export
 gtkFileDialogSetAcceptLabel <- function(self, accept_label) {
-  .Call("R_gtk_file_dialog_set_accept_label", self, accept_label)
+  invisible(.Call("R_gtk_file_dialog_set_accept_label", self, accept_label))
 }
 
 
@@ -11888,7 +11888,7 @@ gtkFileDialogSetAcceptLabel <- function(self, accept_label) {
 #' @return Return value from C function
 #' @export
 gtkFileDialogSetDefaultFilter <- function(self, filter) {
-  .Call("R_gtk_file_dialog_set_default_filter", self, filter)
+  invisible(.Call("R_gtk_file_dialog_set_default_filter", self, filter))
 }
 
 
@@ -11900,7 +11900,7 @@ gtkFileDialogSetDefaultFilter <- function(self, filter) {
 #' @return Return value from C function
 #' @export
 gtkFileDialogSetFilters <- function(self, filters) {
-  .Call("R_gtk_file_dialog_set_filters", self, filters)
+  invisible(.Call("R_gtk_file_dialog_set_filters", self, filters))
 }
 
 
@@ -11912,7 +11912,7 @@ gtkFileDialogSetFilters <- function(self, filters) {
 #' @return Return value from C function
 #' @export
 gtkFileDialogSetInitialFile <- function(self, file) {
-  .Call("R_gtk_file_dialog_set_initial_file", self, file)
+  invisible(.Call("R_gtk_file_dialog_set_initial_file", self, file))
 }
 
 
@@ -11924,7 +11924,7 @@ gtkFileDialogSetInitialFile <- function(self, file) {
 #' @return Return value from C function
 #' @export
 gtkFileDialogSetInitialFolder <- function(self, folder) {
-  .Call("R_gtk_file_dialog_set_initial_folder", self, folder)
+  invisible(.Call("R_gtk_file_dialog_set_initial_folder", self, folder))
 }
 
 
@@ -11936,7 +11936,7 @@ gtkFileDialogSetInitialFolder <- function(self, folder) {
 #' @return Return value from C function
 #' @export
 gtkFileDialogSetInitialName <- function(self, name) {
-  .Call("R_gtk_file_dialog_set_initial_name", self, name)
+  invisible(.Call("R_gtk_file_dialog_set_initial_name", self, name))
 }
 
 
@@ -11948,7 +11948,7 @@ gtkFileDialogSetInitialName <- function(self, name) {
 #' @return Return value from C function
 #' @export
 gtkFileDialogSetModal <- function(self, modal) {
-  .Call("R_gtk_file_dialog_set_modal", self, modal)
+  invisible(.Call("R_gtk_file_dialog_set_modal", self, modal))
 }
 
 
@@ -11960,7 +11960,7 @@ gtkFileDialogSetModal <- function(self, modal) {
 #' @return Return value from C function
 #' @export
 gtkFileDialogSetTitle <- function(self, title) {
-  .Call("R_gtk_file_dialog_set_title", self, title)
+  invisible(.Call("R_gtk_file_dialog_set_title", self, title))
 }
 
 
@@ -11993,7 +11993,7 @@ gtkFileFilterNewFromGvariant <- function(variant) {
 #' @return Return value from C function
 #' @export
 gtkFileFilterAddMimeType <- function(filter, mime_type) {
-  .Call("R_gtk_file_filter_add_mime_type", filter, mime_type)
+  invisible(.Call("R_gtk_file_filter_add_mime_type", filter, mime_type))
 }
 
 
@@ -12005,7 +12005,7 @@ gtkFileFilterAddMimeType <- function(filter, mime_type) {
 #' @return Return value from C function
 #' @export
 gtkFileFilterAddMimeTypes <- function(filter, mime_types) {
-  .Call("R_gtk_file_filter_add_mime_types", filter, mime_types)
+  invisible(.Call("R_gtk_file_filter_add_mime_types", filter, mime_types))
 }
 
 
@@ -12017,7 +12017,7 @@ gtkFileFilterAddMimeTypes <- function(filter, mime_types) {
 #' @return Return value from C function
 #' @export
 gtkFileFilterAddPattern <- function(filter, pattern) {
-  .Call("R_gtk_file_filter_add_pattern", filter, pattern)
+  invisible(.Call("R_gtk_file_filter_add_pattern", filter, pattern))
 }
 
 
@@ -12028,7 +12028,7 @@ gtkFileFilterAddPattern <- function(filter, pattern) {
 #' @return Return value from C function
 #' @export
 gtkFileFilterAddPixbufFormats <- function(filter) {
-  .Call("R_gtk_file_filter_add_pixbuf_formats", filter)
+  invisible(.Call("R_gtk_file_filter_add_pixbuf_formats", filter))
 }
 
 
@@ -12040,7 +12040,7 @@ gtkFileFilterAddPixbufFormats <- function(filter) {
 #' @return Return value from C function
 #' @export
 gtkFileFilterAddSuffix <- function(filter, suffix) {
-  .Call("R_gtk_file_filter_add_suffix", filter, suffix)
+  invisible(.Call("R_gtk_file_filter_add_suffix", filter, suffix))
 }
 
 
@@ -12074,7 +12074,7 @@ gtkFileFilterGetName <- function(filter) {
 #' @return Return value from C function
 #' @export
 gtkFileFilterSetName <- function(filter, name) {
-  .Call("R_gtk_file_filter_set_name", filter, name)
+  invisible(.Call("R_gtk_file_filter_set_name", filter, name))
 }
 
 
@@ -12165,7 +12165,7 @@ gtkFileLauncherOpenContainingFolderFinish <- function(self, result) {
 #' @return Return value from C function
 #' @export
 gtkFileLauncherSetAlwaysAsk <- function(self, always_ask) {
-  .Call("R_gtk_file_launcher_set_always_ask", self, always_ask)
+  invisible(.Call("R_gtk_file_launcher_set_always_ask", self, always_ask))
 }
 
 
@@ -12177,7 +12177,7 @@ gtkFileLauncherSetAlwaysAsk <- function(self, always_ask) {
 #' @return Return value from C function
 #' @export
 gtkFileLauncherSetFile <- function(self, file) {
-  .Call("R_gtk_file_launcher_set_file", self, file)
+  invisible(.Call("R_gtk_file_launcher_set_file", self, file))
 }
 
 
@@ -12189,7 +12189,7 @@ gtkFileLauncherSetFile <- function(self, file) {
 #' @return Return value from C function
 #' @export
 gtkFileLauncherSetWritable <- function(self, writable) {
-  .Call("R_gtk_file_launcher_set_writable", self, writable)
+  invisible(.Call("R_gtk_file_launcher_set_writable", self, writable))
 }
 
 
@@ -12201,7 +12201,7 @@ gtkFileLauncherSetWritable <- function(self, writable) {
 #' @return Return value from C function
 #' @export
 gtkFilterChanged <- function(self, change) {
-  .Call("R_gtk_filter_changed", self, change)
+  invisible(.Call("R_gtk_filter_changed", self, change))
 }
 
 
@@ -12303,7 +12303,7 @@ gtkFilterListModelGetWatchItems <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkFilterListModelSetFilter <- function(self, filter) {
-  .Call("R_gtk_filter_list_model_set_filter", self, filter)
+  invisible(.Call("R_gtk_filter_list_model_set_filter", self, filter))
 }
 
 
@@ -12315,7 +12315,7 @@ gtkFilterListModelSetFilter <- function(self, filter) {
 #' @return Return value from C function
 #' @export
 gtkFilterListModelSetIncremental <- function(self, incremental) {
-  .Call("R_gtk_filter_list_model_set_incremental", self, incremental)
+  invisible(.Call("R_gtk_filter_list_model_set_incremental", self, incremental))
 }
 
 
@@ -12327,7 +12327,7 @@ gtkFilterListModelSetIncremental <- function(self, incremental) {
 #' @return Return value from C function
 #' @export
 gtkFilterListModelSetModel <- function(self, model) {
-  .Call("R_gtk_filter_list_model_set_model", self, model)
+  invisible(.Call("R_gtk_filter_list_model_set_model", self, model))
 }
 
 
@@ -12339,7 +12339,7 @@ gtkFilterListModelSetModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkFilterListModelSetWatchItems <- function(self, watch_items) {
-  .Call("R_gtk_filter_list_model_set_watch_items", self, watch_items)
+  invisible(.Call("R_gtk_filter_list_model_set_watch_items", self, watch_items))
 }
 
 
@@ -12387,7 +12387,7 @@ gtkFixedGetChildTransform <- function(fixed, widget) {
 #' @return Return value from C function
 #' @export
 gtkFixedMove <- function(fixed, widget, x, y) {
-  .Call("R_gtk_fixed_move", fixed, widget, x, y)
+  invisible(.Call("R_gtk_fixed_move", fixed, widget, x, y))
 }
 
 
@@ -12401,7 +12401,7 @@ gtkFixedMove <- function(fixed, widget, x, y) {
 #' @return Return value from C function
 #' @export
 gtkFixedPut <- function(fixed, widget, x, y) {
-  .Call("R_gtk_fixed_put", fixed, widget, x, y)
+  invisible(.Call("R_gtk_fixed_put", fixed, widget, x, y))
 }
 
 
@@ -12413,7 +12413,7 @@ gtkFixedPut <- function(fixed, widget, x, y) {
 #' @return Return value from C function
 #' @export
 gtkFixedRemove <- function(fixed, widget) {
-  .Call("R_gtk_fixed_remove", fixed, widget)
+  invisible(.Call("R_gtk_fixed_remove", fixed, widget))
 }
 
 
@@ -12426,7 +12426,7 @@ gtkFixedRemove <- function(fixed, widget) {
 #' @return Return value from C function
 #' @export
 gtkFixedSetChildTransform <- function(fixed, widget, transform) {
-  .Call("R_gtk_fixed_set_child_transform", fixed, widget, transform)
+  invisible(.Call("R_gtk_fixed_set_child_transform", fixed, widget, transform))
 }
 
 
@@ -12459,7 +12459,7 @@ gtkFixedLayoutChildGetTransform <- function(child) {
 #' @return Return value from C function
 #' @export
 gtkFixedLayoutChildSetTransform <- function(child, transform) {
-  .Call("R_gtk_fixed_layout_child_set_transform", child, transform)
+  invisible(.Call("R_gtk_fixed_layout_child_set_transform", child, transform))
 }
 
 
@@ -12493,7 +12493,7 @@ gtkFlattenListModelGetModel <- function(self) {
 #' @return Gio.ListModel
 #' @export
 gtkFlattenListModelGetModelForItem <- function(self, position) {
-  .Call("R_gtk_flatten_list_model_get_model_for_item", self, position)$result
+  .Call("R_gtk_flatten_list_model_get_model_for_item", self, as.integer(position))$result
 }
 
 
@@ -12505,7 +12505,7 @@ gtkFlattenListModelGetModelForItem <- function(self, position) {
 #' @return Return value from C function
 #' @export
 gtkFlattenListModelSetModel <- function(self, model) {
-  .Call("R_gtk_flatten_list_model_set_model", self, model)
+  invisible(.Call("R_gtk_flatten_list_model_set_model", self, model))
 }
 
 
@@ -12527,7 +12527,7 @@ gtkFlowBoxNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxAppend <- function(self, child) {
-  .Call("R_gtk_flow_box_append", self, child)
+  invisible(.Call("R_gtk_flow_box_append", self, child))
 }
 
 
@@ -12550,7 +12550,7 @@ gtkFlowBoxGetActivateOnSingleClick <- function(box) {
 #' @return FlowBoxChild
 #' @export
 gtkFlowBoxGetChildAtIndex <- function(box, idx) {
-  .Call("R_gtk_flow_box_get_child_at_index", box, idx)$result
+  .Call("R_gtk_flow_box_get_child_at_index", box, as.integer(idx))$result
 }
 
 
@@ -12563,7 +12563,7 @@ gtkFlowBoxGetChildAtIndex <- function(box, idx) {
 #' @return FlowBoxChild
 #' @export
 gtkFlowBoxGetChildAtPos <- function(box, x, y) {
-  .Call("R_gtk_flow_box_get_child_at_pos", box, x, y)$result
+  .Call("R_gtk_flow_box_get_child_at_pos", box, as.integer(x), as.integer(y))$result
 }
 
 
@@ -12653,7 +12653,7 @@ gtkFlowBoxGetSelectionMode <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxInsert <- function(box, widget, position) {
-  .Call("R_gtk_flow_box_insert", box, widget, position)
+  invisible(.Call("R_gtk_flow_box_insert", box, widget, as.integer(position)))
 }
 
 
@@ -12664,7 +12664,7 @@ gtkFlowBoxInsert <- function(box, widget, position) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxInvalidateFilter <- function(box) {
-  .Call("R_gtk_flow_box_invalidate_filter", box)
+  invisible(.Call("R_gtk_flow_box_invalidate_filter", box))
 }
 
 
@@ -12675,7 +12675,7 @@ gtkFlowBoxInvalidateFilter <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxInvalidateSort <- function(box) {
-  .Call("R_gtk_flow_box_invalidate_sort", box)
+  invisible(.Call("R_gtk_flow_box_invalidate_sort", box))
 }
 
 
@@ -12687,7 +12687,7 @@ gtkFlowBoxInvalidateSort <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxPrepend <- function(self, child) {
-  .Call("R_gtk_flow_box_prepend", self, child)
+  invisible(.Call("R_gtk_flow_box_prepend", self, child))
 }
 
 
@@ -12699,7 +12699,7 @@ gtkFlowBoxPrepend <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxRemove <- function(box, widget) {
-  .Call("R_gtk_flow_box_remove", box, widget)
+  invisible(.Call("R_gtk_flow_box_remove", box, widget))
 }
 
 
@@ -12710,7 +12710,7 @@ gtkFlowBoxRemove <- function(box, widget) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxRemoveAll <- function(box) {
-  .Call("R_gtk_flow_box_remove_all", box)
+  invisible(.Call("R_gtk_flow_box_remove_all", box))
 }
 
 
@@ -12721,7 +12721,7 @@ gtkFlowBoxRemoveAll <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSelectAll <- function(box) {
-  .Call("R_gtk_flow_box_select_all", box)
+  invisible(.Call("R_gtk_flow_box_select_all", box))
 }
 
 
@@ -12733,7 +12733,7 @@ gtkFlowBoxSelectAll <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSelectChild <- function(box, child) {
-  .Call("R_gtk_flow_box_select_child", box, child)
+  invisible(.Call("R_gtk_flow_box_select_child", box, child))
 }
 
 
@@ -12745,7 +12745,7 @@ gtkFlowBoxSelectChild <- function(box, child) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetActivateOnSingleClick <- function(box, single) {
-  .Call("R_gtk_flow_box_set_activate_on_single_click", box, single)
+  invisible(.Call("R_gtk_flow_box_set_activate_on_single_click", box, single))
 }
 
 
@@ -12757,7 +12757,7 @@ gtkFlowBoxSetActivateOnSingleClick <- function(box, single) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetColumnSpacing <- function(box, spacing) {
-  .Call("R_gtk_flow_box_set_column_spacing", box, spacing)
+  invisible(.Call("R_gtk_flow_box_set_column_spacing", box, as.integer(spacing)))
 }
 
 
@@ -12769,7 +12769,7 @@ gtkFlowBoxSetColumnSpacing <- function(box, spacing) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetHadjustment <- function(box, adjustment) {
-  .Call("R_gtk_flow_box_set_hadjustment", box, adjustment)
+  invisible(.Call("R_gtk_flow_box_set_hadjustment", box, adjustment))
 }
 
 
@@ -12781,7 +12781,7 @@ gtkFlowBoxSetHadjustment <- function(box, adjustment) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetHomogeneous <- function(box, homogeneous) {
-  .Call("R_gtk_flow_box_set_homogeneous", box, homogeneous)
+  invisible(.Call("R_gtk_flow_box_set_homogeneous", box, homogeneous))
 }
 
 
@@ -12793,7 +12793,7 @@ gtkFlowBoxSetHomogeneous <- function(box, homogeneous) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetMaxChildrenPerLine <- function(box, n_children) {
-  .Call("R_gtk_flow_box_set_max_children_per_line", box, n_children)
+  invisible(.Call("R_gtk_flow_box_set_max_children_per_line", box, as.integer(n_children)))
 }
 
 
@@ -12805,7 +12805,7 @@ gtkFlowBoxSetMaxChildrenPerLine <- function(box, n_children) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetMinChildrenPerLine <- function(box, n_children) {
-  .Call("R_gtk_flow_box_set_min_children_per_line", box, n_children)
+  invisible(.Call("R_gtk_flow_box_set_min_children_per_line", box, as.integer(n_children)))
 }
 
 
@@ -12817,7 +12817,7 @@ gtkFlowBoxSetMinChildrenPerLine <- function(box, n_children) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetRowSpacing <- function(box, spacing) {
-  .Call("R_gtk_flow_box_set_row_spacing", box, spacing)
+  invisible(.Call("R_gtk_flow_box_set_row_spacing", box, as.integer(spacing)))
 }
 
 
@@ -12829,7 +12829,7 @@ gtkFlowBoxSetRowSpacing <- function(box, spacing) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetSelectionMode <- function(box, mode) {
-  .Call("R_gtk_flow_box_set_selection_mode", box, mode)
+  invisible(.Call("R_gtk_flow_box_set_selection_mode", box, mode))
 }
 
 
@@ -12841,7 +12841,7 @@ gtkFlowBoxSetSelectionMode <- function(box, mode) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetVadjustment <- function(box, adjustment) {
-  .Call("R_gtk_flow_box_set_vadjustment", box, adjustment)
+  invisible(.Call("R_gtk_flow_box_set_vadjustment", box, adjustment))
 }
 
 
@@ -12852,7 +12852,7 @@ gtkFlowBoxSetVadjustment <- function(box, adjustment) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxUnselectAll <- function(box) {
-  .Call("R_gtk_flow_box_unselect_all", box)
+  invisible(.Call("R_gtk_flow_box_unselect_all", box))
 }
 
 
@@ -12864,7 +12864,7 @@ gtkFlowBoxUnselectAll <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxUnselectChild <- function(box, child) {
-  .Call("R_gtk_flow_box_unselect_child", box, child)
+  invisible(.Call("R_gtk_flow_box_unselect_child", box, child))
 }
 
 
@@ -12885,7 +12885,7 @@ gtkFlowBoxChildNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxChildChanged <- function(child) {
-  .Call("R_gtk_flow_box_child_changed", child)
+  invisible(.Call("R_gtk_flow_box_child_changed", child))
 }
 
 
@@ -12930,7 +12930,7 @@ gtkFlowBoxChildIsSelected <- function(child) {
 #' @return Return value from C function
 #' @export
 gtkFlowBoxChildSetChild <- function(self, child) {
-  .Call("R_gtk_flow_box_child_set_child", self, child)
+  invisible(.Call("R_gtk_flow_box_child_set_child", self, child))
 }
 
 
@@ -13007,7 +13007,7 @@ gtkFontButtonGetUseSize <- function(font_button) {
 #' @return Return value from C function
 #' @export
 gtkFontButtonSetModal <- function(font_button, modal) {
-  .Call("R_gtk_font_button_set_modal", font_button, modal)
+  invisible(.Call("R_gtk_font_button_set_modal", font_button, modal))
 }
 
 
@@ -13019,7 +13019,7 @@ gtkFontButtonSetModal <- function(font_button, modal) {
 #' @return Return value from C function
 #' @export
 gtkFontButtonSetTitle <- function(font_button, title) {
-  .Call("R_gtk_font_button_set_title", font_button, title)
+  invisible(.Call("R_gtk_font_button_set_title", font_button, title))
 }
 
 
@@ -13031,7 +13031,7 @@ gtkFontButtonSetTitle <- function(font_button, title) {
 #' @return Return value from C function
 #' @export
 gtkFontButtonSetUseFont <- function(font_button, use_font) {
-  .Call("R_gtk_font_button_set_use_font", font_button, use_font)
+  invisible(.Call("R_gtk_font_button_set_use_font", font_button, use_font))
 }
 
 
@@ -13043,7 +13043,7 @@ gtkFontButtonSetUseFont <- function(font_button, use_font) {
 #' @return Return value from C function
 #' @export
 gtkFontButtonSetUseSize <- function(font_button, use_size) {
-  .Call("R_gtk_font_button_set_use_size", font_button, use_size)
+  invisible(.Call("R_gtk_font_button_set_use_size", font_button, use_size))
 }
 
 
@@ -13176,7 +13176,7 @@ gtkFontChooserGetShowPreviewEntry <- function(fontchooser) {
 #' @return Return value from C function
 #' @export
 gtkFontChooserSetFont <- function(fontchooser, fontname) {
-  .Call("R_gtk_font_chooser_set_font", fontchooser, fontname)
+  invisible(.Call("R_gtk_font_chooser_set_font", fontchooser, fontname))
 }
 
 
@@ -13188,7 +13188,7 @@ gtkFontChooserSetFont <- function(fontchooser, fontname) {
 #' @return Return value from C function
 #' @export
 gtkFontChooserSetFontDesc <- function(fontchooser, font_desc) {
-  .Call("R_gtk_font_chooser_set_font_desc", fontchooser, font_desc)
+  invisible(.Call("R_gtk_font_chooser_set_font_desc", fontchooser, font_desc))
 }
 
 
@@ -13200,7 +13200,7 @@ gtkFontChooserSetFontDesc <- function(fontchooser, font_desc) {
 #' @return Return value from C function
 #' @export
 gtkFontChooserSetFontMap <- function(fontchooser, fontmap) {
-  .Call("R_gtk_font_chooser_set_font_map", fontchooser, fontmap)
+  invisible(.Call("R_gtk_font_chooser_set_font_map", fontchooser, fontmap))
 }
 
 
@@ -13212,7 +13212,7 @@ gtkFontChooserSetFontMap <- function(fontchooser, fontmap) {
 #' @return Return value from C function
 #' @export
 gtkFontChooserSetLanguage <- function(fontchooser, language) {
-  .Call("R_gtk_font_chooser_set_language", fontchooser, language)
+  invisible(.Call("R_gtk_font_chooser_set_language", fontchooser, language))
 }
 
 
@@ -13224,7 +13224,7 @@ gtkFontChooserSetLanguage <- function(fontchooser, language) {
 #' @return Return value from C function
 #' @export
 gtkFontChooserSetLevel <- function(fontchooser, level) {
-  .Call("R_gtk_font_chooser_set_level", fontchooser, level)
+  invisible(.Call("R_gtk_font_chooser_set_level", fontchooser, level))
 }
 
 
@@ -13236,7 +13236,7 @@ gtkFontChooserSetLevel <- function(fontchooser, level) {
 #' @return Return value from C function
 #' @export
 gtkFontChooserSetPreviewText <- function(fontchooser, text) {
-  .Call("R_gtk_font_chooser_set_preview_text", fontchooser, text)
+  invisible(.Call("R_gtk_font_chooser_set_preview_text", fontchooser, text))
 }
 
 
@@ -13248,7 +13248,7 @@ gtkFontChooserSetPreviewText <- function(fontchooser, text) {
 #' @return Return value from C function
 #' @export
 gtkFontChooserSetShowPreviewEntry <- function(fontchooser, show_preview_entry) {
-  .Call("R_gtk_font_chooser_set_show_preview_entry", fontchooser, show_preview_entry)
+  invisible(.Call("R_gtk_font_chooser_set_show_preview_entry", fontchooser, show_preview_entry))
 }
 
 
@@ -13395,7 +13395,7 @@ gtkFontDialogGetTitle <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogSetFilter <- function(self, filter) {
-  .Call("R_gtk_font_dialog_set_filter", self, filter)
+  invisible(.Call("R_gtk_font_dialog_set_filter", self, filter))
 }
 
 
@@ -13407,7 +13407,7 @@ gtkFontDialogSetFilter <- function(self, filter) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogSetFontMap <- function(self, fontmap) {
-  .Call("R_gtk_font_dialog_set_font_map", self, fontmap)
+  invisible(.Call("R_gtk_font_dialog_set_font_map", self, fontmap))
 }
 
 
@@ -13419,7 +13419,7 @@ gtkFontDialogSetFontMap <- function(self, fontmap) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogSetLanguage <- function(self, language) {
-  .Call("R_gtk_font_dialog_set_language", self, language)
+  invisible(.Call("R_gtk_font_dialog_set_language", self, language))
 }
 
 
@@ -13431,7 +13431,7 @@ gtkFontDialogSetLanguage <- function(self, language) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogSetModal <- function(self, modal) {
-  .Call("R_gtk_font_dialog_set_modal", self, modal)
+  invisible(.Call("R_gtk_font_dialog_set_modal", self, modal))
 }
 
 
@@ -13443,7 +13443,7 @@ gtkFontDialogSetModal <- function(self, modal) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogSetTitle <- function(self, title) {
-  .Call("R_gtk_font_dialog_set_title", self, title)
+  invisible(.Call("R_gtk_font_dialog_set_title", self, title))
 }
 
 
@@ -13543,7 +13543,7 @@ gtkFontDialogButtonGetUseSize <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogButtonSetDialog <- function(self, dialog) {
-  .Call("R_gtk_font_dialog_button_set_dialog", self, dialog)
+  invisible(.Call("R_gtk_font_dialog_button_set_dialog", self, dialog))
 }
 
 
@@ -13555,7 +13555,7 @@ gtkFontDialogButtonSetDialog <- function(self, dialog) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogButtonSetFontDesc <- function(self, font_desc) {
-  .Call("R_gtk_font_dialog_button_set_font_desc", self, font_desc)
+  invisible(.Call("R_gtk_font_dialog_button_set_font_desc", self, font_desc))
 }
 
 
@@ -13567,7 +13567,7 @@ gtkFontDialogButtonSetFontDesc <- function(self, font_desc) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogButtonSetFontFeatures <- function(self, font_features) {
-  .Call("R_gtk_font_dialog_button_set_font_features", self, font_features)
+  invisible(.Call("R_gtk_font_dialog_button_set_font_features", self, font_features))
 }
 
 
@@ -13579,7 +13579,7 @@ gtkFontDialogButtonSetFontFeatures <- function(self, font_features) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogButtonSetLanguage <- function(self, language) {
-  .Call("R_gtk_font_dialog_button_set_language", self, language)
+  invisible(.Call("R_gtk_font_dialog_button_set_language", self, language))
 }
 
 
@@ -13591,7 +13591,7 @@ gtkFontDialogButtonSetLanguage <- function(self, language) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogButtonSetLevel <- function(self, level) {
-  .Call("R_gtk_font_dialog_button_set_level", self, level)
+  invisible(.Call("R_gtk_font_dialog_button_set_level", self, level))
 }
 
 
@@ -13603,7 +13603,7 @@ gtkFontDialogButtonSetLevel <- function(self, level) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogButtonSetUseFont <- function(self, use_font) {
-  .Call("R_gtk_font_dialog_button_set_use_font", self, use_font)
+  invisible(.Call("R_gtk_font_dialog_button_set_use_font", self, use_font))
 }
 
 
@@ -13615,7 +13615,7 @@ gtkFontDialogButtonSetUseFont <- function(self, use_font) {
 #' @return Return value from C function
 #' @export
 gtkFontDialogButtonSetUseSize <- function(self, use_size) {
-  .Call("R_gtk_font_dialog_button_set_use_size", self, use_size)
+  invisible(.Call("R_gtk_font_dialog_button_set_use_size", self, use_size))
 }
 
 
@@ -13682,7 +13682,7 @@ gtkFrameGetLabelWidget <- function(frame) {
 #' @return Return value from C function
 #' @export
 gtkFrameSetChild <- function(frame, child) {
-  .Call("R_gtk_frame_set_child", frame, child)
+  invisible(.Call("R_gtk_frame_set_child", frame, child))
 }
 
 
@@ -13694,7 +13694,7 @@ gtkFrameSetChild <- function(frame, child) {
 #' @return Return value from C function
 #' @export
 gtkFrameSetLabel <- function(frame, label) {
-  .Call("R_gtk_frame_set_label", frame, label)
+  invisible(.Call("R_gtk_frame_set_label", frame, label))
 }
 
 
@@ -13706,7 +13706,7 @@ gtkFrameSetLabel <- function(frame, label) {
 #' @return Return value from C function
 #' @export
 gtkFrameSetLabelAlign <- function(frame, xalign) {
-  .Call("R_gtk_frame_set_label_align", frame, xalign)
+  invisible(.Call("R_gtk_frame_set_label_align", frame, xalign))
 }
 
 
@@ -13718,7 +13718,7 @@ gtkFrameSetLabelAlign <- function(frame, xalign) {
 #' @return Return value from C function
 #' @export
 gtkFrameSetLabelWidget <- function(frame, label_widget) {
-  .Call("R_gtk_frame_set_label_widget", frame, label_widget)
+  invisible(.Call("R_gtk_frame_set_label_widget", frame, label_widget))
 }
 
 
@@ -13739,7 +13739,7 @@ gtkGlAreaNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkGlAreaAttachBuffers <- function(area) {
-  .Call("R_gtk_gl_area_attach_buffers", area)
+  invisible(.Call("R_gtk_gl_area_attach_buffers", area))
 }
 
 
@@ -13849,7 +13849,7 @@ gtkGlAreaGetUseEs <- function(area) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaMakeCurrent <- function(area) {
-  .Call("R_gtk_gl_area_make_current", area)
+  invisible(.Call("R_gtk_gl_area_make_current", area))
 }
 
 
@@ -13860,7 +13860,7 @@ gtkGlAreaMakeCurrent <- function(area) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaQueueRender <- function(area) {
-  .Call("R_gtk_gl_area_queue_render", area)
+  invisible(.Call("R_gtk_gl_area_queue_render", area))
 }
 
 
@@ -13872,7 +13872,7 @@ gtkGlAreaQueueRender <- function(area) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaSetAllowedApis <- function(area, apis) {
-  .Call("R_gtk_gl_area_set_allowed_apis", area, apis)
+  invisible(.Call("R_gtk_gl_area_set_allowed_apis", area, apis))
 }
 
 
@@ -13884,7 +13884,7 @@ gtkGlAreaSetAllowedApis <- function(area, apis) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaSetAutoRender <- function(area, auto_render) {
-  .Call("R_gtk_gl_area_set_auto_render", area, auto_render)
+  invisible(.Call("R_gtk_gl_area_set_auto_render", area, auto_render))
 }
 
 
@@ -13896,7 +13896,7 @@ gtkGlAreaSetAutoRender <- function(area, auto_render) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaSetError <- function(area, error) {
-  .Call("R_gtk_gl_area_set_error", area, error)
+  invisible(.Call("R_gtk_gl_area_set_error", area, error))
 }
 
 
@@ -13908,7 +13908,7 @@ gtkGlAreaSetError <- function(area, error) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaSetHasDepthBuffer <- function(area, has_depth_buffer) {
-  .Call("R_gtk_gl_area_set_has_depth_buffer", area, has_depth_buffer)
+  invisible(.Call("R_gtk_gl_area_set_has_depth_buffer", area, has_depth_buffer))
 }
 
 
@@ -13920,7 +13920,7 @@ gtkGlAreaSetHasDepthBuffer <- function(area, has_depth_buffer) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaSetHasStencilBuffer <- function(area, has_stencil_buffer) {
-  .Call("R_gtk_gl_area_set_has_stencil_buffer", area, has_stencil_buffer)
+  invisible(.Call("R_gtk_gl_area_set_has_stencil_buffer", area, has_stencil_buffer))
 }
 
 
@@ -13933,7 +13933,7 @@ gtkGlAreaSetHasStencilBuffer <- function(area, has_stencil_buffer) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaSetRequiredVersion <- function(area, major, minor) {
-  .Call("R_gtk_gl_area_set_required_version", area, major, minor)
+  invisible(.Call("R_gtk_gl_area_set_required_version", area, as.integer(major), as.integer(minor)))
 }
 
 
@@ -13945,7 +13945,7 @@ gtkGlAreaSetRequiredVersion <- function(area, major, minor) {
 #' @return Return value from C function
 #' @export
 gtkGlAreaSetUseEs <- function(area, use_es) {
-  .Call("R_gtk_gl_area_set_use_es", area, use_es)
+  invisible(.Call("R_gtk_gl_area_set_use_es", area, use_es))
 }
 
 
@@ -14059,7 +14059,7 @@ gtkGestureGetSequences <- function(gesture) {
 #' @return Return value from C function
 #' @export
 gtkGestureGroup <- function(group_gesture, gesture) {
-  .Call("R_gtk_gesture_group", group_gesture, gesture)
+  invisible(.Call("R_gtk_gesture_group", group_gesture, gesture))
 }
 
 
@@ -14141,7 +14141,7 @@ gtkGestureSetState <- function(gesture, state) {
 #' @return Return value from C function
 #' @export
 gtkGestureUngroup <- function(gesture) {
-  .Call("R_gtk_gesture_ungroup", gesture)
+  invisible(.Call("R_gtk_gesture_ungroup", gesture))
 }
 
 
@@ -14216,7 +14216,7 @@ gtkGestureLongPressGetDelayFactor <- function(gesture) {
 #' @return Return value from C function
 #' @export
 gtkGestureLongPressSetDelayFactor <- function(gesture, delay_factor) {
-  .Call("R_gtk_gesture_long_press_set_delay_factor", gesture, delay_factor)
+  invisible(.Call("R_gtk_gesture_long_press_set_delay_factor", gesture, delay_factor))
 }
 
 
@@ -14250,7 +14250,7 @@ gtkGesturePanGetOrientation <- function(gesture) {
 #' @return Return value from C function
 #' @export
 gtkGesturePanSetOrientation <- function(gesture, orientation) {
-  .Call("R_gtk_gesture_pan_set_orientation", gesture, orientation)
+  invisible(.Call("R_gtk_gesture_pan_set_orientation", gesture, orientation))
 }
 
 
@@ -14338,7 +14338,7 @@ gtkGestureSingleGetTouchOnly <- function(gesture) {
 #' @return Return value from C function
 #' @export
 gtkGestureSingleSetButton <- function(gesture, button) {
-  .Call("R_gtk_gesture_single_set_button", gesture, button)
+  invisible(.Call("R_gtk_gesture_single_set_button", gesture, as.integer(button)))
 }
 
 
@@ -14350,7 +14350,7 @@ gtkGestureSingleSetButton <- function(gesture, button) {
 #' @return Return value from C function
 #' @export
 gtkGestureSingleSetExclusive <- function(gesture, exclusive) {
-  .Call("R_gtk_gesture_single_set_exclusive", gesture, exclusive)
+  invisible(.Call("R_gtk_gesture_single_set_exclusive", gesture, exclusive))
 }
 
 
@@ -14362,7 +14362,7 @@ gtkGestureSingleSetExclusive <- function(gesture, exclusive) {
 #' @return Return value from C function
 #' @export
 gtkGestureSingleSetTouchOnly <- function(gesture, touch_only) {
-  .Call("R_gtk_gesture_single_set_touch_only", gesture, touch_only)
+  invisible(.Call("R_gtk_gesture_single_set_touch_only", gesture, touch_only))
 }
 
 
@@ -14441,7 +14441,7 @@ gtkGestureStylusGetStylusOnly <- function(gesture) {
 #' @return Return value from C function
 #' @export
 gtkGestureStylusSetStylusOnly <- function(gesture, stylus_only) {
-  .Call("R_gtk_gesture_stylus_set_stylus_only", gesture, stylus_only)
+  invisible(.Call("R_gtk_gesture_stylus_set_stylus_only", gesture, stylus_only))
 }
 
 
@@ -14539,7 +14539,7 @@ gtkGraphicsOffloadGetEnabled <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkGraphicsOffloadSetBlackBackground <- function(self, value) {
-  .Call("R_gtk_graphics_offload_set_black_background", self, value)
+  invisible(.Call("R_gtk_graphics_offload_set_black_background", self, value))
 }
 
 
@@ -14551,7 +14551,7 @@ gtkGraphicsOffloadSetBlackBackground <- function(self, value) {
 #' @return Return value from C function
 #' @export
 gtkGraphicsOffloadSetChild <- function(self, child) {
-  .Call("R_gtk_graphics_offload_set_child", self, child)
+  invisible(.Call("R_gtk_graphics_offload_set_child", self, child))
 }
 
 
@@ -14563,7 +14563,7 @@ gtkGraphicsOffloadSetChild <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkGraphicsOffloadSetEnabled <- function(self, enabled) {
-  .Call("R_gtk_graphics_offload_set_enabled", self, enabled)
+  invisible(.Call("R_gtk_graphics_offload_set_enabled", self, enabled))
 }
 
 
@@ -14589,7 +14589,7 @@ gtkGridNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkGridAttach <- function(grid, child, column, row, width, height) {
-  .Call("R_gtk_grid_attach", grid, child, column, row, width, height)
+  invisible(.Call("R_gtk_grid_attach", grid, child, as.integer(column), as.integer(row), as.integer(width), as.integer(height)))
 }
 
 
@@ -14605,7 +14605,7 @@ gtkGridAttach <- function(grid, child, column, row, width, height) {
 #' @return Return value from C function
 #' @export
 gtkGridAttachNextTo <- function(grid, child, sibling, side, width, height) {
-  .Call("R_gtk_grid_attach_next_to", grid, child, sibling, side, width, height)
+  invisible(.Call("R_gtk_grid_attach_next_to", grid, child, sibling, side, as.integer(width), as.integer(height)))
 }
 
 
@@ -14629,7 +14629,7 @@ gtkGridGetBaselineRow <- function(grid) {
 #' @return Widget
 #' @export
 gtkGridGetChildAt <- function(grid, column, row) {
-  .Call("R_gtk_grid_get_child_at", grid, column, row)$result
+  .Call("R_gtk_grid_get_child_at", grid, as.integer(column), as.integer(row))$result
 }
 
 
@@ -14663,7 +14663,7 @@ gtkGridGetColumnSpacing <- function(grid) {
 #' @return BaselinePosition
 #' @export
 gtkGridGetRowBaselinePosition <- function(grid, row) {
-  .Call("R_gtk_grid_get_row_baseline_position", grid, row)$result
+  .Call("R_gtk_grid_get_row_baseline_position", grid, as.integer(row))$result
 }
 
 
@@ -14697,7 +14697,7 @@ gtkGridGetRowSpacing <- function(grid) {
 #' @return Return value from C function
 #' @export
 gtkGridInsertColumn <- function(grid, position) {
-  .Call("R_gtk_grid_insert_column", grid, position)
+  invisible(.Call("R_gtk_grid_insert_column", grid, as.integer(position)))
 }
 
 
@@ -14710,7 +14710,7 @@ gtkGridInsertColumn <- function(grid, position) {
 #' @return Return value from C function
 #' @export
 gtkGridInsertNextTo <- function(grid, sibling, side) {
-  .Call("R_gtk_grid_insert_next_to", grid, sibling, side)
+  invisible(.Call("R_gtk_grid_insert_next_to", grid, sibling, side))
 }
 
 
@@ -14722,7 +14722,7 @@ gtkGridInsertNextTo <- function(grid, sibling, side) {
 #' @return Return value from C function
 #' @export
 gtkGridInsertRow <- function(grid, position) {
-  .Call("R_gtk_grid_insert_row", grid, position)
+  invisible(.Call("R_gtk_grid_insert_row", grid, as.integer(position)))
 }
 
 
@@ -14746,7 +14746,7 @@ gtkGridQueryChild <- function(grid, child) {
 #' @return Return value from C function
 #' @export
 gtkGridRemove <- function(grid, child) {
-  .Call("R_gtk_grid_remove", grid, child)
+  invisible(.Call("R_gtk_grid_remove", grid, child))
 }
 
 
@@ -14758,7 +14758,7 @@ gtkGridRemove <- function(grid, child) {
 #' @return Return value from C function
 #' @export
 gtkGridRemoveColumn <- function(grid, position) {
-  .Call("R_gtk_grid_remove_column", grid, position)
+  invisible(.Call("R_gtk_grid_remove_column", grid, as.integer(position)))
 }
 
 
@@ -14770,7 +14770,7 @@ gtkGridRemoveColumn <- function(grid, position) {
 #' @return Return value from C function
 #' @export
 gtkGridRemoveRow <- function(grid, position) {
-  .Call("R_gtk_grid_remove_row", grid, position)
+  invisible(.Call("R_gtk_grid_remove_row", grid, as.integer(position)))
 }
 
 
@@ -14782,7 +14782,7 @@ gtkGridRemoveRow <- function(grid, position) {
 #' @return Return value from C function
 #' @export
 gtkGridSetBaselineRow <- function(grid, row) {
-  .Call("R_gtk_grid_set_baseline_row", grid, row)
+  invisible(.Call("R_gtk_grid_set_baseline_row", grid, as.integer(row)))
 }
 
 
@@ -14794,7 +14794,7 @@ gtkGridSetBaselineRow <- function(grid, row) {
 #' @return Return value from C function
 #' @export
 gtkGridSetColumnHomogeneous <- function(grid, homogeneous) {
-  .Call("R_gtk_grid_set_column_homogeneous", grid, homogeneous)
+  invisible(.Call("R_gtk_grid_set_column_homogeneous", grid, homogeneous))
 }
 
 
@@ -14806,7 +14806,7 @@ gtkGridSetColumnHomogeneous <- function(grid, homogeneous) {
 #' @return Return value from C function
 #' @export
 gtkGridSetColumnSpacing <- function(grid, spacing) {
-  .Call("R_gtk_grid_set_column_spacing", grid, spacing)
+  invisible(.Call("R_gtk_grid_set_column_spacing", grid, as.integer(spacing)))
 }
 
 
@@ -14819,7 +14819,7 @@ gtkGridSetColumnSpacing <- function(grid, spacing) {
 #' @return Return value from C function
 #' @export
 gtkGridSetRowBaselinePosition <- function(grid, row, pos) {
-  .Call("R_gtk_grid_set_row_baseline_position", grid, row, pos)
+  invisible(.Call("R_gtk_grid_set_row_baseline_position", grid, as.integer(row), pos))
 }
 
 
@@ -14831,7 +14831,7 @@ gtkGridSetRowBaselinePosition <- function(grid, row, pos) {
 #' @return Return value from C function
 #' @export
 gtkGridSetRowHomogeneous <- function(grid, homogeneous) {
-  .Call("R_gtk_grid_set_row_homogeneous", grid, homogeneous)
+  invisible(.Call("R_gtk_grid_set_row_homogeneous", grid, homogeneous))
 }
 
 
@@ -14843,7 +14843,7 @@ gtkGridSetRowHomogeneous <- function(grid, homogeneous) {
 #' @return Return value from C function
 #' @export
 gtkGridSetRowSpacing <- function(grid, spacing) {
-  .Call("R_gtk_grid_set_row_spacing", grid, spacing)
+  invisible(.Call("R_gtk_grid_set_row_spacing", grid, as.integer(spacing)))
 }
 
 
@@ -14898,7 +14898,7 @@ gtkGridLayoutGetColumnSpacing <- function(grid) {
 #' @return BaselinePosition
 #' @export
 gtkGridLayoutGetRowBaselinePosition <- function(grid, row) {
-  .Call("R_gtk_grid_layout_get_row_baseline_position", grid, row)$result
+  .Call("R_gtk_grid_layout_get_row_baseline_position", grid, as.integer(row))$result
 }
 
 
@@ -14932,7 +14932,7 @@ gtkGridLayoutGetRowSpacing <- function(grid) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutSetBaselineRow <- function(grid, row) {
-  .Call("R_gtk_grid_layout_set_baseline_row", grid, row)
+  invisible(.Call("R_gtk_grid_layout_set_baseline_row", grid, as.integer(row)))
 }
 
 
@@ -14944,7 +14944,7 @@ gtkGridLayoutSetBaselineRow <- function(grid, row) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutSetColumnHomogeneous <- function(grid, homogeneous) {
-  .Call("R_gtk_grid_layout_set_column_homogeneous", grid, homogeneous)
+  invisible(.Call("R_gtk_grid_layout_set_column_homogeneous", grid, homogeneous))
 }
 
 
@@ -14956,7 +14956,7 @@ gtkGridLayoutSetColumnHomogeneous <- function(grid, homogeneous) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutSetColumnSpacing <- function(grid, spacing) {
-  .Call("R_gtk_grid_layout_set_column_spacing", grid, spacing)
+  invisible(.Call("R_gtk_grid_layout_set_column_spacing", grid, as.integer(spacing)))
 }
 
 
@@ -14969,7 +14969,7 @@ gtkGridLayoutSetColumnSpacing <- function(grid, spacing) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutSetRowBaselinePosition <- function(grid, row, pos) {
-  .Call("R_gtk_grid_layout_set_row_baseline_position", grid, row, pos)
+  invisible(.Call("R_gtk_grid_layout_set_row_baseline_position", grid, as.integer(row), pos))
 }
 
 
@@ -14981,7 +14981,7 @@ gtkGridLayoutSetRowBaselinePosition <- function(grid, row, pos) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutSetRowHomogeneous <- function(grid, homogeneous) {
-  .Call("R_gtk_grid_layout_set_row_homogeneous", grid, homogeneous)
+  invisible(.Call("R_gtk_grid_layout_set_row_homogeneous", grid, homogeneous))
 }
 
 
@@ -14993,7 +14993,7 @@ gtkGridLayoutSetRowHomogeneous <- function(grid, homogeneous) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutSetRowSpacing <- function(grid, spacing) {
-  .Call("R_gtk_grid_layout_set_row_spacing", grid, spacing)
+  invisible(.Call("R_gtk_grid_layout_set_row_spacing", grid, as.integer(spacing)))
 }
 
 
@@ -15049,7 +15049,7 @@ gtkGridLayoutChildGetRowSpan <- function(child) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutChildSetColumn <- function(child, column) {
-  .Call("R_gtk_grid_layout_child_set_column", child, column)
+  invisible(.Call("R_gtk_grid_layout_child_set_column", child, as.integer(column)))
 }
 
 
@@ -15061,7 +15061,7 @@ gtkGridLayoutChildSetColumn <- function(child, column) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutChildSetColumnSpan <- function(child, span) {
-  .Call("R_gtk_grid_layout_child_set_column_span", child, span)
+  invisible(.Call("R_gtk_grid_layout_child_set_column_span", child, as.integer(span)))
 }
 
 
@@ -15073,7 +15073,7 @@ gtkGridLayoutChildSetColumnSpan <- function(child, span) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutChildSetRow <- function(child, row) {
-  .Call("R_gtk_grid_layout_child_set_row", child, row)
+  invisible(.Call("R_gtk_grid_layout_child_set_row", child, as.integer(row)))
 }
 
 
@@ -15085,7 +15085,7 @@ gtkGridLayoutChildSetRow <- function(child, row) {
 #' @return Return value from C function
 #' @export
 gtkGridLayoutChildSetRowSpan <- function(child, span) {
-  .Call("R_gtk_grid_layout_child_set_row_span", child, span)
+  invisible(.Call("R_gtk_grid_layout_child_set_row_span", child, as.integer(span)))
 }
 
 
@@ -15188,7 +15188,7 @@ gtkGridViewGetTabBehavior <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkGridViewScrollTo <- function(self, pos, flags, scroll) {
-  .Call("R_gtk_grid_view_scroll_to", self, pos, flags, scroll)
+  invisible(.Call("R_gtk_grid_view_scroll_to", self, as.integer(pos), flags, scroll))
 }
 
 
@@ -15200,7 +15200,7 @@ gtkGridViewScrollTo <- function(self, pos, flags, scroll) {
 #' @return Return value from C function
 #' @export
 gtkGridViewSetEnableRubberband <- function(self, enable_rubberband) {
-  .Call("R_gtk_grid_view_set_enable_rubberband", self, enable_rubberband)
+  invisible(.Call("R_gtk_grid_view_set_enable_rubberband", self, enable_rubberband))
 }
 
 
@@ -15212,7 +15212,7 @@ gtkGridViewSetEnableRubberband <- function(self, enable_rubberband) {
 #' @return Return value from C function
 #' @export
 gtkGridViewSetFactory <- function(self, factory) {
-  .Call("R_gtk_grid_view_set_factory", self, factory)
+  invisible(.Call("R_gtk_grid_view_set_factory", self, factory))
 }
 
 
@@ -15224,7 +15224,7 @@ gtkGridViewSetFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkGridViewSetMaxColumns <- function(self, max_columns) {
-  .Call("R_gtk_grid_view_set_max_columns", self, max_columns)
+  invisible(.Call("R_gtk_grid_view_set_max_columns", self, as.integer(max_columns)))
 }
 
 
@@ -15236,7 +15236,7 @@ gtkGridViewSetMaxColumns <- function(self, max_columns) {
 #' @return Return value from C function
 #' @export
 gtkGridViewSetMinColumns <- function(self, min_columns) {
-  .Call("R_gtk_grid_view_set_min_columns", self, min_columns)
+  invisible(.Call("R_gtk_grid_view_set_min_columns", self, as.integer(min_columns)))
 }
 
 
@@ -15248,7 +15248,7 @@ gtkGridViewSetMinColumns <- function(self, min_columns) {
 #' @return Return value from C function
 #' @export
 gtkGridViewSetModel <- function(self, model) {
-  .Call("R_gtk_grid_view_set_model", self, model)
+  invisible(.Call("R_gtk_grid_view_set_model", self, model))
 }
 
 
@@ -15260,7 +15260,7 @@ gtkGridViewSetModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkGridViewSetSingleClickActivate <- function(self, single_click_activate) {
-  .Call("R_gtk_grid_view_set_single_click_activate", self, single_click_activate)
+  invisible(.Call("R_gtk_grid_view_set_single_click_activate", self, single_click_activate))
 }
 
 
@@ -15272,7 +15272,7 @@ gtkGridViewSetSingleClickActivate <- function(self, single_click_activate) {
 #' @return Return value from C function
 #' @export
 gtkGridViewSetTabBehavior <- function(self, tab_behavior) {
-  .Call("R_gtk_grid_view_set_tab_behavior", self, tab_behavior)
+  invisible(.Call("R_gtk_grid_view_set_tab_behavior", self, tab_behavior))
 }
 
 
@@ -15338,7 +15338,7 @@ gtkHeaderBarGetUseNativeControls <- function(bar) {
 #' @return Return value from C function
 #' @export
 gtkHeaderBarPackEnd <- function(bar, child) {
-  .Call("R_gtk_header_bar_pack_end", bar, child)
+  invisible(.Call("R_gtk_header_bar_pack_end", bar, child))
 }
 
 
@@ -15350,7 +15350,7 @@ gtkHeaderBarPackEnd <- function(bar, child) {
 #' @return Return value from C function
 #' @export
 gtkHeaderBarPackStart <- function(bar, child) {
-  .Call("R_gtk_header_bar_pack_start", bar, child)
+  invisible(.Call("R_gtk_header_bar_pack_start", bar, child))
 }
 
 
@@ -15362,7 +15362,7 @@ gtkHeaderBarPackStart <- function(bar, child) {
 #' @return Return value from C function
 #' @export
 gtkHeaderBarRemove <- function(bar, child) {
-  .Call("R_gtk_header_bar_remove", bar, child)
+  invisible(.Call("R_gtk_header_bar_remove", bar, child))
 }
 
 
@@ -15374,7 +15374,7 @@ gtkHeaderBarRemove <- function(bar, child) {
 #' @return Return value from C function
 #' @export
 gtkHeaderBarSetDecorationLayout <- function(bar, layout) {
-  .Call("R_gtk_header_bar_set_decoration_layout", bar, layout)
+  invisible(.Call("R_gtk_header_bar_set_decoration_layout", bar, layout))
 }
 
 
@@ -15386,7 +15386,7 @@ gtkHeaderBarSetDecorationLayout <- function(bar, layout) {
 #' @return Return value from C function
 #' @export
 gtkHeaderBarSetShowTitleButtons <- function(bar, setting) {
-  .Call("R_gtk_header_bar_set_show_title_buttons", bar, setting)
+  invisible(.Call("R_gtk_header_bar_set_show_title_buttons", bar, setting))
 }
 
 
@@ -15398,7 +15398,7 @@ gtkHeaderBarSetShowTitleButtons <- function(bar, setting) {
 #' @return Return value from C function
 #' @export
 gtkHeaderBarSetTitleWidget <- function(bar, title_widget) {
-  .Call("R_gtk_header_bar_set_title_widget", bar, title_widget)
+  invisible(.Call("R_gtk_header_bar_set_title_widget", bar, title_widget))
 }
 
 
@@ -15410,7 +15410,7 @@ gtkHeaderBarSetTitleWidget <- function(bar, title_widget) {
 #' @return Return value from C function
 #' @export
 gtkHeaderBarSetUseNativeControls <- function(bar, setting) {
-  .Call("R_gtk_header_bar_set_use_native_controls", bar, setting)
+  invisible(.Call("R_gtk_header_bar_set_use_native_controls", bar, setting))
 }
 
 
@@ -15435,7 +15435,7 @@ gtkImContextActivateOsk <- function(context, event) {
 #' @return gboolean
 #' @export
 gtkImContextDeleteSurrounding <- function(context, offset, n_chars) {
-  .Call("R_gtk_im_context_delete_surrounding", context, offset, n_chars)$result
+  .Call("R_gtk_im_context_delete_surrounding", context, as.integer(offset), as.integer(n_chars))$result
 }
 
 
@@ -15453,7 +15453,7 @@ gtkImContextDeleteSurrounding <- function(context, offset, n_chars) {
 #' @return gboolean
 #' @export
 gtkImContextFilterKey <- function(context, press, surface, device, time, keycode, state, group) {
-  .Call("R_gtk_im_context_filter_key", context, press, surface, device, time, keycode, state, group)$result
+  .Call("R_gtk_im_context_filter_key", context, press, surface, device, as.integer(time), as.integer(keycode), state, as.integer(group))$result
 }
 
 
@@ -15476,7 +15476,7 @@ gtkImContextFilterKeypress <- function(context, event) {
 #' @return Return value from C function
 #' @export
 gtkImContextFocusIn <- function(context) {
-  .Call("R_gtk_im_context_focus_in", context)
+  invisible(.Call("R_gtk_im_context_focus_in", context))
 }
 
 
@@ -15487,7 +15487,7 @@ gtkImContextFocusIn <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkImContextFocusOut <- function(context) {
-  .Call("R_gtk_im_context_focus_out", context)
+  invisible(.Call("R_gtk_im_context_focus_out", context))
 }
 
 
@@ -15531,7 +15531,7 @@ gtkImContextGetSurroundingWithSelection <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkImContextReset <- function(context) {
-  .Call("R_gtk_im_context_reset", context)
+  invisible(.Call("R_gtk_im_context_reset", context))
 }
 
 
@@ -15543,7 +15543,7 @@ gtkImContextReset <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkImContextSetClientWidget <- function(context, widget) {
-  .Call("R_gtk_im_context_set_client_widget", context, widget)
+  invisible(.Call("R_gtk_im_context_set_client_widget", context, widget))
 }
 
 
@@ -15555,7 +15555,7 @@ gtkImContextSetClientWidget <- function(context, widget) {
 #' @return Return value from C function
 #' @export
 gtkImContextSetCursorLocation <- function(context, area) {
-  .Call("R_gtk_im_context_set_cursor_location", context, area)
+  invisible(.Call("R_gtk_im_context_set_cursor_location", context, area))
 }
 
 
@@ -15569,7 +15569,7 @@ gtkImContextSetCursorLocation <- function(context, area) {
 #' @return Return value from C function
 #' @export
 gtkImContextSetSurrounding <- function(context, text, len, cursor_index) {
-  .Call("R_gtk_im_context_set_surrounding", context, text, len, cursor_index)
+  invisible(.Call("R_gtk_im_context_set_surrounding", context, text, as.integer(len), as.integer(cursor_index)))
 }
 
 
@@ -15584,7 +15584,7 @@ gtkImContextSetSurrounding <- function(context, text, len, cursor_index) {
 #' @return Return value from C function
 #' @export
 gtkImContextSetSurroundingWithSelection <- function(context, text, len, cursor_index, anchor_index) {
-  .Call("R_gtk_im_context_set_surrounding_with_selection", context, text, len, cursor_index, anchor_index)
+  invisible(.Call("R_gtk_im_context_set_surrounding_with_selection", context, text, as.integer(len), as.integer(cursor_index), as.integer(anchor_index)))
 }
 
 
@@ -15596,7 +15596,7 @@ gtkImContextSetSurroundingWithSelection <- function(context, text, len, cursor_i
 #' @return Return value from C function
 #' @export
 gtkImContextSetUsePreedit <- function(context, use_preedit) {
-  .Call("R_gtk_im_context_set_use_preedit", context, use_preedit)
+  invisible(.Call("R_gtk_im_context_set_use_preedit", context, use_preedit))
 }
 
 
@@ -15618,7 +15618,7 @@ gtkImContextSimpleNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkImContextSimpleAddComposeFile <- function(context_simple, compose_file) {
-  .Call("R_gtk_im_context_simple_add_compose_file", context_simple, compose_file)
+  invisible(.Call("R_gtk_im_context_simple_add_compose_file", context_simple, compose_file))
 }
 
 
@@ -15651,7 +15651,7 @@ gtkImMulticontextGetContextId <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkImMulticontextSetContextId <- function(context, context_id) {
-  .Call("R_gtk_im_multicontext_set_context_id", context, context_id)
+  invisible(.Call("R_gtk_im_multicontext_set_context_id", context, context_id))
 }
 
 
@@ -15664,7 +15664,7 @@ gtkImMulticontextSetContextId <- function(context, context_id) {
 #' @return IconPaintable
 #' @export
 gtkIconPaintableNewForFile <- function(file, size, scale) {
-  .Call("R_gtk_icon_paintable_new_for_file", file, size, scale)$result
+  .Call("R_gtk_icon_paintable_new_for_file", file, as.integer(size), as.integer(scale))$result
 }
 
 
@@ -15730,7 +15730,7 @@ gtkIconThemeGetForDisplay <- function(display) {
 #' @return Return value from C function
 #' @export
 gtkIconThemeAddResourcePath <- function(self, path) {
-  .Call("R_gtk_icon_theme_add_resource_path", self, path)
+  invisible(.Call("R_gtk_icon_theme_add_resource_path", self, path))
 }
 
 
@@ -15742,7 +15742,7 @@ gtkIconThemeAddResourcePath <- function(self, path) {
 #' @return Return value from C function
 #' @export
 gtkIconThemeAddSearchPath <- function(self, path) {
-  .Call("R_gtk_icon_theme_add_search_path", self, path)
+  invisible(.Call("R_gtk_icon_theme_add_search_path", self, path))
 }
 
 
@@ -15849,7 +15849,7 @@ gtkIconThemeHasIcon <- function(self, icon_name) {
 #' @return IconPaintable
 #' @export
 gtkIconThemeLookupByGicon <- function(self, icon, size, scale, direction, flags) {
-  .Call("R_gtk_icon_theme_lookup_by_gicon", self, icon, size, scale, direction, flags)$result
+  .Call("R_gtk_icon_theme_lookup_by_gicon", self, icon, as.integer(size), as.integer(scale), direction, flags)$result
 }
 
 
@@ -15866,7 +15866,7 @@ gtkIconThemeLookupByGicon <- function(self, icon, size, scale, direction, flags)
 #' @return IconPaintable
 #' @export
 gtkIconThemeLookupIcon <- function(self, icon_name, fallbacks, size, scale, direction, flags) {
-  .Call("R_gtk_icon_theme_lookup_icon", self, icon_name, fallbacks, size, scale, direction, flags)$result
+  .Call("R_gtk_icon_theme_lookup_icon", self, icon_name, fallbacks, as.integer(size), as.integer(scale), direction, flags)$result
 }
 
 
@@ -15878,7 +15878,7 @@ gtkIconThemeLookupIcon <- function(self, icon_name, fallbacks, size, scale, dire
 #' @return Return value from C function
 #' @export
 gtkIconThemeSetResourcePath <- function(self, path) {
-  .Call("R_gtk_icon_theme_set_resource_path", self, path)
+  invisible(.Call("R_gtk_icon_theme_set_resource_path", self, path))
 }
 
 
@@ -15890,7 +15890,7 @@ gtkIconThemeSetResourcePath <- function(self, path) {
 #' @return Return value from C function
 #' @export
 gtkIconThemeSetSearchPath <- function(self, path) {
-  .Call("R_gtk_icon_theme_set_search_path", self, path)
+  invisible(.Call("R_gtk_icon_theme_set_search_path", self, path))
 }
 
 
@@ -15902,7 +15902,7 @@ gtkIconThemeSetSearchPath <- function(self, path) {
 #' @return Return value from C function
 #' @export
 gtkIconThemeSetThemeName <- function(self, theme_name) {
-  .Call("R_gtk_icon_theme_set_theme_name", self, theme_name)
+  invisible(.Call("R_gtk_icon_theme_set_theme_name", self, theme_name))
 }
 
 
@@ -15969,7 +15969,7 @@ gtkIconViewCreateDragIcon <- function(icon_view, path) {
 #' @return Return value from C function
 #' @export
 gtkIconViewEnableModelDragDest <- function(icon_view, formats, actions) {
-  .Call("R_gtk_icon_view_enable_model_drag_dest", icon_view, formats, actions)
+  invisible(.Call("R_gtk_icon_view_enable_model_drag_dest", icon_view, formats, actions))
 }
 
 
@@ -15983,7 +15983,7 @@ gtkIconViewEnableModelDragDest <- function(icon_view, formats, actions) {
 #' @return Return value from C function
 #' @export
 gtkIconViewEnableModelDragSource <- function(icon_view, start_button_mask, formats, actions) {
-  .Call("R_gtk_icon_view_enable_model_drag_source", icon_view, start_button_mask, formats, actions)
+  invisible(.Call("R_gtk_icon_view_enable_model_drag_source", icon_view, start_button_mask, formats, actions))
 }
 
 
@@ -16053,7 +16053,7 @@ gtkIconViewGetCursor <- function(icon_view) {
 #' @return gboolean
 #' @export
 gtkIconViewGetDestItemAtPos <- function(icon_view, drag_x, drag_y) {
-  .Call("R_gtk_icon_view_get_dest_item_at_pos", icon_view, drag_x, drag_y)
+  .Call("R_gtk_icon_view_get_dest_item_at_pos", icon_view, as.integer(drag_x), as.integer(drag_y))
 }
 
 
@@ -16077,7 +16077,7 @@ gtkIconViewGetDragDestItem <- function(icon_view) {
 #' @return gboolean
 #' @export
 gtkIconViewGetItemAtPos <- function(icon_view, x, y) {
-  .Call("R_gtk_icon_view_get_item_at_pos", icon_view, x, y)
+  .Call("R_gtk_icon_view_get_item_at_pos", icon_view, as.integer(x), as.integer(y))
 }
 
 
@@ -16180,7 +16180,7 @@ gtkIconViewGetModel <- function(icon_view) {
 #' @return TreePath
 #' @export
 gtkIconViewGetPathAtPos <- function(icon_view, x, y) {
-  .Call("R_gtk_icon_view_get_path_at_pos", icon_view, x, y)$result
+  .Call("R_gtk_icon_view_get_path_at_pos", icon_view, as.integer(x), as.integer(y))$result
 }
 
 
@@ -16282,7 +16282,7 @@ gtkIconViewGetTooltipColumn <- function(icon_view) {
 #' @return gboolean
 #' @export
 gtkIconViewGetTooltipContext <- function(icon_view, x, y, keyboard_tip) {
-  .Call("R_gtk_icon_view_get_tooltip_context", icon_view, x, y, keyboard_tip)
+  .Call("R_gtk_icon_view_get_tooltip_context", icon_view, as.integer(x), as.integer(y), keyboard_tip)
 }
 
 
@@ -16305,7 +16305,7 @@ gtkIconViewGetVisibleRange <- function(icon_view) {
 #' @return Return value from C function
 #' @export
 gtkIconViewItemActivated <- function(icon_view, path) {
-  .Call("R_gtk_icon_view_item_activated", icon_view, path)
+  invisible(.Call("R_gtk_icon_view_item_activated", icon_view, path))
 }
 
 
@@ -16332,7 +16332,7 @@ gtkIconViewPathIsSelected <- function(icon_view, path) {
 #' @return Return value from C function
 #' @export
 gtkIconViewScrollToPath <- function(icon_view, path, use_align, row_align, col_align) {
-  .Call("R_gtk_icon_view_scroll_to_path", icon_view, path, use_align, row_align, col_align)
+  invisible(.Call("R_gtk_icon_view_scroll_to_path", icon_view, path, use_align, row_align, col_align))
 }
 
 
@@ -16343,7 +16343,7 @@ gtkIconViewScrollToPath <- function(icon_view, path, use_align, row_align, col_a
 #' @return Return value from C function
 #' @export
 gtkIconViewSelectAll <- function(icon_view) {
-  .Call("R_gtk_icon_view_select_all", icon_view)
+  invisible(.Call("R_gtk_icon_view_select_all", icon_view))
 }
 
 
@@ -16355,7 +16355,7 @@ gtkIconViewSelectAll <- function(icon_view) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSelectPath <- function(icon_view, path) {
-  .Call("R_gtk_icon_view_select_path", icon_view, path)
+  invisible(.Call("R_gtk_icon_view_select_path", icon_view, path))
 }
 
 
@@ -16367,7 +16367,7 @@ gtkIconViewSelectPath <- function(icon_view, path) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetActivateOnSingleClick <- function(icon_view, single) {
-  .Call("R_gtk_icon_view_set_activate_on_single_click", icon_view, single)
+  invisible(.Call("R_gtk_icon_view_set_activate_on_single_click", icon_view, single))
 }
 
 
@@ -16379,7 +16379,7 @@ gtkIconViewSetActivateOnSingleClick <- function(icon_view, single) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetColumnSpacing <- function(icon_view, column_spacing) {
-  .Call("R_gtk_icon_view_set_column_spacing", icon_view, column_spacing)
+  invisible(.Call("R_gtk_icon_view_set_column_spacing", icon_view, as.integer(column_spacing)))
 }
 
 
@@ -16391,7 +16391,7 @@ gtkIconViewSetColumnSpacing <- function(icon_view, column_spacing) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetColumns <- function(icon_view, columns) {
-  .Call("R_gtk_icon_view_set_columns", icon_view, columns)
+  invisible(.Call("R_gtk_icon_view_set_columns", icon_view, as.integer(columns)))
 }
 
 
@@ -16405,7 +16405,7 @@ gtkIconViewSetColumns <- function(icon_view, columns) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetCursor <- function(icon_view, path, cell, start_editing) {
-  .Call("R_gtk_icon_view_set_cursor", icon_view, path, cell, start_editing)
+  invisible(.Call("R_gtk_icon_view_set_cursor", icon_view, path, cell, start_editing))
 }
 
 
@@ -16418,7 +16418,7 @@ gtkIconViewSetCursor <- function(icon_view, path, cell, start_editing) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetDragDestItem <- function(icon_view, path, pos) {
-  .Call("R_gtk_icon_view_set_drag_dest_item", icon_view, path, pos)
+  invisible(.Call("R_gtk_icon_view_set_drag_dest_item", icon_view, path, pos))
 }
 
 
@@ -16430,7 +16430,7 @@ gtkIconViewSetDragDestItem <- function(icon_view, path, pos) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetItemOrientation <- function(icon_view, orientation) {
-  .Call("R_gtk_icon_view_set_item_orientation", icon_view, orientation)
+  invisible(.Call("R_gtk_icon_view_set_item_orientation", icon_view, orientation))
 }
 
 
@@ -16442,7 +16442,7 @@ gtkIconViewSetItemOrientation <- function(icon_view, orientation) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetItemPadding <- function(icon_view, item_padding) {
-  .Call("R_gtk_icon_view_set_item_padding", icon_view, item_padding)
+  invisible(.Call("R_gtk_icon_view_set_item_padding", icon_view, as.integer(item_padding)))
 }
 
 
@@ -16454,7 +16454,7 @@ gtkIconViewSetItemPadding <- function(icon_view, item_padding) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetItemWidth <- function(icon_view, item_width) {
-  .Call("R_gtk_icon_view_set_item_width", icon_view, item_width)
+  invisible(.Call("R_gtk_icon_view_set_item_width", icon_view, as.integer(item_width)))
 }
 
 
@@ -16466,7 +16466,7 @@ gtkIconViewSetItemWidth <- function(icon_view, item_width) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetMargin <- function(icon_view, margin) {
-  .Call("R_gtk_icon_view_set_margin", icon_view, margin)
+  invisible(.Call("R_gtk_icon_view_set_margin", icon_view, as.integer(margin)))
 }
 
 
@@ -16478,7 +16478,7 @@ gtkIconViewSetMargin <- function(icon_view, margin) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetMarkupColumn <- function(icon_view, column) {
-  .Call("R_gtk_icon_view_set_markup_column", icon_view, column)
+  invisible(.Call("R_gtk_icon_view_set_markup_column", icon_view, as.integer(column)))
 }
 
 
@@ -16490,7 +16490,7 @@ gtkIconViewSetMarkupColumn <- function(icon_view, column) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetModel <- function(icon_view, model) {
-  .Call("R_gtk_icon_view_set_model", icon_view, model)
+  invisible(.Call("R_gtk_icon_view_set_model", icon_view, model))
 }
 
 
@@ -16502,7 +16502,7 @@ gtkIconViewSetModel <- function(icon_view, model) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetPixbufColumn <- function(icon_view, column) {
-  .Call("R_gtk_icon_view_set_pixbuf_column", icon_view, column)
+  invisible(.Call("R_gtk_icon_view_set_pixbuf_column", icon_view, as.integer(column)))
 }
 
 
@@ -16514,7 +16514,7 @@ gtkIconViewSetPixbufColumn <- function(icon_view, column) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetReorderable <- function(icon_view, reorderable) {
-  .Call("R_gtk_icon_view_set_reorderable", icon_view, reorderable)
+  invisible(.Call("R_gtk_icon_view_set_reorderable", icon_view, reorderable))
 }
 
 
@@ -16526,7 +16526,7 @@ gtkIconViewSetReorderable <- function(icon_view, reorderable) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetRowSpacing <- function(icon_view, row_spacing) {
-  .Call("R_gtk_icon_view_set_row_spacing", icon_view, row_spacing)
+  invisible(.Call("R_gtk_icon_view_set_row_spacing", icon_view, as.integer(row_spacing)))
 }
 
 
@@ -16538,7 +16538,7 @@ gtkIconViewSetRowSpacing <- function(icon_view, row_spacing) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetSelectionMode <- function(icon_view, mode) {
-  .Call("R_gtk_icon_view_set_selection_mode", icon_view, mode)
+  invisible(.Call("R_gtk_icon_view_set_selection_mode", icon_view, mode))
 }
 
 
@@ -16550,7 +16550,7 @@ gtkIconViewSetSelectionMode <- function(icon_view, mode) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetSpacing <- function(icon_view, spacing) {
-  .Call("R_gtk_icon_view_set_spacing", icon_view, spacing)
+  invisible(.Call("R_gtk_icon_view_set_spacing", icon_view, as.integer(spacing)))
 }
 
 
@@ -16562,7 +16562,7 @@ gtkIconViewSetSpacing <- function(icon_view, spacing) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetTextColumn <- function(icon_view, column) {
-  .Call("R_gtk_icon_view_set_text_column", icon_view, column)
+  invisible(.Call("R_gtk_icon_view_set_text_column", icon_view, as.integer(column)))
 }
 
 
@@ -16576,7 +16576,7 @@ gtkIconViewSetTextColumn <- function(icon_view, column) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetTooltipCell <- function(icon_view, tooltip, path, cell) {
-  .Call("R_gtk_icon_view_set_tooltip_cell", icon_view, tooltip, path, cell)
+  invisible(.Call("R_gtk_icon_view_set_tooltip_cell", icon_view, tooltip, path, cell))
 }
 
 
@@ -16588,7 +16588,7 @@ gtkIconViewSetTooltipCell <- function(icon_view, tooltip, path, cell) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetTooltipColumn <- function(icon_view, column) {
-  .Call("R_gtk_icon_view_set_tooltip_column", icon_view, column)
+  invisible(.Call("R_gtk_icon_view_set_tooltip_column", icon_view, as.integer(column)))
 }
 
 
@@ -16601,7 +16601,7 @@ gtkIconViewSetTooltipColumn <- function(icon_view, column) {
 #' @return Return value from C function
 #' @export
 gtkIconViewSetTooltipItem <- function(icon_view, tooltip, path) {
-  .Call("R_gtk_icon_view_set_tooltip_item", icon_view, tooltip, path)
+  invisible(.Call("R_gtk_icon_view_set_tooltip_item", icon_view, tooltip, path))
 }
 
 
@@ -16612,7 +16612,7 @@ gtkIconViewSetTooltipItem <- function(icon_view, tooltip, path) {
 #' @return Return value from C function
 #' @export
 gtkIconViewUnselectAll <- function(icon_view) {
-  .Call("R_gtk_icon_view_unselect_all", icon_view)
+  invisible(.Call("R_gtk_icon_view_unselect_all", icon_view))
 }
 
 
@@ -16624,7 +16624,7 @@ gtkIconViewUnselectAll <- function(icon_view) {
 #' @return Return value from C function
 #' @export
 gtkIconViewUnselectPath <- function(icon_view, path) {
-  .Call("R_gtk_icon_view_unselect_path", icon_view, path)
+  invisible(.Call("R_gtk_icon_view_unselect_path", icon_view, path))
 }
 
 
@@ -16635,7 +16635,7 @@ gtkIconViewUnselectPath <- function(icon_view, path) {
 #' @return Return value from C function
 #' @export
 gtkIconViewUnsetModelDragDest <- function(icon_view) {
-  .Call("R_gtk_icon_view_unset_model_drag_dest", icon_view)
+  invisible(.Call("R_gtk_icon_view_unset_model_drag_dest", icon_view))
 }
 
 
@@ -16646,7 +16646,7 @@ gtkIconViewUnsetModelDragDest <- function(icon_view) {
 #' @return Return value from C function
 #' @export
 gtkIconViewUnsetModelDragSource <- function(icon_view) {
-  .Call("R_gtk_icon_view_unset_model_drag_source", icon_view)
+  invisible(.Call("R_gtk_icon_view_unset_model_drag_source", icon_view))
 }
 
 
@@ -16733,7 +16733,7 @@ gtkImageNewFromResource <- function(resource_path) {
 #' @return Return value from C function
 #' @export
 gtkImageClear <- function(image) {
-  .Call("R_gtk_image_clear", image)
+  invisible(.Call("R_gtk_image_clear", image))
 }
 
 
@@ -16811,7 +16811,7 @@ gtkImageGetStorageType <- function(image) {
 #' @return Return value from C function
 #' @export
 gtkImageSetFromFile <- function(image, filename) {
-  .Call("R_gtk_image_set_from_file", image, filename)
+  invisible(.Call("R_gtk_image_set_from_file", image, filename))
 }
 
 
@@ -16823,7 +16823,7 @@ gtkImageSetFromFile <- function(image, filename) {
 #' @return Return value from C function
 #' @export
 gtkImageSetFromGicon <- function(image, icon) {
-  .Call("R_gtk_image_set_from_gicon", image, icon)
+  invisible(.Call("R_gtk_image_set_from_gicon", image, icon))
 }
 
 
@@ -16835,7 +16835,7 @@ gtkImageSetFromGicon <- function(image, icon) {
 #' @return Return value from C function
 #' @export
 gtkImageSetFromIconName <- function(image, icon_name) {
-  .Call("R_gtk_image_set_from_icon_name", image, icon_name)
+  invisible(.Call("R_gtk_image_set_from_icon_name", image, icon_name))
 }
 
 
@@ -16847,7 +16847,7 @@ gtkImageSetFromIconName <- function(image, icon_name) {
 #' @return Return value from C function
 #' @export
 gtkImageSetFromPaintable <- function(image, paintable) {
-  .Call("R_gtk_image_set_from_paintable", image, paintable)
+  invisible(.Call("R_gtk_image_set_from_paintable", image, paintable))
 }
 
 
@@ -16859,7 +16859,7 @@ gtkImageSetFromPaintable <- function(image, paintable) {
 #' @return Return value from C function
 #' @export
 gtkImageSetFromPixbuf <- function(image, pixbuf) {
-  .Call("R_gtk_image_set_from_pixbuf", image, pixbuf)
+  invisible(.Call("R_gtk_image_set_from_pixbuf", image, pixbuf))
 }
 
 
@@ -16871,7 +16871,7 @@ gtkImageSetFromPixbuf <- function(image, pixbuf) {
 #' @return Return value from C function
 #' @export
 gtkImageSetFromResource <- function(image, resource_path) {
-  .Call("R_gtk_image_set_from_resource", image, resource_path)
+  invisible(.Call("R_gtk_image_set_from_resource", image, resource_path))
 }
 
 
@@ -16883,7 +16883,7 @@ gtkImageSetFromResource <- function(image, resource_path) {
 #' @return Return value from C function
 #' @export
 gtkImageSetIconSize <- function(image, icon_size) {
-  .Call("R_gtk_image_set_icon_size", image, icon_size)
+  invisible(.Call("R_gtk_image_set_icon_size", image, icon_size))
 }
 
 
@@ -16895,7 +16895,7 @@ gtkImageSetIconSize <- function(image, icon_size) {
 #' @return Return value from C function
 #' @export
 gtkImageSetPixelSize <- function(image, pixel_size) {
-  .Call("R_gtk_image_set_pixel_size", image, pixel_size)
+  invisible(.Call("R_gtk_image_set_pixel_size", image, as.integer(pixel_size)))
 }
 
 
@@ -16918,7 +16918,7 @@ gtkInfoBarNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkInfoBarAddActionWidget <- function(info_bar, child, response_id) {
-  .Call("R_gtk_info_bar_add_action_widget", info_bar, child, response_id)
+  invisible(.Call("R_gtk_info_bar_add_action_widget", info_bar, child, as.integer(response_id)))
 }
 
 
@@ -16931,7 +16931,7 @@ gtkInfoBarAddActionWidget <- function(info_bar, child, response_id) {
 #' @return Button
 #' @export
 gtkInfoBarAddButton <- function(info_bar, button_text, response_id) {
-  .Call("R_gtk_info_bar_add_button", info_bar, button_text, response_id)$result
+  .Call("R_gtk_info_bar_add_button", info_bar, button_text, as.integer(response_id))$result
 }
 
 
@@ -16943,7 +16943,7 @@ gtkInfoBarAddButton <- function(info_bar, button_text, response_id) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarAddChild <- function(info_bar, widget) {
-  .Call("R_gtk_info_bar_add_child", info_bar, widget)
+  invisible(.Call("R_gtk_info_bar_add_child", info_bar, widget))
 }
 
 
@@ -16988,7 +16988,7 @@ gtkInfoBarGetShowCloseButton <- function(info_bar) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarRemoveActionWidget <- function(info_bar, widget) {
-  .Call("R_gtk_info_bar_remove_action_widget", info_bar, widget)
+  invisible(.Call("R_gtk_info_bar_remove_action_widget", info_bar, widget))
 }
 
 
@@ -17000,7 +17000,7 @@ gtkInfoBarRemoveActionWidget <- function(info_bar, widget) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarRemoveChild <- function(info_bar, widget) {
-  .Call("R_gtk_info_bar_remove_child", info_bar, widget)
+  invisible(.Call("R_gtk_info_bar_remove_child", info_bar, widget))
 }
 
 
@@ -17012,7 +17012,7 @@ gtkInfoBarRemoveChild <- function(info_bar, widget) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarResponse <- function(info_bar, response_id) {
-  .Call("R_gtk_info_bar_response", info_bar, response_id)
+  invisible(.Call("R_gtk_info_bar_response", info_bar, as.integer(response_id)))
 }
 
 
@@ -17024,7 +17024,7 @@ gtkInfoBarResponse <- function(info_bar, response_id) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarSetDefaultResponse <- function(info_bar, response_id) {
-  .Call("R_gtk_info_bar_set_default_response", info_bar, response_id)
+  invisible(.Call("R_gtk_info_bar_set_default_response", info_bar, as.integer(response_id)))
 }
 
 
@@ -17036,7 +17036,7 @@ gtkInfoBarSetDefaultResponse <- function(info_bar, response_id) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarSetMessageType <- function(info_bar, message_type) {
-  .Call("R_gtk_info_bar_set_message_type", info_bar, message_type)
+  invisible(.Call("R_gtk_info_bar_set_message_type", info_bar, message_type))
 }
 
 
@@ -17049,7 +17049,7 @@ gtkInfoBarSetMessageType <- function(info_bar, message_type) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarSetResponseSensitive <- function(info_bar, response_id, setting) {
-  .Call("R_gtk_info_bar_set_response_sensitive", info_bar, response_id, setting)
+  invisible(.Call("R_gtk_info_bar_set_response_sensitive", info_bar, as.integer(response_id), setting))
 }
 
 
@@ -17061,7 +17061,7 @@ gtkInfoBarSetResponseSensitive <- function(info_bar, response_id, setting) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarSetRevealed <- function(info_bar, revealed) {
-  .Call("R_gtk_info_bar_set_revealed", info_bar, revealed)
+  invisible(.Call("R_gtk_info_bar_set_revealed", info_bar, revealed))
 }
 
 
@@ -17073,7 +17073,7 @@ gtkInfoBarSetRevealed <- function(info_bar, revealed) {
 #' @return Return value from C function
 #' @export
 gtkInfoBarSetShowCloseButton <- function(info_bar, setting) {
-  .Call("R_gtk_info_bar_set_show_close_button", info_bar, setting)
+  invisible(.Call("R_gtk_info_bar_set_show_close_button", info_bar, setting))
 }
 
 
@@ -17206,7 +17206,7 @@ gtkInscriptionGetYalign <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetAttributes <- function(self, attrs) {
-  .Call("R_gtk_inscription_set_attributes", self, attrs)
+  invisible(.Call("R_gtk_inscription_set_attributes", self, attrs))
 }
 
 
@@ -17218,7 +17218,7 @@ gtkInscriptionSetAttributes <- function(self, attrs) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetMarkup <- function(self, markup) {
-  .Call("R_gtk_inscription_set_markup", self, markup)
+  invisible(.Call("R_gtk_inscription_set_markup", self, markup))
 }
 
 
@@ -17230,7 +17230,7 @@ gtkInscriptionSetMarkup <- function(self, markup) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetMinChars <- function(self, min_chars) {
-  .Call("R_gtk_inscription_set_min_chars", self, min_chars)
+  invisible(.Call("R_gtk_inscription_set_min_chars", self, as.integer(min_chars)))
 }
 
 
@@ -17242,7 +17242,7 @@ gtkInscriptionSetMinChars <- function(self, min_chars) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetMinLines <- function(self, min_lines) {
-  .Call("R_gtk_inscription_set_min_lines", self, min_lines)
+  invisible(.Call("R_gtk_inscription_set_min_lines", self, as.integer(min_lines)))
 }
 
 
@@ -17254,7 +17254,7 @@ gtkInscriptionSetMinLines <- function(self, min_lines) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetNatChars <- function(self, nat_chars) {
-  .Call("R_gtk_inscription_set_nat_chars", self, nat_chars)
+  invisible(.Call("R_gtk_inscription_set_nat_chars", self, as.integer(nat_chars)))
 }
 
 
@@ -17266,7 +17266,7 @@ gtkInscriptionSetNatChars <- function(self, nat_chars) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetNatLines <- function(self, nat_lines) {
-  .Call("R_gtk_inscription_set_nat_lines", self, nat_lines)
+  invisible(.Call("R_gtk_inscription_set_nat_lines", self, as.integer(nat_lines)))
 }
 
 
@@ -17278,7 +17278,7 @@ gtkInscriptionSetNatLines <- function(self, nat_lines) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetText <- function(self, text) {
-  .Call("R_gtk_inscription_set_text", self, text)
+  invisible(.Call("R_gtk_inscription_set_text", self, text))
 }
 
 
@@ -17290,7 +17290,7 @@ gtkInscriptionSetText <- function(self, text) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetTextOverflow <- function(self, overflow) {
-  .Call("R_gtk_inscription_set_text_overflow", self, overflow)
+  invisible(.Call("R_gtk_inscription_set_text_overflow", self, overflow))
 }
 
 
@@ -17302,7 +17302,7 @@ gtkInscriptionSetTextOverflow <- function(self, overflow) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetWrapMode <- function(self, wrap_mode) {
-  .Call("R_gtk_inscription_set_wrap_mode", self, wrap_mode)
+  invisible(.Call("R_gtk_inscription_set_wrap_mode", self, wrap_mode))
 }
 
 
@@ -17314,7 +17314,7 @@ gtkInscriptionSetWrapMode <- function(self, wrap_mode) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetXalign <- function(self, xalign) {
-  .Call("R_gtk_inscription_set_xalign", self, xalign)
+  invisible(.Call("R_gtk_inscription_set_xalign", self, xalign))
 }
 
 
@@ -17326,7 +17326,7 @@ gtkInscriptionSetXalign <- function(self, xalign) {
 #' @return Return value from C function
 #' @export
 gtkInscriptionSetYalign <- function(self, yalign) {
-  .Call("R_gtk_inscription_set_yalign", self, yalign)
+  invisible(.Call("R_gtk_inscription_set_yalign", self, yalign))
 }
 
 
@@ -17338,7 +17338,7 @@ gtkInscriptionSetYalign <- function(self, yalign) {
 #' @return ShortcutTrigger
 #' @export
 gtkKeyvalTriggerNew <- function(keyval, modifiers) {
-  .Call("R_gtk_keyval_trigger_new", keyval, modifiers)$result
+  .Call("R_gtk_keyval_trigger_new", as.integer(keyval), modifiers)$result
 }
 
 
@@ -17670,7 +17670,7 @@ gtkLabelGetYalign <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkLabelSelectRegion <- function(self, start_offset, end_offset) {
-  .Call("R_gtk_label_select_region", self, start_offset, end_offset)
+  invisible(.Call("R_gtk_label_select_region", self, as.integer(start_offset), as.integer(end_offset)))
 }
 
 
@@ -17682,7 +17682,7 @@ gtkLabelSelectRegion <- function(self, start_offset, end_offset) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetAttributes <- function(self, attrs) {
-  .Call("R_gtk_label_set_attributes", self, attrs)
+  invisible(.Call("R_gtk_label_set_attributes", self, attrs))
 }
 
 
@@ -17694,7 +17694,7 @@ gtkLabelSetAttributes <- function(self, attrs) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetEllipsize <- function(self, mode) {
-  .Call("R_gtk_label_set_ellipsize", self, mode)
+  invisible(.Call("R_gtk_label_set_ellipsize", self, mode))
 }
 
 
@@ -17706,7 +17706,7 @@ gtkLabelSetEllipsize <- function(self, mode) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetExtraMenu <- function(self, model) {
-  .Call("R_gtk_label_set_extra_menu", self, model)
+  invisible(.Call("R_gtk_label_set_extra_menu", self, model))
 }
 
 
@@ -17718,7 +17718,7 @@ gtkLabelSetExtraMenu <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetJustify <- function(self, jtype) {
-  .Call("R_gtk_label_set_justify", self, jtype)
+  invisible(.Call("R_gtk_label_set_justify", self, jtype))
 }
 
 
@@ -17730,7 +17730,7 @@ gtkLabelSetJustify <- function(self, jtype) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetLabel <- function(self, str) {
-  .Call("R_gtk_label_set_label", self, str)
+  invisible(.Call("R_gtk_label_set_label", self, str))
 }
 
 
@@ -17742,7 +17742,7 @@ gtkLabelSetLabel <- function(self, str) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetLines <- function(self, lines) {
-  .Call("R_gtk_label_set_lines", self, lines)
+  invisible(.Call("R_gtk_label_set_lines", self, as.integer(lines)))
 }
 
 
@@ -17754,7 +17754,7 @@ gtkLabelSetLines <- function(self, lines) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetMarkup <- function(self, str) {
-  .Call("R_gtk_label_set_markup", self, str)
+  invisible(.Call("R_gtk_label_set_markup", self, str))
 }
 
 
@@ -17766,7 +17766,7 @@ gtkLabelSetMarkup <- function(self, str) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetMarkupWithMnemonic <- function(self, str) {
-  .Call("R_gtk_label_set_markup_with_mnemonic", self, str)
+  invisible(.Call("R_gtk_label_set_markup_with_mnemonic", self, str))
 }
 
 
@@ -17778,7 +17778,7 @@ gtkLabelSetMarkupWithMnemonic <- function(self, str) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetMaxWidthChars <- function(self, n_chars) {
-  .Call("R_gtk_label_set_max_width_chars", self, n_chars)
+  invisible(.Call("R_gtk_label_set_max_width_chars", self, as.integer(n_chars)))
 }
 
 
@@ -17790,7 +17790,7 @@ gtkLabelSetMaxWidthChars <- function(self, n_chars) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetMnemonicWidget <- function(self, widget) {
-  .Call("R_gtk_label_set_mnemonic_widget", self, widget)
+  invisible(.Call("R_gtk_label_set_mnemonic_widget", self, widget))
 }
 
 
@@ -17802,7 +17802,7 @@ gtkLabelSetMnemonicWidget <- function(self, widget) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetNaturalWrapMode <- function(self, wrap_mode) {
-  .Call("R_gtk_label_set_natural_wrap_mode", self, wrap_mode)
+  invisible(.Call("R_gtk_label_set_natural_wrap_mode", self, wrap_mode))
 }
 
 
@@ -17814,7 +17814,7 @@ gtkLabelSetNaturalWrapMode <- function(self, wrap_mode) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetSelectable <- function(self, setting) {
-  .Call("R_gtk_label_set_selectable", self, setting)
+  invisible(.Call("R_gtk_label_set_selectable", self, setting))
 }
 
 
@@ -17826,7 +17826,7 @@ gtkLabelSetSelectable <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetSingleLineMode <- function(self, single_line_mode) {
-  .Call("R_gtk_label_set_single_line_mode", self, single_line_mode)
+  invisible(.Call("R_gtk_label_set_single_line_mode", self, single_line_mode))
 }
 
 
@@ -17838,7 +17838,7 @@ gtkLabelSetSingleLineMode <- function(self, single_line_mode) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetTabs <- function(self, tabs) {
-  .Call("R_gtk_label_set_tabs", self, tabs)
+  invisible(.Call("R_gtk_label_set_tabs", self, tabs))
 }
 
 
@@ -17850,7 +17850,7 @@ gtkLabelSetTabs <- function(self, tabs) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetText <- function(self, str) {
-  .Call("R_gtk_label_set_text", self, str)
+  invisible(.Call("R_gtk_label_set_text", self, str))
 }
 
 
@@ -17862,7 +17862,7 @@ gtkLabelSetText <- function(self, str) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetTextWithMnemonic <- function(self, str) {
-  .Call("R_gtk_label_set_text_with_mnemonic", self, str)
+  invisible(.Call("R_gtk_label_set_text_with_mnemonic", self, str))
 }
 
 
@@ -17874,7 +17874,7 @@ gtkLabelSetTextWithMnemonic <- function(self, str) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetUseMarkup <- function(self, setting) {
-  .Call("R_gtk_label_set_use_markup", self, setting)
+  invisible(.Call("R_gtk_label_set_use_markup", self, setting))
 }
 
 
@@ -17886,7 +17886,7 @@ gtkLabelSetUseMarkup <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetUseUnderline <- function(self, setting) {
-  .Call("R_gtk_label_set_use_underline", self, setting)
+  invisible(.Call("R_gtk_label_set_use_underline", self, setting))
 }
 
 
@@ -17898,7 +17898,7 @@ gtkLabelSetUseUnderline <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetWidthChars <- function(self, n_chars) {
-  .Call("R_gtk_label_set_width_chars", self, n_chars)
+  invisible(.Call("R_gtk_label_set_width_chars", self, as.integer(n_chars)))
 }
 
 
@@ -17910,7 +17910,7 @@ gtkLabelSetWidthChars <- function(self, n_chars) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetWrap <- function(self, wrap) {
-  .Call("R_gtk_label_set_wrap", self, wrap)
+  invisible(.Call("R_gtk_label_set_wrap", self, wrap))
 }
 
 
@@ -17922,7 +17922,7 @@ gtkLabelSetWrap <- function(self, wrap) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetWrapMode <- function(self, wrap_mode) {
-  .Call("R_gtk_label_set_wrap_mode", self, wrap_mode)
+  invisible(.Call("R_gtk_label_set_wrap_mode", self, wrap_mode))
 }
 
 
@@ -17934,7 +17934,7 @@ gtkLabelSetWrapMode <- function(self, wrap_mode) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetXalign <- function(self, xalign) {
-  .Call("R_gtk_label_set_xalign", self, xalign)
+  invisible(.Call("R_gtk_label_set_xalign", self, xalign))
 }
 
 
@@ -17946,7 +17946,7 @@ gtkLabelSetXalign <- function(self, xalign) {
 #' @return Return value from C function
 #' @export
 gtkLabelSetYalign <- function(self, yalign) {
-  .Call("R_gtk_label_set_yalign", self, yalign)
+  invisible(.Call("R_gtk_label_set_yalign", self, yalign))
 }
 
 
@@ -17983,7 +17983,7 @@ gtkLayoutChildGetLayoutManager <- function(layout_child) {
 #' @return Return value from C function
 #' @export
 gtkLayoutManagerAllocate <- function(manager, widget, width, height, baseline) {
-  .Call("R_gtk_layout_manager_allocate", manager, widget, width, height, baseline)
+  invisible(.Call("R_gtk_layout_manager_allocate", manager, widget, as.integer(width), as.integer(height), as.integer(baseline)))
 }
 
 
@@ -18028,7 +18028,7 @@ gtkLayoutManagerGetWidget <- function(manager) {
 #' @return Return value from C function
 #' @export
 gtkLayoutManagerLayoutChanged <- function(manager) {
-  .Call("R_gtk_layout_manager_layout_changed", manager)
+  invisible(.Call("R_gtk_layout_manager_layout_changed", manager))
 }
 
 
@@ -18042,7 +18042,7 @@ gtkLayoutManagerLayoutChanged <- function(manager) {
 #' @return Return value from C function
 #' @export
 gtkLayoutManagerMeasure <- function(manager, widget, orientation, for_size) {
-  .Call("R_gtk_layout_manager_measure", manager, widget, orientation, for_size)
+  .Call("R_gtk_layout_manager_measure", manager, widget, orientation, as.integer(for_size))
 }
 
 
@@ -18077,7 +18077,7 @@ gtkLevelBarNewForInterval <- function(min_value, max_value) {
 #' @return Return value from C function
 #' @export
 gtkLevelBarAddOffsetValue <- function(self, name, value) {
-  .Call("R_gtk_level_bar_add_offset_value", self, name, value)
+  invisible(.Call("R_gtk_level_bar_add_offset_value", self, name, value))
 }
 
 
@@ -18156,7 +18156,7 @@ gtkLevelBarGetValue <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkLevelBarRemoveOffsetValue <- function(self, name) {
-  .Call("R_gtk_level_bar_remove_offset_value", self, name)
+  invisible(.Call("R_gtk_level_bar_remove_offset_value", self, name))
 }
 
 
@@ -18168,7 +18168,7 @@ gtkLevelBarRemoveOffsetValue <- function(self, name) {
 #' @return Return value from C function
 #' @export
 gtkLevelBarSetInverted <- function(self, inverted) {
-  .Call("R_gtk_level_bar_set_inverted", self, inverted)
+  invisible(.Call("R_gtk_level_bar_set_inverted", self, inverted))
 }
 
 
@@ -18180,7 +18180,7 @@ gtkLevelBarSetInverted <- function(self, inverted) {
 #' @return Return value from C function
 #' @export
 gtkLevelBarSetMaxValue <- function(self, value) {
-  .Call("R_gtk_level_bar_set_max_value", self, value)
+  invisible(.Call("R_gtk_level_bar_set_max_value", self, value))
 }
 
 
@@ -18192,7 +18192,7 @@ gtkLevelBarSetMaxValue <- function(self, value) {
 #' @return Return value from C function
 #' @export
 gtkLevelBarSetMinValue <- function(self, value) {
-  .Call("R_gtk_level_bar_set_min_value", self, value)
+  invisible(.Call("R_gtk_level_bar_set_min_value", self, value))
 }
 
 
@@ -18204,7 +18204,7 @@ gtkLevelBarSetMinValue <- function(self, value) {
 #' @return Return value from C function
 #' @export
 gtkLevelBarSetMode <- function(self, mode) {
-  .Call("R_gtk_level_bar_set_mode", self, mode)
+  invisible(.Call("R_gtk_level_bar_set_mode", self, mode))
 }
 
 
@@ -18216,7 +18216,7 @@ gtkLevelBarSetMode <- function(self, mode) {
 #' @return Return value from C function
 #' @export
 gtkLevelBarSetValue <- function(self, value) {
-  .Call("R_gtk_level_bar_set_value", self, value)
+  invisible(.Call("R_gtk_level_bar_set_value", self, value))
 }
 
 
@@ -18273,7 +18273,7 @@ gtkLinkButtonGetVisited <- function(link_button) {
 #' @return Return value from C function
 #' @export
 gtkLinkButtonSetUri <- function(link_button, uri) {
-  .Call("R_gtk_link_button_set_uri", link_button, uri)
+  invisible(.Call("R_gtk_link_button_set_uri", link_button, uri))
 }
 
 
@@ -18285,7 +18285,7 @@ gtkLinkButtonSetUri <- function(link_button, uri) {
 #' @return Return value from C function
 #' @export
 gtkLinkButtonSetVisited <- function(link_button, visited) {
-  .Call("R_gtk_link_button_set_visited", link_button, visited)
+  invisible(.Call("R_gtk_link_button_set_visited", link_button, visited))
 }
 
 
@@ -18307,7 +18307,7 @@ gtkListBoxNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkListBoxAppend <- function(box, child) {
-  .Call("R_gtk_list_box_append", box, child)
+  invisible(.Call("R_gtk_list_box_append", box, child))
 }
 
 
@@ -18319,7 +18319,7 @@ gtkListBoxAppend <- function(box, child) {
 #' @return Return value from C function
 #' @export
 gtkListBoxDragHighlightRow <- function(box, row) {
-  .Call("R_gtk_list_box_drag_highlight_row", box, row)
+  invisible(.Call("R_gtk_list_box_drag_highlight_row", box, row))
 }
 
 
@@ -18330,7 +18330,7 @@ gtkListBoxDragHighlightRow <- function(box, row) {
 #' @return Return value from C function
 #' @export
 gtkListBoxDragUnhighlightRow <- function(box) {
-  .Call("R_gtk_list_box_drag_unhighlight_row", box)
+  invisible(.Call("R_gtk_list_box_drag_unhighlight_row", box))
 }
 
 
@@ -18364,7 +18364,7 @@ gtkListBoxGetAdjustment <- function(box) {
 #' @return ListBoxRow
 #' @export
 gtkListBoxGetRowAtIndex <- function(box, index_) {
-  .Call("R_gtk_list_box_get_row_at_index", box, index_)$result
+  .Call("R_gtk_list_box_get_row_at_index", box, as.integer(index_))$result
 }
 
 
@@ -18376,7 +18376,7 @@ gtkListBoxGetRowAtIndex <- function(box, index_) {
 #' @return ListBoxRow
 #' @export
 gtkListBoxGetRowAtY <- function(box, y) {
-  .Call("R_gtk_list_box_get_row_at_y", box, y)$result
+  .Call("R_gtk_list_box_get_row_at_y", box, as.integer(y))$result
 }
 
 
@@ -18444,7 +18444,7 @@ gtkListBoxGetTabBehavior <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkListBoxInsert <- function(box, child, position) {
-  .Call("R_gtk_list_box_insert", box, child, position)
+  invisible(.Call("R_gtk_list_box_insert", box, child, as.integer(position)))
 }
 
 
@@ -18455,7 +18455,7 @@ gtkListBoxInsert <- function(box, child, position) {
 #' @return Return value from C function
 #' @export
 gtkListBoxInvalidateFilter <- function(box) {
-  .Call("R_gtk_list_box_invalidate_filter", box)
+  invisible(.Call("R_gtk_list_box_invalidate_filter", box))
 }
 
 
@@ -18466,7 +18466,7 @@ gtkListBoxInvalidateFilter <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkListBoxInvalidateHeaders <- function(box) {
-  .Call("R_gtk_list_box_invalidate_headers", box)
+  invisible(.Call("R_gtk_list_box_invalidate_headers", box))
 }
 
 
@@ -18477,7 +18477,7 @@ gtkListBoxInvalidateHeaders <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkListBoxInvalidateSort <- function(box) {
-  .Call("R_gtk_list_box_invalidate_sort", box)
+  invisible(.Call("R_gtk_list_box_invalidate_sort", box))
 }
 
 
@@ -18489,7 +18489,7 @@ gtkListBoxInvalidateSort <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkListBoxPrepend <- function(box, child) {
-  .Call("R_gtk_list_box_prepend", box, child)
+  invisible(.Call("R_gtk_list_box_prepend", box, child))
 }
 
 
@@ -18501,7 +18501,7 @@ gtkListBoxPrepend <- function(box, child) {
 #' @return Return value from C function
 #' @export
 gtkListBoxRemove <- function(box, child) {
-  .Call("R_gtk_list_box_remove", box, child)
+  invisible(.Call("R_gtk_list_box_remove", box, child))
 }
 
 
@@ -18512,7 +18512,7 @@ gtkListBoxRemove <- function(box, child) {
 #' @return Return value from C function
 #' @export
 gtkListBoxRemoveAll <- function(box) {
-  .Call("R_gtk_list_box_remove_all", box)
+  invisible(.Call("R_gtk_list_box_remove_all", box))
 }
 
 
@@ -18523,7 +18523,7 @@ gtkListBoxRemoveAll <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkListBoxSelectAll <- function(box) {
-  .Call("R_gtk_list_box_select_all", box)
+  invisible(.Call("R_gtk_list_box_select_all", box))
 }
 
 
@@ -18535,7 +18535,7 @@ gtkListBoxSelectAll <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkListBoxSelectRow <- function(box, row) {
-  .Call("R_gtk_list_box_select_row", box, row)
+  invisible(.Call("R_gtk_list_box_select_row", box, row))
 }
 
 
@@ -18547,7 +18547,7 @@ gtkListBoxSelectRow <- function(box, row) {
 #' @return Return value from C function
 #' @export
 gtkListBoxSetActivateOnSingleClick <- function(box, single) {
-  .Call("R_gtk_list_box_set_activate_on_single_click", box, single)
+  invisible(.Call("R_gtk_list_box_set_activate_on_single_click", box, single))
 }
 
 
@@ -18559,7 +18559,7 @@ gtkListBoxSetActivateOnSingleClick <- function(box, single) {
 #' @return Return value from C function
 #' @export
 gtkListBoxSetAdjustment <- function(box, adjustment) {
-  .Call("R_gtk_list_box_set_adjustment", box, adjustment)
+  invisible(.Call("R_gtk_list_box_set_adjustment", box, adjustment))
 }
 
 
@@ -18571,7 +18571,7 @@ gtkListBoxSetAdjustment <- function(box, adjustment) {
 #' @return Return value from C function
 #' @export
 gtkListBoxSetPlaceholder <- function(box, placeholder) {
-  .Call("R_gtk_list_box_set_placeholder", box, placeholder)
+  invisible(.Call("R_gtk_list_box_set_placeholder", box, placeholder))
 }
 
 
@@ -18583,7 +18583,7 @@ gtkListBoxSetPlaceholder <- function(box, placeholder) {
 #' @return Return value from C function
 #' @export
 gtkListBoxSetSelectionMode <- function(box, mode) {
-  .Call("R_gtk_list_box_set_selection_mode", box, mode)
+  invisible(.Call("R_gtk_list_box_set_selection_mode", box, mode))
 }
 
 
@@ -18595,7 +18595,7 @@ gtkListBoxSetSelectionMode <- function(box, mode) {
 #' @return Return value from C function
 #' @export
 gtkListBoxSetShowSeparators <- function(box, show_separators) {
-  .Call("R_gtk_list_box_set_show_separators", box, show_separators)
+  invisible(.Call("R_gtk_list_box_set_show_separators", box, show_separators))
 }
 
 
@@ -18607,7 +18607,7 @@ gtkListBoxSetShowSeparators <- function(box, show_separators) {
 #' @return Return value from C function
 #' @export
 gtkListBoxSetTabBehavior <- function(box, behavior) {
-  .Call("R_gtk_list_box_set_tab_behavior", box, behavior)
+  invisible(.Call("R_gtk_list_box_set_tab_behavior", box, behavior))
 }
 
 
@@ -18618,7 +18618,7 @@ gtkListBoxSetTabBehavior <- function(box, behavior) {
 #' @return Return value from C function
 #' @export
 gtkListBoxUnselectAll <- function(box) {
-  .Call("R_gtk_list_box_unselect_all", box)
+  invisible(.Call("R_gtk_list_box_unselect_all", box))
 }
 
 
@@ -18630,7 +18630,7 @@ gtkListBoxUnselectAll <- function(box) {
 #' @return Return value from C function
 #' @export
 gtkListBoxUnselectRow <- function(box, row) {
-  .Call("R_gtk_list_box_unselect_row", box, row)
+  invisible(.Call("R_gtk_list_box_unselect_row", box, row))
 }
 
 
@@ -18651,7 +18651,7 @@ gtkListBoxRowNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkListBoxRowChanged <- function(row) {
-  .Call("R_gtk_list_box_row_changed", row)
+  invisible(.Call("R_gtk_list_box_row_changed", row))
 }
 
 
@@ -18729,7 +18729,7 @@ gtkListBoxRowIsSelected <- function(row) {
 #' @return Return value from C function
 #' @export
 gtkListBoxRowSetActivatable <- function(row, activatable) {
-  .Call("R_gtk_list_box_row_set_activatable", row, activatable)
+  invisible(.Call("R_gtk_list_box_row_set_activatable", row, activatable))
 }
 
 
@@ -18741,7 +18741,7 @@ gtkListBoxRowSetActivatable <- function(row, activatable) {
 #' @return Return value from C function
 #' @export
 gtkListBoxRowSetChild <- function(row, child) {
-  .Call("R_gtk_list_box_row_set_child", row, child)
+  invisible(.Call("R_gtk_list_box_row_set_child", row, child))
 }
 
 
@@ -18753,7 +18753,7 @@ gtkListBoxRowSetChild <- function(row, child) {
 #' @return Return value from C function
 #' @export
 gtkListBoxRowSetHeader <- function(row, header) {
-  .Call("R_gtk_list_box_row_set_header", row, header)
+  invisible(.Call("R_gtk_list_box_row_set_header", row, header))
 }
 
 
@@ -18765,7 +18765,7 @@ gtkListBoxRowSetHeader <- function(row, header) {
 #' @return Return value from C function
 #' @export
 gtkListBoxRowSetSelectable <- function(row, selectable) {
-  .Call("R_gtk_list_box_row_set_selectable", row, selectable)
+  invisible(.Call("R_gtk_list_box_row_set_selectable", row, selectable))
 }
 
 
@@ -18832,7 +18832,7 @@ gtkListHeaderGetStart <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkListHeaderSetChild <- function(self, child) {
-  .Call("R_gtk_list_header_set_child", self, child)
+  invisible(.Call("R_gtk_list_header_set_child", self, child))
 }
 
 
@@ -18943,7 +18943,7 @@ gtkListItemGetSelected <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkListItemSetAccessibleDescription <- function(self, description) {
-  .Call("R_gtk_list_item_set_accessible_description", self, description)
+  invisible(.Call("R_gtk_list_item_set_accessible_description", self, description))
 }
 
 
@@ -18955,7 +18955,7 @@ gtkListItemSetAccessibleDescription <- function(self, description) {
 #' @return Return value from C function
 #' @export
 gtkListItemSetAccessibleLabel <- function(self, label) {
-  .Call("R_gtk_list_item_set_accessible_label", self, label)
+  invisible(.Call("R_gtk_list_item_set_accessible_label", self, label))
 }
 
 
@@ -18967,7 +18967,7 @@ gtkListItemSetAccessibleLabel <- function(self, label) {
 #' @return Return value from C function
 #' @export
 gtkListItemSetActivatable <- function(self, activatable) {
-  .Call("R_gtk_list_item_set_activatable", self, activatable)
+  invisible(.Call("R_gtk_list_item_set_activatable", self, activatable))
 }
 
 
@@ -18979,7 +18979,7 @@ gtkListItemSetActivatable <- function(self, activatable) {
 #' @return Return value from C function
 #' @export
 gtkListItemSetChild <- function(self, child) {
-  .Call("R_gtk_list_item_set_child", self, child)
+  invisible(.Call("R_gtk_list_item_set_child", self, child))
 }
 
 
@@ -18991,7 +18991,7 @@ gtkListItemSetChild <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkListItemSetFocusable <- function(self, focusable) {
-  .Call("R_gtk_list_item_set_focusable", self, focusable)
+  invisible(.Call("R_gtk_list_item_set_focusable", self, focusable))
 }
 
 
@@ -19003,7 +19003,7 @@ gtkListItemSetFocusable <- function(self, focusable) {
 #' @return Return value from C function
 #' @export
 gtkListItemSetSelectable <- function(self, selectable) {
-  .Call("R_gtk_list_item_set_selectable", self, selectable)
+  invisible(.Call("R_gtk_list_item_set_selectable", self, selectable))
 }
 
 
@@ -19015,7 +19015,7 @@ gtkListItemSetSelectable <- function(self, selectable) {
 #' @return ListStore
 #' @export
 gtkListStoreNewv <- function(n_columns, types) {
-  .Call("R_gtk_list_store_newv", n_columns, types)$result
+  .Call("R_gtk_list_store_newv", as.integer(n_columns), types)$result
 }
 
 
@@ -19037,7 +19037,7 @@ gtkListStoreAppend <- function(list_store) {
 #' @return Return value from C function
 #' @export
 gtkListStoreClear <- function(list_store) {
-  .Call("R_gtk_list_store_clear", list_store)
+  invisible(.Call("R_gtk_list_store_clear", list_store))
 }
 
 
@@ -19049,7 +19049,7 @@ gtkListStoreClear <- function(list_store) {
 #' @return Return value from C function
 #' @export
 gtkListStoreInsert <- function(list_store, position) {
-  .Call("R_gtk_list_store_insert", list_store, position)$iter
+  .Call("R_gtk_list_store_insert", list_store, as.integer(position))$iter
 }
 
 
@@ -19088,7 +19088,7 @@ gtkListStoreInsertBefore <- function(list_store, sibling) {
 #' @return Return value from C function
 #' @export
 gtkListStoreInsertWithValuesv <- function(list_store, position, columns, values, n_values) {
-  .Call("R_gtk_list_store_insert_with_valuesv", list_store, position, columns, values, n_values)$iter
+  .Call("R_gtk_list_store_insert_with_valuesv", list_store, as.integer(position), as.integer(columns), values, as.integer(n_values))$iter
 }
 
 
@@ -19113,7 +19113,7 @@ gtkListStoreIterIsValid <- function(list_store, iter) {
 #' @return Return value from C function
 #' @export
 gtkListStoreMoveAfter <- function(store, iter, position) {
-  .Call("R_gtk_list_store_move_after", store, iter, position)
+  invisible(.Call("R_gtk_list_store_move_after", store, iter, position))
 }
 
 
@@ -19126,7 +19126,7 @@ gtkListStoreMoveAfter <- function(store, iter, position) {
 #' @return Return value from C function
 #' @export
 gtkListStoreMoveBefore <- function(store, iter, position) {
-  .Call("R_gtk_list_store_move_before", store, iter, position)
+  invisible(.Call("R_gtk_list_store_move_before", store, iter, position))
 }
 
 
@@ -19161,7 +19161,7 @@ gtkListStoreRemove <- function(list_store, iter) {
 #' @return Return value from C function
 #' @export
 gtkListStoreReorder <- function(store, new_order) {
-  .Call("R_gtk_list_store_reorder", store, new_order)
+  invisible(.Call("R_gtk_list_store_reorder", store, as.integer(new_order)))
 }
 
 
@@ -19174,7 +19174,7 @@ gtkListStoreReorder <- function(store, new_order) {
 #' @return Return value from C function
 #' @export
 gtkListStoreSetColumnTypes <- function(list_store, n_columns, types) {
-  .Call("R_gtk_list_store_set_column_types", list_store, n_columns, types)
+  invisible(.Call("R_gtk_list_store_set_column_types", list_store, as.integer(n_columns), types))
 }
 
 
@@ -19188,7 +19188,7 @@ gtkListStoreSetColumnTypes <- function(list_store, n_columns, types) {
 #' @return Return value from C function
 #' @export
 gtkListStoreSetValue <- function(list_store, iter, column, value) {
-  .Call("R_gtk_list_store_set_value", list_store, iter, column, value)
+  invisible(.Call("R_gtk_list_store_set_value", list_store, iter, as.integer(column), value))
 }
 
 
@@ -19203,7 +19203,7 @@ gtkListStoreSetValue <- function(list_store, iter, column, value) {
 #' @return Return value from C function
 #' @export
 gtkListStoreSetValuesv <- function(list_store, iter, columns, values, n_values) {
-  .Call("R_gtk_list_store_set_valuesv", list_store, iter, columns, values, n_values)
+  invisible(.Call("R_gtk_list_store_set_valuesv", list_store, iter, as.integer(columns), values, as.integer(n_values)))
 }
 
 
@@ -19216,7 +19216,7 @@ gtkListStoreSetValuesv <- function(list_store, iter, columns, values, n_values) 
 #' @return Return value from C function
 #' @export
 gtkListStoreSwap <- function(store, a, b) {
-  .Call("R_gtk_list_store_swap", store, a, b)
+  invisible(.Call("R_gtk_list_store_swap", store, a, b))
 }
 
 
@@ -19319,7 +19319,7 @@ gtkListViewGetTabBehavior <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkListViewScrollTo <- function(self, pos, flags, scroll) {
-  .Call("R_gtk_list_view_scroll_to", self, pos, flags, scroll)
+  invisible(.Call("R_gtk_list_view_scroll_to", self, as.integer(pos), flags, scroll))
 }
 
 
@@ -19331,7 +19331,7 @@ gtkListViewScrollTo <- function(self, pos, flags, scroll) {
 #' @return Return value from C function
 #' @export
 gtkListViewSetEnableRubberband <- function(self, enable_rubberband) {
-  .Call("R_gtk_list_view_set_enable_rubberband", self, enable_rubberband)
+  invisible(.Call("R_gtk_list_view_set_enable_rubberband", self, enable_rubberband))
 }
 
 
@@ -19343,7 +19343,7 @@ gtkListViewSetEnableRubberband <- function(self, enable_rubberband) {
 #' @return Return value from C function
 #' @export
 gtkListViewSetFactory <- function(self, factory) {
-  .Call("R_gtk_list_view_set_factory", self, factory)
+  invisible(.Call("R_gtk_list_view_set_factory", self, factory))
 }
 
 
@@ -19355,7 +19355,7 @@ gtkListViewSetFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkListViewSetHeaderFactory <- function(self, factory) {
-  .Call("R_gtk_list_view_set_header_factory", self, factory)
+  invisible(.Call("R_gtk_list_view_set_header_factory", self, factory))
 }
 
 
@@ -19367,7 +19367,7 @@ gtkListViewSetHeaderFactory <- function(self, factory) {
 #' @return Return value from C function
 #' @export
 gtkListViewSetModel <- function(self, model) {
-  .Call("R_gtk_list_view_set_model", self, model)
+  invisible(.Call("R_gtk_list_view_set_model", self, model))
 }
 
 
@@ -19379,7 +19379,7 @@ gtkListViewSetModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkListViewSetShowSeparators <- function(self, show_separators) {
-  .Call("R_gtk_list_view_set_show_separators", self, show_separators)
+  invisible(.Call("R_gtk_list_view_set_show_separators", self, show_separators))
 }
 
 
@@ -19391,7 +19391,7 @@ gtkListViewSetShowSeparators <- function(self, show_separators) {
 #' @return Return value from C function
 #' @export
 gtkListViewSetSingleClickActivate <- function(self, single_click_activate) {
-  .Call("R_gtk_list_view_set_single_click_activate", self, single_click_activate)
+  invisible(.Call("R_gtk_list_view_set_single_click_activate", self, single_click_activate))
 }
 
 
@@ -19403,7 +19403,7 @@ gtkListViewSetSingleClickActivate <- function(self, single_click_activate) {
 #' @return Return value from C function
 #' @export
 gtkListViewSetTabBehavior <- function(self, tab_behavior) {
-  .Call("R_gtk_list_view_set_tab_behavior", self, tab_behavior)
+  invisible(.Call("R_gtk_list_view_set_tab_behavior", self, tab_behavior))
 }
 
 
@@ -19437,7 +19437,7 @@ gtkLockButtonGetPermission <- function(button) {
 #' @return Return value from C function
 #' @export
 gtkLockButtonSetPermission <- function(button, permission) {
-  .Call("R_gtk_lock_button_set_permission", button, permission)
+  invisible(.Call("R_gtk_lock_button_set_permission", button, permission))
 }
 
 
@@ -19471,7 +19471,7 @@ gtkMapListModelHasMap <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMapListModelSetModel <- function(self, model) {
-  .Call("R_gtk_map_list_model_set_model", self, model)
+  invisible(.Call("R_gtk_map_list_model_set_model", self, model))
 }
 
 
@@ -19505,7 +19505,7 @@ gtkMediaControlsGetMediaStream <- function(controls) {
 #' @return Return value from C function
 #' @export
 gtkMediaControlsSetMediaStream <- function(controls, stream) {
-  .Call("R_gtk_media_controls_set_media_stream", controls, stream)
+  invisible(.Call("R_gtk_media_controls_set_media_stream", controls, stream))
 }
 
 
@@ -19570,7 +19570,7 @@ gtkMediaFileNewForResource <- function(resource_path) {
 #' @return Return value from C function
 #' @export
 gtkMediaFileClear <- function(self) {
-  .Call("R_gtk_media_file_clear", self)
+  invisible(.Call("R_gtk_media_file_clear", self))
 }
 
 
@@ -19604,7 +19604,7 @@ gtkMediaFileGetInputStream <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaFileSetFile <- function(self, file) {
-  .Call("R_gtk_media_file_set_file", self, file)
+  invisible(.Call("R_gtk_media_file_set_file", self, file))
 }
 
 
@@ -19616,7 +19616,7 @@ gtkMediaFileSetFile <- function(self, file) {
 #' @return Return value from C function
 #' @export
 gtkMediaFileSetFilename <- function(self, filename) {
-  .Call("R_gtk_media_file_set_filename", self, filename)
+  invisible(.Call("R_gtk_media_file_set_filename", self, filename))
 }
 
 
@@ -19628,7 +19628,7 @@ gtkMediaFileSetFilename <- function(self, filename) {
 #' @return Return value from C function
 #' @export
 gtkMediaFileSetInputStream <- function(self, stream) {
-  .Call("R_gtk_media_file_set_input_stream", self, stream)
+  invisible(.Call("R_gtk_media_file_set_input_stream", self, stream))
 }
 
 
@@ -19640,7 +19640,7 @@ gtkMediaFileSetInputStream <- function(self, stream) {
 #' @return Return value from C function
 #' @export
 gtkMediaFileSetResource <- function(self, resource_path) {
-  .Call("R_gtk_media_file_set_resource", self, resource_path)
+  invisible(.Call("R_gtk_media_file_set_resource", self, resource_path))
 }
 
 
@@ -19652,7 +19652,7 @@ gtkMediaFileSetResource <- function(self, resource_path) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamGerror <- function(self, error) {
-  .Call("R_gtk_media_stream_gerror", self, error)
+  invisible(.Call("R_gtk_media_stream_gerror", self, error))
 }
 
 
@@ -19806,7 +19806,7 @@ gtkMediaStreamIsSeeking <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamPause <- function(self) {
-  .Call("R_gtk_media_stream_pause", self)
+  invisible(.Call("R_gtk_media_stream_pause", self))
 }
 
 
@@ -19817,7 +19817,7 @@ gtkMediaStreamPause <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamPlay <- function(self) {
-  .Call("R_gtk_media_stream_play", self)
+  invisible(.Call("R_gtk_media_stream_play", self))
 }
 
 
@@ -19829,7 +19829,7 @@ gtkMediaStreamPlay <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamRealize <- function(self, surface) {
-  .Call("R_gtk_media_stream_realize", self, surface)
+  invisible(.Call("R_gtk_media_stream_realize", self, surface))
 }
 
 
@@ -19841,7 +19841,7 @@ gtkMediaStreamRealize <- function(self, surface) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamSeek <- function(self, timestamp) {
-  .Call("R_gtk_media_stream_seek", self, timestamp)
+  invisible(.Call("R_gtk_media_stream_seek", self, as.integer(timestamp)))
 }
 
 
@@ -19852,7 +19852,7 @@ gtkMediaStreamSeek <- function(self, timestamp) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamSeekFailed <- function(self) {
-  .Call("R_gtk_media_stream_seek_failed", self)
+  invisible(.Call("R_gtk_media_stream_seek_failed", self))
 }
 
 
@@ -19863,7 +19863,7 @@ gtkMediaStreamSeekFailed <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamSeekSuccess <- function(self) {
-  .Call("R_gtk_media_stream_seek_success", self)
+  invisible(.Call("R_gtk_media_stream_seek_success", self))
 }
 
 
@@ -19875,7 +19875,7 @@ gtkMediaStreamSeekSuccess <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamSetLoop <- function(self, loop) {
-  .Call("R_gtk_media_stream_set_loop", self, loop)
+  invisible(.Call("R_gtk_media_stream_set_loop", self, loop))
 }
 
 
@@ -19887,7 +19887,7 @@ gtkMediaStreamSetLoop <- function(self, loop) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamSetMuted <- function(self, muted) {
-  .Call("R_gtk_media_stream_set_muted", self, muted)
+  invisible(.Call("R_gtk_media_stream_set_muted", self, muted))
 }
 
 
@@ -19899,7 +19899,7 @@ gtkMediaStreamSetMuted <- function(self, muted) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamSetPlaying <- function(self, playing) {
-  .Call("R_gtk_media_stream_set_playing", self, playing)
+  invisible(.Call("R_gtk_media_stream_set_playing", self, playing))
 }
 
 
@@ -19911,7 +19911,7 @@ gtkMediaStreamSetPlaying <- function(self, playing) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamSetVolume <- function(self, volume) {
-  .Call("R_gtk_media_stream_set_volume", self, volume)
+  invisible(.Call("R_gtk_media_stream_set_volume", self, volume))
 }
 
 
@@ -19922,7 +19922,7 @@ gtkMediaStreamSetVolume <- function(self, volume) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamStreamEnded <- function(self) {
-  .Call("R_gtk_media_stream_stream_ended", self)
+  invisible(.Call("R_gtk_media_stream_stream_ended", self))
 }
 
 
@@ -19937,7 +19937,7 @@ gtkMediaStreamStreamEnded <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamStreamPrepared <- function(self, has_audio, has_video, seekable, duration) {
-  .Call("R_gtk_media_stream_stream_prepared", self, has_audio, has_video, seekable, duration)
+  invisible(.Call("R_gtk_media_stream_stream_prepared", self, has_audio, has_video, seekable, as.integer(duration)))
 }
 
 
@@ -19948,7 +19948,7 @@ gtkMediaStreamStreamPrepared <- function(self, has_audio, has_video, seekable, d
 #' @return Return value from C function
 #' @export
 gtkMediaStreamStreamUnprepared <- function(self) {
-  .Call("R_gtk_media_stream_stream_unprepared", self)
+  invisible(.Call("R_gtk_media_stream_stream_unprepared", self))
 }
 
 
@@ -19960,7 +19960,7 @@ gtkMediaStreamStreamUnprepared <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamUnrealize <- function(self, surface) {
-  .Call("R_gtk_media_stream_unrealize", self, surface)
+  invisible(.Call("R_gtk_media_stream_unrealize", self, surface))
 }
 
 
@@ -19972,7 +19972,7 @@ gtkMediaStreamUnrealize <- function(self, surface) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamUpdate <- function(self, timestamp) {
-  .Call("R_gtk_media_stream_update", self, timestamp)
+  invisible(.Call("R_gtk_media_stream_update", self, as.integer(timestamp)))
 }
 
 
@@ -20125,7 +20125,7 @@ gtkMenuButtonGetUseUnderline <- function(menu_button) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonPopdown <- function(menu_button) {
-  .Call("R_gtk_menu_button_popdown", menu_button)
+  invisible(.Call("R_gtk_menu_button_popdown", menu_button))
 }
 
 
@@ -20136,7 +20136,7 @@ gtkMenuButtonPopdown <- function(menu_button) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonPopup <- function(menu_button) {
-  .Call("R_gtk_menu_button_popup", menu_button)
+  invisible(.Call("R_gtk_menu_button_popup", menu_button))
 }
 
 
@@ -20148,7 +20148,7 @@ gtkMenuButtonPopup <- function(menu_button) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetActive <- function(menu_button, active) {
-  .Call("R_gtk_menu_button_set_active", menu_button, active)
+  invisible(.Call("R_gtk_menu_button_set_active", menu_button, active))
 }
 
 
@@ -20160,7 +20160,7 @@ gtkMenuButtonSetActive <- function(menu_button, active) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetAlwaysShowArrow <- function(menu_button, always_show_arrow) {
-  .Call("R_gtk_menu_button_set_always_show_arrow", menu_button, always_show_arrow)
+  invisible(.Call("R_gtk_menu_button_set_always_show_arrow", menu_button, always_show_arrow))
 }
 
 
@@ -20172,7 +20172,7 @@ gtkMenuButtonSetAlwaysShowArrow <- function(menu_button, always_show_arrow) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetCanShrink <- function(menu_button, can_shrink) {
-  .Call("R_gtk_menu_button_set_can_shrink", menu_button, can_shrink)
+  invisible(.Call("R_gtk_menu_button_set_can_shrink", menu_button, can_shrink))
 }
 
 
@@ -20184,7 +20184,7 @@ gtkMenuButtonSetCanShrink <- function(menu_button, can_shrink) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetChild <- function(menu_button, child) {
-  .Call("R_gtk_menu_button_set_child", menu_button, child)
+  invisible(.Call("R_gtk_menu_button_set_child", menu_button, child))
 }
 
 
@@ -20196,7 +20196,7 @@ gtkMenuButtonSetChild <- function(menu_button, child) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetDirection <- function(menu_button, direction) {
-  .Call("R_gtk_menu_button_set_direction", menu_button, direction)
+  invisible(.Call("R_gtk_menu_button_set_direction", menu_button, direction))
 }
 
 
@@ -20208,7 +20208,7 @@ gtkMenuButtonSetDirection <- function(menu_button, direction) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetHasFrame <- function(menu_button, has_frame) {
-  .Call("R_gtk_menu_button_set_has_frame", menu_button, has_frame)
+  invisible(.Call("R_gtk_menu_button_set_has_frame", menu_button, has_frame))
 }
 
 
@@ -20220,7 +20220,7 @@ gtkMenuButtonSetHasFrame <- function(menu_button, has_frame) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetIconName <- function(menu_button, icon_name) {
-  .Call("R_gtk_menu_button_set_icon_name", menu_button, icon_name)
+  invisible(.Call("R_gtk_menu_button_set_icon_name", menu_button, icon_name))
 }
 
 
@@ -20232,7 +20232,7 @@ gtkMenuButtonSetIconName <- function(menu_button, icon_name) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetLabel <- function(menu_button, label) {
-  .Call("R_gtk_menu_button_set_label", menu_button, label)
+  invisible(.Call("R_gtk_menu_button_set_label", menu_button, label))
 }
 
 
@@ -20244,7 +20244,7 @@ gtkMenuButtonSetLabel <- function(menu_button, label) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetMenuModel <- function(menu_button, menu_model) {
-  .Call("R_gtk_menu_button_set_menu_model", menu_button, menu_model)
+  invisible(.Call("R_gtk_menu_button_set_menu_model", menu_button, menu_model))
 }
 
 
@@ -20256,7 +20256,7 @@ gtkMenuButtonSetMenuModel <- function(menu_button, menu_model) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetPopover <- function(menu_button, popover) {
-  .Call("R_gtk_menu_button_set_popover", menu_button, popover)
+  invisible(.Call("R_gtk_menu_button_set_popover", menu_button, popover))
 }
 
 
@@ -20268,7 +20268,7 @@ gtkMenuButtonSetPopover <- function(menu_button, popover) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetPrimary <- function(menu_button, primary) {
-  .Call("R_gtk_menu_button_set_primary", menu_button, primary)
+  invisible(.Call("R_gtk_menu_button_set_primary", menu_button, primary))
 }
 
 
@@ -20280,7 +20280,7 @@ gtkMenuButtonSetPrimary <- function(menu_button, primary) {
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetUseUnderline <- function(menu_button, use_underline) {
-  .Call("R_gtk_menu_button_set_use_underline", menu_button, use_underline)
+  invisible(.Call("R_gtk_menu_button_set_use_underline", menu_button, use_underline))
 }
 
 
@@ -20303,7 +20303,7 @@ gtkMessageDialogGetMessageArea <- function(message_dialog) {
 #' @return Return value from C function
 #' @export
 gtkMessageDialogSetMarkup <- function(message_dialog, str) {
-  .Call("R_gtk_message_dialog_set_markup", message_dialog, str)
+  invisible(.Call("R_gtk_message_dialog_set_markup", message_dialog, str))
 }
 
 
@@ -20324,7 +20324,7 @@ gtkMnemonicActionGet <- function() {
 #' @return MnemonicTrigger
 #' @export
 gtkMnemonicTriggerNew <- function(keyval) {
-  .Call("R_gtk_mnemonic_trigger_new", keyval)$result
+  .Call("R_gtk_mnemonic_trigger_new", as.integer(keyval))$result
 }
 
 
@@ -20391,7 +20391,7 @@ gtkMountOperationIsShowing <- function(op) {
 #' @return Return value from C function
 #' @export
 gtkMountOperationSetDisplay <- function(op, display) {
-  .Call("R_gtk_mount_operation_set_display", op, display)
+  invisible(.Call("R_gtk_mount_operation_set_display", op, display))
 }
 
 
@@ -20403,7 +20403,7 @@ gtkMountOperationSetDisplay <- function(op, display) {
 #' @return Return value from C function
 #' @export
 gtkMountOperationSetParent <- function(op, parent) {
-  .Call("R_gtk_mount_operation_set_parent", op, parent)
+  invisible(.Call("R_gtk_mount_operation_set_parent", op, parent))
 }
 
 
@@ -20415,7 +20415,7 @@ gtkMountOperationSetParent <- function(op, parent) {
 #' @return Return value from C function
 #' @export
 gtkMultiFilterAppend <- function(self, filter) {
-  .Call("R_gtk_multi_filter_append", self, filter)
+  invisible(.Call("R_gtk_multi_filter_append", self, filter))
 }
 
 
@@ -20427,7 +20427,7 @@ gtkMultiFilterAppend <- function(self, filter) {
 #' @return Return value from C function
 #' @export
 gtkMultiFilterRemove <- function(self, position) {
-  .Call("R_gtk_multi_filter_remove", self, position)
+  invisible(.Call("R_gtk_multi_filter_remove", self, as.integer(position)))
 }
 
 
@@ -20461,7 +20461,7 @@ gtkMultiSelectionGetModel <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMultiSelectionSetModel <- function(self, model) {
-  .Call("R_gtk_multi_selection_set_model", self, model)
+  invisible(.Call("R_gtk_multi_selection_set_model", self, model))
 }
 
 
@@ -20483,7 +20483,7 @@ gtkMultiSorterNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkMultiSorterAppend <- function(self, sorter) {
-  .Call("R_gtk_multi_sorter_append", self, sorter)
+  invisible(.Call("R_gtk_multi_sorter_append", self, sorter))
 }
 
 
@@ -20495,7 +20495,7 @@ gtkMultiSorterAppend <- function(self, sorter) {
 #' @return Return value from C function
 #' @export
 gtkMultiSorterRemove <- function(self, position) {
-  .Call("R_gtk_multi_sorter_remove", self, position)
+  invisible(.Call("R_gtk_multi_sorter_remove", self, as.integer(position)))
 }
 
 
@@ -20572,7 +20572,7 @@ gtkNativeGetSurfaceTransform <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkNativeRealize <- function(self) {
-  .Call("R_gtk_native_realize", self)
+  invisible(.Call("R_gtk_native_realize", self))
 }
 
 
@@ -20583,7 +20583,7 @@ gtkNativeRealize <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkNativeUnrealize <- function(self) {
-  .Call("R_gtk_native_unrealize", self)
+  invisible(.Call("R_gtk_native_unrealize", self))
 }
 
 
@@ -20594,7 +20594,7 @@ gtkNativeUnrealize <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkNativeDialogDestroy <- function(self) {
-  .Call("R_gtk_native_dialog_destroy", self)
+  invisible(.Call("R_gtk_native_dialog_destroy", self))
 }
 
 
@@ -20649,7 +20649,7 @@ gtkNativeDialogGetVisible <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkNativeDialogHide <- function(self) {
-  .Call("R_gtk_native_dialog_hide", self)
+  invisible(.Call("R_gtk_native_dialog_hide", self))
 }
 
 
@@ -20661,7 +20661,7 @@ gtkNativeDialogHide <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkNativeDialogSetModal <- function(self, modal) {
-  .Call("R_gtk_native_dialog_set_modal", self, modal)
+  invisible(.Call("R_gtk_native_dialog_set_modal", self, modal))
 }
 
 
@@ -20673,7 +20673,7 @@ gtkNativeDialogSetModal <- function(self, modal) {
 #' @return Return value from C function
 #' @export
 gtkNativeDialogSetTitle <- function(self, title) {
-  .Call("R_gtk_native_dialog_set_title", self, title)
+  invisible(.Call("R_gtk_native_dialog_set_title", self, title))
 }
 
 
@@ -20685,7 +20685,7 @@ gtkNativeDialogSetTitle <- function(self, title) {
 #' @return Return value from C function
 #' @export
 gtkNativeDialogSetTransientFor <- function(self, parent) {
-  .Call("R_gtk_native_dialog_set_transient_for", self, parent)
+  invisible(.Call("R_gtk_native_dialog_set_transient_for", self, parent))
 }
 
 
@@ -20696,7 +20696,7 @@ gtkNativeDialogSetTransientFor <- function(self, parent) {
 #' @return Return value from C function
 #' @export
 gtkNativeDialogShow <- function(self) {
-  .Call("R_gtk_native_dialog_show", self)
+  invisible(.Call("R_gtk_native_dialog_show", self))
 }
 
 
@@ -20740,7 +20740,7 @@ gtkNoSelectionGetModel <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkNoSelectionSetModel <- function(self, model) {
-  .Call("R_gtk_no_selection_set_model", self, model)
+  invisible(.Call("R_gtk_no_selection_set_model", self, model))
 }
 
 
@@ -20789,7 +20789,7 @@ gtkNotebookAppendPageMenu <- function(notebook, child, tab_label, menu_label) {
 #' @return Return value from C function
 #' @export
 gtkNotebookDetachTab <- function(notebook, child) {
-  .Call("R_gtk_notebook_detach_tab", notebook, child)
+  invisible(.Call("R_gtk_notebook_detach_tab", notebook, child))
 }
 
 
@@ -20870,7 +20870,7 @@ gtkNotebookGetNPages <- function(notebook) {
 #' @return Widget
 #' @export
 gtkNotebookGetNthPage <- function(notebook, page_num) {
-  .Call("R_gtk_notebook_get_nth_page", notebook, page_num)$result
+  .Call("R_gtk_notebook_get_nth_page", notebook, as.integer(page_num))$result
 }
 
 
@@ -20999,7 +20999,7 @@ gtkNotebookGetTabReorderable <- function(notebook, child) {
 #' @return gint
 #' @export
 gtkNotebookInsertPage <- function(notebook, child, tab_label, position) {
-  .Call("R_gtk_notebook_insert_page", notebook, child, tab_label, position)$result
+  .Call("R_gtk_notebook_insert_page", notebook, child, tab_label, as.integer(position))$result
 }
 
 
@@ -21014,7 +21014,7 @@ gtkNotebookInsertPage <- function(notebook, child, tab_label, position) {
 #' @return gint
 #' @export
 gtkNotebookInsertPageMenu <- function(notebook, child, tab_label, menu_label, position) {
-  .Call("R_gtk_notebook_insert_page_menu", notebook, child, tab_label, menu_label, position)$result
+  .Call("R_gtk_notebook_insert_page_menu", notebook, child, tab_label, menu_label, as.integer(position))$result
 }
 
 
@@ -21025,7 +21025,7 @@ gtkNotebookInsertPageMenu <- function(notebook, child, tab_label, menu_label, po
 #' @return Return value from C function
 #' @export
 gtkNotebookNextPage <- function(notebook) {
-  .Call("R_gtk_notebook_next_page", notebook)
+  invisible(.Call("R_gtk_notebook_next_page", notebook))
 }
 
 
@@ -21048,7 +21048,7 @@ gtkNotebookPageNum <- function(notebook, child) {
 #' @return Return value from C function
 #' @export
 gtkNotebookPopupDisable <- function(notebook) {
-  .Call("R_gtk_notebook_popup_disable", notebook)
+  invisible(.Call("R_gtk_notebook_popup_disable", notebook))
 }
 
 
@@ -21059,7 +21059,7 @@ gtkNotebookPopupDisable <- function(notebook) {
 #' @return Return value from C function
 #' @export
 gtkNotebookPopupEnable <- function(notebook) {
-  .Call("R_gtk_notebook_popup_enable", notebook)
+  invisible(.Call("R_gtk_notebook_popup_enable", notebook))
 }
 
 
@@ -21097,7 +21097,7 @@ gtkNotebookPrependPageMenu <- function(notebook, child, tab_label, menu_label) {
 #' @return Return value from C function
 #' @export
 gtkNotebookPrevPage <- function(notebook) {
-  .Call("R_gtk_notebook_prev_page", notebook)
+  invisible(.Call("R_gtk_notebook_prev_page", notebook))
 }
 
 
@@ -21109,7 +21109,7 @@ gtkNotebookPrevPage <- function(notebook) {
 #' @return Return value from C function
 #' @export
 gtkNotebookRemovePage <- function(notebook, page_num) {
-  .Call("R_gtk_notebook_remove_page", notebook, page_num)
+  invisible(.Call("R_gtk_notebook_remove_page", notebook, as.integer(page_num)))
 }
 
 
@@ -21122,7 +21122,7 @@ gtkNotebookRemovePage <- function(notebook, page_num) {
 #' @return Return value from C function
 #' @export
 gtkNotebookReorderChild <- function(notebook, child, position) {
-  .Call("R_gtk_notebook_reorder_child", notebook, child, position)
+  invisible(.Call("R_gtk_notebook_reorder_child", notebook, child, as.integer(position)))
 }
 
 
@@ -21135,7 +21135,7 @@ gtkNotebookReorderChild <- function(notebook, child, position) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetActionWidget <- function(notebook, widget, pack_type) {
-  .Call("R_gtk_notebook_set_action_widget", notebook, widget, pack_type)
+  invisible(.Call("R_gtk_notebook_set_action_widget", notebook, widget, pack_type))
 }
 
 
@@ -21147,7 +21147,7 @@ gtkNotebookSetActionWidget <- function(notebook, widget, pack_type) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetCurrentPage <- function(notebook, page_num) {
-  .Call("R_gtk_notebook_set_current_page", notebook, page_num)
+  invisible(.Call("R_gtk_notebook_set_current_page", notebook, as.integer(page_num)))
 }
 
 
@@ -21159,7 +21159,7 @@ gtkNotebookSetCurrentPage <- function(notebook, page_num) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetGroupName <- function(notebook, group_name) {
-  .Call("R_gtk_notebook_set_group_name", notebook, group_name)
+  invisible(.Call("R_gtk_notebook_set_group_name", notebook, group_name))
 }
 
 
@@ -21172,7 +21172,7 @@ gtkNotebookSetGroupName <- function(notebook, group_name) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetMenuLabel <- function(notebook, child, menu_label) {
-  .Call("R_gtk_notebook_set_menu_label", notebook, child, menu_label)
+  invisible(.Call("R_gtk_notebook_set_menu_label", notebook, child, menu_label))
 }
 
 
@@ -21185,7 +21185,7 @@ gtkNotebookSetMenuLabel <- function(notebook, child, menu_label) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetMenuLabelText <- function(notebook, child, menu_text) {
-  .Call("R_gtk_notebook_set_menu_label_text", notebook, child, menu_text)
+  invisible(.Call("R_gtk_notebook_set_menu_label_text", notebook, child, menu_text))
 }
 
 
@@ -21197,7 +21197,7 @@ gtkNotebookSetMenuLabelText <- function(notebook, child, menu_text) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetScrollable <- function(notebook, scrollable) {
-  .Call("R_gtk_notebook_set_scrollable", notebook, scrollable)
+  invisible(.Call("R_gtk_notebook_set_scrollable", notebook, scrollable))
 }
 
 
@@ -21209,7 +21209,7 @@ gtkNotebookSetScrollable <- function(notebook, scrollable) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetShowBorder <- function(notebook, show_border) {
-  .Call("R_gtk_notebook_set_show_border", notebook, show_border)
+  invisible(.Call("R_gtk_notebook_set_show_border", notebook, show_border))
 }
 
 
@@ -21221,7 +21221,7 @@ gtkNotebookSetShowBorder <- function(notebook, show_border) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetShowTabs <- function(notebook, show_tabs) {
-  .Call("R_gtk_notebook_set_show_tabs", notebook, show_tabs)
+  invisible(.Call("R_gtk_notebook_set_show_tabs", notebook, show_tabs))
 }
 
 
@@ -21234,7 +21234,7 @@ gtkNotebookSetShowTabs <- function(notebook, show_tabs) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetTabDetachable <- function(notebook, child, detachable) {
-  .Call("R_gtk_notebook_set_tab_detachable", notebook, child, detachable)
+  invisible(.Call("R_gtk_notebook_set_tab_detachable", notebook, child, detachable))
 }
 
 
@@ -21247,7 +21247,7 @@ gtkNotebookSetTabDetachable <- function(notebook, child, detachable) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetTabLabel <- function(notebook, child, tab_label) {
-  .Call("R_gtk_notebook_set_tab_label", notebook, child, tab_label)
+  invisible(.Call("R_gtk_notebook_set_tab_label", notebook, child, tab_label))
 }
 
 
@@ -21260,7 +21260,7 @@ gtkNotebookSetTabLabel <- function(notebook, child, tab_label) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetTabLabelText <- function(notebook, child, tab_text) {
-  .Call("R_gtk_notebook_set_tab_label_text", notebook, child, tab_text)
+  invisible(.Call("R_gtk_notebook_set_tab_label_text", notebook, child, tab_text))
 }
 
 
@@ -21272,7 +21272,7 @@ gtkNotebookSetTabLabelText <- function(notebook, child, tab_text) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetTabPos <- function(notebook, pos) {
-  .Call("R_gtk_notebook_set_tab_pos", notebook, pos)
+  invisible(.Call("R_gtk_notebook_set_tab_pos", notebook, pos))
 }
 
 
@@ -21285,7 +21285,7 @@ gtkNotebookSetTabPos <- function(notebook, pos) {
 #' @return Return value from C function
 #' @export
 gtkNotebookSetTabReorderable <- function(notebook, child, reorderable) {
-  .Call("R_gtk_notebook_set_tab_reorderable", notebook, child, reorderable)
+  invisible(.Call("R_gtk_notebook_set_tab_reorderable", notebook, child, reorderable))
 }
 
 
@@ -21351,7 +21351,7 @@ gtkNumericSorterGetSortOrder <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkNumericSorterSetExpression <- function(self, expression) {
-  .Call("R_gtk_numeric_sorter_set_expression", self, expression)
+  invisible(.Call("R_gtk_numeric_sorter_set_expression", self, expression))
 }
 
 
@@ -21363,7 +21363,7 @@ gtkNumericSorterSetExpression <- function(self, expression) {
 #' @return Return value from C function
 #' @export
 gtkNumericSorterSetSortOrder <- function(self, sort_order) {
-  .Call("R_gtk_numeric_sorter_set_sort_order", self, sort_order)
+  invisible(.Call("R_gtk_numeric_sorter_set_sort_order", self, sort_order))
 }
 
 
@@ -21408,7 +21408,7 @@ gtkOrientableGetOrientation <- function(orientable) {
 #' @return Return value from C function
 #' @export
 gtkOrientableSetOrientation <- function(orientable, orientation) {
-  .Call("R_gtk_orientable_set_orientation", orientable, orientation)
+  invisible(.Call("R_gtk_orientable_set_orientation", orientable, orientation))
 }
 
 
@@ -21430,7 +21430,7 @@ gtkOverlayNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkOverlayAddOverlay <- function(overlay, widget) {
-  .Call("R_gtk_overlay_add_overlay", overlay, widget)
+  invisible(.Call("R_gtk_overlay_add_overlay", overlay, widget))
 }
 
 
@@ -21477,7 +21477,7 @@ gtkOverlayGetMeasureOverlay <- function(overlay, widget) {
 #' @return Return value from C function
 #' @export
 gtkOverlayRemoveOverlay <- function(overlay, widget) {
-  .Call("R_gtk_overlay_remove_overlay", overlay, widget)
+  invisible(.Call("R_gtk_overlay_remove_overlay", overlay, widget))
 }
 
 
@@ -21489,7 +21489,7 @@ gtkOverlayRemoveOverlay <- function(overlay, widget) {
 #' @return Return value from C function
 #' @export
 gtkOverlaySetChild <- function(overlay, child) {
-  .Call("R_gtk_overlay_set_child", overlay, child)
+  invisible(.Call("R_gtk_overlay_set_child", overlay, child))
 }
 
 
@@ -21502,7 +21502,7 @@ gtkOverlaySetChild <- function(overlay, child) {
 #' @return Return value from C function
 #' @export
 gtkOverlaySetClipOverlay <- function(overlay, widget, clip_overlay) {
-  .Call("R_gtk_overlay_set_clip_overlay", overlay, widget, clip_overlay)
+  invisible(.Call("R_gtk_overlay_set_clip_overlay", overlay, widget, clip_overlay))
 }
 
 
@@ -21515,7 +21515,7 @@ gtkOverlaySetClipOverlay <- function(overlay, widget, clip_overlay) {
 #' @return Return value from C function
 #' @export
 gtkOverlaySetMeasureOverlay <- function(overlay, widget, measure) {
-  .Call("R_gtk_overlay_set_measure_overlay", overlay, widget, measure)
+  invisible(.Call("R_gtk_overlay_set_measure_overlay", overlay, widget, measure))
 }
 
 
@@ -21559,7 +21559,7 @@ gtkOverlayLayoutChildGetMeasure <- function(child) {
 #' @return Return value from C function
 #' @export
 gtkOverlayLayoutChildSetClipOverlay <- function(child, clip_overlay) {
-  .Call("R_gtk_overlay_layout_child_set_clip_overlay", child, clip_overlay)
+  invisible(.Call("R_gtk_overlay_layout_child_set_clip_overlay", child, clip_overlay))
 }
 
 
@@ -21571,7 +21571,7 @@ gtkOverlayLayoutChildSetClipOverlay <- function(child, clip_overlay) {
 #' @return Return value from C function
 #' @export
 gtkOverlayLayoutChildSetMeasure <- function(child, measure) {
-  .Call("R_gtk_overlay_layout_child_set_measure", child, measure)
+  invisible(.Call("R_gtk_overlay_layout_child_set_measure", child, measure))
 }
 
 
@@ -21599,7 +21599,7 @@ gtkPadControllerNew <- function(group, pad) {
 #' @return Return value from C function
 #' @export
 gtkPadControllerSetAction <- function(controller, type, index, mode, label, action_name) {
-  .Call("R_gtk_pad_controller_set_action", controller, type, index, mode, label, action_name)
+  invisible(.Call("R_gtk_pad_controller_set_action", controller, type, as.integer(index), as.integer(mode), label, action_name))
 }
 
 
@@ -21612,7 +21612,7 @@ gtkPadControllerSetAction <- function(controller, type, index, mode, label, acti
 #' @return Return value from C function
 #' @export
 gtkPadControllerSetActionEntries <- function(controller, entries, n_entries) {
-  .Call("R_gtk_pad_controller_set_action_entries", controller, entries, n_entries)
+  invisible(.Call("R_gtk_pad_controller_set_action_entries", controller, entries, as.integer(n_entries)))
 }
 
 
@@ -21723,7 +21723,7 @@ gtkPanedGetWideHandle <- function(paned) {
 #' @return Return value from C function
 #' @export
 gtkPanedSetEndChild <- function(paned, child) {
-  .Call("R_gtk_paned_set_end_child", paned, child)
+  invisible(.Call("R_gtk_paned_set_end_child", paned, child))
 }
 
 
@@ -21735,7 +21735,7 @@ gtkPanedSetEndChild <- function(paned, child) {
 #' @return Return value from C function
 #' @export
 gtkPanedSetPosition <- function(paned, position) {
-  .Call("R_gtk_paned_set_position", paned, position)
+  invisible(.Call("R_gtk_paned_set_position", paned, as.integer(position)))
 }
 
 
@@ -21747,7 +21747,7 @@ gtkPanedSetPosition <- function(paned, position) {
 #' @return Return value from C function
 #' @export
 gtkPanedSetResizeEndChild <- function(paned, resize) {
-  .Call("R_gtk_paned_set_resize_end_child", paned, resize)
+  invisible(.Call("R_gtk_paned_set_resize_end_child", paned, resize))
 }
 
 
@@ -21759,7 +21759,7 @@ gtkPanedSetResizeEndChild <- function(paned, resize) {
 #' @return Return value from C function
 #' @export
 gtkPanedSetResizeStartChild <- function(paned, resize) {
-  .Call("R_gtk_paned_set_resize_start_child", paned, resize)
+  invisible(.Call("R_gtk_paned_set_resize_start_child", paned, resize))
 }
 
 
@@ -21771,7 +21771,7 @@ gtkPanedSetResizeStartChild <- function(paned, resize) {
 #' @return Return value from C function
 #' @export
 gtkPanedSetShrinkEndChild <- function(paned, resize) {
-  .Call("R_gtk_paned_set_shrink_end_child", paned, resize)
+  invisible(.Call("R_gtk_paned_set_shrink_end_child", paned, resize))
 }
 
 
@@ -21783,7 +21783,7 @@ gtkPanedSetShrinkEndChild <- function(paned, resize) {
 #' @return Return value from C function
 #' @export
 gtkPanedSetShrinkStartChild <- function(paned, resize) {
-  .Call("R_gtk_paned_set_shrink_start_child", paned, resize)
+  invisible(.Call("R_gtk_paned_set_shrink_start_child", paned, resize))
 }
 
 
@@ -21795,7 +21795,7 @@ gtkPanedSetShrinkStartChild <- function(paned, resize) {
 #' @return Return value from C function
 #' @export
 gtkPanedSetStartChild <- function(paned, child) {
-  .Call("R_gtk_paned_set_start_child", paned, child)
+  invisible(.Call("R_gtk_paned_set_start_child", paned, child))
 }
 
 
@@ -21807,7 +21807,7 @@ gtkPanedSetStartChild <- function(paned, child) {
 #' @return Return value from C function
 #' @export
 gtkPanedSetWideHandle <- function(paned, wide) {
-  .Call("R_gtk_paned_set_wide_handle", paned, wide)
+  invisible(.Call("R_gtk_paned_set_wide_handle", paned, wide))
 }
 
 
@@ -21905,7 +21905,7 @@ gtkPaperSizeCopy <- function(other) {
 #' @return Return value from C function
 #' @export
 gtkPaperSizeFree <- function(size) {
-  .Call("R_gtk_paper_size_free", size)
+  invisible(.Call("R_gtk_paper_size_free", size))
 }
 
 
@@ -22058,7 +22058,7 @@ gtkPaperSizeIsIpp <- function(size) {
 #' @return Return value from C function
 #' @export
 gtkPaperSizeSetSize <- function(size, width, height, unit) {
-  .Call("R_gtk_paper_size_set_size", size, width, height, unit)
+  invisible(.Call("R_gtk_paper_size_set_size", size, width, height, unit))
 }
 
 
@@ -22082,7 +22082,7 @@ gtkPaperSizeToGvariant <- function(paper_size) {
 #' @return Return value from C function
 #' @export
 gtkPaperSizeToKeyFile <- function(size, key_file, group_name) {
-  .Call("R_gtk_paper_size_to_key_file", size, key_file, group_name)
+  invisible(.Call("R_gtk_paper_size_to_key_file", size, key_file, group_name))
 }
 
 
@@ -22147,7 +22147,7 @@ gtkPasswordEntryGetShowPeekIcon <- function(entry) {
 #' @return Return value from C function
 #' @export
 gtkPasswordEntrySetExtraMenu <- function(entry, model) {
-  .Call("R_gtk_password_entry_set_extra_menu", entry, model)
+  invisible(.Call("R_gtk_password_entry_set_extra_menu", entry, model))
 }
 
 
@@ -22159,7 +22159,7 @@ gtkPasswordEntrySetExtraMenu <- function(entry, model) {
 #' @return Return value from C function
 #' @export
 gtkPasswordEntrySetShowPeekIcon <- function(entry, show_peek_icon) {
-  .Call("R_gtk_password_entry_set_show_peek_icon", entry, show_peek_icon)
+  invisible(.Call("R_gtk_password_entry_set_show_peek_icon", entry, show_peek_icon))
 }
 
 
@@ -22323,7 +22323,7 @@ gtkPictureGetPaintable <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetAlternativeText <- function(self, alternative_text) {
-  .Call("R_gtk_picture_set_alternative_text", self, alternative_text)
+  invisible(.Call("R_gtk_picture_set_alternative_text", self, alternative_text))
 }
 
 
@@ -22335,7 +22335,7 @@ gtkPictureSetAlternativeText <- function(self, alternative_text) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetCanShrink <- function(self, can_shrink) {
-  .Call("R_gtk_picture_set_can_shrink", self, can_shrink)
+  invisible(.Call("R_gtk_picture_set_can_shrink", self, can_shrink))
 }
 
 
@@ -22347,7 +22347,7 @@ gtkPictureSetCanShrink <- function(self, can_shrink) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetContentFit <- function(self, content_fit) {
-  .Call("R_gtk_picture_set_content_fit", self, content_fit)
+  invisible(.Call("R_gtk_picture_set_content_fit", self, content_fit))
 }
 
 
@@ -22359,7 +22359,7 @@ gtkPictureSetContentFit <- function(self, content_fit) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetFile <- function(self, file) {
-  .Call("R_gtk_picture_set_file", self, file)
+  invisible(.Call("R_gtk_picture_set_file", self, file))
 }
 
 
@@ -22371,7 +22371,7 @@ gtkPictureSetFile <- function(self, file) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetFilename <- function(self, filename) {
-  .Call("R_gtk_picture_set_filename", self, filename)
+  invisible(.Call("R_gtk_picture_set_filename", self, filename))
 }
 
 
@@ -22383,7 +22383,7 @@ gtkPictureSetFilename <- function(self, filename) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetIsolateContents <- function(self, isolate_contents) {
-  .Call("R_gtk_picture_set_isolate_contents", self, isolate_contents)
+  invisible(.Call("R_gtk_picture_set_isolate_contents", self, isolate_contents))
 }
 
 
@@ -22395,7 +22395,7 @@ gtkPictureSetIsolateContents <- function(self, isolate_contents) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetKeepAspectRatio <- function(self, keep_aspect_ratio) {
-  .Call("R_gtk_picture_set_keep_aspect_ratio", self, keep_aspect_ratio)
+  invisible(.Call("R_gtk_picture_set_keep_aspect_ratio", self, keep_aspect_ratio))
 }
 
 
@@ -22407,7 +22407,7 @@ gtkPictureSetKeepAspectRatio <- function(self, keep_aspect_ratio) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetPaintable <- function(self, paintable) {
-  .Call("R_gtk_picture_set_paintable", self, paintable)
+  invisible(.Call("R_gtk_picture_set_paintable", self, paintable))
 }
 
 
@@ -22419,7 +22419,7 @@ gtkPictureSetPaintable <- function(self, paintable) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetPixbuf <- function(self, pixbuf) {
-  .Call("R_gtk_picture_set_pixbuf", self, pixbuf)
+  invisible(.Call("R_gtk_picture_set_pixbuf", self, pixbuf))
 }
 
 
@@ -22431,7 +22431,7 @@ gtkPictureSetPixbuf <- function(self, pixbuf) {
 #' @return Return value from C function
 #' @export
 gtkPictureSetResource <- function(self, resource_path) {
-  .Call("R_gtk_picture_set_resource", self, resource_path)
+  invisible(.Call("R_gtk_picture_set_resource", self, resource_path))
 }
 
 
@@ -22540,7 +22540,7 @@ gtkPopoverGetPosition <- function(popover) {
 #' @return Return value from C function
 #' @export
 gtkPopoverPopdown <- function(popover) {
-  .Call("R_gtk_popover_popdown", popover)
+  invisible(.Call("R_gtk_popover_popdown", popover))
 }
 
 
@@ -22551,7 +22551,7 @@ gtkPopoverPopdown <- function(popover) {
 #' @return Return value from C function
 #' @export
 gtkPopoverPopup <- function(popover) {
-  .Call("R_gtk_popover_popup", popover)
+  invisible(.Call("R_gtk_popover_popup", popover))
 }
 
 
@@ -22562,7 +22562,7 @@ gtkPopoverPopup <- function(popover) {
 #' @return Return value from C function
 #' @export
 gtkPopoverPresent <- function(popover) {
-  .Call("R_gtk_popover_present", popover)
+  invisible(.Call("R_gtk_popover_present", popover))
 }
 
 
@@ -22574,7 +22574,7 @@ gtkPopoverPresent <- function(popover) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetAutohide <- function(popover, autohide) {
-  .Call("R_gtk_popover_set_autohide", popover, autohide)
+  invisible(.Call("R_gtk_popover_set_autohide", popover, autohide))
 }
 
 
@@ -22586,7 +22586,7 @@ gtkPopoverSetAutohide <- function(popover, autohide) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetCascadePopdown <- function(popover, cascade_popdown) {
-  .Call("R_gtk_popover_set_cascade_popdown", popover, cascade_popdown)
+  invisible(.Call("R_gtk_popover_set_cascade_popdown", popover, cascade_popdown))
 }
 
 
@@ -22598,7 +22598,7 @@ gtkPopoverSetCascadePopdown <- function(popover, cascade_popdown) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetChild <- function(popover, child) {
-  .Call("R_gtk_popover_set_child", popover, child)
+  invisible(.Call("R_gtk_popover_set_child", popover, child))
 }
 
 
@@ -22610,7 +22610,7 @@ gtkPopoverSetChild <- function(popover, child) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetDefaultWidget <- function(popover, widget) {
-  .Call("R_gtk_popover_set_default_widget", popover, widget)
+  invisible(.Call("R_gtk_popover_set_default_widget", popover, widget))
 }
 
 
@@ -22622,7 +22622,7 @@ gtkPopoverSetDefaultWidget <- function(popover, widget) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetHasArrow <- function(popover, has_arrow) {
-  .Call("R_gtk_popover_set_has_arrow", popover, has_arrow)
+  invisible(.Call("R_gtk_popover_set_has_arrow", popover, has_arrow))
 }
 
 
@@ -22634,7 +22634,7 @@ gtkPopoverSetHasArrow <- function(popover, has_arrow) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetMnemonicsVisible <- function(popover, mnemonics_visible) {
-  .Call("R_gtk_popover_set_mnemonics_visible", popover, mnemonics_visible)
+  invisible(.Call("R_gtk_popover_set_mnemonics_visible", popover, mnemonics_visible))
 }
 
 
@@ -22647,7 +22647,7 @@ gtkPopoverSetMnemonicsVisible <- function(popover, mnemonics_visible) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetOffset <- function(popover, x_offset, y_offset) {
-  .Call("R_gtk_popover_set_offset", popover, x_offset, y_offset)
+  invisible(.Call("R_gtk_popover_set_offset", popover, as.integer(x_offset), as.integer(y_offset)))
 }
 
 
@@ -22659,7 +22659,7 @@ gtkPopoverSetOffset <- function(popover, x_offset, y_offset) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetPointingTo <- function(popover, rect) {
-  .Call("R_gtk_popover_set_pointing_to", popover, rect)
+  invisible(.Call("R_gtk_popover_set_pointing_to", popover, rect))
 }
 
 
@@ -22671,7 +22671,7 @@ gtkPopoverSetPointingTo <- function(popover, rect) {
 #' @return Return value from C function
 #' @export
 gtkPopoverSetPosition <- function(popover, position) {
-  .Call("R_gtk_popover_set_position", popover, position)
+  invisible(.Call("R_gtk_popover_set_position", popover, position))
 }
 
 
@@ -22736,7 +22736,7 @@ gtkPopoverBinGetPopover <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkPopoverBinPopdown <- function(self) {
-  .Call("R_gtk_popover_bin_popdown", self)
+  invisible(.Call("R_gtk_popover_bin_popdown", self))
 }
 
 
@@ -22747,7 +22747,7 @@ gtkPopoverBinPopdown <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkPopoverBinPopup <- function(self) {
-  .Call("R_gtk_popover_bin_popup", self)
+  invisible(.Call("R_gtk_popover_bin_popup", self))
 }
 
 
@@ -22759,7 +22759,7 @@ gtkPopoverBinPopup <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkPopoverBinSetChild <- function(self, child) {
-  .Call("R_gtk_popover_bin_set_child", self, child)
+  invisible(.Call("R_gtk_popover_bin_set_child", self, child))
 }
 
 
@@ -22771,7 +22771,7 @@ gtkPopoverBinSetChild <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkPopoverBinSetHandleInput <- function(self, handle_input) {
-  .Call("R_gtk_popover_bin_set_handle_input", self, handle_input)
+  invisible(.Call("R_gtk_popover_bin_set_handle_input", self, handle_input))
 }
 
 
@@ -22783,7 +22783,7 @@ gtkPopoverBinSetHandleInput <- function(self, handle_input) {
 #' @return Return value from C function
 #' @export
 gtkPopoverBinSetMenuModel <- function(self, model) {
-  .Call("R_gtk_popover_bin_set_menu_model", self, model)
+  invisible(.Call("R_gtk_popover_bin_set_menu_model", self, model))
 }
 
 
@@ -22795,7 +22795,7 @@ gtkPopoverBinSetMenuModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkPopoverBinSetPopover <- function(self, popover) {
-  .Call("R_gtk_popover_bin_set_popover", self, popover)
+  invisible(.Call("R_gtk_popover_bin_set_popover", self, popover))
 }
 
 
@@ -22877,7 +22877,7 @@ gtkPopoverMenuRemoveChild <- function(popover, child) {
 #' @return Return value from C function
 #' @export
 gtkPopoverMenuSetFlags <- function(popover, flags) {
-  .Call("R_gtk_popover_menu_set_flags", popover, flags)
+  invisible(.Call("R_gtk_popover_menu_set_flags", popover, flags))
 }
 
 
@@ -22889,7 +22889,7 @@ gtkPopoverMenuSetFlags <- function(popover, flags) {
 #' @return Return value from C function
 #' @export
 gtkPopoverMenuSetMenuModel <- function(popover, model) {
-  .Call("R_gtk_popover_menu_set_menu_model", popover, model)
+  invisible(.Call("R_gtk_popover_menu_set_menu_model", popover, model))
 }
 
 
@@ -22948,7 +22948,7 @@ gtkPopoverMenuBarRemoveChild <- function(bar, child) {
 #' @return Return value from C function
 #' @export
 gtkPopoverMenuBarSetMenuModel <- function(bar, model) {
-  .Call("R_gtk_popover_menu_bar_set_menu_model", bar, model)
+  invisible(.Call("R_gtk_popover_menu_bar_set_menu_model", bar, model))
 }
 
 
@@ -23035,7 +23035,7 @@ gtkProgressBarGetText <- function(pbar) {
 #' @return Return value from C function
 #' @export
 gtkProgressBarPulse <- function(pbar) {
-  .Call("R_gtk_progress_bar_pulse", pbar)
+  invisible(.Call("R_gtk_progress_bar_pulse", pbar))
 }
 
 
@@ -23047,7 +23047,7 @@ gtkProgressBarPulse <- function(pbar) {
 #' @return Return value from C function
 #' @export
 gtkProgressBarSetEllipsize <- function(pbar, mode) {
-  .Call("R_gtk_progress_bar_set_ellipsize", pbar, mode)
+  invisible(.Call("R_gtk_progress_bar_set_ellipsize", pbar, mode))
 }
 
 
@@ -23059,7 +23059,7 @@ gtkProgressBarSetEllipsize <- function(pbar, mode) {
 #' @return Return value from C function
 #' @export
 gtkProgressBarSetFraction <- function(pbar, fraction) {
-  .Call("R_gtk_progress_bar_set_fraction", pbar, fraction)
+  invisible(.Call("R_gtk_progress_bar_set_fraction", pbar, fraction))
 }
 
 
@@ -23071,7 +23071,7 @@ gtkProgressBarSetFraction <- function(pbar, fraction) {
 #' @return Return value from C function
 #' @export
 gtkProgressBarSetInverted <- function(pbar, inverted) {
-  .Call("R_gtk_progress_bar_set_inverted", pbar, inverted)
+  invisible(.Call("R_gtk_progress_bar_set_inverted", pbar, inverted))
 }
 
 
@@ -23083,7 +23083,7 @@ gtkProgressBarSetInverted <- function(pbar, inverted) {
 #' @return Return value from C function
 #' @export
 gtkProgressBarSetPulseStep <- function(pbar, fraction) {
-  .Call("R_gtk_progress_bar_set_pulse_step", pbar, fraction)
+  invisible(.Call("R_gtk_progress_bar_set_pulse_step", pbar, fraction))
 }
 
 
@@ -23095,7 +23095,7 @@ gtkProgressBarSetPulseStep <- function(pbar, fraction) {
 #' @return Return value from C function
 #' @export
 gtkProgressBarSetShowText <- function(pbar, show_text) {
-  .Call("R_gtk_progress_bar_set_show_text", pbar, show_text)
+  invisible(.Call("R_gtk_progress_bar_set_show_text", pbar, show_text))
 }
 
 
@@ -23107,7 +23107,7 @@ gtkProgressBarSetShowText <- function(pbar, show_text) {
 #' @return Return value from C function
 #' @export
 gtkProgressBarSetText <- function(pbar, text) {
-  .Call("R_gtk_progress_bar_set_text", pbar, text)
+  invisible(.Call("R_gtk_progress_bar_set_text", pbar, text))
 }
 
 
@@ -23287,7 +23287,7 @@ gtkRangeGetValue <- function(range) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetAdjustment <- function(range, adjustment) {
-  .Call("R_gtk_range_set_adjustment", range, adjustment)
+  invisible(.Call("R_gtk_range_set_adjustment", range, adjustment))
 }
 
 
@@ -23299,7 +23299,7 @@ gtkRangeSetAdjustment <- function(range, adjustment) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetFillLevel <- function(range, fill_level) {
-  .Call("R_gtk_range_set_fill_level", range, fill_level)
+  invisible(.Call("R_gtk_range_set_fill_level", range, fill_level))
 }
 
 
@@ -23311,7 +23311,7 @@ gtkRangeSetFillLevel <- function(range, fill_level) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetFlippable <- function(range, flippable) {
-  .Call("R_gtk_range_set_flippable", range, flippable)
+  invisible(.Call("R_gtk_range_set_flippable", range, flippable))
 }
 
 
@@ -23324,7 +23324,7 @@ gtkRangeSetFlippable <- function(range, flippable) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetIncrements <- function(range, step, page) {
-  .Call("R_gtk_range_set_increments", range, step, page)
+  invisible(.Call("R_gtk_range_set_increments", range, step, page))
 }
 
 
@@ -23336,7 +23336,7 @@ gtkRangeSetIncrements <- function(range, step, page) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetInverted <- function(range, setting) {
-  .Call("R_gtk_range_set_inverted", range, setting)
+  invisible(.Call("R_gtk_range_set_inverted", range, setting))
 }
 
 
@@ -23349,7 +23349,7 @@ gtkRangeSetInverted <- function(range, setting) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetRange <- function(range, min, max) {
-  .Call("R_gtk_range_set_range", range, min, max)
+  invisible(.Call("R_gtk_range_set_range", range, min, max))
 }
 
 
@@ -23361,7 +23361,7 @@ gtkRangeSetRange <- function(range, min, max) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetRestrictToFillLevel <- function(range, restrict_to_fill_level) {
-  .Call("R_gtk_range_set_restrict_to_fill_level", range, restrict_to_fill_level)
+  invisible(.Call("R_gtk_range_set_restrict_to_fill_level", range, restrict_to_fill_level))
 }
 
 
@@ -23373,7 +23373,7 @@ gtkRangeSetRestrictToFillLevel <- function(range, restrict_to_fill_level) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetRoundDigits <- function(range, round_digits) {
-  .Call("R_gtk_range_set_round_digits", range, round_digits)
+  invisible(.Call("R_gtk_range_set_round_digits", range, as.integer(round_digits)))
 }
 
 
@@ -23385,7 +23385,7 @@ gtkRangeSetRoundDigits <- function(range, round_digits) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetShowFillLevel <- function(range, show_fill_level) {
-  .Call("R_gtk_range_set_show_fill_level", range, show_fill_level)
+  invisible(.Call("R_gtk_range_set_show_fill_level", range, show_fill_level))
 }
 
 
@@ -23397,7 +23397,7 @@ gtkRangeSetShowFillLevel <- function(range, show_fill_level) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetSliderSizeFixed <- function(range, size_fixed) {
-  .Call("R_gtk_range_set_slider_size_fixed", range, size_fixed)
+  invisible(.Call("R_gtk_range_set_slider_size_fixed", range, size_fixed))
 }
 
 
@@ -23409,7 +23409,7 @@ gtkRangeSetSliderSizeFixed <- function(range, size_fixed) {
 #' @return Return value from C function
 #' @export
 gtkRangeSetValue <- function(range, value) {
-  .Call("R_gtk_range_set_value", range, value)
+  invisible(.Call("R_gtk_range_set_value", range, value))
 }
 
 
@@ -23678,7 +23678,7 @@ gtkRecentInfoRef <- function(info) {
 #' @return Return value from C function
 #' @export
 gtkRecentInfoUnref <- function(info) {
-  .Call("R_gtk_recent_info_unref", info)
+  invisible(.Call("R_gtk_recent_info_unref", info))
 }
 
 
@@ -23836,7 +23836,7 @@ gtkRequisitionCopy <- function(requisition) {
 #' @return Return value from C function
 #' @export
 gtkRequisitionFree <- function(requisition) {
-  .Call("R_gtk_requisition_free", requisition)
+  invisible(.Call("R_gtk_requisition_free", requisition))
 }
 
 
@@ -23913,7 +23913,7 @@ gtkRevealerGetTransitionType <- function(revealer) {
 #' @return Return value from C function
 #' @export
 gtkRevealerSetChild <- function(revealer, child) {
-  .Call("R_gtk_revealer_set_child", revealer, child)
+  invisible(.Call("R_gtk_revealer_set_child", revealer, child))
 }
 
 
@@ -23925,7 +23925,7 @@ gtkRevealerSetChild <- function(revealer, child) {
 #' @return Return value from C function
 #' @export
 gtkRevealerSetRevealChild <- function(revealer, reveal_child) {
-  .Call("R_gtk_revealer_set_reveal_child", revealer, reveal_child)
+  invisible(.Call("R_gtk_revealer_set_reveal_child", revealer, reveal_child))
 }
 
 
@@ -23937,7 +23937,7 @@ gtkRevealerSetRevealChild <- function(revealer, reveal_child) {
 #' @return Return value from C function
 #' @export
 gtkRevealerSetTransitionDuration <- function(revealer, duration) {
-  .Call("R_gtk_revealer_set_transition_duration", revealer, duration)
+  invisible(.Call("R_gtk_revealer_set_transition_duration", revealer, as.integer(duration)))
 }
 
 
@@ -23949,7 +23949,7 @@ gtkRevealerSetTransitionDuration <- function(revealer, duration) {
 #' @return Return value from C function
 #' @export
 gtkRevealerSetTransitionType <- function(revealer, transition) {
-  .Call("R_gtk_revealer_set_transition_type", revealer, transition)
+  invisible(.Call("R_gtk_revealer_set_transition_type", revealer, transition))
 }
 
 
@@ -23983,7 +23983,7 @@ gtkRootGetFocus <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkRootSetFocus <- function(self, focus) {
-  .Call("R_gtk_root_set_focus", self, focus)
+  invisible(.Call("R_gtk_root_set_focus", self, focus))
 }
 
 
@@ -24023,7 +24023,7 @@ gtkScaleNewWithRange <- function(orientation, min, max, step) {
 #' @return Return value from C function
 #' @export
 gtkScaleAddMark <- function(scale, value, position, markup) {
-  .Call("R_gtk_scale_add_mark", scale, value, position, markup)
+  invisible(.Call("R_gtk_scale_add_mark", scale, value, position, markup))
 }
 
 
@@ -24034,7 +24034,7 @@ gtkScaleAddMark <- function(scale, value, position, markup) {
 #' @return Return value from C function
 #' @export
 gtkScaleClearMarks <- function(scale) {
-  .Call("R_gtk_scale_clear_marks", scale)
+  invisible(.Call("R_gtk_scale_clear_marks", scale))
 }
 
 
@@ -24112,7 +24112,7 @@ gtkScaleGetValuePos <- function(scale) {
 #' @return Return value from C function
 #' @export
 gtkScaleSetDigits <- function(scale, digits) {
-  .Call("R_gtk_scale_set_digits", scale, digits)
+  invisible(.Call("R_gtk_scale_set_digits", scale, as.integer(digits)))
 }
 
 
@@ -24124,7 +24124,7 @@ gtkScaleSetDigits <- function(scale, digits) {
 #' @return Return value from C function
 #' @export
 gtkScaleSetDrawValue <- function(scale, draw_value) {
-  .Call("R_gtk_scale_set_draw_value", scale, draw_value)
+  invisible(.Call("R_gtk_scale_set_draw_value", scale, draw_value))
 }
 
 
@@ -24136,7 +24136,7 @@ gtkScaleSetDrawValue <- function(scale, draw_value) {
 #' @return Return value from C function
 #' @export
 gtkScaleSetHasOrigin <- function(scale, has_origin) {
-  .Call("R_gtk_scale_set_has_origin", scale, has_origin)
+  invisible(.Call("R_gtk_scale_set_has_origin", scale, has_origin))
 }
 
 
@@ -24148,7 +24148,7 @@ gtkScaleSetHasOrigin <- function(scale, has_origin) {
 #' @return Return value from C function
 #' @export
 gtkScaleSetValuePos <- function(scale, pos) {
-  .Call("R_gtk_scale_set_value_pos", scale, pos)
+  invisible(.Call("R_gtk_scale_set_value_pos", scale, pos))
 }
 
 
@@ -24251,7 +24251,7 @@ gtkScaleButtonGetValue <- function(button) {
 #' @return Return value from C function
 #' @export
 gtkScaleButtonSetAdjustment <- function(button, adjustment) {
-  .Call("R_gtk_scale_button_set_adjustment", button, adjustment)
+  invisible(.Call("R_gtk_scale_button_set_adjustment", button, adjustment))
 }
 
 
@@ -24263,7 +24263,7 @@ gtkScaleButtonSetAdjustment <- function(button, adjustment) {
 #' @return Return value from C function
 #' @export
 gtkScaleButtonSetHasFrame <- function(button, has_frame) {
-  .Call("R_gtk_scale_button_set_has_frame", button, has_frame)
+  invisible(.Call("R_gtk_scale_button_set_has_frame", button, has_frame))
 }
 
 
@@ -24275,7 +24275,7 @@ gtkScaleButtonSetHasFrame <- function(button, has_frame) {
 #' @return Return value from C function
 #' @export
 gtkScaleButtonSetIcons <- function(button, icons) {
-  .Call("R_gtk_scale_button_set_icons", button, icons)
+  invisible(.Call("R_gtk_scale_button_set_icons", button, icons))
 }
 
 
@@ -24287,7 +24287,7 @@ gtkScaleButtonSetIcons <- function(button, icons) {
 #' @return Return value from C function
 #' @export
 gtkScaleButtonSetValue <- function(button, value) {
-  .Call("R_gtk_scale_button_set_value", button, value)
+  invisible(.Call("R_gtk_scale_button_set_value", button, value))
 }
 
 
@@ -24342,7 +24342,7 @@ gtkScrollInfoRef <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkScrollInfoSetEnableHorizontal <- function(self, horizontal) {
-  .Call("R_gtk_scroll_info_set_enable_horizontal", self, horizontal)
+  invisible(.Call("R_gtk_scroll_info_set_enable_horizontal", self, horizontal))
 }
 
 
@@ -24354,7 +24354,7 @@ gtkScrollInfoSetEnableHorizontal <- function(self, horizontal) {
 #' @return Return value from C function
 #' @export
 gtkScrollInfoSetEnableVertical <- function(self, vertical) {
-  .Call("R_gtk_scroll_info_set_enable_vertical", self, vertical)
+  invisible(.Call("R_gtk_scroll_info_set_enable_vertical", self, vertical))
 }
 
 
@@ -24365,7 +24365,7 @@ gtkScrollInfoSetEnableVertical <- function(self, vertical) {
 #' @return Return value from C function
 #' @export
 gtkScrollInfoUnref <- function(self) {
-  .Call("R_gtk_scroll_info_unref", self)
+  invisible(.Call("R_gtk_scroll_info_unref", self))
 }
 
 
@@ -24432,7 +24432,7 @@ gtkScrollableGetVscrollPolicy <- function(scrollable) {
 #' @return Return value from C function
 #' @export
 gtkScrollableSetHadjustment <- function(scrollable, hadjustment) {
-  .Call("R_gtk_scrollable_set_hadjustment", scrollable, hadjustment)
+  invisible(.Call("R_gtk_scrollable_set_hadjustment", scrollable, hadjustment))
 }
 
 
@@ -24444,7 +24444,7 @@ gtkScrollableSetHadjustment <- function(scrollable, hadjustment) {
 #' @return Return value from C function
 #' @export
 gtkScrollableSetHscrollPolicy <- function(scrollable, policy) {
-  .Call("R_gtk_scrollable_set_hscroll_policy", scrollable, policy)
+  invisible(.Call("R_gtk_scrollable_set_hscroll_policy", scrollable, policy))
 }
 
 
@@ -24456,7 +24456,7 @@ gtkScrollableSetHscrollPolicy <- function(scrollable, policy) {
 #' @return Return value from C function
 #' @export
 gtkScrollableSetVadjustment <- function(scrollable, vadjustment) {
-  .Call("R_gtk_scrollable_set_vadjustment", scrollable, vadjustment)
+  invisible(.Call("R_gtk_scrollable_set_vadjustment", scrollable, vadjustment))
 }
 
 
@@ -24468,7 +24468,7 @@ gtkScrollableSetVadjustment <- function(scrollable, vadjustment) {
 #' @return Return value from C function
 #' @export
 gtkScrollableSetVscrollPolicy <- function(scrollable, policy) {
-  .Call("R_gtk_scrollable_set_vscroll_policy", scrollable, policy)
+  invisible(.Call("R_gtk_scrollable_set_vscroll_policy", scrollable, policy))
 }
 
 
@@ -24503,7 +24503,7 @@ gtkScrollbarGetAdjustment <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkScrollbarSetAdjustment <- function(self, adjustment) {
-  .Call("R_gtk_scrollbar_set_adjustment", self, adjustment)
+  invisible(.Call("R_gtk_scrollbar_set_adjustment", self, adjustment))
 }
 
 
@@ -24701,7 +24701,7 @@ gtkScrolledWindowGetVscrollbar <- function(scrolled_window) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetChild <- function(scrolled_window, child) {
-  .Call("R_gtk_scrolled_window_set_child", scrolled_window, child)
+  invisible(.Call("R_gtk_scrolled_window_set_child", scrolled_window, child))
 }
 
 
@@ -24713,7 +24713,7 @@ gtkScrolledWindowSetChild <- function(scrolled_window, child) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetHadjustment <- function(scrolled_window, hadjustment) {
-  .Call("R_gtk_scrolled_window_set_hadjustment", scrolled_window, hadjustment)
+  invisible(.Call("R_gtk_scrolled_window_set_hadjustment", scrolled_window, hadjustment))
 }
 
 
@@ -24725,7 +24725,7 @@ gtkScrolledWindowSetHadjustment <- function(scrolled_window, hadjustment) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetHasFrame <- function(scrolled_window, has_frame) {
-  .Call("R_gtk_scrolled_window_set_has_frame", scrolled_window, has_frame)
+  invisible(.Call("R_gtk_scrolled_window_set_has_frame", scrolled_window, has_frame))
 }
 
 
@@ -24737,7 +24737,7 @@ gtkScrolledWindowSetHasFrame <- function(scrolled_window, has_frame) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetKineticScrolling <- function(scrolled_window, kinetic_scrolling) {
-  .Call("R_gtk_scrolled_window_set_kinetic_scrolling", scrolled_window, kinetic_scrolling)
+  invisible(.Call("R_gtk_scrolled_window_set_kinetic_scrolling", scrolled_window, kinetic_scrolling))
 }
 
 
@@ -24749,7 +24749,7 @@ gtkScrolledWindowSetKineticScrolling <- function(scrolled_window, kinetic_scroll
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetMaxContentHeight <- function(scrolled_window, height) {
-  .Call("R_gtk_scrolled_window_set_max_content_height", scrolled_window, height)
+  invisible(.Call("R_gtk_scrolled_window_set_max_content_height", scrolled_window, as.integer(height)))
 }
 
 
@@ -24761,7 +24761,7 @@ gtkScrolledWindowSetMaxContentHeight <- function(scrolled_window, height) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetMaxContentWidth <- function(scrolled_window, width) {
-  .Call("R_gtk_scrolled_window_set_max_content_width", scrolled_window, width)
+  invisible(.Call("R_gtk_scrolled_window_set_max_content_width", scrolled_window, as.integer(width)))
 }
 
 
@@ -24773,7 +24773,7 @@ gtkScrolledWindowSetMaxContentWidth <- function(scrolled_window, width) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetMinContentHeight <- function(scrolled_window, height) {
-  .Call("R_gtk_scrolled_window_set_min_content_height", scrolled_window, height)
+  invisible(.Call("R_gtk_scrolled_window_set_min_content_height", scrolled_window, as.integer(height)))
 }
 
 
@@ -24785,7 +24785,7 @@ gtkScrolledWindowSetMinContentHeight <- function(scrolled_window, height) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetMinContentWidth <- function(scrolled_window, width) {
-  .Call("R_gtk_scrolled_window_set_min_content_width", scrolled_window, width)
+  invisible(.Call("R_gtk_scrolled_window_set_min_content_width", scrolled_window, as.integer(width)))
 }
 
 
@@ -24797,7 +24797,7 @@ gtkScrolledWindowSetMinContentWidth <- function(scrolled_window, width) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetOverlayScrolling <- function(scrolled_window, overlay_scrolling) {
-  .Call("R_gtk_scrolled_window_set_overlay_scrolling", scrolled_window, overlay_scrolling)
+  invisible(.Call("R_gtk_scrolled_window_set_overlay_scrolling", scrolled_window, overlay_scrolling))
 }
 
 
@@ -24809,7 +24809,7 @@ gtkScrolledWindowSetOverlayScrolling <- function(scrolled_window, overlay_scroll
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetPlacement <- function(scrolled_window, window_placement) {
-  .Call("R_gtk_scrolled_window_set_placement", scrolled_window, window_placement)
+  invisible(.Call("R_gtk_scrolled_window_set_placement", scrolled_window, window_placement))
 }
 
 
@@ -24822,7 +24822,7 @@ gtkScrolledWindowSetPlacement <- function(scrolled_window, window_placement) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetPolicy <- function(scrolled_window, hscrollbar_policy, vscrollbar_policy) {
-  .Call("R_gtk_scrolled_window_set_policy", scrolled_window, hscrollbar_policy, vscrollbar_policy)
+  invisible(.Call("R_gtk_scrolled_window_set_policy", scrolled_window, hscrollbar_policy, vscrollbar_policy))
 }
 
 
@@ -24834,7 +24834,7 @@ gtkScrolledWindowSetPolicy <- function(scrolled_window, hscrollbar_policy, vscro
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetPropagateNaturalHeight <- function(scrolled_window, propagate) {
-  .Call("R_gtk_scrolled_window_set_propagate_natural_height", scrolled_window, propagate)
+  invisible(.Call("R_gtk_scrolled_window_set_propagate_natural_height", scrolled_window, propagate))
 }
 
 
@@ -24846,7 +24846,7 @@ gtkScrolledWindowSetPropagateNaturalHeight <- function(scrolled_window, propagat
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetPropagateNaturalWidth <- function(scrolled_window, propagate) {
-  .Call("R_gtk_scrolled_window_set_propagate_natural_width", scrolled_window, propagate)
+  invisible(.Call("R_gtk_scrolled_window_set_propagate_natural_width", scrolled_window, propagate))
 }
 
 
@@ -24858,7 +24858,7 @@ gtkScrolledWindowSetPropagateNaturalWidth <- function(scrolled_window, propagate
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowSetVadjustment <- function(scrolled_window, vadjustment) {
-  .Call("R_gtk_scrolled_window_set_vadjustment", scrolled_window, vadjustment)
+  invisible(.Call("R_gtk_scrolled_window_set_vadjustment", scrolled_window, vadjustment))
 }
 
 
@@ -24869,7 +24869,7 @@ gtkScrolledWindowSetVadjustment <- function(scrolled_window, vadjustment) {
 #' @return Return value from C function
 #' @export
 gtkScrolledWindowUnsetPlacement <- function(scrolled_window) {
-  .Call("R_gtk_scrolled_window_unset_placement", scrolled_window)
+  invisible(.Call("R_gtk_scrolled_window_unset_placement", scrolled_window))
 }
 
 
@@ -24891,7 +24891,7 @@ gtkSearchBarNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkSearchBarConnectEntry <- function(bar, entry) {
-  .Call("R_gtk_search_bar_connect_entry", bar, entry)
+  invisible(.Call("R_gtk_search_bar_connect_entry", bar, entry))
 }
 
 
@@ -24947,7 +24947,7 @@ gtkSearchBarGetShowCloseButton <- function(bar) {
 #' @return Return value from C function
 #' @export
 gtkSearchBarSetChild <- function(bar, child) {
-  .Call("R_gtk_search_bar_set_child", bar, child)
+  invisible(.Call("R_gtk_search_bar_set_child", bar, child))
 }
 
 
@@ -24959,7 +24959,7 @@ gtkSearchBarSetChild <- function(bar, child) {
 #' @return Return value from C function
 #' @export
 gtkSearchBarSetKeyCaptureWidget <- function(bar, widget) {
-  .Call("R_gtk_search_bar_set_key_capture_widget", bar, widget)
+  invisible(.Call("R_gtk_search_bar_set_key_capture_widget", bar, widget))
 }
 
 
@@ -24971,7 +24971,7 @@ gtkSearchBarSetKeyCaptureWidget <- function(bar, widget) {
 #' @return Return value from C function
 #' @export
 gtkSearchBarSetSearchMode <- function(bar, search_mode) {
-  .Call("R_gtk_search_bar_set_search_mode", bar, search_mode)
+  invisible(.Call("R_gtk_search_bar_set_search_mode", bar, search_mode))
 }
 
 
@@ -24983,7 +24983,7 @@ gtkSearchBarSetSearchMode <- function(bar, search_mode) {
 #' @return Return value from C function
 #' @export
 gtkSearchBarSetShowCloseButton <- function(bar, visible) {
-  .Call("R_gtk_search_bar_set_show_close_button", bar, visible)
+  invisible(.Call("R_gtk_search_bar_set_show_close_button", bar, visible))
 }
 
 
@@ -25060,7 +25060,7 @@ gtkSearchEntryGetSearchDelay <- function(entry) {
 #' @return Return value from C function
 #' @export
 gtkSearchEntrySetInputHints <- function(entry, hints) {
-  .Call("R_gtk_search_entry_set_input_hints", entry, hints)
+  invisible(.Call("R_gtk_search_entry_set_input_hints", entry, hints))
 }
 
 
@@ -25072,7 +25072,7 @@ gtkSearchEntrySetInputHints <- function(entry, hints) {
 #' @return Return value from C function
 #' @export
 gtkSearchEntrySetInputPurpose <- function(entry, purpose) {
-  .Call("R_gtk_search_entry_set_input_purpose", entry, purpose)
+  invisible(.Call("R_gtk_search_entry_set_input_purpose", entry, purpose))
 }
 
 
@@ -25084,7 +25084,7 @@ gtkSearchEntrySetInputPurpose <- function(entry, purpose) {
 #' @return Return value from C function
 #' @export
 gtkSearchEntrySetKeyCaptureWidget <- function(entry, widget) {
-  .Call("R_gtk_search_entry_set_key_capture_widget", entry, widget)
+  invisible(.Call("R_gtk_search_entry_set_key_capture_widget", entry, widget))
 }
 
 
@@ -25096,7 +25096,7 @@ gtkSearchEntrySetKeyCaptureWidget <- function(entry, widget) {
 #' @return Return value from C function
 #' @export
 gtkSearchEntrySetPlaceholderText <- function(entry, text) {
-  .Call("R_gtk_search_entry_set_placeholder_text", entry, text)
+  invisible(.Call("R_gtk_search_entry_set_placeholder_text", entry, text))
 }
 
 
@@ -25108,7 +25108,7 @@ gtkSearchEntrySetPlaceholderText <- function(entry, text) {
 #' @return Return value from C function
 #' @export
 gtkSearchEntrySetSearchDelay <- function(entry, delay) {
-  .Call("R_gtk_search_entry_set_search_delay", entry, delay)
+  invisible(.Call("R_gtk_search_entry_set_search_delay", entry, as.integer(delay)))
 }
 
 
@@ -25120,7 +25120,7 @@ gtkSearchEntrySetSearchDelay <- function(entry, delay) {
 #' @return Return value from C function
 #' @export
 gtkSectionModelGetSection <- function(self, position) {
-  .Call("R_gtk_section_model_get_section", self, position)
+  .Call("R_gtk_section_model_get_section", self, as.integer(position))
 }
 
 
@@ -25133,7 +25133,7 @@ gtkSectionModelGetSection <- function(self, position) {
 #' @return Return value from C function
 #' @export
 gtkSectionModelSectionsChanged <- function(self, position, n_items) {
-  .Call("R_gtk_section_model_sections_changed", self, position, n_items)
+  invisible(.Call("R_gtk_section_model_sections_changed", self, as.integer(position), as.integer(n_items)))
 }
 
 
@@ -25167,7 +25167,7 @@ gtkSelectionFilterModelGetModel <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkSelectionFilterModelSetModel <- function(self, model) {
-  .Call("R_gtk_selection_filter_model_set_model", self, model)
+  invisible(.Call("R_gtk_selection_filter_model_set_model", self, model))
 }
 
 
@@ -25191,7 +25191,7 @@ gtkSelectionModelGetSelection <- function(model) {
 #' @return Bitset
 #' @export
 gtkSelectionModelGetSelectionInRange <- function(model, position, n_items) {
-  .Call("R_gtk_selection_model_get_selection_in_range", model, position, n_items)$result
+  .Call("R_gtk_selection_model_get_selection_in_range", model, as.integer(position), as.integer(n_items))$result
 }
 
 
@@ -25203,7 +25203,7 @@ gtkSelectionModelGetSelectionInRange <- function(model, position, n_items) {
 #' @return gboolean
 #' @export
 gtkSelectionModelIsSelected <- function(model, position) {
-  .Call("R_gtk_selection_model_is_selected", model, position)$result
+  .Call("R_gtk_selection_model_is_selected", model, as.integer(position))$result
 }
 
 
@@ -25227,7 +25227,7 @@ gtkSelectionModelSelectAll <- function(model) {
 #' @return gboolean
 #' @export
 gtkSelectionModelSelectItem <- function(model, position, unselect_rest) {
-  .Call("R_gtk_selection_model_select_item", model, position, unselect_rest)$result
+  .Call("R_gtk_selection_model_select_item", model, as.integer(position), unselect_rest)$result
 }
 
 
@@ -25241,7 +25241,7 @@ gtkSelectionModelSelectItem <- function(model, position, unselect_rest) {
 #' @return gboolean
 #' @export
 gtkSelectionModelSelectRange <- function(model, position, n_items, unselect_rest) {
-  .Call("R_gtk_selection_model_select_range", model, position, n_items, unselect_rest)$result
+  .Call("R_gtk_selection_model_select_range", model, as.integer(position), as.integer(n_items), unselect_rest)$result
 }
 
 
@@ -25254,7 +25254,7 @@ gtkSelectionModelSelectRange <- function(model, position, n_items, unselect_rest
 #' @return Return value from C function
 #' @export
 gtkSelectionModelSelectionChanged <- function(model, position, n_items) {
-  .Call("R_gtk_selection_model_selection_changed", model, position, n_items)
+  invisible(.Call("R_gtk_selection_model_selection_changed", model, as.integer(position), as.integer(n_items)))
 }
 
 
@@ -25290,7 +25290,7 @@ gtkSelectionModelUnselectAll <- function(model) {
 #' @return gboolean
 #' @export
 gtkSelectionModelUnselectItem <- function(model, position) {
-  .Call("R_gtk_selection_model_unselect_item", model, position)$result
+  .Call("R_gtk_selection_model_unselect_item", model, as.integer(position))$result
 }
 
 
@@ -25303,7 +25303,7 @@ gtkSelectionModelUnselectItem <- function(model, position) {
 #' @return gboolean
 #' @export
 gtkSelectionModelUnselectRange <- function(model, position, n_items) {
-  .Call("R_gtk_selection_model_unselect_range", model, position, n_items)$result
+  .Call("R_gtk_selection_model_unselect_range", model, as.integer(position), as.integer(n_items))$result
 }
 
 
@@ -25347,7 +25347,7 @@ gtkSettingsGetForDisplay <- function(display) {
 #' @return Return value from C function
 #' @export
 gtkSettingsResetProperty <- function(settings, name) {
-  .Call("R_gtk_settings_reset_property", settings, name)
+  invisible(.Call("R_gtk_settings_reset_property", settings, name))
 }
 
 
@@ -25404,7 +25404,7 @@ gtkShortcutGetTrigger <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkShortcutSetAction <- function(self, action) {
-  .Call("R_gtk_shortcut_set_action", self, action)
+  invisible(.Call("R_gtk_shortcut_set_action", self, action))
 }
 
 
@@ -25416,7 +25416,7 @@ gtkShortcutSetAction <- function(self, action) {
 #' @return Return value from C function
 #' @export
 gtkShortcutSetArguments <- function(self, args) {
-  .Call("R_gtk_shortcut_set_arguments", self, args)
+  invisible(.Call("R_gtk_shortcut_set_arguments", self, args))
 }
 
 
@@ -25428,7 +25428,7 @@ gtkShortcutSetArguments <- function(self, args) {
 #' @return Return value from C function
 #' @export
 gtkShortcutSetTrigger <- function(self, trigger) {
-  .Call("R_gtk_shortcut_set_trigger", self, trigger)
+  invisible(.Call("R_gtk_shortcut_set_trigger", self, trigger))
 }
 
 
@@ -25465,7 +25465,7 @@ gtkShortcutActionActivate <- function(self, flags, widget, args) {
 #' @return Return value from C function
 #' @export
 gtkShortcutActionPrint <- function(self, string) {
-  .Call("R_gtk_shortcut_action_print", self, string)
+  invisible(.Call("R_gtk_shortcut_action_print", self, string))
 }
 
 
@@ -25509,7 +25509,7 @@ gtkShortcutControllerNewForModel <- function(model) {
 #' @return Return value from C function
 #' @export
 gtkShortcutControllerAddShortcut <- function(self, shortcut) {
-  .Call("R_gtk_shortcut_controller_add_shortcut", self, shortcut)
+  invisible(.Call("R_gtk_shortcut_controller_add_shortcut", self, shortcut))
 }
 
 
@@ -25543,7 +25543,7 @@ gtkShortcutControllerGetScope <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkShortcutControllerRemoveShortcut <- function(self, shortcut) {
-  .Call("R_gtk_shortcut_controller_remove_shortcut", self, shortcut)
+  invisible(.Call("R_gtk_shortcut_controller_remove_shortcut", self, shortcut))
 }
 
 
@@ -25555,7 +25555,7 @@ gtkShortcutControllerRemoveShortcut <- function(self, shortcut) {
 #' @return Return value from C function
 #' @export
 gtkShortcutControllerSetMnemonicsModifiers <- function(self, modifiers) {
-  .Call("R_gtk_shortcut_controller_set_mnemonics_modifiers", self, modifiers)
+  invisible(.Call("R_gtk_shortcut_controller_set_mnemonics_modifiers", self, modifiers))
 }
 
 
@@ -25567,7 +25567,7 @@ gtkShortcutControllerSetMnemonicsModifiers <- function(self, modifiers) {
 #' @return Return value from C function
 #' @export
 gtkShortcutControllerSetScope <- function(self, scope) {
-  .Call("R_gtk_shortcut_controller_set_scope", self, scope)
+  invisible(.Call("R_gtk_shortcut_controller_set_scope", self, scope))
 }
 
 
@@ -25612,7 +25612,7 @@ gtkShortcutLabelGetDisabledText <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkShortcutLabelSetAccelerator <- function(self, accelerator) {
-  .Call("R_gtk_shortcut_label_set_accelerator", self, accelerator)
+  invisible(.Call("R_gtk_shortcut_label_set_accelerator", self, accelerator))
 }
 
 
@@ -25624,7 +25624,7 @@ gtkShortcutLabelSetAccelerator <- function(self, accelerator) {
 #' @return Return value from C function
 #' @export
 gtkShortcutLabelSetDisabledText <- function(self, disabled_text) {
-  .Call("R_gtk_shortcut_label_set_disabled_text", self, disabled_text)
+  invisible(.Call("R_gtk_shortcut_label_set_disabled_text", self, disabled_text))
 }
 
 
@@ -25682,7 +25682,7 @@ gtkShortcutTriggerHash <- function(trigger) {
 #' @return Return value from C function
 #' @export
 gtkShortcutTriggerPrint <- function(self, string) {
-  .Call("R_gtk_shortcut_trigger_print", self, string)
+  invisible(.Call("R_gtk_shortcut_trigger_print", self, string))
 }
 
 
@@ -25743,7 +25743,7 @@ gtkShortcutTriggerTrigger <- function(self, event, enable_mnemonics) {
 #' @return Return value from C function
 #' @export
 gtkShortcutsGroupAddShortcut <- function(self, shortcut) {
-  .Call("R_gtk_shortcuts_group_add_shortcut", self, shortcut)
+  invisible(.Call("R_gtk_shortcuts_group_add_shortcut", self, shortcut))
 }
 
 
@@ -25755,7 +25755,7 @@ gtkShortcutsGroupAddShortcut <- function(self, shortcut) {
 #' @return Return value from C function
 #' @export
 gtkShortcutsSectionAddGroup <- function(self, group) {
-  .Call("R_gtk_shortcuts_section_add_group", self, group)
+  invisible(.Call("R_gtk_shortcuts_section_add_group", self, group))
 }
 
 
@@ -25767,7 +25767,7 @@ gtkShortcutsSectionAddGroup <- function(self, group) {
 #' @return Return value from C function
 #' @export
 gtkShortcutsWindowAddSection <- function(self, section) {
-  .Call("R_gtk_shortcuts_window_add_section", self, section)
+  invisible(.Call("R_gtk_shortcuts_window_add_section", self, section))
 }
 
 
@@ -25877,7 +25877,7 @@ gtkSingleSelectionGetSelectedItem <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkSingleSelectionSetAutoselect <- function(self, autoselect) {
-  .Call("R_gtk_single_selection_set_autoselect", self, autoselect)
+  invisible(.Call("R_gtk_single_selection_set_autoselect", self, autoselect))
 }
 
 
@@ -25889,7 +25889,7 @@ gtkSingleSelectionSetAutoselect <- function(self, autoselect) {
 #' @return Return value from C function
 #' @export
 gtkSingleSelectionSetCanUnselect <- function(self, can_unselect) {
-  .Call("R_gtk_single_selection_set_can_unselect", self, can_unselect)
+  invisible(.Call("R_gtk_single_selection_set_can_unselect", self, can_unselect))
 }
 
 
@@ -25901,7 +25901,7 @@ gtkSingleSelectionSetCanUnselect <- function(self, can_unselect) {
 #' @return Return value from C function
 #' @export
 gtkSingleSelectionSetModel <- function(self, model) {
-  .Call("R_gtk_single_selection_set_model", self, model)
+  invisible(.Call("R_gtk_single_selection_set_model", self, model))
 }
 
 
@@ -25913,7 +25913,7 @@ gtkSingleSelectionSetModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkSingleSelectionSetSelected <- function(self, position) {
-  .Call("R_gtk_single_selection_set_selected", self, position)
+  invisible(.Call("R_gtk_single_selection_set_selected", self, as.integer(position)))
 }
 
 
@@ -25936,7 +25936,7 @@ gtkSizeGroupNew <- function(mode) {
 #' @return Return value from C function
 #' @export
 gtkSizeGroupAddWidget <- function(size_group, widget) {
-  .Call("R_gtk_size_group_add_widget", size_group, widget)
+  invisible(.Call("R_gtk_size_group_add_widget", size_group, widget))
 }
 
 
@@ -25970,7 +25970,7 @@ gtkSizeGroupGetWidgets <- function(size_group) {
 #' @return Return value from C function
 #' @export
 gtkSizeGroupRemoveWidget <- function(size_group, widget) {
-  .Call("R_gtk_size_group_remove_widget", size_group, widget)
+  invisible(.Call("R_gtk_size_group_remove_widget", size_group, widget))
 }
 
 
@@ -25982,7 +25982,7 @@ gtkSizeGroupRemoveWidget <- function(size_group, widget) {
 #' @return Return value from C function
 #' @export
 gtkSizeGroupSetMode <- function(size_group, mode) {
-  .Call("R_gtk_size_group_set_mode", size_group, mode)
+  invisible(.Call("R_gtk_size_group_set_mode", size_group, mode))
 }
 
 
@@ -25995,7 +25995,7 @@ gtkSizeGroupSetMode <- function(size_group, mode) {
 #' @return SliceListModel
 #' @export
 gtkSliceListModelNew <- function(model, offset, size) {
-  .Call("R_gtk_slice_list_model_new", model, offset, size)$result
+  .Call("R_gtk_slice_list_model_new", model, as.integer(offset), as.integer(size))$result
 }
 
 
@@ -26040,7 +26040,7 @@ gtkSliceListModelGetSize <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkSliceListModelSetModel <- function(self, model) {
-  .Call("R_gtk_slice_list_model_set_model", self, model)
+  invisible(.Call("R_gtk_slice_list_model_set_model", self, model))
 }
 
 
@@ -26052,7 +26052,7 @@ gtkSliceListModelSetModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkSliceListModelSetOffset <- function(self, offset) {
-  .Call("R_gtk_slice_list_model_set_offset", self, offset)
+  invisible(.Call("R_gtk_slice_list_model_set_offset", self, as.integer(offset)))
 }
 
 
@@ -26064,7 +26064,7 @@ gtkSliceListModelSetOffset <- function(self, offset) {
 #' @return Return value from C function
 #' @export
 gtkSliceListModelSetSize <- function(self, size) {
-  .Call("R_gtk_slice_list_model_set_size", self, size)
+  invisible(.Call("R_gtk_slice_list_model_set_size", self, as.integer(size)))
 }
 
 
@@ -26088,7 +26088,7 @@ gtkSnapshotNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendBorder <- function(snapshot, outline, border_width, border_color) {
-  .Call("R_gtk_snapshot_append_border", snapshot, outline, border_width, border_color)
+  invisible(.Call("R_gtk_snapshot_append_border", snapshot, outline, border_width, border_color))
 }
 
 
@@ -26113,7 +26113,7 @@ gtkSnapshotAppendCairo <- function(snapshot, bounds) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendColor <- function(snapshot, color, bounds) {
-  .Call("R_gtk_snapshot_append_color", snapshot, color, bounds)
+  invisible(.Call("R_gtk_snapshot_append_color", snapshot, color, bounds))
 }
 
 
@@ -26129,7 +26129,7 @@ gtkSnapshotAppendColor <- function(snapshot, color, bounds) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendConicGradient <- function(snapshot, bounds, center, rotation, stops, n_stops) {
-  .Call("R_gtk_snapshot_append_conic_gradient", snapshot, bounds, center, rotation, stops, n_stops)
+  invisible(.Call("R_gtk_snapshot_append_conic_gradient", snapshot, bounds, center, rotation, stops, as.integer(n_stops)))
 }
 
 
@@ -26143,7 +26143,7 @@ gtkSnapshotAppendConicGradient <- function(snapshot, bounds, center, rotation, s
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendFill <- function(snapshot, path, fill_rule, color) {
-  .Call("R_gtk_snapshot_append_fill", snapshot, path, fill_rule, color)
+  invisible(.Call("R_gtk_snapshot_append_fill", snapshot, path, fill_rule, color))
 }
 
 
@@ -26160,7 +26160,7 @@ gtkSnapshotAppendFill <- function(snapshot, path, fill_rule, color) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendInsetShadow <- function(snapshot, outline, color, dx, dy, spread, blur_radius) {
-  .Call("R_gtk_snapshot_append_inset_shadow", snapshot, outline, color, dx, dy, spread, blur_radius)
+  invisible(.Call("R_gtk_snapshot_append_inset_shadow", snapshot, outline, color, dx, dy, spread, blur_radius))
 }
 
 
@@ -26173,7 +26173,7 @@ gtkSnapshotAppendInsetShadow <- function(snapshot, outline, color, dx, dy, sprea
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendLayout <- function(snapshot, layout, color) {
-  .Call("R_gtk_snapshot_append_layout", snapshot, layout, color)
+  invisible(.Call("R_gtk_snapshot_append_layout", snapshot, layout, color))
 }
 
 
@@ -26189,7 +26189,7 @@ gtkSnapshotAppendLayout <- function(snapshot, layout, color) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendLinearGradient <- function(snapshot, bounds, start_point, end_point, stops, n_stops) {
-  .Call("R_gtk_snapshot_append_linear_gradient", snapshot, bounds, start_point, end_point, stops, n_stops)
+  invisible(.Call("R_gtk_snapshot_append_linear_gradient", snapshot, bounds, start_point, end_point, stops, as.integer(n_stops)))
 }
 
 
@@ -26201,7 +26201,7 @@ gtkSnapshotAppendLinearGradient <- function(snapshot, bounds, start_point, end_p
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendNode <- function(snapshot, node) {
-  .Call("R_gtk_snapshot_append_node", snapshot, node)
+  invisible(.Call("R_gtk_snapshot_append_node", snapshot, node))
 }
 
 
@@ -26218,7 +26218,7 @@ gtkSnapshotAppendNode <- function(snapshot, node) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendOutsetShadow <- function(snapshot, outline, color, dx, dy, spread, blur_radius) {
-  .Call("R_gtk_snapshot_append_outset_shadow", snapshot, outline, color, dx, dy, spread, blur_radius)
+  invisible(.Call("R_gtk_snapshot_append_outset_shadow", snapshot, outline, color, dx, dy, spread, blur_radius))
 }
 
 
@@ -26231,7 +26231,7 @@ gtkSnapshotAppendOutsetShadow <- function(snapshot, outline, color, dx, dy, spre
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendPaste <- function(snapshot, bounds, nth) {
-  .Call("R_gtk_snapshot_append_paste", snapshot, bounds, nth)
+  invisible(.Call("R_gtk_snapshot_append_paste", snapshot, bounds, as.integer(nth)))
 }
 
 
@@ -26250,7 +26250,7 @@ gtkSnapshotAppendPaste <- function(snapshot, bounds, nth) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendRadialGradient <- function(snapshot, bounds, center, hradius, vradius, start, end, stops, n_stops) {
-  .Call("R_gtk_snapshot_append_radial_gradient", snapshot, bounds, center, hradius, vradius, start, end, stops, n_stops)
+  invisible(.Call("R_gtk_snapshot_append_radial_gradient", snapshot, bounds, center, hradius, vradius, start, end, stops, as.integer(n_stops)))
 }
 
 
@@ -26266,7 +26266,7 @@ gtkSnapshotAppendRadialGradient <- function(snapshot, bounds, center, hradius, v
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendRepeatingLinearGradient <- function(snapshot, bounds, start_point, end_point, stops, n_stops) {
-  .Call("R_gtk_snapshot_append_repeating_linear_gradient", snapshot, bounds, start_point, end_point, stops, n_stops)
+  invisible(.Call("R_gtk_snapshot_append_repeating_linear_gradient", snapshot, bounds, start_point, end_point, stops, as.integer(n_stops)))
 }
 
 
@@ -26285,7 +26285,7 @@ gtkSnapshotAppendRepeatingLinearGradient <- function(snapshot, bounds, start_poi
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendRepeatingRadialGradient <- function(snapshot, bounds, center, hradius, vradius, start, end, stops, n_stops) {
-  .Call("R_gtk_snapshot_append_repeating_radial_gradient", snapshot, bounds, center, hradius, vradius, start, end, stops, n_stops)
+  invisible(.Call("R_gtk_snapshot_append_repeating_radial_gradient", snapshot, bounds, center, hradius, vradius, start, end, stops, as.integer(n_stops)))
 }
 
 
@@ -26299,7 +26299,7 @@ gtkSnapshotAppendRepeatingRadialGradient <- function(snapshot, bounds, center, h
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendScaledTexture <- function(snapshot, texture, filter, bounds) {
-  .Call("R_gtk_snapshot_append_scaled_texture", snapshot, texture, filter, bounds)
+  invisible(.Call("R_gtk_snapshot_append_scaled_texture", snapshot, texture, filter, bounds))
 }
 
 
@@ -26313,7 +26313,7 @@ gtkSnapshotAppendScaledTexture <- function(snapshot, texture, filter, bounds) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendStroke <- function(snapshot, path, stroke, color) {
-  .Call("R_gtk_snapshot_append_stroke", snapshot, path, stroke, color)
+  invisible(.Call("R_gtk_snapshot_append_stroke", snapshot, path, stroke, color))
 }
 
 
@@ -26326,7 +26326,7 @@ gtkSnapshotAppendStroke <- function(snapshot, path, stroke, color) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotAppendTexture <- function(snapshot, texture, bounds) {
-  .Call("R_gtk_snapshot_append_texture", snapshot, texture, bounds)
+  invisible(.Call("R_gtk_snapshot_append_texture", snapshot, texture, bounds))
 }
 
 
@@ -26337,7 +26337,7 @@ gtkSnapshotAppendTexture <- function(snapshot, texture, bounds) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotGlShaderPopTexture <- function(snapshot) {
-  .Call("R_gtk_snapshot_gl_shader_pop_texture", snapshot)
+  invisible(.Call("R_gtk_snapshot_gl_shader_pop_texture", snapshot))
 }
 
 
@@ -26349,7 +26349,7 @@ gtkSnapshotGlShaderPopTexture <- function(snapshot) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPerspective <- function(snapshot, depth) {
-  .Call("R_gtk_snapshot_perspective", snapshot, depth)
+  invisible(.Call("R_gtk_snapshot_perspective", snapshot, depth))
 }
 
 
@@ -26360,7 +26360,7 @@ gtkSnapshotPerspective <- function(snapshot, depth) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPop <- function(snapshot) {
-  .Call("R_gtk_snapshot_pop", snapshot)
+  invisible(.Call("R_gtk_snapshot_pop", snapshot))
 }
 
 
@@ -26372,7 +26372,7 @@ gtkSnapshotPop <- function(snapshot) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushBlend <- function(snapshot, blend_mode) {
-  .Call("R_gtk_snapshot_push_blend", snapshot, blend_mode)
+  invisible(.Call("R_gtk_snapshot_push_blend", snapshot, blend_mode))
 }
 
 
@@ -26384,7 +26384,7 @@ gtkSnapshotPushBlend <- function(snapshot, blend_mode) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushBlur <- function(snapshot, radius) {
-  .Call("R_gtk_snapshot_push_blur", snapshot, radius)
+  invisible(.Call("R_gtk_snapshot_push_blur", snapshot, radius))
 }
 
 
@@ -26396,7 +26396,7 @@ gtkSnapshotPushBlur <- function(snapshot, radius) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushClip <- function(snapshot, bounds) {
-  .Call("R_gtk_snapshot_push_clip", snapshot, bounds)
+  invisible(.Call("R_gtk_snapshot_push_clip", snapshot, bounds))
 }
 
 
@@ -26409,7 +26409,7 @@ gtkSnapshotPushClip <- function(snapshot, bounds) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushColorMatrix <- function(snapshot, color_matrix, color_offset) {
-  .Call("R_gtk_snapshot_push_color_matrix", snapshot, color_matrix, color_offset)
+  invisible(.Call("R_gtk_snapshot_push_color_matrix", snapshot, color_matrix, color_offset))
 }
 
 
@@ -26424,7 +26424,7 @@ gtkSnapshotPushColorMatrix <- function(snapshot, color_matrix, color_offset) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushComponentTransfer <- function(snapshot, red, green, blue, alpha) {
-  .Call("R_gtk_snapshot_push_component_transfer", snapshot, red, green, blue, alpha)
+  invisible(.Call("R_gtk_snapshot_push_component_transfer", snapshot, red, green, blue, alpha))
 }
 
 
@@ -26436,7 +26436,7 @@ gtkSnapshotPushComponentTransfer <- function(snapshot, red, green, blue, alpha) 
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushComposite <- function(snapshot, op) {
-  .Call("R_gtk_snapshot_push_composite", snapshot, op)
+  invisible(.Call("R_gtk_snapshot_push_composite", snapshot, op))
 }
 
 
@@ -26447,7 +26447,7 @@ gtkSnapshotPushComposite <- function(snapshot, op) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushCopy <- function(snapshot) {
-  .Call("R_gtk_snapshot_push_copy", snapshot)
+  invisible(.Call("R_gtk_snapshot_push_copy", snapshot))
 }
 
 
@@ -26459,7 +26459,7 @@ gtkSnapshotPushCopy <- function(snapshot) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushCrossFade <- function(snapshot, progress) {
-  .Call("R_gtk_snapshot_push_cross_fade", snapshot, progress)
+  invisible(.Call("R_gtk_snapshot_push_cross_fade", snapshot, progress))
 }
 
 
@@ -26472,7 +26472,7 @@ gtkSnapshotPushCrossFade <- function(snapshot, progress) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushFill <- function(snapshot, path, fill_rule) {
-  .Call("R_gtk_snapshot_push_fill", snapshot, path, fill_rule)
+  invisible(.Call("R_gtk_snapshot_push_fill", snapshot, path, fill_rule))
 }
 
 
@@ -26486,7 +26486,7 @@ gtkSnapshotPushFill <- function(snapshot, path, fill_rule) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushGlShader <- function(snapshot, shader, bounds, take_args) {
-  .Call("R_gtk_snapshot_push_gl_shader", snapshot, shader, bounds, take_args)
+  invisible(.Call("R_gtk_snapshot_push_gl_shader", snapshot, shader, bounds, take_args))
 }
 
 
@@ -26498,7 +26498,7 @@ gtkSnapshotPushGlShader <- function(snapshot, shader, bounds, take_args) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushIsolation <- function(snapshot, features) {
-  .Call("R_gtk_snapshot_push_isolation", snapshot, features)
+  invisible(.Call("R_gtk_snapshot_push_isolation", snapshot, features))
 }
 
 
@@ -26510,7 +26510,7 @@ gtkSnapshotPushIsolation <- function(snapshot, features) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushMask <- function(snapshot, mask_mode) {
-  .Call("R_gtk_snapshot_push_mask", snapshot, mask_mode)
+  invisible(.Call("R_gtk_snapshot_push_mask", snapshot, mask_mode))
 }
 
 
@@ -26522,7 +26522,7 @@ gtkSnapshotPushMask <- function(snapshot, mask_mode) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushOpacity <- function(snapshot, opacity) {
-  .Call("R_gtk_snapshot_push_opacity", snapshot, opacity)
+  invisible(.Call("R_gtk_snapshot_push_opacity", snapshot, opacity))
 }
 
 
@@ -26535,7 +26535,7 @@ gtkSnapshotPushOpacity <- function(snapshot, opacity) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushRepeat <- function(snapshot, bounds, child_bounds) {
-  .Call("R_gtk_snapshot_push_repeat", snapshot, bounds, child_bounds)
+  invisible(.Call("R_gtk_snapshot_push_repeat", snapshot, bounds, child_bounds))
 }
 
 
@@ -26547,7 +26547,7 @@ gtkSnapshotPushRepeat <- function(snapshot, bounds, child_bounds) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushRoundedClip <- function(snapshot, bounds) {
-  .Call("R_gtk_snapshot_push_rounded_clip", snapshot, bounds)
+  invisible(.Call("R_gtk_snapshot_push_rounded_clip", snapshot, bounds))
 }
 
 
@@ -26560,7 +26560,7 @@ gtkSnapshotPushRoundedClip <- function(snapshot, bounds) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushShadow <- function(snapshot, shadow, n_shadows) {
-  .Call("R_gtk_snapshot_push_shadow", snapshot, shadow, n_shadows)
+  invisible(.Call("R_gtk_snapshot_push_shadow", snapshot, shadow, as.integer(n_shadows)))
 }
 
 
@@ -26573,7 +26573,7 @@ gtkSnapshotPushShadow <- function(snapshot, shadow, n_shadows) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotPushStroke <- function(snapshot, path, stroke) {
-  .Call("R_gtk_snapshot_push_stroke", snapshot, path, stroke)
+  invisible(.Call("R_gtk_snapshot_push_stroke", snapshot, path, stroke))
 }
 
 
@@ -26589,7 +26589,7 @@ gtkSnapshotPushStroke <- function(snapshot, path, stroke) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotRenderBackground <- function(snapshot, context, x, y, width, height) {
-  .Call("R_gtk_snapshot_render_background", snapshot, context, x, y, width, height)
+  invisible(.Call("R_gtk_snapshot_render_background", snapshot, context, x, y, width, height))
 }
 
 
@@ -26605,7 +26605,7 @@ gtkSnapshotRenderBackground <- function(snapshot, context, x, y, width, height) 
 #' @return Return value from C function
 #' @export
 gtkSnapshotRenderFocus <- function(snapshot, context, x, y, width, height) {
-  .Call("R_gtk_snapshot_render_focus", snapshot, context, x, y, width, height)
+  invisible(.Call("R_gtk_snapshot_render_focus", snapshot, context, x, y, width, height))
 }
 
 
@@ -26621,7 +26621,7 @@ gtkSnapshotRenderFocus <- function(snapshot, context, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotRenderFrame <- function(snapshot, context, x, y, width, height) {
-  .Call("R_gtk_snapshot_render_frame", snapshot, context, x, y, width, height)
+  invisible(.Call("R_gtk_snapshot_render_frame", snapshot, context, x, y, width, height))
 }
 
 
@@ -26638,7 +26638,7 @@ gtkSnapshotRenderFrame <- function(snapshot, context, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotRenderInsertionCursor <- function(snapshot, context, x, y, layout, index, direction) {
-  .Call("R_gtk_snapshot_render_insertion_cursor", snapshot, context, x, y, layout, index, direction)
+  invisible(.Call("R_gtk_snapshot_render_insertion_cursor", snapshot, context, x, y, layout, as.integer(index), direction))
 }
 
 
@@ -26653,7 +26653,7 @@ gtkSnapshotRenderInsertionCursor <- function(snapshot, context, x, y, layout, in
 #' @return Return value from C function
 #' @export
 gtkSnapshotRenderLayout <- function(snapshot, context, x, y, layout) {
-  .Call("R_gtk_snapshot_render_layout", snapshot, context, x, y, layout)
+  invisible(.Call("R_gtk_snapshot_render_layout", snapshot, context, x, y, layout))
 }
 
 
@@ -26664,7 +26664,7 @@ gtkSnapshotRenderLayout <- function(snapshot, context, x, y, layout) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotRestore <- function(snapshot) {
-  .Call("R_gtk_snapshot_restore", snapshot)
+  invisible(.Call("R_gtk_snapshot_restore", snapshot))
 }
 
 
@@ -26676,7 +26676,7 @@ gtkSnapshotRestore <- function(snapshot) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotRotate <- function(snapshot, angle) {
-  .Call("R_gtk_snapshot_rotate", snapshot, angle)
+  invisible(.Call("R_gtk_snapshot_rotate", snapshot, angle))
 }
 
 
@@ -26689,7 +26689,7 @@ gtkSnapshotRotate <- function(snapshot, angle) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotRotate3d <- function(snapshot, angle, axis) {
-  .Call("R_gtk_snapshot_rotate_3d", snapshot, angle, axis)
+  invisible(.Call("R_gtk_snapshot_rotate_3d", snapshot, angle, axis))
 }
 
 
@@ -26700,7 +26700,7 @@ gtkSnapshotRotate3d <- function(snapshot, angle, axis) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotSave <- function(snapshot) {
-  .Call("R_gtk_snapshot_save", snapshot)
+  invisible(.Call("R_gtk_snapshot_save", snapshot))
 }
 
 
@@ -26713,7 +26713,7 @@ gtkSnapshotSave <- function(snapshot) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotScale <- function(snapshot, factor_x, factor_y) {
-  .Call("R_gtk_snapshot_scale", snapshot, factor_x, factor_y)
+  invisible(.Call("R_gtk_snapshot_scale", snapshot, factor_x, factor_y))
 }
 
 
@@ -26727,7 +26727,7 @@ gtkSnapshotScale <- function(snapshot, factor_x, factor_y) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotScale3d <- function(snapshot, factor_x, factor_y, factor_z) {
-  .Call("R_gtk_snapshot_scale_3d", snapshot, factor_x, factor_y, factor_z)
+  invisible(.Call("R_gtk_snapshot_scale_3d", snapshot, factor_x, factor_y, factor_z))
 }
 
 
@@ -26762,7 +26762,7 @@ gtkSnapshotToPaintable <- function(snapshot, size) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotTransform <- function(snapshot, transform) {
-  .Call("R_gtk_snapshot_transform", snapshot, transform)
+  invisible(.Call("R_gtk_snapshot_transform", snapshot, transform))
 }
 
 
@@ -26774,7 +26774,7 @@ gtkSnapshotTransform <- function(snapshot, transform) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotTransformMatrix <- function(snapshot, matrix) {
-  .Call("R_gtk_snapshot_transform_matrix", snapshot, matrix)
+  invisible(.Call("R_gtk_snapshot_transform_matrix", snapshot, matrix))
 }
 
 
@@ -26786,7 +26786,7 @@ gtkSnapshotTransformMatrix <- function(snapshot, matrix) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotTranslate <- function(snapshot, point) {
-  .Call("R_gtk_snapshot_translate", snapshot, point)
+  invisible(.Call("R_gtk_snapshot_translate", snapshot, point))
 }
 
 
@@ -26798,7 +26798,7 @@ gtkSnapshotTranslate <- function(snapshot, point) {
 #' @return Return value from C function
 #' @export
 gtkSnapshotTranslate3d <- function(snapshot, point) {
-  .Call("R_gtk_snapshot_translate_3d", snapshot, point)
+  invisible(.Call("R_gtk_snapshot_translate_3d", snapshot, point))
 }
 
 
@@ -26877,7 +26877,7 @@ gtkSortListModelGetSorter <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkSortListModelSetIncremental <- function(self, incremental) {
-  .Call("R_gtk_sort_list_model_set_incremental", self, incremental)
+  invisible(.Call("R_gtk_sort_list_model_set_incremental", self, incremental))
 }
 
 
@@ -26889,7 +26889,7 @@ gtkSortListModelSetIncremental <- function(self, incremental) {
 #' @return Return value from C function
 #' @export
 gtkSortListModelSetModel <- function(self, model) {
-  .Call("R_gtk_sort_list_model_set_model", self, model)
+  invisible(.Call("R_gtk_sort_list_model_set_model", self, model))
 }
 
 
@@ -26901,7 +26901,7 @@ gtkSortListModelSetModel <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkSortListModelSetSectionSorter <- function(self, sorter) {
-  .Call("R_gtk_sort_list_model_set_section_sorter", self, sorter)
+  invisible(.Call("R_gtk_sort_list_model_set_section_sorter", self, sorter))
 }
 
 
@@ -26913,7 +26913,7 @@ gtkSortListModelSetSectionSorter <- function(self, sorter) {
 #' @return Return value from C function
 #' @export
 gtkSortListModelSetSorter <- function(self, sorter) {
-  .Call("R_gtk_sort_list_model_set_sorter", self, sorter)
+  invisible(.Call("R_gtk_sort_list_model_set_sorter", self, sorter))
 }
 
 
@@ -26925,7 +26925,7 @@ gtkSortListModelSetSorter <- function(self, sorter) {
 #' @return Return value from C function
 #' @export
 gtkSorterChanged <- function(self, change) {
-  .Call("R_gtk_sorter_changed", self, change)
+  invisible(.Call("R_gtk_sorter_changed", self, change))
 }
 
 
@@ -26962,7 +26962,7 @@ gtkSorterGetOrder <- function(self) {
 #' @return Widget
 #' @export
 gtkSpinButtonNew <- function(adjustment, climb_rate, digits) {
-  .Call("R_gtk_spin_button_new", adjustment, climb_rate, digits)$result
+  .Call("R_gtk_spin_button_new", adjustment, climb_rate, as.integer(digits))$result
 }
 
 
@@ -26989,7 +26989,7 @@ gtkSpinButtonNewWithRange <- function(min, max, step) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonConfigure <- function(spin_button, adjustment, climb_rate, digits) {
-  .Call("R_gtk_spin_button_configure", spin_button, adjustment, climb_rate, digits)
+  invisible(.Call("R_gtk_spin_button_configure", spin_button, adjustment, climb_rate, as.integer(digits)))
 }
 
 
@@ -27133,7 +27133,7 @@ gtkSpinButtonGetWrap <- function(spin_button) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetActivatesDefault <- function(spin_button, activates_default) {
-  .Call("R_gtk_spin_button_set_activates_default", spin_button, activates_default)
+  invisible(.Call("R_gtk_spin_button_set_activates_default", spin_button, activates_default))
 }
 
 
@@ -27145,7 +27145,7 @@ gtkSpinButtonSetActivatesDefault <- function(spin_button, activates_default) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetAdjustment <- function(spin_button, adjustment) {
-  .Call("R_gtk_spin_button_set_adjustment", spin_button, adjustment)
+  invisible(.Call("R_gtk_spin_button_set_adjustment", spin_button, adjustment))
 }
 
 
@@ -27157,7 +27157,7 @@ gtkSpinButtonSetAdjustment <- function(spin_button, adjustment) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetClimbRate <- function(spin_button, climb_rate) {
-  .Call("R_gtk_spin_button_set_climb_rate", spin_button, climb_rate)
+  invisible(.Call("R_gtk_spin_button_set_climb_rate", spin_button, climb_rate))
 }
 
 
@@ -27169,7 +27169,7 @@ gtkSpinButtonSetClimbRate <- function(spin_button, climb_rate) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetDigits <- function(spin_button, digits) {
-  .Call("R_gtk_spin_button_set_digits", spin_button, digits)
+  invisible(.Call("R_gtk_spin_button_set_digits", spin_button, as.integer(digits)))
 }
 
 
@@ -27182,7 +27182,7 @@ gtkSpinButtonSetDigits <- function(spin_button, digits) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetIncrements <- function(spin_button, step, page) {
-  .Call("R_gtk_spin_button_set_increments", spin_button, step, page)
+  invisible(.Call("R_gtk_spin_button_set_increments", spin_button, step, page))
 }
 
 
@@ -27194,7 +27194,7 @@ gtkSpinButtonSetIncrements <- function(spin_button, step, page) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetNumeric <- function(spin_button, numeric) {
-  .Call("R_gtk_spin_button_set_numeric", spin_button, numeric)
+  invisible(.Call("R_gtk_spin_button_set_numeric", spin_button, numeric))
 }
 
 
@@ -27207,7 +27207,7 @@ gtkSpinButtonSetNumeric <- function(spin_button, numeric) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetRange <- function(spin_button, min, max) {
-  .Call("R_gtk_spin_button_set_range", spin_button, min, max)
+  invisible(.Call("R_gtk_spin_button_set_range", spin_button, min, max))
 }
 
 
@@ -27219,7 +27219,7 @@ gtkSpinButtonSetRange <- function(spin_button, min, max) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetSnapToTicks <- function(spin_button, snap_to_ticks) {
-  .Call("R_gtk_spin_button_set_snap_to_ticks", spin_button, snap_to_ticks)
+  invisible(.Call("R_gtk_spin_button_set_snap_to_ticks", spin_button, snap_to_ticks))
 }
 
 
@@ -27231,7 +27231,7 @@ gtkSpinButtonSetSnapToTicks <- function(spin_button, snap_to_ticks) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetUpdatePolicy <- function(spin_button, policy) {
-  .Call("R_gtk_spin_button_set_update_policy", spin_button, policy)
+  invisible(.Call("R_gtk_spin_button_set_update_policy", spin_button, policy))
 }
 
 
@@ -27243,7 +27243,7 @@ gtkSpinButtonSetUpdatePolicy <- function(spin_button, policy) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetValue <- function(spin_button, value) {
-  .Call("R_gtk_spin_button_set_value", spin_button, value)
+  invisible(.Call("R_gtk_spin_button_set_value", spin_button, value))
 }
 
 
@@ -27255,7 +27255,7 @@ gtkSpinButtonSetValue <- function(spin_button, value) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSetWrap <- function(spin_button, wrap) {
-  .Call("R_gtk_spin_button_set_wrap", spin_button, wrap)
+  invisible(.Call("R_gtk_spin_button_set_wrap", spin_button, wrap))
 }
 
 
@@ -27268,7 +27268,7 @@ gtkSpinButtonSetWrap <- function(spin_button, wrap) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonSpin <- function(spin_button, direction, increment) {
-  .Call("R_gtk_spin_button_spin", spin_button, direction, increment)
+  invisible(.Call("R_gtk_spin_button_spin", spin_button, direction, increment))
 }
 
 
@@ -27279,7 +27279,7 @@ gtkSpinButtonSpin <- function(spin_button, direction, increment) {
 #' @return Return value from C function
 #' @export
 gtkSpinButtonUpdate <- function(spin_button) {
-  .Call("R_gtk_spin_button_update", spin_button)
+  invisible(.Call("R_gtk_spin_button_update", spin_button))
 }
 
 
@@ -27312,7 +27312,7 @@ gtkSpinnerGetSpinning <- function(spinner) {
 #' @return Return value from C function
 #' @export
 gtkSpinnerSetSpinning <- function(spinner, spinning) {
-  .Call("R_gtk_spinner_set_spinning", spinner, spinning)
+  invisible(.Call("R_gtk_spinner_set_spinning", spinner, spinning))
 }
 
 
@@ -27323,7 +27323,7 @@ gtkSpinnerSetSpinning <- function(spinner, spinning) {
 #' @return Return value from C function
 #' @export
 gtkSpinnerStart <- function(spinner) {
-  .Call("R_gtk_spinner_start", spinner)
+  invisible(.Call("R_gtk_spinner_start", spinner))
 }
 
 
@@ -27334,7 +27334,7 @@ gtkSpinnerStart <- function(spinner) {
 #' @return Return value from C function
 #' @export
 gtkSpinnerStop <- function(spinner) {
-  .Call("R_gtk_spinner_stop", spinner)
+  invisible(.Call("R_gtk_spinner_stop", spinner))
 }
 
 
@@ -27518,7 +27518,7 @@ gtkStackGetVisibleChildName <- function(stack) {
 #' @return Return value from C function
 #' @export
 gtkStackRemove <- function(stack, child) {
-  .Call("R_gtk_stack_remove", stack, child)
+  invisible(.Call("R_gtk_stack_remove", stack, child))
 }
 
 
@@ -27530,7 +27530,7 @@ gtkStackRemove <- function(stack, child) {
 #' @return Return value from C function
 #' @export
 gtkStackSetHhomogeneous <- function(stack, hhomogeneous) {
-  .Call("R_gtk_stack_set_hhomogeneous", stack, hhomogeneous)
+  invisible(.Call("R_gtk_stack_set_hhomogeneous", stack, hhomogeneous))
 }
 
 
@@ -27542,7 +27542,7 @@ gtkStackSetHhomogeneous <- function(stack, hhomogeneous) {
 #' @return Return value from C function
 #' @export
 gtkStackSetInterpolateSize <- function(stack, interpolate_size) {
-  .Call("R_gtk_stack_set_interpolate_size", stack, interpolate_size)
+  invisible(.Call("R_gtk_stack_set_interpolate_size", stack, interpolate_size))
 }
 
 
@@ -27554,7 +27554,7 @@ gtkStackSetInterpolateSize <- function(stack, interpolate_size) {
 #' @return Return value from C function
 #' @export
 gtkStackSetTransitionDuration <- function(stack, duration) {
-  .Call("R_gtk_stack_set_transition_duration", stack, duration)
+  invisible(.Call("R_gtk_stack_set_transition_duration", stack, as.integer(duration)))
 }
 
 
@@ -27566,7 +27566,7 @@ gtkStackSetTransitionDuration <- function(stack, duration) {
 #' @return Return value from C function
 #' @export
 gtkStackSetTransitionType <- function(stack, transition) {
-  .Call("R_gtk_stack_set_transition_type", stack, transition)
+  invisible(.Call("R_gtk_stack_set_transition_type", stack, transition))
 }
 
 
@@ -27578,7 +27578,7 @@ gtkStackSetTransitionType <- function(stack, transition) {
 #' @return Return value from C function
 #' @export
 gtkStackSetVhomogeneous <- function(stack, vhomogeneous) {
-  .Call("R_gtk_stack_set_vhomogeneous", stack, vhomogeneous)
+  invisible(.Call("R_gtk_stack_set_vhomogeneous", stack, vhomogeneous))
 }
 
 
@@ -27590,7 +27590,7 @@ gtkStackSetVhomogeneous <- function(stack, vhomogeneous) {
 #' @return Return value from C function
 #' @export
 gtkStackSetVisibleChild <- function(stack, child) {
-  .Call("R_gtk_stack_set_visible_child", stack, child)
+  invisible(.Call("R_gtk_stack_set_visible_child", stack, child))
 }
 
 
@@ -27603,7 +27603,7 @@ gtkStackSetVisibleChild <- function(stack, child) {
 #' @return Return value from C function
 #' @export
 gtkStackSetVisibleChildFull <- function(stack, name, transition) {
-  .Call("R_gtk_stack_set_visible_child_full", stack, name, transition)
+  invisible(.Call("R_gtk_stack_set_visible_child_full", stack, name, transition))
 }
 
 
@@ -27615,7 +27615,7 @@ gtkStackSetVisibleChildFull <- function(stack, name, transition) {
 #' @return Return value from C function
 #' @export
 gtkStackSetVisibleChildName <- function(stack, name) {
-  .Call("R_gtk_stack_set_visible_child_name", stack, name)
+  invisible(.Call("R_gtk_stack_set_visible_child_name", stack, name))
 }
 
 
@@ -27704,7 +27704,7 @@ gtkStackPageGetVisible <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkStackPageSetIconName <- function(self, setting) {
-  .Call("R_gtk_stack_page_set_icon_name", self, setting)
+  invisible(.Call("R_gtk_stack_page_set_icon_name", self, setting))
 }
 
 
@@ -27716,7 +27716,7 @@ gtkStackPageSetIconName <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkStackPageSetName <- function(self, setting) {
-  .Call("R_gtk_stack_page_set_name", self, setting)
+  invisible(.Call("R_gtk_stack_page_set_name", self, setting))
 }
 
 
@@ -27728,7 +27728,7 @@ gtkStackPageSetName <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkStackPageSetNeedsAttention <- function(self, setting) {
-  .Call("R_gtk_stack_page_set_needs_attention", self, setting)
+  invisible(.Call("R_gtk_stack_page_set_needs_attention", self, setting))
 }
 
 
@@ -27740,7 +27740,7 @@ gtkStackPageSetNeedsAttention <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkStackPageSetTitle <- function(self, setting) {
-  .Call("R_gtk_stack_page_set_title", self, setting)
+  invisible(.Call("R_gtk_stack_page_set_title", self, setting))
 }
 
 
@@ -27752,7 +27752,7 @@ gtkStackPageSetTitle <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkStackPageSetUseUnderline <- function(self, setting) {
-  .Call("R_gtk_stack_page_set_use_underline", self, setting)
+  invisible(.Call("R_gtk_stack_page_set_use_underline", self, setting))
 }
 
 
@@ -27764,7 +27764,7 @@ gtkStackPageSetUseUnderline <- function(self, setting) {
 #' @return Return value from C function
 #' @export
 gtkStackPageSetVisible <- function(self, visible) {
-  .Call("R_gtk_stack_page_set_visible", self, visible)
+  invisible(.Call("R_gtk_stack_page_set_visible", self, visible))
 }
 
 
@@ -27797,7 +27797,7 @@ gtkStackSidebarGetStack <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkStackSidebarSetStack <- function(self, stack) {
-  .Call("R_gtk_stack_sidebar_set_stack", self, stack)
+  invisible(.Call("R_gtk_stack_sidebar_set_stack", self, stack))
 }
 
 
@@ -27830,7 +27830,7 @@ gtkStackSwitcherGetStack <- function(switcher) {
 #' @return Return value from C function
 #' @export
 gtkStackSwitcherSetStack <- function(switcher, stack) {
-  .Call("R_gtk_stack_switcher_set_stack", switcher, stack)
+  invisible(.Call("R_gtk_stack_switcher_set_stack", switcher, stack))
 }
 
 
@@ -27864,7 +27864,7 @@ gtkStatusbarGetContextId <- function(statusbar, context_description) {
 #' @return Return value from C function
 #' @export
 gtkStatusbarPop <- function(statusbar, context_id) {
-  .Call("R_gtk_statusbar_pop", statusbar, context_id)
+  invisible(.Call("R_gtk_statusbar_pop", statusbar, as.integer(context_id)))
 }
 
 
@@ -27877,7 +27877,7 @@ gtkStatusbarPop <- function(statusbar, context_id) {
 #' @return guint
 #' @export
 gtkStatusbarPush <- function(statusbar, context_id, text) {
-  .Call("R_gtk_statusbar_push", statusbar, context_id, text)$result
+  .Call("R_gtk_statusbar_push", statusbar, as.integer(context_id), text)$result
 }
 
 
@@ -27890,7 +27890,7 @@ gtkStatusbarPush <- function(statusbar, context_id, text) {
 #' @return Return value from C function
 #' @export
 gtkStatusbarRemove <- function(statusbar, context_id, message_id) {
-  .Call("R_gtk_statusbar_remove", statusbar, context_id, message_id)
+  invisible(.Call("R_gtk_statusbar_remove", statusbar, as.integer(context_id), as.integer(message_id)))
 }
 
 
@@ -27902,7 +27902,7 @@ gtkStatusbarRemove <- function(statusbar, context_id, message_id) {
 #' @return Return value from C function
 #' @export
 gtkStatusbarRemoveAll <- function(statusbar, context_id) {
-  .Call("R_gtk_statusbar_remove_all", statusbar, context_id)
+  invisible(.Call("R_gtk_statusbar_remove_all", statusbar, as.integer(context_id)))
 }
 
 
@@ -27969,7 +27969,7 @@ gtkStringFilterGetSearch <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkStringFilterSetExpression <- function(self, expression) {
-  .Call("R_gtk_string_filter_set_expression", self, expression)
+  invisible(.Call("R_gtk_string_filter_set_expression", self, expression))
 }
 
 
@@ -27981,7 +27981,7 @@ gtkStringFilterSetExpression <- function(self, expression) {
 #' @return Return value from C function
 #' @export
 gtkStringFilterSetIgnoreCase <- function(self, ignore_case) {
-  .Call("R_gtk_string_filter_set_ignore_case", self, ignore_case)
+  invisible(.Call("R_gtk_string_filter_set_ignore_case", self, ignore_case))
 }
 
 
@@ -27993,7 +27993,7 @@ gtkStringFilterSetIgnoreCase <- function(self, ignore_case) {
 #' @return Return value from C function
 #' @export
 gtkStringFilterSetMatchMode <- function(self, mode) {
-  .Call("R_gtk_string_filter_set_match_mode", self, mode)
+  invisible(.Call("R_gtk_string_filter_set_match_mode", self, mode))
 }
 
 
@@ -28005,7 +28005,7 @@ gtkStringFilterSetMatchMode <- function(self, mode) {
 #' @return Return value from C function
 #' @export
 gtkStringFilterSetSearch <- function(self, search) {
-  .Call("R_gtk_string_filter_set_search", self, search)
+  invisible(.Call("R_gtk_string_filter_set_search", self, search))
 }
 
 
@@ -28028,7 +28028,7 @@ gtkStringListNew <- function(strings) {
 #' @return Return value from C function
 #' @export
 gtkStringListAppend <- function(self, string) {
-  .Call("R_gtk_string_list_append", self, string)
+  invisible(.Call("R_gtk_string_list_append", self, string))
 }
 
 
@@ -28052,7 +28052,7 @@ gtkStringListFind <- function(self, string) {
 #' @return utf8
 #' @export
 gtkStringListGetString <- function(self, position) {
-  .Call("R_gtk_string_list_get_string", self, position)$result
+  .Call("R_gtk_string_list_get_string", self, as.integer(position))$result
 }
 
 
@@ -28064,7 +28064,7 @@ gtkStringListGetString <- function(self, position) {
 #' @return Return value from C function
 #' @export
 gtkStringListRemove <- function(self, position) {
-  .Call("R_gtk_string_list_remove", self, position)
+  invisible(.Call("R_gtk_string_list_remove", self, as.integer(position)))
 }
 
 
@@ -28078,7 +28078,7 @@ gtkStringListRemove <- function(self, position) {
 #' @return Return value from C function
 #' @export
 gtkStringListSplice <- function(self, position, n_removals, additions) {
-  .Call("R_gtk_string_list_splice", self, position, n_removals, additions)
+  invisible(.Call("R_gtk_string_list_splice", self, as.integer(position), as.integer(n_removals), additions))
 }
 
 
@@ -28090,7 +28090,7 @@ gtkStringListSplice <- function(self, position, n_removals, additions) {
 #' @return Return value from C function
 #' @export
 gtkStringListTake <- function(self, string) {
-  .Call("R_gtk_string_list_take", self, string)
+  invisible(.Call("R_gtk_string_list_take", self, string))
 }
 
 
@@ -28168,7 +28168,7 @@ gtkStringSorterGetIgnoreCase <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkStringSorterSetCollation <- function(self, collation) {
-  .Call("R_gtk_string_sorter_set_collation", self, collation)
+  invisible(.Call("R_gtk_string_sorter_set_collation", self, collation))
 }
 
 
@@ -28180,7 +28180,7 @@ gtkStringSorterSetCollation <- function(self, collation) {
 #' @return Return value from C function
 #' @export
 gtkStringSorterSetExpression <- function(self, expression) {
-  .Call("R_gtk_string_sorter_set_expression", self, expression)
+  invisible(.Call("R_gtk_string_sorter_set_expression", self, expression))
 }
 
 
@@ -28192,7 +28192,7 @@ gtkStringSorterSetExpression <- function(self, expression) {
 #' @return Return value from C function
 #' @export
 gtkStringSorterSetIgnoreCase <- function(self, ignore_case) {
-  .Call("R_gtk_string_sorter_set_ignore_case", self, ignore_case)
+  invisible(.Call("R_gtk_string_sorter_set_ignore_case", self, ignore_case))
 }
 
 
@@ -28205,7 +28205,7 @@ gtkStringSorterSetIgnoreCase <- function(self, ignore_case) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextAddProviderForDisplay <- function(display, provider, priority) {
-  .Call("R_gtk_style_context_add_provider_for_display", display, provider, priority)
+  invisible(.Call("R_gtk_style_context_add_provider_for_display", display, provider, as.integer(priority)))
 }
 
 
@@ -28217,7 +28217,7 @@ gtkStyleContextAddProviderForDisplay <- function(display, provider, priority) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextRemoveProviderForDisplay <- function(display, provider) {
-  .Call("R_gtk_style_context_remove_provider_for_display", display, provider)
+  invisible(.Call("R_gtk_style_context_remove_provider_for_display", display, provider))
 }
 
 
@@ -28229,7 +28229,7 @@ gtkStyleContextRemoveProviderForDisplay <- function(display, provider) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextAddClass <- function(context, class_name) {
-  .Call("R_gtk_style_context_add_class", context, class_name)
+  invisible(.Call("R_gtk_style_context_add_class", context, class_name))
 }
 
 
@@ -28242,7 +28242,7 @@ gtkStyleContextAddClass <- function(context, class_name) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextAddProvider <- function(context, provider, priority) {
-  .Call("R_gtk_style_context_add_provider", context, provider, priority)
+  invisible(.Call("R_gtk_style_context_add_provider", context, provider, as.integer(priority)))
 }
 
 
@@ -28355,7 +28355,7 @@ gtkStyleContextLookupColor <- function(context, color_name) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextRemoveClass <- function(context, class_name) {
-  .Call("R_gtk_style_context_remove_class", context, class_name)
+  invisible(.Call("R_gtk_style_context_remove_class", context, class_name))
 }
 
 
@@ -28367,7 +28367,7 @@ gtkStyleContextRemoveClass <- function(context, class_name) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextRemoveProvider <- function(context, provider) {
-  .Call("R_gtk_style_context_remove_provider", context, provider)
+  invisible(.Call("R_gtk_style_context_remove_provider", context, provider))
 }
 
 
@@ -28378,7 +28378,7 @@ gtkStyleContextRemoveProvider <- function(context, provider) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextRestore <- function(context) {
-  .Call("R_gtk_style_context_restore", context)
+  invisible(.Call("R_gtk_style_context_restore", context))
 }
 
 
@@ -28389,7 +28389,7 @@ gtkStyleContextRestore <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextSave <- function(context) {
-  .Call("R_gtk_style_context_save", context)
+  invisible(.Call("R_gtk_style_context_save", context))
 }
 
 
@@ -28401,7 +28401,7 @@ gtkStyleContextSave <- function(context) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextSetDisplay <- function(context, display) {
-  .Call("R_gtk_style_context_set_display", context, display)
+  invisible(.Call("R_gtk_style_context_set_display", context, display))
 }
 
 
@@ -28413,7 +28413,7 @@ gtkStyleContextSetDisplay <- function(context, display) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextSetScale <- function(context, scale) {
-  .Call("R_gtk_style_context_set_scale", context, scale)
+  invisible(.Call("R_gtk_style_context_set_scale", context, as.integer(scale)))
 }
 
 
@@ -28425,7 +28425,7 @@ gtkStyleContextSetScale <- function(context, scale) {
 #' @return Return value from C function
 #' @export
 gtkStyleContextSetState <- function(context, flags) {
-  .Call("R_gtk_style_context_set_state", context, flags)
+  invisible(.Call("R_gtk_style_context_set_state", context, flags))
 }
 
 
@@ -28525,7 +28525,7 @@ gtkSvgGetWeight <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkSvgLoadFromBytes <- function(self, bytes) {
-  .Call("R_gtk_svg_load_from_bytes", self, bytes)
+  invisible(.Call("R_gtk_svg_load_from_bytes", self, bytes))
 }
 
 
@@ -28537,7 +28537,7 @@ gtkSvgLoadFromBytes <- function(self, bytes) {
 #' @return Return value from C function
 #' @export
 gtkSvgLoadFromResource <- function(self, path) {
-  .Call("R_gtk_svg_load_from_resource", self, path)
+  invisible(.Call("R_gtk_svg_load_from_resource", self, path))
 }
 
 
@@ -28548,7 +28548,7 @@ gtkSvgLoadFromResource <- function(self, path) {
 #' @return Return value from C function
 #' @export
 gtkSvgPause <- function(self) {
-  .Call("R_gtk_svg_pause", self)
+  invisible(.Call("R_gtk_svg_pause", self))
 }
 
 
@@ -28559,7 +28559,7 @@ gtkSvgPause <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkSvgPlay <- function(self) {
-  .Call("R_gtk_svg_play", self)
+  invisible(.Call("R_gtk_svg_play", self))
 }
 
 
@@ -28582,7 +28582,7 @@ gtkSvgSerialize <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkSvgSetFeatures <- function(self, features) {
-  .Call("R_gtk_svg_set_features", self, features)
+  invisible(.Call("R_gtk_svg_set_features", self, features))
 }
 
 
@@ -28594,7 +28594,7 @@ gtkSvgSetFeatures <- function(self, features) {
 #' @return Return value from C function
 #' @export
 gtkSvgSetFrameClock <- function(self, clock) {
-  .Call("R_gtk_svg_set_frame_clock", self, clock)
+  invisible(.Call("R_gtk_svg_set_frame_clock", self, clock))
 }
 
 
@@ -28606,7 +28606,7 @@ gtkSvgSetFrameClock <- function(self, clock) {
 #' @return Return value from C function
 #' @export
 gtkSvgSetState <- function(self, state) {
-  .Call("R_gtk_svg_set_state", self, state)
+  invisible(.Call("R_gtk_svg_set_state", self, as.integer(state)))
 }
 
 
@@ -28618,7 +28618,7 @@ gtkSvgSetState <- function(self, state) {
 #' @return Return value from C function
 #' @export
 gtkSvgSetWeight <- function(self, weight) {
-  .Call("R_gtk_svg_set_weight", self, weight)
+  invisible(.Call("R_gtk_svg_set_weight", self, weight))
 }
 
 
@@ -28728,7 +28728,7 @@ gtkSwitchGetState <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkSwitchSetActive <- function(self, is_active) {
-  .Call("R_gtk_switch_set_active", self, is_active)
+  invisible(.Call("R_gtk_switch_set_active", self, is_active))
 }
 
 
@@ -28740,7 +28740,7 @@ gtkSwitchSetActive <- function(self, is_active) {
 #' @return Return value from C function
 #' @export
 gtkSwitchSetState <- function(self, state) {
-  .Call("R_gtk_switch_set_state", self, state)
+  invisible(.Call("R_gtk_switch_set_state", self, state))
 }
 
 
@@ -28756,7 +28756,7 @@ gtkSwitchSetState <- function(self, state) {
 #' @return Return value from C function
 #' @export
 gtkSymbolicPaintableSnapshotSymbolic <- function(paintable, snapshot, width, height, colors, n_colors) {
-  .Call("R_gtk_symbolic_paintable_snapshot_symbolic", paintable, snapshot, width, height, colors, n_colors)
+  invisible(.Call("R_gtk_symbolic_paintable_snapshot_symbolic", paintable, snapshot, width, height, colors, as.integer(n_colors)))
 }
 
 
@@ -28773,7 +28773,7 @@ gtkSymbolicPaintableSnapshotSymbolic <- function(paintable, snapshot, width, hei
 #' @return Return value from C function
 #' @export
 gtkSymbolicPaintableSnapshotWithWeight <- function(paintable, snapshot, width, height, colors, n_colors, weight) {
-  .Call("R_gtk_symbolic_paintable_snapshot_with_weight", paintable, snapshot, width, height, colors, n_colors, weight)
+  invisible(.Call("R_gtk_symbolic_paintable_snapshot_with_weight", paintable, snapshot, width, height, colors, as.integer(n_colors), weight))
 }
 
 
@@ -28806,7 +28806,7 @@ gtkTextNewWithBuffer <- function(buffer) {
 #' @return Return value from C function
 #' @export
 gtkTextComputeCursorExtents <- function(self, position) {
-  .Call("R_gtk_text_compute_cursor_extents", self, position)
+  .Call("R_gtk_text_compute_cursor_extents", self, as.integer(position))
 }
 
 
@@ -29005,7 +29005,7 @@ gtkTextGrabFocusWithoutSelecting <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkTextSetActivatesDefault <- function(self, activates) {
-  .Call("R_gtk_text_set_activates_default", self, activates)
+  invisible(.Call("R_gtk_text_set_activates_default", self, activates))
 }
 
 
@@ -29017,7 +29017,7 @@ gtkTextSetActivatesDefault <- function(self, activates) {
 #' @return Return value from C function
 #' @export
 gtkTextSetAttributes <- function(self, attrs) {
-  .Call("R_gtk_text_set_attributes", self, attrs)
+  invisible(.Call("R_gtk_text_set_attributes", self, attrs))
 }
 
 
@@ -29029,7 +29029,7 @@ gtkTextSetAttributes <- function(self, attrs) {
 #' @return Return value from C function
 #' @export
 gtkTextSetBuffer <- function(self, buffer) {
-  .Call("R_gtk_text_set_buffer", self, buffer)
+  invisible(.Call("R_gtk_text_set_buffer", self, buffer))
 }
 
 
@@ -29041,7 +29041,7 @@ gtkTextSetBuffer <- function(self, buffer) {
 #' @return Return value from C function
 #' @export
 gtkTextSetEnableEmojiCompletion <- function(self, enable_emoji_completion) {
-  .Call("R_gtk_text_set_enable_emoji_completion", self, enable_emoji_completion)
+  invisible(.Call("R_gtk_text_set_enable_emoji_completion", self, enable_emoji_completion))
 }
 
 
@@ -29053,7 +29053,7 @@ gtkTextSetEnableEmojiCompletion <- function(self, enable_emoji_completion) {
 #' @return Return value from C function
 #' @export
 gtkTextSetExtraMenu <- function(self, model) {
-  .Call("R_gtk_text_set_extra_menu", self, model)
+  invisible(.Call("R_gtk_text_set_extra_menu", self, model))
 }
 
 
@@ -29065,7 +29065,7 @@ gtkTextSetExtraMenu <- function(self, model) {
 #' @return Return value from C function
 #' @export
 gtkTextSetInputHints <- function(self, hints) {
-  .Call("R_gtk_text_set_input_hints", self, hints)
+  invisible(.Call("R_gtk_text_set_input_hints", self, hints))
 }
 
 
@@ -29077,7 +29077,7 @@ gtkTextSetInputHints <- function(self, hints) {
 #' @return Return value from C function
 #' @export
 gtkTextSetInputPurpose <- function(self, purpose) {
-  .Call("R_gtk_text_set_input_purpose", self, purpose)
+  invisible(.Call("R_gtk_text_set_input_purpose", self, purpose))
 }
 
 
@@ -29089,7 +29089,7 @@ gtkTextSetInputPurpose <- function(self, purpose) {
 #' @return Return value from C function
 #' @export
 gtkTextSetInvisibleChar <- function(self, ch) {
-  .Call("R_gtk_text_set_invisible_char", self, ch)
+  invisible(.Call("R_gtk_text_set_invisible_char", self, ch))
 }
 
 
@@ -29101,7 +29101,7 @@ gtkTextSetInvisibleChar <- function(self, ch) {
 #' @return Return value from C function
 #' @export
 gtkTextSetMaxLength <- function(self, length) {
-  .Call("R_gtk_text_set_max_length", self, length)
+  invisible(.Call("R_gtk_text_set_max_length", self, as.integer(length)))
 }
 
 
@@ -29113,7 +29113,7 @@ gtkTextSetMaxLength <- function(self, length) {
 #' @return Return value from C function
 #' @export
 gtkTextSetOverwriteMode <- function(self, overwrite) {
-  .Call("R_gtk_text_set_overwrite_mode", self, overwrite)
+  invisible(.Call("R_gtk_text_set_overwrite_mode", self, overwrite))
 }
 
 
@@ -29125,7 +29125,7 @@ gtkTextSetOverwriteMode <- function(self, overwrite) {
 #' @return Return value from C function
 #' @export
 gtkTextSetPlaceholderText <- function(self, text) {
-  .Call("R_gtk_text_set_placeholder_text", self, text)
+  invisible(.Call("R_gtk_text_set_placeholder_text", self, text))
 }
 
 
@@ -29137,7 +29137,7 @@ gtkTextSetPlaceholderText <- function(self, text) {
 #' @return Return value from C function
 #' @export
 gtkTextSetPropagateTextWidth <- function(self, propagate_text_width) {
-  .Call("R_gtk_text_set_propagate_text_width", self, propagate_text_width)
+  invisible(.Call("R_gtk_text_set_propagate_text_width", self, propagate_text_width))
 }
 
 
@@ -29149,7 +29149,7 @@ gtkTextSetPropagateTextWidth <- function(self, propagate_text_width) {
 #' @return Return value from C function
 #' @export
 gtkTextSetTabs <- function(self, tabs) {
-  .Call("R_gtk_text_set_tabs", self, tabs)
+  invisible(.Call("R_gtk_text_set_tabs", self, tabs))
 }
 
 
@@ -29161,7 +29161,7 @@ gtkTextSetTabs <- function(self, tabs) {
 #' @return Return value from C function
 #' @export
 gtkTextSetTruncateMultiline <- function(self, truncate_multiline) {
-  .Call("R_gtk_text_set_truncate_multiline", self, truncate_multiline)
+  invisible(.Call("R_gtk_text_set_truncate_multiline", self, truncate_multiline))
 }
 
 
@@ -29173,7 +29173,7 @@ gtkTextSetTruncateMultiline <- function(self, truncate_multiline) {
 #' @return Return value from C function
 #' @export
 gtkTextSetVisibility <- function(self, visible) {
-  .Call("R_gtk_text_set_visibility", self, visible)
+  invisible(.Call("R_gtk_text_set_visibility", self, visible))
 }
 
 
@@ -29184,7 +29184,7 @@ gtkTextSetVisibility <- function(self, visible) {
 #' @return Return value from C function
 #' @export
 gtkTextUnsetInvisibleChar <- function(self) {
-  .Call("R_gtk_text_unset_invisible_char", self)
+  invisible(.Call("R_gtk_text_unset_invisible_char", self))
 }
 
 
@@ -29208,7 +29208,7 @@ gtkTextBufferNew <- function(table) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferAddMark <- function(buffer, mark, where) {
-  .Call("R_gtk_text_buffer_add_mark", buffer, mark, where)
+  invisible(.Call("R_gtk_text_buffer_add_mark", buffer, mark, where))
 }
 
 
@@ -29220,7 +29220,7 @@ gtkTextBufferAddMark <- function(buffer, mark, where) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferAddSelectionClipboard <- function(buffer, clipboard) {
-  .Call("R_gtk_text_buffer_add_selection_clipboard", buffer, clipboard)
+  invisible(.Call("R_gtk_text_buffer_add_selection_clipboard", buffer, clipboard))
 }
 
 
@@ -29234,7 +29234,7 @@ gtkTextBufferAddSelectionClipboard <- function(buffer, clipboard) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferApplyTag <- function(buffer, tag, start, end) {
-  .Call("R_gtk_text_buffer_apply_tag", buffer, tag, start, end)
+  invisible(.Call("R_gtk_text_buffer_apply_tag", buffer, tag, start, end))
 }
 
 
@@ -29248,7 +29248,7 @@ gtkTextBufferApplyTag <- function(buffer, tag, start, end) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferApplyTagByName <- function(buffer, name, start, end) {
-  .Call("R_gtk_text_buffer_apply_tag_by_name", buffer, name, start, end)
+  invisible(.Call("R_gtk_text_buffer_apply_tag_by_name", buffer, name, start, end))
 }
 
 
@@ -29273,7 +29273,7 @@ gtkTextBufferBackspace <- function(buffer, iter, interactive, default_editable) 
 #' @return Return value from C function
 #' @export
 gtkTextBufferBeginIrreversibleAction <- function(buffer) {
-  .Call("R_gtk_text_buffer_begin_irreversible_action", buffer)
+  invisible(.Call("R_gtk_text_buffer_begin_irreversible_action", buffer))
 }
 
 
@@ -29284,7 +29284,7 @@ gtkTextBufferBeginIrreversibleAction <- function(buffer) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferBeginUserAction <- function(buffer) {
-  .Call("R_gtk_text_buffer_begin_user_action", buffer)
+  invisible(.Call("R_gtk_text_buffer_begin_user_action", buffer))
 }
 
 
@@ -29296,7 +29296,7 @@ gtkTextBufferBeginUserAction <- function(buffer) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferCopyClipboard <- function(buffer, clipboard) {
-  .Call("R_gtk_text_buffer_copy_clipboard", buffer, clipboard)
+  invisible(.Call("R_gtk_text_buffer_copy_clipboard", buffer, clipboard))
 }
 
 
@@ -29335,7 +29335,7 @@ gtkTextBufferCreateMark <- function(buffer, mark_name, where, left_gravity) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferCutClipboard <- function(buffer, clipboard, default_editable) {
-  .Call("R_gtk_text_buffer_cut_clipboard", buffer, clipboard, default_editable)
+  invisible(.Call("R_gtk_text_buffer_cut_clipboard", buffer, clipboard, default_editable))
 }
 
 
@@ -29348,7 +29348,7 @@ gtkTextBufferCutClipboard <- function(buffer, clipboard, default_editable) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferDelete <- function(buffer, start, end) {
-  .Call("R_gtk_text_buffer_delete", buffer, start, end)
+  invisible(.Call("R_gtk_text_buffer_delete", buffer, start, end))
 }
 
 
@@ -29374,7 +29374,7 @@ gtkTextBufferDeleteInteractive <- function(buffer, start_iter, end_iter, default
 #' @return Return value from C function
 #' @export
 gtkTextBufferDeleteMark <- function(buffer, mark) {
-  .Call("R_gtk_text_buffer_delete_mark", buffer, mark)
+  invisible(.Call("R_gtk_text_buffer_delete_mark", buffer, mark))
 }
 
 
@@ -29386,7 +29386,7 @@ gtkTextBufferDeleteMark <- function(buffer, mark) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferDeleteMarkByName <- function(buffer, name) {
-  .Call("R_gtk_text_buffer_delete_mark_by_name", buffer, name)
+  invisible(.Call("R_gtk_text_buffer_delete_mark_by_name", buffer, name))
 }
 
 
@@ -29410,7 +29410,7 @@ gtkTextBufferDeleteSelection <- function(buffer, interactive, default_editable) 
 #' @return Return value from C function
 #' @export
 gtkTextBufferEndIrreversibleAction <- function(buffer) {
-  .Call("R_gtk_text_buffer_end_irreversible_action", buffer)
+  invisible(.Call("R_gtk_text_buffer_end_irreversible_action", buffer))
 }
 
 
@@ -29421,7 +29421,7 @@ gtkTextBufferEndIrreversibleAction <- function(buffer) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferEndUserAction <- function(buffer) {
-  .Call("R_gtk_text_buffer_end_user_action", buffer)
+  invisible(.Call("R_gtk_text_buffer_end_user_action", buffer))
 }
 
 
@@ -29533,7 +29533,7 @@ gtkTextBufferGetIterAtChildAnchor <- function(buffer, anchor) {
 #' @return gboolean
 #' @export
 gtkTextBufferGetIterAtLine <- function(buffer, line_number) {
-  .Call("R_gtk_text_buffer_get_iter_at_line", buffer, line_number)
+  .Call("R_gtk_text_buffer_get_iter_at_line", buffer, as.integer(line_number))
 }
 
 
@@ -29546,7 +29546,7 @@ gtkTextBufferGetIterAtLine <- function(buffer, line_number) {
 #' @return gboolean
 #' @export
 gtkTextBufferGetIterAtLineIndex <- function(buffer, line_number, byte_index) {
-  .Call("R_gtk_text_buffer_get_iter_at_line_index", buffer, line_number, byte_index)
+  .Call("R_gtk_text_buffer_get_iter_at_line_index", buffer, as.integer(line_number), as.integer(byte_index))
 }
 
 
@@ -29559,7 +29559,7 @@ gtkTextBufferGetIterAtLineIndex <- function(buffer, line_number, byte_index) {
 #' @return gboolean
 #' @export
 gtkTextBufferGetIterAtLineOffset <- function(buffer, line_number, char_offset) {
-  .Call("R_gtk_text_buffer_get_iter_at_line_offset", buffer, line_number, char_offset)
+  .Call("R_gtk_text_buffer_get_iter_at_line_offset", buffer, as.integer(line_number), as.integer(char_offset))
 }
 
 
@@ -29583,7 +29583,7 @@ gtkTextBufferGetIterAtMark <- function(buffer, mark) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferGetIterAtOffset <- function(buffer, char_offset) {
-  .Call("R_gtk_text_buffer_get_iter_at_offset", buffer, char_offset)$iter
+  .Call("R_gtk_text_buffer_get_iter_at_offset", buffer, as.integer(char_offset))$iter
 }
 
 
@@ -29725,7 +29725,7 @@ gtkTextBufferGetText <- function(buffer, start, end, include_hidden_chars) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferInsert <- function(buffer, iter, text, len) {
-  .Call("R_gtk_text_buffer_insert", buffer, iter, text, len)
+  invisible(.Call("R_gtk_text_buffer_insert", buffer, iter, text, as.integer(len)))
 }
 
 
@@ -29738,7 +29738,7 @@ gtkTextBufferInsert <- function(buffer, iter, text, len) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferInsertAtCursor <- function(buffer, text, len) {
-  .Call("R_gtk_text_buffer_insert_at_cursor", buffer, text, len)
+  invisible(.Call("R_gtk_text_buffer_insert_at_cursor", buffer, text, as.integer(len)))
 }
 
 
@@ -29751,7 +29751,7 @@ gtkTextBufferInsertAtCursor <- function(buffer, text, len) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferInsertChildAnchor <- function(buffer, iter, anchor) {
-  .Call("R_gtk_text_buffer_insert_child_anchor", buffer, iter, anchor)
+  invisible(.Call("R_gtk_text_buffer_insert_child_anchor", buffer, iter, anchor))
 }
 
 
@@ -29766,7 +29766,7 @@ gtkTextBufferInsertChildAnchor <- function(buffer, iter, anchor) {
 #' @return gboolean
 #' @export
 gtkTextBufferInsertInteractive <- function(buffer, iter, text, len, default_editable) {
-  .Call("R_gtk_text_buffer_insert_interactive", buffer, iter, text, len, default_editable)$result
+  .Call("R_gtk_text_buffer_insert_interactive", buffer, iter, text, as.integer(len), default_editable)$result
 }
 
 
@@ -29780,7 +29780,7 @@ gtkTextBufferInsertInteractive <- function(buffer, iter, text, len, default_edit
 #' @return gboolean
 #' @export
 gtkTextBufferInsertInteractiveAtCursor <- function(buffer, text, len, default_editable) {
-  .Call("R_gtk_text_buffer_insert_interactive_at_cursor", buffer, text, len, default_editable)$result
+  .Call("R_gtk_text_buffer_insert_interactive_at_cursor", buffer, text, as.integer(len), default_editable)$result
 }
 
 
@@ -29794,7 +29794,7 @@ gtkTextBufferInsertInteractiveAtCursor <- function(buffer, text, len, default_ed
 #' @return Return value from C function
 #' @export
 gtkTextBufferInsertMarkup <- function(buffer, iter, markup, len) {
-  .Call("R_gtk_text_buffer_insert_markup", buffer, iter, markup, len)
+  invisible(.Call("R_gtk_text_buffer_insert_markup", buffer, iter, markup, as.integer(len)))
 }
 
 
@@ -29807,7 +29807,7 @@ gtkTextBufferInsertMarkup <- function(buffer, iter, markup, len) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferInsertPaintable <- function(buffer, iter, paintable) {
-  .Call("R_gtk_text_buffer_insert_paintable", buffer, iter, paintable)
+  invisible(.Call("R_gtk_text_buffer_insert_paintable", buffer, iter, paintable))
 }
 
 
@@ -29821,7 +29821,7 @@ gtkTextBufferInsertPaintable <- function(buffer, iter, paintable) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferInsertRange <- function(buffer, iter, start, end) {
-  .Call("R_gtk_text_buffer_insert_range", buffer, iter, start, end)
+  invisible(.Call("R_gtk_text_buffer_insert_range", buffer, iter, start, end))
 }
 
 
@@ -29849,7 +29849,7 @@ gtkTextBufferInsertRangeInteractive <- function(buffer, iter, start, end, defaul
 #' @return Return value from C function
 #' @export
 gtkTextBufferMoveMark <- function(buffer, mark, where) {
-  .Call("R_gtk_text_buffer_move_mark", buffer, mark, where)
+  invisible(.Call("R_gtk_text_buffer_move_mark", buffer, mark, where))
 }
 
 
@@ -29862,7 +29862,7 @@ gtkTextBufferMoveMark <- function(buffer, mark, where) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferMoveMarkByName <- function(buffer, name, where) {
-  .Call("R_gtk_text_buffer_move_mark_by_name", buffer, name, where)
+  invisible(.Call("R_gtk_text_buffer_move_mark_by_name", buffer, name, where))
 }
 
 
@@ -29876,7 +29876,7 @@ gtkTextBufferMoveMarkByName <- function(buffer, name, where) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferPasteClipboard <- function(buffer, clipboard, override_location, default_editable) {
-  .Call("R_gtk_text_buffer_paste_clipboard", buffer, clipboard, override_location, default_editable)
+  invisible(.Call("R_gtk_text_buffer_paste_clipboard", buffer, clipboard, override_location, default_editable))
 }
 
 
@@ -29888,7 +29888,7 @@ gtkTextBufferPasteClipboard <- function(buffer, clipboard, override_location, de
 #' @return Return value from C function
 #' @export
 gtkTextBufferPlaceCursor <- function(buffer, where) {
-  .Call("R_gtk_text_buffer_place_cursor", buffer, where)
+  invisible(.Call("R_gtk_text_buffer_place_cursor", buffer, where))
 }
 
 
@@ -29899,7 +29899,7 @@ gtkTextBufferPlaceCursor <- function(buffer, where) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferRedo <- function(buffer) {
-  .Call("R_gtk_text_buffer_redo", buffer)
+  invisible(.Call("R_gtk_text_buffer_redo", buffer))
 }
 
 
@@ -29912,7 +29912,7 @@ gtkTextBufferRedo <- function(buffer) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferRemoveAllTags <- function(buffer, start, end) {
-  .Call("R_gtk_text_buffer_remove_all_tags", buffer, start, end)
+  invisible(.Call("R_gtk_text_buffer_remove_all_tags", buffer, start, end))
 }
 
 
@@ -29924,7 +29924,7 @@ gtkTextBufferRemoveAllTags <- function(buffer, start, end) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferRemoveCommitNotify <- function(buffer, commit_notify_handler) {
-  .Call("R_gtk_text_buffer_remove_commit_notify", buffer, commit_notify_handler)
+  invisible(.Call("R_gtk_text_buffer_remove_commit_notify", buffer, as.integer(commit_notify_handler)))
 }
 
 
@@ -29936,7 +29936,7 @@ gtkTextBufferRemoveCommitNotify <- function(buffer, commit_notify_handler) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferRemoveSelectionClipboard <- function(buffer, clipboard) {
-  .Call("R_gtk_text_buffer_remove_selection_clipboard", buffer, clipboard)
+  invisible(.Call("R_gtk_text_buffer_remove_selection_clipboard", buffer, clipboard))
 }
 
 
@@ -29950,7 +29950,7 @@ gtkTextBufferRemoveSelectionClipboard <- function(buffer, clipboard) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferRemoveTag <- function(buffer, tag, start, end) {
-  .Call("R_gtk_text_buffer_remove_tag", buffer, tag, start, end)
+  invisible(.Call("R_gtk_text_buffer_remove_tag", buffer, tag, start, end))
 }
 
 
@@ -29964,7 +29964,7 @@ gtkTextBufferRemoveTag <- function(buffer, tag, start, end) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferRemoveTagByName <- function(buffer, name, start, end) {
-  .Call("R_gtk_text_buffer_remove_tag_by_name", buffer, name, start, end)
+  invisible(.Call("R_gtk_text_buffer_remove_tag_by_name", buffer, name, start, end))
 }
 
 
@@ -29977,7 +29977,7 @@ gtkTextBufferRemoveTagByName <- function(buffer, name, start, end) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferSelectRange <- function(buffer, ins, bound) {
-  .Call("R_gtk_text_buffer_select_range", buffer, ins, bound)
+  invisible(.Call("R_gtk_text_buffer_select_range", buffer, ins, bound))
 }
 
 
@@ -29989,7 +29989,7 @@ gtkTextBufferSelectRange <- function(buffer, ins, bound) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferSetEnableUndo <- function(buffer, enable_undo) {
-  .Call("R_gtk_text_buffer_set_enable_undo", buffer, enable_undo)
+  invisible(.Call("R_gtk_text_buffer_set_enable_undo", buffer, enable_undo))
 }
 
 
@@ -30001,7 +30001,7 @@ gtkTextBufferSetEnableUndo <- function(buffer, enable_undo) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferSetMaxUndoLevels <- function(buffer, max_undo_levels) {
-  .Call("R_gtk_text_buffer_set_max_undo_levels", buffer, max_undo_levels)
+  invisible(.Call("R_gtk_text_buffer_set_max_undo_levels", buffer, as.integer(max_undo_levels)))
 }
 
 
@@ -30013,7 +30013,7 @@ gtkTextBufferSetMaxUndoLevels <- function(buffer, max_undo_levels) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferSetModified <- function(buffer, setting) {
-  .Call("R_gtk_text_buffer_set_modified", buffer, setting)
+  invisible(.Call("R_gtk_text_buffer_set_modified", buffer, setting))
 }
 
 
@@ -30026,7 +30026,7 @@ gtkTextBufferSetModified <- function(buffer, setting) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferSetText <- function(buffer, text, len) {
-  .Call("R_gtk_text_buffer_set_text", buffer, text, len)
+  invisible(.Call("R_gtk_text_buffer_set_text", buffer, text, as.integer(len)))
 }
 
 
@@ -30037,7 +30037,7 @@ gtkTextBufferSetText <- function(buffer, text, len) {
 #' @return Return value from C function
 #' @export
 gtkTextBufferUndo <- function(buffer) {
-  .Call("R_gtk_text_buffer_undo", buffer)
+  invisible(.Call("R_gtk_text_buffer_undo", buffer))
 }
 
 
@@ -30092,7 +30092,7 @@ gtkTextChildAnchorGetWidgets <- function(anchor) {
 #' @return Return value from C function
 #' @export
 gtkTextIterAssign <- function(iter, other) {
-  .Call("R_gtk_text_iter_assign", iter, other)
+  invisible(.Call("R_gtk_text_iter_assign", iter, other))
 }
 
 
@@ -30115,7 +30115,7 @@ gtkTextIterBackwardChar <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterBackwardChars <- function(iter, count) {
-  .Call("R_gtk_text_iter_backward_chars", iter, count)$result
+  .Call("R_gtk_text_iter_backward_chars", iter, as.integer(count))$result
 }
 
 
@@ -30138,7 +30138,7 @@ gtkTextIterBackwardCursorPosition <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterBackwardCursorPositions <- function(iter, count) {
-  .Call("R_gtk_text_iter_backward_cursor_positions", iter, count)$result
+  .Call("R_gtk_text_iter_backward_cursor_positions", iter, as.integer(count))$result
 }
 
 
@@ -30175,7 +30175,7 @@ gtkTextIterBackwardLine <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterBackwardLines <- function(iter, count) {
-  .Call("R_gtk_text_iter_backward_lines", iter, count)$result
+  .Call("R_gtk_text_iter_backward_lines", iter, as.integer(count))$result
 }
 
 
@@ -30212,7 +30212,7 @@ gtkTextIterBackwardSentenceStart <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterBackwardSentenceStarts <- function(iter, count) {
-  .Call("R_gtk_text_iter_backward_sentence_starts", iter, count)$result
+  .Call("R_gtk_text_iter_backward_sentence_starts", iter, as.integer(count))$result
 }
 
 
@@ -30247,7 +30247,7 @@ gtkTextIterBackwardVisibleCursorPosition <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterBackwardVisibleCursorPositions <- function(iter, count) {
-  .Call("R_gtk_text_iter_backward_visible_cursor_positions", iter, count)$result
+  .Call("R_gtk_text_iter_backward_visible_cursor_positions", iter, as.integer(count))$result
 }
 
 
@@ -30270,7 +30270,7 @@ gtkTextIterBackwardVisibleLine <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterBackwardVisibleLines <- function(iter, count) {
-  .Call("R_gtk_text_iter_backward_visible_lines", iter, count)$result
+  .Call("R_gtk_text_iter_backward_visible_lines", iter, as.integer(count))$result
 }
 
 
@@ -30293,7 +30293,7 @@ gtkTextIterBackwardVisibleWordStart <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterBackwardVisibleWordStarts <- function(iter, count) {
-  .Call("R_gtk_text_iter_backward_visible_word_starts", iter, count)$result
+  .Call("R_gtk_text_iter_backward_visible_word_starts", iter, as.integer(count))$result
 }
 
 
@@ -30316,7 +30316,7 @@ gtkTextIterBackwardWordStart <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterBackwardWordStarts <- function(iter, count) {
-  .Call("R_gtk_text_iter_backward_word_starts", iter, count)$result
+  .Call("R_gtk_text_iter_backward_word_starts", iter, as.integer(count))$result
 }
 
 
@@ -30443,7 +30443,7 @@ gtkTextIterForwardChar <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterForwardChars <- function(iter, count) {
-  .Call("R_gtk_text_iter_forward_chars", iter, count)$result
+  .Call("R_gtk_text_iter_forward_chars", iter, as.integer(count))$result
 }
 
 
@@ -30466,7 +30466,7 @@ gtkTextIterForwardCursorPosition <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterForwardCursorPositions <- function(iter, count) {
-  .Call("R_gtk_text_iter_forward_cursor_positions", iter, count)$result
+  .Call("R_gtk_text_iter_forward_cursor_positions", iter, as.integer(count))$result
 }
 
 
@@ -30503,7 +30503,7 @@ gtkTextIterForwardLine <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterForwardLines <- function(iter, count) {
-  .Call("R_gtk_text_iter_forward_lines", iter, count)$result
+  .Call("R_gtk_text_iter_forward_lines", iter, as.integer(count))$result
 }
 
 
@@ -30540,7 +30540,7 @@ gtkTextIterForwardSentenceEnd <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterForwardSentenceEnds <- function(iter, count) {
-  .Call("R_gtk_text_iter_forward_sentence_ends", iter, count)$result
+  .Call("R_gtk_text_iter_forward_sentence_ends", iter, as.integer(count))$result
 }
 
 
@@ -30551,7 +30551,7 @@ gtkTextIterForwardSentenceEnds <- function(iter, count) {
 #' @return Return value from C function
 #' @export
 gtkTextIterForwardToEnd <- function(iter) {
-  .Call("R_gtk_text_iter_forward_to_end", iter)
+  invisible(.Call("R_gtk_text_iter_forward_to_end", iter))
 }
 
 
@@ -30597,7 +30597,7 @@ gtkTextIterForwardVisibleCursorPosition <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterForwardVisibleCursorPositions <- function(iter, count) {
-  .Call("R_gtk_text_iter_forward_visible_cursor_positions", iter, count)$result
+  .Call("R_gtk_text_iter_forward_visible_cursor_positions", iter, as.integer(count))$result
 }
 
 
@@ -30620,7 +30620,7 @@ gtkTextIterForwardVisibleLine <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterForwardVisibleLines <- function(iter, count) {
-  .Call("R_gtk_text_iter_forward_visible_lines", iter, count)$result
+  .Call("R_gtk_text_iter_forward_visible_lines", iter, as.integer(count))$result
 }
 
 
@@ -30643,7 +30643,7 @@ gtkTextIterForwardVisibleWordEnd <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterForwardVisibleWordEnds <- function(iter, count) {
-  .Call("R_gtk_text_iter_forward_visible_word_ends", iter, count)$result
+  .Call("R_gtk_text_iter_forward_visible_word_ends", iter, as.integer(count))$result
 }
 
 
@@ -30666,7 +30666,7 @@ gtkTextIterForwardWordEnd <- function(iter) {
 #' @return gboolean
 #' @export
 gtkTextIterForwardWordEnds <- function(iter, count) {
-  .Call("R_gtk_text_iter_forward_word_ends", iter, count)$result
+  .Call("R_gtk_text_iter_forward_word_ends", iter, as.integer(count))$result
 }
 
 
@@ -30677,7 +30677,7 @@ gtkTextIterForwardWordEnds <- function(iter, count) {
 #' @return Return value from C function
 #' @export
 gtkTextIterFree <- function(iter) {
-  .Call("R_gtk_text_iter_free", iter)
+  invisible(.Call("R_gtk_text_iter_free", iter))
 }
 
 
@@ -30994,7 +30994,7 @@ gtkTextIterIsStart <- function(iter) {
 #' @return Return value from C function
 #' @export
 gtkTextIterOrder <- function(first, second) {
-  .Call("R_gtk_text_iter_order", first, second)
+  invisible(.Call("R_gtk_text_iter_order", first, second))
 }
 
 
@@ -31006,7 +31006,7 @@ gtkTextIterOrder <- function(first, second) {
 #' @return Return value from C function
 #' @export
 gtkTextIterSetLine <- function(iter, line_number) {
-  .Call("R_gtk_text_iter_set_line", iter, line_number)
+  invisible(.Call("R_gtk_text_iter_set_line", iter, as.integer(line_number)))
 }
 
 
@@ -31018,7 +31018,7 @@ gtkTextIterSetLine <- function(iter, line_number) {
 #' @return Return value from C function
 #' @export
 gtkTextIterSetLineIndex <- function(iter, byte_on_line) {
-  .Call("R_gtk_text_iter_set_line_index", iter, byte_on_line)
+  invisible(.Call("R_gtk_text_iter_set_line_index", iter, as.integer(byte_on_line)))
 }
 
 
@@ -31030,7 +31030,7 @@ gtkTextIterSetLineIndex <- function(iter, byte_on_line) {
 #' @return Return value from C function
 #' @export
 gtkTextIterSetLineOffset <- function(iter, char_on_line) {
-  .Call("R_gtk_text_iter_set_line_offset", iter, char_on_line)
+  invisible(.Call("R_gtk_text_iter_set_line_offset", iter, as.integer(char_on_line)))
 }
 
 
@@ -31042,7 +31042,7 @@ gtkTextIterSetLineOffset <- function(iter, char_on_line) {
 #' @return Return value from C function
 #' @export
 gtkTextIterSetOffset <- function(iter, char_offset) {
-  .Call("R_gtk_text_iter_set_offset", iter, char_offset)
+  invisible(.Call("R_gtk_text_iter_set_offset", iter, as.integer(char_offset)))
 }
 
 
@@ -31054,7 +31054,7 @@ gtkTextIterSetOffset <- function(iter, char_offset) {
 #' @return Return value from C function
 #' @export
 gtkTextIterSetVisibleLineIndex <- function(iter, byte_on_line) {
-  .Call("R_gtk_text_iter_set_visible_line_index", iter, byte_on_line)
+  invisible(.Call("R_gtk_text_iter_set_visible_line_index", iter, as.integer(byte_on_line)))
 }
 
 
@@ -31066,7 +31066,7 @@ gtkTextIterSetVisibleLineIndex <- function(iter, byte_on_line) {
 #' @return Return value from C function
 #' @export
 gtkTextIterSetVisibleLineOffset <- function(iter, char_on_line) {
-  .Call("R_gtk_text_iter_set_visible_line_offset", iter, char_on_line)
+  invisible(.Call("R_gtk_text_iter_set_visible_line_offset", iter, as.integer(char_on_line)))
 }
 
 
@@ -31202,7 +31202,7 @@ gtkTextMarkGetVisible <- function(mark) {
 #' @return Return value from C function
 #' @export
 gtkTextMarkSetVisible <- function(mark, setting) {
-  .Call("R_gtk_text_mark_set_visible", mark, setting)
+  invisible(.Call("R_gtk_text_mark_set_visible", mark, setting))
 }
 
 
@@ -31225,7 +31225,7 @@ gtkTextTagNew <- function(name) {
 #' @return Return value from C function
 #' @export
 gtkTextTagChanged <- function(tag, size_changed) {
-  .Call("R_gtk_text_tag_changed", tag, size_changed)
+  invisible(.Call("R_gtk_text_tag_changed", tag, size_changed))
 }
 
 
@@ -31248,7 +31248,7 @@ gtkTextTagGetPriority <- function(tag) {
 #' @return Return value from C function
 #' @export
 gtkTextTagSetPriority <- function(tag, priority) {
-  .Call("R_gtk_text_tag_set_priority", tag, priority)
+  invisible(.Call("R_gtk_text_tag_set_priority", tag, as.integer(priority)))
 }
 
 
@@ -31283,7 +31283,7 @@ gtkTextTagTableAdd <- function(table, tag) {
 #' @return Return value from C function
 #' @export
 gtkTextTagTableForeach <- function(table, func, data) {
-  .Call("R_gtk_text_tag_table_foreach", table, func, data)
+  invisible(.Call("R_gtk_text_tag_table_foreach", table, func, data))
 }
 
 
@@ -31318,7 +31318,7 @@ gtkTextTagTableLookup <- function(table, name) {
 #' @return Return value from C function
 #' @export
 gtkTextTagTableRemove <- function(table, tag) {
-  .Call("R_gtk_text_tag_table_remove", table, tag)
+  invisible(.Call("R_gtk_text_tag_table_remove", table, tag))
 }
 
 
@@ -31352,7 +31352,7 @@ gtkTextViewNewWithBuffer <- function(buffer) {
 #' @return Return value from C function
 #' @export
 gtkTextViewAddChildAtAnchor <- function(text_view, child, anchor) {
-  .Call("R_gtk_text_view_add_child_at_anchor", text_view, child, anchor)
+  invisible(.Call("R_gtk_text_view_add_child_at_anchor", text_view, child, anchor))
 }
 
 
@@ -31366,7 +31366,7 @@ gtkTextViewAddChildAtAnchor <- function(text_view, child, anchor) {
 #' @return Return value from C function
 #' @export
 gtkTextViewAddOverlay <- function(text_view, child, xpos, ypos) {
-  .Call("R_gtk_text_view_add_overlay", text_view, child, xpos, ypos)
+  invisible(.Call("R_gtk_text_view_add_overlay", text_view, child, as.integer(xpos), as.integer(ypos)))
 }
 
 
@@ -31404,7 +31404,7 @@ gtkTextViewBackwardDisplayLineStart <- function(text_view, iter) {
 #' @return Return value from C function
 #' @export
 gtkTextViewBufferToWindowCoords <- function(text_view, win, buffer_x, buffer_y) {
-  .Call("R_gtk_text_view_buffer_to_window_coords", text_view, win, buffer_x, buffer_y)
+  .Call("R_gtk_text_view_buffer_to_window_coords", text_view, win, as.integer(buffer_x), as.integer(buffer_y))
 }
 
 
@@ -31564,7 +31564,7 @@ gtkTextViewGetInputPurpose <- function(text_view) {
 #' @return gboolean
 #' @export
 gtkTextViewGetIterAtLocation <- function(text_view, x, y) {
-  .Call("R_gtk_text_view_get_iter_at_location", text_view, x, y)
+  .Call("R_gtk_text_view_get_iter_at_location", text_view, as.integer(x), as.integer(y))
 }
 
 
@@ -31577,7 +31577,7 @@ gtkTextViewGetIterAtLocation <- function(text_view, x, y) {
 #' @return gboolean
 #' @export
 gtkTextViewGetIterAtPosition <- function(text_view, x, y) {
-  .Call("R_gtk_text_view_get_iter_at_position", text_view, x, y)
+  .Call("R_gtk_text_view_get_iter_at_position", text_view, as.integer(x), as.integer(y))
 }
 
 
@@ -31623,7 +31623,7 @@ gtkTextViewGetLeftMargin <- function(text_view) {
 #' @return Return value from C function
 #' @export
 gtkTextViewGetLineAtY <- function(text_view, y) {
-  .Call("R_gtk_text_view_get_line_at_y", text_view, y)
+  .Call("R_gtk_text_view_get_line_at_y", text_view, as.integer(y))
 }
 
 
@@ -31816,7 +31816,7 @@ gtkTextViewMoveMarkOnscreen <- function(text_view, mark) {
 #' @return Return value from C function
 #' @export
 gtkTextViewMoveOverlay <- function(text_view, child, xpos, ypos) {
-  .Call("R_gtk_text_view_move_overlay", text_view, child, xpos, ypos)
+  invisible(.Call("R_gtk_text_view_move_overlay", text_view, child, as.integer(xpos), as.integer(ypos)))
 }
 
 
@@ -31829,7 +31829,7 @@ gtkTextViewMoveOverlay <- function(text_view, child, xpos, ypos) {
 #' @return gboolean
 #' @export
 gtkTextViewMoveVisually <- function(text_view, iter, count) {
-  .Call("R_gtk_text_view_move_visually", text_view, iter, count)$result
+  .Call("R_gtk_text_view_move_visually", text_view, iter, as.integer(count))$result
 }
 
 
@@ -31852,7 +31852,7 @@ gtkTextViewPlaceCursorOnscreen <- function(text_view) {
 #' @return Return value from C function
 #' @export
 gtkTextViewRemove <- function(text_view, child) {
-  .Call("R_gtk_text_view_remove", text_view, child)
+  invisible(.Call("R_gtk_text_view_remove", text_view, child))
 }
 
 
@@ -31863,7 +31863,7 @@ gtkTextViewRemove <- function(text_view, child) {
 #' @return Return value from C function
 #' @export
 gtkTextViewResetCursorBlink <- function(text_view) {
-  .Call("R_gtk_text_view_reset_cursor_blink", text_view)
+  invisible(.Call("R_gtk_text_view_reset_cursor_blink", text_view))
 }
 
 
@@ -31874,7 +31874,7 @@ gtkTextViewResetCursorBlink <- function(text_view) {
 #' @return Return value from C function
 #' @export
 gtkTextViewResetImContext <- function(text_view) {
-  .Call("R_gtk_text_view_reset_im_context", text_view)
+  invisible(.Call("R_gtk_text_view_reset_im_context", text_view))
 }
 
 
@@ -31886,7 +31886,7 @@ gtkTextViewResetImContext <- function(text_view) {
 #' @return Return value from C function
 #' @export
 gtkTextViewScrollMarkOnscreen <- function(text_view, mark) {
-  .Call("R_gtk_text_view_scroll_mark_onscreen", text_view, mark)
+  invisible(.Call("R_gtk_text_view_scroll_mark_onscreen", text_view, mark))
 }
 
 
@@ -31918,7 +31918,7 @@ gtkTextViewScrollToIter <- function(text_view, iter, within_margin, use_align, x
 #' @return Return value from C function
 #' @export
 gtkTextViewScrollToMark <- function(text_view, mark, within_margin, use_align, xalign, yalign) {
-  .Call("R_gtk_text_view_scroll_to_mark", text_view, mark, within_margin, use_align, xalign, yalign)
+  invisible(.Call("R_gtk_text_view_scroll_to_mark", text_view, mark, within_margin, use_align, xalign, yalign))
 }
 
 
@@ -31930,7 +31930,7 @@ gtkTextViewScrollToMark <- function(text_view, mark, within_margin, use_align, x
 #' @return Return value from C function
 #' @export
 gtkTextViewSetAcceptsTab <- function(text_view, accepts_tab) {
-  .Call("R_gtk_text_view_set_accepts_tab", text_view, accepts_tab)
+  invisible(.Call("R_gtk_text_view_set_accepts_tab", text_view, accepts_tab))
 }
 
 
@@ -31942,7 +31942,7 @@ gtkTextViewSetAcceptsTab <- function(text_view, accepts_tab) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetBottomMargin <- function(text_view, bottom_margin) {
-  .Call("R_gtk_text_view_set_bottom_margin", text_view, bottom_margin)
+  invisible(.Call("R_gtk_text_view_set_bottom_margin", text_view, as.integer(bottom_margin)))
 }
 
 
@@ -31954,7 +31954,7 @@ gtkTextViewSetBottomMargin <- function(text_view, bottom_margin) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetBuffer <- function(text_view, buffer) {
-  .Call("R_gtk_text_view_set_buffer", text_view, buffer)
+  invisible(.Call("R_gtk_text_view_set_buffer", text_view, buffer))
 }
 
 
@@ -31966,7 +31966,7 @@ gtkTextViewSetBuffer <- function(text_view, buffer) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetCursorVisible <- function(text_view, setting) {
-  .Call("R_gtk_text_view_set_cursor_visible", text_view, setting)
+  invisible(.Call("R_gtk_text_view_set_cursor_visible", text_view, setting))
 }
 
 
@@ -31978,7 +31978,7 @@ gtkTextViewSetCursorVisible <- function(text_view, setting) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetEditable <- function(text_view, setting) {
-  .Call("R_gtk_text_view_set_editable", text_view, setting)
+  invisible(.Call("R_gtk_text_view_set_editable", text_view, setting))
 }
 
 
@@ -31990,7 +31990,7 @@ gtkTextViewSetEditable <- function(text_view, setting) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetExtraMenu <- function(text_view, model) {
-  .Call("R_gtk_text_view_set_extra_menu", text_view, model)
+  invisible(.Call("R_gtk_text_view_set_extra_menu", text_view, model))
 }
 
 
@@ -32003,7 +32003,7 @@ gtkTextViewSetExtraMenu <- function(text_view, model) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetGutter <- function(text_view, win, widget) {
-  .Call("R_gtk_text_view_set_gutter", text_view, win, widget)
+  invisible(.Call("R_gtk_text_view_set_gutter", text_view, win, widget))
 }
 
 
@@ -32015,7 +32015,7 @@ gtkTextViewSetGutter <- function(text_view, win, widget) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetIndent <- function(text_view, indent) {
-  .Call("R_gtk_text_view_set_indent", text_view, indent)
+  invisible(.Call("R_gtk_text_view_set_indent", text_view, as.integer(indent)))
 }
 
 
@@ -32027,7 +32027,7 @@ gtkTextViewSetIndent <- function(text_view, indent) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetInputHints <- function(text_view, hints) {
-  .Call("R_gtk_text_view_set_input_hints", text_view, hints)
+  invisible(.Call("R_gtk_text_view_set_input_hints", text_view, hints))
 }
 
 
@@ -32039,7 +32039,7 @@ gtkTextViewSetInputHints <- function(text_view, hints) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetInputPurpose <- function(text_view, purpose) {
-  .Call("R_gtk_text_view_set_input_purpose", text_view, purpose)
+  invisible(.Call("R_gtk_text_view_set_input_purpose", text_view, purpose))
 }
 
 
@@ -32051,7 +32051,7 @@ gtkTextViewSetInputPurpose <- function(text_view, purpose) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetJustification <- function(text_view, justification) {
-  .Call("R_gtk_text_view_set_justification", text_view, justification)
+  invisible(.Call("R_gtk_text_view_set_justification", text_view, justification))
 }
 
 
@@ -32063,7 +32063,7 @@ gtkTextViewSetJustification <- function(text_view, justification) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetLeftMargin <- function(text_view, left_margin) {
-  .Call("R_gtk_text_view_set_left_margin", text_view, left_margin)
+  invisible(.Call("R_gtk_text_view_set_left_margin", text_view, as.integer(left_margin)))
 }
 
 
@@ -32075,7 +32075,7 @@ gtkTextViewSetLeftMargin <- function(text_view, left_margin) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetMonospace <- function(text_view, monospace) {
-  .Call("R_gtk_text_view_set_monospace", text_view, monospace)
+  invisible(.Call("R_gtk_text_view_set_monospace", text_view, monospace))
 }
 
 
@@ -32087,7 +32087,7 @@ gtkTextViewSetMonospace <- function(text_view, monospace) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetOverwrite <- function(text_view, overwrite) {
-  .Call("R_gtk_text_view_set_overwrite", text_view, overwrite)
+  invisible(.Call("R_gtk_text_view_set_overwrite", text_view, overwrite))
 }
 
 
@@ -32099,7 +32099,7 @@ gtkTextViewSetOverwrite <- function(text_view, overwrite) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetPixelsAboveLines <- function(text_view, pixels_above_lines) {
-  .Call("R_gtk_text_view_set_pixels_above_lines", text_view, pixels_above_lines)
+  invisible(.Call("R_gtk_text_view_set_pixels_above_lines", text_view, as.integer(pixels_above_lines)))
 }
 
 
@@ -32111,7 +32111,7 @@ gtkTextViewSetPixelsAboveLines <- function(text_view, pixels_above_lines) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetPixelsBelowLines <- function(text_view, pixels_below_lines) {
-  .Call("R_gtk_text_view_set_pixels_below_lines", text_view, pixels_below_lines)
+  invisible(.Call("R_gtk_text_view_set_pixels_below_lines", text_view, as.integer(pixels_below_lines)))
 }
 
 
@@ -32123,7 +32123,7 @@ gtkTextViewSetPixelsBelowLines <- function(text_view, pixels_below_lines) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetPixelsInsideWrap <- function(text_view, pixels_inside_wrap) {
-  .Call("R_gtk_text_view_set_pixels_inside_wrap", text_view, pixels_inside_wrap)
+  invisible(.Call("R_gtk_text_view_set_pixels_inside_wrap", text_view, as.integer(pixels_inside_wrap)))
 }
 
 
@@ -32135,7 +32135,7 @@ gtkTextViewSetPixelsInsideWrap <- function(text_view, pixels_inside_wrap) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetRightMargin <- function(text_view, right_margin) {
-  .Call("R_gtk_text_view_set_right_margin", text_view, right_margin)
+  invisible(.Call("R_gtk_text_view_set_right_margin", text_view, as.integer(right_margin)))
 }
 
 
@@ -32147,7 +32147,7 @@ gtkTextViewSetRightMargin <- function(text_view, right_margin) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetTabs <- function(text_view, tabs) {
-  .Call("R_gtk_text_view_set_tabs", text_view, tabs)
+  invisible(.Call("R_gtk_text_view_set_tabs", text_view, tabs))
 }
 
 
@@ -32159,7 +32159,7 @@ gtkTextViewSetTabs <- function(text_view, tabs) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetTopMargin <- function(text_view, top_margin) {
-  .Call("R_gtk_text_view_set_top_margin", text_view, top_margin)
+  invisible(.Call("R_gtk_text_view_set_top_margin", text_view, as.integer(top_margin)))
 }
 
 
@@ -32171,7 +32171,7 @@ gtkTextViewSetTopMargin <- function(text_view, top_margin) {
 #' @return Return value from C function
 #' @export
 gtkTextViewSetWrapMode <- function(text_view, wrap_mode) {
-  .Call("R_gtk_text_view_set_wrap_mode", text_view, wrap_mode)
+  invisible(.Call("R_gtk_text_view_set_wrap_mode", text_view, wrap_mode))
 }
 
 
@@ -32197,7 +32197,7 @@ gtkTextViewStartsDisplayLine <- function(text_view, iter) {
 #' @return Return value from C function
 #' @export
 gtkTextViewWindowToBufferCoords <- function(text_view, win, window_x, window_y) {
-  .Call("R_gtk_text_view_window_to_buffer_coords", text_view, win, window_x, window_y)
+  .Call("R_gtk_text_view_window_to_buffer_coords", text_view, win, as.integer(window_x), as.integer(window_y))
 }
 
 
@@ -32252,7 +32252,7 @@ gtkToggleButtonGetActive <- function(toggle_button) {
 #' @return Return value from C function
 #' @export
 gtkToggleButtonSetActive <- function(toggle_button, is_active) {
-  .Call("R_gtk_toggle_button_set_active", toggle_button, is_active)
+  invisible(.Call("R_gtk_toggle_button_set_active", toggle_button, is_active))
 }
 
 
@@ -32264,7 +32264,7 @@ gtkToggleButtonSetActive <- function(toggle_button, is_active) {
 #' @return Return value from C function
 #' @export
 gtkToggleButtonSetGroup <- function(toggle_button, group) {
-  .Call("R_gtk_toggle_button_set_group", toggle_button, group)
+  invisible(.Call("R_gtk_toggle_button_set_group", toggle_button, group))
 }
 
 
@@ -32275,7 +32275,7 @@ gtkToggleButtonSetGroup <- function(toggle_button, group) {
 #' @return Return value from C function
 #' @export
 gtkToggleButtonToggled <- function(toggle_button) {
-  .Call("R_gtk_toggle_button_toggled", toggle_button)
+  invisible(.Call("R_gtk_toggle_button_toggled", toggle_button))
 }
 
 
@@ -32287,7 +32287,7 @@ gtkToggleButtonToggled <- function(toggle_button) {
 #' @return Return value from C function
 #' @export
 gtkTooltipSetCustom <- function(tooltip, custom_widget) {
-  .Call("R_gtk_tooltip_set_custom", tooltip, custom_widget)
+  invisible(.Call("R_gtk_tooltip_set_custom", tooltip, custom_widget))
 }
 
 
@@ -32299,7 +32299,7 @@ gtkTooltipSetCustom <- function(tooltip, custom_widget) {
 #' @return Return value from C function
 #' @export
 gtkTooltipSetIcon <- function(tooltip, paintable) {
-  .Call("R_gtk_tooltip_set_icon", tooltip, paintable)
+  invisible(.Call("R_gtk_tooltip_set_icon", tooltip, paintable))
 }
 
 
@@ -32311,7 +32311,7 @@ gtkTooltipSetIcon <- function(tooltip, paintable) {
 #' @return Return value from C function
 #' @export
 gtkTooltipSetIconFromGicon <- function(tooltip, gicon) {
-  .Call("R_gtk_tooltip_set_icon_from_gicon", tooltip, gicon)
+  invisible(.Call("R_gtk_tooltip_set_icon_from_gicon", tooltip, gicon))
 }
 
 
@@ -32323,7 +32323,7 @@ gtkTooltipSetIconFromGicon <- function(tooltip, gicon) {
 #' @return Return value from C function
 #' @export
 gtkTooltipSetIconFromIconName <- function(tooltip, icon_name) {
-  .Call("R_gtk_tooltip_set_icon_from_icon_name", tooltip, icon_name)
+  invisible(.Call("R_gtk_tooltip_set_icon_from_icon_name", tooltip, icon_name))
 }
 
 
@@ -32335,7 +32335,7 @@ gtkTooltipSetIconFromIconName <- function(tooltip, icon_name) {
 #' @return Return value from C function
 #' @export
 gtkTooltipSetMarkup <- function(tooltip, markup) {
-  .Call("R_gtk_tooltip_set_markup", tooltip, markup)
+  invisible(.Call("R_gtk_tooltip_set_markup", tooltip, markup))
 }
 
 
@@ -32347,7 +32347,7 @@ gtkTooltipSetMarkup <- function(tooltip, markup) {
 #' @return Return value from C function
 #' @export
 gtkTooltipSetText <- function(tooltip, text) {
-  .Call("R_gtk_tooltip_set_text", tooltip, text)
+  invisible(.Call("R_gtk_tooltip_set_text", tooltip, text))
 }
 
 
@@ -32359,7 +32359,7 @@ gtkTooltipSetText <- function(tooltip, text) {
 #' @return Return value from C function
 #' @export
 gtkTooltipSetTipArea <- function(tooltip, rect) {
-  .Call("R_gtk_tooltip_set_tip_area", tooltip, rect)
+  invisible(.Call("R_gtk_tooltip_set_tip_area", tooltip, rect))
 }
 
 
@@ -32509,7 +32509,7 @@ gtkTreeExpanderGetListRow <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkTreeExpanderSetChild <- function(self, child) {
-  .Call("R_gtk_tree_expander_set_child", self, child)
+  invisible(.Call("R_gtk_tree_expander_set_child", self, child))
 }
 
 
@@ -32521,7 +32521,7 @@ gtkTreeExpanderSetChild <- function(self, child) {
 #' @return Return value from C function
 #' @export
 gtkTreeExpanderSetHideExpander <- function(self, hide_expander) {
-  .Call("R_gtk_tree_expander_set_hide_expander", self, hide_expander)
+  invisible(.Call("R_gtk_tree_expander_set_hide_expander", self, hide_expander))
 }
 
 
@@ -32533,7 +32533,7 @@ gtkTreeExpanderSetHideExpander <- function(self, hide_expander) {
 #' @return Return value from C function
 #' @export
 gtkTreeExpanderSetIndentForDepth <- function(self, indent_for_depth) {
-  .Call("R_gtk_tree_expander_set_indent_for_depth", self, indent_for_depth)
+  invisible(.Call("R_gtk_tree_expander_set_indent_for_depth", self, indent_for_depth))
 }
 
 
@@ -32545,7 +32545,7 @@ gtkTreeExpanderSetIndentForDepth <- function(self, indent_for_depth) {
 #' @return Return value from C function
 #' @export
 gtkTreeExpanderSetIndentForIcon <- function(self, indent_for_icon) {
-  .Call("R_gtk_tree_expander_set_indent_for_icon", self, indent_for_icon)
+  invisible(.Call("R_gtk_tree_expander_set_indent_for_icon", self, indent_for_icon))
 }
 
 
@@ -32557,7 +32557,7 @@ gtkTreeExpanderSetIndentForIcon <- function(self, indent_for_icon) {
 #' @return Return value from C function
 #' @export
 gtkTreeExpanderSetListRow <- function(self, list_row) {
-  .Call("R_gtk_tree_expander_set_list_row", self, list_row)
+  invisible(.Call("R_gtk_tree_expander_set_list_row", self, list_row))
 }
 
 
@@ -32579,7 +32579,7 @@ gtkTreeIterCopy <- function(iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeIterFree <- function(iter) {
-  .Call("R_gtk_tree_iter_free", iter)
+  invisible(.Call("R_gtk_tree_iter_free", iter))
 }
 
 
@@ -32602,7 +32602,7 @@ gtkTreeListModelGetAutoexpand <- function(self) {
 #' @return TreeListRow
 #' @export
 gtkTreeListModelGetChildRow <- function(self, position) {
-  .Call("R_gtk_tree_list_model_get_child_row", self, position)$result
+  .Call("R_gtk_tree_list_model_get_child_row", self, as.integer(position))$result
 }
 
 
@@ -32636,7 +32636,7 @@ gtkTreeListModelGetPassthrough <- function(self) {
 #' @return TreeListRow
 #' @export
 gtkTreeListModelGetRow <- function(self, position) {
-  .Call("R_gtk_tree_list_model_get_row", self, position)$result
+  .Call("R_gtk_tree_list_model_get_row", self, as.integer(position))$result
 }
 
 
@@ -32648,7 +32648,7 @@ gtkTreeListModelGetRow <- function(self, position) {
 #' @return Return value from C function
 #' @export
 gtkTreeListModelSetAutoexpand <- function(self, autoexpand) {
-  .Call("R_gtk_tree_list_model_set_autoexpand", self, autoexpand)
+  invisible(.Call("R_gtk_tree_list_model_set_autoexpand", self, autoexpand))
 }
 
 
@@ -32660,7 +32660,7 @@ gtkTreeListModelSetAutoexpand <- function(self, autoexpand) {
 #' @return TreeListRow
 #' @export
 gtkTreeListRowGetChildRow <- function(self, position) {
-  .Call("R_gtk_tree_list_row_get_child_row", self, position)$result
+  .Call("R_gtk_tree_list_row_get_child_row", self, as.integer(position))$result
 }
 
 
@@ -32749,7 +32749,7 @@ gtkTreeListRowIsExpandable <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkTreeListRowSetExpanded <- function(self, expanded) {
-  .Call("R_gtk_tree_list_row_set_expanded", self, expanded)
+  invisible(.Call("R_gtk_tree_list_row_set_expanded", self, expanded))
 }
 
 
@@ -32783,7 +32783,7 @@ gtkTreeListRowSorterGetSorter <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkTreeListRowSorterSetSorter <- function(self, sorter) {
-  .Call("R_gtk_tree_list_row_sorter_set_sorter", self, sorter)
+  invisible(.Call("R_gtk_tree_list_row_sorter_set_sorter", self, sorter))
 }
 
 
@@ -32807,7 +32807,7 @@ gtkTreeModelFilterNew <- function(child_model, root) {
 #' @return GType
 #' @export
 gtkTreeModelGetColumnType <- function(tree_model, index_) {
-  .Call("R_gtk_tree_model_get_column_type", tree_model, index_)$result
+  .Call("R_gtk_tree_model_get_column_type", tree_model, as.integer(index_))$result
 }
 
 
@@ -32901,7 +32901,7 @@ gtkTreeModelGetStringFromIter <- function(tree_model, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelGetValue <- function(tree_model, iter, column) {
-  .Call("R_gtk_tree_model_get_value", tree_model, iter, column)$value
+  .Call("R_gtk_tree_model_get_value", tree_model, iter, as.integer(column))$value
 }
 
 
@@ -32962,7 +32962,7 @@ gtkTreeModelIterNext <- function(tree_model, iter) {
 #' @return gboolean
 #' @export
 gtkTreeModelIterNthChild <- function(tree_model, parent, n) {
-  .Call("R_gtk_tree_model_iter_nth_child", tree_model, parent, n)
+  .Call("R_gtk_tree_model_iter_nth_child", tree_model, parent, as.integer(n))
 }
 
 
@@ -32998,7 +32998,7 @@ gtkTreeModelIterPrevious <- function(tree_model, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelRefNode <- function(tree_model, iter) {
-  .Call("R_gtk_tree_model_ref_node", tree_model, iter)
+  invisible(.Call("R_gtk_tree_model_ref_node", tree_model, iter))
 }
 
 
@@ -33011,7 +33011,7 @@ gtkTreeModelRefNode <- function(tree_model, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelRowChanged <- function(tree_model, path, iter) {
-  .Call("R_gtk_tree_model_row_changed", tree_model, path, iter)
+  invisible(.Call("R_gtk_tree_model_row_changed", tree_model, path, iter))
 }
 
 
@@ -33023,7 +33023,7 @@ gtkTreeModelRowChanged <- function(tree_model, path, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelRowDeleted <- function(tree_model, path) {
-  .Call("R_gtk_tree_model_row_deleted", tree_model, path)
+  invisible(.Call("R_gtk_tree_model_row_deleted", tree_model, path))
 }
 
 
@@ -33036,7 +33036,7 @@ gtkTreeModelRowDeleted <- function(tree_model, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelRowHasChildToggled <- function(tree_model, path, iter) {
-  .Call("R_gtk_tree_model_row_has_child_toggled", tree_model, path, iter)
+  invisible(.Call("R_gtk_tree_model_row_has_child_toggled", tree_model, path, iter))
 }
 
 
@@ -33049,7 +33049,7 @@ gtkTreeModelRowHasChildToggled <- function(tree_model, path, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelRowInserted <- function(tree_model, path, iter) {
-  .Call("R_gtk_tree_model_row_inserted", tree_model, path, iter)
+  invisible(.Call("R_gtk_tree_model_row_inserted", tree_model, path, iter))
 }
 
 
@@ -33064,7 +33064,7 @@ gtkTreeModelRowInserted <- function(tree_model, path, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelRowsReorderedWithLength <- function(tree_model, path, iter, new_order, length) {
-  .Call("R_gtk_tree_model_rows_reordered_with_length", tree_model, path, iter, new_order, length)
+  invisible(.Call("R_gtk_tree_model_rows_reordered_with_length", tree_model, path, iter, as.integer(new_order), as.integer(length)))
 }
 
 
@@ -33076,7 +33076,7 @@ gtkTreeModelRowsReorderedWithLength <- function(tree_model, path, iter, new_orde
 #' @return Return value from C function
 #' @export
 gtkTreeModelUnrefNode <- function(tree_model, iter) {
-  .Call("R_gtk_tree_model_unref_node", tree_model, iter)
+  invisible(.Call("R_gtk_tree_model_unref_node", tree_model, iter))
 }
 
 
@@ -33087,7 +33087,7 @@ gtkTreeModelUnrefNode <- function(tree_model, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelFilterClearCache <- function(filter) {
-  .Call("R_gtk_tree_model_filter_clear_cache", filter)
+  invisible(.Call("R_gtk_tree_model_filter_clear_cache", filter))
 }
 
 
@@ -33157,7 +33157,7 @@ gtkTreeModelFilterGetModel <- function(filter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelFilterRefilter <- function(filter) {
-  .Call("R_gtk_tree_model_filter_refilter", filter)
+  invisible(.Call("R_gtk_tree_model_filter_refilter", filter))
 }
 
 
@@ -33169,7 +33169,7 @@ gtkTreeModelFilterRefilter <- function(filter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelFilterSetVisibleColumn <- function(filter, column) {
-  .Call("R_gtk_tree_model_filter_set_visible_column", filter, column)
+  invisible(.Call("R_gtk_tree_model_filter_set_visible_column", filter, as.integer(column)))
 }
 
 
@@ -33191,7 +33191,7 @@ gtkTreeModelSortNewWithModel <- function(child_model) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelSortClearCache <- function(tree_model_sort) {
-  .Call("R_gtk_tree_model_sort_clear_cache", tree_model_sort)
+  invisible(.Call("R_gtk_tree_model_sort_clear_cache", tree_model_sort))
 }
 
 
@@ -33273,7 +33273,7 @@ gtkTreeModelSortIterIsValid <- function(tree_model_sort, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelSortResetDefaultSortFunc <- function(tree_model_sort) {
-  .Call("R_gtk_tree_model_sort_reset_default_sort_func", tree_model_sort)
+  invisible(.Call("R_gtk_tree_model_sort_reset_default_sort_func", tree_model_sort))
 }
 
 
@@ -33305,7 +33305,7 @@ gtkTreePathNewFirst <- function() {
 #' @return TreePath
 #' @export
 gtkTreePathNewFromIndicesv <- function(indices, length) {
-  .Call("R_gtk_tree_path_new_from_indicesv", indices, length)$result
+  .Call("R_gtk_tree_path_new_from_indicesv", as.integer(indices), as.integer(length))$result
 }
 
 
@@ -33328,7 +33328,7 @@ gtkTreePathNewFromString <- function(path) {
 #' @return Return value from C function
 #' @export
 gtkTreePathAppendIndex <- function(path, index_) {
-  .Call("R_gtk_tree_path_append_index", path, index_)
+  invisible(.Call("R_gtk_tree_path_append_index", path, as.integer(index_)))
 }
 
 
@@ -33362,7 +33362,7 @@ gtkTreePathCopy <- function(path) {
 #' @return Return value from C function
 #' @export
 gtkTreePathDown <- function(path) {
-  .Call("R_gtk_tree_path_down", path)
+  invisible(.Call("R_gtk_tree_path_down", path))
 }
 
 
@@ -33373,7 +33373,7 @@ gtkTreePathDown <- function(path) {
 #' @return Return value from C function
 #' @export
 gtkTreePathFree <- function(path) {
-  .Call("R_gtk_tree_path_free", path)
+  invisible(.Call("R_gtk_tree_path_free", path))
 }
 
 
@@ -33430,7 +33430,7 @@ gtkTreePathIsDescendant <- function(path, ancestor) {
 #' @return Return value from C function
 #' @export
 gtkTreePathNext <- function(path) {
-  .Call("R_gtk_tree_path_next", path)
+  invisible(.Call("R_gtk_tree_path_next", path))
 }
 
 
@@ -33442,7 +33442,7 @@ gtkTreePathNext <- function(path) {
 #' @return Return value from C function
 #' @export
 gtkTreePathPrependIndex <- function(path, index_) {
-  .Call("R_gtk_tree_path_prepend_index", path, index_)
+  invisible(.Call("R_gtk_tree_path_prepend_index", path, as.integer(index_)))
 }
 
 
@@ -33522,7 +33522,7 @@ gtkTreeRowReferenceCopy <- function(reference) {
 #' @return Return value from C function
 #' @export
 gtkTreeRowReferenceFree <- function(reference) {
-  .Call("R_gtk_tree_row_reference_free", reference)
+  invisible(.Call("R_gtk_tree_row_reference_free", reference))
 }
 
 
@@ -33567,7 +33567,7 @@ gtkTreeRowReferenceValid <- function(reference) {
 #' @return Return value from C function
 #' @export
 gtkTreeRowReferenceDeleted <- function(proxy, path) {
-  .Call("R_gtk_tree_row_reference_deleted", proxy, path)
+  invisible(.Call("R_gtk_tree_row_reference_deleted", proxy, path))
 }
 
 
@@ -33579,7 +33579,7 @@ gtkTreeRowReferenceDeleted <- function(proxy, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeRowReferenceInserted <- function(proxy, path) {
-  .Call("R_gtk_tree_row_reference_inserted", proxy, path)
+  invisible(.Call("R_gtk_tree_row_reference_inserted", proxy, path))
 }
 
 
@@ -33669,7 +33669,7 @@ gtkTreeSelectionPathIsSelected <- function(selection, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionSelectAll <- function(selection) {
-  .Call("R_gtk_tree_selection_select_all", selection)
+  invisible(.Call("R_gtk_tree_selection_select_all", selection))
 }
 
 
@@ -33681,7 +33681,7 @@ gtkTreeSelectionSelectAll <- function(selection) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionSelectIter <- function(selection, iter) {
-  .Call("R_gtk_tree_selection_select_iter", selection, iter)
+  invisible(.Call("R_gtk_tree_selection_select_iter", selection, iter))
 }
 
 
@@ -33693,7 +33693,7 @@ gtkTreeSelectionSelectIter <- function(selection, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionSelectPath <- function(selection, path) {
-  .Call("R_gtk_tree_selection_select_path", selection, path)
+  invisible(.Call("R_gtk_tree_selection_select_path", selection, path))
 }
 
 
@@ -33706,7 +33706,7 @@ gtkTreeSelectionSelectPath <- function(selection, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionSelectRange <- function(selection, start_path, end_path) {
-  .Call("R_gtk_tree_selection_select_range", selection, start_path, end_path)
+  invisible(.Call("R_gtk_tree_selection_select_range", selection, start_path, end_path))
 }
 
 
@@ -33718,7 +33718,7 @@ gtkTreeSelectionSelectRange <- function(selection, start_path, end_path) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionSetMode <- function(selection, type) {
-  .Call("R_gtk_tree_selection_set_mode", selection, type)
+  invisible(.Call("R_gtk_tree_selection_set_mode", selection, type))
 }
 
 
@@ -33729,7 +33729,7 @@ gtkTreeSelectionSetMode <- function(selection, type) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionUnselectAll <- function(selection) {
-  .Call("R_gtk_tree_selection_unselect_all", selection)
+  invisible(.Call("R_gtk_tree_selection_unselect_all", selection))
 }
 
 
@@ -33741,7 +33741,7 @@ gtkTreeSelectionUnselectAll <- function(selection) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionUnselectIter <- function(selection, iter) {
-  .Call("R_gtk_tree_selection_unselect_iter", selection, iter)
+  invisible(.Call("R_gtk_tree_selection_unselect_iter", selection, iter))
 }
 
 
@@ -33753,7 +33753,7 @@ gtkTreeSelectionUnselectIter <- function(selection, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionUnselectPath <- function(selection, path) {
-  .Call("R_gtk_tree_selection_unselect_path", selection, path)
+  invisible(.Call("R_gtk_tree_selection_unselect_path", selection, path))
 }
 
 
@@ -33766,7 +33766,7 @@ gtkTreeSelectionUnselectPath <- function(selection, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionUnselectRange <- function(selection, start_path, end_path) {
-  .Call("R_gtk_tree_selection_unselect_range", selection, start_path, end_path)
+  invisible(.Call("R_gtk_tree_selection_unselect_range", selection, start_path, end_path))
 }
 
 
@@ -33801,7 +33801,7 @@ gtkTreeSortableHasDefaultSortFunc <- function(sortable) {
 #' @return Return value from C function
 #' @export
 gtkTreeSortableSetSortColumnId <- function(sortable, sort_column_id, order) {
-  .Call("R_gtk_tree_sortable_set_sort_column_id", sortable, sort_column_id, order)
+  invisible(.Call("R_gtk_tree_sortable_set_sort_column_id", sortable, as.integer(sort_column_id), order))
 }
 
 
@@ -33812,7 +33812,7 @@ gtkTreeSortableSetSortColumnId <- function(sortable, sort_column_id, order) {
 #' @return Return value from C function
 #' @export
 gtkTreeSortableSortColumnChanged <- function(sortable) {
-  .Call("R_gtk_tree_sortable_sort_column_changed", sortable)
+  invisible(.Call("R_gtk_tree_sortable_sort_column_changed", sortable))
 }
 
 
@@ -33824,7 +33824,7 @@ gtkTreeSortableSortColumnChanged <- function(sortable) {
 #' @return TreeStore
 #' @export
 gtkTreeStoreNewv <- function(n_columns, types) {
-  .Call("R_gtk_tree_store_newv", n_columns, types)$result
+  .Call("R_gtk_tree_store_newv", as.integer(n_columns), types)$result
 }
 
 
@@ -33847,7 +33847,7 @@ gtkTreeStoreAppend <- function(tree_store, parent) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreClear <- function(tree_store) {
-  .Call("R_gtk_tree_store_clear", tree_store)
+  invisible(.Call("R_gtk_tree_store_clear", tree_store))
 }
 
 
@@ -33860,7 +33860,7 @@ gtkTreeStoreClear <- function(tree_store) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreInsert <- function(tree_store, parent, position) {
-  .Call("R_gtk_tree_store_insert", tree_store, parent, position)$iter
+  .Call("R_gtk_tree_store_insert", tree_store, parent, as.integer(position))$iter
 }
 
 
@@ -33902,7 +33902,7 @@ gtkTreeStoreInsertBefore <- function(tree_store, parent, sibling) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreInsertWithValuesv <- function(tree_store, parent, position, columns, values, n_values) {
-  .Call("R_gtk_tree_store_insert_with_valuesv", tree_store, parent, position, columns, values, n_values)$iter
+  .Call("R_gtk_tree_store_insert_with_valuesv", tree_store, parent, as.integer(position), as.integer(columns), values, as.integer(n_values))$iter
 }
 
 
@@ -33952,7 +33952,7 @@ gtkTreeStoreIterIsValid <- function(tree_store, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreMoveAfter <- function(tree_store, iter, position) {
-  .Call("R_gtk_tree_store_move_after", tree_store, iter, position)
+  invisible(.Call("R_gtk_tree_store_move_after", tree_store, iter, position))
 }
 
 
@@ -33965,7 +33965,7 @@ gtkTreeStoreMoveAfter <- function(tree_store, iter, position) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreMoveBefore <- function(tree_store, iter, position) {
-  .Call("R_gtk_tree_store_move_before", tree_store, iter, position)
+  invisible(.Call("R_gtk_tree_store_move_before", tree_store, iter, position))
 }
 
 
@@ -34002,7 +34002,7 @@ gtkTreeStoreRemove <- function(tree_store, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreSetColumnTypes <- function(tree_store, n_columns, types) {
-  .Call("R_gtk_tree_store_set_column_types", tree_store, n_columns, types)
+  invisible(.Call("R_gtk_tree_store_set_column_types", tree_store, as.integer(n_columns), types))
 }
 
 
@@ -34016,7 +34016,7 @@ gtkTreeStoreSetColumnTypes <- function(tree_store, n_columns, types) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreSetValue <- function(tree_store, iter, column, value) {
-  .Call("R_gtk_tree_store_set_value", tree_store, iter, column, value)
+  invisible(.Call("R_gtk_tree_store_set_value", tree_store, iter, as.integer(column), value))
 }
 
 
@@ -34031,7 +34031,7 @@ gtkTreeStoreSetValue <- function(tree_store, iter, column, value) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreSetValuesv <- function(tree_store, iter, columns, values, n_values) {
-  .Call("R_gtk_tree_store_set_valuesv", tree_store, iter, columns, values, n_values)
+  invisible(.Call("R_gtk_tree_store_set_valuesv", tree_store, iter, as.integer(columns), values, as.integer(n_values)))
 }
 
 
@@ -34044,7 +34044,7 @@ gtkTreeStoreSetValuesv <- function(tree_store, iter, columns, values, n_values) 
 #' @return Return value from C function
 #' @export
 gtkTreeStoreSwap <- function(tree_store, a, b) {
-  .Call("R_gtk_tree_store_swap", tree_store, a, b)
+  invisible(.Call("R_gtk_tree_store_swap", tree_store, a, b))
 }
 
 
@@ -34088,7 +34088,7 @@ gtkTreeViewAppendColumn <- function(tree_view, column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewCollapseAll <- function(tree_view) {
-  .Call("R_gtk_tree_view_collapse_all", tree_view)
+  invisible(.Call("R_gtk_tree_view_collapse_all", tree_view))
 }
 
 
@@ -34111,7 +34111,7 @@ gtkTreeViewCollapseRow <- function(tree_view, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnsAutosize <- function(tree_view) {
-  .Call("R_gtk_tree_view_columns_autosize", tree_view)
+  invisible(.Call("R_gtk_tree_view_columns_autosize", tree_view))
 }
 
 
@@ -34124,7 +34124,7 @@ gtkTreeViewColumnsAutosize <- function(tree_view) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewConvertBinWindowToTreeCoords <- function(tree_view, bx, by) {
-  .Call("R_gtk_tree_view_convert_bin_window_to_tree_coords", tree_view, bx, by)
+  .Call("R_gtk_tree_view_convert_bin_window_to_tree_coords", tree_view, as.integer(bx), as.integer(by))
 }
 
 
@@ -34137,7 +34137,7 @@ gtkTreeViewConvertBinWindowToTreeCoords <- function(tree_view, bx, by) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewConvertBinWindowToWidgetCoords <- function(tree_view, bx, by) {
-  .Call("R_gtk_tree_view_convert_bin_window_to_widget_coords", tree_view, bx, by)
+  .Call("R_gtk_tree_view_convert_bin_window_to_widget_coords", tree_view, as.integer(bx), as.integer(by))
 }
 
 
@@ -34150,7 +34150,7 @@ gtkTreeViewConvertBinWindowToWidgetCoords <- function(tree_view, bx, by) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewConvertTreeToBinWindowCoords <- function(tree_view, tx, ty) {
-  .Call("R_gtk_tree_view_convert_tree_to_bin_window_coords", tree_view, tx, ty)
+  .Call("R_gtk_tree_view_convert_tree_to_bin_window_coords", tree_view, as.integer(tx), as.integer(ty))
 }
 
 
@@ -34163,7 +34163,7 @@ gtkTreeViewConvertTreeToBinWindowCoords <- function(tree_view, tx, ty) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewConvertTreeToWidgetCoords <- function(tree_view, tx, ty) {
-  .Call("R_gtk_tree_view_convert_tree_to_widget_coords", tree_view, tx, ty)
+  .Call("R_gtk_tree_view_convert_tree_to_widget_coords", tree_view, as.integer(tx), as.integer(ty))
 }
 
 
@@ -34176,7 +34176,7 @@ gtkTreeViewConvertTreeToWidgetCoords <- function(tree_view, tx, ty) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewConvertWidgetToBinWindowCoords <- function(tree_view, wx, wy) {
-  .Call("R_gtk_tree_view_convert_widget_to_bin_window_coords", tree_view, wx, wy)
+  .Call("R_gtk_tree_view_convert_widget_to_bin_window_coords", tree_view, as.integer(wx), as.integer(wy))
 }
 
 
@@ -34189,7 +34189,7 @@ gtkTreeViewConvertWidgetToBinWindowCoords <- function(tree_view, wx, wy) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewConvertWidgetToTreeCoords <- function(tree_view, wx, wy) {
-  .Call("R_gtk_tree_view_convert_widget_to_tree_coords", tree_view, wx, wy)
+  .Call("R_gtk_tree_view_convert_widget_to_tree_coords", tree_view, as.integer(wx), as.integer(wy))
 }
 
 
@@ -34214,7 +34214,7 @@ gtkTreeViewCreateRowDragIcon <- function(tree_view, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewEnableModelDragDest <- function(tree_view, formats, actions) {
-  .Call("R_gtk_tree_view_enable_model_drag_dest", tree_view, formats, actions)
+  invisible(.Call("R_gtk_tree_view_enable_model_drag_dest", tree_view, formats, actions))
 }
 
 
@@ -34228,7 +34228,7 @@ gtkTreeViewEnableModelDragDest <- function(tree_view, formats, actions) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewEnableModelDragSource <- function(tree_view, start_button_mask, formats, actions) {
-  .Call("R_gtk_tree_view_enable_model_drag_source", tree_view, start_button_mask, formats, actions)
+  invisible(.Call("R_gtk_tree_view_enable_model_drag_source", tree_view, start_button_mask, formats, actions))
 }
 
 
@@ -34239,7 +34239,7 @@ gtkTreeViewEnableModelDragSource <- function(tree_view, start_button_mask, forma
 #' @return Return value from C function
 #' @export
 gtkTreeViewExpandAll <- function(tree_view) {
-  .Call("R_gtk_tree_view_expand_all", tree_view)
+  invisible(.Call("R_gtk_tree_view_expand_all", tree_view))
 }
 
 
@@ -34264,7 +34264,7 @@ gtkTreeViewExpandRow <- function(tree_view, path, open_all) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewExpandToPath <- function(tree_view, path) {
-  .Call("R_gtk_tree_view_expand_to_path", tree_view, path)
+  invisible(.Call("R_gtk_tree_view_expand_to_path", tree_view, path))
 }
 
 
@@ -34313,7 +34313,7 @@ gtkTreeViewGetCellArea <- function(tree_view, path, column) {
 #' @return TreeViewColumn
 #' @export
 gtkTreeViewGetColumn <- function(tree_view, n) {
-  .Call("R_gtk_tree_view_get_column", tree_view, n)$result
+  .Call("R_gtk_tree_view_get_column", tree_view, as.integer(n))$result
 }
 
 
@@ -34348,7 +34348,7 @@ gtkTreeViewGetCursor <- function(tree_view) {
 #' @return gboolean
 #' @export
 gtkTreeViewGetDestRowAtPos <- function(tree_view, drag_x, drag_y) {
-  .Call("R_gtk_tree_view_get_dest_row_at_pos", tree_view, drag_x, drag_y)
+  .Call("R_gtk_tree_view_get_dest_row_at_pos", tree_view, as.integer(drag_x), as.integer(drag_y))
 }
 
 
@@ -34504,7 +34504,7 @@ gtkTreeViewGetNColumns <- function(tree_view) {
 #' @return gboolean
 #' @export
 gtkTreeViewGetPathAtPos <- function(tree_view, x, y) {
-  .Call("R_gtk_tree_view_get_path_at_pos", tree_view, x, y)
+  .Call("R_gtk_tree_view_get_path_at_pos", tree_view, as.integer(x), as.integer(y))
 }
 
 
@@ -34595,7 +34595,7 @@ gtkTreeViewGetTooltipColumn <- function(tree_view) {
 #' @return gboolean
 #' @export
 gtkTreeViewGetTooltipContext <- function(tree_view, x, y, keyboard_tip) {
-  .Call("R_gtk_tree_view_get_tooltip_context", tree_view, x, y, keyboard_tip)
+  .Call("R_gtk_tree_view_get_tooltip_context", tree_view, as.integer(x), as.integer(y), keyboard_tip)
 }
 
 
@@ -34630,7 +34630,7 @@ gtkTreeViewGetVisibleRect <- function(tree_view) {
 #' @return gint
 #' @export
 gtkTreeViewInsertColumn <- function(tree_view, column, position) {
-  .Call("R_gtk_tree_view_insert_column", tree_view, column, position)$result
+  .Call("R_gtk_tree_view_insert_column", tree_view, column, as.integer(position))$result
 }
 
 
@@ -34643,7 +34643,7 @@ gtkTreeViewInsertColumn <- function(tree_view, column, position) {
 #' @return gboolean
 #' @export
 gtkTreeViewIsBlankAtPos <- function(tree_view, x, y) {
-  .Call("R_gtk_tree_view_is_blank_at_pos", tree_view, x, y)
+  .Call("R_gtk_tree_view_is_blank_at_pos", tree_view, as.integer(x), as.integer(y))
 }
 
 
@@ -34667,7 +34667,7 @@ gtkTreeViewIsRubberBandingActive <- function(tree_view) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewMoveColumnAfter <- function(tree_view, column, base_column) {
-  .Call("R_gtk_tree_view_move_column_after", tree_view, column, base_column)
+  invisible(.Call("R_gtk_tree_view_move_column_after", tree_view, column, base_column))
 }
 
 
@@ -34692,7 +34692,7 @@ gtkTreeViewRemoveColumn <- function(tree_view, column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewRowActivated <- function(tree_view, path, column) {
-  .Call("R_gtk_tree_view_row_activated", tree_view, path, column)
+  invisible(.Call("R_gtk_tree_view_row_activated", tree_view, path, column))
 }
 
 
@@ -34720,7 +34720,7 @@ gtkTreeViewRowExpanded <- function(tree_view, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewScrollToCell <- function(tree_view, path, column, use_align, row_align, col_align) {
-  .Call("R_gtk_tree_view_scroll_to_cell", tree_view, path, column, use_align, row_align, col_align)
+  invisible(.Call("R_gtk_tree_view_scroll_to_cell", tree_view, path, column, use_align, row_align, col_align))
 }
 
 
@@ -34733,7 +34733,7 @@ gtkTreeViewScrollToCell <- function(tree_view, path, column, use_align, row_alig
 #' @return Return value from C function
 #' @export
 gtkTreeViewScrollToPoint <- function(tree_view, tree_x, tree_y) {
-  .Call("R_gtk_tree_view_scroll_to_point", tree_view, tree_x, tree_y)
+  invisible(.Call("R_gtk_tree_view_scroll_to_point", tree_view, as.integer(tree_x), as.integer(tree_y)))
 }
 
 
@@ -34745,7 +34745,7 @@ gtkTreeViewScrollToPoint <- function(tree_view, tree_x, tree_y) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetActivateOnSingleClick <- function(tree_view, single) {
-  .Call("R_gtk_tree_view_set_activate_on_single_click", tree_view, single)
+  invisible(.Call("R_gtk_tree_view_set_activate_on_single_click", tree_view, single))
 }
 
 
@@ -34759,7 +34759,7 @@ gtkTreeViewSetActivateOnSingleClick <- function(tree_view, single) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetCursor <- function(tree_view, path, focus_column, start_editing) {
-  .Call("R_gtk_tree_view_set_cursor", tree_view, path, focus_column, start_editing)
+  invisible(.Call("R_gtk_tree_view_set_cursor", tree_view, path, focus_column, start_editing))
 }
 
 
@@ -34774,7 +34774,7 @@ gtkTreeViewSetCursor <- function(tree_view, path, focus_column, start_editing) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetCursorOnCell <- function(tree_view, path, focus_column, focus_cell, start_editing) {
-  .Call("R_gtk_tree_view_set_cursor_on_cell", tree_view, path, focus_column, focus_cell, start_editing)
+  invisible(.Call("R_gtk_tree_view_set_cursor_on_cell", tree_view, path, focus_column, focus_cell, start_editing))
 }
 
 
@@ -34787,7 +34787,7 @@ gtkTreeViewSetCursorOnCell <- function(tree_view, path, focus_column, focus_cell
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetDragDestRow <- function(tree_view, path, pos) {
-  .Call("R_gtk_tree_view_set_drag_dest_row", tree_view, path, pos)
+  invisible(.Call("R_gtk_tree_view_set_drag_dest_row", tree_view, path, pos))
 }
 
 
@@ -34799,7 +34799,7 @@ gtkTreeViewSetDragDestRow <- function(tree_view, path, pos) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetEnableSearch <- function(tree_view, enable_search) {
-  .Call("R_gtk_tree_view_set_enable_search", tree_view, enable_search)
+  invisible(.Call("R_gtk_tree_view_set_enable_search", tree_view, enable_search))
 }
 
 
@@ -34811,7 +34811,7 @@ gtkTreeViewSetEnableSearch <- function(tree_view, enable_search) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetEnableTreeLines <- function(tree_view, enabled) {
-  .Call("R_gtk_tree_view_set_enable_tree_lines", tree_view, enabled)
+  invisible(.Call("R_gtk_tree_view_set_enable_tree_lines", tree_view, enabled))
 }
 
 
@@ -34823,7 +34823,7 @@ gtkTreeViewSetEnableTreeLines <- function(tree_view, enabled) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetExpanderColumn <- function(tree_view, column) {
-  .Call("R_gtk_tree_view_set_expander_column", tree_view, column)
+  invisible(.Call("R_gtk_tree_view_set_expander_column", tree_view, column))
 }
 
 
@@ -34835,7 +34835,7 @@ gtkTreeViewSetExpanderColumn <- function(tree_view, column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetFixedHeightMode <- function(tree_view, enable) {
-  .Call("R_gtk_tree_view_set_fixed_height_mode", tree_view, enable)
+  invisible(.Call("R_gtk_tree_view_set_fixed_height_mode", tree_view, enable))
 }
 
 
@@ -34847,7 +34847,7 @@ gtkTreeViewSetFixedHeightMode <- function(tree_view, enable) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetGridLines <- function(tree_view, grid_lines) {
-  .Call("R_gtk_tree_view_set_grid_lines", tree_view, grid_lines)
+  invisible(.Call("R_gtk_tree_view_set_grid_lines", tree_view, grid_lines))
 }
 
 
@@ -34859,7 +34859,7 @@ gtkTreeViewSetGridLines <- function(tree_view, grid_lines) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetHeadersClickable <- function(tree_view, setting) {
-  .Call("R_gtk_tree_view_set_headers_clickable", tree_view, setting)
+  invisible(.Call("R_gtk_tree_view_set_headers_clickable", tree_view, setting))
 }
 
 
@@ -34871,7 +34871,7 @@ gtkTreeViewSetHeadersClickable <- function(tree_view, setting) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetHeadersVisible <- function(tree_view, headers_visible) {
-  .Call("R_gtk_tree_view_set_headers_visible", tree_view, headers_visible)
+  invisible(.Call("R_gtk_tree_view_set_headers_visible", tree_view, headers_visible))
 }
 
 
@@ -34883,7 +34883,7 @@ gtkTreeViewSetHeadersVisible <- function(tree_view, headers_visible) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetHoverExpand <- function(tree_view, expand) {
-  .Call("R_gtk_tree_view_set_hover_expand", tree_view, expand)
+  invisible(.Call("R_gtk_tree_view_set_hover_expand", tree_view, expand))
 }
 
 
@@ -34895,7 +34895,7 @@ gtkTreeViewSetHoverExpand <- function(tree_view, expand) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetHoverSelection <- function(tree_view, hover) {
-  .Call("R_gtk_tree_view_set_hover_selection", tree_view, hover)
+  invisible(.Call("R_gtk_tree_view_set_hover_selection", tree_view, hover))
 }
 
 
@@ -34907,7 +34907,7 @@ gtkTreeViewSetHoverSelection <- function(tree_view, hover) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetLevelIndentation <- function(tree_view, indentation) {
-  .Call("R_gtk_tree_view_set_level_indentation", tree_view, indentation)
+  invisible(.Call("R_gtk_tree_view_set_level_indentation", tree_view, as.integer(indentation)))
 }
 
 
@@ -34919,7 +34919,7 @@ gtkTreeViewSetLevelIndentation <- function(tree_view, indentation) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetModel <- function(tree_view, model) {
-  .Call("R_gtk_tree_view_set_model", tree_view, model)
+  invisible(.Call("R_gtk_tree_view_set_model", tree_view, model))
 }
 
 
@@ -34931,7 +34931,7 @@ gtkTreeViewSetModel <- function(tree_view, model) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetReorderable <- function(tree_view, reorderable) {
-  .Call("R_gtk_tree_view_set_reorderable", tree_view, reorderable)
+  invisible(.Call("R_gtk_tree_view_set_reorderable", tree_view, reorderable))
 }
 
 
@@ -34943,7 +34943,7 @@ gtkTreeViewSetReorderable <- function(tree_view, reorderable) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetRubberBanding <- function(tree_view, enable) {
-  .Call("R_gtk_tree_view_set_rubber_banding", tree_view, enable)
+  invisible(.Call("R_gtk_tree_view_set_rubber_banding", tree_view, enable))
 }
 
 
@@ -34955,7 +34955,7 @@ gtkTreeViewSetRubberBanding <- function(tree_view, enable) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetSearchColumn <- function(tree_view, column) {
-  .Call("R_gtk_tree_view_set_search_column", tree_view, column)
+  invisible(.Call("R_gtk_tree_view_set_search_column", tree_view, as.integer(column)))
 }
 
 
@@ -34967,7 +34967,7 @@ gtkTreeViewSetSearchColumn <- function(tree_view, column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetSearchEntry <- function(tree_view, entry) {
-  .Call("R_gtk_tree_view_set_search_entry", tree_view, entry)
+  invisible(.Call("R_gtk_tree_view_set_search_entry", tree_view, entry))
 }
 
 
@@ -34979,7 +34979,7 @@ gtkTreeViewSetSearchEntry <- function(tree_view, entry) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetShowExpanders <- function(tree_view, enabled) {
-  .Call("R_gtk_tree_view_set_show_expanders", tree_view, enabled)
+  invisible(.Call("R_gtk_tree_view_set_show_expanders", tree_view, enabled))
 }
 
 
@@ -34994,7 +34994,7 @@ gtkTreeViewSetShowExpanders <- function(tree_view, enabled) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetTooltipCell <- function(tree_view, tooltip, path, column, cell) {
-  .Call("R_gtk_tree_view_set_tooltip_cell", tree_view, tooltip, path, column, cell)
+  invisible(.Call("R_gtk_tree_view_set_tooltip_cell", tree_view, tooltip, path, column, cell))
 }
 
 
@@ -35006,7 +35006,7 @@ gtkTreeViewSetTooltipCell <- function(tree_view, tooltip, path, column, cell) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetTooltipColumn <- function(tree_view, column) {
-  .Call("R_gtk_tree_view_set_tooltip_column", tree_view, column)
+  invisible(.Call("R_gtk_tree_view_set_tooltip_column", tree_view, as.integer(column)))
 }
 
 
@@ -35019,7 +35019,7 @@ gtkTreeViewSetTooltipColumn <- function(tree_view, column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetTooltipRow <- function(tree_view, tooltip, path) {
-  .Call("R_gtk_tree_view_set_tooltip_row", tree_view, tooltip, path)
+  invisible(.Call("R_gtk_tree_view_set_tooltip_row", tree_view, tooltip, path))
 }
 
 
@@ -35030,7 +35030,7 @@ gtkTreeViewSetTooltipRow <- function(tree_view, tooltip, path) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewUnsetRowsDragDest <- function(tree_view) {
-  .Call("R_gtk_tree_view_unset_rows_drag_dest", tree_view)
+  invisible(.Call("R_gtk_tree_view_unset_rows_drag_dest", tree_view))
 }
 
 
@@ -35041,7 +35041,7 @@ gtkTreeViewUnsetRowsDragDest <- function(tree_view) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewUnsetRowsDragSource <- function(tree_view) {
-  .Call("R_gtk_tree_view_unset_rows_drag_source", tree_view)
+  invisible(.Call("R_gtk_tree_view_unset_rows_drag_source", tree_view))
 }
 
 
@@ -35076,7 +35076,7 @@ gtkTreeViewColumnNewWithArea <- function(area) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnAddAttribute <- function(tree_column, cell_renderer, attribute, column) {
-  .Call("R_gtk_tree_view_column_add_attribute", tree_column, cell_renderer, attribute, column)
+  invisible(.Call("R_gtk_tree_view_column_add_attribute", tree_column, cell_renderer, attribute, as.integer(column)))
 }
 
 
@@ -35125,7 +35125,7 @@ gtkTreeViewColumnCellIsVisible <- function(tree_column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnCellSetCellData <- function(tree_column, tree_model, iter, is_expander, is_expanded) {
-  .Call("R_gtk_tree_view_column_cell_set_cell_data", tree_column, tree_model, iter, is_expander, is_expanded)
+  invisible(.Call("R_gtk_tree_view_column_cell_set_cell_data", tree_column, tree_model, iter, is_expander, is_expanded))
 }
 
 
@@ -35136,7 +35136,7 @@ gtkTreeViewColumnCellSetCellData <- function(tree_column, tree_model, iter, is_e
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnClear <- function(tree_column) {
-  .Call("R_gtk_tree_view_column_clear", tree_column)
+  invisible(.Call("R_gtk_tree_view_column_clear", tree_column))
 }
 
 
@@ -35148,7 +35148,7 @@ gtkTreeViewColumnClear <- function(tree_column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnClearAttributes <- function(tree_column, cell_renderer) {
-  .Call("R_gtk_tree_view_column_clear_attributes", tree_column, cell_renderer)
+  invisible(.Call("R_gtk_tree_view_column_clear_attributes", tree_column, cell_renderer))
 }
 
 
@@ -35159,7 +35159,7 @@ gtkTreeViewColumnClearAttributes <- function(tree_column, cell_renderer) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnClicked <- function(tree_column) {
-  .Call("R_gtk_tree_view_column_clicked", tree_column)
+  invisible(.Call("R_gtk_tree_view_column_clicked", tree_column))
 }
 
 
@@ -35171,7 +35171,7 @@ gtkTreeViewColumnClicked <- function(tree_column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnFocusCell <- function(tree_column, cell) {
-  .Call("R_gtk_tree_view_column_focus_cell", tree_column, cell)
+  invisible(.Call("R_gtk_tree_view_column_focus_cell", tree_column, cell))
 }
 
 
@@ -35404,7 +35404,7 @@ gtkTreeViewColumnGetXOffset <- function(tree_column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnPackEnd <- function(tree_column, cell, expand) {
-  .Call("R_gtk_tree_view_column_pack_end", tree_column, cell, expand)
+  invisible(.Call("R_gtk_tree_view_column_pack_end", tree_column, cell, expand))
 }
 
 
@@ -35417,7 +35417,7 @@ gtkTreeViewColumnPackEnd <- function(tree_column, cell, expand) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnPackStart <- function(tree_column, cell, expand) {
-  .Call("R_gtk_tree_view_column_pack_start", tree_column, cell, expand)
+  invisible(.Call("R_gtk_tree_view_column_pack_start", tree_column, cell, expand))
 }
 
 
@@ -35428,7 +35428,7 @@ gtkTreeViewColumnPackStart <- function(tree_column, cell, expand) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnQueueResize <- function(tree_column) {
-  .Call("R_gtk_tree_view_column_queue_resize", tree_column)
+  invisible(.Call("R_gtk_tree_view_column_queue_resize", tree_column))
 }
 
 
@@ -35440,7 +35440,7 @@ gtkTreeViewColumnQueueResize <- function(tree_column) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetAlignment <- function(tree_column, xalign) {
-  .Call("R_gtk_tree_view_column_set_alignment", tree_column, xalign)
+  invisible(.Call("R_gtk_tree_view_column_set_alignment", tree_column, xalign))
 }
 
 
@@ -35452,7 +35452,7 @@ gtkTreeViewColumnSetAlignment <- function(tree_column, xalign) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetClickable <- function(tree_column, clickable) {
-  .Call("R_gtk_tree_view_column_set_clickable", tree_column, clickable)
+  invisible(.Call("R_gtk_tree_view_column_set_clickable", tree_column, clickable))
 }
 
 
@@ -35464,7 +35464,7 @@ gtkTreeViewColumnSetClickable <- function(tree_column, clickable) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetExpand <- function(tree_column, expand) {
-  .Call("R_gtk_tree_view_column_set_expand", tree_column, expand)
+  invisible(.Call("R_gtk_tree_view_column_set_expand", tree_column, expand))
 }
 
 
@@ -35476,7 +35476,7 @@ gtkTreeViewColumnSetExpand <- function(tree_column, expand) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetFixedWidth <- function(tree_column, fixed_width) {
-  .Call("R_gtk_tree_view_column_set_fixed_width", tree_column, fixed_width)
+  invisible(.Call("R_gtk_tree_view_column_set_fixed_width", tree_column, as.integer(fixed_width)))
 }
 
 
@@ -35488,7 +35488,7 @@ gtkTreeViewColumnSetFixedWidth <- function(tree_column, fixed_width) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetMaxWidth <- function(tree_column, max_width) {
-  .Call("R_gtk_tree_view_column_set_max_width", tree_column, max_width)
+  invisible(.Call("R_gtk_tree_view_column_set_max_width", tree_column, as.integer(max_width)))
 }
 
 
@@ -35500,7 +35500,7 @@ gtkTreeViewColumnSetMaxWidth <- function(tree_column, max_width) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetMinWidth <- function(tree_column, min_width) {
-  .Call("R_gtk_tree_view_column_set_min_width", tree_column, min_width)
+  invisible(.Call("R_gtk_tree_view_column_set_min_width", tree_column, as.integer(min_width)))
 }
 
 
@@ -35512,7 +35512,7 @@ gtkTreeViewColumnSetMinWidth <- function(tree_column, min_width) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetReorderable <- function(tree_column, reorderable) {
-  .Call("R_gtk_tree_view_column_set_reorderable", tree_column, reorderable)
+  invisible(.Call("R_gtk_tree_view_column_set_reorderable", tree_column, reorderable))
 }
 
 
@@ -35524,7 +35524,7 @@ gtkTreeViewColumnSetReorderable <- function(tree_column, reorderable) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetResizable <- function(tree_column, resizable) {
-  .Call("R_gtk_tree_view_column_set_resizable", tree_column, resizable)
+  invisible(.Call("R_gtk_tree_view_column_set_resizable", tree_column, resizable))
 }
 
 
@@ -35536,7 +35536,7 @@ gtkTreeViewColumnSetResizable <- function(tree_column, resizable) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetSizing <- function(tree_column, type) {
-  .Call("R_gtk_tree_view_column_set_sizing", tree_column, type)
+  invisible(.Call("R_gtk_tree_view_column_set_sizing", tree_column, type))
 }
 
 
@@ -35548,7 +35548,7 @@ gtkTreeViewColumnSetSizing <- function(tree_column, type) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetSortColumnId <- function(tree_column, sort_column_id) {
-  .Call("R_gtk_tree_view_column_set_sort_column_id", tree_column, sort_column_id)
+  invisible(.Call("R_gtk_tree_view_column_set_sort_column_id", tree_column, as.integer(sort_column_id)))
 }
 
 
@@ -35560,7 +35560,7 @@ gtkTreeViewColumnSetSortColumnId <- function(tree_column, sort_column_id) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetSortIndicator <- function(tree_column, setting) {
-  .Call("R_gtk_tree_view_column_set_sort_indicator", tree_column, setting)
+  invisible(.Call("R_gtk_tree_view_column_set_sort_indicator", tree_column, setting))
 }
 
 
@@ -35572,7 +35572,7 @@ gtkTreeViewColumnSetSortIndicator <- function(tree_column, setting) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetSortOrder <- function(tree_column, order) {
-  .Call("R_gtk_tree_view_column_set_sort_order", tree_column, order)
+  invisible(.Call("R_gtk_tree_view_column_set_sort_order", tree_column, order))
 }
 
 
@@ -35584,7 +35584,7 @@ gtkTreeViewColumnSetSortOrder <- function(tree_column, order) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetSpacing <- function(tree_column, spacing) {
-  .Call("R_gtk_tree_view_column_set_spacing", tree_column, spacing)
+  invisible(.Call("R_gtk_tree_view_column_set_spacing", tree_column, as.integer(spacing)))
 }
 
 
@@ -35596,7 +35596,7 @@ gtkTreeViewColumnSetSpacing <- function(tree_column, spacing) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetTitle <- function(tree_column, title) {
-  .Call("R_gtk_tree_view_column_set_title", tree_column, title)
+  invisible(.Call("R_gtk_tree_view_column_set_title", tree_column, title))
 }
 
 
@@ -35608,7 +35608,7 @@ gtkTreeViewColumnSetTitle <- function(tree_column, title) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetVisible <- function(tree_column, visible) {
-  .Call("R_gtk_tree_view_column_set_visible", tree_column, visible)
+  invisible(.Call("R_gtk_tree_view_column_set_visible", tree_column, visible))
 }
 
 
@@ -35620,7 +35620,7 @@ gtkTreeViewColumnSetVisible <- function(tree_column, visible) {
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetWidget <- function(tree_column, widget) {
-  .Call("R_gtk_tree_view_column_set_widget", tree_column, widget)
+  invisible(.Call("R_gtk_tree_view_column_set_widget", tree_column, widget))
 }
 
 
@@ -35632,7 +35632,7 @@ gtkTreeViewColumnSetWidget <- function(tree_column, widget) {
 #' @return TryExpression
 #' @export
 gtkTryExpressionNew <- function(n_expressions, expressions) {
-  .Call("R_gtk_try_expression_new", n_expressions, expressions)$result
+  .Call("R_gtk_try_expression_new", as.integer(n_expressions), expressions)$result
 }
 
 
@@ -35690,7 +35690,7 @@ gtkUriLauncherLaunchFinish <- function(self, result) {
 #' @return Return value from C function
 #' @export
 gtkUriLauncherSetUri <- function(self, uri) {
-  .Call("R_gtk_uri_launcher_set_uri", self, uri)
+  invisible(.Call("R_gtk_uri_launcher_set_uri", self, uri))
 }
 
 
@@ -35811,7 +35811,7 @@ gtkVideoGetMediaStream <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkVideoSetAutoplay <- function(self, autoplay) {
-  .Call("R_gtk_video_set_autoplay", self, autoplay)
+  invisible(.Call("R_gtk_video_set_autoplay", self, autoplay))
 }
 
 
@@ -35823,7 +35823,7 @@ gtkVideoSetAutoplay <- function(self, autoplay) {
 #' @return Return value from C function
 #' @export
 gtkVideoSetFile <- function(self, file) {
-  .Call("R_gtk_video_set_file", self, file)
+  invisible(.Call("R_gtk_video_set_file", self, file))
 }
 
 
@@ -35835,7 +35835,7 @@ gtkVideoSetFile <- function(self, file) {
 #' @return Return value from C function
 #' @export
 gtkVideoSetFilename <- function(self, filename) {
-  .Call("R_gtk_video_set_filename", self, filename)
+  invisible(.Call("R_gtk_video_set_filename", self, filename))
 }
 
 
@@ -35847,7 +35847,7 @@ gtkVideoSetFilename <- function(self, filename) {
 #' @return Return value from C function
 #' @export
 gtkVideoSetGraphicsOffload <- function(self, enabled) {
-  .Call("R_gtk_video_set_graphics_offload", self, enabled)
+  invisible(.Call("R_gtk_video_set_graphics_offload", self, enabled))
 }
 
 
@@ -35859,7 +35859,7 @@ gtkVideoSetGraphicsOffload <- function(self, enabled) {
 #' @return Return value from C function
 #' @export
 gtkVideoSetLoop <- function(self, loop) {
-  .Call("R_gtk_video_set_loop", self, loop)
+  invisible(.Call("R_gtk_video_set_loop", self, loop))
 }
 
 
@@ -35871,7 +35871,7 @@ gtkVideoSetLoop <- function(self, loop) {
 #' @return Return value from C function
 #' @export
 gtkVideoSetMediaStream <- function(self, stream) {
-  .Call("R_gtk_video_set_media_stream", self, stream)
+  invisible(.Call("R_gtk_video_set_media_stream", self, stream))
 }
 
 
@@ -35883,7 +35883,7 @@ gtkVideoSetMediaStream <- function(self, stream) {
 #' @return Return value from C function
 #' @export
 gtkVideoSetResource <- function(self, resource_path) {
-  .Call("R_gtk_video_set_resource", self, resource_path)
+  invisible(.Call("R_gtk_video_set_resource", self, resource_path))
 }
 
 
@@ -35930,7 +35930,7 @@ gtkViewportGetScrollToFocus <- function(viewport) {
 #' @return Return value from C function
 #' @export
 gtkViewportScrollTo <- function(viewport, descendant, scroll) {
-  .Call("R_gtk_viewport_scroll_to", viewport, descendant, scroll)
+  invisible(.Call("R_gtk_viewport_scroll_to", viewport, descendant, scroll))
 }
 
 
@@ -35942,7 +35942,7 @@ gtkViewportScrollTo <- function(viewport, descendant, scroll) {
 #' @return Return value from C function
 #' @export
 gtkViewportSetChild <- function(viewport, child) {
-  .Call("R_gtk_viewport_set_child", viewport, child)
+  invisible(.Call("R_gtk_viewport_set_child", viewport, child))
 }
 
 
@@ -35954,7 +35954,7 @@ gtkViewportSetChild <- function(viewport, child) {
 #' @return Return value from C function
 #' @export
 gtkViewportSetScrollToFocus <- function(viewport, scroll_to_focus) {
-  .Call("R_gtk_viewport_set_scroll_to_focus", viewport, scroll_to_focus)
+  invisible(.Call("R_gtk_viewport_set_scroll_to_focus", viewport, scroll_to_focus))
 }
 
 
@@ -35985,7 +35985,7 @@ gtkWidgetGetDefaultDirection <- function() {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetDefaultDirection <- function(dir) {
-  .Call("R_gtk_widget_set_default_direction", dir)
+  invisible(.Call("R_gtk_widget_set_default_direction", dir))
 }
 
 
@@ -35998,7 +35998,7 @@ gtkWidgetSetDefaultDirection <- function(dir) {
 #' @return Return value from C function
 #' @export
 gtkWidgetActionSetEnabled <- function(widget, action_name, enabled) {
-  .Call("R_gtk_widget_action_set_enabled", widget, action_name, enabled)
+  invisible(.Call("R_gtk_widget_action_set_enabled", widget, action_name, enabled))
 }
 
 
@@ -36033,7 +36033,7 @@ gtkWidgetActivateActionVariant <- function(widget, name, args) {
 #' @return Return value from C function
 #' @export
 gtkWidgetActivateDefault <- function(widget) {
-  .Call("R_gtk_widget_activate_default", widget)
+  invisible(.Call("R_gtk_widget_activate_default", widget))
 }
 
 
@@ -36045,7 +36045,7 @@ gtkWidgetActivateDefault <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetAddController <- function(widget, controller) {
-  .Call("R_gtk_widget_add_controller", widget, controller)
+  invisible(.Call("R_gtk_widget_add_controller", widget, controller))
 }
 
 
@@ -36057,7 +36057,7 @@ gtkWidgetAddController <- function(widget, controller) {
 #' @return Return value from C function
 #' @export
 gtkWidgetAddCssClass <- function(widget, css_class) {
-  .Call("R_gtk_widget_add_css_class", widget, css_class)
+  invisible(.Call("R_gtk_widget_add_css_class", widget, css_class))
 }
 
 
@@ -36069,7 +36069,7 @@ gtkWidgetAddCssClass <- function(widget, css_class) {
 #' @return Return value from C function
 #' @export
 gtkWidgetAddMnemonicLabel <- function(widget, label) {
-  .Call("R_gtk_widget_add_mnemonic_label", widget, label)
+  invisible(.Call("R_gtk_widget_add_mnemonic_label", widget, label))
 }
 
 
@@ -36084,7 +36084,7 @@ gtkWidgetAddMnemonicLabel <- function(widget, label) {
 #' @return Return value from C function
 #' @export
 gtkWidgetAllocate <- function(widget, width, height, baseline, transform) {
-  .Call("R_gtk_widget_allocate", widget, width, height, baseline, transform)
+  invisible(.Call("R_gtk_widget_allocate", widget, as.integer(width), as.integer(height), as.integer(baseline), transform))
 }
 
 
@@ -36193,7 +36193,7 @@ gtkWidgetCreatePangoLayout <- function(widget, text) {
 #' @return Return value from C function
 #' @export
 gtkWidgetDisposeTemplate <- function(widget, widget_type) {
-  .Call("R_gtk_widget_dispose_template", widget, widget_type)
+  invisible(.Call("R_gtk_widget_dispose_template", widget, widget_type))
 }
 
 
@@ -36208,7 +36208,7 @@ gtkWidgetDisposeTemplate <- function(widget, widget_type) {
 #' @return gboolean
 #' @export
 gtkDragCheckThreshold <- function(widget, start_x, start_y, current_x, current_y) {
-  .Call("R_gtk_drag_check_threshold", widget, start_x, start_y, current_x, current_y)$result
+  .Call("R_gtk_drag_check_threshold", widget, as.integer(start_x), as.integer(start_y), as.integer(current_x), as.integer(current_y))$result
 }
 
 
@@ -36219,7 +36219,7 @@ gtkDragCheckThreshold <- function(widget, start_x, start_y, current_x, current_y
 #' @return Return value from C function
 #' @export
 gtkWidgetErrorBell <- function(widget) {
-  .Call("R_gtk_widget_error_bell", widget)
+  invisible(.Call("R_gtk_widget_error_bell", widget))
 }
 
 
@@ -37005,7 +37005,7 @@ gtkWidgetHasVisibleFocus <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetHide <- function(widget) {
-  .Call("R_gtk_widget_hide", widget)
+  invisible(.Call("R_gtk_widget_hide", widget))
 }
 
 
@@ -37027,7 +37027,7 @@ gtkWidgetInDestruction <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetInitTemplate <- function(widget) {
-  .Call("R_gtk_widget_init_template", widget)
+  invisible(.Call("R_gtk_widget_init_template", widget))
 }
 
 
@@ -37040,7 +37040,7 @@ gtkWidgetInitTemplate <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetInsertActionGroup <- function(widget, name, group) {
-  .Call("R_gtk_widget_insert_action_group", widget, name, group)
+  invisible(.Call("R_gtk_widget_insert_action_group", widget, name, group))
 }
 
 
@@ -37053,7 +37053,7 @@ gtkWidgetInsertActionGroup <- function(widget, name, group) {
 #' @return Return value from C function
 #' @export
 gtkWidgetInsertAfter <- function(widget, parent, previous_sibling) {
-  .Call("R_gtk_widget_insert_after", widget, parent, previous_sibling)
+  invisible(.Call("R_gtk_widget_insert_after", widget, parent, previous_sibling))
 }
 
 
@@ -37066,7 +37066,7 @@ gtkWidgetInsertAfter <- function(widget, parent, previous_sibling) {
 #' @return Return value from C function
 #' @export
 gtkWidgetInsertBefore <- function(widget, parent, next_sibling) {
-  .Call("R_gtk_widget_insert_before", widget, parent, next_sibling)
+  invisible(.Call("R_gtk_widget_insert_before", widget, parent, next_sibling))
 }
 
 
@@ -37156,7 +37156,7 @@ gtkWidgetListMnemonicLabels <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetMap <- function(widget) {
-  .Call("R_gtk_widget_map", widget)
+  invisible(.Call("R_gtk_widget_map", widget))
 }
 
 
@@ -37169,7 +37169,7 @@ gtkWidgetMap <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetMeasure <- function(widget, orientation, for_size) {
-  .Call("R_gtk_widget_measure", widget, orientation, for_size)
+  .Call("R_gtk_widget_measure", widget, orientation, as.integer(for_size))
 }
 
 
@@ -37228,7 +37228,7 @@ gtkWidgetPick <- function(widget, x, y, flags) {
 #' @return Return value from C function
 #' @export
 gtkWidgetQueueAllocate <- function(widget) {
-  .Call("R_gtk_widget_queue_allocate", widget)
+  invisible(.Call("R_gtk_widget_queue_allocate", widget))
 }
 
 
@@ -37239,7 +37239,7 @@ gtkWidgetQueueAllocate <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetQueueDraw <- function(widget) {
-  .Call("R_gtk_widget_queue_draw", widget)
+  invisible(.Call("R_gtk_widget_queue_draw", widget))
 }
 
 
@@ -37250,7 +37250,7 @@ gtkWidgetQueueDraw <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetQueueResize <- function(widget) {
-  .Call("R_gtk_widget_queue_resize", widget)
+  invisible(.Call("R_gtk_widget_queue_resize", widget))
 }
 
 
@@ -37261,7 +37261,7 @@ gtkWidgetQueueResize <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetRealize <- function(widget) {
-  .Call("R_gtk_widget_realize", widget)
+  invisible(.Call("R_gtk_widget_realize", widget))
 }
 
 
@@ -37273,7 +37273,7 @@ gtkWidgetRealize <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetRemoveController <- function(widget, controller) {
-  .Call("R_gtk_widget_remove_controller", widget, controller)
+  invisible(.Call("R_gtk_widget_remove_controller", widget, controller))
 }
 
 
@@ -37285,7 +37285,7 @@ gtkWidgetRemoveController <- function(widget, controller) {
 #' @return Return value from C function
 #' @export
 gtkWidgetRemoveCssClass <- function(widget, css_class) {
-  .Call("R_gtk_widget_remove_css_class", widget, css_class)
+  invisible(.Call("R_gtk_widget_remove_css_class", widget, css_class))
 }
 
 
@@ -37297,7 +37297,7 @@ gtkWidgetRemoveCssClass <- function(widget, css_class) {
 #' @return Return value from C function
 #' @export
 gtkWidgetRemoveMnemonicLabel <- function(widget, label) {
-  .Call("R_gtk_widget_remove_mnemonic_label", widget, label)
+  invisible(.Call("R_gtk_widget_remove_mnemonic_label", widget, label))
 }
 
 
@@ -37309,7 +37309,7 @@ gtkWidgetRemoveMnemonicLabel <- function(widget, label) {
 #' @return Return value from C function
 #' @export
 gtkWidgetRemoveTickCallback <- function(widget, id) {
-  .Call("R_gtk_widget_remove_tick_callback", widget, id)
+  invisible(.Call("R_gtk_widget_remove_tick_callback", widget, as.integer(id)))
 }
 
 
@@ -37321,7 +37321,7 @@ gtkWidgetRemoveTickCallback <- function(widget, id) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetCanFocus <- function(widget, can_focus) {
-  .Call("R_gtk_widget_set_can_focus", widget, can_focus)
+  invisible(.Call("R_gtk_widget_set_can_focus", widget, can_focus))
 }
 
 
@@ -37333,7 +37333,7 @@ gtkWidgetSetCanFocus <- function(widget, can_focus) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetCanTarget <- function(widget, can_target) {
-  .Call("R_gtk_widget_set_can_target", widget, can_target)
+  invisible(.Call("R_gtk_widget_set_can_target", widget, can_target))
 }
 
 
@@ -37345,7 +37345,7 @@ gtkWidgetSetCanTarget <- function(widget, can_target) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetChildVisible <- function(widget, child_visible) {
-  .Call("R_gtk_widget_set_child_visible", widget, child_visible)
+  invisible(.Call("R_gtk_widget_set_child_visible", widget, child_visible))
 }
 
 
@@ -37357,7 +37357,7 @@ gtkWidgetSetChildVisible <- function(widget, child_visible) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetCssClasses <- function(widget, classes) {
-  .Call("R_gtk_widget_set_css_classes", widget, classes)
+  invisible(.Call("R_gtk_widget_set_css_classes", widget, classes))
 }
 
 
@@ -37369,7 +37369,7 @@ gtkWidgetSetCssClasses <- function(widget, classes) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetCursor <- function(widget, cursor) {
-  .Call("R_gtk_widget_set_cursor", widget, cursor)
+  invisible(.Call("R_gtk_widget_set_cursor", widget, cursor))
 }
 
 
@@ -37381,7 +37381,7 @@ gtkWidgetSetCursor <- function(widget, cursor) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetCursorFromName <- function(widget, name) {
-  .Call("R_gtk_widget_set_cursor_from_name", widget, name)
+  invisible(.Call("R_gtk_widget_set_cursor_from_name", widget, name))
 }
 
 
@@ -37393,7 +37393,7 @@ gtkWidgetSetCursorFromName <- function(widget, name) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetDirection <- function(widget, dir) {
-  .Call("R_gtk_widget_set_direction", widget, dir)
+  invisible(.Call("R_gtk_widget_set_direction", widget, dir))
 }
 
 
@@ -37405,7 +37405,7 @@ gtkWidgetSetDirection <- function(widget, dir) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetFocusChild <- function(widget, child) {
-  .Call("R_gtk_widget_set_focus_child", widget, child)
+  invisible(.Call("R_gtk_widget_set_focus_child", widget, child))
 }
 
 
@@ -37417,7 +37417,7 @@ gtkWidgetSetFocusChild <- function(widget, child) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetFocusOnClick <- function(widget, focus_on_click) {
-  .Call("R_gtk_widget_set_focus_on_click", widget, focus_on_click)
+  invisible(.Call("R_gtk_widget_set_focus_on_click", widget, focus_on_click))
 }
 
 
@@ -37429,7 +37429,7 @@ gtkWidgetSetFocusOnClick <- function(widget, focus_on_click) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetFocusable <- function(widget, focusable) {
-  .Call("R_gtk_widget_set_focusable", widget, focusable)
+  invisible(.Call("R_gtk_widget_set_focusable", widget, focusable))
 }
 
 
@@ -37441,7 +37441,7 @@ gtkWidgetSetFocusable <- function(widget, focusable) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetFontMap <- function(widget, font_map) {
-  .Call("R_gtk_widget_set_font_map", widget, font_map)
+  invisible(.Call("R_gtk_widget_set_font_map", widget, font_map))
 }
 
 
@@ -37453,7 +37453,7 @@ gtkWidgetSetFontMap <- function(widget, font_map) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetFontOptions <- function(widget, options) {
-  .Call("R_gtk_widget_set_font_options", widget, options)
+  invisible(.Call("R_gtk_widget_set_font_options", widget, options))
 }
 
 
@@ -37465,7 +37465,7 @@ gtkWidgetSetFontOptions <- function(widget, options) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetHalign <- function(widget, align) {
-  .Call("R_gtk_widget_set_halign", widget, align)
+  invisible(.Call("R_gtk_widget_set_halign", widget, align))
 }
 
 
@@ -37477,7 +37477,7 @@ gtkWidgetSetHalign <- function(widget, align) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetHasTooltip <- function(widget, has_tooltip) {
-  .Call("R_gtk_widget_set_has_tooltip", widget, has_tooltip)
+  invisible(.Call("R_gtk_widget_set_has_tooltip", widget, has_tooltip))
 }
 
 
@@ -37489,7 +37489,7 @@ gtkWidgetSetHasTooltip <- function(widget, has_tooltip) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetHexpand <- function(widget, expand) {
-  .Call("R_gtk_widget_set_hexpand", widget, expand)
+  invisible(.Call("R_gtk_widget_set_hexpand", widget, expand))
 }
 
 
@@ -37501,7 +37501,7 @@ gtkWidgetSetHexpand <- function(widget, expand) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetHexpandSet <- function(widget, set) {
-  .Call("R_gtk_widget_set_hexpand_set", widget, set)
+  invisible(.Call("R_gtk_widget_set_hexpand_set", widget, set))
 }
 
 
@@ -37513,7 +37513,7 @@ gtkWidgetSetHexpandSet <- function(widget, set) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetLayoutManager <- function(widget, layout_manager) {
-  .Call("R_gtk_widget_set_layout_manager", widget, layout_manager)
+  invisible(.Call("R_gtk_widget_set_layout_manager", widget, layout_manager))
 }
 
 
@@ -37525,7 +37525,7 @@ gtkWidgetSetLayoutManager <- function(widget, layout_manager) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetLimitEvents <- function(widget, limit_events) {
-  .Call("R_gtk_widget_set_limit_events", widget, limit_events)
+  invisible(.Call("R_gtk_widget_set_limit_events", widget, limit_events))
 }
 
 
@@ -37537,7 +37537,7 @@ gtkWidgetSetLimitEvents <- function(widget, limit_events) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetMarginBottom <- function(widget, margin) {
-  .Call("R_gtk_widget_set_margin_bottom", widget, margin)
+  invisible(.Call("R_gtk_widget_set_margin_bottom", widget, as.integer(margin)))
 }
 
 
@@ -37549,7 +37549,7 @@ gtkWidgetSetMarginBottom <- function(widget, margin) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetMarginEnd <- function(widget, margin) {
-  .Call("R_gtk_widget_set_margin_end", widget, margin)
+  invisible(.Call("R_gtk_widget_set_margin_end", widget, as.integer(margin)))
 }
 
 
@@ -37561,7 +37561,7 @@ gtkWidgetSetMarginEnd <- function(widget, margin) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetMarginStart <- function(widget, margin) {
-  .Call("R_gtk_widget_set_margin_start", widget, margin)
+  invisible(.Call("R_gtk_widget_set_margin_start", widget, as.integer(margin)))
 }
 
 
@@ -37573,7 +37573,7 @@ gtkWidgetSetMarginStart <- function(widget, margin) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetMarginTop <- function(widget, margin) {
-  .Call("R_gtk_widget_set_margin_top", widget, margin)
+  invisible(.Call("R_gtk_widget_set_margin_top", widget, as.integer(margin)))
 }
 
 
@@ -37585,7 +37585,7 @@ gtkWidgetSetMarginTop <- function(widget, margin) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetName <- function(widget, name) {
-  .Call("R_gtk_widget_set_name", widget, name)
+  invisible(.Call("R_gtk_widget_set_name", widget, name))
 }
 
 
@@ -37597,7 +37597,7 @@ gtkWidgetSetName <- function(widget, name) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetOpacity <- function(widget, opacity) {
-  .Call("R_gtk_widget_set_opacity", widget, opacity)
+  invisible(.Call("R_gtk_widget_set_opacity", widget, opacity))
 }
 
 
@@ -37609,7 +37609,7 @@ gtkWidgetSetOpacity <- function(widget, opacity) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetOverflow <- function(widget, overflow) {
-  .Call("R_gtk_widget_set_overflow", widget, overflow)
+  invisible(.Call("R_gtk_widget_set_overflow", widget, overflow))
 }
 
 
@@ -37621,7 +37621,7 @@ gtkWidgetSetOverflow <- function(widget, overflow) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetParent <- function(widget, parent) {
-  .Call("R_gtk_widget_set_parent", widget, parent)
+  invisible(.Call("R_gtk_widget_set_parent", widget, parent))
 }
 
 
@@ -37633,7 +37633,7 @@ gtkWidgetSetParent <- function(widget, parent) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetReceivesDefault <- function(widget, receives_default) {
-  .Call("R_gtk_widget_set_receives_default", widget, receives_default)
+  invisible(.Call("R_gtk_widget_set_receives_default", widget, receives_default))
 }
 
 
@@ -37645,7 +37645,7 @@ gtkWidgetSetReceivesDefault <- function(widget, receives_default) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetSensitive <- function(widget, sensitive) {
-  .Call("R_gtk_widget_set_sensitive", widget, sensitive)
+  invisible(.Call("R_gtk_widget_set_sensitive", widget, sensitive))
 }
 
 
@@ -37658,7 +37658,7 @@ gtkWidgetSetSensitive <- function(widget, sensitive) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetSizeRequest <- function(widget, width, height) {
-  .Call("R_gtk_widget_set_size_request", widget, width, height)
+  invisible(.Call("R_gtk_widget_set_size_request", widget, as.integer(width), as.integer(height)))
 }
 
 
@@ -37671,7 +37671,7 @@ gtkWidgetSetSizeRequest <- function(widget, width, height) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetStateFlags <- function(widget, flags, clear) {
-  .Call("R_gtk_widget_set_state_flags", widget, flags, clear)
+  invisible(.Call("R_gtk_widget_set_state_flags", widget, flags, clear))
 }
 
 
@@ -37683,7 +37683,7 @@ gtkWidgetSetStateFlags <- function(widget, flags, clear) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetTooltipMarkup <- function(widget, markup) {
-  .Call("R_gtk_widget_set_tooltip_markup", widget, markup)
+  invisible(.Call("R_gtk_widget_set_tooltip_markup", widget, markup))
 }
 
 
@@ -37695,7 +37695,7 @@ gtkWidgetSetTooltipMarkup <- function(widget, markup) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetTooltipText <- function(widget, text) {
-  .Call("R_gtk_widget_set_tooltip_text", widget, text)
+  invisible(.Call("R_gtk_widget_set_tooltip_text", widget, text))
 }
 
 
@@ -37707,7 +37707,7 @@ gtkWidgetSetTooltipText <- function(widget, text) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetValign <- function(widget, align) {
-  .Call("R_gtk_widget_set_valign", widget, align)
+  invisible(.Call("R_gtk_widget_set_valign", widget, align))
 }
 
 
@@ -37719,7 +37719,7 @@ gtkWidgetSetValign <- function(widget, align) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetVexpand <- function(widget, expand) {
-  .Call("R_gtk_widget_set_vexpand", widget, expand)
+  invisible(.Call("R_gtk_widget_set_vexpand", widget, expand))
 }
 
 
@@ -37731,7 +37731,7 @@ gtkWidgetSetVexpand <- function(widget, expand) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetVexpandSet <- function(widget, set) {
-  .Call("R_gtk_widget_set_vexpand_set", widget, set)
+  invisible(.Call("R_gtk_widget_set_vexpand_set", widget, set))
 }
 
 
@@ -37743,7 +37743,7 @@ gtkWidgetSetVexpandSet <- function(widget, set) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSetVisible <- function(widget, visible) {
-  .Call("R_gtk_widget_set_visible", widget, visible)
+  invisible(.Call("R_gtk_widget_set_visible", widget, visible))
 }
 
 
@@ -37765,7 +37765,7 @@ gtkWidgetShouldLayout <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetShow <- function(widget) {
-  .Call("R_gtk_widget_show", widget)
+  invisible(.Call("R_gtk_widget_show", widget))
 }
 
 
@@ -37778,7 +37778,7 @@ gtkWidgetShow <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSizeAllocate <- function(widget, allocation, baseline) {
-  .Call("R_gtk_widget_size_allocate", widget, allocation, baseline)
+  invisible(.Call("R_gtk_widget_size_allocate", widget, allocation, as.integer(baseline)))
 }
 
 
@@ -37791,7 +37791,7 @@ gtkWidgetSizeAllocate <- function(widget, allocation, baseline) {
 #' @return Return value from C function
 #' @export
 gtkWidgetSnapshotChild <- function(widget, child, snapshot) {
-  .Call("R_gtk_widget_snapshot_child", widget, child, snapshot)
+  invisible(.Call("R_gtk_widget_snapshot_child", widget, child, snapshot))
 }
 
 
@@ -37816,7 +37816,7 @@ gtkWidgetTranslateCoordinates <- function(src_widget, dest_widget, src_x, src_y)
 #' @return Return value from C function
 #' @export
 gtkWidgetTriggerTooltipQuery <- function(widget) {
-  .Call("R_gtk_widget_trigger_tooltip_query", widget)
+  invisible(.Call("R_gtk_widget_trigger_tooltip_query", widget))
 }
 
 
@@ -37827,7 +37827,7 @@ gtkWidgetTriggerTooltipQuery <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetUnmap <- function(widget) {
-  .Call("R_gtk_widget_unmap", widget)
+  invisible(.Call("R_gtk_widget_unmap", widget))
 }
 
 
@@ -37838,7 +37838,7 @@ gtkWidgetUnmap <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetUnparent <- function(widget) {
-  .Call("R_gtk_widget_unparent", widget)
+  invisible(.Call("R_gtk_widget_unparent", widget))
 }
 
 
@@ -37849,7 +37849,7 @@ gtkWidgetUnparent <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetUnrealize <- function(widget) {
-  .Call("R_gtk_widget_unrealize", widget)
+  invisible(.Call("R_gtk_widget_unrealize", widget))
 }
 
 
@@ -37861,7 +37861,7 @@ gtkWidgetUnrealize <- function(widget) {
 #' @return Return value from C function
 #' @export
 gtkWidgetUnsetStateFlags <- function(widget, flags) {
-  .Call("R_gtk_widget_unset_state_flags", widget, flags)
+  invisible(.Call("R_gtk_widget_unset_state_flags", widget, flags))
 }
 
 
@@ -37873,7 +37873,7 @@ gtkWidgetUnsetStateFlags <- function(widget, flags) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassAddShortcut <- function(widget_class, shortcut) {
-  .Call("R_gtk_widget_class_add_shortcut", widget_class, shortcut)
+  invisible(.Call("R_gtk_widget_class_add_shortcut", widget_class, shortcut))
 }
 
 
@@ -37887,7 +37887,7 @@ gtkWidgetClassAddShortcut <- function(widget_class, shortcut) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassBindTemplateChildFull <- function(widget_class, name, internal_child, struct_offset) {
-  .Call("R_gtk_widget_class_bind_template_child_full", widget_class, name, internal_child, struct_offset)
+  invisible(.Call("R_gtk_widget_class_bind_template_child_full", widget_class, name, internal_child, as.integer(struct_offset)))
 }
 
 
@@ -37944,7 +37944,7 @@ gtkWidgetClassGetLayoutManagerType <- function(widget_class) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassInstallPropertyAction <- function(widget_class, action_name, property_name) {
-  .Call("R_gtk_widget_class_install_property_action", widget_class, action_name, property_name)
+  invisible(.Call("R_gtk_widget_class_install_property_action", widget_class, action_name, property_name))
 }
 
 
@@ -37956,7 +37956,7 @@ gtkWidgetClassInstallPropertyAction <- function(widget_class, action_name, prope
 #' @return gboolean
 #' @export
 gtkWidgetClassQueryAction <- function(widget_class, index_) {
-  .Call("R_gtk_widget_class_query_action", widget_class, index_)
+  .Call("R_gtk_widget_class_query_action", widget_class, as.integer(index_))
 }
 
 
@@ -37968,7 +37968,7 @@ gtkWidgetClassQueryAction <- function(widget_class, index_) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassSetAccessibleRole <- function(widget_class, accessible_role) {
-  .Call("R_gtk_widget_class_set_accessible_role", widget_class, accessible_role)
+  invisible(.Call("R_gtk_widget_class_set_accessible_role", widget_class, accessible_role))
 }
 
 
@@ -37980,7 +37980,7 @@ gtkWidgetClassSetAccessibleRole <- function(widget_class, accessible_role) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassSetActivateSignal <- function(widget_class, signal_id) {
-  .Call("R_gtk_widget_class_set_activate_signal", widget_class, signal_id)
+  invisible(.Call("R_gtk_widget_class_set_activate_signal", widget_class, as.integer(signal_id)))
 }
 
 
@@ -37992,7 +37992,7 @@ gtkWidgetClassSetActivateSignal <- function(widget_class, signal_id) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassSetActivateSignalFromName <- function(widget_class, signal_name) {
-  .Call("R_gtk_widget_class_set_activate_signal_from_name", widget_class, signal_name)
+  invisible(.Call("R_gtk_widget_class_set_activate_signal_from_name", widget_class, signal_name))
 }
 
 
@@ -38004,7 +38004,7 @@ gtkWidgetClassSetActivateSignalFromName <- function(widget_class, signal_name) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassSetCssName <- function(widget_class, name) {
-  .Call("R_gtk_widget_class_set_css_name", widget_class, name)
+  invisible(.Call("R_gtk_widget_class_set_css_name", widget_class, name))
 }
 
 
@@ -38016,7 +38016,7 @@ gtkWidgetClassSetCssName <- function(widget_class, name) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassSetLayoutManagerType <- function(widget_class, type) {
-  .Call("R_gtk_widget_class_set_layout_manager_type", widget_class, type)
+  invisible(.Call("R_gtk_widget_class_set_layout_manager_type", widget_class, type))
 }
 
 
@@ -38028,7 +38028,7 @@ gtkWidgetClassSetLayoutManagerType <- function(widget_class, type) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassSetTemplate <- function(widget_class, template_bytes) {
-  .Call("R_gtk_widget_class_set_template", widget_class, template_bytes)
+  invisible(.Call("R_gtk_widget_class_set_template", widget_class, template_bytes))
 }
 
 
@@ -38040,7 +38040,7 @@ gtkWidgetClassSetTemplate <- function(widget_class, template_bytes) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassSetTemplateFromResource <- function(widget_class, resource_name) {
-  .Call("R_gtk_widget_class_set_template_from_resource", widget_class, resource_name)
+  invisible(.Call("R_gtk_widget_class_set_template_from_resource", widget_class, resource_name))
 }
 
 
@@ -38052,7 +38052,7 @@ gtkWidgetClassSetTemplateFromResource <- function(widget_class, resource_name) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassSetTemplateScope <- function(widget_class, scope) {
-  .Call("R_gtk_widget_class_set_template_scope", widget_class, scope)
+  invisible(.Call("R_gtk_widget_class_set_template_scope", widget_class, scope))
 }
 
 
@@ -38086,7 +38086,7 @@ gtkWidgetPaintableGetWidget <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkWidgetPaintableSetWidget <- function(self, widget) {
-  .Call("R_gtk_widget_paintable_set_widget", self, widget)
+  invisible(.Call("R_gtk_widget_paintable_set_widget", self, widget))
 }
 
 
@@ -38137,7 +38137,7 @@ gtkWindowListToplevels <- function() {
 #' @return Return value from C function
 #' @export
 gtkWindowSetAutoStartupNotification <- function(setting) {
-  .Call("R_gtk_window_set_auto_startup_notification", setting)
+  invisible(.Call("R_gtk_window_set_auto_startup_notification", setting))
 }
 
 
@@ -38148,7 +38148,7 @@ gtkWindowSetAutoStartupNotification <- function(setting) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetDefaultIconName <- function(name) {
-  .Call("R_gtk_window_set_default_icon_name", name)
+  invisible(.Call("R_gtk_window_set_default_icon_name", name))
 }
 
 
@@ -38159,7 +38159,7 @@ gtkWindowSetDefaultIconName <- function(name) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetInteractiveDebugging <- function(enable) {
-  .Call("R_gtk_window_set_interactive_debugging", enable)
+  invisible(.Call("R_gtk_window_set_interactive_debugging", enable))
 }
 
 
@@ -38170,7 +38170,7 @@ gtkWindowSetInteractiveDebugging <- function(enable) {
 #' @return Return value from C function
 #' @export
 gtkWindowClose <- function(window) {
-  .Call("R_gtk_window_close", window)
+  invisible(.Call("R_gtk_window_close", window))
 }
 
 
@@ -38181,7 +38181,7 @@ gtkWindowClose <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowDestroy <- function(window) {
-  .Call("R_gtk_window_destroy", window)
+  invisible(.Call("R_gtk_window_destroy", window))
 }
 
 
@@ -38192,7 +38192,7 @@ gtkWindowDestroy <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowFullscreen <- function(window) {
-  .Call("R_gtk_window_fullscreen", window)
+  invisible(.Call("R_gtk_window_fullscreen", window))
 }
 
 
@@ -38204,7 +38204,7 @@ gtkWindowFullscreen <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowFullscreenOnMonitor <- function(window, monitor) {
-  .Call("R_gtk_window_fullscreen_on_monitor", window, monitor)
+  invisible(.Call("R_gtk_window_fullscreen_on_monitor", window, monitor))
 }
 
 
@@ -38490,7 +38490,7 @@ gtkWindowIsSuspended <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowMaximize <- function(window) {
-  .Call("R_gtk_window_maximize", window)
+  invisible(.Call("R_gtk_window_maximize", window))
 }
 
 
@@ -38501,7 +38501,7 @@ gtkWindowMaximize <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowMinimize <- function(window) {
-  .Call("R_gtk_window_minimize", window)
+  invisible(.Call("R_gtk_window_minimize", window))
 }
 
 
@@ -38512,7 +38512,7 @@ gtkWindowMinimize <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowPresent <- function(window) {
-  .Call("R_gtk_window_present", window)
+  invisible(.Call("R_gtk_window_present", window))
 }
 
 
@@ -38524,7 +38524,7 @@ gtkWindowPresent <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowPresentWithTime <- function(window, timestamp) {
-  .Call("R_gtk_window_present_with_time", window, timestamp)
+  invisible(.Call("R_gtk_window_present_with_time", window, as.integer(timestamp)))
 }
 
 
@@ -38536,7 +38536,7 @@ gtkWindowPresentWithTime <- function(window, timestamp) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetApplication <- function(window, application) {
-  .Call("R_gtk_window_set_application", window, application)
+  invisible(.Call("R_gtk_window_set_application", window, application))
 }
 
 
@@ -38548,7 +38548,7 @@ gtkWindowSetApplication <- function(window, application) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetChild <- function(window, child) {
-  .Call("R_gtk_window_set_child", window, child)
+  invisible(.Call("R_gtk_window_set_child", window, child))
 }
 
 
@@ -38560,7 +38560,7 @@ gtkWindowSetChild <- function(window, child) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetDecorated <- function(window, setting) {
-  .Call("R_gtk_window_set_decorated", window, setting)
+  invisible(.Call("R_gtk_window_set_decorated", window, setting))
 }
 
 
@@ -38573,7 +38573,7 @@ gtkWindowSetDecorated <- function(window, setting) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetDefaultSize <- function(window, width, height) {
-  .Call("R_gtk_window_set_default_size", window, width, height)
+  invisible(.Call("R_gtk_window_set_default_size", window, as.integer(width), as.integer(height)))
 }
 
 
@@ -38585,7 +38585,7 @@ gtkWindowSetDefaultSize <- function(window, width, height) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetDefaultWidget <- function(window, default_widget) {
-  .Call("R_gtk_window_set_default_widget", window, default_widget)
+  invisible(.Call("R_gtk_window_set_default_widget", window, default_widget))
 }
 
 
@@ -38597,7 +38597,7 @@ gtkWindowSetDefaultWidget <- function(window, default_widget) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetDeletable <- function(window, setting) {
-  .Call("R_gtk_window_set_deletable", window, setting)
+  invisible(.Call("R_gtk_window_set_deletable", window, setting))
 }
 
 
@@ -38609,7 +38609,7 @@ gtkWindowSetDeletable <- function(window, setting) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetDestroyWithParent <- function(window, setting) {
-  .Call("R_gtk_window_set_destroy_with_parent", window, setting)
+  invisible(.Call("R_gtk_window_set_destroy_with_parent", window, setting))
 }
 
 
@@ -38621,7 +38621,7 @@ gtkWindowSetDestroyWithParent <- function(window, setting) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetDisplay <- function(window, display) {
-  .Call("R_gtk_window_set_display", window, display)
+  invisible(.Call("R_gtk_window_set_display", window, display))
 }
 
 
@@ -38633,7 +38633,7 @@ gtkWindowSetDisplay <- function(window, display) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetFocus <- function(window, focus) {
-  .Call("R_gtk_window_set_focus", window, focus)
+  invisible(.Call("R_gtk_window_set_focus", window, focus))
 }
 
 
@@ -38645,7 +38645,7 @@ gtkWindowSetFocus <- function(window, focus) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetFocusVisible <- function(window, setting) {
-  .Call("R_gtk_window_set_focus_visible", window, setting)
+  invisible(.Call("R_gtk_window_set_focus_visible", window, setting))
 }
 
 
@@ -38657,7 +38657,7 @@ gtkWindowSetFocusVisible <- function(window, setting) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetGravity <- function(window, gravity) {
-  .Call("R_gtk_window_set_gravity", window, gravity)
+  invisible(.Call("R_gtk_window_set_gravity", window, gravity))
 }
 
 
@@ -38669,7 +38669,7 @@ gtkWindowSetGravity <- function(window, gravity) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetHandleMenubarAccel <- function(window, handle_menubar_accel) {
-  .Call("R_gtk_window_set_handle_menubar_accel", window, handle_menubar_accel)
+  invisible(.Call("R_gtk_window_set_handle_menubar_accel", window, handle_menubar_accel))
 }
 
 
@@ -38681,7 +38681,7 @@ gtkWindowSetHandleMenubarAccel <- function(window, handle_menubar_accel) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetHideOnClose <- function(window, setting) {
-  .Call("R_gtk_window_set_hide_on_close", window, setting)
+  invisible(.Call("R_gtk_window_set_hide_on_close", window, setting))
 }
 
 
@@ -38693,7 +38693,7 @@ gtkWindowSetHideOnClose <- function(window, setting) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetIconName <- function(window, name) {
-  .Call("R_gtk_window_set_icon_name", window, name)
+  invisible(.Call("R_gtk_window_set_icon_name", window, name))
 }
 
 
@@ -38705,7 +38705,7 @@ gtkWindowSetIconName <- function(window, name) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetMnemonicsVisible <- function(window, setting) {
-  .Call("R_gtk_window_set_mnemonics_visible", window, setting)
+  invisible(.Call("R_gtk_window_set_mnemonics_visible", window, setting))
 }
 
 
@@ -38717,7 +38717,7 @@ gtkWindowSetMnemonicsVisible <- function(window, setting) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetModal <- function(window, modal) {
-  .Call("R_gtk_window_set_modal", window, modal)
+  invisible(.Call("R_gtk_window_set_modal", window, modal))
 }
 
 
@@ -38729,7 +38729,7 @@ gtkWindowSetModal <- function(window, modal) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetResizable <- function(window, resizable) {
-  .Call("R_gtk_window_set_resizable", window, resizable)
+  invisible(.Call("R_gtk_window_set_resizable", window, resizable))
 }
 
 
@@ -38741,7 +38741,7 @@ gtkWindowSetResizable <- function(window, resizable) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetStartupId <- function(window, startup_id) {
-  .Call("R_gtk_window_set_startup_id", window, startup_id)
+  invisible(.Call("R_gtk_window_set_startup_id", window, startup_id))
 }
 
 
@@ -38753,7 +38753,7 @@ gtkWindowSetStartupId <- function(window, startup_id) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetTitle <- function(window, title) {
-  .Call("R_gtk_window_set_title", window, title)
+  invisible(.Call("R_gtk_window_set_title", window, title))
 }
 
 
@@ -38765,7 +38765,7 @@ gtkWindowSetTitle <- function(window, title) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetTitlebar <- function(window, titlebar) {
-  .Call("R_gtk_window_set_titlebar", window, titlebar)
+  invisible(.Call("R_gtk_window_set_titlebar", window, titlebar))
 }
 
 
@@ -38777,7 +38777,7 @@ gtkWindowSetTitlebar <- function(window, titlebar) {
 #' @return Return value from C function
 #' @export
 gtkWindowSetTransientFor <- function(window, parent) {
-  .Call("R_gtk_window_set_transient_for", window, parent)
+  invisible(.Call("R_gtk_window_set_transient_for", window, parent))
 }
 
 
@@ -38788,7 +38788,7 @@ gtkWindowSetTransientFor <- function(window, parent) {
 #' @return Return value from C function
 #' @export
 gtkWindowUnfullscreen <- function(window) {
-  .Call("R_gtk_window_unfullscreen", window)
+  invisible(.Call("R_gtk_window_unfullscreen", window))
 }
 
 
@@ -38799,7 +38799,7 @@ gtkWindowUnfullscreen <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowUnmaximize <- function(window) {
-  .Call("R_gtk_window_unmaximize", window)
+  invisible(.Call("R_gtk_window_unmaximize", window))
 }
 
 
@@ -38810,7 +38810,7 @@ gtkWindowUnmaximize <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowUnminimize <- function(window) {
-  .Call("R_gtk_window_unminimize", window)
+  invisible(.Call("R_gtk_window_unminimize", window))
 }
 
 
@@ -38877,7 +38877,7 @@ gtkWindowControlsGetUseNativeControls <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkWindowControlsSetDecorationLayout <- function(self, layout) {
-  .Call("R_gtk_window_controls_set_decoration_layout", self, layout)
+  invisible(.Call("R_gtk_window_controls_set_decoration_layout", self, layout))
 }
 
 
@@ -38889,7 +38889,7 @@ gtkWindowControlsSetDecorationLayout <- function(self, layout) {
 #' @return Return value from C function
 #' @export
 gtkWindowControlsSetSide <- function(self, side) {
-  .Call("R_gtk_window_controls_set_side", self, side)
+  invisible(.Call("R_gtk_window_controls_set_side", self, side))
 }
 
 
@@ -38901,7 +38901,7 @@ gtkWindowControlsSetSide <- function(self, side) {
 #' @return Return value from C function
 #' @export
 gtkWindowControlsSetUseNativeControls <- function(self, setting) {
-  .Call("R_gtk_window_controls_set_use_native_controls", self, setting)
+  invisible(.Call("R_gtk_window_controls_set_use_native_controls", self, setting))
 }
 
 
@@ -38923,7 +38923,7 @@ gtkWindowGroupNew <- function() {
 #' @return Return value from C function
 #' @export
 gtkWindowGroupAddWindow <- function(window_group, window) {
-  .Call("R_gtk_window_group_add_window", window_group, window)
+  invisible(.Call("R_gtk_window_group_add_window", window_group, window))
 }
 
 
@@ -38946,7 +38946,7 @@ gtkWindowGroupListWindows <- function(window_group) {
 #' @return Return value from C function
 #' @export
 gtkWindowGroupRemoveWindow <- function(window_group, window) {
-  .Call("R_gtk_window_group_remove_window", window_group, window)
+  invisible(.Call("R_gtk_window_group_remove_window", window_group, window))
 }
 
 
@@ -38979,7 +38979,7 @@ gtkWindowHandleGetChild <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkWindowHandleSetChild <- function(self, child) {
-  .Call("R_gtk_window_handle_set_child", self, child)
+  invisible(.Call("R_gtk_window_handle_set_child", self, child))
 }
 
 
@@ -38991,7 +38991,7 @@ gtkWindowHandleSetChild <- function(self, child) {
 #' @return utf8
 #' @export
 gtkAcceleratorGetAccessibleLabel <- function(accelerator_key, accelerator_mods) {
-  .Call("R_gtk_accelerator_get_accessible_label", accelerator_key, accelerator_mods)$result
+  .Call("R_gtk_accelerator_get_accessible_label", as.integer(accelerator_key), accelerator_mods)$result
 }
 
 
@@ -39013,7 +39013,7 @@ gtkAcceleratorGetDefaultModMask <- function() {
 #' @return utf8
 #' @export
 gtkAcceleratorGetLabel <- function(accelerator_key, accelerator_mods) {
-  .Call("R_gtk_accelerator_get_label", accelerator_key, accelerator_mods)$result
+  .Call("R_gtk_accelerator_get_label", as.integer(accelerator_key), accelerator_mods)$result
 }
 
 
@@ -39027,7 +39027,7 @@ gtkAcceleratorGetLabel <- function(accelerator_key, accelerator_mods) {
 #' @return utf8
 #' @export
 gtkAcceleratorGetLabelWithKeycode <- function(display, accelerator_key, keycode, accelerator_mods) {
-  .Call("R_gtk_accelerator_get_label_with_keycode", display, accelerator_key, keycode, accelerator_mods)$result
+  .Call("R_gtk_accelerator_get_label_with_keycode", display, as.integer(accelerator_key), as.integer(keycode), accelerator_mods)$result
 }
 
 
@@ -39039,7 +39039,7 @@ gtkAcceleratorGetLabelWithKeycode <- function(display, accelerator_key, keycode,
 #' @return utf8
 #' @export
 gtkAcceleratorName <- function(accelerator_key, accelerator_mods) {
-  .Call("R_gtk_accelerator_name", accelerator_key, accelerator_mods)$result
+  .Call("R_gtk_accelerator_name", as.integer(accelerator_key), accelerator_mods)$result
 }
 
 
@@ -39053,7 +39053,7 @@ gtkAcceleratorName <- function(accelerator_key, accelerator_mods) {
 #' @return utf8
 #' @export
 gtkAcceleratorNameWithKeycode <- function(display, accelerator_key, keycode, accelerator_mods) {
-  .Call("R_gtk_accelerator_name_with_keycode", display, accelerator_key, keycode, accelerator_mods)$result
+  .Call("R_gtk_accelerator_name_with_keycode", display, as.integer(accelerator_key), as.integer(keycode), accelerator_mods)$result
 }
 
 
@@ -39088,7 +39088,7 @@ gtkAcceleratorParseWithKeycode <- function(accelerator, display) {
 #' @return gboolean
 #' @export
 gtkAcceleratorValid <- function(keyval, modifiers) {
-  .Call("R_gtk_accelerator_valid", keyval, modifiers)$result
+  .Call("R_gtk_accelerator_valid", as.integer(keyval), modifiers)$result
 }
 
 
@@ -39101,7 +39101,7 @@ gtkAcceleratorValid <- function(keyval, modifiers) {
 #' @return utf8
 #' @export
 gtkCheckVersion <- function(required_major, required_minor, required_micro) {
-  .Call("R_gtk_check_version", required_major, required_minor, required_micro)$result
+  .Call("R_gtk_check_version", as.integer(required_major), as.integer(required_minor), as.integer(required_micro))$result
 }
 
 
@@ -39132,7 +39132,7 @@ gtkCssParserWarningQuark <- function() {
 #' @return Return value from C function
 #' @export
 gtkDisablePortalInterfaces <- function(portal_interfaces) {
-  .Call("R_gtk_disable_portal_interfaces", portal_interfaces)
+  invisible(.Call("R_gtk_disable_portal_interfaces", portal_interfaces))
 }
 
 
@@ -39142,7 +39142,7 @@ gtkDisablePortalInterfaces <- function(portal_interfaces) {
 #' @return Return value from C function
 #' @export
 gtkDisablePortals <- function() {
-  .Call("R_gtk_disable_portals")
+  invisible(.Call("R_gtk_disable_portals"))
 }
 
 
@@ -39152,7 +39152,7 @@ gtkDisablePortals <- function() {
 #' @return Return value from C function
 #' @export
 gtkDisableSetlocale <- function() {
-  .Call("R_gtk_disable_setlocale")
+  invisible(.Call("R_gtk_disable_setlocale"))
 }
 
 
@@ -39165,7 +39165,7 @@ gtkDisableSetlocale <- function() {
 #' @return gint
 #' @export
 gtkDistributeNaturalAllocation <- function(extra_space, n_requested_sizes, sizes) {
-  .Call("R_gtk_distribute_natural_allocation", extra_space, n_requested_sizes, sizes)$result
+  .Call("R_gtk_distribute_natural_allocation", as.integer(extra_space), as.integer(n_requested_sizes), sizes)$result
 }
 
 
@@ -39268,7 +39268,7 @@ gtkHsvToRgb <- function(h, s, v) {
 #' @return Return value from C function
 #' @export
 gtkInit <- function() {
-  .Call("R_gtk_init")
+  invisible(.Call("R_gtk_init"))
 }
 
 
@@ -39318,7 +39318,7 @@ gtkParamSpecExpression <- function(name, nick, blurb, flags) {
 #' @return Return value from C function
 #' @export
 gtkRenderActivity <- function(context, cr, x, y, width, height) {
-  .Call("R_gtk_render_activity", context, cr, x, y, width, height)
+  invisible(.Call("R_gtk_render_activity", context, cr, x, y, width, height))
 }
 
 
@@ -39334,7 +39334,7 @@ gtkRenderActivity <- function(context, cr, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkRenderArrow <- function(context, cr, angle, x, y, size) {
-  .Call("R_gtk_render_arrow", context, cr, angle, x, y, size)
+  invisible(.Call("R_gtk_render_arrow", context, cr, angle, x, y, size))
 }
 
 
@@ -39350,7 +39350,7 @@ gtkRenderArrow <- function(context, cr, angle, x, y, size) {
 #' @return Return value from C function
 #' @export
 gtkRenderBackground <- function(context, cr, x, y, width, height) {
-  .Call("R_gtk_render_background", context, cr, x, y, width, height)
+  invisible(.Call("R_gtk_render_background", context, cr, x, y, width, height))
 }
 
 
@@ -39366,7 +39366,7 @@ gtkRenderBackground <- function(context, cr, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkRenderCheck <- function(context, cr, x, y, width, height) {
-  .Call("R_gtk_render_check", context, cr, x, y, width, height)
+  invisible(.Call("R_gtk_render_check", context, cr, x, y, width, height))
 }
 
 
@@ -39382,7 +39382,7 @@ gtkRenderCheck <- function(context, cr, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkRenderExpander <- function(context, cr, x, y, width, height) {
-  .Call("R_gtk_render_expander", context, cr, x, y, width, height)
+  invisible(.Call("R_gtk_render_expander", context, cr, x, y, width, height))
 }
 
 
@@ -39398,7 +39398,7 @@ gtkRenderExpander <- function(context, cr, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkRenderFocus <- function(context, cr, x, y, width, height) {
-  .Call("R_gtk_render_focus", context, cr, x, y, width, height)
+  invisible(.Call("R_gtk_render_focus", context, cr, x, y, width, height))
 }
 
 
@@ -39414,7 +39414,7 @@ gtkRenderFocus <- function(context, cr, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkRenderFrame <- function(context, cr, x, y, width, height) {
-  .Call("R_gtk_render_frame", context, cr, x, y, width, height)
+  invisible(.Call("R_gtk_render_frame", context, cr, x, y, width, height))
 }
 
 
@@ -39430,7 +39430,7 @@ gtkRenderFrame <- function(context, cr, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkRenderHandle <- function(context, cr, x, y, width, height) {
-  .Call("R_gtk_render_handle", context, cr, x, y, width, height)
+  invisible(.Call("R_gtk_render_handle", context, cr, x, y, width, height))
 }
 
 
@@ -39445,7 +39445,7 @@ gtkRenderHandle <- function(context, cr, x, y, width, height) {
 #' @return Return value from C function
 #' @export
 gtkRenderIcon <- function(context, cr, texture, x, y) {
-  .Call("R_gtk_render_icon", context, cr, texture, x, y)
+  invisible(.Call("R_gtk_render_icon", context, cr, texture, x, y))
 }
 
 
@@ -39460,7 +39460,7 @@ gtkRenderIcon <- function(context, cr, texture, x, y) {
 #' @return Return value from C function
 #' @export
 gtkRenderLayout <- function(context, cr, x, y, layout) {
-  .Call("R_gtk_render_layout", context, cr, x, y, layout)
+  invisible(.Call("R_gtk_render_layout", context, cr, x, y, layout))
 }
 
 
@@ -39476,7 +39476,7 @@ gtkRenderLayout <- function(context, cr, x, y, layout) {
 #' @return Return value from C function
 #' @export
 gtkRenderLine <- function(context, cr, x0, y0, x1, y1) {
-  .Call("R_gtk_render_line", context, cr, x0, y0, x1, y1)
+  invisible(.Call("R_gtk_render_line", context, cr, x0, y0, x1, y1))
 }
 
 
@@ -39492,7 +39492,7 @@ gtkRenderLine <- function(context, cr, x0, y0, x1, y1) {
 #' @return Return value from C function
 #' @export
 gtkRenderOption <- function(context, cr, x, y, width, height) {
-  .Call("R_gtk_render_option", context, cr, x, y, width, height)
+  invisible(.Call("R_gtk_render_option", context, cr, x, y, width, height))
 }
 
 
@@ -39516,7 +39516,7 @@ gtkRgbToHsv <- function(r, g, b) {
 #' @return Return value from C function
 #' @export
 gtkSetDebugFlags <- function(flags) {
-  .Call("R_gtk_set_debug_flags", flags)
+  invisible(.Call("R_gtk_set_debug_flags", flags))
 }
 
 
@@ -39529,7 +39529,7 @@ gtkSetDebugFlags <- function(flags) {
 #' @return Return value from C function
 #' @export
 gtkShowUri <- function(parent, uri, timestamp) {
-  .Call("R_gtk_show_uri", parent, uri, timestamp)
+  invisible(.Call("R_gtk_show_uri", parent, uri, as.integer(timestamp)))
 }
 
 
@@ -39559,7 +39559,7 @@ gtkShowUriFullFinish <- function(parent, result) {
 #' @return Return value from C function
 #' @export
 gtkTestAccessibleAssertionMessageRole <- function(domain, file, line, func, expr, accessible, expected_role, actual_role) {
-  .Call("R_gtk_test_accessible_assertion_message_role", domain, file, line, func, expr, accessible, expected_role, actual_role)
+  invisible(.Call("R_gtk_test_accessible_assertion_message_role", domain, file, as.integer(line), func, expr, accessible, expected_role, actual_role))
 }
 
 
@@ -39627,7 +39627,7 @@ gtkTestListAllTypes <- function() {
 #' @return Return value from C function
 #' @export
 gtkTestRegisterAllTypes <- function() {
-  .Call("R_gtk_test_register_all_types")
+  invisible(.Call("R_gtk_test_register_all_types"))
 }
 
 
@@ -39638,7 +39638,7 @@ gtkTestRegisterAllTypes <- function() {
 #' @return Return value from C function
 #' @export
 gtkTestWidgetWaitForDraw <- function(widget) {
-  .Call("R_gtk_test_widget_wait_for_draw", widget)
+  invisible(.Call("R_gtk_test_widget_wait_for_draw", widget))
 }
 
 
@@ -39695,7 +39695,7 @@ gtkValueGetExpression <- function(value) {
 #' @return Return value from C function
 #' @export
 gtkValueSetExpression <- function(value, expression) {
-  .Call("R_gtk_value_set_expression", value, expression)
+  invisible(.Call("R_gtk_value_set_expression", value, expression))
 }
 
 
@@ -39707,7 +39707,7 @@ gtkValueSetExpression <- function(value, expression) {
 #' @return Return value from C function
 #' @export
 gtkValueTakeExpression <- function(value, expression) {
-  .Call("R_gtk_value_take_expression", value, expression)
+  invisible(.Call("R_gtk_value_take_expression", value, expression))
 }
 
 

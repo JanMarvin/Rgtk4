@@ -42,7 +42,7 @@ gActionPrintDetailedName <- function(action_name, target_value) {
 #' @return Return value from C function
 #' @export
 gActionActivate <- function(action, parameter) {
-  .Call("R_g_action_activate", action, parameter)
+  invisible(.Call("R_g_action_activate", action, parameter))
 }
 
 
@@ -54,7 +54,7 @@ gActionActivate <- function(action, parameter) {
 #' @return Return value from C function
 #' @export
 gActionChangeState <- function(action, value) {
-  .Call("R_g_action_change_state", action, value)
+  invisible(.Call("R_g_action_change_state", action, value))
 }
 
 
@@ -132,7 +132,7 @@ gActionGetStateType <- function(action) {
 #' @return Return value from C function
 #' @export
 gActionGroupActionAdded <- function(action_group, action_name) {
-  .Call("R_g_action_group_action_added", action_group, action_name)
+  invisible(.Call("R_g_action_group_action_added", action_group, action_name))
 }
 
 
@@ -145,7 +145,7 @@ gActionGroupActionAdded <- function(action_group, action_name) {
 #' @return Return value from C function
 #' @export
 gActionGroupActionEnabledChanged <- function(action_group, action_name, enabled) {
-  .Call("R_g_action_group_action_enabled_changed", action_group, action_name, enabled)
+  invisible(.Call("R_g_action_group_action_enabled_changed", action_group, action_name, enabled))
 }
 
 
@@ -157,7 +157,7 @@ gActionGroupActionEnabledChanged <- function(action_group, action_name, enabled)
 #' @return Return value from C function
 #' @export
 gActionGroupActionRemoved <- function(action_group, action_name) {
-  .Call("R_g_action_group_action_removed", action_group, action_name)
+  invisible(.Call("R_g_action_group_action_removed", action_group, action_name))
 }
 
 
@@ -170,7 +170,7 @@ gActionGroupActionRemoved <- function(action_group, action_name) {
 #' @return Return value from C function
 #' @export
 gActionGroupActionStateChanged <- function(action_group, action_name, state) {
-  .Call("R_g_action_group_action_state_changed", action_group, action_name, state)
+  invisible(.Call("R_g_action_group_action_state_changed", action_group, action_name, state))
 }
 
 
@@ -183,7 +183,7 @@ gActionGroupActionStateChanged <- function(action_group, action_name, state) {
 #' @return Return value from C function
 #' @export
 gActionGroupActivateAction <- function(action_group, action_name, parameter) {
-  .Call("R_g_action_group_activate_action", action_group, action_name, parameter)
+  invisible(.Call("R_g_action_group_activate_action", action_group, action_name, parameter))
 }
 
 
@@ -196,7 +196,7 @@ gActionGroupActivateAction <- function(action_group, action_name, parameter) {
 #' @return Return value from C function
 #' @export
 gActionGroupChangeActionState <- function(action_group, action_name, value) {
-  .Call("R_g_action_group_change_action_state", action_group, action_name, value)
+  invisible(.Call("R_g_action_group_change_action_state", action_group, action_name, value))
 }
 
 
@@ -303,7 +303,7 @@ gActionGroupQueryAction <- function(action_group, action_name) {
 #' @return Return value from C function
 #' @export
 gActionMapAddAction <- function(action_map, action) {
-  .Call("R_g_action_map_add_action", action_map, action)
+  invisible(.Call("R_g_action_map_add_action", action_map, action))
 }
 
 
@@ -317,7 +317,7 @@ gActionMapAddAction <- function(action_map, action) {
 #' @return Return value from C function
 #' @export
 gActionMapAddActionEntries <- function(action_map, entries, n_entries, user_data) {
-  .Call("R_g_action_map_add_action_entries", action_map, entries, n_entries, user_data)
+  invisible(.Call("R_g_action_map_add_action_entries", action_map, entries, as.integer(n_entries), user_data))
 }
 
 
@@ -341,7 +341,7 @@ gActionMapLookupAction <- function(action_map, action_name) {
 #' @return Return value from C function
 #' @export
 gActionMapRemoveAction <- function(action_map, action_name) {
-  .Call("R_g_action_map_remove_action", action_map, action_name)
+  invisible(.Call("R_g_action_map_remove_action", action_map, action_name))
 }
 
 
@@ -354,7 +354,7 @@ gActionMapRemoveAction <- function(action_map, action_name) {
 #' @return Return value from C function
 #' @export
 gActionMapRemoveActionEntries <- function(action_map, entries, n_entries) {
-  .Call("R_g_action_map_remove_action_entries", action_map, entries, n_entries)
+  invisible(.Call("R_g_action_map_remove_action_entries", action_map, entries, as.integer(n_entries)))
 }
 
 
@@ -489,7 +489,7 @@ gAppInfoLaunchDefaultForUriFinish <- function(result) {
 #' @return Return value from C function
 #' @export
 gAppInfoResetTypeAssociations <- function(content_type) {
-  .Call("R_g_app_info_reset_type_associations", content_type)
+  invisible(.Call("R_g_app_info_reset_type_associations", content_type))
 }
 
 
@@ -833,7 +833,7 @@ gAppLaunchContextGetStartupNotifyId <- function(context, info, files) {
 #' @return Return value from C function
 #' @export
 gAppLaunchContextLaunchFailed <- function(context, startup_notify_id) {
-  .Call("R_g_app_launch_context_launch_failed", context, startup_notify_id)
+  invisible(.Call("R_g_app_launch_context_launch_failed", context, startup_notify_id))
 }
 
 
@@ -846,7 +846,7 @@ gAppLaunchContextLaunchFailed <- function(context, startup_notify_id) {
 #' @return Return value from C function
 #' @export
 gAppLaunchContextSetenv <- function(context, variable, value) {
-  .Call("R_g_app_launch_context_setenv", context, variable, value)
+  invisible(.Call("R_g_app_launch_context_setenv", context, variable, value))
 }
 
 
@@ -858,7 +858,7 @@ gAppLaunchContextSetenv <- function(context, variable, value) {
 #' @return Return value from C function
 #' @export
 gAppLaunchContextUnsetenv <- function(context, variable) {
-  .Call("R_g_app_launch_context_unsetenv", context, variable)
+  invisible(.Call("R_g_app_launch_context_unsetenv", context, variable))
 }
 
 
@@ -902,7 +902,7 @@ gApplicationIdIsValid <- function(application_id) {
 #' @return Return value from C function
 #' @export
 gApplicationActivate <- function(application) {
-  .Call("R_g_application_activate", application)
+  invisible(.Call("R_g_application_activate", application))
 }
 
 
@@ -919,7 +919,7 @@ gApplicationActivate <- function(application) {
 #' @return Return value from C function
 #' @export
 gApplicationAddMainOption <- function(application, long_name, short_name, flags, arg, description, arg_description) {
-  .Call("R_g_application_add_main_option", application, long_name, short_name, flags, arg, description, arg_description)
+  invisible(.Call("R_g_application_add_main_option", application, long_name, short_name, flags, arg, description, arg_description))
 }
 
 
@@ -931,7 +931,7 @@ gApplicationAddMainOption <- function(application, long_name, short_name, flags,
 #' @return Return value from C function
 #' @export
 gApplicationAddMainOptionEntries <- function(application, entries) {
-  .Call("R_g_application_add_main_option_entries", application, entries)
+  invisible(.Call("R_g_application_add_main_option_entries", application, entries))
 }
 
 
@@ -943,7 +943,7 @@ gApplicationAddMainOptionEntries <- function(application, entries) {
 #' @return Return value from C function
 #' @export
 gApplicationAddOptionGroup <- function(application, group) {
-  .Call("R_g_application_add_option_group", application, group)
+  invisible(.Call("R_g_application_add_option_group", application, group))
 }
 
 
@@ -956,7 +956,7 @@ gApplicationAddOptionGroup <- function(application, group) {
 #' @return Return value from C function
 #' @export
 gApplicationBindBusyProperty <- function(application, object, property) {
-  .Call("R_g_application_bind_busy_property", application, object, property)
+  invisible(.Call("R_g_application_bind_busy_property", application, object, property))
 }
 
 
@@ -1077,7 +1077,7 @@ gApplicationGetVersion <- function(application) {
 #' @return Return value from C function
 #' @export
 gApplicationHold <- function(application) {
-  .Call("R_g_application_hold", application)
+  invisible(.Call("R_g_application_hold", application))
 }
 
 
@@ -1088,7 +1088,7 @@ gApplicationHold <- function(application) {
 #' @return Return value from C function
 #' @export
 gApplicationMarkBusy <- function(application) {
-  .Call("R_g_application_mark_busy", application)
+  invisible(.Call("R_g_application_mark_busy", application))
 }
 
 
@@ -1102,7 +1102,7 @@ gApplicationMarkBusy <- function(application) {
 #' @return Return value from C function
 #' @export
 gApplicationOpen <- function(application, files, n_files, hint) {
-  .Call("R_g_application_open", application, files, n_files, hint)
+  invisible(.Call("R_g_application_open", application, files, as.integer(n_files), hint))
 }
 
 
@@ -1113,7 +1113,7 @@ gApplicationOpen <- function(application, files, n_files, hint) {
 #' @return Return value from C function
 #' @export
 gApplicationQuit <- function(application) {
-  .Call("R_g_application_quit", application)
+  invisible(.Call("R_g_application_quit", application))
 }
 
 
@@ -1136,7 +1136,7 @@ gApplicationRegister <- function(application, cancellable) {
 #' @return Return value from C function
 #' @export
 gApplicationRelease <- function(application) {
-  .Call("R_g_application_release", application)
+  invisible(.Call("R_g_application_release", application))
 }
 
 
@@ -1149,7 +1149,7 @@ gApplicationRelease <- function(application) {
 #' @return gint
 #' @export
 gApplicationRun <- function(application, argc, argv) {
-  .Call("R_g_application_run", application, argc, argv)$result
+  .Call("R_g_application_run", application, as.integer(argc), argv)$result
 }
 
 
@@ -1162,7 +1162,7 @@ gApplicationRun <- function(application, argc, argv) {
 #' @return Return value from C function
 #' @export
 gApplicationSendNotification <- function(application, id, notification) {
-  .Call("R_g_application_send_notification", application, id, notification)
+  invisible(.Call("R_g_application_send_notification", application, id, notification))
 }
 
 
@@ -1174,7 +1174,7 @@ gApplicationSendNotification <- function(application, id, notification) {
 #' @return Return value from C function
 #' @export
 gApplicationSetActionGroup <- function(application, action_group) {
-  .Call("R_g_application_set_action_group", application, action_group)
+  invisible(.Call("R_g_application_set_action_group", application, action_group))
 }
 
 
@@ -1186,7 +1186,7 @@ gApplicationSetActionGroup <- function(application, action_group) {
 #' @return Return value from C function
 #' @export
 gApplicationSetApplicationId <- function(application, application_id) {
-  .Call("R_g_application_set_application_id", application, application_id)
+  invisible(.Call("R_g_application_set_application_id", application, application_id))
 }
 
 
@@ -1197,7 +1197,7 @@ gApplicationSetApplicationId <- function(application, application_id) {
 #' @return Return value from C function
 #' @export
 gApplicationSetDefault <- function(application) {
-  .Call("R_g_application_set_default", application)
+  invisible(.Call("R_g_application_set_default", application))
 }
 
 
@@ -1209,7 +1209,7 @@ gApplicationSetDefault <- function(application) {
 #' @return Return value from C function
 #' @export
 gApplicationSetFlags <- function(application, flags) {
-  .Call("R_g_application_set_flags", application, flags)
+  invisible(.Call("R_g_application_set_flags", application, flags))
 }
 
 
@@ -1221,7 +1221,7 @@ gApplicationSetFlags <- function(application, flags) {
 #' @return Return value from C function
 #' @export
 gApplicationSetInactivityTimeout <- function(application, inactivity_timeout) {
-  .Call("R_g_application_set_inactivity_timeout", application, inactivity_timeout)
+  invisible(.Call("R_g_application_set_inactivity_timeout", application, as.integer(inactivity_timeout)))
 }
 
 
@@ -1233,7 +1233,7 @@ gApplicationSetInactivityTimeout <- function(application, inactivity_timeout) {
 #' @return Return value from C function
 #' @export
 gApplicationSetOptionContextDescription <- function(application, description) {
-  .Call("R_g_application_set_option_context_description", application, description)
+  invisible(.Call("R_g_application_set_option_context_description", application, description))
 }
 
 
@@ -1245,7 +1245,7 @@ gApplicationSetOptionContextDescription <- function(application, description) {
 #' @return Return value from C function
 #' @export
 gApplicationSetOptionContextParameterString <- function(application, parameter_string) {
-  .Call("R_g_application_set_option_context_parameter_string", application, parameter_string)
+  invisible(.Call("R_g_application_set_option_context_parameter_string", application, parameter_string))
 }
 
 
@@ -1257,7 +1257,7 @@ gApplicationSetOptionContextParameterString <- function(application, parameter_s
 #' @return Return value from C function
 #' @export
 gApplicationSetOptionContextSummary <- function(application, summary) {
-  .Call("R_g_application_set_option_context_summary", application, summary)
+  invisible(.Call("R_g_application_set_option_context_summary", application, summary))
 }
 
 
@@ -1269,7 +1269,7 @@ gApplicationSetOptionContextSummary <- function(application, summary) {
 #' @return Return value from C function
 #' @export
 gApplicationSetResourceBasePath <- function(application, resource_path) {
-  .Call("R_g_application_set_resource_base_path", application, resource_path)
+  invisible(.Call("R_g_application_set_resource_base_path", application, resource_path))
 }
 
 
@@ -1281,7 +1281,7 @@ gApplicationSetResourceBasePath <- function(application, resource_path) {
 #' @return Return value from C function
 #' @export
 gApplicationSetVersion <- function(application, version) {
-  .Call("R_g_application_set_version", application, version)
+  invisible(.Call("R_g_application_set_version", application, version))
 }
 
 
@@ -1294,7 +1294,7 @@ gApplicationSetVersion <- function(application, version) {
 #' @return Return value from C function
 #' @export
 gApplicationUnbindBusyProperty <- function(application, object, property) {
-  .Call("R_g_application_unbind_busy_property", application, object, property)
+  invisible(.Call("R_g_application_unbind_busy_property", application, object, property))
 }
 
 
@@ -1305,7 +1305,7 @@ gApplicationUnbindBusyProperty <- function(application, object, property) {
 #' @return Return value from C function
 #' @export
 gApplicationUnmarkBusy <- function(application) {
-  .Call("R_g_application_unmark_busy", application)
+  invisible(.Call("R_g_application_unmark_busy", application))
 }
 
 
@@ -1317,7 +1317,7 @@ gApplicationUnmarkBusy <- function(application) {
 #' @return Return value from C function
 #' @export
 gApplicationWithdrawNotification <- function(application, id) {
-  .Call("R_g_application_withdraw_notification", application, id)
+  invisible(.Call("R_g_application_withdraw_notification", application, id))
 }
 
 
@@ -1340,7 +1340,7 @@ gApplicationCommandLineCreateFileForArg <- function(cmdline, arg) {
 #' @return Return value from C function
 #' @export
 gApplicationCommandLineDone <- function(cmdline) {
-  .Call("R_g_application_command_line_done", cmdline)
+  invisible(.Call("R_g_application_command_line_done", cmdline))
 }
 
 
@@ -1452,7 +1452,7 @@ gApplicationCommandLineGetenv <- function(cmdline, name) {
 #' @return Return value from C function
 #' @export
 gApplicationCommandLinePrintLiteral <- function(cmdline, message) {
-  .Call("R_g_application_command_line_print_literal", cmdline, message)
+  invisible(.Call("R_g_application_command_line_print_literal", cmdline, message))
 }
 
 
@@ -1464,7 +1464,7 @@ gApplicationCommandLinePrintLiteral <- function(cmdline, message) {
 #' @return Return value from C function
 #' @export
 gApplicationCommandLinePrinterrLiteral <- function(cmdline, message) {
-  .Call("R_g_application_command_line_printerr_literal", cmdline, message)
+  invisible(.Call("R_g_application_command_line_printerr_literal", cmdline, message))
 }
 
 
@@ -1476,7 +1476,7 @@ gApplicationCommandLinePrinterrLiteral <- function(cmdline, message) {
 #' @return Return value from C function
 #' @export
 gApplicationCommandLineSetExitStatus <- function(cmdline, exit_status) {
-  .Call("R_g_application_command_line_set_exit_status", cmdline, exit_status)
+  invisible(.Call("R_g_application_command_line_set_exit_status", cmdline, as.integer(exit_status)))
 }
 
 
@@ -1568,7 +1568,7 @@ gBufferedInputStreamNew <- function(base_stream) {
 #' @return InputStream
 #' @export
 gBufferedInputStreamNewSized <- function(base_stream, size) {
-  .Call("R_g_buffered_input_stream_new_sized", base_stream, size)$result
+  .Call("R_g_buffered_input_stream_new_sized", base_stream, as.integer(size))$result
 }
 
 
@@ -1581,7 +1581,7 @@ gBufferedInputStreamNewSized <- function(base_stream, size) {
 #' @return gssize
 #' @export
 gBufferedInputStreamFill <- function(stream, count, cancellable) {
-  .Call("R_g_buffered_input_stream_fill", stream, count, cancellable)$result
+  .Call("R_g_buffered_input_stream_fill", stream, as.integer(count), cancellable)$result
 }
 
 
@@ -1629,7 +1629,7 @@ gBufferedInputStreamGetBufferSize <- function(stream) {
 #' @return gsize
 #' @export
 gBufferedInputStreamPeek <- function(stream, buffer, offset, count) {
-  .Call("R_g_buffered_input_stream_peek", stream, buffer, offset, count)$result
+  .Call("R_g_buffered_input_stream_peek", stream, as.integer(buffer), as.integer(offset), as.integer(count))$result
 }
 
 
@@ -1664,7 +1664,7 @@ gBufferedInputStreamReadByte <- function(stream, cancellable) {
 #' @return Return value from C function
 #' @export
 gBufferedInputStreamSetBufferSize <- function(stream, size) {
-  .Call("R_g_buffered_input_stream_set_buffer_size", stream, size)
+  invisible(.Call("R_g_buffered_input_stream_set_buffer_size", stream, as.integer(size)))
 }
 
 
@@ -1687,7 +1687,7 @@ gBufferedOutputStreamNew <- function(base_stream) {
 #' @return OutputStream
 #' @export
 gBufferedOutputStreamNewSized <- function(base_stream, size) {
-  .Call("R_g_buffered_output_stream_new_sized", base_stream, size)$result
+  .Call("R_g_buffered_output_stream_new_sized", base_stream, as.integer(size))$result
 }
 
 
@@ -1721,7 +1721,7 @@ gBufferedOutputStreamGetBufferSize <- function(stream) {
 #' @return Return value from C function
 #' @export
 gBufferedOutputStreamSetAutoGrow <- function(stream, auto_grow) {
-  .Call("R_g_buffered_output_stream_set_auto_grow", stream, auto_grow)
+  invisible(.Call("R_g_buffered_output_stream_set_auto_grow", stream, auto_grow))
 }
 
 
@@ -1733,7 +1733,7 @@ gBufferedOutputStreamSetAutoGrow <- function(stream, auto_grow) {
 #' @return Return value from C function
 #' @export
 gBufferedOutputStreamSetBufferSize <- function(stream, size) {
-  .Call("R_g_buffered_output_stream_set_buffer_size", stream, size)
+  invisible(.Call("R_g_buffered_output_stream_set_buffer_size", stream, as.integer(size)))
 }
 
 
@@ -1786,7 +1786,7 @@ gCancellableGetCurrent <- function() {
 #' @return Return value from C function
 #' @export
 gCancellableCancel <- function(cancellable) {
-  .Call("R_g_cancellable_cancel", cancellable)
+  invisible(.Call("R_g_cancellable_cancel", cancellable))
 }
 
 
@@ -1798,7 +1798,7 @@ gCancellableCancel <- function(cancellable) {
 #' @return Return value from C function
 #' @export
 gCancellableDisconnect <- function(cancellable, handler_id) {
-  .Call("R_g_cancellable_disconnect", cancellable, handler_id)
+  invisible(.Call("R_g_cancellable_disconnect", cancellable, as.integer(handler_id)))
 }
 
 
@@ -1843,7 +1843,7 @@ gCancellableMakePollfd <- function(cancellable, pollfd) {
 #' @return Return value from C function
 #' @export
 gCancellablePopCurrent <- function(cancellable) {
-  .Call("R_g_cancellable_pop_current", cancellable)
+  invisible(.Call("R_g_cancellable_pop_current", cancellable))
 }
 
 
@@ -1854,7 +1854,7 @@ gCancellablePopCurrent <- function(cancellable) {
 #' @return Return value from C function
 #' @export
 gCancellablePushCurrent <- function(cancellable) {
-  .Call("R_g_cancellable_push_current", cancellable)
+  invisible(.Call("R_g_cancellable_push_current", cancellable))
 }
 
 
@@ -1865,7 +1865,7 @@ gCancellablePushCurrent <- function(cancellable) {
 #' @return Return value from C function
 #' @export
 gCancellableReleaseFd <- function(cancellable) {
-  .Call("R_g_cancellable_release_fd", cancellable)
+  invisible(.Call("R_g_cancellable_release_fd", cancellable))
 }
 
 
@@ -1876,7 +1876,7 @@ gCancellableReleaseFd <- function(cancellable) {
 #' @return Return value from C function
 #' @export
 gCancellableReset <- function(cancellable) {
-  .Call("R_g_cancellable_reset", cancellable)
+  invisible(.Call("R_g_cancellable_reset", cancellable))
 }
 
 
@@ -1944,7 +1944,7 @@ gCharsetConverterGetUseFallback <- function(converter) {
 #' @return Return value from C function
 #' @export
 gCharsetConverterSetUseFallback <- function(converter, use_fallback) {
-  .Call("R_g_charset_converter_set_use_fallback", converter, use_fallback)
+  invisible(.Call("R_g_charset_converter_set_use_fallback", converter, use_fallback))
 }
 
 
@@ -1960,7 +1960,7 @@ gCharsetConverterSetUseFallback <- function(converter, use_fallback) {
 #' @return ConverterResult
 #' @export
 gConverterConvert <- function(converter, inbuf, inbuf_size, outbuf, outbuf_size, flags) {
-  .Call("R_g_converter_convert", converter, inbuf, inbuf_size, outbuf, outbuf_size, flags)
+  .Call("R_g_converter_convert", converter, as.integer(inbuf), as.integer(inbuf_size), as.integer(outbuf), as.integer(outbuf_size), flags)
 }
 
 
@@ -1983,7 +1983,7 @@ gConverterConvertBytes <- function(converter, bytes) {
 #' @return Return value from C function
 #' @export
 gConverterReset <- function(converter) {
-  .Call("R_g_converter_reset", converter)
+  invisible(.Call("R_g_converter_reset", converter))
 }
 
 
@@ -2086,7 +2086,7 @@ gCredentialsIsSameUser <- function(credentials, other_credentials) {
 #' @return Return value from C function
 #' @export
 gCredentialsSetNative <- function(credentials, native_type, native) {
-  .Call("R_g_credentials_set_native", credentials, native_type, native)
+  invisible(.Call("R_g_credentials_set_native", credentials, native_type, native))
 }
 
 
@@ -2144,7 +2144,7 @@ gDbusAnnotationInfoRef <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusAnnotationInfoUnref <- function(info) {
-  .Call("R_g_dbus_annotation_info_unref", info)
+  invisible(.Call("R_g_dbus_annotation_info_unref", info))
 }
 
 
@@ -2178,7 +2178,7 @@ gDbusArgInfoRef <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusArgInfoUnref <- function(info) {
-  .Call("R_g_dbus_arg_info_unref", info)
+  invisible(.Call("R_g_dbus_arg_info_unref", info))
 }
 
 
@@ -2296,7 +2296,7 @@ gDbusConnectionCallFinish <- function(connection, res) {
 #' @return GLib.Variant
 #' @export
 gDbusConnectionCallSync <- function(connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, timeout_msec, cancellable) {
-  .Call("R_g_dbus_connection_call_sync", connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, timeout_msec, cancellable)$result
+  .Call("R_g_dbus_connection_call_sync", connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, as.integer(timeout_msec), cancellable)$result
 }
 
 
@@ -2329,7 +2329,7 @@ gDbusConnectionCallWithUnixFdListFinish <- function(connection, res) {
 #' @return GLib.Variant
 #' @export
 gDbusConnectionCallWithUnixFdListSync <- function(connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, timeout_msec, fd_list, cancellable) {
-  .Call("R_g_dbus_connection_call_with_unix_fd_list_sync", connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, timeout_msec, fd_list, cancellable)
+  .Call("R_g_dbus_connection_call_with_unix_fd_list_sync", connection, bus_name, object_path, interface_name, method_name, parameters, reply_type, flags, as.integer(timeout_msec), fd_list, cancellable)
 }
 
 
@@ -2562,7 +2562,7 @@ gDbusConnectionRegisterObjectWithClosures2 <- function(connection, object_path, 
 #' @return Return value from C function
 #' @export
 gDbusConnectionRemoveFilter <- function(connection, filter_id) {
-  .Call("R_g_dbus_connection_remove_filter", connection, filter_id)
+  invisible(.Call("R_g_dbus_connection_remove_filter", connection, as.integer(filter_id)))
 }
 
 
@@ -2602,7 +2602,7 @@ gDbusConnectionSendMessageWithReplyFinish <- function(connection, res) {
 #' @return DBusMessage
 #' @export
 gDbusConnectionSendMessageWithReplySync <- function(connection, message, flags, timeout_msec, cancellable) {
-  .Call("R_g_dbus_connection_send_message_with_reply_sync", connection, message, flags, timeout_msec, cancellable)
+  .Call("R_g_dbus_connection_send_message_with_reply_sync", connection, message, flags, as.integer(timeout_msec), cancellable)
 }
 
 
@@ -2614,7 +2614,7 @@ gDbusConnectionSendMessageWithReplySync <- function(connection, message, flags, 
 #' @return Return value from C function
 #' @export
 gDbusConnectionSetExitOnClose <- function(connection, exit_on_close) {
-  .Call("R_g_dbus_connection_set_exit_on_close", connection, exit_on_close)
+  invisible(.Call("R_g_dbus_connection_set_exit_on_close", connection, exit_on_close))
 }
 
 
@@ -2626,7 +2626,7 @@ gDbusConnectionSetExitOnClose <- function(connection, exit_on_close) {
 #' @return Return value from C function
 #' @export
 gDbusConnectionSignalUnsubscribe <- function(connection, subscription_id) {
-  .Call("R_g_dbus_connection_signal_unsubscribe", connection, subscription_id)
+  invisible(.Call("R_g_dbus_connection_signal_unsubscribe", connection, as.integer(subscription_id)))
 }
 
 
@@ -2637,7 +2637,7 @@ gDbusConnectionSignalUnsubscribe <- function(connection, subscription_id) {
 #' @return Return value from C function
 #' @export
 gDbusConnectionStartMessageProcessing <- function(connection) {
-  .Call("R_g_dbus_connection_start_message_processing", connection)
+  invisible(.Call("R_g_dbus_connection_start_message_processing", connection))
 }
 
 
@@ -2649,7 +2649,7 @@ gDbusConnectionStartMessageProcessing <- function(connection) {
 #' @return Return value from C function
 #' @export
 gDbusConnectionUnexportActionGroup <- function(connection, export_id) {
-  .Call("R_g_dbus_connection_unexport_action_group", connection, export_id)
+  invisible(.Call("R_g_dbus_connection_unexport_action_group", connection, as.integer(export_id)))
 }
 
 
@@ -2661,7 +2661,7 @@ gDbusConnectionUnexportActionGroup <- function(connection, export_id) {
 #' @return Return value from C function
 #' @export
 gDbusConnectionUnexportMenuModel <- function(connection, export_id) {
-  .Call("R_g_dbus_connection_unexport_menu_model", connection, export_id)
+  invisible(.Call("R_g_dbus_connection_unexport_menu_model", connection, as.integer(export_id)))
 }
 
 
@@ -2673,7 +2673,7 @@ gDbusConnectionUnexportMenuModel <- function(connection, export_id) {
 #' @return gboolean
 #' @export
 gDbusConnectionUnregisterObject <- function(connection, registration_id) {
-  .Call("R_g_dbus_connection_unregister_object", connection, registration_id)$result
+  .Call("R_g_dbus_connection_unregister_object", connection, as.integer(registration_id))$result
 }
 
 
@@ -2685,7 +2685,7 @@ gDbusConnectionUnregisterObject <- function(connection, registration_id) {
 #' @return gboolean
 #' @export
 gDbusConnectionUnregisterSubtree <- function(connection, registration_id) {
-  .Call("R_g_dbus_connection_unregister_subtree", connection, registration_id)$result
+  .Call("R_g_dbus_connection_unregister_subtree", connection, as.integer(registration_id))$result
 }
 
 
@@ -2753,7 +2753,7 @@ gDbusErrorQuark <- function() {
 #' @return gboolean
 #' @export
 gDbusErrorRegisterError <- function(error_domain, error_code, dbus_error_name) {
-  .Call("R_g_dbus_error_register_error", error_domain, error_code, dbus_error_name)$result
+  .Call("R_g_dbus_error_register_error", error_domain, as.integer(error_code), dbus_error_name)$result
 }
 
 
@@ -2766,7 +2766,7 @@ gDbusErrorRegisterError <- function(error_domain, error_code, dbus_error_name) {
 #' @return Return value from C function
 #' @export
 gDbusErrorRegisterErrorDomain <- function(error_domain_quark_name, entries, num_entries) {
-  .Call("R_g_dbus_error_register_error_domain", error_domain_quark_name, entries, num_entries)$quark_volatile
+  .Call("R_g_dbus_error_register_error_domain", error_domain_quark_name, entries, as.integer(num_entries))$quark_volatile
 }
 
 
@@ -2790,7 +2790,7 @@ gDbusErrorStripRemoteError <- function(error) {
 #' @return gboolean
 #' @export
 gDbusErrorUnregisterError <- function(error_domain, error_code, dbus_error_name) {
-  .Call("R_g_dbus_error_unregister_error", error_domain, error_code, dbus_error_name)$result
+  .Call("R_g_dbus_error_unregister_error", error_domain, as.integer(error_code), dbus_error_name)$result
 }
 
 
@@ -2824,7 +2824,7 @@ gDbusInterfaceGetInfo <- function(interface_) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceSetObject <- function(interface_, object) {
-  .Call("R_g_dbus_interface_set_object", interface_, object)
+  invisible(.Call("R_g_dbus_interface_set_object", interface_, object))
 }
 
 
@@ -2835,7 +2835,7 @@ gDbusInterfaceSetObject <- function(interface_, object) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceInfoCacheBuild <- function(info) {
-  .Call("R_g_dbus_interface_info_cache_build", info)
+  invisible(.Call("R_g_dbus_interface_info_cache_build", info))
 }
 
 
@@ -2846,7 +2846,7 @@ gDbusInterfaceInfoCacheBuild <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceInfoCacheRelease <- function(info) {
-  .Call("R_g_dbus_interface_info_cache_release", info)
+  invisible(.Call("R_g_dbus_interface_info_cache_release", info))
 }
 
 
@@ -2859,7 +2859,7 @@ gDbusInterfaceInfoCacheRelease <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceInfoGenerateXml <- function(info, indent, string_builder) {
-  .Call("R_g_dbus_interface_info_generate_xml", info, indent, string_builder)
+  invisible(.Call("R_g_dbus_interface_info_generate_xml", info, as.integer(indent), string_builder))
 }
 
 
@@ -2917,7 +2917,7 @@ gDbusInterfaceInfoRef <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceInfoUnref <- function(info) {
-  .Call("R_g_dbus_interface_info_unref", info)
+  invisible(.Call("R_g_dbus_interface_info_unref", info))
 }
 
 
@@ -2941,7 +2941,7 @@ gDbusInterfaceSkeletonExport <- function(interface_, connection, object_path) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceSkeletonFlush <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_flush", interface_)
+  invisible(.Call("R_g_dbus_interface_skeleton_flush", interface_))
 }
 
 
@@ -3042,7 +3042,7 @@ gDbusInterfaceSkeletonHasConnection <- function(interface_, connection) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceSkeletonSetFlags <- function(interface_, flags) {
-  .Call("R_g_dbus_interface_skeleton_set_flags", interface_, flags)
+  invisible(.Call("R_g_dbus_interface_skeleton_set_flags", interface_, flags))
 }
 
 
@@ -3053,7 +3053,7 @@ gDbusInterfaceSkeletonSetFlags <- function(interface_, flags) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceSkeletonUnexport <- function(interface_) {
-  .Call("R_g_dbus_interface_skeleton_unexport", interface_)
+  invisible(.Call("R_g_dbus_interface_skeleton_unexport", interface_))
 }
 
 
@@ -3065,7 +3065,7 @@ gDbusInterfaceSkeletonUnexport <- function(interface_) {
 #' @return Return value from C function
 #' @export
 gDbusInterfaceSkeletonUnexportFromConnection <- function(interface_, connection) {
-  .Call("R_g_dbus_interface_skeleton_unexport_from_connection", interface_, connection)
+  invisible(.Call("R_g_dbus_interface_skeleton_unexport_from_connection", interface_, connection))
 }
 
 
@@ -3101,7 +3101,7 @@ gDbusMessageNew <- function() {
 #' @return DBusMessage
 #' @export
 gDbusMessageNewFromBlob <- function(blob, blob_len, capabilities) {
-  .Call("R_g_dbus_message_new_from_blob", blob, blob_len, capabilities)$result
+  .Call("R_g_dbus_message_new_from_blob", as.integer(blob), as.integer(blob_len), capabilities)$result
 }
 
 
@@ -3140,7 +3140,7 @@ gDbusMessageNewSignal <- function(path, interface_, signal) {
 #' @return gssize
 #' @export
 gDbusMessageBytesNeeded <- function(blob, blob_len) {
-  .Call("R_g_dbus_message_bytes_needed", blob, blob_len)$result
+  .Call("R_g_dbus_message_bytes_needed", as.integer(blob), as.integer(blob_len))$result
 }
 
 
@@ -3383,7 +3383,7 @@ gDbusMessageGetUnixFdList <- function(message) {
 #' @return Return value from C function
 #' @export
 gDbusMessageLock <- function(message) {
-  .Call("R_g_dbus_message_lock", message)
+  invisible(.Call("R_g_dbus_message_lock", message))
 }
 
 
@@ -3419,7 +3419,7 @@ gDbusMessageNewMethodReply <- function(method_call_message) {
 #' @return utf8
 #' @export
 gDbusMessagePrint <- function(message, indent) {
-  .Call("R_g_dbus_message_print", message, indent)$result
+  .Call("R_g_dbus_message_print", message, as.integer(indent))$result
 }
 
 
@@ -3431,7 +3431,7 @@ gDbusMessagePrint <- function(message, indent) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetBody <- function(message, body) {
-  .Call("R_g_dbus_message_set_body", message, body)
+  invisible(.Call("R_g_dbus_message_set_body", message, body))
 }
 
 
@@ -3443,7 +3443,7 @@ gDbusMessageSetBody <- function(message, body) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetByteOrder <- function(message, byte_order) {
-  .Call("R_g_dbus_message_set_byte_order", message, byte_order)
+  invisible(.Call("R_g_dbus_message_set_byte_order", message, byte_order))
 }
 
 
@@ -3455,7 +3455,7 @@ gDbusMessageSetByteOrder <- function(message, byte_order) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetDestination <- function(message, value) {
-  .Call("R_g_dbus_message_set_destination", message, value)
+  invisible(.Call("R_g_dbus_message_set_destination", message, value))
 }
 
 
@@ -3467,7 +3467,7 @@ gDbusMessageSetDestination <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetErrorName <- function(message, value) {
-  .Call("R_g_dbus_message_set_error_name", message, value)
+  invisible(.Call("R_g_dbus_message_set_error_name", message, value))
 }
 
 
@@ -3479,7 +3479,7 @@ gDbusMessageSetErrorName <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetFlags <- function(message, flags) {
-  .Call("R_g_dbus_message_set_flags", message, flags)
+  invisible(.Call("R_g_dbus_message_set_flags", message, flags))
 }
 
 
@@ -3492,7 +3492,7 @@ gDbusMessageSetFlags <- function(message, flags) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetHeader <- function(message, header_field, value) {
-  .Call("R_g_dbus_message_set_header", message, header_field, value)
+  invisible(.Call("R_g_dbus_message_set_header", message, header_field, value))
 }
 
 
@@ -3504,7 +3504,7 @@ gDbusMessageSetHeader <- function(message, header_field, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetInterface <- function(message, value) {
-  .Call("R_g_dbus_message_set_interface", message, value)
+  invisible(.Call("R_g_dbus_message_set_interface", message, value))
 }
 
 
@@ -3516,7 +3516,7 @@ gDbusMessageSetInterface <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetMember <- function(message, value) {
-  .Call("R_g_dbus_message_set_member", message, value)
+  invisible(.Call("R_g_dbus_message_set_member", message, value))
 }
 
 
@@ -3528,7 +3528,7 @@ gDbusMessageSetMember <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetMessageType <- function(message, type) {
-  .Call("R_g_dbus_message_set_message_type", message, type)
+  invisible(.Call("R_g_dbus_message_set_message_type", message, type))
 }
 
 
@@ -3540,7 +3540,7 @@ gDbusMessageSetMessageType <- function(message, type) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetNumUnixFds <- function(message, value) {
-  .Call("R_g_dbus_message_set_num_unix_fds", message, value)
+  invisible(.Call("R_g_dbus_message_set_num_unix_fds", message, as.integer(value)))
 }
 
 
@@ -3552,7 +3552,7 @@ gDbusMessageSetNumUnixFds <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetPath <- function(message, value) {
-  .Call("R_g_dbus_message_set_path", message, value)
+  invisible(.Call("R_g_dbus_message_set_path", message, value))
 }
 
 
@@ -3564,7 +3564,7 @@ gDbusMessageSetPath <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetReplySerial <- function(message, value) {
-  .Call("R_g_dbus_message_set_reply_serial", message, value)
+  invisible(.Call("R_g_dbus_message_set_reply_serial", message, as.integer(value)))
 }
 
 
@@ -3576,7 +3576,7 @@ gDbusMessageSetReplySerial <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetSender <- function(message, value) {
-  .Call("R_g_dbus_message_set_sender", message, value)
+  invisible(.Call("R_g_dbus_message_set_sender", message, value))
 }
 
 
@@ -3588,7 +3588,7 @@ gDbusMessageSetSender <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetSerial <- function(message, serial) {
-  .Call("R_g_dbus_message_set_serial", message, serial)
+  invisible(.Call("R_g_dbus_message_set_serial", message, as.integer(serial)))
 }
 
 
@@ -3600,7 +3600,7 @@ gDbusMessageSetSerial <- function(message, serial) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetSignature <- function(message, value) {
-  .Call("R_g_dbus_message_set_signature", message, value)
+  invisible(.Call("R_g_dbus_message_set_signature", message, value))
 }
 
 
@@ -3612,7 +3612,7 @@ gDbusMessageSetSignature <- function(message, value) {
 #' @return Return value from C function
 #' @export
 gDbusMessageSetUnixFdList <- function(message, fd_list) {
-  .Call("R_g_dbus_message_set_unix_fd_list", message, fd_list)
+  invisible(.Call("R_g_dbus_message_set_unix_fd_list", message, fd_list))
 }
 
 
@@ -3657,7 +3657,7 @@ gDbusMethodInfoRef <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusMethodInfoUnref <- function(info) {
-  .Call("R_g_dbus_method_info_unref", info)
+  invisible(.Call("R_g_dbus_method_info_unref", info))
 }
 
 
@@ -3769,7 +3769,7 @@ gDbusMethodInvocationGetSender <- function(invocation) {
 #' @return Return value from C function
 #' @export
 gDbusMethodInvocationReturnDbusError <- function(invocation, error_name, error_message) {
-  .Call("R_g_dbus_method_invocation_return_dbus_error", invocation, error_name, error_message)
+  invisible(.Call("R_g_dbus_method_invocation_return_dbus_error", invocation, error_name, error_message))
 }
 
 
@@ -3783,7 +3783,7 @@ gDbusMethodInvocationReturnDbusError <- function(invocation, error_name, error_m
 #' @return Return value from C function
 #' @export
 gDbusMethodInvocationReturnErrorLiteral <- function(invocation, domain, code, message) {
-  .Call("R_g_dbus_method_invocation_return_error_literal", invocation, domain, code, message)
+  invisible(.Call("R_g_dbus_method_invocation_return_error_literal", invocation, domain, as.integer(code), message))
 }
 
 
@@ -3795,7 +3795,7 @@ gDbusMethodInvocationReturnErrorLiteral <- function(invocation, domain, code, me
 #' @return Return value from C function
 #' @export
 gDbusMethodInvocationReturnGerror <- function(invocation, error) {
-  .Call("R_g_dbus_method_invocation_return_gerror", invocation, error)
+  invisible(.Call("R_g_dbus_method_invocation_return_gerror", invocation, error))
 }
 
 
@@ -3807,7 +3807,7 @@ gDbusMethodInvocationReturnGerror <- function(invocation, error) {
 #' @return Return value from C function
 #' @export
 gDbusMethodInvocationReturnValue <- function(invocation, parameters) {
-  .Call("R_g_dbus_method_invocation_return_value", invocation, parameters)
+  invisible(.Call("R_g_dbus_method_invocation_return_value", invocation, parameters))
 }
 
 
@@ -3820,7 +3820,7 @@ gDbusMethodInvocationReturnValue <- function(invocation, parameters) {
 #' @return Return value from C function
 #' @export
 gDbusMethodInvocationReturnValueWithUnixFdList <- function(invocation, parameters, fd_list) {
-  .Call("R_g_dbus_method_invocation_return_value_with_unix_fd_list", invocation, parameters, fd_list)
+  invisible(.Call("R_g_dbus_method_invocation_return_value_with_unix_fd_list", invocation, parameters, fd_list))
 }
 
 
@@ -3844,7 +3844,7 @@ gDbusNodeInfoNewForXml <- function(xml_data) {
 #' @return Return value from C function
 #' @export
 gDbusNodeInfoGenerateXml <- function(info, indent, string_builder) {
-  .Call("R_g_dbus_node_info_generate_xml", info, indent, string_builder)
+  invisible(.Call("R_g_dbus_node_info_generate_xml", info, as.integer(indent), string_builder))
 }
 
 
@@ -3878,7 +3878,7 @@ gDbusNodeInfoRef <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusNodeInfoUnref <- function(info) {
-  .Call("R_g_dbus_node_info_unref", info)
+  invisible(.Call("R_g_dbus_node_info_unref", info))
 }
 
 
@@ -4048,7 +4048,7 @@ gDbusObjectManagerServerNew <- function(object_path) {
 #' @return Return value from C function
 #' @export
 gDbusObjectManagerServerExport <- function(manager, object) {
-  .Call("R_g_dbus_object_manager_server_export", manager, object)
+  invisible(.Call("R_g_dbus_object_manager_server_export", manager, object))
 }
 
 
@@ -4060,7 +4060,7 @@ gDbusObjectManagerServerExport <- function(manager, object) {
 #' @return Return value from C function
 #' @export
 gDbusObjectManagerServerExportUniquely <- function(manager, object) {
-  .Call("R_g_dbus_object_manager_server_export_uniquely", manager, object)
+  invisible(.Call("R_g_dbus_object_manager_server_export_uniquely", manager, object))
 }
 
 
@@ -4095,7 +4095,7 @@ gDbusObjectManagerServerIsExported <- function(manager, object) {
 #' @return Return value from C function
 #' @export
 gDbusObjectManagerServerSetConnection <- function(manager, connection) {
-  .Call("R_g_dbus_object_manager_server_set_connection", manager, connection)
+  invisible(.Call("R_g_dbus_object_manager_server_set_connection", manager, connection))
 }
 
 
@@ -4153,7 +4153,7 @@ gDbusObjectSkeletonNew <- function(object_path) {
 #' @return Return value from C function
 #' @export
 gDbusObjectSkeletonAddInterface <- function(object, interface_) {
-  .Call("R_g_dbus_object_skeleton_add_interface", object, interface_)
+  invisible(.Call("R_g_dbus_object_skeleton_add_interface", object, interface_))
 }
 
 
@@ -4164,7 +4164,7 @@ gDbusObjectSkeletonAddInterface <- function(object, interface_) {
 #' @return Return value from C function
 #' @export
 gDbusObjectSkeletonFlush <- function(object) {
-  .Call("R_g_dbus_object_skeleton_flush", object)
+  invisible(.Call("R_g_dbus_object_skeleton_flush", object))
 }
 
 
@@ -4176,7 +4176,7 @@ gDbusObjectSkeletonFlush <- function(object) {
 #' @return Return value from C function
 #' @export
 gDbusObjectSkeletonRemoveInterface <- function(object, interface_) {
-  .Call("R_g_dbus_object_skeleton_remove_interface", object, interface_)
+  invisible(.Call("R_g_dbus_object_skeleton_remove_interface", object, interface_))
 }
 
 
@@ -4188,7 +4188,7 @@ gDbusObjectSkeletonRemoveInterface <- function(object, interface_) {
 #' @return Return value from C function
 #' @export
 gDbusObjectSkeletonRemoveInterfaceByName <- function(object, interface_name) {
-  .Call("R_g_dbus_object_skeleton_remove_interface_by_name", object, interface_name)
+  invisible(.Call("R_g_dbus_object_skeleton_remove_interface_by_name", object, interface_name))
 }
 
 
@@ -4200,7 +4200,7 @@ gDbusObjectSkeletonRemoveInterfaceByName <- function(object, interface_name) {
 #' @return Return value from C function
 #' @export
 gDbusObjectSkeletonSetObjectPath <- function(object, object_path) {
-  .Call("R_g_dbus_object_skeleton_set_object_path", object, object_path)
+  invisible(.Call("R_g_dbus_object_skeleton_set_object_path", object, object_path))
 }
 
 
@@ -4222,7 +4222,7 @@ gDbusPropertyInfoRef <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusPropertyInfoUnref <- function(info) {
-  .Call("R_g_dbus_property_info_unref", info)
+  invisible(.Call("R_g_dbus_property_info_unref", info))
 }
 
 
@@ -4306,7 +4306,7 @@ gDbusProxyCallFinish <- function(proxy, res) {
 #' @return GLib.Variant
 #' @export
 gDbusProxyCallSync <- function(proxy, method_name, parameters, flags, timeout_msec, cancellable) {
-  .Call("R_g_dbus_proxy_call_sync", proxy, method_name, parameters, flags, timeout_msec, cancellable)$result
+  .Call("R_g_dbus_proxy_call_sync", proxy, method_name, parameters, flags, as.integer(timeout_msec), cancellable)$result
 }
 
 
@@ -4335,7 +4335,7 @@ gDbusProxyCallWithUnixFdListFinish <- function(proxy, res) {
 #' @return GLib.Variant
 #' @export
 gDbusProxyCallWithUnixFdListSync <- function(proxy, method_name, parameters, flags, timeout_msec, fd_list, cancellable) {
-  .Call("R_g_dbus_proxy_call_with_unix_fd_list_sync", proxy, method_name, parameters, flags, timeout_msec, fd_list, cancellable)
+  .Call("R_g_dbus_proxy_call_with_unix_fd_list_sync", proxy, method_name, parameters, flags, as.integer(timeout_msec), fd_list, cancellable)
 }
 
 
@@ -4459,7 +4459,7 @@ gDbusProxyGetObjectPath <- function(proxy) {
 #' @return Return value from C function
 #' @export
 gDbusProxySetCachedProperty <- function(proxy, property_name, value) {
-  .Call("R_g_dbus_proxy_set_cached_property", proxy, property_name, value)
+  invisible(.Call("R_g_dbus_proxy_set_cached_property", proxy, property_name, value))
 }
 
 
@@ -4471,7 +4471,7 @@ gDbusProxySetCachedProperty <- function(proxy, property_name, value) {
 #' @return Return value from C function
 #' @export
 gDbusProxySetDefaultTimeout <- function(proxy, timeout_msec) {
-  .Call("R_g_dbus_proxy_set_default_timeout", proxy, timeout_msec)
+  invisible(.Call("R_g_dbus_proxy_set_default_timeout", proxy, as.integer(timeout_msec)))
 }
 
 
@@ -4483,7 +4483,7 @@ gDbusProxySetDefaultTimeout <- function(proxy, timeout_msec) {
 #' @return Return value from C function
 #' @export
 gDbusProxySetInterfaceInfo <- function(proxy, info) {
-  .Call("R_g_dbus_proxy_set_interface_info", proxy, info)
+  invisible(.Call("R_g_dbus_proxy_set_interface_info", proxy, info))
 }
 
 
@@ -4553,7 +4553,7 @@ gDbusServerIsActive <- function(server) {
 #' @return Return value from C function
 #' @export
 gDbusServerStart <- function(server) {
-  .Call("R_g_dbus_server_start", server)
+  invisible(.Call("R_g_dbus_server_start", server))
 }
 
 
@@ -4564,7 +4564,7 @@ gDbusServerStart <- function(server) {
 #' @return Return value from C function
 #' @export
 gDbusServerStop <- function(server) {
-  .Call("R_g_dbus_server_stop", server)
+  invisible(.Call("R_g_dbus_server_stop", server))
 }
 
 
@@ -4586,7 +4586,7 @@ gDbusSignalInfoRef <- function(info) {
 #' @return Return value from C function
 #' @export
 gDbusSignalInfoUnref <- function(info) {
-  .Call("R_g_dbus_signal_info_unref", info)
+  invisible(.Call("R_g_dbus_signal_info_unref", info))
 }
 
 
@@ -4790,7 +4790,7 @@ gDataInputStreamReadUntilFinish <- function(stream, result) {
 #' @return utf8
 #' @export
 gDataInputStreamReadUpto <- function(stream, stop_chars, stop_chars_len, cancellable) {
-  .Call("R_g_data_input_stream_read_upto", stream, stop_chars, stop_chars_len, cancellable)
+  .Call("R_g_data_input_stream_read_upto", stream, stop_chars, as.integer(stop_chars_len), cancellable)
 }
 
 
@@ -4814,7 +4814,7 @@ gDataInputStreamReadUptoFinish <- function(stream, result) {
 #' @return Return value from C function
 #' @export
 gDataInputStreamSetByteOrder <- function(stream, order) {
-  .Call("R_g_data_input_stream_set_byte_order", stream, order)
+  invisible(.Call("R_g_data_input_stream_set_byte_order", stream, order))
 }
 
 
@@ -4826,7 +4826,7 @@ gDataInputStreamSetByteOrder <- function(stream, order) {
 #' @return Return value from C function
 #' @export
 gDataInputStreamSetNewlineType <- function(stream, type) {
-  .Call("R_g_data_input_stream_set_newline_type", stream, type)
+  invisible(.Call("R_g_data_input_stream_set_newline_type", stream, type))
 }
 
 
@@ -4861,7 +4861,7 @@ gDataOutputStreamGetByteOrder <- function(stream) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutByte <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_byte", stream, data, cancellable)$result
+  .Call("R_g_data_output_stream_put_byte", stream, as.integer(data), cancellable)$result
 }
 
 
@@ -4874,7 +4874,7 @@ gDataOutputStreamPutByte <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutInt16 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_int16", stream, data, cancellable)$result
+  .Call("R_g_data_output_stream_put_int16", stream, as.integer(data), cancellable)$result
 }
 
 
@@ -4887,7 +4887,7 @@ gDataOutputStreamPutInt16 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutInt32 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_int32", stream, data, cancellable)$result
+  .Call("R_g_data_output_stream_put_int32", stream, as.integer(data), cancellable)$result
 }
 
 
@@ -4900,7 +4900,7 @@ gDataOutputStreamPutInt32 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutInt64 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_int64", stream, data, cancellable)$result
+  .Call("R_g_data_output_stream_put_int64", stream, as.integer(data), cancellable)$result
 }
 
 
@@ -4926,7 +4926,7 @@ gDataOutputStreamPutString <- function(stream, str, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutUint16 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_uint16", stream, data, cancellable)$result
+  .Call("R_g_data_output_stream_put_uint16", stream, as.integer(data), cancellable)$result
 }
 
 
@@ -4939,7 +4939,7 @@ gDataOutputStreamPutUint16 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutUint32 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_uint32", stream, data, cancellable)$result
+  .Call("R_g_data_output_stream_put_uint32", stream, as.integer(data), cancellable)$result
 }
 
 
@@ -4952,7 +4952,7 @@ gDataOutputStreamPutUint32 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutUint64 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_uint64", stream, data, cancellable)$result
+  .Call("R_g_data_output_stream_put_uint64", stream, as.integer(data), cancellable)$result
 }
 
 
@@ -4964,7 +4964,7 @@ gDataOutputStreamPutUint64 <- function(stream, data, cancellable) {
 #' @return Return value from C function
 #' @export
 gDataOutputStreamSetByteOrder <- function(stream, order) {
-  .Call("R_g_data_output_stream_set_byte_order", stream, order)
+  invisible(.Call("R_g_data_output_stream_set_byte_order", stream, order))
 }
 
 
@@ -4990,7 +4990,7 @@ gDatagramBasedConditionCheck <- function(datagram_based, condition) {
 #' @return gboolean
 #' @export
 gDatagramBasedConditionWait <- function(datagram_based, condition, timeout, cancellable) {
-  .Call("R_g_datagram_based_condition_wait", datagram_based, condition, timeout, cancellable)$result
+  .Call("R_g_datagram_based_condition_wait", datagram_based, condition, as.integer(timeout), cancellable)$result
 }
 
 
@@ -5019,7 +5019,7 @@ gDatagramBasedCreateSource <- function(datagram_based, condition, cancellable) {
 #' @return gint
 #' @export
 gDatagramBasedReceiveMessages <- function(datagram_based, messages, num_messages, flags, timeout, cancellable) {
-  .Call("R_g_datagram_based_receive_messages", datagram_based, messages, num_messages, flags, timeout, cancellable)$result
+  .Call("R_g_datagram_based_receive_messages", datagram_based, messages, as.integer(num_messages), as.integer(flags), as.integer(timeout), cancellable)$result
 }
 
 
@@ -5035,7 +5035,7 @@ gDatagramBasedReceiveMessages <- function(datagram_based, messages, num_messages
 #' @return gint
 #' @export
 gDatagramBasedSendMessages <- function(datagram_based, messages, num_messages, flags, timeout, cancellable) {
-  .Call("R_g_datagram_based_send_messages", datagram_based, messages, num_messages, flags, timeout, cancellable)$result
+  .Call("R_g_datagram_based_send_messages", datagram_based, messages, as.integer(num_messages), as.integer(flags), as.integer(timeout), cancellable)$result
 }
 
 
@@ -5058,7 +5058,7 @@ gDebugControllerGetDebugEnabled <- function(self) {
 #' @return Return value from C function
 #' @export
 gDebugControllerSetDebugEnabled <- function(self, debug_enabled) {
-  .Call("R_g_debug_controller_set_debug_enabled", self, debug_enabled)
+  invisible(.Call("R_g_debug_controller_set_debug_enabled", self, debug_enabled))
 }
 
 
@@ -5081,7 +5081,7 @@ gDebugControllerDbusNew <- function(connection, cancellable) {
 #' @return Return value from C function
 #' @export
 gDebugControllerDbusStop <- function(self) {
-  .Call("R_g_debug_controller_dbus_stop", self)
+  invisible(.Call("R_g_debug_controller_dbus_stop", self))
 }
 
 
@@ -5409,7 +5409,7 @@ gEmblemedIconNew <- function(icon, emblem) {
 #' @return Return value from C function
 #' @export
 gEmblemedIconAddEmblem <- function(emblemed, emblem) {
-  .Call("R_g_emblemed_icon_add_emblem", emblemed, emblem)
+  invisible(.Call("R_g_emblemed_icon_add_emblem", emblemed, emblem))
 }
 
 
@@ -5420,7 +5420,7 @@ gEmblemedIconAddEmblem <- function(emblemed, emblem) {
 #' @return Return value from C function
 #' @export
 gEmblemedIconClearEmblems <- function(emblemed) {
-  .Call("R_g_emblemed_icon_clear_emblems", emblemed)
+  invisible(.Call("R_g_emblemed_icon_clear_emblems", emblemed))
 }
 
 
@@ -5597,7 +5597,7 @@ gFileBuildAttributeListForCopy <- function(file, flags, cancellable) {
 #' @return Return value from C function
 #' @export
 gFileCopyAsyncWithClosures <- function(source, destination, flags, io_priority, cancellable, progress_callback_closure, ready_callback_closure) {
-  .Call("R_g_file_copy_async_with_closures", source, destination, flags, io_priority, cancellable, progress_callback_closure, ready_callback_closure)
+  invisible(.Call("R_g_file_copy_async_with_closures", source, destination, flags, as.integer(io_priority), cancellable, progress_callback_closure, ready_callback_closure))
 }
 
 
@@ -6167,7 +6167,7 @@ gFileMountMountableFinish <- function(file, result) {
 #' @return Return value from C function
 #' @export
 gFileMoveAsyncWithClosures <- function(source, destination, flags, io_priority, cancellable, progress_callback_closure, ready_callback_closure) {
-  .Call("R_g_file_move_async_with_closures", source, destination, flags, io_priority, cancellable, progress_callback_closure, ready_callback_closure)
+  invisible(.Call("R_g_file_move_async_with_closures", source, destination, flags, as.integer(io_priority), cancellable, progress_callback_closure, ready_callback_closure))
 }
 
 
@@ -6406,7 +6406,7 @@ gFileReplace <- function(file, etag, make_backup, flags, cancellable) {
 #' @return gboolean
 #' @export
 gFileReplaceContents <- function(file, contents, length, etag, make_backup, flags, cancellable) {
-  .Call("R_g_file_replace_contents", file, contents, length, etag, make_backup, flags, cancellable)
+  .Call("R_g_file_replace_contents", file, as.integer(contents), as.integer(length), etag, make_backup, flags, cancellable)
 }
 
 
@@ -6515,7 +6515,7 @@ gFileSetAttributeByteString <- function(file, attribute, value, flags, cancellab
 #' @return gboolean
 #' @export
 gFileSetAttributeInt32 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_int32", file, attribute, value, flags, cancellable)$result
+  .Call("R_g_file_set_attribute_int32", file, attribute, as.integer(value), flags, cancellable)$result
 }
 
 
@@ -6530,7 +6530,7 @@ gFileSetAttributeInt32 <- function(file, attribute, value, flags, cancellable) {
 #' @return gboolean
 #' @export
 gFileSetAttributeInt64 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_int64", file, attribute, value, flags, cancellable)$result
+  .Call("R_g_file_set_attribute_int64", file, attribute, as.integer(value), flags, cancellable)$result
 }
 
 
@@ -6560,7 +6560,7 @@ gFileSetAttributeString <- function(file, attribute, value, flags, cancellable) 
 #' @return gboolean
 #' @export
 gFileSetAttributeUint32 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_uint32", file, attribute, value, flags, cancellable)$result
+  .Call("R_g_file_set_attribute_uint32", file, attribute, as.integer(value), flags, cancellable)$result
 }
 
 
@@ -6575,7 +6575,7 @@ gFileSetAttributeUint32 <- function(file, attribute, value, flags, cancellable) 
 #' @return gboolean
 #' @export
 gFileSetAttributeUint64 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_uint64", file, attribute, value, flags, cancellable)$result
+  .Call("R_g_file_set_attribute_uint64", file, attribute, as.integer(value), flags, cancellable)$result
 }
 
 
@@ -6733,7 +6733,7 @@ gFileAttributeInfoListNew <- function() {
 #' @return Return value from C function
 #' @export
 gFileAttributeInfoListAdd <- function(list, name, type, flags) {
-  .Call("R_g_file_attribute_info_list_add", list, name, type, flags)
+  invisible(.Call("R_g_file_attribute_info_list_add", list, name, type, flags))
 }
 
 
@@ -6778,7 +6778,7 @@ gFileAttributeInfoListRef <- function(list) {
 #' @return Return value from C function
 #' @export
 gFileAttributeInfoListUnref <- function(list) {
-  .Call("R_g_file_attribute_info_list_unref", list)
+  invisible(.Call("R_g_file_attribute_info_list_unref", list))
 }
 
 
@@ -6881,7 +6881,7 @@ gFileAttributeMatcherToString <- function(matcher) {
 #' @return Return value from C function
 #' @export
 gFileAttributeMatcherUnref <- function(matcher) {
-  .Call("R_g_file_attribute_matcher_unref", matcher)
+  invisible(.Call("R_g_file_attribute_matcher_unref", matcher))
 }
 
 
@@ -6998,7 +6998,7 @@ gFileEnumeratorNextFilesFinish <- function(enumerator, result) {
 #' @return Return value from C function
 #' @export
 gFileEnumeratorSetPending <- function(enumerator, pending) {
-  .Call("R_g_file_enumerator_set_pending", enumerator, pending)
+  invisible(.Call("R_g_file_enumerator_set_pending", enumerator, pending))
 }
 
 
@@ -7077,7 +7077,7 @@ gFileInfoNew <- function() {
 #' @return Return value from C function
 #' @export
 gFileInfoClearStatus <- function(info) {
-  .Call("R_g_file_info_clear_status", info)
+  invisible(.Call("R_g_file_info_clear_status", info))
 }
 
 
@@ -7089,7 +7089,7 @@ gFileInfoClearStatus <- function(info) {
 #' @return Return value from C function
 #' @export
 gFileInfoCopyInto <- function(src_info, dest_info) {
-  .Call("R_g_file_info_copy_into", src_info, dest_info)
+  invisible(.Call("R_g_file_info_copy_into", src_info, dest_info))
 }
 
 
@@ -7525,7 +7525,7 @@ gFileInfoListAttributes <- function(info, name_space) {
 #' @return Return value from C function
 #' @export
 gFileInfoRemoveAttribute <- function(info, attribute) {
-  .Call("R_g_file_info_remove_attribute", info, attribute)
+  invisible(.Call("R_g_file_info_remove_attribute", info, attribute))
 }
 
 
@@ -7537,7 +7537,7 @@ gFileInfoRemoveAttribute <- function(info, attribute) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAccessDateTime <- function(info, atime) {
-  .Call("R_g_file_info_set_access_date_time", info, atime)
+  invisible(.Call("R_g_file_info_set_access_date_time", info, atime))
 }
 
 
@@ -7551,7 +7551,7 @@ gFileInfoSetAccessDateTime <- function(info, atime) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttribute <- function(info, attribute, type, value_p) {
-  .Call("R_g_file_info_set_attribute", info, attribute, type, value_p)
+  invisible(.Call("R_g_file_info_set_attribute", info, attribute, type, value_p))
 }
 
 
@@ -7564,7 +7564,7 @@ gFileInfoSetAttribute <- function(info, attribute, type, value_p) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeBoolean <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_boolean", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_boolean", info, attribute, attr_value))
 }
 
 
@@ -7577,7 +7577,7 @@ gFileInfoSetAttributeBoolean <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeByteString <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_byte_string", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_byte_string", info, attribute, attr_value))
 }
 
 
@@ -7590,7 +7590,7 @@ gFileInfoSetAttributeByteString <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeFilePath <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_file_path", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_file_path", info, attribute, attr_value))
 }
 
 
@@ -7603,7 +7603,7 @@ gFileInfoSetAttributeFilePath <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeInt32 <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_int32", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_int32", info, attribute, as.integer(attr_value)))
 }
 
 
@@ -7616,7 +7616,7 @@ gFileInfoSetAttributeInt32 <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeInt64 <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_int64", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_int64", info, attribute, as.integer(attr_value)))
 }
 
 
@@ -7628,7 +7628,7 @@ gFileInfoSetAttributeInt64 <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeMask <- function(info, mask) {
-  .Call("R_g_file_info_set_attribute_mask", info, mask)
+  invisible(.Call("R_g_file_info_set_attribute_mask", info, mask))
 }
 
 
@@ -7641,7 +7641,7 @@ gFileInfoSetAttributeMask <- function(info, mask) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeObject <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_object", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_object", info, attribute, attr_value))
 }
 
 
@@ -7667,7 +7667,7 @@ gFileInfoSetAttributeStatus <- function(info, attribute, status) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeString <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_string", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_string", info, attribute, attr_value))
 }
 
 
@@ -7680,7 +7680,7 @@ gFileInfoSetAttributeString <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeStringv <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_stringv", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_stringv", info, attribute, attr_value))
 }
 
 
@@ -7693,7 +7693,7 @@ gFileInfoSetAttributeStringv <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeUint32 <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_uint32", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_uint32", info, attribute, as.integer(attr_value)))
 }
 
 
@@ -7706,7 +7706,7 @@ gFileInfoSetAttributeUint32 <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeUint64 <- function(info, attribute, attr_value) {
-  .Call("R_g_file_info_set_attribute_uint64", info, attribute, attr_value)
+  invisible(.Call("R_g_file_info_set_attribute_uint64", info, attribute, as.integer(attr_value)))
 }
 
 
@@ -7718,7 +7718,7 @@ gFileInfoSetAttributeUint64 <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetContentType <- function(info, content_type) {
-  .Call("R_g_file_info_set_content_type", info, content_type)
+  invisible(.Call("R_g_file_info_set_content_type", info, content_type))
 }
 
 
@@ -7730,7 +7730,7 @@ gFileInfoSetContentType <- function(info, content_type) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetCreationDateTime <- function(info, creation_time) {
-  .Call("R_g_file_info_set_creation_date_time", info, creation_time)
+  invisible(.Call("R_g_file_info_set_creation_date_time", info, creation_time))
 }
 
 
@@ -7742,7 +7742,7 @@ gFileInfoSetCreationDateTime <- function(info, creation_time) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetDisplayName <- function(info, display_name) {
-  .Call("R_g_file_info_set_display_name", info, display_name)
+  invisible(.Call("R_g_file_info_set_display_name", info, display_name))
 }
 
 
@@ -7754,7 +7754,7 @@ gFileInfoSetDisplayName <- function(info, display_name) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetEditName <- function(info, edit_name) {
-  .Call("R_g_file_info_set_edit_name", info, edit_name)
+  invisible(.Call("R_g_file_info_set_edit_name", info, edit_name))
 }
 
 
@@ -7766,7 +7766,7 @@ gFileInfoSetEditName <- function(info, edit_name) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetFileType <- function(info, type) {
-  .Call("R_g_file_info_set_file_type", info, type)
+  invisible(.Call("R_g_file_info_set_file_type", info, type))
 }
 
 
@@ -7778,7 +7778,7 @@ gFileInfoSetFileType <- function(info, type) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetIcon <- function(info, icon) {
-  .Call("R_g_file_info_set_icon", info, icon)
+  invisible(.Call("R_g_file_info_set_icon", info, icon))
 }
 
 
@@ -7790,7 +7790,7 @@ gFileInfoSetIcon <- function(info, icon) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetIsHidden <- function(info, is_hidden) {
-  .Call("R_g_file_info_set_is_hidden", info, is_hidden)
+  invisible(.Call("R_g_file_info_set_is_hidden", info, is_hidden))
 }
 
 
@@ -7802,7 +7802,7 @@ gFileInfoSetIsHidden <- function(info, is_hidden) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetIsSymlink <- function(info, is_symlink) {
-  .Call("R_g_file_info_set_is_symlink", info, is_symlink)
+  invisible(.Call("R_g_file_info_set_is_symlink", info, is_symlink))
 }
 
 
@@ -7814,7 +7814,7 @@ gFileInfoSetIsSymlink <- function(info, is_symlink) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetModificationDateTime <- function(info, mtime) {
-  .Call("R_g_file_info_set_modification_date_time", info, mtime)
+  invisible(.Call("R_g_file_info_set_modification_date_time", info, mtime))
 }
 
 
@@ -7826,7 +7826,7 @@ gFileInfoSetModificationDateTime <- function(info, mtime) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetModificationTime <- function(info, mtime) {
-  .Call("R_g_file_info_set_modification_time", info, mtime)
+  invisible(.Call("R_g_file_info_set_modification_time", info, mtime))
 }
 
 
@@ -7838,7 +7838,7 @@ gFileInfoSetModificationTime <- function(info, mtime) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetName <- function(info, name) {
-  .Call("R_g_file_info_set_name", info, name)
+  invisible(.Call("R_g_file_info_set_name", info, name))
 }
 
 
@@ -7850,7 +7850,7 @@ gFileInfoSetName <- function(info, name) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetSize <- function(info, size) {
-  .Call("R_g_file_info_set_size", info, size)
+  invisible(.Call("R_g_file_info_set_size", info, as.integer(size)))
 }
 
 
@@ -7862,7 +7862,7 @@ gFileInfoSetSize <- function(info, size) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetSortOrder <- function(info, sort_order) {
-  .Call("R_g_file_info_set_sort_order", info, sort_order)
+  invisible(.Call("R_g_file_info_set_sort_order", info, as.integer(sort_order)))
 }
 
 
@@ -7874,7 +7874,7 @@ gFileInfoSetSortOrder <- function(info, sort_order) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetSymbolicIcon <- function(info, icon) {
-  .Call("R_g_file_info_set_symbolic_icon", info, icon)
+  invisible(.Call("R_g_file_info_set_symbolic_icon", info, icon))
 }
 
 
@@ -7886,7 +7886,7 @@ gFileInfoSetSymbolicIcon <- function(info, icon) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetSymlinkTarget <- function(info, symlink_target) {
-  .Call("R_g_file_info_set_symlink_target", info, symlink_target)
+  invisible(.Call("R_g_file_info_set_symlink_target", info, symlink_target))
 }
 
 
@@ -7897,7 +7897,7 @@ gFileInfoSetSymlinkTarget <- function(info, symlink_target) {
 #' @return Return value from C function
 #' @export
 gFileInfoUnsetAttributeMask <- function(info) {
-  .Call("R_g_file_info_unset_attribute_mask", info)
+  invisible(.Call("R_g_file_info_unset_attribute_mask", info))
 }
 
 
@@ -7947,7 +7947,7 @@ gFileMonitorCancel <- function(monitor) {
 #' @return Return value from C function
 #' @export
 gFileMonitorEmitEvent <- function(monitor, child, other_file, event_type) {
-  .Call("R_g_file_monitor_emit_event", monitor, child, other_file, event_type)
+  invisible(.Call("R_g_file_monitor_emit_event", monitor, child, other_file, event_type))
 }
 
 
@@ -7970,7 +7970,7 @@ gFileMonitorIsCancelled <- function(monitor) {
 #' @return Return value from C function
 #' @export
 gFileMonitorSetRateLimit <- function(monitor, limit_msecs) {
-  .Call("R_g_file_monitor_set_rate_limit", monitor, limit_msecs)
+  invisible(.Call("R_g_file_monitor_set_rate_limit", monitor, as.integer(limit_msecs)))
 }
 
 
@@ -8052,7 +8052,7 @@ gFilenameCompleterGetCompletions <- function(completer, initial_text) {
 #' @return Return value from C function
 #' @export
 gFilenameCompleterSetDirsOnly <- function(completer, dirs_only) {
-  .Call("R_g_filename_completer_set_dirs_only", completer, dirs_only)
+  invisible(.Call("R_g_filename_completer_set_dirs_only", completer, dirs_only))
 }
 
 
@@ -8086,7 +8086,7 @@ gFilterInputStreamGetCloseBaseStream <- function(stream) {
 #' @return Return value from C function
 #' @export
 gFilterInputStreamSetCloseBaseStream <- function(stream, close_base) {
-  .Call("R_g_filter_input_stream_set_close_base_stream", stream, close_base)
+  invisible(.Call("R_g_filter_input_stream_set_close_base_stream", stream, close_base))
 }
 
 
@@ -8120,7 +8120,7 @@ gFilterOutputStreamGetCloseBaseStream <- function(stream) {
 #' @return Return value from C function
 #' @export
 gFilterOutputStreamSetCloseBaseStream <- function(stream, close_base) {
-  .Call("R_g_filter_output_stream_set_close_base_stream", stream, close_base)
+  invisible(.Call("R_g_filter_output_stream_set_close_base_stream", stream, close_base))
 }
 
 
@@ -8199,7 +8199,7 @@ gIoExtensionPointGetRequiredType <- function(extension_point) {
 #' @return Return value from C function
 #' @export
 gIoExtensionPointSetRequiredType <- function(extension_point, type) {
-  .Call("R_g_io_extension_point_set_required_type", extension_point, type)
+  invisible(.Call("R_g_io_extension_point_set_required_type", extension_point, type))
 }
 
 
@@ -8213,7 +8213,7 @@ gIoExtensionPointSetRequiredType <- function(extension_point, type) {
 #' @return IOExtension
 #' @export
 gIoExtensionPointImplement <- function(extension_point_name, type, extension_name, priority) {
-  .Call("R_g_io_extension_point_implement", extension_point_name, type, extension_name, priority)$result
+  .Call("R_g_io_extension_point_implement", extension_point_name, type, extension_name, as.integer(priority))$result
 }
 
 
@@ -8257,7 +8257,7 @@ gIoStreamSpliceFinish <- function(result) {
 #' @return Return value from C function
 #' @export
 gIoStreamClearPending <- function(stream) {
-  .Call("R_g_io_stream_clear_pending", stream)
+  invisible(.Call("R_g_io_stream_clear_pending", stream))
 }
 
 
@@ -8348,7 +8348,7 @@ gIoStreamSetPending <- function(stream) {
 #' @return SocketControlMessage
 #' @export
 gIpTosMessageNew <- function(dscp, ecn) {
-  .Call("R_g_ip_tos_message_new", dscp, ecn)$result
+  .Call("R_g_ip_tos_message_new", as.integer(dscp), ecn)$result
 }
 
 
@@ -8382,7 +8382,7 @@ gIpTosMessageGetEcn <- function(message) {
 #' @return SocketControlMessage
 #' @export
 gIpv6TclassMessageNew <- function(dscp, ecn) {
-  .Call("R_g_ipv6_tclass_message_new", dscp, ecn)$result
+  .Call("R_g_ipv6_tclass_message_new", as.integer(dscp), ecn)$result
 }
 
 
@@ -8494,7 +8494,7 @@ gInetAddressNewAny <- function(family) {
 #' @return InetAddress
 #' @export
 gInetAddressNewFromBytes <- function(bytes, family) {
-  .Call("R_g_inet_address_new_from_bytes", bytes, family)$result
+  .Call("R_g_inet_address_new_from_bytes", as.integer(bytes), family)$result
 }
 
 
@@ -8508,7 +8508,7 @@ gInetAddressNewFromBytes <- function(bytes, family) {
 #' @return InetAddress
 #' @export
 gInetAddressNewFromBytesWithIpv6Info <- function(bytes, family, flowinfo, scope_id) {
-  .Call("R_g_inet_address_new_from_bytes_with_ipv6_info", bytes, family, flowinfo, scope_id)$result
+  .Call("R_g_inet_address_new_from_bytes_with_ipv6_info", as.integer(bytes), family, as.integer(flowinfo), as.integer(scope_id))$result
 }
 
 
@@ -8719,7 +8719,7 @@ gInetAddressToString <- function(address) {
 #' @return InetAddressMask
 #' @export
 gInetAddressMaskNew <- function(addr, length) {
-  .Call("R_g_inet_address_mask_new", addr, length)$result
+  .Call("R_g_inet_address_mask_new", addr, as.integer(length))$result
 }
 
 
@@ -8810,7 +8810,7 @@ gInetAddressMaskToString <- function(mask) {
 #' @return SocketAddress
 #' @export
 gInetSocketAddressNew <- function(address, port) {
-  .Call("R_g_inet_socket_address_new", address, port)$result
+  .Call("R_g_inet_socket_address_new", address, as.integer(port))$result
 }
 
 
@@ -8822,7 +8822,7 @@ gInetSocketAddressNew <- function(address, port) {
 #' @return SocketAddress
 #' @export
 gInetSocketAddressNewFromString <- function(address, port) {
-  .Call("R_g_inet_socket_address_new_from_string", address, port)$result
+  .Call("R_g_inet_socket_address_new_from_string", address, as.integer(port))$result
 }
 
 
@@ -8880,7 +8880,7 @@ gInetSocketAddressGetScopeId <- function(address) {
 #' @return GObject.Object
 #' @export
 gInitableNewv <- function(object_type, n_parameters, parameters, cancellable) {
-  .Call("R_g_initable_newv", object_type, n_parameters, parameters, cancellable)$result
+  .Call("R_g_initable_newv", object_type, as.integer(n_parameters), parameters, cancellable)$result
 }
 
 
@@ -8903,7 +8903,7 @@ gInitableInit <- function(initable, cancellable) {
 #' @return Return value from C function
 #' @export
 gInputStreamClearPending <- function(stream) {
-  .Call("R_g_input_stream_clear_pending", stream)
+  invisible(.Call("R_g_input_stream_clear_pending", stream))
 }
 
 
@@ -8962,7 +8962,7 @@ gInputStreamIsClosed <- function(stream) {
 #' @return gssize
 #' @export
 gInputStreamRead <- function(stream, count, cancellable) {
-  .Call("R_g_input_stream_read", stream, count, cancellable)
+  .Call("R_g_input_stream_read", stream, as.integer(count), cancellable)
 }
 
 
@@ -8975,7 +8975,7 @@ gInputStreamRead <- function(stream, count, cancellable) {
 #' @return gboolean
 #' @export
 gInputStreamReadAll <- function(stream, count, cancellable) {
-  .Call("R_g_input_stream_read_all", stream, count, cancellable)
+  .Call("R_g_input_stream_read_all", stream, as.integer(count), cancellable)
 }
 
 
@@ -9000,7 +9000,7 @@ gInputStreamReadAllFinish <- function(stream, result) {
 #' @return GLib.Bytes
 #' @export
 gInputStreamReadBytes <- function(stream, count, cancellable) {
-  .Call("R_g_input_stream_read_bytes", stream, count, cancellable)$result
+  .Call("R_g_input_stream_read_bytes", stream, as.integer(count), cancellable)$result
 }
 
 
@@ -9048,7 +9048,7 @@ gInputStreamSetPending <- function(stream) {
 #' @return gssize
 #' @export
 gInputStreamSkip <- function(stream, count, cancellable) {
-  .Call("R_g_input_stream_skip", stream, count, cancellable)$result
+  .Call("R_g_input_stream_skip", stream, as.integer(count), cancellable)$result
 }
 
 
@@ -9094,7 +9094,7 @@ gListModelGetNItems <- function(list) {
 #' @return GObject.Object
 #' @export
 gListModelGetObject <- function(list, position) {
-  .Call("R_g_list_model_get_object", list, position)$result
+  .Call("R_g_list_model_get_object", list, as.integer(position))$result
 }
 
 
@@ -9108,7 +9108,7 @@ gListModelGetObject <- function(list, position) {
 #' @return Return value from C function
 #' @export
 gListModelItemsChanged <- function(list, position, removed, added) {
-  .Call("R_g_list_model_items_changed", list, position, removed, added)
+  invisible(.Call("R_g_list_model_items_changed", list, as.integer(position), as.integer(removed), as.integer(added)))
 }
 
 
@@ -9131,7 +9131,7 @@ gListStoreNew <- function(item_type) {
 #' @return Return value from C function
 #' @export
 gListStoreAppend <- function(store, item) {
-  .Call("R_g_list_store_append", store, item)
+  invisible(.Call("R_g_list_store_append", store, item))
 }
 
 
@@ -9170,7 +9170,7 @@ gListStoreFindWithEqualFuncFull <- function(store, item, equal_func, user_data) 
 #' @return Return value from C function
 #' @export
 gListStoreInsert <- function(store, position, item) {
-  .Call("R_g_list_store_insert", store, position, item)
+  invisible(.Call("R_g_list_store_insert", store, as.integer(position), item))
 }
 
 
@@ -9182,7 +9182,7 @@ gListStoreInsert <- function(store, position, item) {
 #' @return Return value from C function
 #' @export
 gListStoreRemove <- function(store, position) {
-  .Call("R_g_list_store_remove", store, position)
+  invisible(.Call("R_g_list_store_remove", store, as.integer(position)))
 }
 
 
@@ -9193,7 +9193,7 @@ gListStoreRemove <- function(store, position) {
 #' @return Return value from C function
 #' @export
 gListStoreRemoveAll <- function(store) {
-  .Call("R_g_list_store_remove_all", store)
+  invisible(.Call("R_g_list_store_remove_all", store))
 }
 
 
@@ -9208,7 +9208,7 @@ gListStoreRemoveAll <- function(store) {
 #' @return Return value from C function
 #' @export
 gListStoreSplice <- function(store, position, n_removals, additions, n_additions) {
-  .Call("R_g_list_store_splice", store, position, n_removals, additions, n_additions)
+  invisible(.Call("R_g_list_store_splice", store, as.integer(position), as.integer(n_removals), additions, as.integer(n_additions)))
 }
 
 
@@ -9221,7 +9221,7 @@ gListStoreSplice <- function(store, position, n_removals, additions, n_additions
 #' @return InputStream
 #' @export
 gLoadableIconLoad <- function(icon, size, cancellable) {
-  .Call("R_g_loadable_icon_load", icon, size, cancellable)
+  .Call("R_g_loadable_icon_load", icon, as.integer(size), cancellable)
 }
 
 
@@ -9266,7 +9266,7 @@ gMemoryInputStreamNewFromBytes <- function(bytes) {
 #' @return Return value from C function
 #' @export
 gMemoryInputStreamAddBytes <- function(stream, bytes) {
-  .Call("R_g_memory_input_stream_add_bytes", stream, bytes)
+  invisible(.Call("R_g_memory_input_stream_add_bytes", stream, bytes))
 }
 
 
@@ -9364,7 +9364,7 @@ gMenuNew <- function() {
 #' @return Return value from C function
 #' @export
 gMenuAppend <- function(menu, label, detailed_action) {
-  .Call("R_g_menu_append", menu, label, detailed_action)
+  invisible(.Call("R_g_menu_append", menu, label, detailed_action))
 }
 
 
@@ -9376,7 +9376,7 @@ gMenuAppend <- function(menu, label, detailed_action) {
 #' @return Return value from C function
 #' @export
 gMenuAppendItem <- function(menu, item) {
-  .Call("R_g_menu_append_item", menu, item)
+  invisible(.Call("R_g_menu_append_item", menu, item))
 }
 
 
@@ -9389,7 +9389,7 @@ gMenuAppendItem <- function(menu, item) {
 #' @return Return value from C function
 #' @export
 gMenuAppendSection <- function(menu, label, section) {
-  .Call("R_g_menu_append_section", menu, label, section)
+  invisible(.Call("R_g_menu_append_section", menu, label, section))
 }
 
 
@@ -9402,7 +9402,7 @@ gMenuAppendSection <- function(menu, label, section) {
 #' @return Return value from C function
 #' @export
 gMenuAppendSubmenu <- function(menu, label, submenu) {
-  .Call("R_g_menu_append_submenu", menu, label, submenu)
+  invisible(.Call("R_g_menu_append_submenu", menu, label, submenu))
 }
 
 
@@ -9413,7 +9413,7 @@ gMenuAppendSubmenu <- function(menu, label, submenu) {
 #' @return Return value from C function
 #' @export
 gMenuFreeze <- function(menu) {
-  .Call("R_g_menu_freeze", menu)
+  invisible(.Call("R_g_menu_freeze", menu))
 }
 
 
@@ -9427,7 +9427,7 @@ gMenuFreeze <- function(menu) {
 #' @return Return value from C function
 #' @export
 gMenuInsert <- function(menu, position, label, detailed_action) {
-  .Call("R_g_menu_insert", menu, position, label, detailed_action)
+  invisible(.Call("R_g_menu_insert", menu, as.integer(position), label, detailed_action))
 }
 
 
@@ -9440,7 +9440,7 @@ gMenuInsert <- function(menu, position, label, detailed_action) {
 #' @return Return value from C function
 #' @export
 gMenuInsertItem <- function(menu, position, item) {
-  .Call("R_g_menu_insert_item", menu, position, item)
+  invisible(.Call("R_g_menu_insert_item", menu, as.integer(position), item))
 }
 
 
@@ -9454,7 +9454,7 @@ gMenuInsertItem <- function(menu, position, item) {
 #' @return Return value from C function
 #' @export
 gMenuInsertSection <- function(menu, position, label, section) {
-  .Call("R_g_menu_insert_section", menu, position, label, section)
+  invisible(.Call("R_g_menu_insert_section", menu, as.integer(position), label, section))
 }
 
 
@@ -9468,7 +9468,7 @@ gMenuInsertSection <- function(menu, position, label, section) {
 #' @return Return value from C function
 #' @export
 gMenuInsertSubmenu <- function(menu, position, label, submenu) {
-  .Call("R_g_menu_insert_submenu", menu, position, label, submenu)
+  invisible(.Call("R_g_menu_insert_submenu", menu, as.integer(position), label, submenu))
 }
 
 
@@ -9481,7 +9481,7 @@ gMenuInsertSubmenu <- function(menu, position, label, submenu) {
 #' @return Return value from C function
 #' @export
 gMenuPrepend <- function(menu, label, detailed_action) {
-  .Call("R_g_menu_prepend", menu, label, detailed_action)
+  invisible(.Call("R_g_menu_prepend", menu, label, detailed_action))
 }
 
 
@@ -9493,7 +9493,7 @@ gMenuPrepend <- function(menu, label, detailed_action) {
 #' @return Return value from C function
 #' @export
 gMenuPrependItem <- function(menu, item) {
-  .Call("R_g_menu_prepend_item", menu, item)
+  invisible(.Call("R_g_menu_prepend_item", menu, item))
 }
 
 
@@ -9506,7 +9506,7 @@ gMenuPrependItem <- function(menu, item) {
 #' @return Return value from C function
 #' @export
 gMenuPrependSection <- function(menu, label, section) {
-  .Call("R_g_menu_prepend_section", menu, label, section)
+  invisible(.Call("R_g_menu_prepend_section", menu, label, section))
 }
 
 
@@ -9519,7 +9519,7 @@ gMenuPrependSection <- function(menu, label, section) {
 #' @return Return value from C function
 #' @export
 gMenuPrependSubmenu <- function(menu, label, submenu) {
-  .Call("R_g_menu_prepend_submenu", menu, label, submenu)
+  invisible(.Call("R_g_menu_prepend_submenu", menu, label, submenu))
 }
 
 
@@ -9531,7 +9531,7 @@ gMenuPrependSubmenu <- function(menu, label, submenu) {
 #' @return Return value from C function
 #' @export
 gMenuRemove <- function(menu, position) {
-  .Call("R_g_menu_remove", menu, position)
+  invisible(.Call("R_g_menu_remove", menu, as.integer(position)))
 }
 
 
@@ -9542,7 +9542,7 @@ gMenuRemove <- function(menu, position) {
 #' @return Return value from C function
 #' @export
 gMenuRemoveAll <- function(menu) {
-  .Call("R_g_menu_remove_all", menu)
+  invisible(.Call("R_g_menu_remove_all", menu))
 }
 
 
@@ -9610,7 +9610,7 @@ gMenuItemNew <- function(label, detailed_action) {
 #' @return MenuItem
 #' @export
 gMenuItemNewFromModel <- function(model, item_index) {
-  .Call("R_g_menu_item_new_from_model", model, item_index)$result
+  .Call("R_g_menu_item_new_from_model", model, as.integer(item_index))$result
 }
 
 
@@ -9672,7 +9672,7 @@ gMenuItemGetLink <- function(menu_item, link) {
 #' @return Return value from C function
 #' @export
 gMenuItemSetActionAndTargetValue <- function(menu_item, action, target_value) {
-  .Call("R_g_menu_item_set_action_and_target_value", menu_item, action, target_value)
+  invisible(.Call("R_g_menu_item_set_action_and_target_value", menu_item, action, target_value))
 }
 
 
@@ -9685,7 +9685,7 @@ gMenuItemSetActionAndTargetValue <- function(menu_item, action, target_value) {
 #' @return Return value from C function
 #' @export
 gMenuItemSetAttributeValue <- function(menu_item, attribute, value) {
-  .Call("R_g_menu_item_set_attribute_value", menu_item, attribute, value)
+  invisible(.Call("R_g_menu_item_set_attribute_value", menu_item, attribute, value))
 }
 
 
@@ -9697,7 +9697,7 @@ gMenuItemSetAttributeValue <- function(menu_item, attribute, value) {
 #' @return Return value from C function
 #' @export
 gMenuItemSetDetailedAction <- function(menu_item, detailed_action) {
-  .Call("R_g_menu_item_set_detailed_action", menu_item, detailed_action)
+  invisible(.Call("R_g_menu_item_set_detailed_action", menu_item, detailed_action))
 }
 
 
@@ -9709,7 +9709,7 @@ gMenuItemSetDetailedAction <- function(menu_item, detailed_action) {
 #' @return Return value from C function
 #' @export
 gMenuItemSetIcon <- function(menu_item, icon) {
-  .Call("R_g_menu_item_set_icon", menu_item, icon)
+  invisible(.Call("R_g_menu_item_set_icon", menu_item, icon))
 }
 
 
@@ -9721,7 +9721,7 @@ gMenuItemSetIcon <- function(menu_item, icon) {
 #' @return Return value from C function
 #' @export
 gMenuItemSetLabel <- function(menu_item, label) {
-  .Call("R_g_menu_item_set_label", menu_item, label)
+  invisible(.Call("R_g_menu_item_set_label", menu_item, label))
 }
 
 
@@ -9734,7 +9734,7 @@ gMenuItemSetLabel <- function(menu_item, label) {
 #' @return Return value from C function
 #' @export
 gMenuItemSetLink <- function(menu_item, link, model) {
-  .Call("R_g_menu_item_set_link", menu_item, link, model)
+  invisible(.Call("R_g_menu_item_set_link", menu_item, link, model))
 }
 
 
@@ -9746,7 +9746,7 @@ gMenuItemSetLink <- function(menu_item, link, model) {
 #' @return Return value from C function
 #' @export
 gMenuItemSetSection <- function(menu_item, section) {
-  .Call("R_g_menu_item_set_section", menu_item, section)
+  invisible(.Call("R_g_menu_item_set_section", menu_item, section))
 }
 
 
@@ -9758,7 +9758,7 @@ gMenuItemSetSection <- function(menu_item, section) {
 #' @return Return value from C function
 #' @export
 gMenuItemSetSubmenu <- function(menu_item, submenu) {
-  .Call("R_g_menu_item_set_submenu", menu_item, submenu)
+  invisible(.Call("R_g_menu_item_set_submenu", menu_item, submenu))
 }
 
 
@@ -9816,7 +9816,7 @@ gMenuLinkIterNext <- function(iter) {
 #' @return GLib.Variant
 #' @export
 gMenuModelGetItemAttributeValue <- function(model, item_index, attribute, expected_type) {
-  .Call("R_g_menu_model_get_item_attribute_value", model, item_index, attribute, expected_type)$result
+  .Call("R_g_menu_model_get_item_attribute_value", model, as.integer(item_index), attribute, expected_type)$result
 }
 
 
@@ -9829,7 +9829,7 @@ gMenuModelGetItemAttributeValue <- function(model, item_index, attribute, expect
 #' @return MenuModel
 #' @export
 gMenuModelGetItemLink <- function(model, item_index, link) {
-  .Call("R_g_menu_model_get_item_link", model, item_index, link)$result
+  .Call("R_g_menu_model_get_item_link", model, as.integer(item_index), link)$result
 }
 
 
@@ -9865,7 +9865,7 @@ gMenuModelIsMutable <- function(model) {
 #' @return Return value from C function
 #' @export
 gMenuModelItemsChanged <- function(model, position, removed, added) {
-  .Call("R_g_menu_model_items_changed", model, position, removed, added)
+  invisible(.Call("R_g_menu_model_items_changed", model, as.integer(position), as.integer(removed), as.integer(added)))
 }
 
 
@@ -9877,7 +9877,7 @@ gMenuModelItemsChanged <- function(model, position, removed, added) {
 #' @return MenuAttributeIter
 #' @export
 gMenuModelIterateItemAttributes <- function(model, item_index) {
-  .Call("R_g_menu_model_iterate_item_attributes", model, item_index)$result
+  .Call("R_g_menu_model_iterate_item_attributes", model, as.integer(item_index))$result
 }
 
 
@@ -9889,7 +9889,7 @@ gMenuModelIterateItemAttributes <- function(model, item_index) {
 #' @return MenuLinkIter
 #' @export
 gMenuModelIterateItemLinks <- function(model, item_index) {
-  .Call("R_g_menu_model_iterate_item_links", model, item_index)$result
+  .Call("R_g_menu_model_iterate_item_links", model, as.integer(item_index))$result
 }
 
 
@@ -10093,7 +10093,7 @@ gMountRemountFinish <- function(mount, result) {
 #' @return Return value from C function
 #' @export
 gMountShadow <- function(mount) {
-  .Call("R_g_mount_shadow", mount)
+  invisible(.Call("R_g_mount_shadow", mount))
 }
 
 
@@ -10128,7 +10128,7 @@ gMountUnmountWithOperationFinish <- function(mount, result) {
 #' @return Return value from C function
 #' @export
 gMountUnshadow <- function(mount) {
-  .Call("R_g_mount_unshadow", mount)
+  invisible(.Call("R_g_mount_unshadow", mount))
 }
 
 
@@ -10249,7 +10249,7 @@ gMountOperationGetUsername <- function(op) {
 #' @return Return value from C function
 #' @export
 gMountOperationReply <- function(op, result) {
-  .Call("R_g_mount_operation_reply", op, result)
+  invisible(.Call("R_g_mount_operation_reply", op, result))
 }
 
 
@@ -10261,7 +10261,7 @@ gMountOperationReply <- function(op, result) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetAnonymous <- function(op, anonymous) {
-  .Call("R_g_mount_operation_set_anonymous", op, anonymous)
+  invisible(.Call("R_g_mount_operation_set_anonymous", op, anonymous))
 }
 
 
@@ -10273,7 +10273,7 @@ gMountOperationSetAnonymous <- function(op, anonymous) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetChoice <- function(op, choice) {
-  .Call("R_g_mount_operation_set_choice", op, choice)
+  invisible(.Call("R_g_mount_operation_set_choice", op, as.integer(choice)))
 }
 
 
@@ -10285,7 +10285,7 @@ gMountOperationSetChoice <- function(op, choice) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetDomain <- function(op, domain) {
-  .Call("R_g_mount_operation_set_domain", op, domain)
+  invisible(.Call("R_g_mount_operation_set_domain", op, domain))
 }
 
 
@@ -10297,7 +10297,7 @@ gMountOperationSetDomain <- function(op, domain) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetIsTcryptHiddenVolume <- function(op, hidden_volume) {
-  .Call("R_g_mount_operation_set_is_tcrypt_hidden_volume", op, hidden_volume)
+  invisible(.Call("R_g_mount_operation_set_is_tcrypt_hidden_volume", op, hidden_volume))
 }
 
 
@@ -10309,7 +10309,7 @@ gMountOperationSetIsTcryptHiddenVolume <- function(op, hidden_volume) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetIsTcryptSystemVolume <- function(op, system_volume) {
-  .Call("R_g_mount_operation_set_is_tcrypt_system_volume", op, system_volume)
+  invisible(.Call("R_g_mount_operation_set_is_tcrypt_system_volume", op, system_volume))
 }
 
 
@@ -10321,7 +10321,7 @@ gMountOperationSetIsTcryptSystemVolume <- function(op, system_volume) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetPassword <- function(op, password) {
-  .Call("R_g_mount_operation_set_password", op, password)
+  invisible(.Call("R_g_mount_operation_set_password", op, password))
 }
 
 
@@ -10333,7 +10333,7 @@ gMountOperationSetPassword <- function(op, password) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetPasswordSave <- function(op, save) {
-  .Call("R_g_mount_operation_set_password_save", op, save)
+  invisible(.Call("R_g_mount_operation_set_password_save", op, save))
 }
 
 
@@ -10345,7 +10345,7 @@ gMountOperationSetPasswordSave <- function(op, save) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetPim <- function(op, pim) {
-  .Call("R_g_mount_operation_set_pim", op, pim)
+  invisible(.Call("R_g_mount_operation_set_pim", op, as.integer(pim)))
 }
 
 
@@ -10357,7 +10357,7 @@ gMountOperationSetPim <- function(op, pim) {
 #' @return Return value from C function
 #' @export
 gMountOperationSetUsername <- function(op, username) {
-  .Call("R_g_mount_operation_set_username", op, username)
+  invisible(.Call("R_g_mount_operation_set_username", op, username))
 }
 
 
@@ -10369,7 +10369,7 @@ gMountOperationSetUsername <- function(op, username) {
 #' @return SocketAddress
 #' @export
 gNativeSocketAddressNew <- function(native, len) {
-  .Call("R_g_native_socket_address_new", native, len)$result
+  .Call("R_g_native_socket_address_new", native, as.integer(len))$result
 }
 
 
@@ -10381,7 +10381,7 @@ gNativeSocketAddressNew <- function(native, len) {
 #' @return NetworkAddress
 #' @export
 gNetworkAddressNew <- function(hostname, port) {
-  .Call("R_g_network_address_new", hostname, port)$result
+  .Call("R_g_network_address_new", hostname, as.integer(port))$result
 }
 
 
@@ -10392,7 +10392,7 @@ gNetworkAddressNew <- function(hostname, port) {
 #' @return NetworkAddress
 #' @export
 gNetworkAddressNewLoopback <- function(port) {
-  .Call("R_g_network_address_new_loopback", port)$result
+  .Call("R_g_network_address_new_loopback", as.integer(port))$result
 }
 
 
@@ -10404,7 +10404,7 @@ gNetworkAddressNewLoopback <- function(port) {
 #' @return NetworkAddress
 #' @export
 gNetworkAddressParse <- function(host_and_port, default_port) {
-  .Call("R_g_network_address_parse", host_and_port, default_port)$result
+  .Call("R_g_network_address_parse", host_and_port, as.integer(default_port))$result
 }
 
 
@@ -10416,7 +10416,7 @@ gNetworkAddressParse <- function(host_and_port, default_port) {
 #' @return NetworkAddress
 #' @export
 gNetworkAddressParseUri <- function(uri, default_port) {
-  .Call("R_g_network_address_parse_uri", uri, default_port)$result
+  .Call("R_g_network_address_parse_uri", uri, as.integer(default_port))$result
 }
 
 
@@ -10586,7 +10586,7 @@ gNetworkServiceGetService <- function(srv) {
 #' @return Return value from C function
 #' @export
 gNetworkServiceSetScheme <- function(srv, scheme) {
-  .Call("R_g_network_service_set_scheme", srv, scheme)
+  invisible(.Call("R_g_network_service_set_scheme", srv, scheme))
 }
 
 
@@ -10610,7 +10610,7 @@ gNotificationNew <- function(title) {
 #' @return Return value from C function
 #' @export
 gNotificationAddButton <- function(notification, label, detailed_action) {
-  .Call("R_g_notification_add_button", notification, label, detailed_action)
+  invisible(.Call("R_g_notification_add_button", notification, label, detailed_action))
 }
 
 
@@ -10624,7 +10624,7 @@ gNotificationAddButton <- function(notification, label, detailed_action) {
 #' @return Return value from C function
 #' @export
 gNotificationAddButtonWithTargetValue <- function(notification, label, action, target) {
-  .Call("R_g_notification_add_button_with_target_value", notification, label, action, target)
+  invisible(.Call("R_g_notification_add_button_with_target_value", notification, label, action, target))
 }
 
 
@@ -10636,7 +10636,7 @@ gNotificationAddButtonWithTargetValue <- function(notification, label, action, t
 #' @return Return value from C function
 #' @export
 gNotificationSetBody <- function(notification, body) {
-  .Call("R_g_notification_set_body", notification, body)
+  invisible(.Call("R_g_notification_set_body", notification, body))
 }
 
 
@@ -10648,7 +10648,7 @@ gNotificationSetBody <- function(notification, body) {
 #' @return Return value from C function
 #' @export
 gNotificationSetCategory <- function(notification, category) {
-  .Call("R_g_notification_set_category", notification, category)
+  invisible(.Call("R_g_notification_set_category", notification, category))
 }
 
 
@@ -10660,7 +10660,7 @@ gNotificationSetCategory <- function(notification, category) {
 #' @return Return value from C function
 #' @export
 gNotificationSetDefaultAction <- function(notification, detailed_action) {
-  .Call("R_g_notification_set_default_action", notification, detailed_action)
+  invisible(.Call("R_g_notification_set_default_action", notification, detailed_action))
 }
 
 
@@ -10673,7 +10673,7 @@ gNotificationSetDefaultAction <- function(notification, detailed_action) {
 #' @return Return value from C function
 #' @export
 gNotificationSetDefaultActionAndTargetValue <- function(notification, action, target) {
-  .Call("R_g_notification_set_default_action_and_target_value", notification, action, target)
+  invisible(.Call("R_g_notification_set_default_action_and_target_value", notification, action, target))
 }
 
 
@@ -10685,7 +10685,7 @@ gNotificationSetDefaultActionAndTargetValue <- function(notification, action, ta
 #' @return Return value from C function
 #' @export
 gNotificationSetIcon <- function(notification, icon) {
-  .Call("R_g_notification_set_icon", notification, icon)
+  invisible(.Call("R_g_notification_set_icon", notification, icon))
 }
 
 
@@ -10697,7 +10697,7 @@ gNotificationSetIcon <- function(notification, icon) {
 #' @return Return value from C function
 #' @export
 gNotificationSetPriority <- function(notification, priority) {
-  .Call("R_g_notification_set_priority", notification, priority)
+  invisible(.Call("R_g_notification_set_priority", notification, priority))
 }
 
 
@@ -10709,7 +10709,7 @@ gNotificationSetPriority <- function(notification, priority) {
 #' @return Return value from C function
 #' @export
 gNotificationSetTitle <- function(notification, title) {
-  .Call("R_g_notification_set_title", notification, title)
+  invisible(.Call("R_g_notification_set_title", notification, title))
 }
 
 
@@ -10721,7 +10721,7 @@ gNotificationSetTitle <- function(notification, title) {
 #' @return Return value from C function
 #' @export
 gNotificationSetUrgent <- function(notification, urgent) {
-  .Call("R_g_notification_set_urgent", notification, urgent)
+  invisible(.Call("R_g_notification_set_urgent", notification, urgent))
 }
 
 
@@ -10732,7 +10732,7 @@ gNotificationSetUrgent <- function(notification, urgent) {
 #' @return Return value from C function
 #' @export
 gOutputStreamClearPending <- function(stream) {
-  .Call("R_g_output_stream_clear_pending", stream)
+  invisible(.Call("R_g_output_stream_clear_pending", stream))
 }
 
 
@@ -10864,7 +10864,7 @@ gOutputStreamSpliceFinish <- function(stream, result) {
 #' @return gssize
 #' @export
 gOutputStreamWrite <- function(stream, buffer, count, cancellable) {
-  .Call("R_g_output_stream_write", stream, buffer, count, cancellable)$result
+  .Call("R_g_output_stream_write", stream, as.integer(buffer), as.integer(count), cancellable)$result
 }
 
 
@@ -10878,7 +10878,7 @@ gOutputStreamWrite <- function(stream, buffer, count, cancellable) {
 #' @return gboolean
 #' @export
 gOutputStreamWriteAll <- function(stream, buffer, count, cancellable) {
-  .Call("R_g_output_stream_write_all", stream, buffer, count, cancellable)
+  .Call("R_g_output_stream_write_all", stream, as.integer(buffer), as.integer(count), cancellable)
 }
 
 
@@ -10941,7 +10941,7 @@ gOutputStreamWriteFinish <- function(stream, result) {
 #' @return gboolean
 #' @export
 gOutputStreamWritev <- function(stream, vectors, n_vectors, cancellable) {
-  .Call("R_g_output_stream_writev", stream, vectors, n_vectors, cancellable)
+  .Call("R_g_output_stream_writev", stream, vectors, as.integer(n_vectors), cancellable)
 }
 
 
@@ -10955,7 +10955,7 @@ gOutputStreamWritev <- function(stream, vectors, n_vectors, cancellable) {
 #' @return gboolean
 #' @export
 gOutputStreamWritevAll <- function(stream, vectors, n_vectors, cancellable) {
-  .Call("R_g_output_stream_writev_all", stream, vectors, n_vectors, cancellable)
+  .Call("R_g_output_stream_writev_all", stream, vectors, as.integer(n_vectors), cancellable)
 }
 
 
@@ -11050,7 +11050,7 @@ gPermissionGetCanRelease <- function(permission) {
 #' @return Return value from C function
 #' @export
 gPermissionImplUpdate <- function(permission, allowed, can_acquire, can_release) {
-  .Call("R_g_permission_impl_update", permission, allowed, can_acquire, can_release)
+  invisible(.Call("R_g_permission_impl_update", permission, allowed, can_acquire, can_release))
 }
 
 
@@ -11121,7 +11121,7 @@ gPollableInputStreamIsReadable <- function(stream) {
 #' @return gssize
 #' @export
 gPollableInputStreamReadNonblocking <- function(stream, count, cancellable) {
-  .Call("R_g_pollable_input_stream_read_nonblocking", stream, count, cancellable)
+  .Call("R_g_pollable_input_stream_read_nonblocking", stream, as.integer(count), cancellable)
 }
 
 
@@ -11169,7 +11169,7 @@ gPollableOutputStreamIsWritable <- function(stream) {
 #' @return gssize
 #' @export
 gPollableOutputStreamWriteNonblocking <- function(stream, buffer, count, cancellable) {
-  .Call("R_g_pollable_output_stream_write_nonblocking", stream, buffer, count, cancellable)$result
+  .Call("R_g_pollable_output_stream_write_nonblocking", stream, as.integer(buffer), as.integer(count), cancellable)$result
 }
 
 
@@ -11183,7 +11183,7 @@ gPollableOutputStreamWriteNonblocking <- function(stream, buffer, count, cancell
 #' @return PollableReturn
 #' @export
 gPollableOutputStreamWritevNonblocking <- function(stream, vectors, n_vectors, cancellable) {
-  .Call("R_g_pollable_output_stream_writev_nonblocking", stream, vectors, n_vectors, cancellable)
+  .Call("R_g_pollable_output_stream_writev_nonblocking", stream, vectors, as.integer(n_vectors), cancellable)
 }
 
 
@@ -11282,7 +11282,7 @@ gProxySupportsHostname <- function(proxy) {
 #' @return SocketAddress
 #' @export
 gProxyAddressNew <- function(inetaddr, port, protocol, dest_hostname, dest_port, username, password) {
-  .Call("R_g_proxy_address_new", inetaddr, port, protocol, dest_hostname, dest_port, username, password)$result
+  .Call("R_g_proxy_address_new", inetaddr, as.integer(port), protocol, dest_hostname, as.integer(dest_port), username, password)$result
 }
 
 
@@ -11419,7 +11419,7 @@ gProxyResolverLookupFinish <- function(resolver, result) {
 #' @return Return value from C function
 #' @export
 gRemoteActionGroupActivateActionFull <- function(remote, action_name, parameter, platform_data) {
-  .Call("R_g_remote_action_group_activate_action_full", remote, action_name, parameter, platform_data)
+  invisible(.Call("R_g_remote_action_group_activate_action_full", remote, action_name, parameter, platform_data))
 }
 
 
@@ -11433,7 +11433,7 @@ gRemoteActionGroupActivateActionFull <- function(remote, action_name, parameter,
 #' @return Return value from C function
 #' @export
 gRemoteActionGroupChangeActionStateFull <- function(remote, action_name, value, platform_data) {
-  .Call("R_g_remote_action_group_change_action_state_full", remote, action_name, value, platform_data)
+  invisible(.Call("R_g_remote_action_group_change_action_state_full", remote, action_name, value, platform_data))
 }
 
 
@@ -11594,7 +11594,7 @@ gResolverLookupServiceFinish <- function(resolver, result) {
 #' @return Return value from C function
 #' @export
 gResolverSetDefault <- function(resolver) {
-  .Call("R_g_resolver_set_default", resolver)
+  invisible(.Call("R_g_resolver_set_default", resolver))
 }
 
 
@@ -11606,7 +11606,7 @@ gResolverSetDefault <- function(resolver) {
 #' @return Return value from C function
 #' @export
 gResolverSetTimeout <- function(resolver, timeout_ms) {
-  .Call("R_g_resolver_set_timeout", resolver, timeout_ms)
+  invisible(.Call("R_g_resolver_set_timeout", resolver, as.integer(timeout_ms)))
 }
 
 
@@ -11638,7 +11638,7 @@ gResourceNewFromData <- function(data) {
 #' @return Return value from C function
 #' @export
 gResourcesRegister <- function(resource) {
-  .Call("R_g_resources_register", resource)
+  invisible(.Call("R_g_resources_register", resource))
 }
 
 
@@ -11649,7 +11649,7 @@ gResourcesRegister <- function(resource) {
 #' @return Return value from C function
 #' @export
 gResourcesUnregister <- function(resource) {
-  .Call("R_g_resources_unregister", resource)
+  invisible(.Call("R_g_resources_unregister", resource))
 }
 
 
@@ -11735,7 +11735,7 @@ gResourceRef <- function(resource) {
 #' @return Return value from C function
 #' @export
 gResourceUnref <- function(resource) {
-  .Call("R_g_resource_unref", resource)
+  invisible(.Call("R_g_resource_unref", resource))
 }
 
 
@@ -11792,7 +11792,7 @@ gSeekableCanTruncate <- function(seekable) {
 #' @return gboolean
 #' @export
 gSeekableSeek <- function(seekable, offset, type, cancellable) {
-  .Call("R_g_seekable_seek", seekable, offset, type, cancellable)$result
+  .Call("R_g_seekable_seek", seekable, as.integer(offset), type, cancellable)$result
 }
 
 
@@ -11816,7 +11816,7 @@ gSeekableTell <- function(seekable) {
 #' @return gboolean
 #' @export
 gSeekableTruncate <- function(seekable, offset, cancellable) {
-  .Call("R_g_seekable_truncate", seekable, offset, cancellable)$result
+  .Call("R_g_seekable_truncate", seekable, as.integer(offset), cancellable)$result
 }
 
 
@@ -11907,7 +11907,7 @@ gSettingsListSchemas <- function() {
 #' @return Return value from C function
 #' @export
 gSettingsSync <- function() {
-  .Call("R_g_settings_sync")
+  invisible(.Call("R_g_settings_sync"))
 }
 
 
@@ -11919,7 +11919,7 @@ gSettingsSync <- function() {
 #' @return Return value from C function
 #' @export
 gSettingsUnbind <- function(object, property) {
-  .Call("R_g_settings_unbind", object, property)
+  invisible(.Call("R_g_settings_unbind", object, property))
 }
 
 
@@ -11930,7 +11930,7 @@ gSettingsUnbind <- function(object, property) {
 #' @return Return value from C function
 #' @export
 gSettingsApply <- function(settings) {
-  .Call("R_g_settings_apply", settings)
+  invisible(.Call("R_g_settings_apply", settings))
 }
 
 
@@ -11945,7 +11945,7 @@ gSettingsApply <- function(settings) {
 #' @return Return value from C function
 #' @export
 gSettingsBind <- function(settings, key, object, property, flags) {
-  .Call("R_g_settings_bind", settings, key, object, property, flags)
+  invisible(.Call("R_g_settings_bind", settings, key, object, property, flags))
 }
 
 
@@ -11962,7 +11962,7 @@ gSettingsBind <- function(settings, key, object, property, flags) {
 #' @return Return value from C function
 #' @export
 gSettingsBindWithMappingClosures <- function(settings, key, object, property, flags, get_mapping, set_mapping) {
-  .Call("R_g_settings_bind_with_mapping_closures", settings, key, object, property, flags, get_mapping, set_mapping)
+  invisible(.Call("R_g_settings_bind_with_mapping_closures", settings, key, object, property, flags, get_mapping, set_mapping))
 }
 
 
@@ -11977,7 +11977,7 @@ gSettingsBindWithMappingClosures <- function(settings, key, object, property, fl
 #' @return Return value from C function
 #' @export
 gSettingsBindWritable <- function(settings, key, object, property, inverted) {
-  .Call("R_g_settings_bind_writable", settings, key, object, property, inverted)
+  invisible(.Call("R_g_settings_bind_writable", settings, key, object, property, inverted))
 }
 
 
@@ -12000,7 +12000,7 @@ gSettingsCreateAction <- function(settings, key) {
 #' @return Return value from C function
 #' @export
 gSettingsDelay <- function(settings) {
-  .Call("R_g_settings_delay", settings)
+  invisible(.Call("R_g_settings_delay", settings))
 }
 
 
@@ -12264,7 +12264,7 @@ gSettingsRangeCheck <- function(settings, key, value) {
 #' @return Return value from C function
 #' @export
 gSettingsReset <- function(settings, key) {
-  .Call("R_g_settings_reset", settings, key)
+  invisible(.Call("R_g_settings_reset", settings, key))
 }
 
 
@@ -12275,7 +12275,7 @@ gSettingsReset <- function(settings, key) {
 #' @return Return value from C function
 #' @export
 gSettingsRevert <- function(settings) {
-  .Call("R_g_settings_revert", settings)
+  invisible(.Call("R_g_settings_revert", settings))
 }
 
 
@@ -12314,7 +12314,7 @@ gSettingsSetDouble <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetEnum <- function(settings, key, value) {
-  .Call("R_g_settings_set_enum", settings, key, value)$result
+  .Call("R_g_settings_set_enum", settings, key, as.integer(value))$result
 }
 
 
@@ -12327,7 +12327,7 @@ gSettingsSetEnum <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetFlags <- function(settings, key, value) {
-  .Call("R_g_settings_set_flags", settings, key, value)$result
+  .Call("R_g_settings_set_flags", settings, key, as.integer(value))$result
 }
 
 
@@ -12340,7 +12340,7 @@ gSettingsSetFlags <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetInt <- function(settings, key, value) {
-  .Call("R_g_settings_set_int", settings, key, value)$result
+  .Call("R_g_settings_set_int", settings, key, as.integer(value))$result
 }
 
 
@@ -12353,7 +12353,7 @@ gSettingsSetInt <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetInt64 <- function(settings, key, value) {
-  .Call("R_g_settings_set_int64", settings, key, value)$result
+  .Call("R_g_settings_set_int64", settings, key, as.integer(value))$result
 }
 
 
@@ -12392,7 +12392,7 @@ gSettingsSetStrv <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetUint <- function(settings, key, value) {
-  .Call("R_g_settings_set_uint", settings, key, value)$result
+  .Call("R_g_settings_set_uint", settings, key, as.integer(value))$result
 }
 
 
@@ -12405,7 +12405,7 @@ gSettingsSetUint <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetUint64 <- function(settings, key, value) {
-  .Call("R_g_settings_set_uint64", settings, key, value)$result
+  .Call("R_g_settings_set_uint64", settings, key, as.integer(value))$result
 }
 
 
@@ -12452,7 +12452,7 @@ gSettingsBackendGetDefault <- function() {
 #' @return Return value from C function
 #' @export
 gSettingsBackendChanged <- function(backend, key, origin_tag) {
-  .Call("R_g_settings_backend_changed", backend, key, origin_tag)
+  invisible(.Call("R_g_settings_backend_changed", backend, key, origin_tag))
 }
 
 
@@ -12465,7 +12465,7 @@ gSettingsBackendChanged <- function(backend, key, origin_tag) {
 #' @return Return value from C function
 #' @export
 gSettingsBackendChangedTree <- function(backend, tree, origin_tag) {
-  .Call("R_g_settings_backend_changed_tree", backend, tree, origin_tag)
+  invisible(.Call("R_g_settings_backend_changed_tree", backend, tree, origin_tag))
 }
 
 
@@ -12479,7 +12479,7 @@ gSettingsBackendChangedTree <- function(backend, tree, origin_tag) {
 #' @return Return value from C function
 #' @export
 gSettingsBackendKeysChanged <- function(backend, path, items, origin_tag) {
-  .Call("R_g_settings_backend_keys_changed", backend, path, items, origin_tag)
+  invisible(.Call("R_g_settings_backend_keys_changed", backend, path, items, origin_tag))
 }
 
 
@@ -12492,7 +12492,7 @@ gSettingsBackendKeysChanged <- function(backend, path, items, origin_tag) {
 #' @return Return value from C function
 #' @export
 gSettingsBackendPathChanged <- function(backend, path, origin_tag) {
-  .Call("R_g_settings_backend_path_changed", backend, path, origin_tag)
+  invisible(.Call("R_g_settings_backend_path_changed", backend, path, origin_tag))
 }
 
 
@@ -12504,7 +12504,7 @@ gSettingsBackendPathChanged <- function(backend, path, origin_tag) {
 #' @return Return value from C function
 #' @export
 gSettingsBackendPathWritableChanged <- function(backend, path) {
-  .Call("R_g_settings_backend_path_writable_changed", backend, path)
+  invisible(.Call("R_g_settings_backend_path_writable_changed", backend, path))
 }
 
 
@@ -12516,7 +12516,7 @@ gSettingsBackendPathWritableChanged <- function(backend, path) {
 #' @return Return value from C function
 #' @export
 gSettingsBackendWritableChanged <- function(backend, key) {
-  .Call("R_g_settings_backend_writable_changed", backend, key)
+  invisible(.Call("R_g_settings_backend_writable_changed", backend, key))
 }
 
 
@@ -12606,7 +12606,7 @@ gSettingsSchemaRef <- function(schema) {
 #' @return Return value from C function
 #' @export
 gSettingsSchemaUnref <- function(schema) {
-  .Call("R_g_settings_schema_unref", schema)
+  invisible(.Call("R_g_settings_schema_unref", schema))
 }
 
 
@@ -12706,7 +12706,7 @@ gSettingsSchemaKeyRef <- function(key) {
 #' @return Return value from C function
 #' @export
 gSettingsSchemaKeyUnref <- function(key) {
-  .Call("R_g_settings_schema_key_unref", key)
+  invisible(.Call("R_g_settings_schema_key_unref", key))
 }
 
 
@@ -12766,7 +12766,7 @@ gSettingsSchemaSourceRef <- function(source) {
 #' @return Return value from C function
 #' @export
 gSettingsSchemaSourceUnref <- function(source) {
-  .Call("R_g_settings_schema_source_unref", source)
+  invisible(.Call("R_g_settings_schema_source_unref", source))
 }
 
 
@@ -12813,7 +12813,7 @@ gSimpleActionNewStateful <- function(name, parameter_type, state) {
 #' @return Return value from C function
 #' @export
 gSimpleActionSetEnabled <- function(simple, enabled) {
-  .Call("R_g_simple_action_set_enabled", simple, enabled)
+  invisible(.Call("R_g_simple_action_set_enabled", simple, enabled))
 }
 
 
@@ -12825,7 +12825,7 @@ gSimpleActionSetEnabled <- function(simple, enabled) {
 #' @return Return value from C function
 #' @export
 gSimpleActionSetState <- function(simple, value) {
-  .Call("R_g_simple_action_set_state", simple, value)
+  invisible(.Call("R_g_simple_action_set_state", simple, value))
 }
 
 
@@ -12837,7 +12837,7 @@ gSimpleActionSetState <- function(simple, value) {
 #' @return Return value from C function
 #' @export
 gSimpleActionSetStateHint <- function(simple, state_hint) {
-  .Call("R_g_simple_action_set_state_hint", simple, state_hint)
+  invisible(.Call("R_g_simple_action_set_state_hint", simple, state_hint))
 }
 
 
@@ -12861,7 +12861,7 @@ gSimpleActionGroupNew <- function() {
 #' @return Return value from C function
 #' @export
 gSimpleActionGroupAddEntries <- function(simple, entries, n_entries, user_data) {
-  .Call("R_g_simple_action_group_add_entries", simple, entries, n_entries, user_data)
+  invisible(.Call("R_g_simple_action_group_add_entries", simple, entries, as.integer(n_entries), user_data))
 }
 
 
@@ -12873,7 +12873,7 @@ gSimpleActionGroupAddEntries <- function(simple, entries, n_entries, user_data) 
 #' @return Return value from C function
 #' @export
 gSimpleActionGroupInsert <- function(simple, action) {
-  .Call("R_g_simple_action_group_insert", simple, action)
+  invisible(.Call("R_g_simple_action_group_insert", simple, action))
 }
 
 
@@ -12897,7 +12897,7 @@ gSimpleActionGroupLookup <- function(simple, action_name) {
 #' @return Return value from C function
 #' @export
 gSimpleActionGroupRemove <- function(simple, action_name) {
-  .Call("R_g_simple_action_group_remove", simple, action_name)
+  invisible(.Call("R_g_simple_action_group_remove", simple, action_name))
 }
 
 
@@ -12921,7 +12921,7 @@ gSimpleAsyncResultIsValid <- function(result, source, source_tag) {
 #' @return Return value from C function
 #' @export
 gSimpleAsyncResultComplete <- function(simple) {
-  .Call("R_g_simple_async_result_complete", simple)
+  invisible(.Call("R_g_simple_async_result_complete", simple))
 }
 
 
@@ -12932,7 +12932,7 @@ gSimpleAsyncResultComplete <- function(simple) {
 #' @return Return value from C function
 #' @export
 gSimpleAsyncResultCompleteInIdle <- function(simple) {
-  .Call("R_g_simple_async_result_complete_in_idle", simple)
+  invisible(.Call("R_g_simple_async_result_complete_in_idle", simple))
 }
 
 
@@ -12977,7 +12977,7 @@ gSimpleAsyncResultPropagateError <- function(simple) {
 #' @return Return value from C function
 #' @export
 gSimpleAsyncResultSetCheckCancellable <- function(simple, check_cancellable) {
-  .Call("R_g_simple_async_result_set_check_cancellable", simple, check_cancellable)
+  invisible(.Call("R_g_simple_async_result_set_check_cancellable", simple, check_cancellable))
 }
 
 
@@ -12989,7 +12989,7 @@ gSimpleAsyncResultSetCheckCancellable <- function(simple, check_cancellable) {
 #' @return Return value from C function
 #' @export
 gSimpleAsyncResultSetFromError <- function(simple, error) {
-  .Call("R_g_simple_async_result_set_from_error", simple, error)
+  invisible(.Call("R_g_simple_async_result_set_from_error", simple, error))
 }
 
 
@@ -13001,7 +13001,7 @@ gSimpleAsyncResultSetFromError <- function(simple, error) {
 #' @return Return value from C function
 #' @export
 gSimpleAsyncResultSetHandleCancellation <- function(simple, handle_cancellation) {
-  .Call("R_g_simple_async_result_set_handle_cancellation", simple, handle_cancellation)
+  invisible(.Call("R_g_simple_async_result_set_handle_cancellation", simple, handle_cancellation))
 }
 
 
@@ -13013,7 +13013,7 @@ gSimpleAsyncResultSetHandleCancellation <- function(simple, handle_cancellation)
 #' @return Return value from C function
 #' @export
 gSimpleAsyncResultSetOpResGboolean <- function(simple, op_res) {
-  .Call("R_g_simple_async_result_set_op_res_gboolean", simple, op_res)
+  invisible(.Call("R_g_simple_async_result_set_op_res_gboolean", simple, op_res))
 }
 
 
@@ -13025,7 +13025,7 @@ gSimpleAsyncResultSetOpResGboolean <- function(simple, op_res) {
 #' @return Return value from C function
 #' @export
 gSimpleAsyncResultSetOpResGssize <- function(simple, op_res) {
-  .Call("R_g_simple_async_result_set_op_res_gssize", simple, op_res)
+  invisible(.Call("R_g_simple_async_result_set_op_res_gssize", simple, as.integer(op_res)))
 }
 
 
@@ -13072,7 +13072,7 @@ gSimpleProxyResolverNew <- function(default_proxy, ignore_hosts) {
 #' @return Return value from C function
 #' @export
 gSimpleProxyResolverSetDefaultProxy <- function(resolver, default_proxy) {
-  .Call("R_g_simple_proxy_resolver_set_default_proxy", resolver, default_proxy)
+  invisible(.Call("R_g_simple_proxy_resolver_set_default_proxy", resolver, default_proxy))
 }
 
 
@@ -13084,7 +13084,7 @@ gSimpleProxyResolverSetDefaultProxy <- function(resolver, default_proxy) {
 #' @return Return value from C function
 #' @export
 gSimpleProxyResolverSetIgnoreHosts <- function(resolver, ignore_hosts) {
-  .Call("R_g_simple_proxy_resolver_set_ignore_hosts", resolver, ignore_hosts)
+  invisible(.Call("R_g_simple_proxy_resolver_set_ignore_hosts", resolver, ignore_hosts))
 }
 
 
@@ -13097,7 +13097,7 @@ gSimpleProxyResolverSetIgnoreHosts <- function(resolver, ignore_hosts) {
 #' @return Return value from C function
 #' @export
 gSimpleProxyResolverSetUriProxy <- function(resolver, uri_scheme, proxy) {
-  .Call("R_g_simple_proxy_resolver_set_uri_proxy", resolver, uri_scheme, proxy)
+  invisible(.Call("R_g_simple_proxy_resolver_set_uri_proxy", resolver, uri_scheme, proxy))
 }
 
 
@@ -13121,7 +13121,7 @@ gSocketNew <- function(family, type, protocol) {
 #' @return Socket
 #' @export
 gSocketNewFromFd <- function(fd) {
-  .Call("R_g_socket_new_from_fd", fd)$result
+  .Call("R_g_socket_new_from_fd", as.integer(fd))$result
 }
 
 
@@ -13194,7 +13194,7 @@ gSocketConditionCheck <- function(socket, condition) {
 #' @return gboolean
 #' @export
 gSocketConditionTimedWait <- function(socket, condition, timeout_us, cancellable) {
-  .Call("R_g_socket_condition_timed_wait", socket, condition, timeout_us, cancellable)$result
+  .Call("R_g_socket_condition_timed_wait", socket, condition, as.integer(timeout_us), cancellable)$result
 }
 
 
@@ -13365,7 +13365,7 @@ gSocketGetMulticastTtl <- function(socket) {
 #' @return gboolean
 #' @export
 gSocketGetOption <- function(socket, level, optname) {
-  .Call("R_g_socket_get_option", socket, level, optname)
+  .Call("R_g_socket_get_option", socket, as.integer(level), as.integer(optname))
 }
 
 
@@ -13522,7 +13522,7 @@ gSocketListen <- function(socket) {
 #' @return gssize
 #' @export
 gSocketReceive <- function(socket, size, cancellable) {
-  .Call("R_g_socket_receive", socket, size, cancellable)
+  .Call("R_g_socket_receive", socket, as.integer(size), cancellable)
 }
 
 
@@ -13536,7 +13536,7 @@ gSocketReceive <- function(socket, size, cancellable) {
 #' @return GLib.Bytes
 #' @export
 gSocketReceiveBytes <- function(socket, size, timeout_us, cancellable) {
-  .Call("R_g_socket_receive_bytes", socket, size, timeout_us, cancellable)$result
+  .Call("R_g_socket_receive_bytes", socket, as.integer(size), as.integer(timeout_us), cancellable)$result
 }
 
 
@@ -13550,7 +13550,7 @@ gSocketReceiveBytes <- function(socket, size, timeout_us, cancellable) {
 #' @return GLib.Bytes
 #' @export
 gSocketReceiveBytesFrom <- function(socket, size, timeout_us, cancellable) {
-  .Call("R_g_socket_receive_bytes_from", socket, size, timeout_us, cancellable)
+  .Call("R_g_socket_receive_bytes_from", socket, as.integer(size), as.integer(timeout_us), cancellable)
 }
 
 
@@ -13563,7 +13563,7 @@ gSocketReceiveBytesFrom <- function(socket, size, timeout_us, cancellable) {
 #' @return gssize
 #' @export
 gSocketReceiveFrom <- function(socket, size, cancellable) {
-  .Call("R_g_socket_receive_from", socket, size, cancellable)
+  .Call("R_g_socket_receive_from", socket, as.integer(size), cancellable)
 }
 
 
@@ -13577,7 +13577,7 @@ gSocketReceiveFrom <- function(socket, size, cancellable) {
 #' @return gssize
 #' @export
 gSocketReceiveMessage <- function(socket, vectors, num_vectors, cancellable) {
-  .Call("R_g_socket_receive_message", socket, vectors, num_vectors, cancellable)
+  .Call("R_g_socket_receive_message", socket, vectors, as.integer(num_vectors), cancellable)
 }
 
 
@@ -13592,7 +13592,7 @@ gSocketReceiveMessage <- function(socket, vectors, num_vectors, cancellable) {
 #' @return gint
 #' @export
 gSocketReceiveMessages <- function(socket, messages, num_messages, flags, cancellable) {
-  .Call("R_g_socket_receive_messages", socket, messages, num_messages, flags, cancellable)$result
+  .Call("R_g_socket_receive_messages", socket, messages, as.integer(num_messages), as.integer(flags), cancellable)$result
 }
 
 
@@ -13606,7 +13606,7 @@ gSocketReceiveMessages <- function(socket, messages, num_messages, flags, cancel
 #' @return gssize
 #' @export
 gSocketReceiveWithBlocking <- function(socket, size, blocking, cancellable) {
-  .Call("R_g_socket_receive_with_blocking", socket, size, blocking, cancellable)
+  .Call("R_g_socket_receive_with_blocking", socket, as.integer(size), blocking, cancellable)
 }
 
 
@@ -13620,7 +13620,7 @@ gSocketReceiveWithBlocking <- function(socket, size, blocking, cancellable) {
 #' @return gssize
 #' @export
 gSocketSend <- function(socket, buffer, size, cancellable) {
-  .Call("R_g_socket_send", socket, buffer, size, cancellable)$result
+  .Call("R_g_socket_send", socket, as.integer(buffer), as.integer(size), cancellable)$result
 }
 
 
@@ -13638,7 +13638,7 @@ gSocketSend <- function(socket, buffer, size, cancellable) {
 #' @return gssize
 #' @export
 gSocketSendMessage <- function(socket, address, vectors, num_vectors, messages, num_messages, flags, cancellable) {
-  .Call("R_g_socket_send_message", socket, address, vectors, num_vectors, messages, num_messages, flags, cancellable)$result
+  .Call("R_g_socket_send_message", socket, address, vectors, as.integer(num_vectors), messages, as.integer(num_messages), as.integer(flags), cancellable)$result
 }
 
 
@@ -13657,7 +13657,7 @@ gSocketSendMessage <- function(socket, address, vectors, num_vectors, messages, 
 #' @return PollableReturn
 #' @export
 gSocketSendMessageWithTimeout <- function(socket, address, vectors, num_vectors, messages, num_messages, flags, timeout_us, cancellable) {
-  .Call("R_g_socket_send_message_with_timeout", socket, address, vectors, num_vectors, messages, num_messages, flags, timeout_us, cancellable)
+  .Call("R_g_socket_send_message_with_timeout", socket, address, vectors, as.integer(num_vectors), messages, as.integer(num_messages), as.integer(flags), as.integer(timeout_us), cancellable)
 }
 
 
@@ -13672,7 +13672,7 @@ gSocketSendMessageWithTimeout <- function(socket, address, vectors, num_vectors,
 #' @return gint
 #' @export
 gSocketSendMessages <- function(socket, messages, num_messages, flags, cancellable) {
-  .Call("R_g_socket_send_messages", socket, messages, num_messages, flags, cancellable)$result
+  .Call("R_g_socket_send_messages", socket, messages, as.integer(num_messages), as.integer(flags), cancellable)$result
 }
 
 
@@ -13687,7 +13687,7 @@ gSocketSendMessages <- function(socket, messages, num_messages, flags, cancellab
 #' @return gssize
 #' @export
 gSocketSendTo <- function(socket, address, buffer, size, cancellable) {
-  .Call("R_g_socket_send_to", socket, address, buffer, size, cancellable)$result
+  .Call("R_g_socket_send_to", socket, address, as.integer(buffer), as.integer(size), cancellable)$result
 }
 
 
@@ -13702,7 +13702,7 @@ gSocketSendTo <- function(socket, address, buffer, size, cancellable) {
 #' @return gssize
 #' @export
 gSocketSendWithBlocking <- function(socket, buffer, size, blocking, cancellable) {
-  .Call("R_g_socket_send_with_blocking", socket, buffer, size, blocking, cancellable)$result
+  .Call("R_g_socket_send_with_blocking", socket, as.integer(buffer), as.integer(size), blocking, cancellable)$result
 }
 
 
@@ -13714,7 +13714,7 @@ gSocketSendWithBlocking <- function(socket, buffer, size, blocking, cancellable)
 #' @return Return value from C function
 #' @export
 gSocketSetBlocking <- function(socket, blocking) {
-  .Call("R_g_socket_set_blocking", socket, blocking)
+  invisible(.Call("R_g_socket_set_blocking", socket, blocking))
 }
 
 
@@ -13726,7 +13726,7 @@ gSocketSetBlocking <- function(socket, blocking) {
 #' @return Return value from C function
 #' @export
 gSocketSetBroadcast <- function(socket, broadcast) {
-  .Call("R_g_socket_set_broadcast", socket, broadcast)
+  invisible(.Call("R_g_socket_set_broadcast", socket, broadcast))
 }
 
 
@@ -13738,7 +13738,7 @@ gSocketSetBroadcast <- function(socket, broadcast) {
 #' @return Return value from C function
 #' @export
 gSocketSetKeepalive <- function(socket, keepalive) {
-  .Call("R_g_socket_set_keepalive", socket, keepalive)
+  invisible(.Call("R_g_socket_set_keepalive", socket, keepalive))
 }
 
 
@@ -13750,7 +13750,7 @@ gSocketSetKeepalive <- function(socket, keepalive) {
 #' @return Return value from C function
 #' @export
 gSocketSetListenBacklog <- function(socket, backlog) {
-  .Call("R_g_socket_set_listen_backlog", socket, backlog)
+  invisible(.Call("R_g_socket_set_listen_backlog", socket, as.integer(backlog)))
 }
 
 
@@ -13762,7 +13762,7 @@ gSocketSetListenBacklog <- function(socket, backlog) {
 #' @return Return value from C function
 #' @export
 gSocketSetMulticastLoopback <- function(socket, loopback) {
-  .Call("R_g_socket_set_multicast_loopback", socket, loopback)
+  invisible(.Call("R_g_socket_set_multicast_loopback", socket, loopback))
 }
 
 
@@ -13774,7 +13774,7 @@ gSocketSetMulticastLoopback <- function(socket, loopback) {
 #' @return Return value from C function
 #' @export
 gSocketSetMulticastTtl <- function(socket, ttl) {
-  .Call("R_g_socket_set_multicast_ttl", socket, ttl)
+  invisible(.Call("R_g_socket_set_multicast_ttl", socket, as.integer(ttl)))
 }
 
 
@@ -13788,7 +13788,7 @@ gSocketSetMulticastTtl <- function(socket, ttl) {
 #' @return gboolean
 #' @export
 gSocketSetOption <- function(socket, level, optname, value) {
-  .Call("R_g_socket_set_option", socket, level, optname, value)$result
+  .Call("R_g_socket_set_option", socket, as.integer(level), as.integer(optname), as.integer(value))$result
 }
 
 
@@ -13800,7 +13800,7 @@ gSocketSetOption <- function(socket, level, optname, value) {
 #' @return Return value from C function
 #' @export
 gSocketSetTimeout <- function(socket, timeout) {
-  .Call("R_g_socket_set_timeout", socket, timeout)
+  invisible(.Call("R_g_socket_set_timeout", socket, as.integer(timeout)))
 }
 
 
@@ -13812,7 +13812,7 @@ gSocketSetTimeout <- function(socket, timeout) {
 #' @return Return value from C function
 #' @export
 gSocketSetTtl <- function(socket, ttl) {
-  .Call("R_g_socket_set_ttl", socket, ttl)
+  invisible(.Call("R_g_socket_set_ttl", socket, as.integer(ttl)))
 }
 
 
@@ -13848,7 +13848,7 @@ gSocketSpeaksIpv4 <- function(socket) {
 #' @return SocketAddress
 #' @export
 gSocketAddressNewFromNative <- function(native, len) {
-  .Call("R_g_socket_address_new_from_native", native, len)$result
+  .Call("R_g_socket_address_new_from_native", native, as.integer(len))$result
 }
 
 
@@ -13883,7 +13883,7 @@ gSocketAddressGetNativeSize <- function(address) {
 #' @return gboolean
 #' @export
 gSocketAddressToNative <- function(address, dest, destlen) {
-  .Call("R_g_socket_address_to_native", address, dest, destlen)$result
+  .Call("R_g_socket_address_to_native", address, dest, as.integer(destlen))$result
 }
 
 
@@ -13929,7 +13929,7 @@ gSocketClientNew <- function() {
 #' @return Return value from C function
 #' @export
 gSocketClientAddApplicationProxy <- function(client, protocol) {
-  .Call("R_g_socket_client_add_application_proxy", client, protocol)
+  invisible(.Call("R_g_socket_client_add_application_proxy", client, protocol))
 }
 
 
@@ -13968,7 +13968,7 @@ gSocketClientConnectFinish <- function(client, result) {
 #' @return SocketConnection
 #' @export
 gSocketClientConnectToHost <- function(client, host_and_port, default_port, cancellable) {
-  .Call("R_g_socket_client_connect_to_host", client, host_and_port, default_port, cancellable)$result
+  .Call("R_g_socket_client_connect_to_host", client, host_and_port, as.integer(default_port), cancellable)$result
 }
 
 
@@ -14020,7 +14020,7 @@ gSocketClientConnectToServiceFinish <- function(client, result) {
 #' @return SocketConnection
 #' @export
 gSocketClientConnectToUri <- function(client, uri, default_port, cancellable) {
-  .Call("R_g_socket_client_connect_to_uri", client, uri, default_port, cancellable)$result
+  .Call("R_g_socket_client_connect_to_uri", client, uri, as.integer(default_port), cancellable)$result
 }
 
 
@@ -14143,7 +14143,7 @@ gSocketClientGetTlsValidationFlags <- function(client) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetEnableProxy <- function(client, enable) {
-  .Call("R_g_socket_client_set_enable_proxy", client, enable)
+  invisible(.Call("R_g_socket_client_set_enable_proxy", client, enable))
 }
 
 
@@ -14155,7 +14155,7 @@ gSocketClientSetEnableProxy <- function(client, enable) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetFamily <- function(client, family) {
-  .Call("R_g_socket_client_set_family", client, family)
+  invisible(.Call("R_g_socket_client_set_family", client, family))
 }
 
 
@@ -14167,7 +14167,7 @@ gSocketClientSetFamily <- function(client, family) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetLocalAddress <- function(client, address) {
-  .Call("R_g_socket_client_set_local_address", client, address)
+  invisible(.Call("R_g_socket_client_set_local_address", client, address))
 }
 
 
@@ -14179,7 +14179,7 @@ gSocketClientSetLocalAddress <- function(client, address) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetProtocol <- function(client, protocol) {
-  .Call("R_g_socket_client_set_protocol", client, protocol)
+  invisible(.Call("R_g_socket_client_set_protocol", client, protocol))
 }
 
 
@@ -14191,7 +14191,7 @@ gSocketClientSetProtocol <- function(client, protocol) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetProxyResolver <- function(client, proxy_resolver) {
-  .Call("R_g_socket_client_set_proxy_resolver", client, proxy_resolver)
+  invisible(.Call("R_g_socket_client_set_proxy_resolver", client, proxy_resolver))
 }
 
 
@@ -14203,7 +14203,7 @@ gSocketClientSetProxyResolver <- function(client, proxy_resolver) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetSocketType <- function(client, type) {
-  .Call("R_g_socket_client_set_socket_type", client, type)
+  invisible(.Call("R_g_socket_client_set_socket_type", client, type))
 }
 
 
@@ -14215,7 +14215,7 @@ gSocketClientSetSocketType <- function(client, type) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetTimeout <- function(client, timeout) {
-  .Call("R_g_socket_client_set_timeout", client, timeout)
+  invisible(.Call("R_g_socket_client_set_timeout", client, as.integer(timeout)))
 }
 
 
@@ -14227,7 +14227,7 @@ gSocketClientSetTimeout <- function(client, timeout) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetTls <- function(client, tls) {
-  .Call("R_g_socket_client_set_tls", client, tls)
+  invisible(.Call("R_g_socket_client_set_tls", client, tls))
 }
 
 
@@ -14239,7 +14239,7 @@ gSocketClientSetTls <- function(client, tls) {
 #' @return Return value from C function
 #' @export
 gSocketClientSetTlsValidationFlags <- function(client, flags) {
-  .Call("R_g_socket_client_set_tls_validation_flags", client, flags)
+  invisible(.Call("R_g_socket_client_set_tls_validation_flags", client, flags))
 }
 
 
@@ -14285,7 +14285,7 @@ gSocketConnectableToString <- function(connectable) {
 #' @return GType
 #' @export
 gSocketConnectionFactoryLookupType <- function(family, type, protocol_id) {
-  .Call("R_g_socket_connection_factory_lookup_type", family, type, protocol_id)$result
+  .Call("R_g_socket_connection_factory_lookup_type", family, type, as.integer(protocol_id))$result
 }
 
 
@@ -14299,7 +14299,7 @@ gSocketConnectionFactoryLookupType <- function(family, type, protocol_id) {
 #' @return Return value from C function
 #' @export
 gSocketConnectionFactoryRegisterType <- function(g_type, family, type, protocol) {
-  .Call("R_g_socket_connection_factory_register_type", g_type, family, type, protocol)
+  invisible(.Call("R_g_socket_connection_factory_register_type", g_type, family, type, as.integer(protocol)))
 }
 
 
@@ -14382,7 +14382,7 @@ gSocketConnectionIsConnected <- function(connection) {
 #' @return SocketControlMessage
 #' @export
 gSocketControlMessageDeserialize <- function(level, type, size, data) {
-  .Call("R_g_socket_control_message_deserialize", level, type, size, data)$result
+  .Call("R_g_socket_control_message_deserialize", as.integer(level), as.integer(type), as.integer(size), as.integer(data))$result
 }
 
 
@@ -14427,7 +14427,7 @@ gSocketControlMessageGetSize <- function(message) {
 #' @return Return value from C function
 #' @export
 gSocketControlMessageSerialize <- function(message, data) {
-  .Call("R_g_socket_control_message_serialize", message, data)
+  invisible(.Call("R_g_socket_control_message_serialize", message, data))
 }
 
 
@@ -14525,7 +14525,7 @@ gSocketListenerAddAnyInetPort <- function(listener, source_object) {
 #' @return gboolean
 #' @export
 gSocketListenerAddInetPort <- function(listener, port, source_object) {
-  .Call("R_g_socket_listener_add_inet_port", listener, port, source_object)$result
+  .Call("R_g_socket_listener_add_inet_port", listener, as.integer(port), source_object)$result
 }
 
 
@@ -14549,7 +14549,7 @@ gSocketListenerAddSocket <- function(listener, socket, source_object) {
 #' @return Return value from C function
 #' @export
 gSocketListenerClose <- function(listener) {
-  .Call("R_g_socket_listener_close", listener)
+  invisible(.Call("R_g_socket_listener_close", listener))
 }
 
 
@@ -14561,7 +14561,7 @@ gSocketListenerClose <- function(listener) {
 #' @return Return value from C function
 #' @export
 gSocketListenerSetBacklog <- function(listener, listen_backlog) {
-  .Call("R_g_socket_listener_set_backlog", listener, listen_backlog)
+  invisible(.Call("R_g_socket_listener_set_backlog", listener, as.integer(listen_backlog)))
 }
 
 
@@ -14593,7 +14593,7 @@ gSocketServiceIsActive <- function(service) {
 #' @return Return value from C function
 #' @export
 gSocketServiceStart <- function(service) {
-  .Call("R_g_socket_service_start", service)
+  invisible(.Call("R_g_socket_service_start", service))
 }
 
 
@@ -14604,7 +14604,7 @@ gSocketServiceStart <- function(service) {
 #' @return Return value from C function
 #' @export
 gSocketServiceStop <- function(service) {
-  .Call("R_g_socket_service_stop", service)
+  invisible(.Call("R_g_socket_service_stop", service))
 }
 
 
@@ -14618,7 +14618,7 @@ gSocketServiceStop <- function(service) {
 #' @return SrvTarget
 #' @export
 gSrvTargetNew <- function(hostname, port, priority, weight) {
-  .Call("R_g_srv_target_new", hostname, port, priority, weight)$result
+  .Call("R_g_srv_target_new", hostname, as.integer(port), as.integer(priority), as.integer(weight))$result
 }
 
 
@@ -14640,7 +14640,7 @@ gSrvTargetCopy <- function(target) {
 #' @return Return value from C function
 #' @export
 gSrvTargetFree <- function(target) {
-  .Call("R_g_srv_target_free", target)
+  invisible(.Call("R_g_srv_target_free", target))
 }
 
 
@@ -14695,7 +14695,7 @@ gSrvTargetGetWeight <- function(target) {
 #' @return Return value from C function
 #' @export
 gStaticResourceFini <- function(static_resource) {
-  .Call("R_g_static_resource_fini", static_resource)
+  invisible(.Call("R_g_static_resource_fini", static_resource))
 }
 
 
@@ -14717,7 +14717,7 @@ gStaticResourceGetResource <- function(static_resource) {
 #' @return Return value from C function
 #' @export
 gStaticResourceInit <- function(static_resource) {
-  .Call("R_g_static_resource_init", static_resource)
+  invisible(.Call("R_g_static_resource_init", static_resource))
 }
 
 
@@ -14790,7 +14790,7 @@ gSubprocessCommunicateUtf8Finish <- function(subprocess, result) {
 #' @return Return value from C function
 #' @export
 gSubprocessForceExit <- function(subprocess) {
-  .Call("R_g_subprocess_force_exit", subprocess)
+  invisible(.Call("R_g_subprocess_force_exit", subprocess))
 }
 
 
@@ -14912,7 +14912,7 @@ gSubprocessGetTermSig <- function(subprocess) {
 #' @return Return value from C function
 #' @export
 gSubprocessSendSignal <- function(subprocess, signal_num) {
-  .Call("R_g_subprocess_send_signal", subprocess, signal_num)
+  invisible(.Call("R_g_subprocess_send_signal", subprocess, as.integer(signal_num)))
 }
 
 
@@ -14982,7 +14982,7 @@ gSubprocessLauncherNew <- function(flags) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherClose <- function(self) {
-  .Call("R_g_subprocess_launcher_close", self)
+  invisible(.Call("R_g_subprocess_launcher_close", self))
 }
 
 
@@ -15006,7 +15006,7 @@ gSubprocessLauncherGetenv <- function(self, variable) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherSetCwd <- function(self, cwd) {
-  .Call("R_g_subprocess_launcher_set_cwd", self, cwd)
+  invisible(.Call("R_g_subprocess_launcher_set_cwd", self, cwd))
 }
 
 
@@ -15018,7 +15018,7 @@ gSubprocessLauncherSetCwd <- function(self, cwd) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherSetEnviron <- function(self, env) {
-  .Call("R_g_subprocess_launcher_set_environ", self, env)
+  invisible(.Call("R_g_subprocess_launcher_set_environ", self, env))
 }
 
 
@@ -15030,7 +15030,7 @@ gSubprocessLauncherSetEnviron <- function(self, env) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherSetFlags <- function(self, flags) {
-  .Call("R_g_subprocess_launcher_set_flags", self, flags)
+  invisible(.Call("R_g_subprocess_launcher_set_flags", self, flags))
 }
 
 
@@ -15042,7 +15042,7 @@ gSubprocessLauncherSetFlags <- function(self, flags) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherSetStderrFilePath <- function(self, path) {
-  .Call("R_g_subprocess_launcher_set_stderr_file_path", self, path)
+  invisible(.Call("R_g_subprocess_launcher_set_stderr_file_path", self, path))
 }
 
 
@@ -15054,7 +15054,7 @@ gSubprocessLauncherSetStderrFilePath <- function(self, path) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherSetStdinFilePath <- function(self, path) {
-  .Call("R_g_subprocess_launcher_set_stdin_file_path", self, path)
+  invisible(.Call("R_g_subprocess_launcher_set_stdin_file_path", self, path))
 }
 
 
@@ -15066,7 +15066,7 @@ gSubprocessLauncherSetStdinFilePath <- function(self, path) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherSetStdoutFilePath <- function(self, path) {
-  .Call("R_g_subprocess_launcher_set_stdout_file_path", self, path)
+  invisible(.Call("R_g_subprocess_launcher_set_stdout_file_path", self, path))
 }
 
 
@@ -15080,7 +15080,7 @@ gSubprocessLauncherSetStdoutFilePath <- function(self, path) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherSetenv <- function(self, variable, value, overwrite) {
-  .Call("R_g_subprocess_launcher_setenv", self, variable, value, overwrite)
+  invisible(.Call("R_g_subprocess_launcher_setenv", self, variable, value, overwrite))
 }
 
 
@@ -15105,7 +15105,7 @@ gSubprocessLauncherSpawnv <- function(self, argv) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherTakeFd <- function(self, source_fd, target_fd) {
-  .Call("R_g_subprocess_launcher_take_fd", self, source_fd, target_fd)
+  invisible(.Call("R_g_subprocess_launcher_take_fd", self, as.integer(source_fd), as.integer(target_fd)))
 }
 
 
@@ -15117,7 +15117,7 @@ gSubprocessLauncherTakeFd <- function(self, source_fd, target_fd) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherTakeStderrFd <- function(self, fd) {
-  .Call("R_g_subprocess_launcher_take_stderr_fd", self, fd)
+  invisible(.Call("R_g_subprocess_launcher_take_stderr_fd", self, as.integer(fd)))
 }
 
 
@@ -15129,7 +15129,7 @@ gSubprocessLauncherTakeStderrFd <- function(self, fd) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherTakeStdinFd <- function(self, fd) {
-  .Call("R_g_subprocess_launcher_take_stdin_fd", self, fd)
+  invisible(.Call("R_g_subprocess_launcher_take_stdin_fd", self, as.integer(fd)))
 }
 
 
@@ -15141,7 +15141,7 @@ gSubprocessLauncherTakeStdinFd <- function(self, fd) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherTakeStdoutFd <- function(self, fd) {
-  .Call("R_g_subprocess_launcher_take_stdout_fd", self, fd)
+  invisible(.Call("R_g_subprocess_launcher_take_stdout_fd", self, as.integer(fd)))
 }
 
 
@@ -15153,7 +15153,7 @@ gSubprocessLauncherTakeStdoutFd <- function(self, fd) {
 #' @return Return value from C function
 #' @export
 gSubprocessLauncherUnsetenv <- function(self, variable) {
-  .Call("R_g_subprocess_launcher_unsetenv", self, variable)
+  invisible(.Call("R_g_subprocess_launcher_unsetenv", self, variable))
 }
 
 
@@ -15342,7 +15342,7 @@ gTaskPropagateValue <- function(task) {
 #' @return Return value from C function
 #' @export
 gTaskReturnBoolean <- function(task, result) {
-  .Call("R_g_task_return_boolean", task, result)
+  invisible(.Call("R_g_task_return_boolean", task, result))
 }
 
 
@@ -15354,7 +15354,7 @@ gTaskReturnBoolean <- function(task, result) {
 #' @return Return value from C function
 #' @export
 gTaskReturnError <- function(task, error) {
-  .Call("R_g_task_return_error", task, error)
+  invisible(.Call("R_g_task_return_error", task, error))
 }
 
 
@@ -15377,7 +15377,7 @@ gTaskReturnErrorIfCancelled <- function(task) {
 #' @return Return value from C function
 #' @export
 gTaskReturnInt <- function(task, result) {
-  .Call("R_g_task_return_int", task, result)
+  invisible(.Call("R_g_task_return_int", task, as.integer(result)))
 }
 
 
@@ -15391,7 +15391,7 @@ gTaskReturnInt <- function(task, result) {
 #' @return Return value from C function
 #' @export
 gTaskReturnNewErrorLiteral <- function(task, domain, code, message) {
-  .Call("R_g_task_return_new_error_literal", task, domain, code, message)
+  invisible(.Call("R_g_task_return_new_error_literal", task, domain, as.integer(code), message))
 }
 
 
@@ -15403,7 +15403,7 @@ gTaskReturnNewErrorLiteral <- function(task, domain, code, message) {
 #' @return Return value from C function
 #' @export
 gTaskReturnValue <- function(task, result) {
-  .Call("R_g_task_return_value", task, result)
+  invisible(.Call("R_g_task_return_value", task, result))
 }
 
 
@@ -15415,7 +15415,7 @@ gTaskReturnValue <- function(task, result) {
 #' @return Return value from C function
 #' @export
 gTaskSetCheckCancellable <- function(task, check_cancellable) {
-  .Call("R_g_task_set_check_cancellable", task, check_cancellable)
+  invisible(.Call("R_g_task_set_check_cancellable", task, check_cancellable))
 }
 
 
@@ -15427,7 +15427,7 @@ gTaskSetCheckCancellable <- function(task, check_cancellable) {
 #' @return Return value from C function
 #' @export
 gTaskSetName <- function(task, name) {
-  .Call("R_g_task_set_name", task, name)
+  invisible(.Call("R_g_task_set_name", task, name))
 }
 
 
@@ -15439,7 +15439,7 @@ gTaskSetName <- function(task, name) {
 #' @return Return value from C function
 #' @export
 gTaskSetPriority <- function(task, priority) {
-  .Call("R_g_task_set_priority", task, priority)
+  invisible(.Call("R_g_task_set_priority", task, as.integer(priority)))
 }
 
 
@@ -15463,7 +15463,7 @@ gTaskSetReturnOnCancel <- function(task, return_on_cancel) {
 #' @return Return value from C function
 #' @export
 gTaskSetSourceTag <- function(task, source_tag) {
-  .Call("R_g_task_set_source_tag", task, source_tag)
+  invisible(.Call("R_g_task_set_source_tag", task, source_tag))
 }
 
 
@@ -15475,7 +15475,7 @@ gTaskSetSourceTag <- function(task, source_tag) {
 #' @return Return value from C function
 #' @export
 gTaskSetStaticName <- function(task, name) {
-  .Call("R_g_task_set_static_name", task, name)
+  invisible(.Call("R_g_task_set_static_name", task, name))
 }
 
 
@@ -15498,7 +15498,7 @@ gTcpConnectionGetGracefulDisconnect <- function(connection) {
 #' @return Return value from C function
 #' @export
 gTcpConnectionSetGracefulDisconnect <- function(connection, graceful_disconnect) {
-  .Call("R_g_tcp_connection_set_graceful_disconnect", connection, graceful_disconnect)
+  invisible(.Call("R_g_tcp_connection_set_graceful_disconnect", connection, graceful_disconnect))
 }
 
 
@@ -15542,7 +15542,7 @@ gTestDbusNew <- function(flags) {
 #' @return Return value from C function
 #' @export
 gTestDbusUnset <- function() {
-  .Call("R_g_test_dbus_unset")
+  invisible(.Call("R_g_test_dbus_unset"))
 }
 
 
@@ -15554,7 +15554,7 @@ gTestDbusUnset <- function() {
 #' @return Return value from C function
 #' @export
 gTestDbusAddServiceDir <- function(self, path) {
-  .Call("R_g_test_dbus_add_service_dir", self, path)
+  invisible(.Call("R_g_test_dbus_add_service_dir", self, path))
 }
 
 
@@ -15565,7 +15565,7 @@ gTestDbusAddServiceDir <- function(self, path) {
 #' @return Return value from C function
 #' @export
 gTestDbusDown <- function(self) {
-  .Call("R_g_test_dbus_down", self)
+  invisible(.Call("R_g_test_dbus_down", self))
 }
 
 
@@ -15598,7 +15598,7 @@ gTestDbusGetFlags <- function(self) {
 #' @return Return value from C function
 #' @export
 gTestDbusStop <- function(self) {
-  .Call("R_g_test_dbus_stop", self)
+  invisible(.Call("R_g_test_dbus_stop", self))
 }
 
 
@@ -15609,7 +15609,7 @@ gTestDbusStop <- function(self) {
 #' @return Return value from C function
 #' @export
 gTestDbusUp <- function(self) {
-  .Call("R_g_test_dbus_up", self)
+  invisible(.Call("R_g_test_dbus_up", self))
 }
 
 
@@ -15632,7 +15632,7 @@ gThemedIconNew <- function(iconname) {
 #' @return ThemedIcon
 #' @export
 gThemedIconNewFromNames <- function(iconnames, len) {
-  .Call("R_g_themed_icon_new_from_names", iconnames, len)$result
+  .Call("R_g_themed_icon_new_from_names", iconnames, as.integer(len))$result
 }
 
 
@@ -15655,7 +15655,7 @@ gThemedIconNewWithDefaultFallbacks <- function(iconname) {
 #' @return Return value from C function
 #' @export
 gThemedIconAppendName <- function(icon, iconname) {
-  .Call("R_g_themed_icon_append_name", icon, iconname)
+  invisible(.Call("R_g_themed_icon_append_name", icon, iconname))
 }
 
 
@@ -15678,7 +15678,7 @@ gThemedIconGetNames <- function(icon) {
 #' @return Return value from C function
 #' @export
 gThemedIconPrependName <- function(icon, iconname) {
-  .Call("R_g_themed_icon_prepend_name", icon, iconname)
+  invisible(.Call("R_g_themed_icon_prepend_name", icon, iconname))
 }
 
 
@@ -15689,7 +15689,7 @@ gThemedIconPrependName <- function(icon, iconname) {
 #' @return SocketService
 #' @export
 gThreadedSocketServiceNew <- function(max_threads) {
-  .Call("R_g_threaded_socket_service_new", max_threads)$result
+  .Call("R_g_threaded_socket_service_new", as.integer(max_threads))$result
 }
 
 
@@ -16049,7 +16049,7 @@ gVolumeMonitorGetVolumes <- function(volume_monitor) {
 #' @return ZlibCompressor
 #' @export
 gZlibCompressorNew <- function(format, level) {
-  .Call("R_g_zlib_compressor_new", format, level)$result
+  .Call("R_g_zlib_compressor_new", format, as.integer(level))$result
 }
 
 
@@ -16083,7 +16083,7 @@ gZlibCompressorGetOs <- function(compressor) {
 #' @return Return value from C function
 #' @export
 gZlibCompressorSetFileInfo <- function(compressor, file_info) {
-  .Call("R_g_zlib_compressor_set_file_info", compressor, file_info)
+  invisible(.Call("R_g_zlib_compressor_set_file_info", compressor, file_info))
 }
 
 
@@ -16095,7 +16095,7 @@ gZlibCompressorSetFileInfo <- function(compressor, file_info) {
 #' @return Return value from C function
 #' @export
 gZlibCompressorSetOs <- function(compressor, os) {
-  .Call("R_g_zlib_compressor_set_os", compressor, os)
+  invisible(.Call("R_g_zlib_compressor_set_os", compressor, as.integer(os)))
 }
 
 
@@ -16182,7 +16182,7 @@ gBusOwnNameWithClosures <- function(bus_type, name, flags, bus_acquired_closure,
 #' @return Return value from C function
 #' @export
 gBusUnownName <- function(owner_id) {
-  .Call("R_g_bus_unown_name", owner_id)
+  invisible(.Call("R_g_bus_unown_name", as.integer(owner_id)))
 }
 
 
@@ -16193,7 +16193,7 @@ gBusUnownName <- function(owner_id) {
 #' @return Return value from C function
 #' @export
 gBusUnwatchName <- function(watcher_id) {
-  .Call("R_g_bus_unwatch_name", watcher_id)
+  invisible(.Call("R_g_bus_unwatch_name", as.integer(watcher_id)))
 }
 
 
@@ -16335,7 +16335,7 @@ gContentTypeGetSymbolicIcon <- function(type) {
 #' @return utf8
 #' @export
 gContentTypeGuess <- function(filename, data, data_size) {
-  .Call("R_g_content_type_guess", filename, data, data_size)
+  .Call("R_g_content_type_guess", filename, as.integer(data), as.integer(data_size))
 }
 
 
@@ -16392,7 +16392,7 @@ gContentTypeIsUnknown <- function(type) {
 #' @return Return value from C function
 #' @export
 gContentTypeSetMimeDirs <- function(dirs) {
-  .Call("R_g_content_type_set_mime_dirs", dirs)
+  invisible(.Call("R_g_content_type_set_mime_dirs", dirs))
 }
 
 
@@ -16470,7 +16470,7 @@ gDbusEscapeObjectPath <- function(s) {
 #' @return utf8
 #' @export
 gDbusEscapeObjectPathBytestring <- function(bytes) {
-  .Call("R_g_dbus_escape_object_path_bytestring", bytes)$result
+  .Call("R_g_dbus_escape_object_path_bytestring", as.integer(bytes))$result
 }
 
 
@@ -16613,7 +16613,7 @@ gDbusUnescapeObjectPath <- function(s) {
 #' @return IOErrorEnum
 #' @export
 gIoErrorFromErrno <- function(err_no) {
-  .Call("R_g_io_error_from_errno", err_no)$result
+  .Call("R_g_io_error_from_errno", as.integer(err_no))$result
 }
 
 
@@ -16668,7 +16668,7 @@ gIoModulesLoadAllInDirectoryWithScope <- function(dirname, scope) {
 #' @return Return value from C function
 #' @export
 gIoModulesScanAllInDirectory <- function(dirname) {
-  .Call("R_g_io_modules_scan_all_in_directory", dirname)
+  invisible(.Call("R_g_io_modules_scan_all_in_directory", dirname))
 }
 
 
@@ -16680,7 +16680,7 @@ gIoModulesScanAllInDirectory <- function(dirname) {
 #' @return Return value from C function
 #' @export
 gIoModulesScanAllInDirectoryWithScope <- function(dirname, scope) {
-  .Call("R_g_io_modules_scan_all_in_directory_with_scope", dirname, scope)
+  invisible(.Call("R_g_io_modules_scan_all_in_directory_with_scope", dirname, scope))
 }
 
 
@@ -16690,7 +16690,7 @@ gIoModulesScanAllInDirectoryWithScope <- function(dirname, scope) {
 #' @return Return value from C function
 #' @export
 gIoSchedulerCancelAllJobs <- function() {
-  .Call("R_g_io_scheduler_cancel_all_jobs")
+  invisible(.Call("R_g_io_scheduler_cancel_all_jobs"))
 }
 
 
@@ -16723,7 +16723,7 @@ gMemorySettingsBackendNew <- function() {
 #' @return Return value from C function
 #' @export
 gNetworkingInit <- function() {
-  .Call("R_g_networking_init")
+  invisible(.Call("R_g_networking_init"))
 }
 
 
@@ -16772,7 +16772,7 @@ gPollableSourceNewFull <- function(pollable_stream, child_source, cancellable) {
 #' @return gssize
 #' @export
 gPollableStreamRead <- function(stream, buffer, count, blocking, cancellable) {
-  .Call("R_g_pollable_stream_read", stream, buffer, count, blocking, cancellable)$result
+  .Call("R_g_pollable_stream_read", stream, as.integer(buffer), as.integer(count), blocking, cancellable)$result
 }
 
 
@@ -16787,7 +16787,7 @@ gPollableStreamRead <- function(stream, buffer, count, blocking, cancellable) {
 #' @return gssize
 #' @export
 gPollableStreamWrite <- function(stream, buffer, count, blocking, cancellable) {
-  .Call("R_g_pollable_stream_write", stream, buffer, count, blocking, cancellable)$result
+  .Call("R_g_pollable_stream_write", stream, as.integer(buffer), as.integer(count), blocking, cancellable)$result
 }
 
 
@@ -16802,7 +16802,7 @@ gPollableStreamWrite <- function(stream, buffer, count, blocking, cancellable) {
 #' @return gboolean
 #' @export
 gPollableStreamWriteAll <- function(stream, buffer, count, blocking, cancellable) {
-  .Call("R_g_pollable_stream_write_all", stream, buffer, count, blocking, cancellable)
+  .Call("R_g_pollable_stream_write_all", stream, as.integer(buffer), as.integer(count), blocking, cancellable)
 }
 
 

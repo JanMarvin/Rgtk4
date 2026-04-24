@@ -84,7 +84,7 @@ gBindingGetTargetProperty <- function(binding) {
 #' @return Return value from C function
 #' @export
 gBindingUnbind <- function(binding) {
-  .Call("R_g_binding_unbind", binding)
+  invisible(.Call("R_g_binding_unbind", binding))
 }
 
 
@@ -109,7 +109,7 @@ gBindingGroupNew <- function() {
 #' @return Return value from C function
 #' @export
 gBindingGroupBind <- function(self, source_property, target, target_property, flags) {
-  .Call("R_g_binding_group_bind", self, source_property, target, target_property, flags)
+  invisible(.Call("R_g_binding_group_bind", self, source_property, target, target_property, flags))
 }
 
 
@@ -126,7 +126,7 @@ gBindingGroupBind <- function(self, source_property, target, target_property, fl
 #' @return Return value from C function
 #' @export
 gBindingGroupBindWithClosures <- function(self, source_property, target, target_property, flags, transform_to, transform_from) {
-  .Call("R_g_binding_group_bind_with_closures", self, source_property, target, target_property, flags, transform_to, transform_from)
+  invisible(.Call("R_g_binding_group_bind_with_closures", self, source_property, target, target_property, flags, transform_to, transform_from))
 }
 
 
@@ -149,7 +149,7 @@ gBindingGroupDupSource <- function(self) {
 #' @return Return value from C function
 #' @export
 gBindingGroupSetSource <- function(self, source) {
-  .Call("R_g_binding_group_set_source", self, source)
+  invisible(.Call("R_g_binding_group_set_source", self, source))
 }
 
 
@@ -165,7 +165,7 @@ gBindingGroupSetSource <- function(self, source) {
 #' @return Return value from C function
 #' @export
 gCclosureMarshalBOOLEANBOXEDBOXED <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_BOOLEAN__BOXED_BOXED", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_BOOLEAN__BOXED_BOXED", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -181,7 +181,7 @@ gCclosureMarshalBOOLEANBOXEDBOXED <- function(closure, return_value, n_param_val
 #' @return Return value from C function
 #' @export
 gCclosureMarshalBOOLEANFLAGS <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_BOOLEAN__FLAGS", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_BOOLEAN__FLAGS", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -197,7 +197,7 @@ gCclosureMarshalBOOLEANFLAGS <- function(closure, return_value, n_param_values, 
 #' @return Return value from C function
 #' @export
 gCclosureMarshalSTRINGOBJECTPOINTER <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_STRING__OBJECT_POINTER", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_STRING__OBJECT_POINTER", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -213,7 +213,7 @@ gCclosureMarshalSTRINGOBJECTPOINTER <- function(closure, return_value, n_param_v
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDBOOLEAN <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__BOOLEAN", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__BOOLEAN", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -229,7 +229,7 @@ gCclosureMarshalVOIDBOOLEAN <- function(closure, return_value, n_param_values, p
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDBOXED <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__BOXED", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__BOXED", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -245,7 +245,7 @@ gCclosureMarshalVOIDBOXED <- function(closure, return_value, n_param_values, par
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDCHAR <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__CHAR", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__CHAR", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -261,7 +261,7 @@ gCclosureMarshalVOIDCHAR <- function(closure, return_value, n_param_values, para
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDDOUBLE <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__DOUBLE", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__DOUBLE", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -277,7 +277,7 @@ gCclosureMarshalVOIDDOUBLE <- function(closure, return_value, n_param_values, pa
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDENUM <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__ENUM", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__ENUM", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -293,7 +293,7 @@ gCclosureMarshalVOIDENUM <- function(closure, return_value, n_param_values, para
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDFLAGS <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__FLAGS", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__FLAGS", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -309,7 +309,7 @@ gCclosureMarshalVOIDFLAGS <- function(closure, return_value, n_param_values, par
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDFLOAT <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__FLOAT", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__FLOAT", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -325,7 +325,7 @@ gCclosureMarshalVOIDFLOAT <- function(closure, return_value, n_param_values, par
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDINT <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__INT", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__INT", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -341,7 +341,7 @@ gCclosureMarshalVOIDINT <- function(closure, return_value, n_param_values, param
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDLONG <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__LONG", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__LONG", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -357,7 +357,7 @@ gCclosureMarshalVOIDLONG <- function(closure, return_value, n_param_values, para
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDOBJECT <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__OBJECT", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__OBJECT", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -373,7 +373,7 @@ gCclosureMarshalVOIDOBJECT <- function(closure, return_value, n_param_values, pa
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDPARAM <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__PARAM", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__PARAM", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -389,7 +389,7 @@ gCclosureMarshalVOIDPARAM <- function(closure, return_value, n_param_values, par
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDPOINTER <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__POINTER", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__POINTER", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -405,7 +405,7 @@ gCclosureMarshalVOIDPOINTER <- function(closure, return_value, n_param_values, p
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDSTRING <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__STRING", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__STRING", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -421,7 +421,7 @@ gCclosureMarshalVOIDSTRING <- function(closure, return_value, n_param_values, pa
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDUCHAR <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__UCHAR", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__UCHAR", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -437,7 +437,7 @@ gCclosureMarshalVOIDUCHAR <- function(closure, return_value, n_param_values, par
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDUINT <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__UINT", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__UINT", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -453,7 +453,7 @@ gCclosureMarshalVOIDUINT <- function(closure, return_value, n_param_values, para
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDUINTPOINTER <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__UINT_POINTER", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__UINT_POINTER", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -469,7 +469,7 @@ gCclosureMarshalVOIDUINTPOINTER <- function(closure, return_value, n_param_value
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDULONG <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__ULONG", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__ULONG", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -485,7 +485,7 @@ gCclosureMarshalVOIDULONG <- function(closure, return_value, n_param_values, par
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDVARIANT <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__VARIANT", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__VARIANT", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -501,7 +501,7 @@ gCclosureMarshalVOIDVARIANT <- function(closure, return_value, n_param_values, p
 #' @return Return value from C function
 #' @export
 gCclosureMarshalVOIDVOID <- function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_VOID__VOID", closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_VOID__VOID", closure, return_value, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -517,7 +517,7 @@ gCclosureMarshalVOIDVOID <- function(closure, return_value, n_param_values, para
 #' @return Return value from C function
 #' @export
 gCclosureMarshalGeneric <- function(closure, return_gvalue, n_param_values, param_values, invocation_hint, marshal_data) {
-  .Call("R_g_cclosure_marshal_generic", closure, return_gvalue, n_param_values, param_values, invocation_hint, marshal_data)
+  invisible(.Call("R_g_cclosure_marshal_generic", closure, return_gvalue, as.integer(n_param_values), param_values, invocation_hint, marshal_data))
 }
 
 
@@ -529,7 +529,7 @@ gCclosureMarshalGeneric <- function(closure, return_gvalue, n_param_values, para
 #' @return Closure
 #' @export
 gClosureNewObject <- function(sizeof_closure, object) {
-  .Call("R_g_closure_new_object", sizeof_closure, object)$result
+  .Call("R_g_closure_new_object", as.integer(sizeof_closure), object)$result
 }
 
 
@@ -541,7 +541,7 @@ gClosureNewObject <- function(sizeof_closure, object) {
 #' @return Closure
 #' @export
 gClosureNewSimple <- function(sizeof_closure, data) {
-  .Call("R_g_closure_new_simple", sizeof_closure, data)$result
+  .Call("R_g_closure_new_simple", as.integer(sizeof_closure), data)$result
 }
 
 
@@ -552,7 +552,7 @@ gClosureNewSimple <- function(sizeof_closure, data) {
 #' @return Return value from C function
 #' @export
 gClosureInvalidate <- function(closure) {
-  .Call("R_g_closure_invalidate", closure)
+  invisible(.Call("R_g_closure_invalidate", closure))
 }
 
 
@@ -566,7 +566,7 @@ gClosureInvalidate <- function(closure) {
 #' @return Return value from C function
 #' @export
 gClosureInvoke <- function(closure, n_param_values, param_values, invocation_hint) {
-  .Call("R_g_closure_invoke", closure, n_param_values, param_values, invocation_hint)$return_value
+  .Call("R_g_closure_invoke", closure, as.integer(n_param_values), param_values, invocation_hint)$return_value
 }
 
 
@@ -588,7 +588,7 @@ gClosureRef <- function(closure) {
 #' @return Return value from C function
 #' @export
 gClosureSink <- function(closure) {
-  .Call("R_g_closure_sink", closure)
+  invisible(.Call("R_g_closure_sink", closure))
 }
 
 
@@ -599,7 +599,7 @@ gClosureSink <- function(closure) {
 #' @return Return value from C function
 #' @export
 gClosureUnref <- function(closure) {
-  .Call("R_g_closure_unref", closure)
+  invisible(.Call("R_g_closure_unref", closure))
 }
 
 
@@ -612,7 +612,7 @@ gClosureUnref <- function(closure) {
 #' @return Object
 #' @export
 gObjectNewv <- function(object_type, n_parameters, parameters) {
-  .Call("R_g_object_newv", object_type, n_parameters, parameters)$result
+  .Call("R_g_object_newv", object_type, as.integer(n_parameters), parameters)$result
 }
 
 
@@ -624,7 +624,7 @@ gObjectNewv <- function(object_type, n_parameters, parameters) {
 #' @return gsize
 #' @export
 gObjectCompatControl <- function(what, data) {
-  .Call("R_g_object_compat_control", what, data)$result
+  .Call("R_g_object_compat_control", as.integer(what), data)$result
 }
 
 
@@ -648,7 +648,7 @@ gObjectInterfaceFindProperty <- function(g_iface, property_name) {
 #' @return Return value from C function
 #' @export
 gObjectInterfaceInstallProperty <- function(g_iface, pspec) {
-  .Call("R_g_object_interface_install_property", g_iface, pspec)
+  invisible(.Call("R_g_object_interface_install_property", g_iface, pspec))
 }
 
 
@@ -702,7 +702,7 @@ gObjectBindPropertyWithClosures <- function(source, source_property, target, tar
 #' @return Return value from C function
 #' @export
 gObjectForceFloating <- function(object) {
-  .Call("R_g_object_force_floating", object)
+  invisible(.Call("R_g_object_force_floating", object))
 }
 
 
@@ -713,7 +713,7 @@ gObjectForceFloating <- function(object) {
 #' @return Return value from C function
 #' @export
 gObjectFreezeNotify <- function(object) {
-  .Call("R_g_object_freeze_notify", object)
+  invisible(.Call("R_g_object_freeze_notify", object))
 }
 
 
@@ -738,7 +738,7 @@ gObjectGetData <- function(object, key) {
 #' @return Return value from C function
 #' @export
 gObjectGetProperty <- function(object, property_name, value) {
-  .Call("R_g_object_get_property", object, property_name, value)
+  invisible(.Call("R_g_object_get_property", object, property_name, value))
 }
 
 
@@ -764,7 +764,7 @@ gObjectGetQdata <- function(object, quark) {
 #' @return Return value from C function
 #' @export
 gObjectGetv <- function(object, n_properties, names, values) {
-  .Call("R_g_object_getv", object, n_properties, names, values)
+  invisible(.Call("R_g_object_getv", object, as.integer(n_properties), names, values))
 }
 
 
@@ -787,7 +787,7 @@ gObjectIsFloating <- function(object) {
 #' @return Return value from C function
 #' @export
 gObjectNotify <- function(object, property_name) {
-  .Call("R_g_object_notify", object, property_name)
+  invisible(.Call("R_g_object_notify", object, property_name))
 }
 
 
@@ -799,7 +799,7 @@ gObjectNotify <- function(object, property_name) {
 #' @return Return value from C function
 #' @export
 gObjectNotifyByPspec <- function(object, pspec) {
-  .Call("R_g_object_notify_by_pspec", object, pspec)
+  invisible(.Call("R_g_object_notify_by_pspec", object, pspec))
 }
 
 
@@ -832,7 +832,7 @@ gObjectRefSink <- function(object) {
 #' @return Return value from C function
 #' @export
 gObjectRunDispose <- function(object) {
-  .Call("R_g_object_run_dispose", object)
+  invisible(.Call("R_g_object_run_dispose", object))
 }
 
 
@@ -845,7 +845,7 @@ gObjectRunDispose <- function(object) {
 #' @return Return value from C function
 #' @export
 gObjectSetData <- function(object, key, data) {
-  .Call("R_g_object_set_data", object, key, data)
+  invisible(.Call("R_g_object_set_data", object, key, data))
 }
 
 
@@ -858,7 +858,7 @@ gObjectSetData <- function(object, key, data) {
 #' @return Return value from C function
 #' @export
 gObjectSetProperty <- function(object, property_name, value) {
-  .Call("R_g_object_set_property", object, property_name, value)
+  invisible(.Call("R_g_object_set_property", object, property_name, value))
 }
 
 
@@ -893,7 +893,7 @@ gObjectStealQdata <- function(object, quark) {
 #' @return Return value from C function
 #' @export
 gObjectThawNotify <- function(object) {
-  .Call("R_g_object_thaw_notify", object)
+  invisible(.Call("R_g_object_thaw_notify", object))
 }
 
 
@@ -904,7 +904,7 @@ gObjectThawNotify <- function(object) {
 #' @return Return value from C function
 #' @export
 gObjectUnref <- function(object) {
-  .Call("R_g_object_unref", object)
+  invisible(.Call("R_g_object_unref", object))
 }
 
 
@@ -916,7 +916,7 @@ gObjectUnref <- function(object) {
 #' @return Return value from C function
 #' @export
 gObjectWatchClosure <- function(object, closure) {
-  .Call("R_g_object_watch_closure", object, closure)
+  invisible(.Call("R_g_object_watch_closure", object, closure))
 }
 
 
@@ -941,7 +941,7 @@ gObjectClassFindProperty <- function(oclass, property_name) {
 #' @return Return value from C function
 #' @export
 gObjectClassInstallProperties <- function(oclass, n_pspecs, pspecs) {
-  .Call("R_g_object_class_install_properties", oclass, n_pspecs, pspecs)
+  invisible(.Call("R_g_object_class_install_properties", oclass, as.integer(n_pspecs), pspecs))
 }
 
 
@@ -954,7 +954,7 @@ gObjectClassInstallProperties <- function(oclass, n_pspecs, pspecs) {
 #' @return Return value from C function
 #' @export
 gObjectClassInstallProperty <- function(oclass, property_id, pspec) {
-  .Call("R_g_object_class_install_property", oclass, property_id, pspec)
+  invisible(.Call("R_g_object_class_install_property", oclass, as.integer(property_id), pspec))
 }
 
 
@@ -978,7 +978,7 @@ gObjectClassListProperties <- function(oclass) {
 #' @return Return value from C function
 #' @export
 gObjectClassOverrideProperty <- function(oclass, property_id, name) {
-  .Call("R_g_object_class_override_property", oclass, property_id, name)
+  invisible(.Call("R_g_object_class_override_property", oclass, as.integer(property_id), name))
 }
 
 
@@ -1080,7 +1080,7 @@ gParamSpecGetRedirectTarget <- function(pspec) {
 #' @return Return value from C function
 #' @export
 gParamSpecSetQdata <- function(pspec, quark, data) {
-  .Call("R_g_param_spec_set_qdata", pspec, quark, data)
+  invisible(.Call("R_g_param_spec_set_qdata", pspec, quark, data))
 }
 
 
@@ -1091,7 +1091,7 @@ gParamSpecSetQdata <- function(pspec, quark, data) {
 #' @return Return value from C function
 #' @export
 gParamSpecSink <- function(pspec) {
-  .Call("R_g_param_spec_sink", pspec)
+  invisible(.Call("R_g_param_spec_sink", pspec))
 }
 
 
@@ -1114,7 +1114,7 @@ gParamSpecStealQdata <- function(pspec, quark) {
 #' @return Return value from C function
 #' @export
 gParamSpecPoolFree <- function(pool) {
-  .Call("R_g_param_spec_pool_free", pool)
+  invisible(.Call("R_g_param_spec_pool_free", pool))
 }
 
 
@@ -1127,7 +1127,7 @@ gParamSpecPoolFree <- function(pool) {
 #' @return Return value from C function
 #' @export
 gParamSpecPoolInsert <- function(pool, pspec, owner_type) {
-  .Call("R_g_param_spec_pool_insert", pool, pspec, owner_type)
+  invisible(.Call("R_g_param_spec_pool_insert", pool, pspec, owner_type))
 }
 
 
@@ -1177,7 +1177,7 @@ gParamSpecPoolLookup <- function(pool, param_name, owner_type, walk_ancestors) {
 #' @return Return value from C function
 #' @export
 gParamSpecPoolRemove <- function(pool, pspec) {
-  .Call("R_g_param_spec_pool_remove", pool, pspec)
+  invisible(.Call("R_g_param_spec_pool_remove", pool, pspec))
 }
 
 
@@ -1199,7 +1199,7 @@ gSignalGroupNew <- function(target_type) {
 #' @return Return value from C function
 #' @export
 gSignalGroupBlock <- function(self) {
-  .Call("R_g_signal_group_block", self)
+  invisible(.Call("R_g_signal_group_block", self))
 }
 
 
@@ -1213,7 +1213,7 @@ gSignalGroupBlock <- function(self) {
 #' @return Return value from C function
 #' @export
 gSignalGroupConnectClosure <- function(self, detailed_signal, closure, after) {
-  .Call("R_g_signal_group_connect_closure", self, detailed_signal, closure, after)
+  invisible(.Call("R_g_signal_group_connect_closure", self, detailed_signal, closure, after))
 }
 
 
@@ -1236,7 +1236,7 @@ gSignalGroupDupTarget <- function(self) {
 #' @return Return value from C function
 #' @export
 gSignalGroupSetTarget <- function(self, target) {
-  .Call("R_g_signal_group_set_target", self, target)
+  invisible(.Call("R_g_signal_group_set_target", self, target))
 }
 
 
@@ -1247,7 +1247,7 @@ gSignalGroupSetTarget <- function(self, target) {
 #' @return Return value from C function
 #' @export
 gSignalGroupUnblock <- function(self) {
-  .Call("R_g_signal_group_unblock", self)
+  invisible(.Call("R_g_signal_group_unblock", self))
 }
 
 
@@ -1259,7 +1259,7 @@ gSignalGroupUnblock <- function(self) {
 #' @return Return value from C function
 #' @export
 gSourceSetClosure <- function(source, closure) {
-  .Call("R_g_source_set_closure", source, closure)
+  invisible(.Call("R_g_source_set_closure", source, closure))
 }
 
 
@@ -1270,7 +1270,7 @@ gSourceSetClosure <- function(source, closure) {
 #' @return Return value from C function
 #' @export
 gSourceSetDummyCallback <- function(source) {
-  .Call("R_g_source_set_dummy_callback", source)
+  invisible(.Call("R_g_source_set_dummy_callback", source))
 }
 
 
@@ -1282,7 +1282,7 @@ gSourceSetDummyCallback <- function(source) {
 #' @return Return value from C function
 #' @export
 gTypeClassAddPrivate <- function(g_class, private_size) {
-  .Call("R_g_type_class_add_private", g_class, private_size)
+  invisible(.Call("R_g_type_class_add_private", g_class, as.integer(private_size)))
 }
 
 
@@ -1316,7 +1316,7 @@ gTypeClassPeekParent <- function(g_class) {
 #' @return Return value from C function
 #' @export
 gTypeClassUnref <- function(g_class) {
-  .Call("R_g_type_class_unref", g_class)
+  invisible(.Call("R_g_type_class_unref", g_class))
 }
 
 
@@ -1328,7 +1328,7 @@ gTypeClassUnref <- function(g_class) {
 #' @return Return value from C function
 #' @export
 gTypeClassAdjustPrivateOffset <- function(g_class, private_size_or_offset) {
-  .Call("R_g_type_class_adjust_private_offset", g_class, private_size_or_offset)
+  invisible(.Call("R_g_type_class_adjust_private_offset", g_class, as.integer(private_size_or_offset)))
 }
 
 
@@ -1407,7 +1407,7 @@ gTypeInterfacePeekParent <- function(g_iface) {
 #' @return Return value from C function
 #' @export
 gTypeInterfaceAddPrerequisite <- function(interface_type, prerequisite_type) {
-  .Call("R_g_type_interface_add_prerequisite", interface_type, prerequisite_type)
+  invisible(.Call("R_g_type_interface_add_prerequisite", interface_type, prerequisite_type))
 }
 
 
@@ -1467,7 +1467,7 @@ gTypeInterfacePrerequisites <- function(interface_type) {
 #' @return Return value from C function
 #' @export
 gTypeModuleAddInterface <- function(module, instance_type, interface_type, interface_info) {
-  .Call("R_g_type_module_add_interface", module, instance_type, interface_type, interface_info)
+  invisible(.Call("R_g_type_module_add_interface", module, instance_type, interface_type, interface_info))
 }
 
 
@@ -1520,7 +1520,7 @@ gTypeModuleRegisterType <- function(module, parent_type, type_name, type_info, f
 #' @return Return value from C function
 #' @export
 gTypeModuleSetName <- function(module, name) {
-  .Call("R_g_type_module_set_name", module, name)
+  invisible(.Call("R_g_type_module_set_name", module, name))
 }
 
 
@@ -1531,7 +1531,7 @@ gTypeModuleSetName <- function(module, name) {
 #' @return Return value from C function
 #' @export
 gTypeModuleUnuse <- function(module) {
-  .Call("R_g_type_module_unuse", module)
+  invisible(.Call("R_g_type_module_unuse", module))
 }
 
 
@@ -1556,7 +1556,7 @@ gTypeModuleUse <- function(module) {
 #' @return Return value from C function
 #' @export
 gTypePluginCompleteInterfaceInfo <- function(plugin, instance_type, interface_type, info) {
-  .Call("R_g_type_plugin_complete_interface_info", plugin, instance_type, interface_type, info)
+  invisible(.Call("R_g_type_plugin_complete_interface_info", plugin, instance_type, interface_type, info))
 }
 
 
@@ -1570,7 +1570,7 @@ gTypePluginCompleteInterfaceInfo <- function(plugin, instance_type, interface_ty
 #' @return Return value from C function
 #' @export
 gTypePluginCompleteTypeInfo <- function(plugin, g_type, info, value_table) {
-  .Call("R_g_type_plugin_complete_type_info", plugin, g_type, info, value_table)
+  invisible(.Call("R_g_type_plugin_complete_type_info", plugin, g_type, info, value_table))
 }
 
 
@@ -1581,7 +1581,7 @@ gTypePluginCompleteTypeInfo <- function(plugin, g_type, info, value_table) {
 #' @return Return value from C function
 #' @export
 gTypePluginUnuse <- function(plugin) {
-  .Call("R_g_type_plugin_unuse", plugin)
+  invisible(.Call("R_g_type_plugin_unuse", plugin))
 }
 
 
@@ -1592,7 +1592,7 @@ gTypePluginUnuse <- function(plugin) {
 #' @return Return value from C function
 #' @export
 gTypePluginUse <- function(plugin) {
-  .Call("R_g_type_plugin_use", plugin)
+  invisible(.Call("R_g_type_plugin_use", plugin))
 }
 
 
@@ -1604,7 +1604,7 @@ gTypePluginUse <- function(plugin) {
 #' @return Return value from C function
 #' @export
 gValueCopy <- function(src_value, dest_value) {
-  .Call("R_g_value_copy", src_value, dest_value)
+  invisible(.Call("R_g_value_copy", src_value, dest_value))
 }
 
 
@@ -1903,7 +1903,7 @@ gValueInit <- function(value, g_type) {
 #' @return Return value from C function
 #' @export
 gValueInitFromInstance <- function(value, instance) {
-  .Call("R_g_value_init_from_instance", value, instance)
+  invisible(.Call("R_g_value_init_from_instance", value, instance))
 }
 
 
@@ -1937,7 +1937,7 @@ gValueReset <- function(value) {
 #' @return Return value from C function
 #' @export
 gValueSetBoolean <- function(value, v_boolean) {
-  .Call("R_g_value_set_boolean", value, v_boolean)
+  invisible(.Call("R_g_value_set_boolean", value, v_boolean))
 }
 
 
@@ -1949,7 +1949,7 @@ gValueSetBoolean <- function(value, v_boolean) {
 #' @return Return value from C function
 #' @export
 gValueSetBoxed <- function(value, v_boxed) {
-  .Call("R_g_value_set_boxed", value, v_boxed)
+  invisible(.Call("R_g_value_set_boxed", value, v_boxed))
 }
 
 
@@ -1961,7 +1961,7 @@ gValueSetBoxed <- function(value, v_boxed) {
 #' @return Return value from C function
 #' @export
 gValueSetBoxedTakeOwnership <- function(value, v_boxed) {
-  .Call("R_g_value_set_boxed_take_ownership", value, v_boxed)
+  invisible(.Call("R_g_value_set_boxed_take_ownership", value, v_boxed))
 }
 
 
@@ -1973,7 +1973,7 @@ gValueSetBoxedTakeOwnership <- function(value, v_boxed) {
 #' @return Return value from C function
 #' @export
 gValueSetChar <- function(value, v_char) {
-  .Call("R_g_value_set_char", value, v_char)
+  invisible(.Call("R_g_value_set_char", value, v_char))
 }
 
 
@@ -1985,7 +1985,7 @@ gValueSetChar <- function(value, v_char) {
 #' @return Return value from C function
 #' @export
 gValueSetDouble <- function(value, v_double) {
-  .Call("R_g_value_set_double", value, v_double)
+  invisible(.Call("R_g_value_set_double", value, v_double))
 }
 
 
@@ -1997,7 +1997,7 @@ gValueSetDouble <- function(value, v_double) {
 #' @return Return value from C function
 #' @export
 gValueSetEnum <- function(value, v_enum) {
-  .Call("R_g_value_set_enum", value, v_enum)
+  invisible(.Call("R_g_value_set_enum", value, as.integer(v_enum)))
 }
 
 
@@ -2009,7 +2009,7 @@ gValueSetEnum <- function(value, v_enum) {
 #' @return Return value from C function
 #' @export
 gValueSetFlags <- function(value, v_flags) {
-  .Call("R_g_value_set_flags", value, v_flags)
+  invisible(.Call("R_g_value_set_flags", value, as.integer(v_flags)))
 }
 
 
@@ -2021,7 +2021,7 @@ gValueSetFlags <- function(value, v_flags) {
 #' @return Return value from C function
 #' @export
 gValueSetFloat <- function(value, v_float) {
-  .Call("R_g_value_set_float", value, v_float)
+  invisible(.Call("R_g_value_set_float", value, v_float))
 }
 
 
@@ -2033,7 +2033,7 @@ gValueSetFloat <- function(value, v_float) {
 #' @return Return value from C function
 #' @export
 gValueSetGtype <- function(value, v_gtype) {
-  .Call("R_g_value_set_gtype", value, v_gtype)
+  invisible(.Call("R_g_value_set_gtype", value, v_gtype))
 }
 
 
@@ -2045,7 +2045,7 @@ gValueSetGtype <- function(value, v_gtype) {
 #' @return Return value from C function
 #' @export
 gValueSetInstance <- function(value, instance) {
-  .Call("R_g_value_set_instance", value, instance)
+  invisible(.Call("R_g_value_set_instance", value, instance))
 }
 
 
@@ -2057,7 +2057,7 @@ gValueSetInstance <- function(value, instance) {
 #' @return Return value from C function
 #' @export
 gValueSetInt <- function(value, v_int) {
-  .Call("R_g_value_set_int", value, v_int)
+  invisible(.Call("R_g_value_set_int", value, as.integer(v_int)))
 }
 
 
@@ -2069,7 +2069,7 @@ gValueSetInt <- function(value, v_int) {
 #' @return Return value from C function
 #' @export
 gValueSetInt64 <- function(value, v_int64) {
-  .Call("R_g_value_set_int64", value, v_int64)
+  invisible(.Call("R_g_value_set_int64", value, as.integer(v_int64)))
 }
 
 
@@ -2081,7 +2081,7 @@ gValueSetInt64 <- function(value, v_int64) {
 #' @return Return value from C function
 #' @export
 gValueSetInternedString <- function(value, v_string) {
-  .Call("R_g_value_set_interned_string", value, v_string)
+  invisible(.Call("R_g_value_set_interned_string", value, v_string))
 }
 
 
@@ -2093,7 +2093,7 @@ gValueSetInternedString <- function(value, v_string) {
 #' @return Return value from C function
 #' @export
 gValueSetLong <- function(value, v_long) {
-  .Call("R_g_value_set_long", value, v_long)
+  invisible(.Call("R_g_value_set_long", value, as.integer(v_long)))
 }
 
 
@@ -2105,7 +2105,7 @@ gValueSetLong <- function(value, v_long) {
 #' @return Return value from C function
 #' @export
 gValueSetObject <- function(value, v_object) {
-  .Call("R_g_value_set_object", value, v_object)
+  invisible(.Call("R_g_value_set_object", value, v_object))
 }
 
 
@@ -2117,7 +2117,7 @@ gValueSetObject <- function(value, v_object) {
 #' @return Return value from C function
 #' @export
 gValueSetParam <- function(value, param) {
-  .Call("R_g_value_set_param", value, param)
+  invisible(.Call("R_g_value_set_param", value, param))
 }
 
 
@@ -2129,7 +2129,7 @@ gValueSetParam <- function(value, param) {
 #' @return Return value from C function
 #' @export
 gValueSetPointer <- function(value, v_pointer) {
-  .Call("R_g_value_set_pointer", value, v_pointer)
+  invisible(.Call("R_g_value_set_pointer", value, v_pointer))
 }
 
 
@@ -2141,7 +2141,7 @@ gValueSetPointer <- function(value, v_pointer) {
 #' @return Return value from C function
 #' @export
 gValueSetSchar <- function(value, v_char) {
-  .Call("R_g_value_set_schar", value, v_char)
+  invisible(.Call("R_g_value_set_schar", value, as.integer(v_char)))
 }
 
 
@@ -2153,7 +2153,7 @@ gValueSetSchar <- function(value, v_char) {
 #' @return Return value from C function
 #' @export
 gValueSetStaticBoxed <- function(value, v_boxed) {
-  .Call("R_g_value_set_static_boxed", value, v_boxed)
+  invisible(.Call("R_g_value_set_static_boxed", value, v_boxed))
 }
 
 
@@ -2165,7 +2165,7 @@ gValueSetStaticBoxed <- function(value, v_boxed) {
 #' @return Return value from C function
 #' @export
 gValueSetStaticString <- function(value, v_string) {
-  .Call("R_g_value_set_static_string", value, v_string)
+  invisible(.Call("R_g_value_set_static_string", value, v_string))
 }
 
 
@@ -2177,7 +2177,7 @@ gValueSetStaticString <- function(value, v_string) {
 #' @return Return value from C function
 #' @export
 gValueSetString <- function(value, v_string) {
-  .Call("R_g_value_set_string", value, v_string)
+  invisible(.Call("R_g_value_set_string", value, v_string))
 }
 
 
@@ -2189,7 +2189,7 @@ gValueSetString <- function(value, v_string) {
 #' @return Return value from C function
 #' @export
 gValueSetStringTakeOwnership <- function(value, v_string) {
-  .Call("R_g_value_set_string_take_ownership", value, v_string)
+  invisible(.Call("R_g_value_set_string_take_ownership", value, v_string))
 }
 
 
@@ -2201,7 +2201,7 @@ gValueSetStringTakeOwnership <- function(value, v_string) {
 #' @return Return value from C function
 #' @export
 gValueSetUchar <- function(value, v_uchar) {
-  .Call("R_g_value_set_uchar", value, v_uchar)
+  invisible(.Call("R_g_value_set_uchar", value, as.integer(v_uchar)))
 }
 
 
@@ -2213,7 +2213,7 @@ gValueSetUchar <- function(value, v_uchar) {
 #' @return Return value from C function
 #' @export
 gValueSetUint <- function(value, v_uint) {
-  .Call("R_g_value_set_uint", value, v_uint)
+  invisible(.Call("R_g_value_set_uint", value, as.integer(v_uint)))
 }
 
 
@@ -2225,7 +2225,7 @@ gValueSetUint <- function(value, v_uint) {
 #' @return Return value from C function
 #' @export
 gValueSetUint64 <- function(value, v_uint64) {
-  .Call("R_g_value_set_uint64", value, v_uint64)
+  invisible(.Call("R_g_value_set_uint64", value, as.integer(v_uint64)))
 }
 
 
@@ -2237,7 +2237,7 @@ gValueSetUint64 <- function(value, v_uint64) {
 #' @return Return value from C function
 #' @export
 gValueSetUlong <- function(value, v_ulong) {
-  .Call("R_g_value_set_ulong", value, v_ulong)
+  invisible(.Call("R_g_value_set_ulong", value, as.integer(v_ulong)))
 }
 
 
@@ -2249,7 +2249,7 @@ gValueSetUlong <- function(value, v_ulong) {
 #' @return Return value from C function
 #' @export
 gValueSetVariant <- function(value, variant) {
-  .Call("R_g_value_set_variant", value, variant)
+  invisible(.Call("R_g_value_set_variant", value, variant))
 }
 
 
@@ -2272,7 +2272,7 @@ gValueStealString <- function(value) {
 #' @return Return value from C function
 #' @export
 gValueTakeBoxed <- function(value, v_boxed) {
-  .Call("R_g_value_take_boxed", value, v_boxed)
+  invisible(.Call("R_g_value_take_boxed", value, v_boxed))
 }
 
 
@@ -2284,7 +2284,7 @@ gValueTakeBoxed <- function(value, v_boxed) {
 #' @return Return value from C function
 #' @export
 gValueTakeString <- function(value, v_string) {
-  .Call("R_g_value_take_string", value, v_string)
+  invisible(.Call("R_g_value_take_string", value, v_string))
 }
 
 
@@ -2296,7 +2296,7 @@ gValueTakeString <- function(value, v_string) {
 #' @return Return value from C function
 #' @export
 gValueTakeVariant <- function(value, variant) {
-  .Call("R_g_value_take_variant", value, variant)
+  invisible(.Call("R_g_value_take_variant", value, variant))
 }
 
 
@@ -2319,7 +2319,7 @@ gValueTransform <- function(src_value, dest_value) {
 #' @return Return value from C function
 #' @export
 gValueUnset <- function(value) {
-  .Call("R_g_value_unset", value)
+  invisible(.Call("R_g_value_unset", value))
 }
 
 
@@ -2354,7 +2354,7 @@ gValueTypeTransformable <- function(src_type, dest_type) {
 #' @return ValueArray
 #' @export
 gValueArrayNew <- function(n_prealloced) {
-  .Call("R_g_value_array_new", n_prealloced)$result
+  .Call("R_g_value_array_new", as.integer(n_prealloced))$result
 }
 
 
@@ -2389,7 +2389,7 @@ gValueArrayCopy <- function(value_array) {
 #' @return Value
 #' @export
 gValueArrayGetNth <- function(value_array, index_) {
-  .Call("R_g_value_array_get_nth", value_array, index_)$result
+  .Call("R_g_value_array_get_nth", value_array, as.integer(index_))$result
 }
 
 
@@ -2402,7 +2402,7 @@ gValueArrayGetNth <- function(value_array, index_) {
 #' @return ValueArray
 #' @export
 gValueArrayInsert <- function(value_array, index_, value) {
-  .Call("R_g_value_array_insert", value_array, index_, value)$result
+  .Call("R_g_value_array_insert", value_array, as.integer(index_), value)$result
 }
 
 
@@ -2426,7 +2426,7 @@ gValueArrayPrepend <- function(value_array, value) {
 #' @return ValueArray
 #' @export
 gValueArrayRemove <- function(value_array, index_) {
-  .Call("R_g_value_array_remove", value_array, index_)$result
+  .Call("R_g_value_array_remove", value_array, as.integer(index_))$result
 }
 
 
@@ -2450,7 +2450,7 @@ gBoxedCopy <- function(boxed_type, src_boxed) {
 #' @return Return value from C function
 #' @export
 gBoxedFree <- function(boxed_type, boxed) {
-  .Call("R_g_boxed_free", boxed_type, boxed)
+  invisible(.Call("R_g_boxed_free", boxed_type, boxed))
 }
 
 
@@ -2462,7 +2462,7 @@ gBoxedFree <- function(boxed_type, boxed) {
 #' @return Return value from C function
 #' @export
 gClearSignalHandler <- function(handler_id_ptr, instance) {
-  .Call("R_g_clear_signal_handler", handler_id_ptr, instance)
+  invisible(.Call("R_g_clear_signal_handler", as.integer(handler_id_ptr), instance))
 }
 
 
@@ -2486,7 +2486,7 @@ gEnumCompleteTypeInfo <- function(g_enum_type, const_values) {
 #' @return EnumValue
 #' @export
 gEnumGetValue <- function(enum_class, value) {
-  .Call("R_g_enum_get_value", enum_class, value)$result
+  .Call("R_g_enum_get_value", enum_class, as.integer(value))$result
 }
 
 
@@ -2534,7 +2534,7 @@ gEnumRegisterStatic <- function(name, const_static_values) {
 #' @return utf8
 #' @export
 gEnumToString <- function(g_enum_type, value) {
-  .Call("R_g_enum_to_string", g_enum_type, value)$result
+  .Call("R_g_enum_to_string", g_enum_type, as.integer(value))$result
 }
 
 
@@ -2558,7 +2558,7 @@ gFlagsCompleteTypeInfo <- function(g_flags_type, const_values) {
 #' @return FlagsValue
 #' @export
 gFlagsGetFirstValue <- function(flags_class, value) {
-  .Call("R_g_flags_get_first_value", flags_class, value)$result
+  .Call("R_g_flags_get_first_value", flags_class, as.integer(value))$result
 }
 
 
@@ -2606,7 +2606,7 @@ gFlagsRegisterStatic <- function(name, const_static_values) {
 #' @return utf8
 #' @export
 gFlagsToString <- function(flags_type, value) {
-  .Call("R_g_flags_to_string", flags_type, value)$result
+  .Call("R_g_flags_to_string", flags_type, as.integer(value))$result
 }
 
 
@@ -2663,7 +2663,7 @@ gParamSpecBoxed <- function(name, nick, blurb, boxed_type, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecChar <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_char", name, nick, blurb, minimum, maximum, default_value, flags)$result
+  .Call("R_g_param_spec_char", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
 }
 
 
@@ -2696,7 +2696,7 @@ gParamSpecDouble <- function(name, nick, blurb, minimum, maximum, default_value,
 #' @return ParamSpec
 #' @export
 gParamSpecEnum <- function(name, nick, blurb, enum_type, default_value, flags) {
-  .Call("R_g_param_spec_enum", name, nick, blurb, enum_type, default_value, flags)$result
+  .Call("R_g_param_spec_enum", name, nick, blurb, enum_type, as.integer(default_value), flags)$result
 }
 
 
@@ -2712,7 +2712,7 @@ gParamSpecEnum <- function(name, nick, blurb, enum_type, default_value, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecFlags <- function(name, nick, blurb, flags_type, default_value, flags) {
-  .Call("R_g_param_spec_flags", name, nick, blurb, flags_type, default_value, flags)$result
+  .Call("R_g_param_spec_flags", name, nick, blurb, flags_type, as.integer(default_value), flags)$result
 }
 
 
@@ -2761,7 +2761,7 @@ gParamSpecGtype <- function(name, nick, blurb, is_a_type, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecInt <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_int", name, nick, blurb, minimum, maximum, default_value, flags)$result
+  .Call("R_g_param_spec_int", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
 }
 
 
@@ -2778,7 +2778,7 @@ gParamSpecInt <- function(name, nick, blurb, minimum, maximum, default_value, fl
 #' @return ParamSpec
 #' @export
 gParamSpecInt64 <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_int64", name, nick, blurb, minimum, maximum, default_value, flags)$result
+  .Call("R_g_param_spec_int64", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
 }
 
 
@@ -2795,7 +2795,7 @@ gParamSpecInt64 <- function(name, nick, blurb, minimum, maximum, default_value, 
 #' @return ParamSpec
 #' @export
 gParamSpecLong <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_long", name, nick, blurb, minimum, maximum, default_value, flags)$result
+  .Call("R_g_param_spec_long", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
 }
 
 
@@ -2871,7 +2871,7 @@ gParamSpecString <- function(name, nick, blurb, default_value, flags) {
 #' @return ParamSpec
 #' @export
 gParamSpecUchar <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_uchar", name, nick, blurb, minimum, maximum, default_value, flags)$result
+  .Call("R_g_param_spec_uchar", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
 }
 
 
@@ -2888,7 +2888,7 @@ gParamSpecUchar <- function(name, nick, blurb, minimum, maximum, default_value, 
 #' @return ParamSpec
 #' @export
 gParamSpecUint <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_uint", name, nick, blurb, minimum, maximum, default_value, flags)$result
+  .Call("R_g_param_spec_uint", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
 }
 
 
@@ -2905,7 +2905,7 @@ gParamSpecUint <- function(name, nick, blurb, minimum, maximum, default_value, f
 #' @return ParamSpec
 #' @export
 gParamSpecUint64 <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_uint64", name, nick, blurb, minimum, maximum, default_value, flags)$result
+  .Call("R_g_param_spec_uint64", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
 }
 
 
@@ -2922,7 +2922,7 @@ gParamSpecUint64 <- function(name, nick, blurb, minimum, maximum, default_value,
 #' @return ParamSpec
 #' @export
 gParamSpecUlong <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_ulong", name, nick, blurb, minimum, maximum, default_value, flags)$result
+  .Call("R_g_param_spec_ulong", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
 }
 
 
@@ -3015,7 +3015,7 @@ gParamValueIsValid <- function(pspec, value) {
 #' @return Return value from C function
 #' @export
 gParamValueSetDefault <- function(pspec, value) {
-  .Call("R_g_param_value_set_default", pspec, value)
+  invisible(.Call("R_g_param_value_set_default", pspec, value))
 }
 
 
@@ -3091,7 +3091,7 @@ gSignalAccumulatorTrueHandled <- function(ihint, return_accu, handler_return, du
 #' @return Return value from C function
 #' @export
 gSignalChainFromOverridden <- function(instance_and_params, return_value) {
-  .Call("R_g_signal_chain_from_overridden", instance_and_params, return_value)
+  invisible(.Call("R_g_signal_chain_from_overridden", instance_and_params, return_value))
 }
 
 
@@ -3120,7 +3120,7 @@ gSignalConnectClosure <- function(instance, detailed_signal, closure, after) {
 #' @return gulong
 #' @export
 gSignalConnectClosureById <- function(instance, signal_id, detail, closure, after) {
-  .Call("R_g_signal_connect_closure_by_id", instance, signal_id, detail, closure, after)$result
+  .Call("R_g_signal_connect_closure_by_id", instance, as.integer(signal_id), detail, closure, after)$result
 }
 
 
@@ -3133,7 +3133,7 @@ gSignalConnectClosureById <- function(instance, signal_id, detail, closure, afte
 #' @return Return value from C function
 #' @export
 gSignalEmitv <- function(instance_and_params, signal_id, detail) {
-  .Call("R_g_signal_emitv", instance_and_params, signal_id, detail)$return_value
+  .Call("R_g_signal_emitv", instance_and_params, as.integer(signal_id), detail)$return_value
 }
 
 
@@ -3156,7 +3156,7 @@ gSignalGetInvocationHint <- function(instance) {
 #' @return Return value from C function
 #' @export
 gSignalHandlerBlock <- function(instance, handler_id) {
-  .Call("R_g_signal_handler_block", instance, handler_id)
+  invisible(.Call("R_g_signal_handler_block", instance, as.integer(handler_id)))
 }
 
 
@@ -3168,7 +3168,7 @@ gSignalHandlerBlock <- function(instance, handler_id) {
 #' @return Return value from C function
 #' @export
 gSignalHandlerDisconnect <- function(instance, handler_id) {
-  .Call("R_g_signal_handler_disconnect", instance, handler_id)
+  invisible(.Call("R_g_signal_handler_disconnect", instance, as.integer(handler_id)))
 }
 
 
@@ -3185,7 +3185,7 @@ gSignalHandlerDisconnect <- function(instance, handler_id) {
 #' @return gulong
 #' @export
 gSignalHandlerFind <- function(instance, mask, signal_id, detail, closure, func, data) {
-  .Call("R_g_signal_handler_find", instance, mask, signal_id, detail, closure, func, data)$result
+  .Call("R_g_signal_handler_find", instance, mask, as.integer(signal_id), detail, closure, func, data)$result
 }
 
 
@@ -3197,7 +3197,7 @@ gSignalHandlerFind <- function(instance, mask, signal_id, detail, closure, func,
 #' @return gboolean
 #' @export
 gSignalHandlerIsConnected <- function(instance, handler_id) {
-  .Call("R_g_signal_handler_is_connected", instance, handler_id)$result
+  .Call("R_g_signal_handler_is_connected", instance, as.integer(handler_id))$result
 }
 
 
@@ -3209,7 +3209,7 @@ gSignalHandlerIsConnected <- function(instance, handler_id) {
 #' @return Return value from C function
 #' @export
 gSignalHandlerUnblock <- function(instance, handler_id) {
-  .Call("R_g_signal_handler_unblock", instance, handler_id)
+  invisible(.Call("R_g_signal_handler_unblock", instance, as.integer(handler_id)))
 }
 
 
@@ -3226,7 +3226,7 @@ gSignalHandlerUnblock <- function(instance, handler_id) {
 #' @return guint
 #' @export
 gSignalHandlersBlockMatched <- function(instance, mask, signal_id, detail, closure, func, data) {
-  .Call("R_g_signal_handlers_block_matched", instance, mask, signal_id, detail, closure, func, data)$result
+  .Call("R_g_signal_handlers_block_matched", instance, mask, as.integer(signal_id), detail, closure, func, data)$result
 }
 
 
@@ -3237,7 +3237,7 @@ gSignalHandlersBlockMatched <- function(instance, mask, signal_id, detail, closu
 #' @return Return value from C function
 #' @export
 gSignalHandlersDestroy <- function(instance) {
-  .Call("R_g_signal_handlers_destroy", instance)
+  invisible(.Call("R_g_signal_handlers_destroy", instance))
 }
 
 
@@ -3254,7 +3254,7 @@ gSignalHandlersDestroy <- function(instance) {
 #' @return guint
 #' @export
 gSignalHandlersDisconnectMatched <- function(instance, mask, signal_id, detail, closure, func, data) {
-  .Call("R_g_signal_handlers_disconnect_matched", instance, mask, signal_id, detail, closure, func, data)$result
+  .Call("R_g_signal_handlers_disconnect_matched", instance, mask, as.integer(signal_id), detail, closure, func, data)$result
 }
 
 
@@ -3271,7 +3271,7 @@ gSignalHandlersDisconnectMatched <- function(instance, mask, signal_id, detail, 
 #' @return guint
 #' @export
 gSignalHandlersUnblockMatched <- function(instance, mask, signal_id, detail, closure, func, data) {
-  .Call("R_g_signal_handlers_unblock_matched", instance, mask, signal_id, detail, closure, func, data)$result
+  .Call("R_g_signal_handlers_unblock_matched", instance, mask, as.integer(signal_id), detail, closure, func, data)$result
 }
 
 
@@ -3285,7 +3285,7 @@ gSignalHandlersUnblockMatched <- function(instance, mask, signal_id, detail, clo
 #' @return gboolean
 #' @export
 gSignalHasHandlerPending <- function(instance, signal_id, detail, may_be_blocked) {
-  .Call("R_g_signal_has_handler_pending", instance, signal_id, detail, may_be_blocked)$result
+  .Call("R_g_signal_has_handler_pending", instance, as.integer(signal_id), detail, may_be_blocked)$result
 }
 
 
@@ -3330,7 +3330,7 @@ gSignalLookup <- function(name, itype) {
 #' @return utf8
 #' @export
 gSignalName <- function(signal_id) {
-  .Call("R_g_signal_name", signal_id)$result
+  .Call("R_g_signal_name", as.integer(signal_id))$result
 }
 
 
@@ -3343,7 +3343,7 @@ gSignalName <- function(signal_id) {
 #' @return Return value from C function
 #' @export
 gSignalOverrideClassClosure <- function(signal_id, instance_type, class_closure) {
-  .Call("R_g_signal_override_class_closure", signal_id, instance_type, class_closure)
+  invisible(.Call("R_g_signal_override_class_closure", as.integer(signal_id), instance_type, class_closure))
 }
 
 
@@ -3367,7 +3367,7 @@ gSignalParseName <- function(detailed_signal, itype, force_detail_quark) {
 #' @return Return value from C function
 #' @export
 gSignalQuery <- function(signal_id) {
-  .Call("R_g_signal_query", signal_id)$query
+  .Call("R_g_signal_query", as.integer(signal_id))$query
 }
 
 
@@ -3379,7 +3379,7 @@ gSignalQuery <- function(signal_id) {
 #' @return Return value from C function
 #' @export
 gSignalRemoveEmissionHook <- function(signal_id, hook_id) {
-  .Call("R_g_signal_remove_emission_hook", signal_id, hook_id)
+  invisible(.Call("R_g_signal_remove_emission_hook", as.integer(signal_id), as.integer(hook_id)))
 }
 
 
@@ -3392,7 +3392,7 @@ gSignalRemoveEmissionHook <- function(signal_id, hook_id) {
 #' @return Return value from C function
 #' @export
 gSignalStopEmission <- function(instance, signal_id, detail) {
-  .Call("R_g_signal_stop_emission", instance, signal_id, detail)
+  invisible(.Call("R_g_signal_stop_emission", instance, as.integer(signal_id), detail))
 }
 
 
@@ -3404,7 +3404,7 @@ gSignalStopEmission <- function(instance, signal_id, detail) {
 #' @return Return value from C function
 #' @export
 gSignalStopEmissionByName <- function(instance, detailed_signal) {
-  .Call("R_g_signal_stop_emission_by_name", instance, detailed_signal)
+  invisible(.Call("R_g_signal_stop_emission_by_name", instance, detailed_signal))
 }
 
 
@@ -3416,7 +3416,7 @@ gSignalStopEmissionByName <- function(instance, detailed_signal) {
 #' @return Closure
 #' @export
 gSignalTypeCclosureNew <- function(itype, struct_offset) {
-  .Call("R_g_signal_type_cclosure_new", itype, struct_offset)$result
+  .Call("R_g_signal_type_cclosure_new", itype, as.integer(struct_offset))$result
 }
 
 
@@ -3439,7 +3439,7 @@ gStrdupValueContents <- function(value) {
 #' @return Return value from C function
 #' @export
 gTypeAddClassPrivate <- function(class_type, private_size) {
-  .Call("R_g_type_add_class_private", class_type, private_size)
+  invisible(.Call("R_g_type_add_class_private", class_type, as.integer(private_size)))
 }
 
 
@@ -3451,7 +3451,7 @@ gTypeAddClassPrivate <- function(class_type, private_size) {
 #' @return gint
 #' @export
 gTypeAddInstancePrivate <- function(class_type, private_size) {
-  .Call("R_g_type_add_instance_private", class_type, private_size)$result
+  .Call("R_g_type_add_instance_private", class_type, as.integer(private_size))$result
 }
 
 
@@ -3464,7 +3464,7 @@ gTypeAddInstancePrivate <- function(class_type, private_size) {
 #' @return Return value from C function
 #' @export
 gTypeAddInterfaceDynamic <- function(instance_type, interface_type, plugin) {
-  .Call("R_g_type_add_interface_dynamic", instance_type, interface_type, plugin)
+  invisible(.Call("R_g_type_add_interface_dynamic", instance_type, interface_type, plugin))
 }
 
 
@@ -3477,7 +3477,7 @@ gTypeAddInterfaceDynamic <- function(instance_type, interface_type, plugin) {
 #' @return Return value from C function
 #' @export
 gTypeAddInterfaceStatic <- function(instance_type, interface_type, info) {
-  .Call("R_g_type_add_interface_static", instance_type, interface_type, info)
+  invisible(.Call("R_g_type_add_interface_static", instance_type, interface_type, info))
 }
 
 
@@ -3613,7 +3613,7 @@ gTypeDefaultInterfaceRef <- function(g_type) {
 #' @return Return value from C function
 #' @export
 gTypeDefaultInterfaceUnref <- function(g_iface) {
-  .Call("R_g_type_default_interface_unref", g_iface)
+  invisible(.Call("R_g_type_default_interface_unref", g_iface))
 }
 
 
@@ -3635,7 +3635,7 @@ gTypeDepth <- function(type) {
 #' @return Return value from C function
 #' @export
 gTypeEnsure <- function(type) {
-  .Call("R_g_type_ensure", type)
+  invisible(.Call("R_g_type_ensure", type))
 }
 
 
@@ -3646,7 +3646,7 @@ gTypeEnsure <- function(type) {
 #' @return Return value from C function
 #' @export
 gTypeFreeInstance <- function(instance) {
-  .Call("R_g_type_free_instance", instance)
+  invisible(.Call("R_g_type_free_instance", instance))
 }
 
 
@@ -3732,7 +3732,7 @@ gTypeGetTypeRegistrationSerial <- function() {
 #' @return Return value from C function
 #' @export
 gTypeInit <- function() {
-  .Call("R_g_type_init")
+  invisible(.Call("R_g_type_init"))
 }
 
 
@@ -3743,7 +3743,7 @@ gTypeInit <- function() {
 #' @return Return value from C function
 #' @export
 gTypeInitWithDebugFlags <- function(debug_flags) {
-  .Call("R_g_type_init_with_debug_flags", debug_flags)
+  invisible(.Call("R_g_type_init_with_debug_flags", debug_flags))
 }
 
 
@@ -3900,7 +3900,7 @@ gTypeRegisterStatic <- function(parent_type, type_name, info, flags) {
 #' @return Return value from C function
 #' @export
 gTypeSetQdata <- function(type, quark, data) {
-  .Call("R_g_type_set_qdata", type, quark, data)
+  invisible(.Call("R_g_type_set_qdata", type, quark, data))
 }
 
 
@@ -3912,7 +3912,7 @@ gTypeSetQdata <- function(type, quark, data) {
 #' @return gboolean
 #' @export
 gTypeTestFlags <- function(type, flags) {
-  .Call("R_g_type_test_flags", type, flags)$result
+  .Call("R_g_type_test_flags", type, as.integer(flags))$result
 }
 
 

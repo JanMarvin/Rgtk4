@@ -86,28 +86,16 @@ gtkStringListFromVector <- function(strings) {
   .Call('R_gtk_string_list_new_from_vector', strings)
 }
 
-#' Connect an R function to a GObject signal (no-argument signals)
+#' Connect an R function to a GObject signal
 #' @param obj External pointer to a GObject
 #' @param signal Signal name (character)
-#' @param fun R function to invoke on signal
-#' @return handler id (numeric)
+#' @param fun R function to invoke on signal. For signals that expect a boolean return
+#'   (like "close-request"), your function should return TRUE to stop propagation or
+#'   FALSE to allow default behavior.
+#' @return handler id (numeric) - invisibly
 #' @export
 gSignalConnectR <- function(obj, signal, fun) {
-  .Call('R_g_signal_connect_r', obj, signal, fun)
-}
-
-#' Connect an R function to a signal that returns boolean
-#'
-#' Use this for signals like "close-request" that expect a boolean return value.
-#' Your function should return TRUE to stop propagation, FALSE to allow default behavior.
-#'
-#' @param obj External pointer to a GObject
-#' @param signal Signal name (character)
-#' @param fun R function to invoke on signal - must return TRUE or FALSE
-#' @return handler id (numeric)
-#' @export
-gSignalConnectRBoolean <- function(obj, signal, fun) {
-  .Call('R_g_signal_connect_r_boolean', obj, signal, fun)
+  invisible(.Call('R_g_signal_connect_r', obj, signal, fun))
 }
 
 #' Add keyboard shortcut to close window

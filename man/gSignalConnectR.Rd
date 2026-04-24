@@ -2,7 +2,7 @@
 % Please edit documentation in R/helpers.R
 \name{gSignalConnectR}
 \alias{gSignalConnectR}
-\title{Connect an R function to a GObject signal (no-argument signals)}
+\title{Connect an R function to a GObject signal}
 \usage{
 gSignalConnectR(obj, signal, fun)
 }
@@ -11,11 +11,13 @@ gSignalConnectR(obj, signal, fun)
 
 \item{signal}{Signal name (character)}
 
-\item{fun}{R function to invoke on signal}
+\item{fun}{R function to invoke on signal. For signals that expect a boolean return
+(like "close-request"), your function should return TRUE to stop propagation or
+FALSE to allow default behavior.}
 }
 \value{
-handler id (numeric)
+handler id (numeric) - invisibly
 }
 \description{
-Connect an R function to a GObject signal (no-argument signals)
+Connect an R function to a GObject signal
 }

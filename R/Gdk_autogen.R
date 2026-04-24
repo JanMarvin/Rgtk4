@@ -19,7 +19,7 @@ gdkAppLaunchContextGetDisplay <- function(context) {
 #' @return Return value from C function
 #' @export
 gdkAppLaunchContextSetDesktop <- function(context, desktop) {
-  .Call("R_gdk_app_launch_context_set_desktop", context, desktop)
+  invisible(.Call("R_gdk_app_launch_context_set_desktop", context, as.integer(desktop)))
 }
 
 
@@ -31,7 +31,7 @@ gdkAppLaunchContextSetDesktop <- function(context, desktop) {
 #' @return Return value from C function
 #' @export
 gdkAppLaunchContextSetIcon <- function(context, icon) {
-  .Call("R_gdk_app_launch_context_set_icon", context, icon)
+  invisible(.Call("R_gdk_app_launch_context_set_icon", context, icon))
 }
 
 
@@ -43,7 +43,7 @@ gdkAppLaunchContextSetIcon <- function(context, icon) {
 #' @return Return value from C function
 #' @export
 gdkAppLaunchContextSetIconName <- function(context, icon_name) {
-  .Call("R_gdk_app_launch_context_set_icon_name", context, icon_name)
+  invisible(.Call("R_gdk_app_launch_context_set_icon_name", context, icon_name))
 }
 
 
@@ -55,7 +55,7 @@ gdkAppLaunchContextSetIconName <- function(context, icon_name) {
 #' @return Return value from C function
 #' @export
 gdkAppLaunchContextSetTimestamp <- function(context, timestamp) {
-  .Call("R_gdk_app_launch_context_set_timestamp", context, timestamp)
+  invisible(.Call("R_gdk_app_launch_context_set_timestamp", context, as.integer(timestamp)))
 }
 
 
@@ -154,7 +154,7 @@ gdkCicpParamsGetTransferFunction <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkCicpParamsSetColorPrimaries <- function(self, color_primaries) {
-  .Call("R_gdk_cicp_params_set_color_primaries", self, color_primaries)
+  invisible(.Call("R_gdk_cicp_params_set_color_primaries", self, as.integer(color_primaries)))
 }
 
 
@@ -166,7 +166,7 @@ gdkCicpParamsSetColorPrimaries <- function(self, color_primaries) {
 #' @return Return value from C function
 #' @export
 gdkCicpParamsSetMatrixCoefficients <- function(self, matrix_coefficients) {
-  .Call("R_gdk_cicp_params_set_matrix_coefficients", self, matrix_coefficients)
+  invisible(.Call("R_gdk_cicp_params_set_matrix_coefficients", self, as.integer(matrix_coefficients)))
 }
 
 
@@ -178,7 +178,7 @@ gdkCicpParamsSetMatrixCoefficients <- function(self, matrix_coefficients) {
 #' @return Return value from C function
 #' @export
 gdkCicpParamsSetRange <- function(self, range) {
-  .Call("R_gdk_cicp_params_set_range", self, range)
+  invisible(.Call("R_gdk_cicp_params_set_range", self, range))
 }
 
 
@@ -190,7 +190,7 @@ gdkCicpParamsSetRange <- function(self, range) {
 #' @return Return value from C function
 #' @export
 gdkCicpParamsSetTransferFunction <- function(self, transfer_function) {
-  .Call("R_gdk_cicp_params_set_transfer_function", self, transfer_function)
+  invisible(.Call("R_gdk_cicp_params_set_transfer_function", self, as.integer(transfer_function)))
 }
 
 
@@ -306,7 +306,7 @@ gdkClipboardSetContent <- function(clipboard, provider) {
 #' @return Return value from C function
 #' @export
 gdkClipboardSetValue <- function(clipboard, value) {
-  .Call("R_gdk_clipboard_set_value", clipboard, value)
+  invisible(.Call("R_gdk_clipboard_set_value", clipboard, value))
 }
 
 
@@ -375,7 +375,7 @@ gdkColorStateRef <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkColorStateUnref <- function(self) {
-  .Call("R_gdk_color_state_unref", self)
+  invisible(.Call("R_gdk_color_state_unref", self))
 }
 
 
@@ -535,7 +535,7 @@ gdkContentDeserializerGetValue <- function(deserializer) {
 #' @return Return value from C function
 #' @export
 gdkContentDeserializerReturnError <- function(deserializer, error) {
-  .Call("R_gdk_content_deserializer_return_error", deserializer, error)
+  invisible(.Call("R_gdk_content_deserializer_return_error", deserializer, error))
 }
 
 
@@ -546,7 +546,7 @@ gdkContentDeserializerReturnError <- function(deserializer, error) {
 #' @return Return value from C function
 #' @export
 gdkContentDeserializerReturnSuccess <- function(deserializer) {
-  .Call("R_gdk_content_deserializer_return_success", deserializer)
+  invisible(.Call("R_gdk_content_deserializer_return_success", deserializer))
 }
 
 
@@ -558,7 +558,7 @@ gdkContentDeserializerReturnSuccess <- function(deserializer) {
 #' @return ContentFormats
 #' @export
 gdkContentFormatsNew <- function(mime_types, n_mime_types) {
-  .Call("R_gdk_content_formats_new", mime_types, n_mime_types)$result
+  .Call("R_gdk_content_formats_new", mime_types, as.integer(n_mime_types))$result
 }
 
 
@@ -674,7 +674,7 @@ gdkContentFormatsMatchMimeType <- function(first, second) {
 #' @return Return value from C function
 #' @export
 gdkContentFormatsPrint <- function(formats, string) {
-  .Call("R_gdk_content_formats_print", formats, string)
+  invisible(.Call("R_gdk_content_formats_print", formats, string))
 }
 
 
@@ -763,7 +763,7 @@ gdkContentFormatsUnionSerializeMimeTypes <- function(formats) {
 #' @return Return value from C function
 #' @export
 gdkContentFormatsUnref <- function(formats) {
-  .Call("R_gdk_content_formats_unref", formats)
+  invisible(.Call("R_gdk_content_formats_unref", formats))
 }
 
 
@@ -796,7 +796,7 @@ gdkContentFormatsBuilderNew <- function() {
 #' @return Return value from C function
 #' @export
 gdkContentFormatsBuilderAddFormats <- function(builder, formats) {
-  .Call("R_gdk_content_formats_builder_add_formats", builder, formats)
+  invisible(.Call("R_gdk_content_formats_builder_add_formats", builder, formats))
 }
 
 
@@ -808,7 +808,7 @@ gdkContentFormatsBuilderAddFormats <- function(builder, formats) {
 #' @return Return value from C function
 #' @export
 gdkContentFormatsBuilderAddGtype <- function(builder, type) {
-  .Call("R_gdk_content_formats_builder_add_gtype", builder, type)
+  invisible(.Call("R_gdk_content_formats_builder_add_gtype", builder, type))
 }
 
 
@@ -820,7 +820,7 @@ gdkContentFormatsBuilderAddGtype <- function(builder, type) {
 #' @return Return value from C function
 #' @export
 gdkContentFormatsBuilderAddMimeType <- function(builder, mime_type) {
-  .Call("R_gdk_content_formats_builder_add_mime_type", builder, mime_type)
+  invisible(.Call("R_gdk_content_formats_builder_add_mime_type", builder, mime_type))
 }
 
 
@@ -853,7 +853,7 @@ gdkContentFormatsBuilderToFormats <- function(builder) {
 #' @return Return value from C function
 #' @export
 gdkContentFormatsBuilderUnref <- function(builder) {
-  .Call("R_gdk_content_formats_builder_unref", builder)
+  invisible(.Call("R_gdk_content_formats_builder_unref", builder))
 }
 
 
@@ -888,7 +888,7 @@ gdkContentProviderNewForValue <- function(value) {
 #' @return ContentProvider
 #' @export
 gdkContentProviderNewUnion <- function(providers, n_providers) {
-  .Call("R_gdk_content_provider_new_union", providers, n_providers)$result
+  .Call("R_gdk_content_provider_new_union", providers, as.integer(n_providers))$result
 }
 
 
@@ -899,7 +899,7 @@ gdkContentProviderNewUnion <- function(providers, n_providers) {
 #' @return Return value from C function
 #' @export
 gdkContentProviderContentChanged <- function(provider) {
-  .Call("R_gdk_content_provider_content_changed", provider)
+  invisible(.Call("R_gdk_content_provider_content_changed", provider))
 }
 
 
@@ -1044,7 +1044,7 @@ gdkContentSerializerGetValue <- function(serializer) {
 #' @return Return value from C function
 #' @export
 gdkContentSerializerReturnError <- function(serializer, error) {
-  .Call("R_gdk_content_serializer_return_error", serializer, error)
+  invisible(.Call("R_gdk_content_serializer_return_error", serializer, error))
 }
 
 
@@ -1055,7 +1055,7 @@ gdkContentSerializerReturnError <- function(serializer, error) {
 #' @return Return value from C function
 #' @export
 gdkContentSerializerReturnSuccess <- function(serializer) {
-  .Call("R_gdk_content_serializer_return_success", serializer)
+  invisible(.Call("R_gdk_content_serializer_return_success", serializer))
 }
 
 
@@ -1114,7 +1114,7 @@ gdkCursorNewFromName <- function(name, fallback) {
 #' @return Cursor
 #' @export
 gdkCursorNewFromTexture <- function(texture, hotspot_x, hotspot_y, fallback) {
-  .Call("R_gdk_cursor_new_from_texture", texture, hotspot_x, hotspot_y, fallback)$result
+  .Call("R_gdk_cursor_new_from_texture", texture, as.integer(hotspot_x), as.integer(hotspot_y), fallback)$result
 }
 
 
@@ -1402,7 +1402,7 @@ gdkDeviceHasBidiLayouts <- function(device) {
 #' @return gint
 #' @export
 gdkDevicePadGetFeatureGroup <- function(pad, feature, feature_idx) {
-  .Call("R_gdk_device_pad_get_feature_group", pad, feature, feature_idx)$result
+  .Call("R_gdk_device_pad_get_feature_group", pad, feature, as.integer(feature_idx))$result
 }
 
 
@@ -1414,7 +1414,7 @@ gdkDevicePadGetFeatureGroup <- function(pad, feature, feature_idx) {
 #' @return gint
 #' @export
 gdkDevicePadGetGroupNModes <- function(pad, group_idx) {
-  .Call("R_gdk_device_pad_get_group_n_modes", pad, group_idx)$result
+  .Call("R_gdk_device_pad_get_group_n_modes", pad, as.integer(group_idx))$result
 }
 
 
@@ -1513,7 +1513,7 @@ gdkDisplayOpen <- function(display_name) {
 #' @return Return value from C function
 #' @export
 gdkDisplayBeep <- function(display) {
-  .Call("R_gdk_display_beep", display)
+  invisible(.Call("R_gdk_display_beep", display))
 }
 
 
@@ -1524,7 +1524,7 @@ gdkDisplayBeep <- function(display) {
 #' @return Return value from C function
 #' @export
 gdkDisplayClose <- function(display) {
-  .Call("R_gdk_display_close", display)
+  invisible(.Call("R_gdk_display_close", display))
 }
 
 
@@ -1558,7 +1558,7 @@ gdkDisplayDeviceIsGrabbed <- function(display, device) {
 #' @return Return value from C function
 #' @export
 gdkDisplayFlush <- function(display) {
-  .Call("R_gdk_display_flush", display)
+  invisible(.Call("R_gdk_display_flush", display))
 }
 
 
@@ -1727,7 +1727,7 @@ gdkDisplayListSeats <- function(display) {
 #' @return gboolean
 #' @export
 gdkDisplayMapKeycode <- function(display, keycode) {
-  .Call("R_gdk_display_map_keycode", display, keycode)
+  .Call("R_gdk_display_map_keycode", display, as.integer(keycode))
 }
 
 
@@ -1739,7 +1739,7 @@ gdkDisplayMapKeycode <- function(display, keycode) {
 #' @return gboolean
 #' @export
 gdkDisplayMapKeyval <- function(display, keyval) {
-  .Call("R_gdk_display_map_keyval", display, keyval)
+  .Call("R_gdk_display_map_keyval", display, as.integer(keyval))
 }
 
 
@@ -1751,7 +1751,7 @@ gdkDisplayMapKeyval <- function(display, keyval) {
 #' @return Return value from C function
 #' @export
 gdkDisplayNotifyStartupComplete <- function(display, startup_id) {
-  .Call("R_gdk_display_notify_startup_complete", display, startup_id)
+  invisible(.Call("R_gdk_display_notify_startup_complete", display, startup_id))
 }
 
 
@@ -1774,7 +1774,7 @@ gdkDisplayPrepareGl <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkDisplayPutEvent <- function(display, event) {
-  .Call("R_gdk_display_put_event", display, event)
+  invisible(.Call("R_gdk_display_put_event", display, event))
 }
 
 
@@ -1807,7 +1807,7 @@ gdkDisplaySupportsShadowWidth <- function(display) {
 #' @return Return value from C function
 #' @export
 gdkDisplaySync <- function(display) {
-  .Call("R_gdk_display_sync", display)
+  invisible(.Call("R_gdk_display_sync", display))
 }
 
 
@@ -1821,7 +1821,7 @@ gdkDisplaySync <- function(display) {
 #' @return gboolean
 #' @export
 gdkDisplayTranslateKey <- function(display, keycode, state, group) {
-  .Call("R_gdk_display_translate_key", display, keycode, state, group)
+  .Call("R_gdk_display_translate_key", display, as.integer(keycode), state, as.integer(group))
 }
 
 
@@ -1877,7 +1877,7 @@ gdkDisplayManagerOpenDisplay <- function(manager, name) {
 #' @return Return value from C function
 #' @export
 gdkDisplayManagerSetDefaultDisplay <- function(manager, display) {
-  .Call("R_gdk_display_manager_set_default_display", manager, display)
+  invisible(.Call("R_gdk_display_manager_set_default_display", manager, display))
 }
 
 
@@ -1900,7 +1900,7 @@ gdkDmabufErrorQuark <- function() {
 #' @return gboolean
 #' @export
 gdkDmabufFormatsContains <- function(formats, fourcc, modifier) {
-  .Call("R_gdk_dmabuf_formats_contains", formats, fourcc, modifier)$result
+  .Call("R_gdk_dmabuf_formats_contains", formats, as.integer(fourcc), as.integer(modifier))$result
 }
 
 
@@ -1924,7 +1924,7 @@ gdkDmabufFormatsEqual <- function(formats1, formats2) {
 #' @return Return value from C function
 #' @export
 gdkDmabufFormatsGetFormat <- function(formats, idx) {
-  .Call("R_gdk_dmabuf_formats_get_format", formats, idx)
+  .Call("R_gdk_dmabuf_formats_get_format", formats, as.integer(idx))
 }
 
 
@@ -1957,7 +1957,7 @@ gdkDmabufFormatsRef <- function(formats) {
 #' @return Return value from C function
 #' @export
 gdkDmabufFormatsUnref <- function(formats) {
-  .Call("R_gdk_dmabuf_formats_unref", formats)
+  invisible(.Call("R_gdk_dmabuf_formats_unref", formats))
 }
 
 
@@ -2001,7 +2001,7 @@ gdkDmabufTextureBuilderGetDisplay <- function(self) {
 #' @return gint
 #' @export
 gdkDmabufTextureBuilderGetFd <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_fd", self, plane)$result
+  .Call("R_gdk_dmabuf_texture_builder_get_fd", self, as.integer(plane))$result
 }
 
 
@@ -2057,7 +2057,7 @@ gdkDmabufTextureBuilderGetNPlanes <- function(self) {
 #' @return guint
 #' @export
 gdkDmabufTextureBuilderGetOffset <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_offset", self, plane)$result
+  .Call("R_gdk_dmabuf_texture_builder_get_offset", self, as.integer(plane))$result
 }
 
 
@@ -2080,7 +2080,7 @@ gdkDmabufTextureBuilderGetPremultiplied <- function(self) {
 #' @return guint
 #' @export
 gdkDmabufTextureBuilderGetStride <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_stride", self, plane)$result
+  .Call("R_gdk_dmabuf_texture_builder_get_stride", self, as.integer(plane))$result
 }
 
 
@@ -2125,7 +2125,7 @@ gdkDmabufTextureBuilderGetWidth <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetColorState <- function(self, color_state) {
-  .Call("R_gdk_dmabuf_texture_builder_set_color_state", self, color_state)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_color_state", self, color_state))
 }
 
 
@@ -2137,7 +2137,7 @@ gdkDmabufTextureBuilderSetColorState <- function(self, color_state) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetDisplay <- function(self, display) {
-  .Call("R_gdk_dmabuf_texture_builder_set_display", self, display)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_display", self, display))
 }
 
 
@@ -2150,7 +2150,7 @@ gdkDmabufTextureBuilderSetDisplay <- function(self, display) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetFd <- function(self, plane, fd) {
-  .Call("R_gdk_dmabuf_texture_builder_set_fd", self, plane, fd)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_fd", self, as.integer(plane), as.integer(fd)))
 }
 
 
@@ -2162,7 +2162,7 @@ gdkDmabufTextureBuilderSetFd <- function(self, plane, fd) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetFourcc <- function(self, fourcc) {
-  .Call("R_gdk_dmabuf_texture_builder_set_fourcc", self, fourcc)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_fourcc", self, as.integer(fourcc)))
 }
 
 
@@ -2174,7 +2174,7 @@ gdkDmabufTextureBuilderSetFourcc <- function(self, fourcc) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetHeight <- function(self, height) {
-  .Call("R_gdk_dmabuf_texture_builder_set_height", self, height)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_height", self, as.integer(height)))
 }
 
 
@@ -2186,7 +2186,7 @@ gdkDmabufTextureBuilderSetHeight <- function(self, height) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetModifier <- function(self, modifier) {
-  .Call("R_gdk_dmabuf_texture_builder_set_modifier", self, modifier)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_modifier", self, as.integer(modifier)))
 }
 
 
@@ -2198,7 +2198,7 @@ gdkDmabufTextureBuilderSetModifier <- function(self, modifier) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetNPlanes <- function(self, n_planes) {
-  .Call("R_gdk_dmabuf_texture_builder_set_n_planes", self, n_planes)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_n_planes", self, as.integer(n_planes)))
 }
 
 
@@ -2211,7 +2211,7 @@ gdkDmabufTextureBuilderSetNPlanes <- function(self, n_planes) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetOffset <- function(self, plane, offset) {
-  .Call("R_gdk_dmabuf_texture_builder_set_offset", self, plane, offset)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_offset", self, as.integer(plane), as.integer(offset)))
 }
 
 
@@ -2223,7 +2223,7 @@ gdkDmabufTextureBuilderSetOffset <- function(self, plane, offset) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetPremultiplied <- function(self, premultiplied) {
-  .Call("R_gdk_dmabuf_texture_builder_set_premultiplied", self, premultiplied)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_premultiplied", self, premultiplied))
 }
 
 
@@ -2236,7 +2236,7 @@ gdkDmabufTextureBuilderSetPremultiplied <- function(self, premultiplied) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetStride <- function(self, plane, stride) {
-  .Call("R_gdk_dmabuf_texture_builder_set_stride", self, plane, stride)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_stride", self, as.integer(plane), as.integer(stride)))
 }
 
 
@@ -2248,7 +2248,7 @@ gdkDmabufTextureBuilderSetStride <- function(self, plane, stride) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetUpdateRegion <- function(self, region) {
-  .Call("R_gdk_dmabuf_texture_builder_set_update_region", self, region)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_update_region", self, region))
 }
 
 
@@ -2260,7 +2260,7 @@ gdkDmabufTextureBuilderSetUpdateRegion <- function(self, region) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetUpdateTexture <- function(self, texture) {
-  .Call("R_gdk_dmabuf_texture_builder_set_update_texture", self, texture)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_update_texture", self, texture))
 }
 
 
@@ -2272,7 +2272,7 @@ gdkDmabufTextureBuilderSetUpdateTexture <- function(self, texture) {
 #' @return Return value from C function
 #' @export
 gdkDmabufTextureBuilderSetWidth <- function(self, width) {
-  .Call("R_gdk_dmabuf_texture_builder_set_width", self, width)
+  invisible(.Call("R_gdk_dmabuf_texture_builder_set_width", self, as.integer(width)))
 }
 
 
@@ -2300,7 +2300,7 @@ gdkDragBegin <- function(surface, device, content, actions, dx, dy) {
 #' @return Return value from C function
 #' @export
 gdkDragDropDone <- function(drag, success) {
-  .Call("R_gdk_drag_drop_done", drag, success)
+  invisible(.Call("R_gdk_drag_drop_done", drag, success))
 }
 
 
@@ -2401,7 +2401,7 @@ gdkDragGetSurface <- function(drag) {
 #' @return Return value from C function
 #' @export
 gdkDragSetHotspot <- function(drag, hot_x, hot_y) {
-  .Call("R_gdk_drag_set_hotspot", drag, hot_x, hot_y)
+  invisible(.Call("R_gdk_drag_set_hotspot", drag, as.integer(hot_x), as.integer(hot_y)))
 }
 
 
@@ -2425,7 +2425,7 @@ gdkDragActionIsUnique <- function(action) {
 #' @return gboolean
 #' @export
 gdkDragSurfacePresent <- function(drag_surface, width, height) {
-  .Call("R_gdk_drag_surface_present", drag_surface, width, height)$result
+  .Call("R_gdk_drag_surface_present", drag_surface, as.integer(width), as.integer(height))$result
 }
 
 
@@ -2438,7 +2438,7 @@ gdkDragSurfacePresent <- function(drag_surface, width, height) {
 #' @return Return value from C function
 #' @export
 gdkDragSurfaceSizeSetSize <- function(size, width, height) {
-  .Call("R_gdk_drag_surface_size_set_size", size, width, height)
+  invisible(.Call("R_gdk_drag_surface_size_set_size", size, as.integer(width), as.integer(height)))
 }
 
 
@@ -2450,7 +2450,7 @@ gdkDragSurfaceSizeSetSize <- function(size, width, height) {
 #' @return Return value from C function
 #' @export
 gdkDrawContextBeginFrame <- function(context, region) {
-  .Call("R_gdk_draw_context_begin_frame", context, region)
+  invisible(.Call("R_gdk_draw_context_begin_frame", context, region))
 }
 
 
@@ -2461,7 +2461,7 @@ gdkDrawContextBeginFrame <- function(context, region) {
 #' @return Return value from C function
 #' @export
 gdkDrawContextEndFrame <- function(context) {
-  .Call("R_gdk_draw_context_end_frame", context)
+  invisible(.Call("R_gdk_draw_context_end_frame", context))
 }
 
 
@@ -2517,7 +2517,7 @@ gdkDrawContextIsInFrame <- function(context) {
 #' @return Return value from C function
 #' @export
 gdkDropFinish <- function(self, action) {
-  .Call("R_gdk_drop_finish", self, action)
+  invisible(.Call("R_gdk_drop_finish", self, action))
 }
 
 
@@ -2620,7 +2620,7 @@ gdkDropReadValueFinish <- function(self, result) {
 #' @return Return value from C function
 #' @export
 gdkDropStatus <- function(self, actions, preferred) {
-  .Call("R_gdk_drop_status", self, actions, preferred)
+  invisible(.Call("R_gdk_drop_status", self, actions, preferred))
 }
 
 
@@ -2844,7 +2844,7 @@ gdkEventTriggersContextMenu <- function(event) {
 #' @return Return value from C function
 #' @export
 gdkEventUnref <- function(event) {
-  .Call("R_gdk_event_unref", event)
+  invisible(.Call("R_gdk_event_unref", event))
 }
 
 
@@ -2856,7 +2856,7 @@ gdkEventUnref <- function(event) {
 #' @return FileList
 #' @export
 gdkFileListNewFromArray <- function(files, n_files) {
-  .Call("R_gdk_file_list_new_from_array", files, n_files)$result
+  .Call("R_gdk_file_list_new_from_array", files, as.integer(n_files))$result
 }
 
 
@@ -2900,7 +2900,7 @@ gdkFocusEventGetIn <- function(event) {
 #' @return Return value from C function
 #' @export
 gdkFrameClockBeginUpdating <- function(frame_clock) {
-  .Call("R_gdk_frame_clock_begin_updating", frame_clock)
+  invisible(.Call("R_gdk_frame_clock_begin_updating", frame_clock))
 }
 
 
@@ -2911,7 +2911,7 @@ gdkFrameClockBeginUpdating <- function(frame_clock) {
 #' @return Return value from C function
 #' @export
 gdkFrameClockEndUpdating <- function(frame_clock) {
-  .Call("R_gdk_frame_clock_end_updating", frame_clock)
+  invisible(.Call("R_gdk_frame_clock_end_updating", frame_clock))
 }
 
 
@@ -2978,7 +2978,7 @@ gdkFrameClockGetHistoryStart <- function(frame_clock) {
 #' @return Return value from C function
 #' @export
 gdkFrameClockGetRefreshInfo <- function(frame_clock, base_time) {
-  .Call("R_gdk_frame_clock_get_refresh_info", frame_clock, base_time)
+  .Call("R_gdk_frame_clock_get_refresh_info", frame_clock, as.integer(base_time))
 }
 
 
@@ -2990,7 +2990,7 @@ gdkFrameClockGetRefreshInfo <- function(frame_clock, base_time) {
 #' @return FrameTimings
 #' @export
 gdkFrameClockGetTimings <- function(frame_clock, frame_counter) {
-  .Call("R_gdk_frame_clock_get_timings", frame_clock, frame_counter)$result
+  .Call("R_gdk_frame_clock_get_timings", frame_clock, as.integer(frame_counter))$result
 }
 
 
@@ -3002,7 +3002,7 @@ gdkFrameClockGetTimings <- function(frame_clock, frame_counter) {
 #' @return Return value from C function
 #' @export
 gdkFrameClockRequestPhase <- function(frame_clock, phase) {
-  .Call("R_gdk_frame_clock_request_phase", frame_clock, phase)
+  invisible(.Call("R_gdk_frame_clock_request_phase", frame_clock, phase))
 }
 
 
@@ -3090,7 +3090,7 @@ gdkFrameTimingsRef <- function(timings) {
 #' @return Return value from C function
 #' @export
 gdkFrameTimingsUnref <- function(timings) {
-  .Call("R_gdk_frame_timings_unref", timings)
+  invisible(.Call("R_gdk_frame_timings_unref", timings))
 }
 
 
@@ -3100,7 +3100,7 @@ gdkFrameTimingsUnref <- function(timings) {
 #' @return Return value from C function
 #' @export
 gdkGlContextClearCurrent <- function() {
-  .Call("R_gdk_gl_context_clear_current")
+  invisible(.Call("R_gdk_gl_context_clear_current"))
 }
 
 
@@ -3254,7 +3254,7 @@ gdkGlContextIsShared <- function(self, other) {
 #' @return Return value from C function
 #' @export
 gdkGlContextMakeCurrent <- function(context) {
-  .Call("R_gdk_gl_context_make_current", context)
+  invisible(.Call("R_gdk_gl_context_make_current", context))
 }
 
 
@@ -3277,7 +3277,7 @@ gdkGlContextRealize <- function(context) {
 #' @return Return value from C function
 #' @export
 gdkGlContextSetAllowedApis <- function(self, apis) {
-  .Call("R_gdk_gl_context_set_allowed_apis", self, apis)
+  invisible(.Call("R_gdk_gl_context_set_allowed_apis", self, apis))
 }
 
 
@@ -3289,7 +3289,7 @@ gdkGlContextSetAllowedApis <- function(self, apis) {
 #' @return Return value from C function
 #' @export
 gdkGlContextSetDebugEnabled <- function(context, enabled) {
-  .Call("R_gdk_gl_context_set_debug_enabled", context, enabled)
+  invisible(.Call("R_gdk_gl_context_set_debug_enabled", context, enabled))
 }
 
 
@@ -3301,7 +3301,7 @@ gdkGlContextSetDebugEnabled <- function(context, enabled) {
 #' @return Return value from C function
 #' @export
 gdkGlContextSetForwardCompatible <- function(context, compatible) {
-  .Call("R_gdk_gl_context_set_forward_compatible", context, compatible)
+  invisible(.Call("R_gdk_gl_context_set_forward_compatible", context, compatible))
 }
 
 
@@ -3314,7 +3314,7 @@ gdkGlContextSetForwardCompatible <- function(context, compatible) {
 #' @return Return value from C function
 #' @export
 gdkGlContextSetRequiredVersion <- function(context, major, minor) {
-  .Call("R_gdk_gl_context_set_required_version", context, major, minor)
+  invisible(.Call("R_gdk_gl_context_set_required_version", context, as.integer(major), as.integer(minor)))
 }
 
 
@@ -3326,7 +3326,7 @@ gdkGlContextSetRequiredVersion <- function(context, major, minor) {
 #' @return Return value from C function
 #' @export
 gdkGlContextSetUseEs <- function(context, use_es) {
-  .Call("R_gdk_gl_context_set_use_es", context, use_es)
+  invisible(.Call("R_gdk_gl_context_set_use_es", context, as.integer(use_es)))
 }
 
 
@@ -3347,7 +3347,7 @@ gdkGlErrorQuark <- function() {
 #' @return Return value from C function
 #' @export
 gdkGlTextureRelease <- function(self) {
-  .Call("R_gdk_gl_texture_release", self)
+  invisible(.Call("R_gdk_gl_texture_release", self))
 }
 
 
@@ -3479,7 +3479,7 @@ gdkGlTextureBuilderGetWidth <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetColorState <- function(self, color_state) {
-  .Call("R_gdk_gl_texture_builder_set_color_state", self, color_state)
+  invisible(.Call("R_gdk_gl_texture_builder_set_color_state", self, color_state))
 }
 
 
@@ -3491,7 +3491,7 @@ gdkGlTextureBuilderSetColorState <- function(self, color_state) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetContext <- function(self, context) {
-  .Call("R_gdk_gl_texture_builder_set_context", self, context)
+  invisible(.Call("R_gdk_gl_texture_builder_set_context", self, context))
 }
 
 
@@ -3503,7 +3503,7 @@ gdkGlTextureBuilderSetContext <- function(self, context) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetFormat <- function(self, format) {
-  .Call("R_gdk_gl_texture_builder_set_format", self, format)
+  invisible(.Call("R_gdk_gl_texture_builder_set_format", self, format))
 }
 
 
@@ -3515,7 +3515,7 @@ gdkGlTextureBuilderSetFormat <- function(self, format) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetHasMipmap <- function(self, has_mipmap) {
-  .Call("R_gdk_gl_texture_builder_set_has_mipmap", self, has_mipmap)
+  invisible(.Call("R_gdk_gl_texture_builder_set_has_mipmap", self, has_mipmap))
 }
 
 
@@ -3527,7 +3527,7 @@ gdkGlTextureBuilderSetHasMipmap <- function(self, has_mipmap) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetHeight <- function(self, height) {
-  .Call("R_gdk_gl_texture_builder_set_height", self, height)
+  invisible(.Call("R_gdk_gl_texture_builder_set_height", self, as.integer(height)))
 }
 
 
@@ -3539,7 +3539,7 @@ gdkGlTextureBuilderSetHeight <- function(self, height) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetId <- function(self, id) {
-  .Call("R_gdk_gl_texture_builder_set_id", self, id)
+  invisible(.Call("R_gdk_gl_texture_builder_set_id", self, as.integer(id)))
 }
 
 
@@ -3551,7 +3551,7 @@ gdkGlTextureBuilderSetId <- function(self, id) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetSync <- function(self, sync) {
-  .Call("R_gdk_gl_texture_builder_set_sync", self, sync)
+  invisible(.Call("R_gdk_gl_texture_builder_set_sync", self, sync))
 }
 
 
@@ -3563,7 +3563,7 @@ gdkGlTextureBuilderSetSync <- function(self, sync) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetUpdateRegion <- function(self, region) {
-  .Call("R_gdk_gl_texture_builder_set_update_region", self, region)
+  invisible(.Call("R_gdk_gl_texture_builder_set_update_region", self, region))
 }
 
 
@@ -3575,7 +3575,7 @@ gdkGlTextureBuilderSetUpdateRegion <- function(self, region) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetUpdateTexture <- function(self, texture) {
-  .Call("R_gdk_gl_texture_builder_set_update_texture", self, texture)
+  invisible(.Call("R_gdk_gl_texture_builder_set_update_texture", self, texture))
 }
 
 
@@ -3587,7 +3587,7 @@ gdkGlTextureBuilderSetUpdateTexture <- function(self, texture) {
 #' @return Return value from C function
 #' @export
 gdkGlTextureBuilderSetWidth <- function(self, width) {
-  .Call("R_gdk_gl_texture_builder_set_width", self, width)
+  invisible(.Call("R_gdk_gl_texture_builder_set_width", self, as.integer(width)))
 }
 
 
@@ -3699,7 +3699,7 @@ gdkKeyEventIsModifier <- function(event) {
 #' @return KeyMatch
 #' @export
 gdkKeyEventMatches <- function(event, keyval, modifiers) {
-  .Call("R_gdk_key_event_matches", event, keyval, modifiers)$result
+  .Call("R_gdk_key_event_matches", event, as.integer(keyval), modifiers)$result
 }
 
 
@@ -3714,7 +3714,7 @@ gdkKeyEventMatches <- function(event, keyval, modifiers) {
 #' @return MemoryTexture
 #' @export
 gdkMemoryTextureNew <- function(width, height, format, bytes, stride) {
-  .Call("R_gdk_memory_texture_new", width, height, format, bytes, stride)$result
+  .Call("R_gdk_memory_texture_new", as.integer(width), as.integer(height), format, bytes, as.integer(stride))$result
 }
 
 
@@ -3791,7 +3791,7 @@ gdkMemoryTextureBuilderGetHeight <- function(self) {
 #' @return gsize
 #' @export
 gdkMemoryTextureBuilderGetOffset <- function(self, plane) {
-  .Call("R_gdk_memory_texture_builder_get_offset", self, plane)$result
+  .Call("R_gdk_memory_texture_builder_get_offset", self, as.integer(plane))$result
 }
 
 
@@ -3814,7 +3814,7 @@ gdkMemoryTextureBuilderGetStride <- function(self) {
 #' @return gsize
 #' @export
 gdkMemoryTextureBuilderGetStrideForPlane <- function(self, plane) {
-  .Call("R_gdk_memory_texture_builder_get_stride_for_plane", self, plane)$result
+  .Call("R_gdk_memory_texture_builder_get_stride_for_plane", self, as.integer(plane))$result
 }
 
 
@@ -3859,7 +3859,7 @@ gdkMemoryTextureBuilderGetWidth <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetBytes <- function(self, bytes) {
-  .Call("R_gdk_memory_texture_builder_set_bytes", self, bytes)
+  invisible(.Call("R_gdk_memory_texture_builder_set_bytes", self, bytes))
 }
 
 
@@ -3871,7 +3871,7 @@ gdkMemoryTextureBuilderSetBytes <- function(self, bytes) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetColorState <- function(self, color_state) {
-  .Call("R_gdk_memory_texture_builder_set_color_state", self, color_state)
+  invisible(.Call("R_gdk_memory_texture_builder_set_color_state", self, color_state))
 }
 
 
@@ -3883,7 +3883,7 @@ gdkMemoryTextureBuilderSetColorState <- function(self, color_state) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetFormat <- function(self, format) {
-  .Call("R_gdk_memory_texture_builder_set_format", self, format)
+  invisible(.Call("R_gdk_memory_texture_builder_set_format", self, format))
 }
 
 
@@ -3895,7 +3895,7 @@ gdkMemoryTextureBuilderSetFormat <- function(self, format) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetHeight <- function(self, height) {
-  .Call("R_gdk_memory_texture_builder_set_height", self, height)
+  invisible(.Call("R_gdk_memory_texture_builder_set_height", self, as.integer(height)))
 }
 
 
@@ -3908,7 +3908,7 @@ gdkMemoryTextureBuilderSetHeight <- function(self, height) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetOffset <- function(self, plane, offset) {
-  .Call("R_gdk_memory_texture_builder_set_offset", self, plane, offset)
+  invisible(.Call("R_gdk_memory_texture_builder_set_offset", self, as.integer(plane), as.integer(offset)))
 }
 
 
@@ -3920,7 +3920,7 @@ gdkMemoryTextureBuilderSetOffset <- function(self, plane, offset) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetStride <- function(self, stride) {
-  .Call("R_gdk_memory_texture_builder_set_stride", self, stride)
+  invisible(.Call("R_gdk_memory_texture_builder_set_stride", self, as.integer(stride)))
 }
 
 
@@ -3933,7 +3933,7 @@ gdkMemoryTextureBuilderSetStride <- function(self, stride) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetStrideForPlane <- function(self, plane, stride) {
-  .Call("R_gdk_memory_texture_builder_set_stride_for_plane", self, plane, stride)
+  invisible(.Call("R_gdk_memory_texture_builder_set_stride_for_plane", self, as.integer(plane), as.integer(stride)))
 }
 
 
@@ -3945,7 +3945,7 @@ gdkMemoryTextureBuilderSetStrideForPlane <- function(self, plane, stride) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetUpdateRegion <- function(self, region) {
-  .Call("R_gdk_memory_texture_builder_set_update_region", self, region)
+  invisible(.Call("R_gdk_memory_texture_builder_set_update_region", self, region))
 }
 
 
@@ -3957,7 +3957,7 @@ gdkMemoryTextureBuilderSetUpdateRegion <- function(self, region) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetUpdateTexture <- function(self, texture) {
-  .Call("R_gdk_memory_texture_builder_set_update_texture", self, texture)
+  invisible(.Call("R_gdk_memory_texture_builder_set_update_texture", self, texture))
 }
 
 
@@ -3969,7 +3969,7 @@ gdkMemoryTextureBuilderSetUpdateTexture <- function(self, texture) {
 #' @return Return value from C function
 #' @export
 gdkMemoryTextureBuilderSetWidth <- function(self, width) {
-  .Call("R_gdk_memory_texture_builder_set_width", self, width)
+  invisible(.Call("R_gdk_memory_texture_builder_set_width", self, as.integer(width)))
 }
 
 
@@ -4157,7 +4157,7 @@ gdkPadEventGetGroupMode <- function(event) {
 #' @return Paintable
 #' @export
 gdkPaintableNewEmpty <- function(intrinsic_width, intrinsic_height) {
-  .Call("R_gdk_paintable_new_empty", intrinsic_width, intrinsic_height)$result
+  .Call("R_gdk_paintable_new_empty", as.integer(intrinsic_width), as.integer(intrinsic_height))$result
 }
 
 
@@ -4238,7 +4238,7 @@ gdkPaintableGetIntrinsicWidth <- function(paintable) {
 #' @return Return value from C function
 #' @export
 gdkPaintableInvalidateContents <- function(paintable) {
-  .Call("R_gdk_paintable_invalidate_contents", paintable)
+  invisible(.Call("R_gdk_paintable_invalidate_contents", paintable))
 }
 
 
@@ -4249,7 +4249,7 @@ gdkPaintableInvalidateContents <- function(paintable) {
 #' @return Return value from C function
 #' @export
 gdkPaintableInvalidateSize <- function(paintable) {
-  .Call("R_gdk_paintable_invalidate_size", paintable)
+  invisible(.Call("R_gdk_paintable_invalidate_size", paintable))
 }
 
 
@@ -4263,7 +4263,7 @@ gdkPaintableInvalidateSize <- function(paintable) {
 #' @return Return value from C function
 #' @export
 gdkPaintableSnapshot <- function(paintable, snapshot, width, height) {
-  .Call("R_gdk_paintable_snapshot", paintable, snapshot, width, height)
+  invisible(.Call("R_gdk_paintable_snapshot", paintable, snapshot, width, height))
 }
 
 
@@ -4343,7 +4343,7 @@ gdkPopupGetSurfaceAnchor <- function(popup) {
 #' @return gboolean
 #' @export
 gdkPopupPresent <- function(popup, width, height, layout) {
-  .Call("R_gdk_popup_present", popup, width, height, layout)$result
+  .Call("R_gdk_popup_present", popup, as.integer(width), as.integer(height), layout)$result
 }
 
 
@@ -4468,7 +4468,7 @@ gdkPopupLayoutRef <- function(layout) {
 #' @return Return value from C function
 #' @export
 gdkPopupLayoutSetAnchorHints <- function(layout, anchor_hints) {
-  .Call("R_gdk_popup_layout_set_anchor_hints", layout, anchor_hints)
+  invisible(.Call("R_gdk_popup_layout_set_anchor_hints", layout, anchor_hints))
 }
 
 
@@ -4480,7 +4480,7 @@ gdkPopupLayoutSetAnchorHints <- function(layout, anchor_hints) {
 #' @return Return value from C function
 #' @export
 gdkPopupLayoutSetAnchorRect <- function(layout, anchor_rect) {
-  .Call("R_gdk_popup_layout_set_anchor_rect", layout, anchor_rect)
+  invisible(.Call("R_gdk_popup_layout_set_anchor_rect", layout, anchor_rect))
 }
 
 
@@ -4493,7 +4493,7 @@ gdkPopupLayoutSetAnchorRect <- function(layout, anchor_rect) {
 #' @return Return value from C function
 #' @export
 gdkPopupLayoutSetOffset <- function(layout, dx, dy) {
-  .Call("R_gdk_popup_layout_set_offset", layout, dx, dy)
+  invisible(.Call("R_gdk_popup_layout_set_offset", layout, as.integer(dx), as.integer(dy)))
 }
 
 
@@ -4505,7 +4505,7 @@ gdkPopupLayoutSetOffset <- function(layout, dx, dy) {
 #' @return Return value from C function
 #' @export
 gdkPopupLayoutSetRectAnchor <- function(layout, anchor) {
-  .Call("R_gdk_popup_layout_set_rect_anchor", layout, anchor)
+  invisible(.Call("R_gdk_popup_layout_set_rect_anchor", layout, anchor))
 }
 
 
@@ -4520,7 +4520,7 @@ gdkPopupLayoutSetRectAnchor <- function(layout, anchor) {
 #' @return Return value from C function
 #' @export
 gdkPopupLayoutSetShadowWidth <- function(layout, left, right, top, bottom) {
-  .Call("R_gdk_popup_layout_set_shadow_width", layout, left, right, top, bottom)
+  invisible(.Call("R_gdk_popup_layout_set_shadow_width", layout, as.integer(left), as.integer(right), as.integer(top), as.integer(bottom)))
 }
 
 
@@ -4532,7 +4532,7 @@ gdkPopupLayoutSetShadowWidth <- function(layout, left, right, top, bottom) {
 #' @return Return value from C function
 #' @export
 gdkPopupLayoutSetSurfaceAnchor <- function(layout, anchor) {
-  .Call("R_gdk_popup_layout_set_surface_anchor", layout, anchor)
+  invisible(.Call("R_gdk_popup_layout_set_surface_anchor", layout, anchor))
 }
 
 
@@ -4543,7 +4543,7 @@ gdkPopupLayoutSetSurfaceAnchor <- function(layout, anchor) {
 #' @return Return value from C function
 #' @export
 gdkPopupLayoutUnref <- function(layout) {
-  .Call("R_gdk_popup_layout_unref", layout)
+  invisible(.Call("R_gdk_popup_layout_unref", layout))
 }
 
 
@@ -4577,7 +4577,7 @@ gdkRgbaEqual <- function(p1, p2) {
 #' @return Return value from C function
 #' @export
 gdkRgbaFree <- function(rgba) {
-  .Call("R_gdk_rgba_free", rgba)
+  invisible(.Call("R_gdk_rgba_free", rgba))
 }
 
 
@@ -4658,7 +4658,7 @@ gdkRgbaToString <- function(rgba) {
 #' @return gboolean
 #' @export
 gdkRectangleContainsPoint <- function(rect, x, y) {
-  .Call("R_gdk_rectangle_contains_point", rect, x, y)$result
+  .Call("R_gdk_rectangle_contains_point", rect, as.integer(x), as.integer(y))$result
 }
 
 
@@ -4850,7 +4850,7 @@ gdkSurfaceNewToplevel <- function(display) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceBeep <- function(surface) {
-  .Call("R_gdk_surface_beep", surface)
+  invisible(.Call("R_gdk_surface_beep", surface))
 }
 
 
@@ -4886,7 +4886,7 @@ gdkSurfaceCreateGlContext <- function(surface) {
 #' @return cairo.Surface
 #' @export
 gdkSurfaceCreateSimilarSurface <- function(surface, content, width, height) {
-  .Call("R_gdk_surface_create_similar_surface", surface, content, width, height)$result
+  .Call("R_gdk_surface_create_similar_surface", surface, content, as.integer(width), as.integer(height))$result
 }
 
 
@@ -4908,7 +4908,7 @@ gdkSurfaceCreateVulkanContext <- function(surface) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceDestroy <- function(surface) {
-  .Call("R_gdk_surface_destroy", surface)
+  invisible(.Call("R_gdk_surface_destroy", surface))
 }
 
 
@@ -5031,7 +5031,7 @@ gdkSurfaceGetWidth <- function(surface) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceHide <- function(surface) {
-  .Call("R_gdk_surface_hide", surface)
+  invisible(.Call("R_gdk_surface_hide", surface))
 }
 
 
@@ -5053,7 +5053,7 @@ gdkSurfaceIsDestroyed <- function(surface) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceQueueRender <- function(surface) {
-  .Call("R_gdk_surface_queue_render", surface)
+  invisible(.Call("R_gdk_surface_queue_render", surface))
 }
 
 
@@ -5064,7 +5064,7 @@ gdkSurfaceQueueRender <- function(surface) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceRequestLayout <- function(surface) {
-  .Call("R_gdk_surface_request_layout", surface)
+  invisible(.Call("R_gdk_surface_request_layout", surface))
 }
 
 
@@ -5076,7 +5076,7 @@ gdkSurfaceRequestLayout <- function(surface) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceSetCursor <- function(surface, cursor) {
-  .Call("R_gdk_surface_set_cursor", surface, cursor)
+  invisible(.Call("R_gdk_surface_set_cursor", surface, cursor))
 }
 
 
@@ -5089,7 +5089,7 @@ gdkSurfaceSetCursor <- function(surface, cursor) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceSetDeviceCursor <- function(surface, device, cursor) {
-  .Call("R_gdk_surface_set_device_cursor", surface, device, cursor)
+  invisible(.Call("R_gdk_surface_set_device_cursor", surface, device, cursor))
 }
 
 
@@ -5101,7 +5101,7 @@ gdkSurfaceSetDeviceCursor <- function(surface, device, cursor) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceSetInputRegion <- function(surface, region) {
-  .Call("R_gdk_surface_set_input_region", surface, region)
+  invisible(.Call("R_gdk_surface_set_input_region", surface, region))
 }
 
 
@@ -5113,7 +5113,7 @@ gdkSurfaceSetInputRegion <- function(surface, region) {
 #' @return Return value from C function
 #' @export
 gdkSurfaceSetOpaqueRegion <- function(surface, region) {
-  .Call("R_gdk_surface_set_opaque_region", surface, region)
+  invisible(.Call("R_gdk_surface_set_opaque_region", surface, region))
 }
 
 
@@ -5193,7 +5193,7 @@ gdkTextureNewFromResource <- function(resource_path) {
 #' @return Return value from C function
 #' @export
 gdkTextureDownload <- function(texture, data, stride) {
-  .Call("R_gdk_texture_download", texture, data, stride)
+  invisible(.Call("R_gdk_texture_download", texture, as.integer(data), as.integer(stride)))
 }
 
 
@@ -5340,7 +5340,7 @@ gdkTextureDownloaderDownloadBytesWithPlanes <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkTextureDownloaderDownloadInto <- function(self, data, stride) {
-  .Call("R_gdk_texture_downloader_download_into", self, data, stride)
+  invisible(.Call("R_gdk_texture_downloader_download_into", self, as.integer(data), as.integer(stride)))
 }
 
 
@@ -5351,7 +5351,7 @@ gdkTextureDownloaderDownloadInto <- function(self, data, stride) {
 #' @return Return value from C function
 #' @export
 gdkTextureDownloaderFree <- function(self) {
-  .Call("R_gdk_texture_downloader_free", self)
+  invisible(.Call("R_gdk_texture_downloader_free", self))
 }
 
 
@@ -5396,7 +5396,7 @@ gdkTextureDownloaderGetTexture <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkTextureDownloaderSetColorState <- function(self, color_state) {
-  .Call("R_gdk_texture_downloader_set_color_state", self, color_state)
+  invisible(.Call("R_gdk_texture_downloader_set_color_state", self, color_state))
 }
 
 
@@ -5408,7 +5408,7 @@ gdkTextureDownloaderSetColorState <- function(self, color_state) {
 #' @return Return value from C function
 #' @export
 gdkTextureDownloaderSetFormat <- function(self, format) {
-  .Call("R_gdk_texture_downloader_set_format", self, format)
+  invisible(.Call("R_gdk_texture_downloader_set_format", self, format))
 }
 
 
@@ -5420,7 +5420,7 @@ gdkTextureDownloaderSetFormat <- function(self, format) {
 #' @return Return value from C function
 #' @export
 gdkTextureDownloaderSetTexture <- function(self, texture) {
-  .Call("R_gdk_texture_downloader_set_texture", self, texture)
+  invisible(.Call("R_gdk_texture_downloader_set_texture", self, texture))
 }
 
 
@@ -5446,7 +5446,7 @@ gdkTextureErrorQuark <- function() {
 #' @return Return value from C function
 #' @export
 gdkToplevelBeginMove <- function(toplevel, device, button, x, y, timestamp) {
-  .Call("R_gdk_toplevel_begin_move", toplevel, device, button, x, y, timestamp)
+  invisible(.Call("R_gdk_toplevel_begin_move", toplevel, device, as.integer(button), x, y, as.integer(timestamp)))
 }
 
 
@@ -5463,7 +5463,7 @@ gdkToplevelBeginMove <- function(toplevel, device, button, x, y, timestamp) {
 #' @return Return value from C function
 #' @export
 gdkToplevelBeginResize <- function(toplevel, edge, device, button, x, y, timestamp) {
-  .Call("R_gdk_toplevel_begin_resize", toplevel, edge, device, button, x, y, timestamp)
+  invisible(.Call("R_gdk_toplevel_begin_resize", toplevel, edge, device, as.integer(button), x, y, as.integer(timestamp)))
 }
 
 
@@ -5475,7 +5475,7 @@ gdkToplevelBeginResize <- function(toplevel, edge, device, button, x, y, timesta
 #' @return Return value from C function
 #' @export
 gdkToplevelFocus <- function(toplevel, timestamp) {
-  .Call("R_gdk_toplevel_focus", toplevel, timestamp)
+  invisible(.Call("R_gdk_toplevel_focus", toplevel, as.integer(timestamp)))
 }
 
 
@@ -5520,7 +5520,7 @@ gdkToplevelGetState <- function(toplevel) {
 #' @return Return value from C function
 #' @export
 gdkToplevelInhibitSystemShortcuts <- function(toplevel, event) {
-  .Call("R_gdk_toplevel_inhibit_system_shortcuts", toplevel, event)
+  invisible(.Call("R_gdk_toplevel_inhibit_system_shortcuts", toplevel, event))
 }
 
 
@@ -5554,7 +5554,7 @@ gdkToplevelMinimize <- function(toplevel) {
 #' @return Return value from C function
 #' @export
 gdkToplevelPresent <- function(toplevel, layout) {
-  .Call("R_gdk_toplevel_present", toplevel, layout)
+  invisible(.Call("R_gdk_toplevel_present", toplevel, layout))
 }
 
 
@@ -5565,7 +5565,7 @@ gdkToplevelPresent <- function(toplevel, layout) {
 #' @return Return value from C function
 #' @export
 gdkToplevelRestoreSystemShortcuts <- function(toplevel) {
-  .Call("R_gdk_toplevel_restore_system_shortcuts", toplevel)
+  invisible(.Call("R_gdk_toplevel_restore_system_shortcuts", toplevel))
 }
 
 
@@ -5577,7 +5577,7 @@ gdkToplevelRestoreSystemShortcuts <- function(toplevel) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSetDecorated <- function(toplevel, decorated) {
-  .Call("R_gdk_toplevel_set_decorated", toplevel, decorated)
+  invisible(.Call("R_gdk_toplevel_set_decorated", toplevel, decorated))
 }
 
 
@@ -5589,7 +5589,7 @@ gdkToplevelSetDecorated <- function(toplevel, decorated) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSetDeletable <- function(toplevel, deletable) {
-  .Call("R_gdk_toplevel_set_deletable", toplevel, deletable)
+  invisible(.Call("R_gdk_toplevel_set_deletable", toplevel, deletable))
 }
 
 
@@ -5601,7 +5601,7 @@ gdkToplevelSetDeletable <- function(toplevel, deletable) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSetGravity <- function(toplevel, gravity) {
-  .Call("R_gdk_toplevel_set_gravity", toplevel, gravity)
+  invisible(.Call("R_gdk_toplevel_set_gravity", toplevel, gravity))
 }
 
 
@@ -5613,7 +5613,7 @@ gdkToplevelSetGravity <- function(toplevel, gravity) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSetIconList <- function(toplevel, surfaces) {
-  .Call("R_gdk_toplevel_set_icon_list", toplevel, surfaces)
+  invisible(.Call("R_gdk_toplevel_set_icon_list", toplevel, surfaces))
 }
 
 
@@ -5625,7 +5625,7 @@ gdkToplevelSetIconList <- function(toplevel, surfaces) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSetModal <- function(toplevel, modal) {
-  .Call("R_gdk_toplevel_set_modal", toplevel, modal)
+  invisible(.Call("R_gdk_toplevel_set_modal", toplevel, modal))
 }
 
 
@@ -5637,7 +5637,7 @@ gdkToplevelSetModal <- function(toplevel, modal) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSetStartupId <- function(toplevel, startup_id) {
-  .Call("R_gdk_toplevel_set_startup_id", toplevel, startup_id)
+  invisible(.Call("R_gdk_toplevel_set_startup_id", toplevel, startup_id))
 }
 
 
@@ -5649,7 +5649,7 @@ gdkToplevelSetStartupId <- function(toplevel, startup_id) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSetTitle <- function(toplevel, title) {
-  .Call("R_gdk_toplevel_set_title", toplevel, title)
+  invisible(.Call("R_gdk_toplevel_set_title", toplevel, title))
 }
 
 
@@ -5661,7 +5661,7 @@ gdkToplevelSetTitle <- function(toplevel, title) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSetTransientFor <- function(toplevel, parent) {
-  .Call("R_gdk_toplevel_set_transient_for", toplevel, parent)
+  invisible(.Call("R_gdk_toplevel_set_transient_for", toplevel, parent))
 }
 
 
@@ -5797,7 +5797,7 @@ gdkToplevelLayoutRef <- function(layout) {
 #' @return Return value from C function
 #' @export
 gdkToplevelLayoutSetFullscreen <- function(layout, fullscreen, monitor) {
-  .Call("R_gdk_toplevel_layout_set_fullscreen", layout, fullscreen, monitor)
+  invisible(.Call("R_gdk_toplevel_layout_set_fullscreen", layout, fullscreen, monitor))
 }
 
 
@@ -5809,7 +5809,7 @@ gdkToplevelLayoutSetFullscreen <- function(layout, fullscreen, monitor) {
 #' @return Return value from C function
 #' @export
 gdkToplevelLayoutSetMaximized <- function(layout, maximized) {
-  .Call("R_gdk_toplevel_layout_set_maximized", layout, maximized)
+  invisible(.Call("R_gdk_toplevel_layout_set_maximized", layout, maximized))
 }
 
 
@@ -5821,7 +5821,7 @@ gdkToplevelLayoutSetMaximized <- function(layout, maximized) {
 #' @return Return value from C function
 #' @export
 gdkToplevelLayoutSetResizable <- function(layout, resizable) {
-  .Call("R_gdk_toplevel_layout_set_resizable", layout, resizable)
+  invisible(.Call("R_gdk_toplevel_layout_set_resizable", layout, resizable))
 }
 
 
@@ -5832,7 +5832,7 @@ gdkToplevelLayoutSetResizable <- function(layout, resizable) {
 #' @return Return value from C function
 #' @export
 gdkToplevelLayoutUnref <- function(layout) {
-  .Call("R_gdk_toplevel_layout_unref", layout)
+  invisible(.Call("R_gdk_toplevel_layout_unref", layout))
 }
 
 
@@ -5856,7 +5856,7 @@ gdkToplevelSizeGetBounds <- function(size) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSizeSetMinSize <- function(size, min_width, min_height) {
-  .Call("R_gdk_toplevel_size_set_min_size", size, min_width, min_height)
+  invisible(.Call("R_gdk_toplevel_size_set_min_size", size, as.integer(min_width), as.integer(min_height)))
 }
 
 
@@ -5871,7 +5871,7 @@ gdkToplevelSizeSetMinSize <- function(size, min_width, min_height) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSizeSetShadowWidth <- function(size, left, right, top, bottom) {
-  .Call("R_gdk_toplevel_size_set_shadow_width", size, left, right, top, bottom)
+  invisible(.Call("R_gdk_toplevel_size_set_shadow_width", size, as.integer(left), as.integer(right), as.integer(top), as.integer(bottom)))
 }
 
 
@@ -5884,7 +5884,7 @@ gdkToplevelSizeSetShadowWidth <- function(size, left, right, top, bottom) {
 #' @return Return value from C function
 #' @export
 gdkToplevelSizeSetSize <- function(size, width, height) {
-  .Call("R_gdk_toplevel_size_set_size", size, width, height)
+  invisible(.Call("R_gdk_toplevel_size_set_size", size, as.integer(width), as.integer(height)))
 }
 
 
@@ -5979,7 +5979,7 @@ gdkVulkanErrorQuark <- function() {
 #' @return Return value from C function
 #' @export
 gdkCairoDrawFromGl <- function(cr, surface, source, source_type, buffer_scale, x, y, width, height) {
-  .Call("R_gdk_cairo_draw_from_gl", cr, surface, source, source_type, buffer_scale, x, y, width, height)
+  invisible(.Call("R_gdk_cairo_draw_from_gl", cr, surface, as.integer(source), as.integer(source_type), as.integer(buffer_scale), as.integer(x), as.integer(y), as.integer(width), as.integer(height)))
 }
 
 
@@ -5991,7 +5991,7 @@ gdkCairoDrawFromGl <- function(cr, surface, source, source_type, buffer_scale, x
 #' @return Return value from C function
 #' @export
 gdkCairoRectangle <- function(cr, rectangle) {
-  .Call("R_gdk_cairo_rectangle", cr, rectangle)
+  invisible(.Call("R_gdk_cairo_rectangle", cr, rectangle))
 }
 
 
@@ -6003,7 +6003,7 @@ gdkCairoRectangle <- function(cr, rectangle) {
 #' @return Return value from C function
 #' @export
 gdkCairoRegion <- function(cr, region) {
-  .Call("R_gdk_cairo_region", cr, region)
+  invisible(.Call("R_gdk_cairo_region", cr, region))
 }
 
 
@@ -6028,7 +6028,7 @@ gdkCairoRegionCreateFromSurface <- function(surface) {
 #' @return Return value from C function
 #' @export
 gdkCairoSetSourcePixbuf <- function(cr, pixbuf, pixbuf_x, pixbuf_y) {
-  .Call("R_gdk_cairo_set_source_pixbuf", cr, pixbuf, pixbuf_x, pixbuf_y)
+  invisible(.Call("R_gdk_cairo_set_source_pixbuf", cr, pixbuf, pixbuf_x, pixbuf_y))
 }
 
 
@@ -6040,7 +6040,7 @@ gdkCairoSetSourcePixbuf <- function(cr, pixbuf, pixbuf_x, pixbuf_y) {
 #' @return Return value from C function
 #' @export
 gdkCairoSetSourceRgba <- function(cr, rgba) {
-  .Call("R_gdk_cairo_set_source_rgba", cr, rgba)
+  invisible(.Call("R_gdk_cairo_set_source_rgba", cr, rgba))
 }
 
 
@@ -6084,7 +6084,7 @@ gdkInternMimeType <- function(string) {
 #' @return Return value from C function
 #' @export
 gdkKeyvalConvertCase <- function(symbol) {
-  .Call("R_gdk_keyval_convert_case", symbol)
+  .Call("R_gdk_keyval_convert_case", as.integer(symbol))
 }
 
 
@@ -6106,7 +6106,7 @@ gdkKeyvalFromName <- function(keyval_name) {
 #' @return gboolean
 #' @export
 gdkKeyvalIsLower <- function(keyval) {
-  .Call("R_gdk_keyval_is_lower", keyval)$result
+  .Call("R_gdk_keyval_is_lower", as.integer(keyval))$result
 }
 
 
@@ -6117,7 +6117,7 @@ gdkKeyvalIsLower <- function(keyval) {
 #' @return gboolean
 #' @export
 gdkKeyvalIsUpper <- function(keyval) {
-  .Call("R_gdk_keyval_is_upper", keyval)$result
+  .Call("R_gdk_keyval_is_upper", as.integer(keyval))$result
 }
 
 
@@ -6128,7 +6128,7 @@ gdkKeyvalIsUpper <- function(keyval) {
 #' @return utf8
 #' @export
 gdkKeyvalName <- function(keyval) {
-  .Call("R_gdk_keyval_name", keyval)$result
+  .Call("R_gdk_keyval_name", as.integer(keyval))$result
 }
 
 
@@ -6139,7 +6139,7 @@ gdkKeyvalName <- function(keyval) {
 #' @return guint
 #' @export
 gdkKeyvalToLower <- function(keyval) {
-  .Call("R_gdk_keyval_to_lower", keyval)$result
+  .Call("R_gdk_keyval_to_lower", as.integer(keyval))$result
 }
 
 
@@ -6150,7 +6150,7 @@ gdkKeyvalToLower <- function(keyval) {
 #' @return guint32
 #' @export
 gdkKeyvalToUnicode <- function(keyval) {
-  .Call("R_gdk_keyval_to_unicode", keyval)$result
+  .Call("R_gdk_keyval_to_unicode", as.integer(keyval))$result
 }
 
 
@@ -6161,7 +6161,7 @@ gdkKeyvalToUnicode <- function(keyval) {
 #' @return guint
 #' @export
 gdkKeyvalToUpper <- function(keyval) {
-  .Call("R_gdk_keyval_to_upper", keyval)$result
+  .Call("R_gdk_keyval_to_upper", as.integer(keyval))$result
 }
 
 
@@ -6176,7 +6176,7 @@ gdkKeyvalToUpper <- function(keyval) {
 #' @return GdkPixbuf.Pixbuf
 #' @export
 gdkPixbufGetFromSurface <- function(surface, src_x, src_y, width, height) {
-  .Call("R_gdk_pixbuf_get_from_surface", surface, src_x, src_y, width, height)$result
+  .Call("R_gdk_pixbuf_get_from_surface", surface, as.integer(src_x), as.integer(src_y), as.integer(width), as.integer(height))$result
 }
 
 
@@ -6198,7 +6198,7 @@ gdkPixbufGetFromTexture <- function(texture) {
 #' @return Return value from C function
 #' @export
 gdkSetAllowedBackends <- function(backends) {
-  .Call("R_gdk_set_allowed_backends", backends)
+  invisible(.Call("R_gdk_set_allowed_backends", backends))
 }
 
 
@@ -6209,7 +6209,7 @@ gdkSetAllowedBackends <- function(backends) {
 #' @return guint
 #' @export
 gdkUnicodeToKeyval <- function(wc) {
-  .Call("R_gdk_unicode_to_keyval", wc)$result
+  .Call("R_gdk_unicode_to_keyval", as.integer(wc))$result
 }
 
 
