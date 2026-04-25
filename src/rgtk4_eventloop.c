@@ -230,14 +230,16 @@ SEXP R_gtk_force_foreground(void) {
   _rgtk_macos_activate();
 #elif defined(G_OS_WIN32)
   // On Windows, bring all GTK windows to foreground
-  GList *windows = gtk_window_get_toplevels();
-  for (GList *l = windows; l != NULL; l = l->next) {
-    if (GTK_IS_WINDOW(l->data)) {
-      GtkWindow *window = GTK_WINDOW(l->data);
+  GListModel *toplevels = gtk_window_get_toplevels();
+  guint n = g_list_model_get_n_items(toplevels);
+
+  for (guint i = 0; i < n; i++) {
+    GtkWindow *window = g_list_model_get_item(toplevels, i);
+    if (window) {
       gtk_window_present(window);
+      g_object_unref(window);
     }
   }
-  g_list_free(windows);
 #endif
   return R_NilValue;
 }
@@ -337,5 +339,10 @@ SEXP R_macos_set_app_icon(SEXP s_path) {
   _rgtk_macos_set_app_icon(path);
   return R_NilValue;
 }
-
+#else
+// Stub functions for non-macOS platforms
+SEXP R_macos_set_app_icon(SEXP s_path) {
+  (void)s_path;
+  return R_NilValue;
+}
 #endif
