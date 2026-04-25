@@ -2069,7 +2069,7 @@ gValueSetInt <- function(value, v_int) {
 #' @return Return value from C function
 #' @export
 gValueSetInt64 <- function(value, v_int64) {
-  invisible(.Call("R_g_value_set_int64", value, as.integer(v_int64)))
+  invisible(.Call("R_g_value_set_int64", value, v_int64))
 }
 
 
@@ -2093,7 +2093,7 @@ gValueSetInternedString <- function(value, v_string) {
 #' @return Return value from C function
 #' @export
 gValueSetLong <- function(value, v_long) {
-  invisible(.Call("R_g_value_set_long", value, as.integer(v_long)))
+  invisible(.Call("R_g_value_set_long", value, v_long))
 }
 
 
@@ -2778,7 +2778,7 @@ gParamSpecInt <- function(name, nick, blurb, minimum, maximum, default_value, fl
 #' @return ParamSpec
 #' @export
 gParamSpecInt64 <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_int64", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
+  .Call("R_g_param_spec_int64", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 
@@ -2795,7 +2795,7 @@ gParamSpecInt64 <- function(name, nick, blurb, minimum, maximum, default_value, 
 #' @return ParamSpec
 #' @export
 gParamSpecLong <- function(name, nick, blurb, minimum, maximum, default_value, flags) {
-  .Call("R_g_param_spec_long", name, nick, blurb, as.integer(minimum), as.integer(maximum), as.integer(default_value), flags)$result
+  .Call("R_g_param_spec_long", name, nick, blurb, minimum, maximum, default_value, flags)$result
 }
 
 

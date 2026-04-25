@@ -1300,7 +1300,7 @@ gChecksumReset <- function(checksum) {
 #' @return Return value from C function
 #' @export
 gChecksumUpdate <- function(checksum, data, length) {
-  invisible(.Call("R_g_checksum_update", checksum, as.integer(data), as.integer(length)))
+  invisible(.Call("R_g_checksum_update", checksum, as.integer(data), length))
 }
 
 
@@ -1415,7 +1415,7 @@ gCondWait <- function(cond, mutex) {
 #' @return gboolean
 #' @export
 gCondWaitUntil <- function(cond, mutex, end_time) {
-  .Call("R_g_cond_wait_until", cond, mutex, as.integer(end_time))$result
+  .Call("R_g_cond_wait_until", cond, mutex, end_time)$result
 }
 
 
@@ -2071,7 +2071,7 @@ gDateTimeNewFromTimevalUtc <- function(tv) {
 #' @return DateTime
 #' @export
 gDateTimeNewFromUnixLocal <- function(t) {
-  .Call("R_g_date_time_new_from_unix_local", as.integer(t))$result
+  .Call("R_g_date_time_new_from_unix_local", t)$result
 }
 
 
@@ -2082,7 +2082,7 @@ gDateTimeNewFromUnixLocal <- function(t) {
 #' @return DateTime
 #' @export
 gDateTimeNewFromUnixLocalUsec <- function(usecs) {
-  .Call("R_g_date_time_new_from_unix_local_usec", as.integer(usecs))$result
+  .Call("R_g_date_time_new_from_unix_local_usec", usecs)$result
 }
 
 
@@ -2093,7 +2093,7 @@ gDateTimeNewFromUnixLocalUsec <- function(usecs) {
 #' @return DateTime
 #' @export
 gDateTimeNewFromUnixUtc <- function(t) {
-  .Call("R_g_date_time_new_from_unix_utc", as.integer(t))$result
+  .Call("R_g_date_time_new_from_unix_utc", t)$result
 }
 
 
@@ -2104,7 +2104,7 @@ gDateTimeNewFromUnixUtc <- function(t) {
 #' @return DateTime
 #' @export
 gDateTimeNewFromUnixUtcUsec <- function(usecs) {
-  .Call("R_g_date_time_new_from_unix_utc_usec", as.integer(usecs))$result
+  .Call("R_g_date_time_new_from_unix_utc_usec", usecs)$result
 }
 
 
@@ -3090,7 +3090,7 @@ gHmacUnref <- function(hmac) {
 #' @return Return value from C function
 #' @export
 gHmacUpdate <- function(hmac, data, length) {
-  invisible(.Call("R_g_hmac_update", hmac, as.integer(data), as.integer(length)))
+  invisible(.Call("R_g_hmac_update", hmac, as.integer(data), length))
 }
 
 
@@ -3479,7 +3479,7 @@ gIoChannelRef <- function(channel) {
 #' @return IOError
 #' @export
 gIoChannelSeek <- function(channel, offset, type) {
-  .Call("R_g_io_channel_seek", channel, as.integer(offset), type)$result
+  .Call("R_g_io_channel_seek", channel, offset, type)$result
 }
 
 
@@ -3492,7 +3492,7 @@ gIoChannelSeek <- function(channel, offset, type) {
 #' @return IOStatus
 #' @export
 gIoChannelSeekPosition <- function(channel, offset, type) {
-  .Call("R_g_io_channel_seek_position", channel, as.integer(offset), type)$result
+  .Call("R_g_io_channel_seek_position", channel, offset, type)$result
 }
 
 
@@ -3626,7 +3626,7 @@ gIoChannelWrite <- function(channel, buf, count, bytes_written) {
 #' @return IOStatus
 #' @export
 gIoChannelWriteChars <- function(channel, buf, count) {
-  .Call("R_g_io_channel_write_chars", channel, as.integer(buf), as.integer(count))
+  .Call("R_g_io_channel_write_chars", channel, as.integer(buf), count)
 }
 
 
@@ -4116,7 +4116,7 @@ gKeyFileSetDoubleList <- function(key_file, group_name, key, list, length) {
 #' @return Return value from C function
 #' @export
 gKeyFileSetInt64 <- function(key_file, group_name, key, value) {
-  invisible(.Call("R_g_key_file_set_int64", key_file, group_name, key, as.integer(value)))
+  invisible(.Call("R_g_key_file_set_int64", key_file, group_name, key, value))
 }
 
 
@@ -4864,7 +4864,7 @@ gMarkupParseContextGetUserData <- function(context) {
 #' @return gboolean
 #' @export
 gMarkupParseContextParse <- function(context, text, text_len) {
-  .Call("R_g_markup_parse_context_parse", context, text, as.integer(text_len))$result
+  .Call("R_g_markup_parse_context_parse", context, text, text_len)$result
 }
 
 
@@ -6500,7 +6500,7 @@ gRegexMatchAll <- function(regex, string, match_options) {
 #' @return gboolean
 #' @export
 gRegexMatchAllFull <- function(regex, string, string_len, start_position, match_options) {
-  .Call("R_g_regex_match_all_full", regex, string, as.integer(string_len), as.integer(start_position), match_options)
+  .Call("R_g_regex_match_all_full", regex, string, string_len, as.integer(start_position), match_options)
 }
 
 
@@ -6515,7 +6515,7 @@ gRegexMatchAllFull <- function(regex, string, string_len, start_position, match_
 #' @return gboolean
 #' @export
 gRegexMatchFull <- function(regex, string, string_len, start_position, match_options) {
-  .Call("R_g_regex_match_full", regex, string, as.integer(string_len), as.integer(start_position), match_options)
+  .Call("R_g_regex_match_full", regex, string, string_len, as.integer(start_position), match_options)
 }
 
 
@@ -6542,7 +6542,7 @@ gRegexRef <- function(regex) {
 #' @return utf8
 #' @export
 gRegexReplace <- function(regex, string, string_len, start_position, replacement, match_options) {
-  .Call("R_g_regex_replace", regex, string, as.integer(string_len), as.integer(start_position), replacement, match_options)$result
+  .Call("R_g_regex_replace", regex, string, string_len, as.integer(start_position), replacement, match_options)$result
 }
 
 
@@ -6558,7 +6558,7 @@ gRegexReplace <- function(regex, string, string_len, start_position, replacement
 #' @return utf8
 #' @export
 gRegexReplaceLiteral <- function(regex, string, string_len, start_position, replacement, match_options) {
-  .Call("R_g_regex_replace_literal", regex, string, as.integer(string_len), as.integer(start_position), replacement, match_options)$result
+  .Call("R_g_regex_replace_literal", regex, string, string_len, as.integer(start_position), replacement, match_options)$result
 }
 
 
@@ -6587,7 +6587,7 @@ gRegexSplit <- function(regex, string, match_options) {
 #' @return utf8
 #' @export
 gRegexSplitFull <- function(regex, string, string_len, start_position, match_options, max_tokens) {
-  .Call("R_g_regex_split_full", regex, string, as.integer(string_len), as.integer(start_position), match_options, as.integer(max_tokens))$result
+  .Call("R_g_regex_split_full", regex, string, string_len, as.integer(start_position), match_options, as.integer(max_tokens))$result
 }
 
 
@@ -7550,7 +7550,7 @@ gSourceSetPriority <- function(source, priority) {
 #' @return Return value from C function
 #' @export
 gSourceSetReadyTime <- function(source, ready_time) {
-  invisible(.Call("R_g_source_set_ready_time", source, as.integer(ready_time)))
+  invisible(.Call("R_g_source_set_ready_time", source, ready_time))
 }
 
 
@@ -7653,7 +7653,7 @@ gStringNew <- function(init) {
 #' @return String
 #' @export
 gStringNewLen <- function(init, len) {
-  .Call("R_g_string_new_len", init, as.integer(len))$result
+  .Call("R_g_string_new_len", init, len)$result
 }
 
 
@@ -7712,7 +7712,7 @@ gStringAppendC <- function(string, c) {
 #' @return String
 #' @export
 gStringAppendLen <- function(string, val, len) {
-  .Call("R_g_string_append_len", string, val, as.integer(len))$result
+  .Call("R_g_string_append_len", string, val, len)$result
 }
 
 
@@ -7819,7 +7819,7 @@ gStringEqual <- function(v, v2) {
 #' @return String
 #' @export
 gStringErase <- function(string, pos, len) {
-  .Call("R_g_string_erase", string, as.integer(pos), as.integer(len))$result
+  .Call("R_g_string_erase", string, pos, len)$result
 }
 
 
@@ -7877,7 +7877,7 @@ gStringHash <- function(str) {
 #' @return String
 #' @export
 gStringInsert <- function(string, pos, val) {
-  .Call("R_g_string_insert", string, as.integer(pos), val)$result
+  .Call("R_g_string_insert", string, pos, val)$result
 }
 
 
@@ -7890,7 +7890,7 @@ gStringInsert <- function(string, pos, val) {
 #' @return String
 #' @export
 gStringInsertC <- function(string, pos, c) {
-  .Call("R_g_string_insert_c", string, as.integer(pos), c)$result
+  .Call("R_g_string_insert_c", string, pos, c)$result
 }
 
 
@@ -7904,7 +7904,7 @@ gStringInsertC <- function(string, pos, c) {
 #' @return String
 #' @export
 gStringInsertLen <- function(string, pos, val, len) {
-  .Call("R_g_string_insert_len", string, as.integer(pos), val, as.integer(len))$result
+  .Call("R_g_string_insert_len", string, pos, val, len)$result
 }
 
 
@@ -7917,7 +7917,7 @@ gStringInsertLen <- function(string, pos, val, len) {
 #' @return String
 #' @export
 gStringInsertUnichar <- function(string, pos, wc) {
-  .Call("R_g_string_insert_unichar", string, as.integer(pos), wc)$result
+  .Call("R_g_string_insert_unichar", string, pos, wc)$result
 }
 
 
@@ -7944,7 +7944,7 @@ gStringOverwrite <- function(string, pos, val) {
 #' @return String
 #' @export
 gStringOverwriteLen <- function(string, pos, val, len) {
-  .Call("R_g_string_overwrite_len", string, as.integer(pos), val, as.integer(len))$result
+  .Call("R_g_string_overwrite_len", string, as.integer(pos), val, len)$result
 }
 
 
@@ -7981,7 +7981,7 @@ gStringPrependC <- function(string, c) {
 #' @return String
 #' @export
 gStringPrependLen <- function(string, val, len) {
-  .Call("R_g_string_prepend_len", string, val, as.integer(len))$result
+  .Call("R_g_string_prepend_len", string, val, len)$result
 }
 
 
@@ -8101,7 +8101,7 @@ gStringChunkInsertConst <- function(chunk, string) {
 #' @return utf8
 #' @export
 gStringChunkInsertLen <- function(chunk, string, len) {
-  .Call("R_g_string_chunk_insert_len", chunk, string, as.integer(len))$result
+  .Call("R_g_string_chunk_insert_len", chunk, string, len)$result
 }
 
 
@@ -8513,7 +8513,7 @@ gThreadPoolStopUnusedThreads <- function() {
 #' @return Return value from C function
 #' @export
 gTimeValAdd <- function(time_, microseconds) {
-  invisible(.Call("R_g_time_val_add", time_, as.integer(microseconds)))
+  invisible(.Call("R_g_time_val_add", time_, microseconds))
 }
 
 
@@ -8613,7 +8613,7 @@ gTimeZoneAdjustTime <- function(tz, type) {
 #' @return gint
 #' @export
 gTimeZoneFindInterval <- function(tz, type, time_) {
-  .Call("R_g_time_zone_find_interval", tz, type, as.integer(time_))$result
+  .Call("R_g_time_zone_find_interval", tz, type, time_)$result
 }
 
 
@@ -9437,7 +9437,7 @@ gUriParse <- function(uri_string, flags) {
 #' @return GLib.HashTable
 #' @export
 gUriParseParams <- function(params, length, separators, flags) {
-  .Call("R_g_uri_parse_params", params, as.integer(length), separators, flags)$result
+  .Call("R_g_uri_parse_params", params, length, separators, flags)$result
 }
 
 
@@ -9521,7 +9521,7 @@ gUriSplitWithUser <- function(uri_ref, flags) {
 #' @return Bytes
 #' @export
 gUriUnescapeBytes <- function(escaped_string, length, illegal_characters) {
-  .Call("R_g_uri_unescape_bytes", escaped_string, as.integer(length), illegal_characters)$result
+  .Call("R_g_uri_unescape_bytes", escaped_string, length, illegal_characters)$result
 }
 
 
@@ -9561,7 +9561,7 @@ gUriUnescapeString <- function(escaped_string, illegal_characters) {
 #' @return Return value from C function
 #' @export
 gUriParamsIterInit <- function(iter, params, length, separators, flags) {
-  invisible(.Call("R_g_uri_params_iter_init", iter, params, as.integer(length), separators, flags))
+  invisible(.Call("R_g_uri_params_iter_init", iter, params, length, separators, flags))
 }
 
 
@@ -9630,7 +9630,7 @@ gVariantNewBytestring <- function(string) {
 #' @return Variant
 #' @export
 gVariantNewBytestringArray <- function(strv, length) {
-  .Call("R_g_variant_new_bytestring_array", strv, as.integer(length))$result
+  .Call("R_g_variant_new_bytestring_array", strv, length)$result
 }
 
 
@@ -9724,7 +9724,7 @@ gVariantNewInt32 <- function(value) {
 #' @return Variant
 #' @export
 gVariantNewInt64 <- function(value) {
-  .Call("R_g_variant_new_int64", as.integer(value))$result
+  .Call("R_g_variant_new_int64", value)$result
 }
 
 
@@ -9759,7 +9759,7 @@ gVariantNewObjectPath <- function(object_path) {
 #' @return Variant
 #' @export
 gVariantNewObjv <- function(strv, length) {
-  .Call("R_g_variant_new_objv", strv, as.integer(length))$result
+  .Call("R_g_variant_new_objv", strv, length)$result
 }
 
 
@@ -9793,7 +9793,7 @@ gVariantNewString <- function(string) {
 #' @return Variant
 #' @export
 gVariantNewStrv <- function(strv, length) {
-  .Call("R_g_variant_new_strv", strv, as.integer(length))$result
+  .Call("R_g_variant_new_strv", strv, length)$result
 }
 
 
@@ -11120,7 +11120,7 @@ gAsciiStrcasecmp <- function(s1, s2) {
 #' @return utf8
 #' @export
 gAsciiStrdown <- function(str, len) {
-  .Call("R_g_ascii_strdown", str, as.integer(len))$result
+  .Call("R_g_ascii_strdown", str, len)$result
 }
 
 
@@ -11134,7 +11134,7 @@ gAsciiStrdown <- function(str, len) {
 #' @return gboolean
 #' @export
 gAsciiStringToSigned <- function(str, base, min, max) {
-  .Call("R_g_ascii_string_to_signed", str, as.integer(base), as.integer(min), as.integer(max))
+  .Call("R_g_ascii_string_to_signed", str, as.integer(base), min, max)
 }
 
 
@@ -11208,7 +11208,7 @@ gAsciiStrtoull <- function(nptr, base) {
 #' @return utf8
 #' @export
 gAsciiStrup <- function(str, len) {
-  .Call("R_g_ascii_strup", str, as.integer(len))$result
+  .Call("R_g_ascii_strup", str, len)$result
 }
 
 
@@ -11660,7 +11660,7 @@ gComputeChecksumForData <- function(checksum_type, data, length) {
 #' @return utf8
 #' @export
 gComputeChecksumForString <- function(checksum_type, str, length) {
-  .Call("R_g_compute_checksum_for_string", checksum_type, str, as.integer(length))$result
+  .Call("R_g_compute_checksum_for_string", checksum_type, str, length)$result
 }
 
 
@@ -11703,7 +11703,7 @@ gComputeHmacForData <- function(digest_type, key, key_len, data, length) {
 #' @return utf8
 #' @export
 gComputeHmacForString <- function(digest_type, key, key_len, str, length) {
-  .Call("R_g_compute_hmac_for_string", digest_type, as.integer(key), as.integer(key_len), str, as.integer(length))$result
+  .Call("R_g_compute_hmac_for_string", digest_type, as.integer(key), as.integer(key_len), str, length)$result
 }
 
 
@@ -11717,7 +11717,7 @@ gComputeHmacForString <- function(digest_type, key, key_len, str, length) {
 #' @return guint8
 #' @export
 gConvert <- function(str, len, to_codeset, from_codeset) {
-  .Call("R_g_convert", as.integer(str), as.integer(len), to_codeset, from_codeset)
+  .Call("R_g_convert", as.integer(str), len, to_codeset, from_codeset)
 }
 
 
@@ -11742,7 +11742,7 @@ gConvertErrorQuark <- function() {
 #' @return guint8
 #' @export
 gConvertWithFallback <- function(str, len, to_codeset, from_codeset, fallback) {
-  .Call("R_g_convert_with_fallback", as.integer(str), as.integer(len), to_codeset, from_codeset, fallback)
+  .Call("R_g_convert_with_fallback", as.integer(str), len, to_codeset, from_codeset, fallback)
 }
 
 
@@ -12065,7 +12065,7 @@ gFileReadLink <- function(filename) {
 #' @return gboolean
 #' @export
 gFileSetContents <- function(filename, contents, length) {
-  .Call("R_g_file_set_contents", filename, as.integer(contents), as.integer(length))$result
+  .Call("R_g_file_set_contents", filename, as.integer(contents), length)$result
 }
 
 
@@ -12080,7 +12080,7 @@ gFileSetContents <- function(filename, contents, length) {
 #' @return gboolean
 #' @export
 gFileSetContentsFull <- function(filename, contents, length, flags, mode) {
-  .Call("R_g_file_set_contents_full", filename, as.integer(contents), as.integer(length), flags, as.integer(mode))$result
+  .Call("R_g_file_set_contents_full", filename, as.integer(contents), length, flags, as.integer(mode))$result
 }
 
 
@@ -12137,7 +12137,7 @@ gFilenameFromUri <- function(uri) {
 #' @return filename
 #' @export
 gFilenameFromUtf8 <- function(utf8string, len) {
-  .Call("R_g_filename_from_utf8", utf8string, as.integer(len))
+  .Call("R_g_filename_from_utf8", utf8string, len)
 }
 
 
@@ -12161,7 +12161,7 @@ gFilenameToUri <- function(filename, hostname) {
 #' @return utf8
 #' @export
 gFilenameToUtf8 <- function(opsysstring, len) {
-  .Call("R_g_filename_to_utf8", opsysstring, as.integer(len))
+  .Call("R_g_filename_to_utf8", opsysstring, len)
 }
 
 
@@ -12206,7 +12206,7 @@ gFormatSize <- function(size) {
 #' @return utf8
 #' @export
 gFormatSizeForDisplay <- function(size) {
-  .Call("R_g_format_size_for_display", as.integer(size))$result
+  .Call("R_g_format_size_for_display", size)$result
 }
 
 
@@ -12759,7 +12759,7 @@ gListenv <- function() {
 #' @return guint8
 #' @export
 gLocaleFromUtf8 <- function(utf8string, len) {
-  .Call("R_g_locale_from_utf8", utf8string, as.integer(len))
+  .Call("R_g_locale_from_utf8", utf8string, len)
 }
 
 
@@ -12771,7 +12771,7 @@ gLocaleFromUtf8 <- function(utf8string, len) {
 #' @return utf8
 #' @export
 gLocaleToUtf8 <- function(opsysstring, len) {
-  .Call("R_g_locale_to_utf8", as.integer(opsysstring), as.integer(len))
+  .Call("R_g_locale_to_utf8", as.integer(opsysstring), len)
 }
 
 
@@ -13103,7 +13103,7 @@ gMarkupErrorQuark <- function() {
 #' @return utf8
 #' @export
 gMarkupEscapeText <- function(text, length) {
-  .Call("R_g_markup_escape_text", text, as.integer(length))$result
+  .Call("R_g_markup_escape_text", text, length)$result
 }
 
 
@@ -13653,7 +13653,7 @@ gRefStringNewIntern <- function(str) {
 #' @return utf8
 #' @export
 gRefStringNewLen <- function(str, len) {
-  .Call("R_g_ref_string_new_len", str, as.integer(len))$result
+  .Call("R_g_ref_string_new_len", str, len)$result
 }
 
 
@@ -13882,7 +13882,7 @@ gSliceGetConfig <- function(ckey) {
 #' @return gint64
 #' @export
 gSliceGetConfigState <- function(ckey, address, n_values) {
-  .Call("R_g_slice_get_config_state", ckey, as.integer(address), as.integer(n_values))$result
+  .Call("R_g_slice_get_config_state", ckey, address, as.integer(n_values))$result
 }
 
 
@@ -13894,7 +13894,7 @@ gSliceGetConfigState <- function(ckey, address, n_values) {
 #' @return Return value from C function
 #' @export
 gSliceSetConfig <- function(ckey, value) {
-  invisible(.Call("R_g_slice_set_config", ckey, as.integer(value)))
+  invisible(.Call("R_g_slice_set_config", ckey, value))
 }
 
 
@@ -14372,7 +14372,7 @@ gStrrstr <- function(haystack, needle) {
 #' @return utf8
 #' @export
 gStrrstrLen <- function(haystack, haystack_len, needle) {
-  .Call("R_g_strrstr_len", haystack, as.integer(haystack_len), needle)$result
+  .Call("R_g_strrstr_len", haystack, haystack_len, needle)$result
 }
 
 
@@ -14422,7 +14422,7 @@ gStrsplitSet <- function(string, delimiters, max_tokens) {
 #' @return utf8
 #' @export
 gStrstrLen <- function(haystack, haystack_len, needle) {
-  .Call("R_g_strstr_len", haystack, as.integer(haystack_len), needle)$result
+  .Call("R_g_strstr_len", haystack, haystack_len, needle)$result
 }
 
 
@@ -14949,7 +14949,7 @@ gTryReallocN <- function(mem, n_blocks, n_block_bytes) {
 #' @return guint16
 #' @export
 gUcs4ToUtf16 <- function(str, len) {
-  .Call("R_g_ucs4_to_utf16", str, as.integer(len))
+  .Call("R_g_ucs4_to_utf16", str, len)
 }
 
 
@@ -14961,7 +14961,7 @@ gUcs4ToUtf16 <- function(str, len) {
 #' @return utf8
 #' @export
 gUcs4ToUtf8 <- function(str, len) {
-  .Call("R_g_ucs4_to_utf8", str, as.integer(len))
+  .Call("R_g_ucs4_to_utf8", str, len)
 }
 
 
@@ -15385,7 +15385,7 @@ gUsleep <- function(microseconds) {
 #' @return gunichar
 #' @export
 gUtf16ToUcs4 <- function(str, len) {
-  .Call("R_g_utf16_to_ucs4", as.integer(str), as.integer(len))
+  .Call("R_g_utf16_to_ucs4", as.integer(str), len)
 }
 
 
@@ -15397,7 +15397,7 @@ gUtf16ToUcs4 <- function(str, len) {
 #' @return utf8
 #' @export
 gUtf16ToUtf8 <- function(str, len) {
-  .Call("R_g_utf16_to_utf8", as.integer(str), as.integer(len))
+  .Call("R_g_utf16_to_utf8", as.integer(str), len)
 }
 
 
@@ -15409,7 +15409,7 @@ gUtf16ToUtf8 <- function(str, len) {
 #' @return utf8
 #' @export
 gUtf8Casefold <- function(str, len) {
-  .Call("R_g_utf8_casefold", str, as.integer(len))$result
+  .Call("R_g_utf8_casefold", str, len)$result
 }
 
 
@@ -15433,7 +15433,7 @@ gUtf8Collate <- function(str1, str2) {
 #' @return filename
 #' @export
 gUtf8CollateKey <- function(str, len) {
-  .Call("R_g_utf8_collate_key", str, as.integer(len))$result
+  .Call("R_g_utf8_collate_key", str, len)$result
 }
 
 
@@ -15445,7 +15445,7 @@ gUtf8CollateKey <- function(str, len) {
 #' @return filename
 #' @export
 gUtf8CollateKeyForFilename <- function(str, len) {
-  .Call("R_g_utf8_collate_key_for_filename", str, as.integer(len))$result
+  .Call("R_g_utf8_collate_key_for_filename", str, len)$result
 }
 
 
@@ -15492,7 +15492,7 @@ gUtf8GetChar <- function(p) {
 #' @return gunichar
 #' @export
 gUtf8GetCharValidated <- function(p, max_len) {
-  .Call("R_g_utf8_get_char_validated", p, as.integer(max_len))$result
+  .Call("R_g_utf8_get_char_validated", p, max_len)$result
 }
 
 
@@ -15504,7 +15504,7 @@ gUtf8GetCharValidated <- function(p, max_len) {
 #' @return utf8
 #' @export
 gUtf8MakeValid <- function(str, len) {
-  .Call("R_g_utf8_make_valid", str, as.integer(len))$result
+  .Call("R_g_utf8_make_valid", str, len)$result
 }
 
 
@@ -15517,7 +15517,7 @@ gUtf8MakeValid <- function(str, len) {
 #' @return utf8
 #' @export
 gUtf8Normalize <- function(str, len, mode) {
-  .Call("R_g_utf8_normalize", str, as.integer(len), mode)$result
+  .Call("R_g_utf8_normalize", str, len, mode)$result
 }
 
 
@@ -15529,7 +15529,7 @@ gUtf8Normalize <- function(str, len, mode) {
 #' @return utf8
 #' @export
 gUtf8OffsetToPointer <- function(str, offset) {
-  .Call("R_g_utf8_offset_to_pointer", str, as.integer(offset))$result
+  .Call("R_g_utf8_offset_to_pointer", str, offset)$result
 }
 
 
@@ -15565,7 +15565,7 @@ gUtf8PrevChar <- function(p) {
 #' @return utf8
 #' @export
 gUtf8Strchr <- function(p, len, c) {
-  .Call("R_g_utf8_strchr", p, as.integer(len), c)$result
+  .Call("R_g_utf8_strchr", p, len, c)$result
 }
 
 
@@ -15577,7 +15577,7 @@ gUtf8Strchr <- function(p, len, c) {
 #' @return utf8
 #' @export
 gUtf8Strdown <- function(str, len) {
-  .Call("R_g_utf8_strdown", str, as.integer(len))$result
+  .Call("R_g_utf8_strdown", str, len)$result
 }
 
 
@@ -15589,7 +15589,7 @@ gUtf8Strdown <- function(str, len) {
 #' @return glong
 #' @export
 gUtf8Strlen <- function(p, max) {
-  .Call("R_g_utf8_strlen", p, as.integer(max))$result
+  .Call("R_g_utf8_strlen", p, max)$result
 }
 
 
@@ -15615,7 +15615,7 @@ gUtf8Strncpy <- function(dest, src, n) {
 #' @return utf8
 #' @export
 gUtf8Strrchr <- function(p, len, c) {
-  .Call("R_g_utf8_strrchr", p, as.integer(len), c)$result
+  .Call("R_g_utf8_strrchr", p, len, c)$result
 }
 
 
@@ -15627,7 +15627,7 @@ gUtf8Strrchr <- function(p, len, c) {
 #' @return utf8
 #' @export
 gUtf8Strreverse <- function(str, len) {
-  .Call("R_g_utf8_strreverse", str, as.integer(len))$result
+  .Call("R_g_utf8_strreverse", str, len)$result
 }
 
 
@@ -15639,7 +15639,7 @@ gUtf8Strreverse <- function(str, len) {
 #' @return utf8
 #' @export
 gUtf8Strup <- function(str, len) {
-  .Call("R_g_utf8_strup", str, as.integer(len))$result
+  .Call("R_g_utf8_strup", str, len)$result
 }
 
 
@@ -15652,7 +15652,7 @@ gUtf8Strup <- function(str, len) {
 #' @return utf8
 #' @export
 gUtf8Substring <- function(str, start_pos, end_pos) {
-  .Call("R_g_utf8_substring", str, as.integer(start_pos), as.integer(end_pos))$result
+  .Call("R_g_utf8_substring", str, start_pos, end_pos)$result
 }
 
 
@@ -15664,7 +15664,7 @@ gUtf8Substring <- function(str, start_pos, end_pos) {
 #' @return gunichar
 #' @export
 gUtf8ToUcs4 <- function(str, len) {
-  .Call("R_g_utf8_to_ucs4", str, as.integer(len))
+  .Call("R_g_utf8_to_ucs4", str, len)
 }
 
 
@@ -15676,7 +15676,7 @@ gUtf8ToUcs4 <- function(str, len) {
 #' @return gunichar
 #' @export
 gUtf8ToUcs4Fast <- function(str, len) {
-  .Call("R_g_utf8_to_ucs4_fast", str, as.integer(len))
+  .Call("R_g_utf8_to_ucs4_fast", str, len)
 }
 
 
@@ -15688,7 +15688,7 @@ gUtf8ToUcs4Fast <- function(str, len) {
 #' @return guint16
 #' @export
 gUtf8ToUtf16 <- function(str, len) {
-  .Call("R_g_utf8_to_utf16", str, as.integer(len))
+  .Call("R_g_utf8_to_utf16", str, len)
 }
 
 
@@ -15712,7 +15712,7 @@ gUtf8TruncateMiddle <- function(string, truncate_length) {
 #' @return gboolean
 #' @export
 gUtf8Validate <- function(str, max_len) {
-  .Call("R_g_utf8_validate", as.integer(str), as.integer(max_len))
+  .Call("R_g_utf8_validate", as.integer(str), max_len)
 }
 
 

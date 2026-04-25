@@ -2978,7 +2978,7 @@ gdkFrameClockGetHistoryStart <- function(frame_clock) {
 #' @return Return value from C function
 #' @export
 gdkFrameClockGetRefreshInfo <- function(frame_clock, base_time) {
-  .Call("R_gdk_frame_clock_get_refresh_info", frame_clock, as.integer(base_time))
+  .Call("R_gdk_frame_clock_get_refresh_info", frame_clock, base_time)
 }
 
 
@@ -2990,7 +2990,7 @@ gdkFrameClockGetRefreshInfo <- function(frame_clock, base_time) {
 #' @return FrameTimings
 #' @export
 gdkFrameClockGetTimings <- function(frame_clock, frame_counter) {
-  .Call("R_gdk_frame_clock_get_timings", frame_clock, as.integer(frame_counter))$result
+  .Call("R_gdk_frame_clock_get_timings", frame_clock, frame_counter)$result
 }
 
 

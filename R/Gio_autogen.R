@@ -1581,7 +1581,7 @@ gBufferedInputStreamNewSized <- function(base_stream, size) {
 #' @return gssize
 #' @export
 gBufferedInputStreamFill <- function(stream, count, cancellable) {
-  .Call("R_g_buffered_input_stream_fill", stream, as.integer(count), cancellable)$result
+  .Call("R_g_buffered_input_stream_fill", stream, count, cancellable)$result
 }
 
 
@@ -4790,7 +4790,7 @@ gDataInputStreamReadUntilFinish <- function(stream, result) {
 #' @return utf8
 #' @export
 gDataInputStreamReadUpto <- function(stream, stop_chars, stop_chars_len, cancellable) {
-  .Call("R_g_data_input_stream_read_upto", stream, stop_chars, as.integer(stop_chars_len), cancellable)
+  .Call("R_g_data_input_stream_read_upto", stream, stop_chars, stop_chars_len, cancellable)
 }
 
 
@@ -4900,7 +4900,7 @@ gDataOutputStreamPutInt32 <- function(stream, data, cancellable) {
 #' @return gboolean
 #' @export
 gDataOutputStreamPutInt64 <- function(stream, data, cancellable) {
-  .Call("R_g_data_output_stream_put_int64", stream, as.integer(data), cancellable)$result
+  .Call("R_g_data_output_stream_put_int64", stream, data, cancellable)$result
 }
 
 
@@ -4990,7 +4990,7 @@ gDatagramBasedConditionCheck <- function(datagram_based, condition) {
 #' @return gboolean
 #' @export
 gDatagramBasedConditionWait <- function(datagram_based, condition, timeout, cancellable) {
-  .Call("R_g_datagram_based_condition_wait", datagram_based, condition, as.integer(timeout), cancellable)$result
+  .Call("R_g_datagram_based_condition_wait", datagram_based, condition, timeout, cancellable)$result
 }
 
 
@@ -5019,7 +5019,7 @@ gDatagramBasedCreateSource <- function(datagram_based, condition, cancellable) {
 #' @return gint
 #' @export
 gDatagramBasedReceiveMessages <- function(datagram_based, messages, num_messages, flags, timeout, cancellable) {
-  .Call("R_g_datagram_based_receive_messages", datagram_based, messages, as.integer(num_messages), as.integer(flags), as.integer(timeout), cancellable)$result
+  .Call("R_g_datagram_based_receive_messages", datagram_based, messages, as.integer(num_messages), as.integer(flags), timeout, cancellable)$result
 }
 
 
@@ -5035,7 +5035,7 @@ gDatagramBasedReceiveMessages <- function(datagram_based, messages, num_messages
 #' @return gint
 #' @export
 gDatagramBasedSendMessages <- function(datagram_based, messages, num_messages, flags, timeout, cancellable) {
-  .Call("R_g_datagram_based_send_messages", datagram_based, messages, as.integer(num_messages), as.integer(flags), as.integer(timeout), cancellable)$result
+  .Call("R_g_datagram_based_send_messages", datagram_based, messages, as.integer(num_messages), as.integer(flags), timeout, cancellable)$result
 }
 
 
@@ -6530,7 +6530,7 @@ gFileSetAttributeInt32 <- function(file, attribute, value, flags, cancellable) {
 #' @return gboolean
 #' @export
 gFileSetAttributeInt64 <- function(file, attribute, value, flags, cancellable) {
-  .Call("R_g_file_set_attribute_int64", file, attribute, as.integer(value), flags, cancellable)$result
+  .Call("R_g_file_set_attribute_int64", file, attribute, value, flags, cancellable)$result
 }
 
 
@@ -7616,7 +7616,7 @@ gFileInfoSetAttributeInt32 <- function(info, attribute, attr_value) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetAttributeInt64 <- function(info, attribute, attr_value) {
-  invisible(.Call("R_g_file_info_set_attribute_int64", info, attribute, as.integer(attr_value)))
+  invisible(.Call("R_g_file_info_set_attribute_int64", info, attribute, attr_value))
 }
 
 
@@ -7850,7 +7850,7 @@ gFileInfoSetName <- function(info, name) {
 #' @return Return value from C function
 #' @export
 gFileInfoSetSize <- function(info, size) {
-  invisible(.Call("R_g_file_info_set_size", info, as.integer(size)))
+  invisible(.Call("R_g_file_info_set_size", info, size))
 }
 
 
@@ -11792,7 +11792,7 @@ gSeekableCanTruncate <- function(seekable) {
 #' @return gboolean
 #' @export
 gSeekableSeek <- function(seekable, offset, type, cancellable) {
-  .Call("R_g_seekable_seek", seekable, as.integer(offset), type, cancellable)$result
+  .Call("R_g_seekable_seek", seekable, offset, type, cancellable)$result
 }
 
 
@@ -11816,7 +11816,7 @@ gSeekableTell <- function(seekable) {
 #' @return gboolean
 #' @export
 gSeekableTruncate <- function(seekable, offset, cancellable) {
-  .Call("R_g_seekable_truncate", seekable, as.integer(offset), cancellable)$result
+  .Call("R_g_seekable_truncate", seekable, offset, cancellable)$result
 }
 
 
@@ -12353,7 +12353,7 @@ gSettingsSetInt <- function(settings, key, value) {
 #' @return gboolean
 #' @export
 gSettingsSetInt64 <- function(settings, key, value) {
-  .Call("R_g_settings_set_int64", settings, key, as.integer(value))$result
+  .Call("R_g_settings_set_int64", settings, key, value)$result
 }
 
 
@@ -13025,7 +13025,7 @@ gSimpleAsyncResultSetOpResGboolean <- function(simple, op_res) {
 #' @return Return value from C function
 #' @export
 gSimpleAsyncResultSetOpResGssize <- function(simple, op_res) {
-  invisible(.Call("R_g_simple_async_result_set_op_res_gssize", simple, as.integer(op_res)))
+  invisible(.Call("R_g_simple_async_result_set_op_res_gssize", simple, op_res))
 }
 
 
@@ -13194,7 +13194,7 @@ gSocketConditionCheck <- function(socket, condition) {
 #' @return gboolean
 #' @export
 gSocketConditionTimedWait <- function(socket, condition, timeout_us, cancellable) {
-  .Call("R_g_socket_condition_timed_wait", socket, condition, as.integer(timeout_us), cancellable)$result
+  .Call("R_g_socket_condition_timed_wait", socket, condition, timeout_us, cancellable)$result
 }
 
 
@@ -13536,7 +13536,7 @@ gSocketReceive <- function(socket, size, cancellable) {
 #' @return GLib.Bytes
 #' @export
 gSocketReceiveBytes <- function(socket, size, timeout_us, cancellable) {
-  .Call("R_g_socket_receive_bytes", socket, as.integer(size), as.integer(timeout_us), cancellable)$result
+  .Call("R_g_socket_receive_bytes", socket, as.integer(size), timeout_us, cancellable)$result
 }
 
 
@@ -13550,7 +13550,7 @@ gSocketReceiveBytes <- function(socket, size, timeout_us, cancellable) {
 #' @return GLib.Bytes
 #' @export
 gSocketReceiveBytesFrom <- function(socket, size, timeout_us, cancellable) {
-  .Call("R_g_socket_receive_bytes_from", socket, as.integer(size), as.integer(timeout_us), cancellable)
+  .Call("R_g_socket_receive_bytes_from", socket, as.integer(size), timeout_us, cancellable)
 }
 
 
@@ -13657,7 +13657,7 @@ gSocketSendMessage <- function(socket, address, vectors, num_vectors, messages, 
 #' @return PollableReturn
 #' @export
 gSocketSendMessageWithTimeout <- function(socket, address, vectors, num_vectors, messages, num_messages, flags, timeout_us, cancellable) {
-  .Call("R_g_socket_send_message_with_timeout", socket, address, vectors, as.integer(num_vectors), messages, as.integer(num_messages), as.integer(flags), as.integer(timeout_us), cancellable)
+  .Call("R_g_socket_send_message_with_timeout", socket, address, vectors, as.integer(num_vectors), messages, as.integer(num_messages), as.integer(flags), timeout_us, cancellable)
 }
 
 
@@ -15377,7 +15377,7 @@ gTaskReturnErrorIfCancelled <- function(task) {
 #' @return Return value from C function
 #' @export
 gTaskReturnInt <- function(task, result) {
-  invisible(.Call("R_g_task_return_int", task, as.integer(result)))
+  invisible(.Call("R_g_task_return_int", task, result))
 }
 
 

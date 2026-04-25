@@ -3362,7 +3362,7 @@ gtkBuilderNewFromResource <- function(resource_path) {
 #' @return Builder
 #' @export
 gtkBuilderNewFromString <- function(string, length) {
-  .Call("R_gtk_builder_new_from_string", string, as.integer(length))$result
+  .Call("R_gtk_builder_new_from_string", string, length)$result
 }
 
 
@@ -3399,7 +3399,7 @@ gtkBuilderAddFromResource <- function(builder, resource_path) {
 #' @return gboolean
 #' @export
 gtkBuilderAddFromString <- function(builder, buffer, length) {
-  .Call("R_gtk_builder_add_from_string", builder, buffer, as.integer(length))$result
+  .Call("R_gtk_builder_add_from_string", builder, buffer, length)$result
 }
 
 
@@ -3439,7 +3439,7 @@ gtkBuilderAddObjectsFromResource <- function(builder, resource_path, object_ids)
 #' @return gboolean
 #' @export
 gtkBuilderAddObjectsFromString <- function(builder, buffer, length, object_ids) {
-  .Call("R_gtk_builder_add_objects_from_string", builder, buffer, as.integer(length), object_ids)$result
+  .Call("R_gtk_builder_add_objects_from_string", builder, buffer, length, object_ids)$result
 }
 
 
@@ -3481,7 +3481,7 @@ gtkBuilderExposeObject <- function(builder, name, object) {
 #' @return gboolean
 #' @export
 gtkBuilderExtendWithTemplate <- function(builder, object, template_type, buffer, length) {
-  .Call("R_gtk_builder_extend_with_template", builder, object, template_type, buffer, as.integer(length))$result
+  .Call("R_gtk_builder_extend_with_template", builder, object, template_type, buffer, length)$result
 }
 
 
@@ -8011,7 +8011,7 @@ gtkCssProviderLoadFromBytes <- function(css_provider, data) {
 #' @return Return value from C function
 #' @export
 gtkCssProviderLoadFromData <- function(css_provider, data, length) {
-  invisible(.Call("R_gtk_css_provider_load_from_data", css_provider, data, as.integer(length)))
+  invisible(.Call("R_gtk_css_provider_load_from_data", css_provider, data, length))
 }
 
 
@@ -19841,7 +19841,7 @@ gtkMediaStreamRealize <- function(self, surface) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamSeek <- function(self, timestamp) {
-  invisible(.Call("R_gtk_media_stream_seek", self, as.integer(timestamp)))
+  invisible(.Call("R_gtk_media_stream_seek", self, timestamp))
 }
 
 
@@ -19937,7 +19937,7 @@ gtkMediaStreamStreamEnded <- function(self) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamStreamPrepared <- function(self, has_audio, has_video, seekable, duration) {
-  invisible(.Call("R_gtk_media_stream_stream_prepared", self, has_audio, has_video, seekable, as.integer(duration)))
+  invisible(.Call("R_gtk_media_stream_stream_prepared", self, has_audio, has_video, seekable, duration))
 }
 
 
@@ -19972,7 +19972,7 @@ gtkMediaStreamUnrealize <- function(self, surface) {
 #' @return Return value from C function
 #' @export
 gtkMediaStreamUpdate <- function(self, timestamp) {
-  invisible(.Call("R_gtk_media_stream_update", self, as.integer(timestamp)))
+  invisible(.Call("R_gtk_media_stream_update", self, timestamp))
 }
 
 
@@ -37887,7 +37887,7 @@ gtkWidgetClassAddShortcut <- function(widget_class, shortcut) {
 #' @return Return value from C function
 #' @export
 gtkWidgetClassBindTemplateChildFull <- function(widget_class, name, internal_child, struct_offset) {
-  invisible(.Call("R_gtk_widget_class_bind_template_child_full", widget_class, name, internal_child, as.integer(struct_offset)))
+  invisible(.Call("R_gtk_widget_class_bind_template_child_full", widget_class, name, internal_child, struct_offset))
 }
 
 
