@@ -52,7 +52,8 @@ sudo pacman -S gtk4 gobject-introspection pkgconf r
 
 #### Windows
 
-Needs [MSYS2](https://www.msys2.org/).
+Needs [MSYS2](https://www.msys2.org/) and
+[`later`](https://cran.r-project.org/web/packages/later)
 
 ``` bash
 pacman -S mingw-w64-ucrt-x86_64-gtk \
@@ -61,7 +62,7 @@ pacman -S mingw-w64-ucrt-x86_64-gtk \
 ```
 
 Afterwards add the following to the PATH = `C:\msys64\ucrt64\bin` (or
-wherever (`libgtk` is located).
+wherever `libgtk` is located).
 
 ### Building Rgtk4
 
@@ -72,12 +73,8 @@ This creates all auto-generated bindings in the Rgtk4 package.
 2.  **Build and Install Rgtk4**:
 
 ``` r
-# From R
-install.packages("Rgtk4", repos = NULL, type = "source")
-
-# Or from command line
-R CMD build Rgtk4
-R CMD INSTALL Rgtk4_0.1.0.tar.gz
+# install.packages("remotes")
+remotes::install_github("JanMarvin/Rgtk4")
 ```
 
 ## Quick Start
