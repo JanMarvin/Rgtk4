@@ -99,17 +99,6 @@ gSignalConnectR(about_btn, "clicked", function(w) {
   gtkLabelSetMarkup(gtk_version_lbl, sprintf("<span font=\"monospace\">%s</span>", gtk_version_text))
   gtkBoxAppend(about_box, gtk_version_lbl)
 
-  # Check if Rectangle snapping is likely to work
-  snap_status <- if (gtk_major == 4 && gtk_minor >= 23) {
-    "<span color=\"green\">✓ Rectangle support: Yes (GTK ≥ 4.23)</span>"
-  } else {
-    "<span color=\"orange\">⚠ Rectangle support: No (needs GTK ≥ 4.23)</span>"
-  }
-
-  snap_lbl <- gtkLabelNew("")
-  gtkLabelSetMarkup(snap_lbl, snap_status)
-  gtkBoxAppend(about_box, snap_lbl)
-
   gtkBoxAppend(about_box, gtkSeparatorNew(0L))
 
   info_lbl <- gtkLabelNew("GTK4 bindings for R\nwith macOS integration")
