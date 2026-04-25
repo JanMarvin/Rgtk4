@@ -4,6 +4,7 @@
 #include <Rinternals.h>
 #include <gtk/gtk.h>
 #include <string.h>
+#include <stdlib.h>
 
 #ifndef G_OS_WIN32
 #include <R_ext/eventloop.h>
@@ -16,6 +17,7 @@
 #include <objc/objc.h>
 #include <objc/runtime.h>
 #include <objc/message.h>
+#include <CoreFoundation/CoreFoundation.h>
 
 static void _rgtk_macos_set_policy(long policy) {
   Class nsapp_class = objc_getClass("NSApplication");
@@ -41,7 +43,28 @@ static void _rgtk_macos_activate(void) {
   activateFn(app, activate_sel, true);
 }
 
-static void _rgtk_macos_set_app_icon(const char* icon_path) {
+static void _rgtk_macos_finish_launching(void) {
+  Class nsapp_class = objc_getClass("NSApplication");
+  SEL shared_app_sel = sel_registerName("sharedApplication");
+  SEL finish_sel = sel_registerName("finishLaunching");
+
+  id (*sharedAppFn)(Class, SEL) = (id (*)(Class, SEL))objc_msgSend;
+  id app = sharedAppFn(nsapp_class, shared_app_sel);
+
+  void (*finishFn)(id, SEL) = (void (*)(id, SEL))objc_msgSend;
+  finishFn(app, finish_sel);
+}
+
+// Drain pending AppKit / CFRunLoop sources. GLib's main context iteration on
+// macOS does not pump these, so window-server events (snap menu, dock updates,
+// activation transitions) need this to be serviced.
+static void _rgtk_macos_pump_cfrunloop(void) {
+  while (CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.0, true)
+           == kCFRunLoopRunHandledSource) {
+  }
+}
+
+static bool _rgtk_macos_set_app_icon(const char* icon_path) {
   Class nsimage_class = objc_getClass("NSImage");
   Class nsapp_class = objc_getClass("NSApplication");
   Class nsstring_class = objc_getClass("NSString");
@@ -61,13 +84,18 @@ static void _rgtk_macos_set_app_icon(const char* icon_path) {
   id (*initFn)(id, SEL, id) = (id (*)(id, SEL, id))objc_msgSend;
   image = initFn(image, init_with_path_sel, path_string);
 
-  if (image) {
-    id (*sharedAppFn)(Class, SEL) = (id (*)(Class, SEL))objc_msgSend;
-    id app = sharedAppFn(nsapp_class, shared_app_sel);
+  if (!image) return false;
 
-    void (*setIconFn)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
-    setIconFn(app, set_icon_sel, image);
-  }
+  id (*sharedAppFn)(Class, SEL) = (id (*)(Class, SEL))objc_msgSend;
+  id app = sharedAppFn(nsapp_class, shared_app_sel);
+
+  void (*setIconFn)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
+  setIconFn(app, set_icon_sel, image);
+
+  // Force the dock to actually pick up the change. Without pumping the
+  // CFRunLoop the icon update may not appear until the next event arrives.
+  _rgtk_macos_pump_cfrunloop();
+  return true;
 }
 #endif
 
@@ -99,16 +127,22 @@ static pthread_mutex_t _rgtk_window_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 // GTK event handler called from R input handler
 static void _rgtk_input_cb(void *userData) {
+  (void)userData;
   char buf[64];
   if (read(_rgtk_ifd, buf, sizeof(buf)) < 0) return;
 
   // Process all pending GTK events
   GMainContext *ctx = g_main_context_default();
   while (g_main_context_iteration(ctx, FALSE));
+
+#ifdef __APPLE__
+  _rgtk_macos_pump_cfrunloop();
+#endif
 }
 
-// Timer callback running in separate thread
+// Timer callback running in separate thread - pokes the pipe to wake R
 static gboolean _rgtk_timer_cb(gpointer data) {
+  (void)data;
   if (_rgtk_ofd != -1) {
     char b = 0;
     if (write(_rgtk_ofd, &b, 1) < 0) { }
@@ -118,18 +152,17 @@ static gboolean _rgtk_timer_cb(gpointer data) {
 
 // Thread function that runs the timer
 static void *_rgtk_thread_func(void *data) {
+  (void)data;
   GMainContext *ctx = g_main_context_new();
   _rgtk_loop = g_main_loop_new(ctx, FALSE);
 
-  // Add timer to this thread's context
-  GSource *timer = g_timeout_source_new(50);
+  // ~120 Hz: smooth UI without measurable idle CPU on a sleeping context
+  GSource *timer = g_timeout_source_new(8);
   g_source_set_callback(timer, _rgtk_timer_cb, NULL, NULL);
   g_source_attach(timer, ctx);
 
-  // Run the loop
   g_main_loop_run(_rgtk_loop);
 
-  // Cleanup
   g_source_destroy(timer);
   g_source_unref(timer);
   g_main_loop_unref(_rgtk_loop);
@@ -141,6 +174,16 @@ static void *_rgtk_thread_func(void *data) {
 
 // Event loop functions - defined on all platforms
 SEXP R_gtk_start_event_loop(void) {
+#ifdef G_OS_WIN32
+  // GTK4 uses CSD by default, which omits WS_THICKFRAME on the native
+  // window and breaks aero snap. Force server-side decorations so the
+  // OS draws the titlebar. Must be set before gtk_init() to take effect;
+  // setting here is a fallback for users who haven't set it externally.
+  if (!getenv("GTK_CSD")) {
+    _putenv_s("GTK_CSD", "0");
+  }
+#endif
+
 #ifndef G_OS_WIN32
   if (_rgtk_running) return Rf_ScalarLogical(TRUE);
 
@@ -166,9 +209,13 @@ SEXP R_gtk_start_event_loop(void) {
   _rgtk_running = TRUE;
 
 #ifdef __APPLE__
-  // Start as accessory (no dock icon until window is shown)
+  // Start as accessory (no dock icon until window is shown). NSApp must
+  // be finished launching before AppKit will deliver window-management
+  // events (green-button tile menu, Stage Manager, dock updates).
   _rgtk_macos_set_policy(1);  // NSApplicationActivationPolicyAccessory
+  _rgtk_macos_finish_launching();
   _rgtk_macos_activate();
+  _rgtk_macos_pump_cfrunloop();
 #endif
 
   return Rf_ScalarLogical(TRUE);
@@ -228,6 +275,7 @@ SEXP R_gtk_force_foreground(void) {
   // Switch to regular mode (show dock icon) and activate
   _rgtk_macos_set_policy(0);  // NSApplicationActivationPolicyRegular
   _rgtk_macos_activate();
+  _rgtk_macos_pump_cfrunloop();
 #elif defined(G_OS_WIN32)
   // On Windows, bring all GTK windows to foreground
   GListModel *toplevels = gtk_window_get_toplevels();
@@ -266,6 +314,9 @@ static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) {
   if (count == 0) {
     _rgtk_macos_set_policy(1);
   }
+#else
+  (void)window;
+  (void)user_data;
 #endif
 }
 
@@ -275,6 +326,8 @@ void R_gtk_window_untrack(SEXP s_window) {
   if (!window) return;
 
   _rgtk_window_untrack_cb(window, NULL);
+#else
+  (void)s_window;
 #endif
 }
 
@@ -293,6 +346,7 @@ SEXP R_gtk_window_track(SEXP s_window) {
   if (count == 1) {
     _rgtk_macos_set_policy(0);
     _rgtk_macos_activate();
+    _rgtk_macos_pump_cfrunloop();
   }
 
 #pragma GCC diagnostic push
@@ -301,6 +355,8 @@ SEXP R_gtk_window_track(SEXP s_window) {
                    G_CALLBACK(_rgtk_window_untrack_cb),
                    NULL);
 #pragma GCC diagnostic pop
+#else
+  (void)s_window;
 #endif
   return R_NilValue;
 }
@@ -312,6 +368,10 @@ SEXP R_gtk_main_iteration(void) {
   // Always iterate to allow GTK to process paint events, timers, etc.
   gboolean processed = g_main_context_iteration(ctx, FALSE);
 
+#ifdef __APPLE__
+  _rgtk_macos_pump_cfrunloop();
+#endif
+
   return Rf_ScalarLogical(processed);
 }
 
@@ -320,29 +380,29 @@ SEXP R_gtk_main_iteration_do(SEXP s_blocking) {
   gboolean blocking = (gboolean)Rf_asLogical(s_blocking);
   GMainContext *ctx = g_main_context_default();
 
-  // Process events
   int count = 0;
   while (g_main_context_iteration(ctx, blocking && count == 0)) {
     count++;
     if (!blocking && count > 100) break; // Safety limit
   }
 
+#ifdef __APPLE__
+  _rgtk_macos_pump_cfrunloop();
+#endif
+
   return Rf_ScalarInteger(count);
 }
 
-#ifdef __APPLE__
 SEXP R_macos_set_app_icon(SEXP s_path) {
+#ifdef __APPLE__
   if (TYPEOF(s_path) != STRSXP || Rf_length(s_path) != 1) {
     Rf_error("icon_path must be a single string");
   }
   const char* path = CHAR(STRING_ELT(s_path, 0));
-  _rgtk_macos_set_app_icon(path);
-  return R_NilValue;
-}
+  bool ok = _rgtk_macos_set_app_icon(path);
+  return Rf_ScalarLogical(ok);
 #else
-// Stub functions for non-macOS platforms
-SEXP R_macos_set_app_icon(SEXP s_path) {
   (void)s_path;
-  return R_NilValue;
-}
+  return Rf_ScalarLogical(FALSE);
 #endif
+}
