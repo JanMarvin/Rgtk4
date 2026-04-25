@@ -40,6 +40,35 @@ static void _rgtk_macos_activate(void) {
   void (*activateFn)(id, SEL, bool) = (void (*)(id, SEL, bool))objc_msgSend;
   activateFn(app, activate_sel, true);
 }
+
+static void _rgtk_macos_set_app_icon(const char* icon_path) {
+  Class nsimage_class = objc_getClass("NSImage");
+  Class nsapp_class = objc_getClass("NSApplication");
+  Class nsstring_class = objc_getClass("NSString");
+
+  SEL string_with_utf8_sel = sel_registerName("stringWithUTF8String:");
+  SEL alloc_sel = sel_registerName("alloc");
+  SEL init_with_path_sel = sel_registerName("initWithContentsOfFile:");
+  SEL shared_app_sel = sel_registerName("sharedApplication");
+  SEL set_icon_sel = sel_registerName("setApplicationIconImage:");
+
+  id (*stringFn)(Class, SEL, const char*) = (id (*)(Class, SEL, const char*))objc_msgSend;
+  id path_string = stringFn(nsstring_class, string_with_utf8_sel, icon_path);
+
+  id (*allocFn)(Class, SEL) = (id (*)(Class, SEL))objc_msgSend;
+  id image = allocFn(nsimage_class, alloc_sel);
+
+  id (*initFn)(id, SEL, id) = (id (*)(id, SEL, id))objc_msgSend;
+  image = initFn(image, init_with_path_sel, path_string);
+
+  if (image) {
+    id (*sharedAppFn)(Class, SEL) = (id (*)(Class, SEL))objc_msgSend;
+    id app = sharedAppFn(nsapp_class, shared_app_sel);
+
+    void (*setIconFn)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
+    setIconFn(app, set_icon_sel, image);
+  }
+}
 #endif
 
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -199,6 +228,16 @@ SEXP R_gtk_force_foreground(void) {
   // Switch to regular mode (show dock icon) and activate
   _rgtk_macos_set_policy(0);  // NSApplicationActivationPolicyRegular
   _rgtk_macos_activate();
+#elif defined(G_OS_WIN32)
+  // On Windows, bring all GTK windows to foreground
+  GList *windows = gtk_window_get_toplevels();
+  for (GList *l = windows; l != NULL; l = l->next) {
+    if (GTK_IS_WINDOW(l->data)) {
+      GtkWindow *window = GTK_WINDOW(l->data);
+      gtk_window_present(window);
+    }
+  }
+  g_list_free(windows);
 #endif
   return R_NilValue;
 }
@@ -288,3 +327,15 @@ SEXP R_gtk_main_iteration_do(SEXP s_blocking) {
 
   return Rf_ScalarInteger(count);
 }
+
+#ifdef __APPLE__
+SEXP R_macos_set_app_icon(SEXP s_path) {
+  if (TYPEOF(s_path) != STRSXP || Rf_length(s_path) != 1) {
+    Rf_error("icon_path must be a single string");
+  }
+  const char* path = CHAR(STRING_ELT(s_path, 0));
+  _rgtk_macos_set_app_icon(path);
+  return R_NilValue;
+}
+
+#endif

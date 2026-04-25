@@ -64,6 +64,37 @@ gtkHideFromDock <- function() {
   invisible(.Call('R_gtk_hide_from_dock'))
 }
 
+#' Set application icon
+#'
+#' Sets a custom application icon. On macOS, sets the Dock icon.
+#' On Linux, sets the default window icon. Windows support TBD.
+#'
+#' @param icon_path Path to icon file (.png, .icns, or .ico)
+#' @export
+gtkSetAppIcon <- function(icon_path) {
+  if (!file.exists(icon_path)) {
+    stop("Icon file not found: ", icon_path)
+  }
+
+  os <- Sys.info()["sysname"]
+
+  if (os == "Darwin") {
+    invisible(.Call("R_macos_set_app_icon", normalizePath(icon_path)))
+  } else if (os == "Linux") {
+    # On Linux, set default window icon from file
+    pixbuf <- gdkPixbufNewFromFile(icon_path)
+    gtkWindowSetDefaultIconList(list(pixbuf))
+  } else if (os == "Windows") {
+    # Windows: set default icon (GTK4 handles this via window class)
+    pixbuf <- gdkPixbufNewFromFile(icon_path)
+    gtkWindowSetDefaultIconList(list(pixbuf))
+  } else {
+    warning("gtkSetAppIcon: unsupported platform ", os)
+  }
+
+  invisible(NULL)
+}
+
 #' Track window for dock icon management (macOS)
 #'
 #' Automatically shows dock icon when first window appears and hides
