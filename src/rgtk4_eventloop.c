@@ -13,6 +13,11 @@
 #include <pthread.h>
 #endif
 
+#ifdef G_OS_WIN32
+#include <windows.h>
+#include <gdk/win32/gdkwin32.h>
+#endif
+
 #ifdef __APPLE__
 #include <objc/objc.h>
 #include <objc/runtime.h>
@@ -277,7 +282,6 @@ SEXP R_gtk_force_foreground(void) {
   _rgtk_macos_activate();
   _rgtk_macos_pump_cfrunloop();
 #elif defined(G_OS_WIN32)
-  // On Windows, bring all GTK windows to foreground
   GListModel *toplevels = gtk_window_get_toplevels();
   guint n = g_list_model_get_n_items(toplevels);
 
@@ -285,6 +289,35 @@ SEXP R_gtk_force_foreground(void) {
     GtkWindow *window = g_list_model_get_item(toplevels, i);
     if (window) {
       gtk_window_present(window);
+
+      GdkSurface *surface = gtk_native_get_surface(GTK_NATIVE(window));
+      if (surface) {
+        HWND hwnd = (HWND)gdk_win32_surface_get_handle(surface);
+        if (hwnd) {
+          // Defeat Windows' focus-stealing prevention by briefly
+          // attaching to the current foreground thread's input queue.
+          HWND fg = GetForegroundWindow();
+          DWORD fg_tid = fg ? GetWindowThreadProcessId(fg, NULL) : 0;
+          DWORD my_tid = GetCurrentThreadId();
+
+          if (fg_tid && fg_tid != my_tid) {
+            AttachThreadInput(my_tid, fg_tid, TRUE);
+            SetForegroundWindow(hwnd);
+            BringWindowToTop(hwnd);
+            SetFocus(hwnd);
+            AttachThreadInput(my_tid, fg_tid, FALSE);
+          } else {
+            SetForegroundWindow(hwnd);
+            BringWindowToTop(hwnd);
+            SetFocus(hwnd);
+          }
+
+          if (IsIconic(hwnd)) {
+            ShowWindow(hwnd, SW_RESTORE);
+          }
+        }
+      }
+
       g_object_unref(window);
     }
   }
