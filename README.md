@@ -52,13 +52,16 @@ sudo pacman -S gtk4 gobject-introspection pkgconf r
 
 #### Windows
 
-Needs [MSYS2](https://www.msys2.org/)
+Needs [MSYS2](https://www.msys2.org/).
 
 ``` bash
 pacman -S mingw-w64-ucrt-x86_64-gtk \
           mingw-w64-ucrt-x86_64-gobject-introspection \
           mingw-w64-ucrt-x86_64-pkg-config
 ```
+
+Afterwards add the following to the PATH = `C:\msys64\ucrt64\bin` (or
+wherever (`libgtk` is located).
 
 ### Building Rgtk4
 
