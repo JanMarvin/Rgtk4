@@ -295,7 +295,7 @@ SEXP R_gtk_window_track(SEXP s_window) {
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wpedantic"
-  g_signal_connect(window, "destroy",
+  g_signal_connect(window, "unrealize",
                    G_CALLBACK(_rgtk_window_untrack_cb),
                    NULL);
 #pragma GCC diagnostic pop
