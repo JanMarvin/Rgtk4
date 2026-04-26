@@ -467,6 +467,105 @@ extern SEXP R_gdk_pixbuf_get_from_surface(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
 extern SEXP R_gdk_pixbuf_get_from_texture(SEXP s1);
 extern SEXP R_gdk_set_allowed_backends(SEXP s1);
 extern SEXP R_gdk_unicode_to_keyval(SEXP s1);
+extern SEXP R_gdk_pixbuf_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gdk_pixbuf_new_from_bytes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_gdk_pixbuf_new_from_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9);
+extern SEXP R_gdk_pixbuf_new_from_file(SEXP s1);
+extern SEXP R_gdk_pixbuf_new_from_file_at_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gdk_pixbuf_new_from_file_at_size(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gdk_pixbuf_new_from_inline(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gdk_pixbuf_new_from_resource(SEXP s1);
+extern SEXP R_gdk_pixbuf_new_from_resource_at_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gdk_pixbuf_new_from_stream(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_new_from_stream_at_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gdk_pixbuf_new_from_stream_finish(SEXP s1);
+extern SEXP R_gdk_pixbuf_new_from_xpm_data(SEXP s1);
+extern SEXP R_gdk_pixbuf_calculate_rowstride(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gdk_pixbuf_get_file_info(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_file_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gdk_pixbuf_get_file_info_finish(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_formats(void);
+extern SEXP R_gdk_pixbuf_init_modules(SEXP s1);
+extern SEXP R_gdk_pixbuf_new_from_stream_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gdk_pixbuf_new_from_stream_at_scale_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_gdk_pixbuf_save_to_stream_finish(SEXP s1);
+extern SEXP R_gdk_pixbuf_add_alpha(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gdk_pixbuf_apply_embedded_orientation(SEXP s1);
+extern SEXP R_gdk_pixbuf_composite(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12);
+extern SEXP R_gdk_pixbuf_composite_color(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11, SEXP s12, SEXP s13, SEXP s14, SEXP s15, SEXP s16, SEXP s17);
+extern SEXP R_gdk_pixbuf_composite_color_simple(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_gdk_pixbuf_copy(SEXP s1);
+extern SEXP R_gdk_pixbuf_copy_area(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_gdk_pixbuf_copy_options(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_fill(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_flip(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_get_bits_per_sample(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_byte_length(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_colorspace(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_has_alpha(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_height(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_n_channels(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_option(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_get_options(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_pixels(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_pixels_with_length(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_rowstride(SEXP s1);
+extern SEXP R_gdk_pixbuf_get_width(SEXP s1);
+extern SEXP R_gdk_pixbuf_new_subpixbuf(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gdk_pixbuf_read_pixel_bytes(SEXP s1);
+extern SEXP R_gdk_pixbuf_read_pixels(SEXP s1);
+extern SEXP R_gdk_pixbuf_remove_option(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_rotate_simple(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_saturate_and_pixelate(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gdk_pixbuf_save_to_bufferv(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gdk_pixbuf_save_to_callbackv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gdk_pixbuf_save_to_streamv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gdk_pixbuf_save_to_streamv_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_gdk_pixbuf_savev(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gdk_pixbuf_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9, SEXP s10, SEXP s11);
+extern SEXP R_gdk_pixbuf_scale_simple(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gdk_pixbuf_set_option(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gdk_pixbuf_animation_new_from_file(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_new_from_resource(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_new_from_stream(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_animation_new_from_stream_finish(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_new_from_stream_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gdk_pixbuf_animation_get_height(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_get_iter(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_animation_get_static_image(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_get_width(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_is_static_image(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_iter_advance(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_animation_iter_get_delay_time(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_iter_get_pixbuf(SEXP s1);
+extern SEXP R_gdk_pixbuf_animation_iter_on_currently_loading_frame(SEXP s1);
+extern SEXP R_gdk_pixbuf_error_quark(void);
+extern SEXP R_gdk_pixbuf_format_copy(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_free(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_get_description(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_get_extensions(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_get_license(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_get_mime_types(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_get_name(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_is_disabled(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_is_save_option_supported(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_format_is_scalable(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_is_writable(SEXP s1);
+extern SEXP R_gdk_pixbuf_format_set_disabled(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_loader_new(void);
+extern SEXP R_gdk_pixbuf_loader_new_with_mime_type(SEXP s1);
+extern SEXP R_gdk_pixbuf_loader_new_with_type(SEXP s1);
+extern SEXP R_gdk_pixbuf_loader_close(SEXP s1);
+extern SEXP R_gdk_pixbuf_loader_get_animation(SEXP s1);
+extern SEXP R_gdk_pixbuf_loader_get_format(SEXP s1);
+extern SEXP R_gdk_pixbuf_loader_get_pixbuf(SEXP s1);
+extern SEXP R_gdk_pixbuf_loader_set_size(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gdk_pixbuf_loader_write(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gdk_pixbuf_loader_write_bytes(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_simple_anim_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gdk_pixbuf_simple_anim_add_frame(SEXP s1, SEXP s2);
+extern SEXP R_gdk_pixbuf_simple_anim_get_loop(SEXP s1);
+extern SEXP R_gdk_pixbuf_simple_anim_set_loop(SEXP s1, SEXP s2);
 extern SEXP R_g_action_name_is_valid(SEXP s1);
 extern SEXP R_g_action_parse_detailed_name(SEXP s1);
 extern SEXP R_g_action_print_detailed_name(SEXP s1, SEXP s2);
@@ -6563,6 +6662,442 @@ extern SEXP R_gtk_value_dup_expression(SEXP s1);
 extern SEXP R_gtk_value_get_expression(SEXP s1);
 extern SEXP R_gtk_value_set_expression(SEXP s1, SEXP s2);
 extern SEXP R_gtk_value_take_expression(SEXP s1, SEXP s2);
+extern SEXP R_pango_attr_font_desc_new(SEXP s1);
+extern SEXP R_pango_attr_font_features_new(SEXP s1);
+extern SEXP R_pango_attr_iterator_copy(SEXP s1);
+extern SEXP R_pango_attr_iterator_destroy(SEXP s1);
+extern SEXP R_pango_attr_iterator_get(SEXP s1, SEXP s2);
+extern SEXP R_pango_attr_iterator_get_attrs(SEXP s1);
+extern SEXP R_pango_attr_iterator_get_font(SEXP s1, SEXP s2);
+extern SEXP R_pango_attr_iterator_next(SEXP s1);
+extern SEXP R_pango_attr_iterator_range(SEXP s1);
+extern SEXP R_pango_attr_language_new(SEXP s1);
+extern SEXP R_pango_attr_list_new(void);
+extern SEXP R_pango_attr_list_change(SEXP s1, SEXP s2);
+extern SEXP R_pango_attr_list_copy(SEXP s1);
+extern SEXP R_pango_attr_list_equal(SEXP s1, SEXP s2);
+extern SEXP R_pango_attr_list_filter(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_attr_list_get_attributes(SEXP s1);
+extern SEXP R_pango_attr_list_get_iterator(SEXP s1);
+extern SEXP R_pango_attr_list_insert(SEXP s1, SEXP s2);
+extern SEXP R_pango_attr_list_insert_before(SEXP s1, SEXP s2);
+extern SEXP R_pango_attr_list_ref(SEXP s1);
+extern SEXP R_pango_attr_list_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_attr_list_to_string(SEXP s1);
+extern SEXP R_pango_attr_list_unref(SEXP s1);
+extern SEXP R_pango_attr_list_update(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_attr_list_from_string(SEXP s1);
+extern SEXP R_pango_attr_shape_new(SEXP s1, SEXP s2);
+extern SEXP R_pango_attr_shape_new_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_attr_size_new(SEXP s1);
+extern SEXP R_pango_attr_size_new_absolute(SEXP s1);
+extern SEXP R_pango_attr_type_get_name(SEXP s1);
+extern SEXP R_pango_attr_type_register(SEXP s1);
+extern SEXP R_pango_attribute_as_color(SEXP s1);
+extern SEXP R_pango_attribute_as_float(SEXP s1);
+extern SEXP R_pango_attribute_as_font_desc(SEXP s1);
+extern SEXP R_pango_attribute_as_font_features(SEXP s1);
+extern SEXP R_pango_attribute_as_int(SEXP s1);
+extern SEXP R_pango_attribute_as_language(SEXP s1);
+extern SEXP R_pango_attribute_as_shape(SEXP s1);
+extern SEXP R_pango_attribute_as_size(SEXP s1);
+extern SEXP R_pango_attribute_as_string(SEXP s1);
+extern SEXP R_pango_attribute_copy(SEXP s1);
+extern SEXP R_pango_attribute_destroy(SEXP s1);
+extern SEXP R_pango_attribute_equal(SEXP s1, SEXP s2);
+extern SEXP R_pango_attribute_init(SEXP s1, SEXP s2);
+extern SEXP R_pango_bidi_type_for_unichar(SEXP s1);
+extern SEXP R_pango_color_copy(SEXP s1);
+extern SEXP R_pango_color_free(SEXP s1);
+extern SEXP R_pango_color_parse(SEXP s1, SEXP s2);
+extern SEXP R_pango_color_parse_with_alpha(SEXP s1, SEXP s2);
+extern SEXP R_pango_color_to_string(SEXP s1);
+extern SEXP R_pango_context_new(void);
+extern SEXP R_pango_context_changed(SEXP s1);
+extern SEXP R_pango_context_get_base_dir(SEXP s1);
+extern SEXP R_pango_context_get_base_gravity(SEXP s1);
+extern SEXP R_pango_context_get_font_description(SEXP s1);
+extern SEXP R_pango_context_get_font_map(SEXP s1);
+extern SEXP R_pango_context_get_gravity(SEXP s1);
+extern SEXP R_pango_context_get_gravity_hint(SEXP s1);
+extern SEXP R_pango_context_get_language(SEXP s1);
+extern SEXP R_pango_context_get_matrix(SEXP s1);
+extern SEXP R_pango_context_get_metrics(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_context_get_round_glyph_positions(SEXP s1);
+extern SEXP R_pango_context_get_serial(SEXP s1);
+extern SEXP R_pango_context_list_families(SEXP s1);
+extern SEXP R_pango_context_load_font(SEXP s1, SEXP s2);
+extern SEXP R_pango_context_load_fontset(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_context_set_base_dir(SEXP s1, SEXP s2);
+extern SEXP R_pango_context_set_base_gravity(SEXP s1, SEXP s2);
+extern SEXP R_pango_context_set_font_description(SEXP s1, SEXP s2);
+extern SEXP R_pango_context_set_font_map(SEXP s1, SEXP s2);
+extern SEXP R_pango_context_set_gravity_hint(SEXP s1, SEXP s2);
+extern SEXP R_pango_context_set_language(SEXP s1, SEXP s2);
+extern SEXP R_pango_context_set_matrix(SEXP s1, SEXP s2);
+extern SEXP R_pango_context_set_round_glyph_positions(SEXP s1, SEXP s2);
+extern SEXP R_pango_coverage_new(void);
+extern SEXP R_pango_coverage_from_bytes(SEXP s1, SEXP s2);
+extern SEXP R_pango_coverage_copy(SEXP s1);
+extern SEXP R_pango_coverage_get(SEXP s1, SEXP s2);
+extern SEXP R_pango_coverage_max(SEXP s1, SEXP s2);
+extern SEXP R_pango_coverage_ref(SEXP s1);
+extern SEXP R_pango_coverage_set(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_coverage_to_bytes(SEXP s1);
+extern SEXP R_pango_coverage_unref(SEXP s1);
+extern SEXP R_pango_font_descriptions_free(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_deserialize(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_describe(SEXP s1);
+extern SEXP R_pango_font_describe_with_absolute_size(SEXP s1);
+extern SEXP R_pango_font_get_coverage(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_get_face(SEXP s1);
+extern SEXP R_pango_font_get_features(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_get_font_map(SEXP s1);
+extern SEXP R_pango_font_get_glyph_extents(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_get_languages(SEXP s1);
+extern SEXP R_pango_font_get_metrics(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_has_char(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_serialize(SEXP s1);
+extern SEXP R_pango_font_description_new(void);
+extern SEXP R_pango_font_description_better_match(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_font_description_copy(SEXP s1);
+extern SEXP R_pango_font_description_copy_static(SEXP s1);
+extern SEXP R_pango_font_description_equal(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_free(SEXP s1);
+extern SEXP R_pango_font_description_get_color(SEXP s1);
+extern SEXP R_pango_font_description_get_family(SEXP s1);
+extern SEXP R_pango_font_description_get_features(SEXP s1);
+extern SEXP R_pango_font_description_get_gravity(SEXP s1);
+extern SEXP R_pango_font_description_get_set_fields(SEXP s1);
+extern SEXP R_pango_font_description_get_size(SEXP s1);
+extern SEXP R_pango_font_description_get_size_is_absolute(SEXP s1);
+extern SEXP R_pango_font_description_get_stretch(SEXP s1);
+extern SEXP R_pango_font_description_get_style(SEXP s1);
+extern SEXP R_pango_font_description_get_variant(SEXP s1);
+extern SEXP R_pango_font_description_get_variations(SEXP s1);
+extern SEXP R_pango_font_description_get_weight(SEXP s1);
+extern SEXP R_pango_font_description_hash(SEXP s1);
+extern SEXP R_pango_font_description_merge(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_font_description_merge_static(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_font_description_set_absolute_size(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_color(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_family(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_family_static(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_features(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_features_static(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_gravity(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_size(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_stretch(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_style(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_variant(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_variations(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_variations_static(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_set_weight(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_to_filename(SEXP s1);
+extern SEXP R_pango_font_description_to_string(SEXP s1);
+extern SEXP R_pango_font_description_unset_fields(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_description_from_string(SEXP s1);
+extern SEXP R_pango_font_face_describe(SEXP s1);
+extern SEXP R_pango_font_face_get_face_name(SEXP s1);
+extern SEXP R_pango_font_face_get_family(SEXP s1);
+extern SEXP R_pango_font_face_is_synthesized(SEXP s1);
+extern SEXP R_pango_font_face_list_sizes(SEXP s1);
+extern SEXP R_pango_font_family_get_face(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_family_get_name(SEXP s1);
+extern SEXP R_pango_font_family_is_monospace(SEXP s1);
+extern SEXP R_pango_font_family_is_variable(SEXP s1);
+extern SEXP R_pango_font_family_list_faces(SEXP s1);
+extern SEXP R_pango_font_map_add_font_file(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_map_changed(SEXP s1);
+extern SEXP R_pango_font_map_create_context(SEXP s1);
+extern SEXP R_pango_font_map_get_family(SEXP s1, SEXP s2);
+extern SEXP R_pango_font_map_get_serial(SEXP s1);
+extern SEXP R_pango_font_map_list_families(SEXP s1);
+extern SEXP R_pango_font_map_load_font(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_font_map_load_fontset(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_font_map_reload_font(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_font_metrics_get_approximate_char_width(SEXP s1);
+extern SEXP R_pango_font_metrics_get_approximate_digit_width(SEXP s1);
+extern SEXP R_pango_font_metrics_get_ascent(SEXP s1);
+extern SEXP R_pango_font_metrics_get_descent(SEXP s1);
+extern SEXP R_pango_font_metrics_get_height(SEXP s1);
+extern SEXP R_pango_font_metrics_get_strikethrough_position(SEXP s1);
+extern SEXP R_pango_font_metrics_get_strikethrough_thickness(SEXP s1);
+extern SEXP R_pango_font_metrics_get_underline_position(SEXP s1);
+extern SEXP R_pango_font_metrics_get_underline_thickness(SEXP s1);
+extern SEXP R_pango_font_metrics_ref(SEXP s1);
+extern SEXP R_pango_font_metrics_unref(SEXP s1);
+extern SEXP R_pango_fontset_foreach(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_fontset_get_font(SEXP s1, SEXP s2);
+extern SEXP R_pango_fontset_get_metrics(SEXP s1);
+extern SEXP R_pango_fontset_simple_new(SEXP s1);
+extern SEXP R_pango_fontset_simple_append(SEXP s1, SEXP s2);
+extern SEXP R_pango_fontset_simple_size(SEXP s1);
+extern SEXP R_pango_glyph_item_apply_attrs(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_glyph_item_copy(SEXP s1);
+extern SEXP R_pango_glyph_item_free(SEXP s1);
+extern SEXP R_pango_glyph_item_get_logical_widths(SEXP s1, SEXP s2);
+extern SEXP R_pango_glyph_item_letter_space(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_glyph_item_split(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_glyph_item_iter_copy(SEXP s1);
+extern SEXP R_pango_glyph_item_iter_free(SEXP s1);
+extern SEXP R_pango_glyph_item_iter_init_end(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_glyph_item_iter_init_start(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_glyph_item_iter_next_cluster(SEXP s1);
+extern SEXP R_pango_glyph_item_iter_prev_cluster(SEXP s1);
+extern SEXP R_pango_glyph_string_new(void);
+extern SEXP R_pango_glyph_string_copy(SEXP s1);
+extern SEXP R_pango_glyph_string_extents(SEXP s1, SEXP s2);
+extern SEXP R_pango_glyph_string_extents_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_glyph_string_free(SEXP s1);
+extern SEXP R_pango_glyph_string_get_logical_widths(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_glyph_string_get_width(SEXP s1);
+extern SEXP R_pango_glyph_string_index_to_x(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_pango_glyph_string_index_to_x_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_pango_glyph_string_set_size(SEXP s1, SEXP s2);
+extern SEXP R_pango_glyph_string_x_to_index(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_gravity_get_for_matrix(SEXP s1);
+extern SEXP R_pango_gravity_get_for_script(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_gravity_get_for_script_and_width(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_gravity_to_rotation(SEXP s1);
+extern SEXP R_pango_item_new(void);
+extern SEXP R_pango_item_apply_attrs(SEXP s1, SEXP s2);
+extern SEXP R_pango_item_copy(SEXP s1);
+extern SEXP R_pango_item_free(SEXP s1);
+extern SEXP R_pango_item_get_char_offset(SEXP s1);
+extern SEXP R_pango_item_split(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_language_get_sample_string(SEXP s1);
+extern SEXP R_pango_language_get_scripts(SEXP s1);
+extern SEXP R_pango_language_includes_script(SEXP s1, SEXP s2);
+extern SEXP R_pango_language_matches(SEXP s1, SEXP s2);
+extern SEXP R_pango_language_to_string(SEXP s1);
+extern SEXP R_pango_language_from_string(SEXP s1);
+extern SEXP R_pango_language_get_default(void);
+extern SEXP R_pango_language_get_preferred(void);
+extern SEXP R_pango_layout_new(SEXP s1);
+extern SEXP R_pango_layout_deserialize(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_layout_context_changed(SEXP s1);
+extern SEXP R_pango_layout_copy(SEXP s1);
+extern SEXP R_pango_layout_get_alignment(SEXP s1);
+extern SEXP R_pango_layout_get_attributes(SEXP s1);
+extern SEXP R_pango_layout_get_auto_dir(SEXP s1);
+extern SEXP R_pango_layout_get_baseline(SEXP s1);
+extern SEXP R_pango_layout_get_caret_pos(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_get_character_count(SEXP s1);
+extern SEXP R_pango_layout_get_context(SEXP s1);
+extern SEXP R_pango_layout_get_cursor_pos(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_get_direction(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_get_ellipsize(SEXP s1);
+extern SEXP R_pango_layout_get_extents(SEXP s1);
+extern SEXP R_pango_layout_get_font_description(SEXP s1);
+extern SEXP R_pango_layout_get_height(SEXP s1);
+extern SEXP R_pango_layout_get_indent(SEXP s1);
+extern SEXP R_pango_layout_get_iter(SEXP s1);
+extern SEXP R_pango_layout_get_justify(SEXP s1);
+extern SEXP R_pango_layout_get_justify_last_line(SEXP s1);
+extern SEXP R_pango_layout_get_line(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_get_line_count(SEXP s1);
+extern SEXP R_pango_layout_get_line_readonly(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_get_line_spacing(SEXP s1);
+extern SEXP R_pango_layout_get_lines(SEXP s1);
+extern SEXP R_pango_layout_get_lines_readonly(SEXP s1);
+extern SEXP R_pango_layout_get_log_attrs(SEXP s1);
+extern SEXP R_pango_layout_get_log_attrs_readonly(SEXP s1);
+extern SEXP R_pango_layout_get_pixel_extents(SEXP s1);
+extern SEXP R_pango_layout_get_pixel_size(SEXP s1);
+extern SEXP R_pango_layout_get_serial(SEXP s1);
+extern SEXP R_pango_layout_get_single_paragraph_mode(SEXP s1);
+extern SEXP R_pango_layout_get_size(SEXP s1);
+extern SEXP R_pango_layout_get_spacing(SEXP s1);
+extern SEXP R_pango_layout_get_tabs(SEXP s1);
+extern SEXP R_pango_layout_get_text(SEXP s1);
+extern SEXP R_pango_layout_get_unknown_glyphs_count(SEXP s1);
+extern SEXP R_pango_layout_get_width(SEXP s1);
+extern SEXP R_pango_layout_get_wrap(SEXP s1);
+extern SEXP R_pango_layout_index_to_line_x(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_layout_index_to_pos(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_is_ellipsized(SEXP s1);
+extern SEXP R_pango_layout_is_wrapped(SEXP s1);
+extern SEXP R_pango_layout_move_cursor_visually(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_layout_serialize(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_alignment(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_attributes(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_auto_dir(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_ellipsize(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_font_description(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_height(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_indent(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_justify(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_justify_last_line(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_line_spacing(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_markup(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_layout_set_markup_with_accel(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_layout_set_single_paragraph_mode(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_spacing(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_tabs(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_text(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_layout_set_width(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_set_wrap(SEXP s1, SEXP s2);
+extern SEXP R_pango_layout_write_to_file(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_layout_xy_to_index(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_layout_deserialize_error_quark(void);
+extern SEXP R_pango_layout_iter_at_last_line(SEXP s1);
+extern SEXP R_pango_layout_iter_copy(SEXP s1);
+extern SEXP R_pango_layout_iter_free(SEXP s1);
+extern SEXP R_pango_layout_iter_get_baseline(SEXP s1);
+extern SEXP R_pango_layout_iter_get_char_extents(SEXP s1);
+extern SEXP R_pango_layout_iter_get_cluster_extents(SEXP s1);
+extern SEXP R_pango_layout_iter_get_index(SEXP s1);
+extern SEXP R_pango_layout_iter_get_layout(SEXP s1);
+extern SEXP R_pango_layout_iter_get_layout_extents(SEXP s1);
+extern SEXP R_pango_layout_iter_get_line(SEXP s1);
+extern SEXP R_pango_layout_iter_get_line_extents(SEXP s1);
+extern SEXP R_pango_layout_iter_get_line_readonly(SEXP s1);
+extern SEXP R_pango_layout_iter_get_line_yrange(SEXP s1);
+extern SEXP R_pango_layout_iter_get_run(SEXP s1);
+extern SEXP R_pango_layout_iter_get_run_baseline(SEXP s1);
+extern SEXP R_pango_layout_iter_get_run_extents(SEXP s1);
+extern SEXP R_pango_layout_iter_get_run_readonly(SEXP s1);
+extern SEXP R_pango_layout_iter_next_char(SEXP s1);
+extern SEXP R_pango_layout_iter_next_cluster(SEXP s1);
+extern SEXP R_pango_layout_iter_next_line(SEXP s1);
+extern SEXP R_pango_layout_iter_next_run(SEXP s1);
+extern SEXP R_pango_layout_line_get_extents(SEXP s1);
+extern SEXP R_pango_layout_line_get_height(SEXP s1);
+extern SEXP R_pango_layout_line_get_length(SEXP s1);
+extern SEXP R_pango_layout_line_get_pixel_extents(SEXP s1);
+extern SEXP R_pango_layout_line_get_resolved_direction(SEXP s1);
+extern SEXP R_pango_layout_line_get_start_index(SEXP s1);
+extern SEXP R_pango_layout_line_get_x_ranges(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_layout_line_index_to_x(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_layout_line_is_paragraph_start(SEXP s1);
+extern SEXP R_pango_layout_line_ref(SEXP s1);
+extern SEXP R_pango_layout_line_unref(SEXP s1);
+extern SEXP R_pango_layout_line_x_to_index(SEXP s1, SEXP s2);
+extern SEXP R_pango_matrix_concat(SEXP s1, SEXP s2);
+extern SEXP R_pango_matrix_copy(SEXP s1);
+extern SEXP R_pango_matrix_free(SEXP s1);
+extern SEXP R_pango_matrix_get_font_scale_factor(SEXP s1);
+extern SEXP R_pango_matrix_get_font_scale_factors(SEXP s1);
+extern SEXP R_pango_matrix_get_slant_ratio(SEXP s1);
+extern SEXP R_pango_matrix_rotate(SEXP s1, SEXP s2);
+extern SEXP R_pango_matrix_scale(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_matrix_transform_distance(SEXP s1);
+extern SEXP R_pango_matrix_transform_pixel_rectangle(SEXP s1);
+extern SEXP R_pango_matrix_transform_point(SEXP s1);
+extern SEXP R_pango_matrix_transform_rectangle(SEXP s1);
+extern SEXP R_pango_matrix_translate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_renderer_activate(SEXP s1);
+extern SEXP R_pango_renderer_deactivate(SEXP s1);
+extern SEXP R_pango_renderer_draw_error_underline(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_renderer_draw_glyph(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_renderer_draw_glyph_item(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_renderer_draw_glyphs(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_renderer_draw_layout(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_renderer_draw_layout_line(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_renderer_draw_rectangle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_pango_renderer_draw_trapezoid(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_pango_renderer_get_alpha(SEXP s1, SEXP s2);
+extern SEXP R_pango_renderer_get_color(SEXP s1, SEXP s2);
+extern SEXP R_pango_renderer_get_layout(SEXP s1);
+extern SEXP R_pango_renderer_get_layout_line(SEXP s1);
+extern SEXP R_pango_renderer_get_matrix(SEXP s1);
+extern SEXP R_pango_renderer_part_changed(SEXP s1, SEXP s2);
+extern SEXP R_pango_renderer_set_alpha(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_renderer_set_color(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_renderer_set_matrix(SEXP s1, SEXP s2);
+extern SEXP R_pango_script_for_unichar(SEXP s1);
+extern SEXP R_pango_script_get_sample_language(SEXP s1);
+extern SEXP R_pango_script_iter_new(SEXP s1, SEXP s2);
+extern SEXP R_pango_script_iter_free(SEXP s1);
+extern SEXP R_pango_script_iter_get_range(SEXP s1);
+extern SEXP R_pango_script_iter_next(SEXP s1);
+extern SEXP R_pango_tab_array_new(SEXP s1, SEXP s2);
+extern SEXP R_pango_tab_array_copy(SEXP s1);
+extern SEXP R_pango_tab_array_free(SEXP s1);
+extern SEXP R_pango_tab_array_get_decimal_point(SEXP s1, SEXP s2);
+extern SEXP R_pango_tab_array_get_positions_in_pixels(SEXP s1);
+extern SEXP R_pango_tab_array_get_size(SEXP s1);
+extern SEXP R_pango_tab_array_get_tab(SEXP s1, SEXP s2);
+extern SEXP R_pango_tab_array_get_tabs(SEXP s1);
+extern SEXP R_pango_tab_array_resize(SEXP s1, SEXP s2);
+extern SEXP R_pango_tab_array_set_decimal_point(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_tab_array_set_positions_in_pixels(SEXP s1, SEXP s2);
+extern SEXP R_pango_tab_array_set_tab(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_tab_array_sort(SEXP s1);
+extern SEXP R_pango_tab_array_to_string(SEXP s1);
+extern SEXP R_pango_tab_array_from_string(SEXP s1);
+extern SEXP R_pango_attr_allow_breaks_new(SEXP s1);
+extern SEXP R_pango_attr_background_alpha_new(SEXP s1);
+extern SEXP R_pango_attr_background_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_attr_baseline_shift_new(SEXP s1);
+extern SEXP R_pango_attr_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_attr_fallback_new(SEXP s1);
+extern SEXP R_pango_attr_family_new(SEXP s1);
+extern SEXP R_pango_attr_font_scale_new(SEXP s1);
+extern SEXP R_pango_attr_foreground_alpha_new(SEXP s1);
+extern SEXP R_pango_attr_foreground_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_attr_gravity_hint_new(SEXP s1);
+extern SEXP R_pango_attr_gravity_new(SEXP s1);
+extern SEXP R_pango_attr_insert_hyphens_new(SEXP s1);
+extern SEXP R_pango_attr_letter_spacing_new(SEXP s1);
+extern SEXP R_pango_attr_line_height_new(SEXP s1);
+extern SEXP R_pango_attr_line_height_new_absolute(SEXP s1);
+extern SEXP R_pango_attr_overline_color_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_attr_overline_new(SEXP s1);
+extern SEXP R_pango_attr_rise_new(SEXP s1);
+extern SEXP R_pango_attr_scale_new(SEXP s1);
+extern SEXP R_pango_attr_sentence_new(void);
+extern SEXP R_pango_attr_show_new(SEXP s1);
+extern SEXP R_pango_attr_stretch_new(SEXP s1);
+extern SEXP R_pango_attr_strikethrough_color_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_attr_strikethrough_new(SEXP s1);
+extern SEXP R_pango_attr_style_new(SEXP s1);
+extern SEXP R_pango_attr_text_transform_new(SEXP s1);
+extern SEXP R_pango_attr_underline_color_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_attr_underline_new(SEXP s1);
+extern SEXP R_pango_attr_variant_new(SEXP s1);
+extern SEXP R_pango_attr_weight_new(SEXP s1);
+extern SEXP R_pango_attr_word_new(void);
+extern SEXP R_pango_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_default_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_pango_extents_to_pixels(void);
+extern SEXP R_pango_find_base_dir(SEXP s1, SEXP s2);
+extern SEXP R_pango_find_paragraph_boundary(SEXP s1, SEXP s2);
+extern SEXP R_pango_get_log_attrs(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_get_mirror_char(SEXP s1);
+extern SEXP R_pango_is_zero_width(SEXP s1);
+extern SEXP R_pango_itemize(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_pango_itemize_with_base_dir(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_pango_log2vis_get_embedding_levels(SEXP s1, SEXP s2);
+extern SEXP R_pango_markup_parser_finish(SEXP s1);
+extern SEXP R_pango_markup_parser_new(SEXP s1);
+extern SEXP R_pango_parse_enum(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_parse_markup(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_parse_stretch(SEXP s1, SEXP s2);
+extern SEXP R_pango_parse_style(SEXP s1, SEXP s2);
+extern SEXP R_pango_parse_variant(SEXP s1, SEXP s2);
+extern SEXP R_pango_parse_weight(SEXP s1, SEXP s2);
+extern SEXP R_pango_quantize_line_geometry(void);
+extern SEXP R_pango_read_line(SEXP s1, SEXP s2);
+extern SEXP R_pango_reorder_items(SEXP s1);
+extern SEXP R_pango_scan_int(void);
+extern SEXP R_pango_scan_string(SEXP s1);
+extern SEXP R_pango_scan_word(SEXP s1);
+extern SEXP R_pango_shape(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_shape_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_shape_item(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_shape_with_flags(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_pango_skip_space(void);
+extern SEXP R_pango_split_file_list(SEXP s1);
+extern SEXP R_pango_tailor_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_pango_trim_string(SEXP s1);
+extern SEXP R_pango_unichar_direction(SEXP s1);
+extern SEXP R_pango_units_from_double(SEXP s1);
+extern SEXP R_pango_units_to_double(SEXP s1);
+extern SEXP R_pango_version(void);
+extern SEXP R_pango_version_check(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_pango_version_string(void);
 extern SEXP R_g_timeout_add(SEXP s_interval, SEXP s_fun);
 extern SEXP R_g_idle_add(SEXP s_fun);
 extern SEXP R_gtk_dialog_run(SEXP s_dialog);
@@ -7053,6 +7588,105 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gdk_pixbuf_get_from_texture", (DL_FUNC) &R_gdk_pixbuf_get_from_texture, 1},
     {"R_gdk_set_allowed_backends", (DL_FUNC) &R_gdk_set_allowed_backends, 1},
     {"R_gdk_unicode_to_keyval", (DL_FUNC) &R_gdk_unicode_to_keyval, 1},
+    {"R_gdk_pixbuf_new", (DL_FUNC) &R_gdk_pixbuf_new, 5},
+    {"R_gdk_pixbuf_new_from_bytes", (DL_FUNC) &R_gdk_pixbuf_new_from_bytes, 7},
+    {"R_gdk_pixbuf_new_from_data", (DL_FUNC) &R_gdk_pixbuf_new_from_data, 9},
+    {"R_gdk_pixbuf_new_from_file", (DL_FUNC) &R_gdk_pixbuf_new_from_file, 1},
+    {"R_gdk_pixbuf_new_from_file_at_scale", (DL_FUNC) &R_gdk_pixbuf_new_from_file_at_scale, 4},
+    {"R_gdk_pixbuf_new_from_file_at_size", (DL_FUNC) &R_gdk_pixbuf_new_from_file_at_size, 3},
+    {"R_gdk_pixbuf_new_from_inline", (DL_FUNC) &R_gdk_pixbuf_new_from_inline, 3},
+    {"R_gdk_pixbuf_new_from_resource", (DL_FUNC) &R_gdk_pixbuf_new_from_resource, 1},
+    {"R_gdk_pixbuf_new_from_resource_at_scale", (DL_FUNC) &R_gdk_pixbuf_new_from_resource_at_scale, 4},
+    {"R_gdk_pixbuf_new_from_stream", (DL_FUNC) &R_gdk_pixbuf_new_from_stream, 2},
+    {"R_gdk_pixbuf_new_from_stream_at_scale", (DL_FUNC) &R_gdk_pixbuf_new_from_stream_at_scale, 5},
+    {"R_gdk_pixbuf_new_from_stream_finish", (DL_FUNC) &R_gdk_pixbuf_new_from_stream_finish, 1},
+    {"R_gdk_pixbuf_new_from_xpm_data", (DL_FUNC) &R_gdk_pixbuf_new_from_xpm_data, 1},
+    {"R_gdk_pixbuf_calculate_rowstride", (DL_FUNC) &R_gdk_pixbuf_calculate_rowstride, 5},
+    {"R_gdk_pixbuf_get_file_info", (DL_FUNC) &R_gdk_pixbuf_get_file_info, 1},
+    {"R_gdk_pixbuf_get_file_info_async", (DL_FUNC) &R_gdk_pixbuf_get_file_info_async, 4},
+    {"R_gdk_pixbuf_get_file_info_finish", (DL_FUNC) &R_gdk_pixbuf_get_file_info_finish, 1},
+    {"R_gdk_pixbuf_get_formats", (DL_FUNC) &R_gdk_pixbuf_get_formats, 0},
+    {"R_gdk_pixbuf_init_modules", (DL_FUNC) &R_gdk_pixbuf_init_modules, 1},
+    {"R_gdk_pixbuf_new_from_stream_async", (DL_FUNC) &R_gdk_pixbuf_new_from_stream_async, 4},
+    {"R_gdk_pixbuf_new_from_stream_at_scale_async", (DL_FUNC) &R_gdk_pixbuf_new_from_stream_at_scale_async, 7},
+    {"R_gdk_pixbuf_save_to_stream_finish", (DL_FUNC) &R_gdk_pixbuf_save_to_stream_finish, 1},
+    {"R_gdk_pixbuf_add_alpha", (DL_FUNC) &R_gdk_pixbuf_add_alpha, 5},
+    {"R_gdk_pixbuf_apply_embedded_orientation", (DL_FUNC) &R_gdk_pixbuf_apply_embedded_orientation, 1},
+    {"R_gdk_pixbuf_composite", (DL_FUNC) &R_gdk_pixbuf_composite, 12},
+    {"R_gdk_pixbuf_composite_color", (DL_FUNC) &R_gdk_pixbuf_composite_color, 17},
+    {"R_gdk_pixbuf_composite_color_simple", (DL_FUNC) &R_gdk_pixbuf_composite_color_simple, 8},
+    {"R_gdk_pixbuf_copy", (DL_FUNC) &R_gdk_pixbuf_copy, 1},
+    {"R_gdk_pixbuf_copy_area", (DL_FUNC) &R_gdk_pixbuf_copy_area, 8},
+    {"R_gdk_pixbuf_copy_options", (DL_FUNC) &R_gdk_pixbuf_copy_options, 2},
+    {"R_gdk_pixbuf_fill", (DL_FUNC) &R_gdk_pixbuf_fill, 2},
+    {"R_gdk_pixbuf_flip", (DL_FUNC) &R_gdk_pixbuf_flip, 2},
+    {"R_gdk_pixbuf_get_bits_per_sample", (DL_FUNC) &R_gdk_pixbuf_get_bits_per_sample, 1},
+    {"R_gdk_pixbuf_get_byte_length", (DL_FUNC) &R_gdk_pixbuf_get_byte_length, 1},
+    {"R_gdk_pixbuf_get_colorspace", (DL_FUNC) &R_gdk_pixbuf_get_colorspace, 1},
+    {"R_gdk_pixbuf_get_has_alpha", (DL_FUNC) &R_gdk_pixbuf_get_has_alpha, 1},
+    {"R_gdk_pixbuf_get_height", (DL_FUNC) &R_gdk_pixbuf_get_height, 1},
+    {"R_gdk_pixbuf_get_n_channels", (DL_FUNC) &R_gdk_pixbuf_get_n_channels, 1},
+    {"R_gdk_pixbuf_get_option", (DL_FUNC) &R_gdk_pixbuf_get_option, 2},
+    {"R_gdk_pixbuf_get_options", (DL_FUNC) &R_gdk_pixbuf_get_options, 1},
+    {"R_gdk_pixbuf_get_pixels", (DL_FUNC) &R_gdk_pixbuf_get_pixels, 1},
+    {"R_gdk_pixbuf_get_pixels_with_length", (DL_FUNC) &R_gdk_pixbuf_get_pixels_with_length, 1},
+    {"R_gdk_pixbuf_get_rowstride", (DL_FUNC) &R_gdk_pixbuf_get_rowstride, 1},
+    {"R_gdk_pixbuf_get_width", (DL_FUNC) &R_gdk_pixbuf_get_width, 1},
+    {"R_gdk_pixbuf_new_subpixbuf", (DL_FUNC) &R_gdk_pixbuf_new_subpixbuf, 5},
+    {"R_gdk_pixbuf_read_pixel_bytes", (DL_FUNC) &R_gdk_pixbuf_read_pixel_bytes, 1},
+    {"R_gdk_pixbuf_read_pixels", (DL_FUNC) &R_gdk_pixbuf_read_pixels, 1},
+    {"R_gdk_pixbuf_remove_option", (DL_FUNC) &R_gdk_pixbuf_remove_option, 2},
+    {"R_gdk_pixbuf_rotate_simple", (DL_FUNC) &R_gdk_pixbuf_rotate_simple, 2},
+    {"R_gdk_pixbuf_saturate_and_pixelate", (DL_FUNC) &R_gdk_pixbuf_saturate_and_pixelate, 4},
+    {"R_gdk_pixbuf_save_to_bufferv", (DL_FUNC) &R_gdk_pixbuf_save_to_bufferv, 4},
+    {"R_gdk_pixbuf_save_to_callbackv", (DL_FUNC) &R_gdk_pixbuf_save_to_callbackv, 6},
+    {"R_gdk_pixbuf_save_to_streamv", (DL_FUNC) &R_gdk_pixbuf_save_to_streamv, 6},
+    {"R_gdk_pixbuf_save_to_streamv_async", (DL_FUNC) &R_gdk_pixbuf_save_to_streamv_async, 8},
+    {"R_gdk_pixbuf_savev", (DL_FUNC) &R_gdk_pixbuf_savev, 5},
+    {"R_gdk_pixbuf_scale", (DL_FUNC) &R_gdk_pixbuf_scale, 11},
+    {"R_gdk_pixbuf_scale_simple", (DL_FUNC) &R_gdk_pixbuf_scale_simple, 4},
+    {"R_gdk_pixbuf_set_option", (DL_FUNC) &R_gdk_pixbuf_set_option, 3},
+    {"R_gdk_pixbuf_animation_new_from_file", (DL_FUNC) &R_gdk_pixbuf_animation_new_from_file, 1},
+    {"R_gdk_pixbuf_animation_new_from_resource", (DL_FUNC) &R_gdk_pixbuf_animation_new_from_resource, 1},
+    {"R_gdk_pixbuf_animation_new_from_stream", (DL_FUNC) &R_gdk_pixbuf_animation_new_from_stream, 2},
+    {"R_gdk_pixbuf_animation_new_from_stream_finish", (DL_FUNC) &R_gdk_pixbuf_animation_new_from_stream_finish, 1},
+    {"R_gdk_pixbuf_animation_new_from_stream_async", (DL_FUNC) &R_gdk_pixbuf_animation_new_from_stream_async, 4},
+    {"R_gdk_pixbuf_animation_get_height", (DL_FUNC) &R_gdk_pixbuf_animation_get_height, 1},
+    {"R_gdk_pixbuf_animation_get_iter", (DL_FUNC) &R_gdk_pixbuf_animation_get_iter, 2},
+    {"R_gdk_pixbuf_animation_get_static_image", (DL_FUNC) &R_gdk_pixbuf_animation_get_static_image, 1},
+    {"R_gdk_pixbuf_animation_get_width", (DL_FUNC) &R_gdk_pixbuf_animation_get_width, 1},
+    {"R_gdk_pixbuf_animation_is_static_image", (DL_FUNC) &R_gdk_pixbuf_animation_is_static_image, 1},
+    {"R_gdk_pixbuf_animation_iter_advance", (DL_FUNC) &R_gdk_pixbuf_animation_iter_advance, 2},
+    {"R_gdk_pixbuf_animation_iter_get_delay_time", (DL_FUNC) &R_gdk_pixbuf_animation_iter_get_delay_time, 1},
+    {"R_gdk_pixbuf_animation_iter_get_pixbuf", (DL_FUNC) &R_gdk_pixbuf_animation_iter_get_pixbuf, 1},
+    {"R_gdk_pixbuf_animation_iter_on_currently_loading_frame", (DL_FUNC) &R_gdk_pixbuf_animation_iter_on_currently_loading_frame, 1},
+    {"R_gdk_pixbuf_error_quark", (DL_FUNC) &R_gdk_pixbuf_error_quark, 0},
+    {"R_gdk_pixbuf_format_copy", (DL_FUNC) &R_gdk_pixbuf_format_copy, 1},
+    {"R_gdk_pixbuf_format_free", (DL_FUNC) &R_gdk_pixbuf_format_free, 1},
+    {"R_gdk_pixbuf_format_get_description", (DL_FUNC) &R_gdk_pixbuf_format_get_description, 1},
+    {"R_gdk_pixbuf_format_get_extensions", (DL_FUNC) &R_gdk_pixbuf_format_get_extensions, 1},
+    {"R_gdk_pixbuf_format_get_license", (DL_FUNC) &R_gdk_pixbuf_format_get_license, 1},
+    {"R_gdk_pixbuf_format_get_mime_types", (DL_FUNC) &R_gdk_pixbuf_format_get_mime_types, 1},
+    {"R_gdk_pixbuf_format_get_name", (DL_FUNC) &R_gdk_pixbuf_format_get_name, 1},
+    {"R_gdk_pixbuf_format_is_disabled", (DL_FUNC) &R_gdk_pixbuf_format_is_disabled, 1},
+    {"R_gdk_pixbuf_format_is_save_option_supported", (DL_FUNC) &R_gdk_pixbuf_format_is_save_option_supported, 2},
+    {"R_gdk_pixbuf_format_is_scalable", (DL_FUNC) &R_gdk_pixbuf_format_is_scalable, 1},
+    {"R_gdk_pixbuf_format_is_writable", (DL_FUNC) &R_gdk_pixbuf_format_is_writable, 1},
+    {"R_gdk_pixbuf_format_set_disabled", (DL_FUNC) &R_gdk_pixbuf_format_set_disabled, 2},
+    {"R_gdk_pixbuf_loader_new", (DL_FUNC) &R_gdk_pixbuf_loader_new, 0},
+    {"R_gdk_pixbuf_loader_new_with_mime_type", (DL_FUNC) &R_gdk_pixbuf_loader_new_with_mime_type, 1},
+    {"R_gdk_pixbuf_loader_new_with_type", (DL_FUNC) &R_gdk_pixbuf_loader_new_with_type, 1},
+    {"R_gdk_pixbuf_loader_close", (DL_FUNC) &R_gdk_pixbuf_loader_close, 1},
+    {"R_gdk_pixbuf_loader_get_animation", (DL_FUNC) &R_gdk_pixbuf_loader_get_animation, 1},
+    {"R_gdk_pixbuf_loader_get_format", (DL_FUNC) &R_gdk_pixbuf_loader_get_format, 1},
+    {"R_gdk_pixbuf_loader_get_pixbuf", (DL_FUNC) &R_gdk_pixbuf_loader_get_pixbuf, 1},
+    {"R_gdk_pixbuf_loader_set_size", (DL_FUNC) &R_gdk_pixbuf_loader_set_size, 3},
+    {"R_gdk_pixbuf_loader_write", (DL_FUNC) &R_gdk_pixbuf_loader_write, 3},
+    {"R_gdk_pixbuf_loader_write_bytes", (DL_FUNC) &R_gdk_pixbuf_loader_write_bytes, 2},
+    {"R_gdk_pixbuf_simple_anim_new", (DL_FUNC) &R_gdk_pixbuf_simple_anim_new, 3},
+    {"R_gdk_pixbuf_simple_anim_add_frame", (DL_FUNC) &R_gdk_pixbuf_simple_anim_add_frame, 2},
+    {"R_gdk_pixbuf_simple_anim_get_loop", (DL_FUNC) &R_gdk_pixbuf_simple_anim_get_loop, 1},
+    {"R_gdk_pixbuf_simple_anim_set_loop", (DL_FUNC) &R_gdk_pixbuf_simple_anim_set_loop, 2},
     {"R_g_action_name_is_valid", (DL_FUNC) &R_g_action_name_is_valid, 1},
     {"R_g_action_parse_detailed_name", (DL_FUNC) &R_g_action_parse_detailed_name, 1},
     {"R_g_action_print_detailed_name", (DL_FUNC) &R_g_action_print_detailed_name, 2},
@@ -13149,6 +13783,442 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_value_get_expression", (DL_FUNC) &R_gtk_value_get_expression, 1},
     {"R_gtk_value_set_expression", (DL_FUNC) &R_gtk_value_set_expression, 2},
     {"R_gtk_value_take_expression", (DL_FUNC) &R_gtk_value_take_expression, 2},
+    {"R_pango_attr_font_desc_new", (DL_FUNC) &R_pango_attr_font_desc_new, 1},
+    {"R_pango_attr_font_features_new", (DL_FUNC) &R_pango_attr_font_features_new, 1},
+    {"R_pango_attr_iterator_copy", (DL_FUNC) &R_pango_attr_iterator_copy, 1},
+    {"R_pango_attr_iterator_destroy", (DL_FUNC) &R_pango_attr_iterator_destroy, 1},
+    {"R_pango_attr_iterator_get", (DL_FUNC) &R_pango_attr_iterator_get, 2},
+    {"R_pango_attr_iterator_get_attrs", (DL_FUNC) &R_pango_attr_iterator_get_attrs, 1},
+    {"R_pango_attr_iterator_get_font", (DL_FUNC) &R_pango_attr_iterator_get_font, 2},
+    {"R_pango_attr_iterator_next", (DL_FUNC) &R_pango_attr_iterator_next, 1},
+    {"R_pango_attr_iterator_range", (DL_FUNC) &R_pango_attr_iterator_range, 1},
+    {"R_pango_attr_language_new", (DL_FUNC) &R_pango_attr_language_new, 1},
+    {"R_pango_attr_list_new", (DL_FUNC) &R_pango_attr_list_new, 0},
+    {"R_pango_attr_list_change", (DL_FUNC) &R_pango_attr_list_change, 2},
+    {"R_pango_attr_list_copy", (DL_FUNC) &R_pango_attr_list_copy, 1},
+    {"R_pango_attr_list_equal", (DL_FUNC) &R_pango_attr_list_equal, 2},
+    {"R_pango_attr_list_filter", (DL_FUNC) &R_pango_attr_list_filter, 3},
+    {"R_pango_attr_list_get_attributes", (DL_FUNC) &R_pango_attr_list_get_attributes, 1},
+    {"R_pango_attr_list_get_iterator", (DL_FUNC) &R_pango_attr_list_get_iterator, 1},
+    {"R_pango_attr_list_insert", (DL_FUNC) &R_pango_attr_list_insert, 2},
+    {"R_pango_attr_list_insert_before", (DL_FUNC) &R_pango_attr_list_insert_before, 2},
+    {"R_pango_attr_list_ref", (DL_FUNC) &R_pango_attr_list_ref, 1},
+    {"R_pango_attr_list_splice", (DL_FUNC) &R_pango_attr_list_splice, 4},
+    {"R_pango_attr_list_to_string", (DL_FUNC) &R_pango_attr_list_to_string, 1},
+    {"R_pango_attr_list_unref", (DL_FUNC) &R_pango_attr_list_unref, 1},
+    {"R_pango_attr_list_update", (DL_FUNC) &R_pango_attr_list_update, 4},
+    {"R_pango_attr_list_from_string", (DL_FUNC) &R_pango_attr_list_from_string, 1},
+    {"R_pango_attr_shape_new", (DL_FUNC) &R_pango_attr_shape_new, 2},
+    {"R_pango_attr_shape_new_with_data", (DL_FUNC) &R_pango_attr_shape_new_with_data, 5},
+    {"R_pango_attr_size_new", (DL_FUNC) &R_pango_attr_size_new, 1},
+    {"R_pango_attr_size_new_absolute", (DL_FUNC) &R_pango_attr_size_new_absolute, 1},
+    {"R_pango_attr_type_get_name", (DL_FUNC) &R_pango_attr_type_get_name, 1},
+    {"R_pango_attr_type_register", (DL_FUNC) &R_pango_attr_type_register, 1},
+    {"R_pango_attribute_as_color", (DL_FUNC) &R_pango_attribute_as_color, 1},
+    {"R_pango_attribute_as_float", (DL_FUNC) &R_pango_attribute_as_float, 1},
+    {"R_pango_attribute_as_font_desc", (DL_FUNC) &R_pango_attribute_as_font_desc, 1},
+    {"R_pango_attribute_as_font_features", (DL_FUNC) &R_pango_attribute_as_font_features, 1},
+    {"R_pango_attribute_as_int", (DL_FUNC) &R_pango_attribute_as_int, 1},
+    {"R_pango_attribute_as_language", (DL_FUNC) &R_pango_attribute_as_language, 1},
+    {"R_pango_attribute_as_shape", (DL_FUNC) &R_pango_attribute_as_shape, 1},
+    {"R_pango_attribute_as_size", (DL_FUNC) &R_pango_attribute_as_size, 1},
+    {"R_pango_attribute_as_string", (DL_FUNC) &R_pango_attribute_as_string, 1},
+    {"R_pango_attribute_copy", (DL_FUNC) &R_pango_attribute_copy, 1},
+    {"R_pango_attribute_destroy", (DL_FUNC) &R_pango_attribute_destroy, 1},
+    {"R_pango_attribute_equal", (DL_FUNC) &R_pango_attribute_equal, 2},
+    {"R_pango_attribute_init", (DL_FUNC) &R_pango_attribute_init, 2},
+    {"R_pango_bidi_type_for_unichar", (DL_FUNC) &R_pango_bidi_type_for_unichar, 1},
+    {"R_pango_color_copy", (DL_FUNC) &R_pango_color_copy, 1},
+    {"R_pango_color_free", (DL_FUNC) &R_pango_color_free, 1},
+    {"R_pango_color_parse", (DL_FUNC) &R_pango_color_parse, 2},
+    {"R_pango_color_parse_with_alpha", (DL_FUNC) &R_pango_color_parse_with_alpha, 2},
+    {"R_pango_color_to_string", (DL_FUNC) &R_pango_color_to_string, 1},
+    {"R_pango_context_new", (DL_FUNC) &R_pango_context_new, 0},
+    {"R_pango_context_changed", (DL_FUNC) &R_pango_context_changed, 1},
+    {"R_pango_context_get_base_dir", (DL_FUNC) &R_pango_context_get_base_dir, 1},
+    {"R_pango_context_get_base_gravity", (DL_FUNC) &R_pango_context_get_base_gravity, 1},
+    {"R_pango_context_get_font_description", (DL_FUNC) &R_pango_context_get_font_description, 1},
+    {"R_pango_context_get_font_map", (DL_FUNC) &R_pango_context_get_font_map, 1},
+    {"R_pango_context_get_gravity", (DL_FUNC) &R_pango_context_get_gravity, 1},
+    {"R_pango_context_get_gravity_hint", (DL_FUNC) &R_pango_context_get_gravity_hint, 1},
+    {"R_pango_context_get_language", (DL_FUNC) &R_pango_context_get_language, 1},
+    {"R_pango_context_get_matrix", (DL_FUNC) &R_pango_context_get_matrix, 1},
+    {"R_pango_context_get_metrics", (DL_FUNC) &R_pango_context_get_metrics, 3},
+    {"R_pango_context_get_round_glyph_positions", (DL_FUNC) &R_pango_context_get_round_glyph_positions, 1},
+    {"R_pango_context_get_serial", (DL_FUNC) &R_pango_context_get_serial, 1},
+    {"R_pango_context_list_families", (DL_FUNC) &R_pango_context_list_families, 1},
+    {"R_pango_context_load_font", (DL_FUNC) &R_pango_context_load_font, 2},
+    {"R_pango_context_load_fontset", (DL_FUNC) &R_pango_context_load_fontset, 3},
+    {"R_pango_context_set_base_dir", (DL_FUNC) &R_pango_context_set_base_dir, 2},
+    {"R_pango_context_set_base_gravity", (DL_FUNC) &R_pango_context_set_base_gravity, 2},
+    {"R_pango_context_set_font_description", (DL_FUNC) &R_pango_context_set_font_description, 2},
+    {"R_pango_context_set_font_map", (DL_FUNC) &R_pango_context_set_font_map, 2},
+    {"R_pango_context_set_gravity_hint", (DL_FUNC) &R_pango_context_set_gravity_hint, 2},
+    {"R_pango_context_set_language", (DL_FUNC) &R_pango_context_set_language, 2},
+    {"R_pango_context_set_matrix", (DL_FUNC) &R_pango_context_set_matrix, 2},
+    {"R_pango_context_set_round_glyph_positions", (DL_FUNC) &R_pango_context_set_round_glyph_positions, 2},
+    {"R_pango_coverage_new", (DL_FUNC) &R_pango_coverage_new, 0},
+    {"R_pango_coverage_from_bytes", (DL_FUNC) &R_pango_coverage_from_bytes, 2},
+    {"R_pango_coverage_copy", (DL_FUNC) &R_pango_coverage_copy, 1},
+    {"R_pango_coverage_get", (DL_FUNC) &R_pango_coverage_get, 2},
+    {"R_pango_coverage_max", (DL_FUNC) &R_pango_coverage_max, 2},
+    {"R_pango_coverage_ref", (DL_FUNC) &R_pango_coverage_ref, 1},
+    {"R_pango_coverage_set", (DL_FUNC) &R_pango_coverage_set, 3},
+    {"R_pango_coverage_to_bytes", (DL_FUNC) &R_pango_coverage_to_bytes, 1},
+    {"R_pango_coverage_unref", (DL_FUNC) &R_pango_coverage_unref, 1},
+    {"R_pango_font_descriptions_free", (DL_FUNC) &R_pango_font_descriptions_free, 2},
+    {"R_pango_font_deserialize", (DL_FUNC) &R_pango_font_deserialize, 2},
+    {"R_pango_font_describe", (DL_FUNC) &R_pango_font_describe, 1},
+    {"R_pango_font_describe_with_absolute_size", (DL_FUNC) &R_pango_font_describe_with_absolute_size, 1},
+    {"R_pango_font_get_coverage", (DL_FUNC) &R_pango_font_get_coverage, 2},
+    {"R_pango_font_get_face", (DL_FUNC) &R_pango_font_get_face, 1},
+    {"R_pango_font_get_features", (DL_FUNC) &R_pango_font_get_features, 2},
+    {"R_pango_font_get_font_map", (DL_FUNC) &R_pango_font_get_font_map, 1},
+    {"R_pango_font_get_glyph_extents", (DL_FUNC) &R_pango_font_get_glyph_extents, 2},
+    {"R_pango_font_get_languages", (DL_FUNC) &R_pango_font_get_languages, 1},
+    {"R_pango_font_get_metrics", (DL_FUNC) &R_pango_font_get_metrics, 2},
+    {"R_pango_font_has_char", (DL_FUNC) &R_pango_font_has_char, 2},
+    {"R_pango_font_serialize", (DL_FUNC) &R_pango_font_serialize, 1},
+    {"R_pango_font_description_new", (DL_FUNC) &R_pango_font_description_new, 0},
+    {"R_pango_font_description_better_match", (DL_FUNC) &R_pango_font_description_better_match, 3},
+    {"R_pango_font_description_copy", (DL_FUNC) &R_pango_font_description_copy, 1},
+    {"R_pango_font_description_copy_static", (DL_FUNC) &R_pango_font_description_copy_static, 1},
+    {"R_pango_font_description_equal", (DL_FUNC) &R_pango_font_description_equal, 2},
+    {"R_pango_font_description_free", (DL_FUNC) &R_pango_font_description_free, 1},
+    {"R_pango_font_description_get_color", (DL_FUNC) &R_pango_font_description_get_color, 1},
+    {"R_pango_font_description_get_family", (DL_FUNC) &R_pango_font_description_get_family, 1},
+    {"R_pango_font_description_get_features", (DL_FUNC) &R_pango_font_description_get_features, 1},
+    {"R_pango_font_description_get_gravity", (DL_FUNC) &R_pango_font_description_get_gravity, 1},
+    {"R_pango_font_description_get_set_fields", (DL_FUNC) &R_pango_font_description_get_set_fields, 1},
+    {"R_pango_font_description_get_size", (DL_FUNC) &R_pango_font_description_get_size, 1},
+    {"R_pango_font_description_get_size_is_absolute", (DL_FUNC) &R_pango_font_description_get_size_is_absolute, 1},
+    {"R_pango_font_description_get_stretch", (DL_FUNC) &R_pango_font_description_get_stretch, 1},
+    {"R_pango_font_description_get_style", (DL_FUNC) &R_pango_font_description_get_style, 1},
+    {"R_pango_font_description_get_variant", (DL_FUNC) &R_pango_font_description_get_variant, 1},
+    {"R_pango_font_description_get_variations", (DL_FUNC) &R_pango_font_description_get_variations, 1},
+    {"R_pango_font_description_get_weight", (DL_FUNC) &R_pango_font_description_get_weight, 1},
+    {"R_pango_font_description_hash", (DL_FUNC) &R_pango_font_description_hash, 1},
+    {"R_pango_font_description_merge", (DL_FUNC) &R_pango_font_description_merge, 3},
+    {"R_pango_font_description_merge_static", (DL_FUNC) &R_pango_font_description_merge_static, 3},
+    {"R_pango_font_description_set_absolute_size", (DL_FUNC) &R_pango_font_description_set_absolute_size, 2},
+    {"R_pango_font_description_set_color", (DL_FUNC) &R_pango_font_description_set_color, 2},
+    {"R_pango_font_description_set_family", (DL_FUNC) &R_pango_font_description_set_family, 2},
+    {"R_pango_font_description_set_family_static", (DL_FUNC) &R_pango_font_description_set_family_static, 2},
+    {"R_pango_font_description_set_features", (DL_FUNC) &R_pango_font_description_set_features, 2},
+    {"R_pango_font_description_set_features_static", (DL_FUNC) &R_pango_font_description_set_features_static, 2},
+    {"R_pango_font_description_set_gravity", (DL_FUNC) &R_pango_font_description_set_gravity, 2},
+    {"R_pango_font_description_set_size", (DL_FUNC) &R_pango_font_description_set_size, 2},
+    {"R_pango_font_description_set_stretch", (DL_FUNC) &R_pango_font_description_set_stretch, 2},
+    {"R_pango_font_description_set_style", (DL_FUNC) &R_pango_font_description_set_style, 2},
+    {"R_pango_font_description_set_variant", (DL_FUNC) &R_pango_font_description_set_variant, 2},
+    {"R_pango_font_description_set_variations", (DL_FUNC) &R_pango_font_description_set_variations, 2},
+    {"R_pango_font_description_set_variations_static", (DL_FUNC) &R_pango_font_description_set_variations_static, 2},
+    {"R_pango_font_description_set_weight", (DL_FUNC) &R_pango_font_description_set_weight, 2},
+    {"R_pango_font_description_to_filename", (DL_FUNC) &R_pango_font_description_to_filename, 1},
+    {"R_pango_font_description_to_string", (DL_FUNC) &R_pango_font_description_to_string, 1},
+    {"R_pango_font_description_unset_fields", (DL_FUNC) &R_pango_font_description_unset_fields, 2},
+    {"R_pango_font_description_from_string", (DL_FUNC) &R_pango_font_description_from_string, 1},
+    {"R_pango_font_face_describe", (DL_FUNC) &R_pango_font_face_describe, 1},
+    {"R_pango_font_face_get_face_name", (DL_FUNC) &R_pango_font_face_get_face_name, 1},
+    {"R_pango_font_face_get_family", (DL_FUNC) &R_pango_font_face_get_family, 1},
+    {"R_pango_font_face_is_synthesized", (DL_FUNC) &R_pango_font_face_is_synthesized, 1},
+    {"R_pango_font_face_list_sizes", (DL_FUNC) &R_pango_font_face_list_sizes, 1},
+    {"R_pango_font_family_get_face", (DL_FUNC) &R_pango_font_family_get_face, 2},
+    {"R_pango_font_family_get_name", (DL_FUNC) &R_pango_font_family_get_name, 1},
+    {"R_pango_font_family_is_monospace", (DL_FUNC) &R_pango_font_family_is_monospace, 1},
+    {"R_pango_font_family_is_variable", (DL_FUNC) &R_pango_font_family_is_variable, 1},
+    {"R_pango_font_family_list_faces", (DL_FUNC) &R_pango_font_family_list_faces, 1},
+    {"R_pango_font_map_add_font_file", (DL_FUNC) &R_pango_font_map_add_font_file, 2},
+    {"R_pango_font_map_changed", (DL_FUNC) &R_pango_font_map_changed, 1},
+    {"R_pango_font_map_create_context", (DL_FUNC) &R_pango_font_map_create_context, 1},
+    {"R_pango_font_map_get_family", (DL_FUNC) &R_pango_font_map_get_family, 2},
+    {"R_pango_font_map_get_serial", (DL_FUNC) &R_pango_font_map_get_serial, 1},
+    {"R_pango_font_map_list_families", (DL_FUNC) &R_pango_font_map_list_families, 1},
+    {"R_pango_font_map_load_font", (DL_FUNC) &R_pango_font_map_load_font, 3},
+    {"R_pango_font_map_load_fontset", (DL_FUNC) &R_pango_font_map_load_fontset, 4},
+    {"R_pango_font_map_reload_font", (DL_FUNC) &R_pango_font_map_reload_font, 5},
+    {"R_pango_font_metrics_get_approximate_char_width", (DL_FUNC) &R_pango_font_metrics_get_approximate_char_width, 1},
+    {"R_pango_font_metrics_get_approximate_digit_width", (DL_FUNC) &R_pango_font_metrics_get_approximate_digit_width, 1},
+    {"R_pango_font_metrics_get_ascent", (DL_FUNC) &R_pango_font_metrics_get_ascent, 1},
+    {"R_pango_font_metrics_get_descent", (DL_FUNC) &R_pango_font_metrics_get_descent, 1},
+    {"R_pango_font_metrics_get_height", (DL_FUNC) &R_pango_font_metrics_get_height, 1},
+    {"R_pango_font_metrics_get_strikethrough_position", (DL_FUNC) &R_pango_font_metrics_get_strikethrough_position, 1},
+    {"R_pango_font_metrics_get_strikethrough_thickness", (DL_FUNC) &R_pango_font_metrics_get_strikethrough_thickness, 1},
+    {"R_pango_font_metrics_get_underline_position", (DL_FUNC) &R_pango_font_metrics_get_underline_position, 1},
+    {"R_pango_font_metrics_get_underline_thickness", (DL_FUNC) &R_pango_font_metrics_get_underline_thickness, 1},
+    {"R_pango_font_metrics_ref", (DL_FUNC) &R_pango_font_metrics_ref, 1},
+    {"R_pango_font_metrics_unref", (DL_FUNC) &R_pango_font_metrics_unref, 1},
+    {"R_pango_fontset_foreach", (DL_FUNC) &R_pango_fontset_foreach, 3},
+    {"R_pango_fontset_get_font", (DL_FUNC) &R_pango_fontset_get_font, 2},
+    {"R_pango_fontset_get_metrics", (DL_FUNC) &R_pango_fontset_get_metrics, 1},
+    {"R_pango_fontset_simple_new", (DL_FUNC) &R_pango_fontset_simple_new, 1},
+    {"R_pango_fontset_simple_append", (DL_FUNC) &R_pango_fontset_simple_append, 2},
+    {"R_pango_fontset_simple_size", (DL_FUNC) &R_pango_fontset_simple_size, 1},
+    {"R_pango_glyph_item_apply_attrs", (DL_FUNC) &R_pango_glyph_item_apply_attrs, 3},
+    {"R_pango_glyph_item_copy", (DL_FUNC) &R_pango_glyph_item_copy, 1},
+    {"R_pango_glyph_item_free", (DL_FUNC) &R_pango_glyph_item_free, 1},
+    {"R_pango_glyph_item_get_logical_widths", (DL_FUNC) &R_pango_glyph_item_get_logical_widths, 2},
+    {"R_pango_glyph_item_letter_space", (DL_FUNC) &R_pango_glyph_item_letter_space, 4},
+    {"R_pango_glyph_item_split", (DL_FUNC) &R_pango_glyph_item_split, 3},
+    {"R_pango_glyph_item_iter_copy", (DL_FUNC) &R_pango_glyph_item_iter_copy, 1},
+    {"R_pango_glyph_item_iter_free", (DL_FUNC) &R_pango_glyph_item_iter_free, 1},
+    {"R_pango_glyph_item_iter_init_end", (DL_FUNC) &R_pango_glyph_item_iter_init_end, 3},
+    {"R_pango_glyph_item_iter_init_start", (DL_FUNC) &R_pango_glyph_item_iter_init_start, 3},
+    {"R_pango_glyph_item_iter_next_cluster", (DL_FUNC) &R_pango_glyph_item_iter_next_cluster, 1},
+    {"R_pango_glyph_item_iter_prev_cluster", (DL_FUNC) &R_pango_glyph_item_iter_prev_cluster, 1},
+    {"R_pango_glyph_string_new", (DL_FUNC) &R_pango_glyph_string_new, 0},
+    {"R_pango_glyph_string_copy", (DL_FUNC) &R_pango_glyph_string_copy, 1},
+    {"R_pango_glyph_string_extents", (DL_FUNC) &R_pango_glyph_string_extents, 2},
+    {"R_pango_glyph_string_extents_range", (DL_FUNC) &R_pango_glyph_string_extents_range, 4},
+    {"R_pango_glyph_string_free", (DL_FUNC) &R_pango_glyph_string_free, 1},
+    {"R_pango_glyph_string_get_logical_widths", (DL_FUNC) &R_pango_glyph_string_get_logical_widths, 4},
+    {"R_pango_glyph_string_get_width", (DL_FUNC) &R_pango_glyph_string_get_width, 1},
+    {"R_pango_glyph_string_index_to_x", (DL_FUNC) &R_pango_glyph_string_index_to_x, 6},
+    {"R_pango_glyph_string_index_to_x_full", (DL_FUNC) &R_pango_glyph_string_index_to_x_full, 7},
+    {"R_pango_glyph_string_set_size", (DL_FUNC) &R_pango_glyph_string_set_size, 2},
+    {"R_pango_glyph_string_x_to_index", (DL_FUNC) &R_pango_glyph_string_x_to_index, 5},
+    {"R_pango_gravity_get_for_matrix", (DL_FUNC) &R_pango_gravity_get_for_matrix, 1},
+    {"R_pango_gravity_get_for_script", (DL_FUNC) &R_pango_gravity_get_for_script, 3},
+    {"R_pango_gravity_get_for_script_and_width", (DL_FUNC) &R_pango_gravity_get_for_script_and_width, 4},
+    {"R_pango_gravity_to_rotation", (DL_FUNC) &R_pango_gravity_to_rotation, 1},
+    {"R_pango_item_new", (DL_FUNC) &R_pango_item_new, 0},
+    {"R_pango_item_apply_attrs", (DL_FUNC) &R_pango_item_apply_attrs, 2},
+    {"R_pango_item_copy", (DL_FUNC) &R_pango_item_copy, 1},
+    {"R_pango_item_free", (DL_FUNC) &R_pango_item_free, 1},
+    {"R_pango_item_get_char_offset", (DL_FUNC) &R_pango_item_get_char_offset, 1},
+    {"R_pango_item_split", (DL_FUNC) &R_pango_item_split, 3},
+    {"R_pango_language_get_sample_string", (DL_FUNC) &R_pango_language_get_sample_string, 1},
+    {"R_pango_language_get_scripts", (DL_FUNC) &R_pango_language_get_scripts, 1},
+    {"R_pango_language_includes_script", (DL_FUNC) &R_pango_language_includes_script, 2},
+    {"R_pango_language_matches", (DL_FUNC) &R_pango_language_matches, 2},
+    {"R_pango_language_to_string", (DL_FUNC) &R_pango_language_to_string, 1},
+    {"R_pango_language_from_string", (DL_FUNC) &R_pango_language_from_string, 1},
+    {"R_pango_language_get_default", (DL_FUNC) &R_pango_language_get_default, 0},
+    {"R_pango_language_get_preferred", (DL_FUNC) &R_pango_language_get_preferred, 0},
+    {"R_pango_layout_new", (DL_FUNC) &R_pango_layout_new, 1},
+    {"R_pango_layout_deserialize", (DL_FUNC) &R_pango_layout_deserialize, 3},
+    {"R_pango_layout_context_changed", (DL_FUNC) &R_pango_layout_context_changed, 1},
+    {"R_pango_layout_copy", (DL_FUNC) &R_pango_layout_copy, 1},
+    {"R_pango_layout_get_alignment", (DL_FUNC) &R_pango_layout_get_alignment, 1},
+    {"R_pango_layout_get_attributes", (DL_FUNC) &R_pango_layout_get_attributes, 1},
+    {"R_pango_layout_get_auto_dir", (DL_FUNC) &R_pango_layout_get_auto_dir, 1},
+    {"R_pango_layout_get_baseline", (DL_FUNC) &R_pango_layout_get_baseline, 1},
+    {"R_pango_layout_get_caret_pos", (DL_FUNC) &R_pango_layout_get_caret_pos, 2},
+    {"R_pango_layout_get_character_count", (DL_FUNC) &R_pango_layout_get_character_count, 1},
+    {"R_pango_layout_get_context", (DL_FUNC) &R_pango_layout_get_context, 1},
+    {"R_pango_layout_get_cursor_pos", (DL_FUNC) &R_pango_layout_get_cursor_pos, 2},
+    {"R_pango_layout_get_direction", (DL_FUNC) &R_pango_layout_get_direction, 2},
+    {"R_pango_layout_get_ellipsize", (DL_FUNC) &R_pango_layout_get_ellipsize, 1},
+    {"R_pango_layout_get_extents", (DL_FUNC) &R_pango_layout_get_extents, 1},
+    {"R_pango_layout_get_font_description", (DL_FUNC) &R_pango_layout_get_font_description, 1},
+    {"R_pango_layout_get_height", (DL_FUNC) &R_pango_layout_get_height, 1},
+    {"R_pango_layout_get_indent", (DL_FUNC) &R_pango_layout_get_indent, 1},
+    {"R_pango_layout_get_iter", (DL_FUNC) &R_pango_layout_get_iter, 1},
+    {"R_pango_layout_get_justify", (DL_FUNC) &R_pango_layout_get_justify, 1},
+    {"R_pango_layout_get_justify_last_line", (DL_FUNC) &R_pango_layout_get_justify_last_line, 1},
+    {"R_pango_layout_get_line", (DL_FUNC) &R_pango_layout_get_line, 2},
+    {"R_pango_layout_get_line_count", (DL_FUNC) &R_pango_layout_get_line_count, 1},
+    {"R_pango_layout_get_line_readonly", (DL_FUNC) &R_pango_layout_get_line_readonly, 2},
+    {"R_pango_layout_get_line_spacing", (DL_FUNC) &R_pango_layout_get_line_spacing, 1},
+    {"R_pango_layout_get_lines", (DL_FUNC) &R_pango_layout_get_lines, 1},
+    {"R_pango_layout_get_lines_readonly", (DL_FUNC) &R_pango_layout_get_lines_readonly, 1},
+    {"R_pango_layout_get_log_attrs", (DL_FUNC) &R_pango_layout_get_log_attrs, 1},
+    {"R_pango_layout_get_log_attrs_readonly", (DL_FUNC) &R_pango_layout_get_log_attrs_readonly, 1},
+    {"R_pango_layout_get_pixel_extents", (DL_FUNC) &R_pango_layout_get_pixel_extents, 1},
+    {"R_pango_layout_get_pixel_size", (DL_FUNC) &R_pango_layout_get_pixel_size, 1},
+    {"R_pango_layout_get_serial", (DL_FUNC) &R_pango_layout_get_serial, 1},
+    {"R_pango_layout_get_single_paragraph_mode", (DL_FUNC) &R_pango_layout_get_single_paragraph_mode, 1},
+    {"R_pango_layout_get_size", (DL_FUNC) &R_pango_layout_get_size, 1},
+    {"R_pango_layout_get_spacing", (DL_FUNC) &R_pango_layout_get_spacing, 1},
+    {"R_pango_layout_get_tabs", (DL_FUNC) &R_pango_layout_get_tabs, 1},
+    {"R_pango_layout_get_text", (DL_FUNC) &R_pango_layout_get_text, 1},
+    {"R_pango_layout_get_unknown_glyphs_count", (DL_FUNC) &R_pango_layout_get_unknown_glyphs_count, 1},
+    {"R_pango_layout_get_width", (DL_FUNC) &R_pango_layout_get_width, 1},
+    {"R_pango_layout_get_wrap", (DL_FUNC) &R_pango_layout_get_wrap, 1},
+    {"R_pango_layout_index_to_line_x", (DL_FUNC) &R_pango_layout_index_to_line_x, 3},
+    {"R_pango_layout_index_to_pos", (DL_FUNC) &R_pango_layout_index_to_pos, 2},
+    {"R_pango_layout_is_ellipsized", (DL_FUNC) &R_pango_layout_is_ellipsized, 1},
+    {"R_pango_layout_is_wrapped", (DL_FUNC) &R_pango_layout_is_wrapped, 1},
+    {"R_pango_layout_move_cursor_visually", (DL_FUNC) &R_pango_layout_move_cursor_visually, 5},
+    {"R_pango_layout_serialize", (DL_FUNC) &R_pango_layout_serialize, 2},
+    {"R_pango_layout_set_alignment", (DL_FUNC) &R_pango_layout_set_alignment, 2},
+    {"R_pango_layout_set_attributes", (DL_FUNC) &R_pango_layout_set_attributes, 2},
+    {"R_pango_layout_set_auto_dir", (DL_FUNC) &R_pango_layout_set_auto_dir, 2},
+    {"R_pango_layout_set_ellipsize", (DL_FUNC) &R_pango_layout_set_ellipsize, 2},
+    {"R_pango_layout_set_font_description", (DL_FUNC) &R_pango_layout_set_font_description, 2},
+    {"R_pango_layout_set_height", (DL_FUNC) &R_pango_layout_set_height, 2},
+    {"R_pango_layout_set_indent", (DL_FUNC) &R_pango_layout_set_indent, 2},
+    {"R_pango_layout_set_justify", (DL_FUNC) &R_pango_layout_set_justify, 2},
+    {"R_pango_layout_set_justify_last_line", (DL_FUNC) &R_pango_layout_set_justify_last_line, 2},
+    {"R_pango_layout_set_line_spacing", (DL_FUNC) &R_pango_layout_set_line_spacing, 2},
+    {"R_pango_layout_set_markup", (DL_FUNC) &R_pango_layout_set_markup, 3},
+    {"R_pango_layout_set_markup_with_accel", (DL_FUNC) &R_pango_layout_set_markup_with_accel, 4},
+    {"R_pango_layout_set_single_paragraph_mode", (DL_FUNC) &R_pango_layout_set_single_paragraph_mode, 2},
+    {"R_pango_layout_set_spacing", (DL_FUNC) &R_pango_layout_set_spacing, 2},
+    {"R_pango_layout_set_tabs", (DL_FUNC) &R_pango_layout_set_tabs, 2},
+    {"R_pango_layout_set_text", (DL_FUNC) &R_pango_layout_set_text, 3},
+    {"R_pango_layout_set_width", (DL_FUNC) &R_pango_layout_set_width, 2},
+    {"R_pango_layout_set_wrap", (DL_FUNC) &R_pango_layout_set_wrap, 2},
+    {"R_pango_layout_write_to_file", (DL_FUNC) &R_pango_layout_write_to_file, 3},
+    {"R_pango_layout_xy_to_index", (DL_FUNC) &R_pango_layout_xy_to_index, 3},
+    {"R_pango_layout_deserialize_error_quark", (DL_FUNC) &R_pango_layout_deserialize_error_quark, 0},
+    {"R_pango_layout_iter_at_last_line", (DL_FUNC) &R_pango_layout_iter_at_last_line, 1},
+    {"R_pango_layout_iter_copy", (DL_FUNC) &R_pango_layout_iter_copy, 1},
+    {"R_pango_layout_iter_free", (DL_FUNC) &R_pango_layout_iter_free, 1},
+    {"R_pango_layout_iter_get_baseline", (DL_FUNC) &R_pango_layout_iter_get_baseline, 1},
+    {"R_pango_layout_iter_get_char_extents", (DL_FUNC) &R_pango_layout_iter_get_char_extents, 1},
+    {"R_pango_layout_iter_get_cluster_extents", (DL_FUNC) &R_pango_layout_iter_get_cluster_extents, 1},
+    {"R_pango_layout_iter_get_index", (DL_FUNC) &R_pango_layout_iter_get_index, 1},
+    {"R_pango_layout_iter_get_layout", (DL_FUNC) &R_pango_layout_iter_get_layout, 1},
+    {"R_pango_layout_iter_get_layout_extents", (DL_FUNC) &R_pango_layout_iter_get_layout_extents, 1},
+    {"R_pango_layout_iter_get_line", (DL_FUNC) &R_pango_layout_iter_get_line, 1},
+    {"R_pango_layout_iter_get_line_extents", (DL_FUNC) &R_pango_layout_iter_get_line_extents, 1},
+    {"R_pango_layout_iter_get_line_readonly", (DL_FUNC) &R_pango_layout_iter_get_line_readonly, 1},
+    {"R_pango_layout_iter_get_line_yrange", (DL_FUNC) &R_pango_layout_iter_get_line_yrange, 1},
+    {"R_pango_layout_iter_get_run", (DL_FUNC) &R_pango_layout_iter_get_run, 1},
+    {"R_pango_layout_iter_get_run_baseline", (DL_FUNC) &R_pango_layout_iter_get_run_baseline, 1},
+    {"R_pango_layout_iter_get_run_extents", (DL_FUNC) &R_pango_layout_iter_get_run_extents, 1},
+    {"R_pango_layout_iter_get_run_readonly", (DL_FUNC) &R_pango_layout_iter_get_run_readonly, 1},
+    {"R_pango_layout_iter_next_char", (DL_FUNC) &R_pango_layout_iter_next_char, 1},
+    {"R_pango_layout_iter_next_cluster", (DL_FUNC) &R_pango_layout_iter_next_cluster, 1},
+    {"R_pango_layout_iter_next_line", (DL_FUNC) &R_pango_layout_iter_next_line, 1},
+    {"R_pango_layout_iter_next_run", (DL_FUNC) &R_pango_layout_iter_next_run, 1},
+    {"R_pango_layout_line_get_extents", (DL_FUNC) &R_pango_layout_line_get_extents, 1},
+    {"R_pango_layout_line_get_height", (DL_FUNC) &R_pango_layout_line_get_height, 1},
+    {"R_pango_layout_line_get_length", (DL_FUNC) &R_pango_layout_line_get_length, 1},
+    {"R_pango_layout_line_get_pixel_extents", (DL_FUNC) &R_pango_layout_line_get_pixel_extents, 1},
+    {"R_pango_layout_line_get_resolved_direction", (DL_FUNC) &R_pango_layout_line_get_resolved_direction, 1},
+    {"R_pango_layout_line_get_start_index", (DL_FUNC) &R_pango_layout_line_get_start_index, 1},
+    {"R_pango_layout_line_get_x_ranges", (DL_FUNC) &R_pango_layout_line_get_x_ranges, 3},
+    {"R_pango_layout_line_index_to_x", (DL_FUNC) &R_pango_layout_line_index_to_x, 3},
+    {"R_pango_layout_line_is_paragraph_start", (DL_FUNC) &R_pango_layout_line_is_paragraph_start, 1},
+    {"R_pango_layout_line_ref", (DL_FUNC) &R_pango_layout_line_ref, 1},
+    {"R_pango_layout_line_unref", (DL_FUNC) &R_pango_layout_line_unref, 1},
+    {"R_pango_layout_line_x_to_index", (DL_FUNC) &R_pango_layout_line_x_to_index, 2},
+    {"R_pango_matrix_concat", (DL_FUNC) &R_pango_matrix_concat, 2},
+    {"R_pango_matrix_copy", (DL_FUNC) &R_pango_matrix_copy, 1},
+    {"R_pango_matrix_free", (DL_FUNC) &R_pango_matrix_free, 1},
+    {"R_pango_matrix_get_font_scale_factor", (DL_FUNC) &R_pango_matrix_get_font_scale_factor, 1},
+    {"R_pango_matrix_get_font_scale_factors", (DL_FUNC) &R_pango_matrix_get_font_scale_factors, 1},
+    {"R_pango_matrix_get_slant_ratio", (DL_FUNC) &R_pango_matrix_get_slant_ratio, 1},
+    {"R_pango_matrix_rotate", (DL_FUNC) &R_pango_matrix_rotate, 2},
+    {"R_pango_matrix_scale", (DL_FUNC) &R_pango_matrix_scale, 3},
+    {"R_pango_matrix_transform_distance", (DL_FUNC) &R_pango_matrix_transform_distance, 1},
+    {"R_pango_matrix_transform_pixel_rectangle", (DL_FUNC) &R_pango_matrix_transform_pixel_rectangle, 1},
+    {"R_pango_matrix_transform_point", (DL_FUNC) &R_pango_matrix_transform_point, 1},
+    {"R_pango_matrix_transform_rectangle", (DL_FUNC) &R_pango_matrix_transform_rectangle, 1},
+    {"R_pango_matrix_translate", (DL_FUNC) &R_pango_matrix_translate, 3},
+    {"R_pango_renderer_activate", (DL_FUNC) &R_pango_renderer_activate, 1},
+    {"R_pango_renderer_deactivate", (DL_FUNC) &R_pango_renderer_deactivate, 1},
+    {"R_pango_renderer_draw_error_underline", (DL_FUNC) &R_pango_renderer_draw_error_underline, 5},
+    {"R_pango_renderer_draw_glyph", (DL_FUNC) &R_pango_renderer_draw_glyph, 5},
+    {"R_pango_renderer_draw_glyph_item", (DL_FUNC) &R_pango_renderer_draw_glyph_item, 5},
+    {"R_pango_renderer_draw_glyphs", (DL_FUNC) &R_pango_renderer_draw_glyphs, 5},
+    {"R_pango_renderer_draw_layout", (DL_FUNC) &R_pango_renderer_draw_layout, 4},
+    {"R_pango_renderer_draw_layout_line", (DL_FUNC) &R_pango_renderer_draw_layout_line, 4},
+    {"R_pango_renderer_draw_rectangle", (DL_FUNC) &R_pango_renderer_draw_rectangle, 6},
+    {"R_pango_renderer_draw_trapezoid", (DL_FUNC) &R_pango_renderer_draw_trapezoid, 8},
+    {"R_pango_renderer_get_alpha", (DL_FUNC) &R_pango_renderer_get_alpha, 2},
+    {"R_pango_renderer_get_color", (DL_FUNC) &R_pango_renderer_get_color, 2},
+    {"R_pango_renderer_get_layout", (DL_FUNC) &R_pango_renderer_get_layout, 1},
+    {"R_pango_renderer_get_layout_line", (DL_FUNC) &R_pango_renderer_get_layout_line, 1},
+    {"R_pango_renderer_get_matrix", (DL_FUNC) &R_pango_renderer_get_matrix, 1},
+    {"R_pango_renderer_part_changed", (DL_FUNC) &R_pango_renderer_part_changed, 2},
+    {"R_pango_renderer_set_alpha", (DL_FUNC) &R_pango_renderer_set_alpha, 3},
+    {"R_pango_renderer_set_color", (DL_FUNC) &R_pango_renderer_set_color, 3},
+    {"R_pango_renderer_set_matrix", (DL_FUNC) &R_pango_renderer_set_matrix, 2},
+    {"R_pango_script_for_unichar", (DL_FUNC) &R_pango_script_for_unichar, 1},
+    {"R_pango_script_get_sample_language", (DL_FUNC) &R_pango_script_get_sample_language, 1},
+    {"R_pango_script_iter_new", (DL_FUNC) &R_pango_script_iter_new, 2},
+    {"R_pango_script_iter_free", (DL_FUNC) &R_pango_script_iter_free, 1},
+    {"R_pango_script_iter_get_range", (DL_FUNC) &R_pango_script_iter_get_range, 1},
+    {"R_pango_script_iter_next", (DL_FUNC) &R_pango_script_iter_next, 1},
+    {"R_pango_tab_array_new", (DL_FUNC) &R_pango_tab_array_new, 2},
+    {"R_pango_tab_array_copy", (DL_FUNC) &R_pango_tab_array_copy, 1},
+    {"R_pango_tab_array_free", (DL_FUNC) &R_pango_tab_array_free, 1},
+    {"R_pango_tab_array_get_decimal_point", (DL_FUNC) &R_pango_tab_array_get_decimal_point, 2},
+    {"R_pango_tab_array_get_positions_in_pixels", (DL_FUNC) &R_pango_tab_array_get_positions_in_pixels, 1},
+    {"R_pango_tab_array_get_size", (DL_FUNC) &R_pango_tab_array_get_size, 1},
+    {"R_pango_tab_array_get_tab", (DL_FUNC) &R_pango_tab_array_get_tab, 2},
+    {"R_pango_tab_array_get_tabs", (DL_FUNC) &R_pango_tab_array_get_tabs, 1},
+    {"R_pango_tab_array_resize", (DL_FUNC) &R_pango_tab_array_resize, 2},
+    {"R_pango_tab_array_set_decimal_point", (DL_FUNC) &R_pango_tab_array_set_decimal_point, 3},
+    {"R_pango_tab_array_set_positions_in_pixels", (DL_FUNC) &R_pango_tab_array_set_positions_in_pixels, 2},
+    {"R_pango_tab_array_set_tab", (DL_FUNC) &R_pango_tab_array_set_tab, 4},
+    {"R_pango_tab_array_sort", (DL_FUNC) &R_pango_tab_array_sort, 1},
+    {"R_pango_tab_array_to_string", (DL_FUNC) &R_pango_tab_array_to_string, 1},
+    {"R_pango_tab_array_from_string", (DL_FUNC) &R_pango_tab_array_from_string, 1},
+    {"R_pango_attr_allow_breaks_new", (DL_FUNC) &R_pango_attr_allow_breaks_new, 1},
+    {"R_pango_attr_background_alpha_new", (DL_FUNC) &R_pango_attr_background_alpha_new, 1},
+    {"R_pango_attr_background_new", (DL_FUNC) &R_pango_attr_background_new, 3},
+    {"R_pango_attr_baseline_shift_new", (DL_FUNC) &R_pango_attr_baseline_shift_new, 1},
+    {"R_pango_attr_break", (DL_FUNC) &R_pango_attr_break, 5},
+    {"R_pango_attr_fallback_new", (DL_FUNC) &R_pango_attr_fallback_new, 1},
+    {"R_pango_attr_family_new", (DL_FUNC) &R_pango_attr_family_new, 1},
+    {"R_pango_attr_font_scale_new", (DL_FUNC) &R_pango_attr_font_scale_new, 1},
+    {"R_pango_attr_foreground_alpha_new", (DL_FUNC) &R_pango_attr_foreground_alpha_new, 1},
+    {"R_pango_attr_foreground_new", (DL_FUNC) &R_pango_attr_foreground_new, 3},
+    {"R_pango_attr_gravity_hint_new", (DL_FUNC) &R_pango_attr_gravity_hint_new, 1},
+    {"R_pango_attr_gravity_new", (DL_FUNC) &R_pango_attr_gravity_new, 1},
+    {"R_pango_attr_insert_hyphens_new", (DL_FUNC) &R_pango_attr_insert_hyphens_new, 1},
+    {"R_pango_attr_letter_spacing_new", (DL_FUNC) &R_pango_attr_letter_spacing_new, 1},
+    {"R_pango_attr_line_height_new", (DL_FUNC) &R_pango_attr_line_height_new, 1},
+    {"R_pango_attr_line_height_new_absolute", (DL_FUNC) &R_pango_attr_line_height_new_absolute, 1},
+    {"R_pango_attr_overline_color_new", (DL_FUNC) &R_pango_attr_overline_color_new, 3},
+    {"R_pango_attr_overline_new", (DL_FUNC) &R_pango_attr_overline_new, 1},
+    {"R_pango_attr_rise_new", (DL_FUNC) &R_pango_attr_rise_new, 1},
+    {"R_pango_attr_scale_new", (DL_FUNC) &R_pango_attr_scale_new, 1},
+    {"R_pango_attr_sentence_new", (DL_FUNC) &R_pango_attr_sentence_new, 0},
+    {"R_pango_attr_show_new", (DL_FUNC) &R_pango_attr_show_new, 1},
+    {"R_pango_attr_stretch_new", (DL_FUNC) &R_pango_attr_stretch_new, 1},
+    {"R_pango_attr_strikethrough_color_new", (DL_FUNC) &R_pango_attr_strikethrough_color_new, 3},
+    {"R_pango_attr_strikethrough_new", (DL_FUNC) &R_pango_attr_strikethrough_new, 1},
+    {"R_pango_attr_style_new", (DL_FUNC) &R_pango_attr_style_new, 1},
+    {"R_pango_attr_text_transform_new", (DL_FUNC) &R_pango_attr_text_transform_new, 1},
+    {"R_pango_attr_underline_color_new", (DL_FUNC) &R_pango_attr_underline_color_new, 3},
+    {"R_pango_attr_underline_new", (DL_FUNC) &R_pango_attr_underline_new, 1},
+    {"R_pango_attr_variant_new", (DL_FUNC) &R_pango_attr_variant_new, 1},
+    {"R_pango_attr_weight_new", (DL_FUNC) &R_pango_attr_weight_new, 1},
+    {"R_pango_attr_word_new", (DL_FUNC) &R_pango_attr_word_new, 0},
+    {"R_pango_break", (DL_FUNC) &R_pango_break, 4},
+    {"R_pango_default_break", (DL_FUNC) &R_pango_default_break, 4},
+    {"R_pango_extents_to_pixels", (DL_FUNC) &R_pango_extents_to_pixels, 0},
+    {"R_pango_find_base_dir", (DL_FUNC) &R_pango_find_base_dir, 2},
+    {"R_pango_find_paragraph_boundary", (DL_FUNC) &R_pango_find_paragraph_boundary, 2},
+    {"R_pango_get_log_attrs", (DL_FUNC) &R_pango_get_log_attrs, 5},
+    {"R_pango_get_mirror_char", (DL_FUNC) &R_pango_get_mirror_char, 1},
+    {"R_pango_is_zero_width", (DL_FUNC) &R_pango_is_zero_width, 1},
+    {"R_pango_itemize", (DL_FUNC) &R_pango_itemize, 6},
+    {"R_pango_itemize_with_base_dir", (DL_FUNC) &R_pango_itemize_with_base_dir, 7},
+    {"R_pango_log2vis_get_embedding_levels", (DL_FUNC) &R_pango_log2vis_get_embedding_levels, 2},
+    {"R_pango_markup_parser_finish", (DL_FUNC) &R_pango_markup_parser_finish, 1},
+    {"R_pango_markup_parser_new", (DL_FUNC) &R_pango_markup_parser_new, 1},
+    {"R_pango_parse_enum", (DL_FUNC) &R_pango_parse_enum, 3},
+    {"R_pango_parse_markup", (DL_FUNC) &R_pango_parse_markup, 3},
+    {"R_pango_parse_stretch", (DL_FUNC) &R_pango_parse_stretch, 2},
+    {"R_pango_parse_style", (DL_FUNC) &R_pango_parse_style, 2},
+    {"R_pango_parse_variant", (DL_FUNC) &R_pango_parse_variant, 2},
+    {"R_pango_parse_weight", (DL_FUNC) &R_pango_parse_weight, 2},
+    {"R_pango_quantize_line_geometry", (DL_FUNC) &R_pango_quantize_line_geometry, 0},
+    {"R_pango_read_line", (DL_FUNC) &R_pango_read_line, 2},
+    {"R_pango_reorder_items", (DL_FUNC) &R_pango_reorder_items, 1},
+    {"R_pango_scan_int", (DL_FUNC) &R_pango_scan_int, 0},
+    {"R_pango_scan_string", (DL_FUNC) &R_pango_scan_string, 1},
+    {"R_pango_scan_word", (DL_FUNC) &R_pango_scan_word, 1},
+    {"R_pango_shape", (DL_FUNC) &R_pango_shape, 3},
+    {"R_pango_shape_full", (DL_FUNC) &R_pango_shape_full, 5},
+    {"R_pango_shape_item", (DL_FUNC) &R_pango_shape_item, 5},
+    {"R_pango_shape_with_flags", (DL_FUNC) &R_pango_shape_with_flags, 6},
+    {"R_pango_skip_space", (DL_FUNC) &R_pango_skip_space, 0},
+    {"R_pango_split_file_list", (DL_FUNC) &R_pango_split_file_list, 1},
+    {"R_pango_tailor_break", (DL_FUNC) &R_pango_tailor_break, 5},
+    {"R_pango_trim_string", (DL_FUNC) &R_pango_trim_string, 1},
+    {"R_pango_unichar_direction", (DL_FUNC) &R_pango_unichar_direction, 1},
+    {"R_pango_units_from_double", (DL_FUNC) &R_pango_units_from_double, 1},
+    {"R_pango_units_to_double", (DL_FUNC) &R_pango_units_to_double, 1},
+    {"R_pango_version", (DL_FUNC) &R_pango_version, 0},
+    {"R_pango_version_check", (DL_FUNC) &R_pango_version_check, 3},
+    {"R_pango_version_string", (DL_FUNC) &R_pango_version_string, 0},
     {"R_g_timeout_add", (DL_FUNC) &R_g_timeout_add, 2},
     {"R_g_idle_add", (DL_FUNC) &R_g_idle_add, 1},
     {"R_gtk_dialog_run", (DL_FUNC) &R_gtk_dialog_run, 1},
