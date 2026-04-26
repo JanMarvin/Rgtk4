@@ -3316,6 +3316,714 @@ extern SEXP R_g_type_register_fundamental(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
 extern SEXP R_g_type_register_static(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
 extern SEXP R_g_type_set_qdata(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_type_test_flags(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_alloc(void);
+extern SEXP R_graphene_box_contains_box(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_contains_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_expand(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_expand_scalar(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_expand_vec3(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_free(SEXP s1);
+extern SEXP R_graphene_box_get_bounding_sphere(SEXP s1);
+extern SEXP R_graphene_box_get_center(SEXP s1);
+extern SEXP R_graphene_box_get_depth(SEXP s1);
+extern SEXP R_graphene_box_get_height(SEXP s1);
+extern SEXP R_graphene_box_get_max(SEXP s1);
+extern SEXP R_graphene_box_get_min(SEXP s1);
+extern SEXP R_graphene_box_get_size(SEXP s1);
+extern SEXP R_graphene_box_get_vertices(SEXP s1);
+extern SEXP R_graphene_box_get_width(SEXP s1);
+extern SEXP R_graphene_box_init(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_box_init_from_box(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_init_from_points(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_box_init_from_vec3(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_box_init_from_vectors(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_box_intersection(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_union(SEXP s1, SEXP s2);
+extern SEXP R_graphene_box_empty(void);
+extern SEXP R_graphene_box_infinite(void);
+extern SEXP R_graphene_box_minus_one(void);
+extern SEXP R_graphene_box_one(void);
+extern SEXP R_graphene_box_one_minus_one(void);
+extern SEXP R_graphene_box_zero(void);
+extern SEXP R_graphene_euler_alloc(void);
+extern SEXP R_graphene_euler_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_euler_free(SEXP s1);
+extern SEXP R_graphene_euler_get_alpha(SEXP s1);
+extern SEXP R_graphene_euler_get_beta(SEXP s1);
+extern SEXP R_graphene_euler_get_gamma(SEXP s1);
+extern SEXP R_graphene_euler_get_order(SEXP s1);
+extern SEXP R_graphene_euler_get_x(SEXP s1);
+extern SEXP R_graphene_euler_get_y(SEXP s1);
+extern SEXP R_graphene_euler_get_z(SEXP s1);
+extern SEXP R_graphene_euler_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_euler_init_from_euler(SEXP s1, SEXP s2);
+extern SEXP R_graphene_euler_init_from_matrix(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_euler_init_from_quaternion(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_euler_init_from_radians(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_euler_init_from_vec3(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_euler_init_with_order(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_euler_reorder(SEXP s1, SEXP s2);
+extern SEXP R_graphene_euler_to_matrix(SEXP s1);
+extern SEXP R_graphene_euler_to_quaternion(SEXP s1);
+extern SEXP R_graphene_euler_to_vec3(SEXP s1);
+extern SEXP R_graphene_frustum_alloc(void);
+extern SEXP R_graphene_frustum_contains_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_frustum_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_frustum_free(SEXP s1);
+extern SEXP R_graphene_frustum_get_planes(SEXP s1);
+extern SEXP R_graphene_frustum_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_graphene_frustum_init_from_frustum(SEXP s1, SEXP s2);
+extern SEXP R_graphene_frustum_init_from_matrix(SEXP s1, SEXP s2);
+extern SEXP R_graphene_frustum_intersects_box(SEXP s1, SEXP s2);
+extern SEXP R_graphene_frustum_intersects_sphere(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_alloc(void);
+extern SEXP R_graphene_matrix_decompose(SEXP s1);
+extern SEXP R_graphene_matrix_determinant(SEXP s1);
+extern SEXP R_graphene_matrix_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_equal_fast(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_free(SEXP s1);
+extern SEXP R_graphene_matrix_get_row(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_get_value(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_matrix_get_x_scale(SEXP s1);
+extern SEXP R_graphene_matrix_get_x_translation(SEXP s1);
+extern SEXP R_graphene_matrix_get_y_scale(SEXP s1);
+extern SEXP R_graphene_matrix_get_y_translation(SEXP s1);
+extern SEXP R_graphene_matrix_get_z_scale(SEXP s1);
+extern SEXP R_graphene_matrix_get_z_translation(SEXP s1);
+extern SEXP R_graphene_matrix_init_from_2d(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_graphene_matrix_init_from_float(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_init_from_matrix(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_init_from_vec4(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_matrix_init_frustum(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_graphene_matrix_init_identity(SEXP s1);
+extern SEXP R_graphene_matrix_init_look_at(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_matrix_init_ortho(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_graphene_matrix_init_perspective(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_matrix_init_rotate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_matrix_init_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_matrix_init_skew(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_matrix_init_translate(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_interpolate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_matrix_inverse(SEXP s1);
+extern SEXP R_graphene_matrix_is_2d(SEXP s1);
+extern SEXP R_graphene_matrix_is_backface_visible(SEXP s1);
+extern SEXP R_graphene_matrix_is_identity(SEXP s1);
+extern SEXP R_graphene_matrix_is_singular(SEXP s1);
+extern SEXP R_graphene_matrix_multiply(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_near(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_matrix_normalize(SEXP s1);
+extern SEXP R_graphene_matrix_perspective(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_print(SEXP s1);
+extern SEXP R_graphene_matrix_project_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_project_rect(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_project_rect_bounds(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_rotate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_matrix_rotate_euler(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_rotate_quaternion(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_rotate_x(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_rotate_y(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_rotate_z(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_matrix_skew_xy(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_skew_xz(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_skew_yz(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_to_2d(SEXP s1);
+extern SEXP R_graphene_matrix_to_float(SEXP s1);
+extern SEXP R_graphene_matrix_transform_bounds(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transform_box(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transform_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transform_point3d(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transform_ray(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transform_rect(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transform_sphere(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transform_vec3(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transform_vec4(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_translate(SEXP s1, SEXP s2);
+extern SEXP R_graphene_matrix_transpose(SEXP s1);
+extern SEXP R_graphene_matrix_unproject_point3d(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_matrix_untransform_bounds(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_matrix_untransform_point(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_plane_alloc(void);
+extern SEXP R_graphene_plane_distance(SEXP s1, SEXP s2);
+extern SEXP R_graphene_plane_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_plane_free(SEXP s1);
+extern SEXP R_graphene_plane_get_constant(SEXP s1);
+extern SEXP R_graphene_plane_get_normal(SEXP s1);
+extern SEXP R_graphene_plane_init(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_plane_init_from_plane(SEXP s1, SEXP s2);
+extern SEXP R_graphene_plane_init_from_point(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_plane_init_from_points(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_plane_init_from_vec4(SEXP s1, SEXP s2);
+extern SEXP R_graphene_plane_negate(SEXP s1);
+extern SEXP R_graphene_plane_normalize(SEXP s1);
+extern SEXP R_graphene_plane_transform(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_point_alloc(void);
+extern SEXP R_graphene_point_distance(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point_free(SEXP s1);
+extern SEXP R_graphene_point_init(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_point_init_from_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point_init_from_vec2(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point_interpolate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_point_near(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_point_to_vec2(SEXP s1);
+extern SEXP R_graphene_point_zero(void);
+extern SEXP R_graphene_point3d_alloc(void);
+extern SEXP R_graphene_point3d_cross(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point3d_distance(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point3d_dot(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point3d_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point3d_free(SEXP s1);
+extern SEXP R_graphene_point3d_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_point3d_init_from_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point3d_init_from_vec3(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point3d_interpolate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_point3d_length(SEXP s1);
+extern SEXP R_graphene_point3d_near(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_point3d_normalize(SEXP s1);
+extern SEXP R_graphene_point3d_normalize_viewport(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_point3d_scale(SEXP s1, SEXP s2);
+extern SEXP R_graphene_point3d_to_vec3(SEXP s1);
+extern SEXP R_graphene_point3d_zero(void);
+extern SEXP R_graphene_quad_alloc(void);
+extern SEXP R_graphene_quad_bounds(SEXP s1);
+extern SEXP R_graphene_quad_contains(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quad_free(SEXP s1);
+extern SEXP R_graphene_quad_get_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quad_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_quad_init_from_points(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quad_init_from_rect(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_alloc(void);
+extern SEXP R_graphene_quaternion_add(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_dot(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_free(SEXP s1);
+extern SEXP R_graphene_quaternion_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_quaternion_init_from_angle_vec3(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_quaternion_init_from_angles(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_quaternion_init_from_euler(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_init_from_matrix(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_init_from_quaternion(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_init_from_radians(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_quaternion_init_from_vec4(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_init_identity(SEXP s1);
+extern SEXP R_graphene_quaternion_invert(SEXP s1);
+extern SEXP R_graphene_quaternion_multiply(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_normalize(SEXP s1);
+extern SEXP R_graphene_quaternion_scale(SEXP s1, SEXP s2);
+extern SEXP R_graphene_quaternion_slerp(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_quaternion_to_angle_vec3(SEXP s1);
+extern SEXP R_graphene_quaternion_to_angles(SEXP s1);
+extern SEXP R_graphene_quaternion_to_matrix(SEXP s1);
+extern SEXP R_graphene_quaternion_to_radians(SEXP s1);
+extern SEXP R_graphene_quaternion_to_vec4(SEXP s1);
+extern SEXP R_graphene_ray_alloc(void);
+extern SEXP R_graphene_ray_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_free(SEXP s1);
+extern SEXP R_graphene_ray_get_closest_point_to_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_get_direction(SEXP s1);
+extern SEXP R_graphene_ray_get_distance_to_plane(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_get_distance_to_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_get_origin(SEXP s1);
+extern SEXP R_graphene_ray_get_position_at(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_init(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_ray_init_from_ray(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_init_from_vec3(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_ray_intersect_box(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_intersect_sphere(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_intersect_triangle(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_intersects_box(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_intersects_sphere(SEXP s1, SEXP s2);
+extern SEXP R_graphene_ray_intersects_triangle(SEXP s1, SEXP s2);
+extern SEXP R_graphene_rect_contains_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_rect_contains_rect(SEXP s1, SEXP s2);
+extern SEXP R_graphene_rect_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_rect_expand(SEXP s1, SEXP s2);
+extern SEXP R_graphene_rect_free(SEXP s1);
+extern SEXP R_graphene_rect_get_area(SEXP s1);
+extern SEXP R_graphene_rect_get_bottom_left(SEXP s1);
+extern SEXP R_graphene_rect_get_bottom_right(SEXP s1);
+extern SEXP R_graphene_rect_get_center(SEXP s1);
+extern SEXP R_graphene_rect_get_height(SEXP s1);
+extern SEXP R_graphene_rect_get_top_left(SEXP s1);
+extern SEXP R_graphene_rect_get_top_right(SEXP s1);
+extern SEXP R_graphene_rect_get_vertices(SEXP s1);
+extern SEXP R_graphene_rect_get_width(SEXP s1);
+extern SEXP R_graphene_rect_get_x(SEXP s1);
+extern SEXP R_graphene_rect_get_y(SEXP s1);
+extern SEXP R_graphene_rect_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_rect_init_from_rect(SEXP s1, SEXP s2);
+extern SEXP R_graphene_rect_inset(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_rect_inset_r(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_rect_interpolate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_rect_intersection(SEXP s1, SEXP s2);
+extern SEXP R_graphene_rect_normalize(SEXP s1);
+extern SEXP R_graphene_rect_normalize_r(SEXP s1);
+extern SEXP R_graphene_rect_offset(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_rect_offset_r(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_rect_round(SEXP s1);
+extern SEXP R_graphene_rect_round_extents(SEXP s1);
+extern SEXP R_graphene_rect_round_to_pixel(SEXP s1);
+extern SEXP R_graphene_rect_scale(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_rect_union(SEXP s1, SEXP s2);
+extern SEXP R_graphene_rect_alloc(void);
+extern SEXP R_graphene_rect_zero(void);
+extern SEXP R_graphene_size_alloc(void);
+extern SEXP R_graphene_size_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_size_free(SEXP s1);
+extern SEXP R_graphene_size_init(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_size_init_from_size(SEXP s1, SEXP s2);
+extern SEXP R_graphene_size_interpolate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_size_scale(SEXP s1, SEXP s2);
+extern SEXP R_graphene_size_zero(void);
+extern SEXP R_graphene_sphere_alloc(void);
+extern SEXP R_graphene_sphere_contains_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_sphere_distance(SEXP s1, SEXP s2);
+extern SEXP R_graphene_sphere_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_sphere_free(SEXP s1);
+extern SEXP R_graphene_sphere_get_bounding_box(SEXP s1);
+extern SEXP R_graphene_sphere_get_center(SEXP s1);
+extern SEXP R_graphene_sphere_get_radius(SEXP s1);
+extern SEXP R_graphene_sphere_init(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_sphere_init_from_points(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_sphere_init_from_vectors(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_sphere_is_empty(SEXP s1);
+extern SEXP R_graphene_sphere_translate(SEXP s1, SEXP s2);
+extern SEXP R_graphene_triangle_alloc(void);
+extern SEXP R_graphene_triangle_contains_point(SEXP s1, SEXP s2);
+extern SEXP R_graphene_triangle_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_triangle_free(SEXP s1);
+extern SEXP R_graphene_triangle_get_area(SEXP s1);
+extern SEXP R_graphene_triangle_get_barycoords(SEXP s1, SEXP s2);
+extern SEXP R_graphene_triangle_get_bounding_box(SEXP s1);
+extern SEXP R_graphene_triangle_get_midpoint(SEXP s1);
+extern SEXP R_graphene_triangle_get_normal(SEXP s1);
+extern SEXP R_graphene_triangle_get_plane(SEXP s1);
+extern SEXP R_graphene_triangle_get_points(SEXP s1);
+extern SEXP R_graphene_triangle_get_uv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_triangle_get_vertices(SEXP s1);
+extern SEXP R_graphene_triangle_init_from_float(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_triangle_init_from_point3d(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_triangle_init_from_vec3(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_vec2_alloc(void);
+extern SEXP R_graphene_vec2_add(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_divide(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_dot(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_free(SEXP s1);
+extern SEXP R_graphene_vec2_get_x(SEXP s1);
+extern SEXP R_graphene_vec2_get_y(SEXP s1);
+extern SEXP R_graphene_vec2_init(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_vec2_init_from_float(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_init_from_vec2(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_interpolate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_vec2_length(SEXP s1);
+extern SEXP R_graphene_vec2_max(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_min(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_multiply(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_near(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_vec2_negate(SEXP s1);
+extern SEXP R_graphene_vec2_normalize(SEXP s1);
+extern SEXP R_graphene_vec2_scale(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_subtract(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec2_to_float(SEXP s1);
+extern SEXP R_graphene_vec2_one(void);
+extern SEXP R_graphene_vec2_x_axis(void);
+extern SEXP R_graphene_vec2_y_axis(void);
+extern SEXP R_graphene_vec2_zero(void);
+extern SEXP R_graphene_vec3_alloc(void);
+extern SEXP R_graphene_vec3_add(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_cross(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_divide(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_dot(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_free(SEXP s1);
+extern SEXP R_graphene_vec3_get_x(SEXP s1);
+extern SEXP R_graphene_vec3_get_xy(SEXP s1);
+extern SEXP R_graphene_vec3_get_xy0(SEXP s1);
+extern SEXP R_graphene_vec3_get_xyz0(SEXP s1);
+extern SEXP R_graphene_vec3_get_xyz1(SEXP s1);
+extern SEXP R_graphene_vec3_get_xyzw(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_get_y(SEXP s1);
+extern SEXP R_graphene_vec3_get_z(SEXP s1);
+extern SEXP R_graphene_vec3_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_vec3_init_from_float(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_init_from_vec3(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_interpolate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_vec3_length(SEXP s1);
+extern SEXP R_graphene_vec3_max(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_min(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_multiply(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_near(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_vec3_negate(SEXP s1);
+extern SEXP R_graphene_vec3_normalize(SEXP s1);
+extern SEXP R_graphene_vec3_scale(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_subtract(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec3_to_float(SEXP s1);
+extern SEXP R_graphene_vec3_one(void);
+extern SEXP R_graphene_vec3_x_axis(void);
+extern SEXP R_graphene_vec3_y_axis(void);
+extern SEXP R_graphene_vec3_z_axis(void);
+extern SEXP R_graphene_vec3_zero(void);
+extern SEXP R_graphene_vec4_alloc(void);
+extern SEXP R_graphene_vec4_add(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_divide(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_dot(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_equal(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_free(SEXP s1);
+extern SEXP R_graphene_vec4_get_w(SEXP s1);
+extern SEXP R_graphene_vec4_get_x(SEXP s1);
+extern SEXP R_graphene_vec4_get_xy(SEXP s1);
+extern SEXP R_graphene_vec4_get_xyz(SEXP s1);
+extern SEXP R_graphene_vec4_get_y(SEXP s1);
+extern SEXP R_graphene_vec4_get_z(SEXP s1);
+extern SEXP R_graphene_vec4_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_graphene_vec4_init_from_float(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_init_from_vec2(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_graphene_vec4_init_from_vec3(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_vec4_init_from_vec4(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_interpolate(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_vec4_length(SEXP s1);
+extern SEXP R_graphene_vec4_max(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_min(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_multiply(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_near(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_graphene_vec4_negate(SEXP s1);
+extern SEXP R_graphene_vec4_normalize(SEXP s1);
+extern SEXP R_graphene_vec4_scale(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_subtract(SEXP s1, SEXP s2);
+extern SEXP R_graphene_vec4_to_float(SEXP s1);
+extern SEXP R_graphene_vec4_one(void);
+extern SEXP R_graphene_vec4_w_axis(void);
+extern SEXP R_graphene_vec4_x_axis(void);
+extern SEXP R_graphene_vec4_y_axis(void);
+extern SEXP R_graphene_vec4_z_axis(void);
+extern SEXP R_graphene_vec4_zero(void);
+extern SEXP R_gsk_blend_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_blend_node_get_blend_mode(SEXP s1);
+extern SEXP R_gsk_blend_node_get_bottom_child(SEXP s1);
+extern SEXP R_gsk_blend_node_get_top_child(SEXP s1);
+extern SEXP R_gsk_blur_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_blur_node_get_child(SEXP s1);
+extern SEXP R_gsk_blur_node_get_radius(SEXP s1);
+extern SEXP R_gsk_border_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_border_node_get_colors(SEXP s1);
+extern SEXP R_gsk_border_node_get_outline(SEXP s1);
+extern SEXP R_gsk_border_node_get_widths(SEXP s1);
+extern SEXP R_gsk_cairo_node_new(SEXP s1);
+extern SEXP R_gsk_cairo_node_get_draw_context(SEXP s1);
+extern SEXP R_gsk_cairo_node_get_surface(SEXP s1);
+extern SEXP R_gsk_cairo_renderer_new(void);
+extern SEXP R_gsk_clip_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_clip_node_get_child(SEXP s1);
+extern SEXP R_gsk_clip_node_get_clip(SEXP s1);
+extern SEXP R_gsk_color_matrix_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_color_matrix_node_get_child(SEXP s1);
+extern SEXP R_gsk_color_matrix_node_get_color_matrix(SEXP s1);
+extern SEXP R_gsk_color_matrix_node_get_color_offset(SEXP s1);
+extern SEXP R_gsk_color_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_color_node_get_color(SEXP s1);
+extern SEXP R_gsk_component_transfer_new_discrete(SEXP s1, SEXP s2);
+extern SEXP R_gsk_component_transfer_new_gamma(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_component_transfer_new_identity(void);
+extern SEXP R_gsk_component_transfer_new_levels(SEXP s1);
+extern SEXP R_gsk_component_transfer_new_linear(SEXP s1, SEXP s2);
+extern SEXP R_gsk_component_transfer_new_table(SEXP s1, SEXP s2);
+extern SEXP R_gsk_component_transfer_copy(SEXP s1);
+extern SEXP R_gsk_component_transfer_free(SEXP s1);
+extern SEXP R_gsk_component_transfer_equal(SEXP s1, SEXP s2);
+extern SEXP R_gsk_component_transfer_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_component_transfer_node_get_child(SEXP s1);
+extern SEXP R_gsk_component_transfer_node_get_transfer(SEXP s1, SEXP s2);
+extern SEXP R_gsk_composite_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_composite_node_get_child(SEXP s1);
+extern SEXP R_gsk_composite_node_get_mask(SEXP s1);
+extern SEXP R_gsk_composite_node_get_operator(SEXP s1);
+extern SEXP R_gsk_conic_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_conic_gradient_node_get_angle(SEXP s1);
+extern SEXP R_gsk_conic_gradient_node_get_center(SEXP s1);
+extern SEXP R_gsk_conic_gradient_node_get_color_stops(SEXP s1);
+extern SEXP R_gsk_conic_gradient_node_get_n_color_stops(SEXP s1);
+extern SEXP R_gsk_conic_gradient_node_get_rotation(SEXP s1);
+extern SEXP R_gsk_container_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_container_node_get_child(SEXP s1, SEXP s2);
+extern SEXP R_gsk_container_node_get_n_children(SEXP s1);
+extern SEXP R_gsk_copy_node_new(SEXP s1);
+extern SEXP R_gsk_copy_node_get_child(SEXP s1);
+extern SEXP R_gsk_cross_fade_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_cross_fade_node_get_end_child(SEXP s1);
+extern SEXP R_gsk_cross_fade_node_get_progress(SEXP s1);
+extern SEXP R_gsk_cross_fade_node_get_start_child(SEXP s1);
+extern SEXP R_gsk_debug_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_debug_node_get_child(SEXP s1);
+extern SEXP R_gsk_debug_node_get_message(SEXP s1);
+extern SEXP R_gsk_fill_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_fill_node_get_child(SEXP s1);
+extern SEXP R_gsk_fill_node_get_fill_rule(SEXP s1);
+extern SEXP R_gsk_fill_node_get_path(SEXP s1);
+extern SEXP R_gsk_gl_renderer_new(void);
+extern SEXP R_gsk_gl_shader_new_from_bytes(SEXP s1);
+extern SEXP R_gsk_gl_shader_new_from_resource(SEXP s1);
+extern SEXP R_gsk_gl_shader_compile(SEXP s1, SEXP s2);
+extern SEXP R_gsk_gl_shader_find_uniform_by_name(SEXP s1, SEXP s2);
+extern SEXP R_gsk_gl_shader_get_arg_bool(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_gl_shader_get_arg_float(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_gl_shader_get_arg_int(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_gl_shader_get_arg_uint(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_gl_shader_get_arg_vec2(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_gl_shader_get_arg_vec3(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_gl_shader_get_arg_vec4(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_gl_shader_get_args_size(SEXP s1);
+extern SEXP R_gsk_gl_shader_get_n_textures(SEXP s1);
+extern SEXP R_gsk_gl_shader_get_n_uniforms(SEXP s1);
+extern SEXP R_gsk_gl_shader_get_resource(SEXP s1);
+extern SEXP R_gsk_gl_shader_get_source(SEXP s1);
+extern SEXP R_gsk_gl_shader_get_uniform_name(SEXP s1, SEXP s2);
+extern SEXP R_gsk_gl_shader_get_uniform_offset(SEXP s1, SEXP s2);
+extern SEXP R_gsk_gl_shader_get_uniform_type(SEXP s1, SEXP s2);
+extern SEXP R_gsk_gl_shader_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_gl_shader_node_get_args(SEXP s1);
+extern SEXP R_gsk_gl_shader_node_get_child(SEXP s1, SEXP s2);
+extern SEXP R_gsk_gl_shader_node_get_n_children(SEXP s1);
+extern SEXP R_gsk_gl_shader_node_get_shader(SEXP s1);
+extern SEXP R_gsk_inset_shadow_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gsk_inset_shadow_node_get_blur_radius(SEXP s1);
+extern SEXP R_gsk_inset_shadow_node_get_color(SEXP s1);
+extern SEXP R_gsk_inset_shadow_node_get_dx(SEXP s1);
+extern SEXP R_gsk_inset_shadow_node_get_dy(SEXP s1);
+extern SEXP R_gsk_inset_shadow_node_get_outline(SEXP s1);
+extern SEXP R_gsk_inset_shadow_node_get_spread(SEXP s1);
+extern SEXP R_gsk_isolation_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_isolation_node_get_child(SEXP s1);
+extern SEXP R_gsk_isolation_node_get_isolations(SEXP s1);
+extern SEXP R_gsk_linear_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_linear_gradient_node_get_color_stops(SEXP s1);
+extern SEXP R_gsk_linear_gradient_node_get_end(SEXP s1);
+extern SEXP R_gsk_linear_gradient_node_get_n_color_stops(SEXP s1);
+extern SEXP R_gsk_linear_gradient_node_get_start(SEXP s1);
+extern SEXP R_gsk_mask_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_mask_node_get_mask(SEXP s1);
+extern SEXP R_gsk_mask_node_get_mask_mode(SEXP s1);
+extern SEXP R_gsk_mask_node_get_source(SEXP s1);
+extern SEXP R_gsk_ngl_renderer_new(void);
+extern SEXP R_gsk_opacity_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_opacity_node_get_child(SEXP s1);
+extern SEXP R_gsk_opacity_node_get_opacity(SEXP s1);
+extern SEXP R_gsk_outset_shadow_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gsk_outset_shadow_node_get_blur_radius(SEXP s1);
+extern SEXP R_gsk_outset_shadow_node_get_color(SEXP s1);
+extern SEXP R_gsk_outset_shadow_node_get_dx(SEXP s1);
+extern SEXP R_gsk_outset_shadow_node_get_dy(SEXP s1);
+extern SEXP R_gsk_outset_shadow_node_get_outline(SEXP s1);
+extern SEXP R_gsk_outset_shadow_node_get_spread(SEXP s1);
+extern SEXP R_gsk_paste_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_paste_node_get_depth(SEXP s1);
+extern SEXP R_gsk_path_equal(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_foreach(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_path_foreach_intersection(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_path_get_bounds(SEXP s1);
+extern SEXP R_gsk_path_get_closest_point(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_get_end_point(SEXP s1);
+extern SEXP R_gsk_path_get_next(SEXP s1);
+extern SEXP R_gsk_path_get_previous(SEXP s1);
+extern SEXP R_gsk_path_get_start_point(SEXP s1);
+extern SEXP R_gsk_path_get_stroke_bounds(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_get_tight_bounds(SEXP s1);
+extern SEXP R_gsk_path_in_fill(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_is_closed(SEXP s1);
+extern SEXP R_gsk_path_is_empty(SEXP s1);
+extern SEXP R_gsk_path_print(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_ref(SEXP s1);
+extern SEXP R_gsk_path_to_cairo(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_to_string(SEXP s1);
+extern SEXP R_gsk_path_unref(SEXP s1);
+extern SEXP R_gsk_path_parse(SEXP s1);
+extern SEXP R_gsk_path_builder_new(void);
+extern SEXP R_gsk_path_builder_add_cairo_path(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_builder_add_circle(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_builder_add_layout(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_builder_add_path(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_builder_add_rect(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_builder_add_reverse_path(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_builder_add_rounded_rect(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_builder_add_segment(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_path_builder_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_path_builder_close(SEXP s1);
+extern SEXP R_gsk_path_builder_conic_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gsk_path_builder_cubic_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_gsk_path_builder_get_current_point(SEXP s1);
+extern SEXP R_gsk_path_builder_html_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gsk_path_builder_line_to(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_builder_move_to(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_builder_quad_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_path_builder_ref(SEXP s1);
+extern SEXP R_gsk_path_builder_rel_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_path_builder_rel_conic_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gsk_path_builder_rel_cubic_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_gsk_path_builder_rel_html_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gsk_path_builder_rel_line_to(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_builder_rel_move_to(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_builder_rel_quad_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_path_builder_rel_svg_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_gsk_path_builder_svg_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_gsk_path_builder_to_path(SEXP s1);
+extern SEXP R_gsk_path_builder_unref(SEXP s1);
+extern SEXP R_gsk_path_measure_new(SEXP s1);
+extern SEXP R_gsk_path_measure_new_with_tolerance(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_measure_get_length(SEXP s1);
+extern SEXP R_gsk_path_measure_get_path(SEXP s1);
+extern SEXP R_gsk_path_measure_get_point(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_measure_get_tolerance(SEXP s1);
+extern SEXP R_gsk_path_measure_ref(SEXP s1);
+extern SEXP R_gsk_path_measure_unref(SEXP s1);
+extern SEXP R_gsk_path_point_compare(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_point_copy(SEXP s1);
+extern SEXP R_gsk_path_point_equal(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_point_free(SEXP s1);
+extern SEXP R_gsk_path_point_get_curvature(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_point_get_distance(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_point_get_position(SEXP s1, SEXP s2);
+extern SEXP R_gsk_path_point_get_rotation(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_path_point_get_tangent(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_radial_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_gsk_radial_gradient_node_get_center(SEXP s1);
+extern SEXP R_gsk_radial_gradient_node_get_color_stops(SEXP s1);
+extern SEXP R_gsk_radial_gradient_node_get_end(SEXP s1);
+extern SEXP R_gsk_radial_gradient_node_get_hradius(SEXP s1);
+extern SEXP R_gsk_radial_gradient_node_get_n_color_stops(SEXP s1);
+extern SEXP R_gsk_radial_gradient_node_get_start(SEXP s1);
+extern SEXP R_gsk_radial_gradient_node_get_vradius(SEXP s1);
+extern SEXP R_gsk_render_node_deserialize(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_render_node_draw(SEXP s1, SEXP s2);
+extern SEXP R_gsk_render_node_get_bounds(SEXP s1);
+extern SEXP R_gsk_render_node_get_children(SEXP s1);
+extern SEXP R_gsk_render_node_get_node_type(SEXP s1);
+extern SEXP R_gsk_render_node_get_opaque_rect(SEXP s1);
+extern SEXP R_gsk_render_node_ref(SEXP s1);
+extern SEXP R_gsk_render_node_serialize(SEXP s1);
+extern SEXP R_gsk_render_node_unref(SEXP s1);
+extern SEXP R_gsk_render_node_write_to_file(SEXP s1, SEXP s2);
+extern SEXP R_gsk_render_replay_new(void);
+extern SEXP R_gsk_render_replay_default(SEXP s1, SEXP s2);
+extern SEXP R_gsk_render_replay_filter_font(SEXP s1, SEXP s2);
+extern SEXP R_gsk_render_replay_filter_node(SEXP s1, SEXP s2);
+extern SEXP R_gsk_render_replay_filter_texture(SEXP s1, SEXP s2);
+extern SEXP R_gsk_render_replay_free(SEXP s1);
+extern SEXP R_gsk_render_replay_set_font_filter(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_render_replay_set_node_filter(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_render_replay_set_texture_filter(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_renderer_new_for_surface(SEXP s1);
+extern SEXP R_gsk_renderer_get_surface(SEXP s1);
+extern SEXP R_gsk_renderer_is_realized(SEXP s1);
+extern SEXP R_gsk_renderer_realize(SEXP s1, SEXP s2);
+extern SEXP R_gsk_renderer_realize_for_display(SEXP s1, SEXP s2);
+extern SEXP R_gsk_renderer_render(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_renderer_render_texture(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_renderer_unrealize(SEXP s1);
+extern SEXP R_gsk_repeat_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_repeat_node_get_child(SEXP s1);
+extern SEXP R_gsk_repeat_node_get_child_bounds(SEXP s1);
+extern SEXP R_gsk_repeating_linear_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_repeating_radial_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
+extern SEXP R_gsk_rounded_clip_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_rounded_clip_node_get_child(SEXP s1);
+extern SEXP R_gsk_rounded_clip_node_get_clip(SEXP s1);
+extern SEXP R_gsk_rounded_rect_contains_point(SEXP s1, SEXP s2);
+extern SEXP R_gsk_rounded_rect_contains_rect(SEXP s1, SEXP s2);
+extern SEXP R_gsk_rounded_rect_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
+extern SEXP R_gsk_rounded_rect_init_copy(SEXP s1, SEXP s2);
+extern SEXP R_gsk_rounded_rect_init_from_rect(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_rounded_rect_intersects_rect(SEXP s1, SEXP s2);
+extern SEXP R_gsk_rounded_rect_is_rectilinear(SEXP s1);
+extern SEXP R_gsk_rounded_rect_normalize(SEXP s1);
+extern SEXP R_gsk_rounded_rect_offset(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_rounded_rect_shrink(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
+extern SEXP R_gsk_serialization_error_quark(void);
+extern SEXP R_gsk_shader_args_builder_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_shader_args_builder_ref(SEXP s1);
+extern SEXP R_gsk_shader_args_builder_set_bool(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_shader_args_builder_set_float(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_shader_args_builder_set_int(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_shader_args_builder_set_uint(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_shader_args_builder_set_vec2(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_shader_args_builder_set_vec3(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_shader_args_builder_set_vec4(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_shader_args_builder_to_args(SEXP s1);
+extern SEXP R_gsk_shader_args_builder_unref(SEXP s1);
+extern SEXP R_gsk_shadow_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_shadow_node_get_child(SEXP s1);
+extern SEXP R_gsk_shadow_node_get_n_shadows(SEXP s1);
+extern SEXP R_gsk_shadow_node_get_shadow(SEXP s1, SEXP s2);
+extern SEXP R_gsk_stroke_new(SEXP s1);
+extern SEXP R_gsk_stroke_copy(SEXP s1);
+extern SEXP R_gsk_stroke_free(SEXP s1);
+extern SEXP R_gsk_stroke_get_dash(SEXP s1);
+extern SEXP R_gsk_stroke_get_dash_offset(SEXP s1);
+extern SEXP R_gsk_stroke_get_line_cap(SEXP s1);
+extern SEXP R_gsk_stroke_get_line_join(SEXP s1);
+extern SEXP R_gsk_stroke_get_line_width(SEXP s1);
+extern SEXP R_gsk_stroke_get_miter_limit(SEXP s1);
+extern SEXP R_gsk_stroke_set_dash(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_stroke_set_dash_offset(SEXP s1, SEXP s2);
+extern SEXP R_gsk_stroke_set_line_cap(SEXP s1, SEXP s2);
+extern SEXP R_gsk_stroke_set_line_join(SEXP s1, SEXP s2);
+extern SEXP R_gsk_stroke_set_line_width(SEXP s1, SEXP s2);
+extern SEXP R_gsk_stroke_set_miter_limit(SEXP s1, SEXP s2);
+extern SEXP R_gsk_stroke_to_cairo(SEXP s1, SEXP s2);
+extern SEXP R_gsk_stroke_equal(SEXP s1, SEXP s2);
+extern SEXP R_gsk_stroke_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_stroke_node_get_child(SEXP s1);
+extern SEXP R_gsk_stroke_node_get_path(SEXP s1);
+extern SEXP R_gsk_stroke_node_get_stroke(SEXP s1);
+extern SEXP R_gsk_subsurface_node_get_child(SEXP s1);
+extern SEXP R_gsk_text_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_text_node_get_color(SEXP s1);
+extern SEXP R_gsk_text_node_get_font(SEXP s1);
+extern SEXP R_gsk_text_node_get_glyphs(SEXP s1);
+extern SEXP R_gsk_text_node_get_num_glyphs(SEXP s1);
+extern SEXP R_gsk_text_node_get_offset(SEXP s1);
+extern SEXP R_gsk_text_node_has_color_glyphs(SEXP s1);
+extern SEXP R_gsk_texture_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_texture_node_get_texture(SEXP s1);
+extern SEXP R_gsk_texture_scale_node_new(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_texture_scale_node_get_filter(SEXP s1);
+extern SEXP R_gsk_texture_scale_node_get_texture(SEXP s1);
+extern SEXP R_gsk_transform_new(void);
+extern SEXP R_gsk_transform_equal(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_get_category(SEXP s1);
+extern SEXP R_gsk_transform_invert(SEXP s1);
+extern SEXP R_gsk_transform_matrix(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_matrix_2d(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
+extern SEXP R_gsk_transform_perspective(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_print(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_ref(SEXP s1);
+extern SEXP R_gsk_transform_rotate(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_rotate_3d(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_transform_scale(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_transform_scale_3d(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
+extern SEXP R_gsk_transform_skew(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_gsk_transform_to_2d(SEXP s1);
+extern SEXP R_gsk_transform_to_2d_components(SEXP s1);
+extern SEXP R_gsk_transform_to_affine(SEXP s1);
+extern SEXP R_gsk_transform_to_matrix(SEXP s1);
+extern SEXP R_gsk_transform_to_string(SEXP s1);
+extern SEXP R_gsk_transform_to_translate(SEXP s1);
+extern SEXP R_gsk_transform_transform(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_transform_bounds(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_transform_point(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_translate(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_translate_3d(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_unref(SEXP s1);
+extern SEXP R_gsk_transform_parse(SEXP s1);
+extern SEXP R_gsk_transform_node_new(SEXP s1, SEXP s2);
+extern SEXP R_gsk_transform_node_get_child(SEXP s1);
+extern SEXP R_gsk_transform_node_get_transform(SEXP s1);
+extern SEXP R_gsk_vulkan_renderer_new(void);
+extern SEXP R_gsk_value_dup_render_node(SEXP s1);
+extern SEXP R_gsk_value_get_render_node(SEXP s1);
+extern SEXP R_gsk_value_set_render_node(SEXP s1, SEXP s2);
+extern SEXP R_gsk_value_take_render_node(SEXP s1, SEXP s2);
 extern SEXP R_gtk_at_context_create(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_at_context_get_accessible(SEXP s1);
 extern SEXP R_gtk_at_context_get_accessible_role(SEXP s1);
@@ -10430,6 +11138,714 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_type_register_static", (DL_FUNC) &R_g_type_register_static, 4},
     {"R_g_type_set_qdata", (DL_FUNC) &R_g_type_set_qdata, 3},
     {"R_g_type_test_flags", (DL_FUNC) &R_g_type_test_flags, 2},
+    {"R_graphene_box_alloc", (DL_FUNC) &R_graphene_box_alloc, 0},
+    {"R_graphene_box_contains_box", (DL_FUNC) &R_graphene_box_contains_box, 2},
+    {"R_graphene_box_contains_point", (DL_FUNC) &R_graphene_box_contains_point, 2},
+    {"R_graphene_box_equal", (DL_FUNC) &R_graphene_box_equal, 2},
+    {"R_graphene_box_expand", (DL_FUNC) &R_graphene_box_expand, 2},
+    {"R_graphene_box_expand_scalar", (DL_FUNC) &R_graphene_box_expand_scalar, 2},
+    {"R_graphene_box_expand_vec3", (DL_FUNC) &R_graphene_box_expand_vec3, 2},
+    {"R_graphene_box_free", (DL_FUNC) &R_graphene_box_free, 1},
+    {"R_graphene_box_get_bounding_sphere", (DL_FUNC) &R_graphene_box_get_bounding_sphere, 1},
+    {"R_graphene_box_get_center", (DL_FUNC) &R_graphene_box_get_center, 1},
+    {"R_graphene_box_get_depth", (DL_FUNC) &R_graphene_box_get_depth, 1},
+    {"R_graphene_box_get_height", (DL_FUNC) &R_graphene_box_get_height, 1},
+    {"R_graphene_box_get_max", (DL_FUNC) &R_graphene_box_get_max, 1},
+    {"R_graphene_box_get_min", (DL_FUNC) &R_graphene_box_get_min, 1},
+    {"R_graphene_box_get_size", (DL_FUNC) &R_graphene_box_get_size, 1},
+    {"R_graphene_box_get_vertices", (DL_FUNC) &R_graphene_box_get_vertices, 1},
+    {"R_graphene_box_get_width", (DL_FUNC) &R_graphene_box_get_width, 1},
+    {"R_graphene_box_init", (DL_FUNC) &R_graphene_box_init, 3},
+    {"R_graphene_box_init_from_box", (DL_FUNC) &R_graphene_box_init_from_box, 2},
+    {"R_graphene_box_init_from_points", (DL_FUNC) &R_graphene_box_init_from_points, 3},
+    {"R_graphene_box_init_from_vec3", (DL_FUNC) &R_graphene_box_init_from_vec3, 3},
+    {"R_graphene_box_init_from_vectors", (DL_FUNC) &R_graphene_box_init_from_vectors, 3},
+    {"R_graphene_box_intersection", (DL_FUNC) &R_graphene_box_intersection, 2},
+    {"R_graphene_box_union", (DL_FUNC) &R_graphene_box_union, 2},
+    {"R_graphene_box_empty", (DL_FUNC) &R_graphene_box_empty, 0},
+    {"R_graphene_box_infinite", (DL_FUNC) &R_graphene_box_infinite, 0},
+    {"R_graphene_box_minus_one", (DL_FUNC) &R_graphene_box_minus_one, 0},
+    {"R_graphene_box_one", (DL_FUNC) &R_graphene_box_one, 0},
+    {"R_graphene_box_one_minus_one", (DL_FUNC) &R_graphene_box_one_minus_one, 0},
+    {"R_graphene_box_zero", (DL_FUNC) &R_graphene_box_zero, 0},
+    {"R_graphene_euler_alloc", (DL_FUNC) &R_graphene_euler_alloc, 0},
+    {"R_graphene_euler_equal", (DL_FUNC) &R_graphene_euler_equal, 2},
+    {"R_graphene_euler_free", (DL_FUNC) &R_graphene_euler_free, 1},
+    {"R_graphene_euler_get_alpha", (DL_FUNC) &R_graphene_euler_get_alpha, 1},
+    {"R_graphene_euler_get_beta", (DL_FUNC) &R_graphene_euler_get_beta, 1},
+    {"R_graphene_euler_get_gamma", (DL_FUNC) &R_graphene_euler_get_gamma, 1},
+    {"R_graphene_euler_get_order", (DL_FUNC) &R_graphene_euler_get_order, 1},
+    {"R_graphene_euler_get_x", (DL_FUNC) &R_graphene_euler_get_x, 1},
+    {"R_graphene_euler_get_y", (DL_FUNC) &R_graphene_euler_get_y, 1},
+    {"R_graphene_euler_get_z", (DL_FUNC) &R_graphene_euler_get_z, 1},
+    {"R_graphene_euler_init", (DL_FUNC) &R_graphene_euler_init, 4},
+    {"R_graphene_euler_init_from_euler", (DL_FUNC) &R_graphene_euler_init_from_euler, 2},
+    {"R_graphene_euler_init_from_matrix", (DL_FUNC) &R_graphene_euler_init_from_matrix, 3},
+    {"R_graphene_euler_init_from_quaternion", (DL_FUNC) &R_graphene_euler_init_from_quaternion, 3},
+    {"R_graphene_euler_init_from_radians", (DL_FUNC) &R_graphene_euler_init_from_radians, 5},
+    {"R_graphene_euler_init_from_vec3", (DL_FUNC) &R_graphene_euler_init_from_vec3, 3},
+    {"R_graphene_euler_init_with_order", (DL_FUNC) &R_graphene_euler_init_with_order, 5},
+    {"R_graphene_euler_reorder", (DL_FUNC) &R_graphene_euler_reorder, 2},
+    {"R_graphene_euler_to_matrix", (DL_FUNC) &R_graphene_euler_to_matrix, 1},
+    {"R_graphene_euler_to_quaternion", (DL_FUNC) &R_graphene_euler_to_quaternion, 1},
+    {"R_graphene_euler_to_vec3", (DL_FUNC) &R_graphene_euler_to_vec3, 1},
+    {"R_graphene_frustum_alloc", (DL_FUNC) &R_graphene_frustum_alloc, 0},
+    {"R_graphene_frustum_contains_point", (DL_FUNC) &R_graphene_frustum_contains_point, 2},
+    {"R_graphene_frustum_equal", (DL_FUNC) &R_graphene_frustum_equal, 2},
+    {"R_graphene_frustum_free", (DL_FUNC) &R_graphene_frustum_free, 1},
+    {"R_graphene_frustum_get_planes", (DL_FUNC) &R_graphene_frustum_get_planes, 1},
+    {"R_graphene_frustum_init", (DL_FUNC) &R_graphene_frustum_init, 7},
+    {"R_graphene_frustum_init_from_frustum", (DL_FUNC) &R_graphene_frustum_init_from_frustum, 2},
+    {"R_graphene_frustum_init_from_matrix", (DL_FUNC) &R_graphene_frustum_init_from_matrix, 2},
+    {"R_graphene_frustum_intersects_box", (DL_FUNC) &R_graphene_frustum_intersects_box, 2},
+    {"R_graphene_frustum_intersects_sphere", (DL_FUNC) &R_graphene_frustum_intersects_sphere, 2},
+    {"R_graphene_matrix_alloc", (DL_FUNC) &R_graphene_matrix_alloc, 0},
+    {"R_graphene_matrix_decompose", (DL_FUNC) &R_graphene_matrix_decompose, 1},
+    {"R_graphene_matrix_determinant", (DL_FUNC) &R_graphene_matrix_determinant, 1},
+    {"R_graphene_matrix_equal", (DL_FUNC) &R_graphene_matrix_equal, 2},
+    {"R_graphene_matrix_equal_fast", (DL_FUNC) &R_graphene_matrix_equal_fast, 2},
+    {"R_graphene_matrix_free", (DL_FUNC) &R_graphene_matrix_free, 1},
+    {"R_graphene_matrix_get_row", (DL_FUNC) &R_graphene_matrix_get_row, 2},
+    {"R_graphene_matrix_get_value", (DL_FUNC) &R_graphene_matrix_get_value, 3},
+    {"R_graphene_matrix_get_x_scale", (DL_FUNC) &R_graphene_matrix_get_x_scale, 1},
+    {"R_graphene_matrix_get_x_translation", (DL_FUNC) &R_graphene_matrix_get_x_translation, 1},
+    {"R_graphene_matrix_get_y_scale", (DL_FUNC) &R_graphene_matrix_get_y_scale, 1},
+    {"R_graphene_matrix_get_y_translation", (DL_FUNC) &R_graphene_matrix_get_y_translation, 1},
+    {"R_graphene_matrix_get_z_scale", (DL_FUNC) &R_graphene_matrix_get_z_scale, 1},
+    {"R_graphene_matrix_get_z_translation", (DL_FUNC) &R_graphene_matrix_get_z_translation, 1},
+    {"R_graphene_matrix_init_from_2d", (DL_FUNC) &R_graphene_matrix_init_from_2d, 7},
+    {"R_graphene_matrix_init_from_float", (DL_FUNC) &R_graphene_matrix_init_from_float, 2},
+    {"R_graphene_matrix_init_from_matrix", (DL_FUNC) &R_graphene_matrix_init_from_matrix, 2},
+    {"R_graphene_matrix_init_from_vec4", (DL_FUNC) &R_graphene_matrix_init_from_vec4, 5},
+    {"R_graphene_matrix_init_frustum", (DL_FUNC) &R_graphene_matrix_init_frustum, 7},
+    {"R_graphene_matrix_init_identity", (DL_FUNC) &R_graphene_matrix_init_identity, 1},
+    {"R_graphene_matrix_init_look_at", (DL_FUNC) &R_graphene_matrix_init_look_at, 4},
+    {"R_graphene_matrix_init_ortho", (DL_FUNC) &R_graphene_matrix_init_ortho, 7},
+    {"R_graphene_matrix_init_perspective", (DL_FUNC) &R_graphene_matrix_init_perspective, 5},
+    {"R_graphene_matrix_init_rotate", (DL_FUNC) &R_graphene_matrix_init_rotate, 3},
+    {"R_graphene_matrix_init_scale", (DL_FUNC) &R_graphene_matrix_init_scale, 4},
+    {"R_graphene_matrix_init_skew", (DL_FUNC) &R_graphene_matrix_init_skew, 3},
+    {"R_graphene_matrix_init_translate", (DL_FUNC) &R_graphene_matrix_init_translate, 2},
+    {"R_graphene_matrix_interpolate", (DL_FUNC) &R_graphene_matrix_interpolate, 3},
+    {"R_graphene_matrix_inverse", (DL_FUNC) &R_graphene_matrix_inverse, 1},
+    {"R_graphene_matrix_is_2d", (DL_FUNC) &R_graphene_matrix_is_2d, 1},
+    {"R_graphene_matrix_is_backface_visible", (DL_FUNC) &R_graphene_matrix_is_backface_visible, 1},
+    {"R_graphene_matrix_is_identity", (DL_FUNC) &R_graphene_matrix_is_identity, 1},
+    {"R_graphene_matrix_is_singular", (DL_FUNC) &R_graphene_matrix_is_singular, 1},
+    {"R_graphene_matrix_multiply", (DL_FUNC) &R_graphene_matrix_multiply, 2},
+    {"R_graphene_matrix_near", (DL_FUNC) &R_graphene_matrix_near, 3},
+    {"R_graphene_matrix_normalize", (DL_FUNC) &R_graphene_matrix_normalize, 1},
+    {"R_graphene_matrix_perspective", (DL_FUNC) &R_graphene_matrix_perspective, 2},
+    {"R_graphene_matrix_print", (DL_FUNC) &R_graphene_matrix_print, 1},
+    {"R_graphene_matrix_project_point", (DL_FUNC) &R_graphene_matrix_project_point, 2},
+    {"R_graphene_matrix_project_rect", (DL_FUNC) &R_graphene_matrix_project_rect, 2},
+    {"R_graphene_matrix_project_rect_bounds", (DL_FUNC) &R_graphene_matrix_project_rect_bounds, 2},
+    {"R_graphene_matrix_rotate", (DL_FUNC) &R_graphene_matrix_rotate, 3},
+    {"R_graphene_matrix_rotate_euler", (DL_FUNC) &R_graphene_matrix_rotate_euler, 2},
+    {"R_graphene_matrix_rotate_quaternion", (DL_FUNC) &R_graphene_matrix_rotate_quaternion, 2},
+    {"R_graphene_matrix_rotate_x", (DL_FUNC) &R_graphene_matrix_rotate_x, 2},
+    {"R_graphene_matrix_rotate_y", (DL_FUNC) &R_graphene_matrix_rotate_y, 2},
+    {"R_graphene_matrix_rotate_z", (DL_FUNC) &R_graphene_matrix_rotate_z, 2},
+    {"R_graphene_matrix_scale", (DL_FUNC) &R_graphene_matrix_scale, 4},
+    {"R_graphene_matrix_skew_xy", (DL_FUNC) &R_graphene_matrix_skew_xy, 2},
+    {"R_graphene_matrix_skew_xz", (DL_FUNC) &R_graphene_matrix_skew_xz, 2},
+    {"R_graphene_matrix_skew_yz", (DL_FUNC) &R_graphene_matrix_skew_yz, 2},
+    {"R_graphene_matrix_to_2d", (DL_FUNC) &R_graphene_matrix_to_2d, 1},
+    {"R_graphene_matrix_to_float", (DL_FUNC) &R_graphene_matrix_to_float, 1},
+    {"R_graphene_matrix_transform_bounds", (DL_FUNC) &R_graphene_matrix_transform_bounds, 2},
+    {"R_graphene_matrix_transform_box", (DL_FUNC) &R_graphene_matrix_transform_box, 2},
+    {"R_graphene_matrix_transform_point", (DL_FUNC) &R_graphene_matrix_transform_point, 2},
+    {"R_graphene_matrix_transform_point3d", (DL_FUNC) &R_graphene_matrix_transform_point3d, 2},
+    {"R_graphene_matrix_transform_ray", (DL_FUNC) &R_graphene_matrix_transform_ray, 2},
+    {"R_graphene_matrix_transform_rect", (DL_FUNC) &R_graphene_matrix_transform_rect, 2},
+    {"R_graphene_matrix_transform_sphere", (DL_FUNC) &R_graphene_matrix_transform_sphere, 2},
+    {"R_graphene_matrix_transform_vec3", (DL_FUNC) &R_graphene_matrix_transform_vec3, 2},
+    {"R_graphene_matrix_transform_vec4", (DL_FUNC) &R_graphene_matrix_transform_vec4, 2},
+    {"R_graphene_matrix_translate", (DL_FUNC) &R_graphene_matrix_translate, 2},
+    {"R_graphene_matrix_transpose", (DL_FUNC) &R_graphene_matrix_transpose, 1},
+    {"R_graphene_matrix_unproject_point3d", (DL_FUNC) &R_graphene_matrix_unproject_point3d, 3},
+    {"R_graphene_matrix_untransform_bounds", (DL_FUNC) &R_graphene_matrix_untransform_bounds, 3},
+    {"R_graphene_matrix_untransform_point", (DL_FUNC) &R_graphene_matrix_untransform_point, 3},
+    {"R_graphene_plane_alloc", (DL_FUNC) &R_graphene_plane_alloc, 0},
+    {"R_graphene_plane_distance", (DL_FUNC) &R_graphene_plane_distance, 2},
+    {"R_graphene_plane_equal", (DL_FUNC) &R_graphene_plane_equal, 2},
+    {"R_graphene_plane_free", (DL_FUNC) &R_graphene_plane_free, 1},
+    {"R_graphene_plane_get_constant", (DL_FUNC) &R_graphene_plane_get_constant, 1},
+    {"R_graphene_plane_get_normal", (DL_FUNC) &R_graphene_plane_get_normal, 1},
+    {"R_graphene_plane_init", (DL_FUNC) &R_graphene_plane_init, 3},
+    {"R_graphene_plane_init_from_plane", (DL_FUNC) &R_graphene_plane_init_from_plane, 2},
+    {"R_graphene_plane_init_from_point", (DL_FUNC) &R_graphene_plane_init_from_point, 3},
+    {"R_graphene_plane_init_from_points", (DL_FUNC) &R_graphene_plane_init_from_points, 4},
+    {"R_graphene_plane_init_from_vec4", (DL_FUNC) &R_graphene_plane_init_from_vec4, 2},
+    {"R_graphene_plane_negate", (DL_FUNC) &R_graphene_plane_negate, 1},
+    {"R_graphene_plane_normalize", (DL_FUNC) &R_graphene_plane_normalize, 1},
+    {"R_graphene_plane_transform", (DL_FUNC) &R_graphene_plane_transform, 3},
+    {"R_graphene_point_alloc", (DL_FUNC) &R_graphene_point_alloc, 0},
+    {"R_graphene_point_distance", (DL_FUNC) &R_graphene_point_distance, 2},
+    {"R_graphene_point_equal", (DL_FUNC) &R_graphene_point_equal, 2},
+    {"R_graphene_point_free", (DL_FUNC) &R_graphene_point_free, 1},
+    {"R_graphene_point_init", (DL_FUNC) &R_graphene_point_init, 3},
+    {"R_graphene_point_init_from_point", (DL_FUNC) &R_graphene_point_init_from_point, 2},
+    {"R_graphene_point_init_from_vec2", (DL_FUNC) &R_graphene_point_init_from_vec2, 2},
+    {"R_graphene_point_interpolate", (DL_FUNC) &R_graphene_point_interpolate, 3},
+    {"R_graphene_point_near", (DL_FUNC) &R_graphene_point_near, 3},
+    {"R_graphene_point_to_vec2", (DL_FUNC) &R_graphene_point_to_vec2, 1},
+    {"R_graphene_point_zero", (DL_FUNC) &R_graphene_point_zero, 0},
+    {"R_graphene_point3d_alloc", (DL_FUNC) &R_graphene_point3d_alloc, 0},
+    {"R_graphene_point3d_cross", (DL_FUNC) &R_graphene_point3d_cross, 2},
+    {"R_graphene_point3d_distance", (DL_FUNC) &R_graphene_point3d_distance, 2},
+    {"R_graphene_point3d_dot", (DL_FUNC) &R_graphene_point3d_dot, 2},
+    {"R_graphene_point3d_equal", (DL_FUNC) &R_graphene_point3d_equal, 2},
+    {"R_graphene_point3d_free", (DL_FUNC) &R_graphene_point3d_free, 1},
+    {"R_graphene_point3d_init", (DL_FUNC) &R_graphene_point3d_init, 4},
+    {"R_graphene_point3d_init_from_point", (DL_FUNC) &R_graphene_point3d_init_from_point, 2},
+    {"R_graphene_point3d_init_from_vec3", (DL_FUNC) &R_graphene_point3d_init_from_vec3, 2},
+    {"R_graphene_point3d_interpolate", (DL_FUNC) &R_graphene_point3d_interpolate, 3},
+    {"R_graphene_point3d_length", (DL_FUNC) &R_graphene_point3d_length, 1},
+    {"R_graphene_point3d_near", (DL_FUNC) &R_graphene_point3d_near, 3},
+    {"R_graphene_point3d_normalize", (DL_FUNC) &R_graphene_point3d_normalize, 1},
+    {"R_graphene_point3d_normalize_viewport", (DL_FUNC) &R_graphene_point3d_normalize_viewport, 4},
+    {"R_graphene_point3d_scale", (DL_FUNC) &R_graphene_point3d_scale, 2},
+    {"R_graphene_point3d_to_vec3", (DL_FUNC) &R_graphene_point3d_to_vec3, 1},
+    {"R_graphene_point3d_zero", (DL_FUNC) &R_graphene_point3d_zero, 0},
+    {"R_graphene_quad_alloc", (DL_FUNC) &R_graphene_quad_alloc, 0},
+    {"R_graphene_quad_bounds", (DL_FUNC) &R_graphene_quad_bounds, 1},
+    {"R_graphene_quad_contains", (DL_FUNC) &R_graphene_quad_contains, 2},
+    {"R_graphene_quad_free", (DL_FUNC) &R_graphene_quad_free, 1},
+    {"R_graphene_quad_get_point", (DL_FUNC) &R_graphene_quad_get_point, 2},
+    {"R_graphene_quad_init", (DL_FUNC) &R_graphene_quad_init, 5},
+    {"R_graphene_quad_init_from_points", (DL_FUNC) &R_graphene_quad_init_from_points, 2},
+    {"R_graphene_quad_init_from_rect", (DL_FUNC) &R_graphene_quad_init_from_rect, 2},
+    {"R_graphene_quaternion_alloc", (DL_FUNC) &R_graphene_quaternion_alloc, 0},
+    {"R_graphene_quaternion_add", (DL_FUNC) &R_graphene_quaternion_add, 2},
+    {"R_graphene_quaternion_dot", (DL_FUNC) &R_graphene_quaternion_dot, 2},
+    {"R_graphene_quaternion_equal", (DL_FUNC) &R_graphene_quaternion_equal, 2},
+    {"R_graphene_quaternion_free", (DL_FUNC) &R_graphene_quaternion_free, 1},
+    {"R_graphene_quaternion_init", (DL_FUNC) &R_graphene_quaternion_init, 5},
+    {"R_graphene_quaternion_init_from_angle_vec3", (DL_FUNC) &R_graphene_quaternion_init_from_angle_vec3, 3},
+    {"R_graphene_quaternion_init_from_angles", (DL_FUNC) &R_graphene_quaternion_init_from_angles, 4},
+    {"R_graphene_quaternion_init_from_euler", (DL_FUNC) &R_graphene_quaternion_init_from_euler, 2},
+    {"R_graphene_quaternion_init_from_matrix", (DL_FUNC) &R_graphene_quaternion_init_from_matrix, 2},
+    {"R_graphene_quaternion_init_from_quaternion", (DL_FUNC) &R_graphene_quaternion_init_from_quaternion, 2},
+    {"R_graphene_quaternion_init_from_radians", (DL_FUNC) &R_graphene_quaternion_init_from_radians, 4},
+    {"R_graphene_quaternion_init_from_vec4", (DL_FUNC) &R_graphene_quaternion_init_from_vec4, 2},
+    {"R_graphene_quaternion_init_identity", (DL_FUNC) &R_graphene_quaternion_init_identity, 1},
+    {"R_graphene_quaternion_invert", (DL_FUNC) &R_graphene_quaternion_invert, 1},
+    {"R_graphene_quaternion_multiply", (DL_FUNC) &R_graphene_quaternion_multiply, 2},
+    {"R_graphene_quaternion_normalize", (DL_FUNC) &R_graphene_quaternion_normalize, 1},
+    {"R_graphene_quaternion_scale", (DL_FUNC) &R_graphene_quaternion_scale, 2},
+    {"R_graphene_quaternion_slerp", (DL_FUNC) &R_graphene_quaternion_slerp, 3},
+    {"R_graphene_quaternion_to_angle_vec3", (DL_FUNC) &R_graphene_quaternion_to_angle_vec3, 1},
+    {"R_graphene_quaternion_to_angles", (DL_FUNC) &R_graphene_quaternion_to_angles, 1},
+    {"R_graphene_quaternion_to_matrix", (DL_FUNC) &R_graphene_quaternion_to_matrix, 1},
+    {"R_graphene_quaternion_to_radians", (DL_FUNC) &R_graphene_quaternion_to_radians, 1},
+    {"R_graphene_quaternion_to_vec4", (DL_FUNC) &R_graphene_quaternion_to_vec4, 1},
+    {"R_graphene_ray_alloc", (DL_FUNC) &R_graphene_ray_alloc, 0},
+    {"R_graphene_ray_equal", (DL_FUNC) &R_graphene_ray_equal, 2},
+    {"R_graphene_ray_free", (DL_FUNC) &R_graphene_ray_free, 1},
+    {"R_graphene_ray_get_closest_point_to_point", (DL_FUNC) &R_graphene_ray_get_closest_point_to_point, 2},
+    {"R_graphene_ray_get_direction", (DL_FUNC) &R_graphene_ray_get_direction, 1},
+    {"R_graphene_ray_get_distance_to_plane", (DL_FUNC) &R_graphene_ray_get_distance_to_plane, 2},
+    {"R_graphene_ray_get_distance_to_point", (DL_FUNC) &R_graphene_ray_get_distance_to_point, 2},
+    {"R_graphene_ray_get_origin", (DL_FUNC) &R_graphene_ray_get_origin, 1},
+    {"R_graphene_ray_get_position_at", (DL_FUNC) &R_graphene_ray_get_position_at, 2},
+    {"R_graphene_ray_init", (DL_FUNC) &R_graphene_ray_init, 3},
+    {"R_graphene_ray_init_from_ray", (DL_FUNC) &R_graphene_ray_init_from_ray, 2},
+    {"R_graphene_ray_init_from_vec3", (DL_FUNC) &R_graphene_ray_init_from_vec3, 3},
+    {"R_graphene_ray_intersect_box", (DL_FUNC) &R_graphene_ray_intersect_box, 2},
+    {"R_graphene_ray_intersect_sphere", (DL_FUNC) &R_graphene_ray_intersect_sphere, 2},
+    {"R_graphene_ray_intersect_triangle", (DL_FUNC) &R_graphene_ray_intersect_triangle, 2},
+    {"R_graphene_ray_intersects_box", (DL_FUNC) &R_graphene_ray_intersects_box, 2},
+    {"R_graphene_ray_intersects_sphere", (DL_FUNC) &R_graphene_ray_intersects_sphere, 2},
+    {"R_graphene_ray_intersects_triangle", (DL_FUNC) &R_graphene_ray_intersects_triangle, 2},
+    {"R_graphene_rect_contains_point", (DL_FUNC) &R_graphene_rect_contains_point, 2},
+    {"R_graphene_rect_contains_rect", (DL_FUNC) &R_graphene_rect_contains_rect, 2},
+    {"R_graphene_rect_equal", (DL_FUNC) &R_graphene_rect_equal, 2},
+    {"R_graphene_rect_expand", (DL_FUNC) &R_graphene_rect_expand, 2},
+    {"R_graphene_rect_free", (DL_FUNC) &R_graphene_rect_free, 1},
+    {"R_graphene_rect_get_area", (DL_FUNC) &R_graphene_rect_get_area, 1},
+    {"R_graphene_rect_get_bottom_left", (DL_FUNC) &R_graphene_rect_get_bottom_left, 1},
+    {"R_graphene_rect_get_bottom_right", (DL_FUNC) &R_graphene_rect_get_bottom_right, 1},
+    {"R_graphene_rect_get_center", (DL_FUNC) &R_graphene_rect_get_center, 1},
+    {"R_graphene_rect_get_height", (DL_FUNC) &R_graphene_rect_get_height, 1},
+    {"R_graphene_rect_get_top_left", (DL_FUNC) &R_graphene_rect_get_top_left, 1},
+    {"R_graphene_rect_get_top_right", (DL_FUNC) &R_graphene_rect_get_top_right, 1},
+    {"R_graphene_rect_get_vertices", (DL_FUNC) &R_graphene_rect_get_vertices, 1},
+    {"R_graphene_rect_get_width", (DL_FUNC) &R_graphene_rect_get_width, 1},
+    {"R_graphene_rect_get_x", (DL_FUNC) &R_graphene_rect_get_x, 1},
+    {"R_graphene_rect_get_y", (DL_FUNC) &R_graphene_rect_get_y, 1},
+    {"R_graphene_rect_init", (DL_FUNC) &R_graphene_rect_init, 5},
+    {"R_graphene_rect_init_from_rect", (DL_FUNC) &R_graphene_rect_init_from_rect, 2},
+    {"R_graphene_rect_inset", (DL_FUNC) &R_graphene_rect_inset, 3},
+    {"R_graphene_rect_inset_r", (DL_FUNC) &R_graphene_rect_inset_r, 3},
+    {"R_graphene_rect_interpolate", (DL_FUNC) &R_graphene_rect_interpolate, 3},
+    {"R_graphene_rect_intersection", (DL_FUNC) &R_graphene_rect_intersection, 2},
+    {"R_graphene_rect_normalize", (DL_FUNC) &R_graphene_rect_normalize, 1},
+    {"R_graphene_rect_normalize_r", (DL_FUNC) &R_graphene_rect_normalize_r, 1},
+    {"R_graphene_rect_offset", (DL_FUNC) &R_graphene_rect_offset, 3},
+    {"R_graphene_rect_offset_r", (DL_FUNC) &R_graphene_rect_offset_r, 3},
+    {"R_graphene_rect_round", (DL_FUNC) &R_graphene_rect_round, 1},
+    {"R_graphene_rect_round_extents", (DL_FUNC) &R_graphene_rect_round_extents, 1},
+    {"R_graphene_rect_round_to_pixel", (DL_FUNC) &R_graphene_rect_round_to_pixel, 1},
+    {"R_graphene_rect_scale", (DL_FUNC) &R_graphene_rect_scale, 3},
+    {"R_graphene_rect_union", (DL_FUNC) &R_graphene_rect_union, 2},
+    {"R_graphene_rect_alloc", (DL_FUNC) &R_graphene_rect_alloc, 0},
+    {"R_graphene_rect_zero", (DL_FUNC) &R_graphene_rect_zero, 0},
+    {"R_graphene_size_alloc", (DL_FUNC) &R_graphene_size_alloc, 0},
+    {"R_graphene_size_equal", (DL_FUNC) &R_graphene_size_equal, 2},
+    {"R_graphene_size_free", (DL_FUNC) &R_graphene_size_free, 1},
+    {"R_graphene_size_init", (DL_FUNC) &R_graphene_size_init, 3},
+    {"R_graphene_size_init_from_size", (DL_FUNC) &R_graphene_size_init_from_size, 2},
+    {"R_graphene_size_interpolate", (DL_FUNC) &R_graphene_size_interpolate, 3},
+    {"R_graphene_size_scale", (DL_FUNC) &R_graphene_size_scale, 2},
+    {"R_graphene_size_zero", (DL_FUNC) &R_graphene_size_zero, 0},
+    {"R_graphene_sphere_alloc", (DL_FUNC) &R_graphene_sphere_alloc, 0},
+    {"R_graphene_sphere_contains_point", (DL_FUNC) &R_graphene_sphere_contains_point, 2},
+    {"R_graphene_sphere_distance", (DL_FUNC) &R_graphene_sphere_distance, 2},
+    {"R_graphene_sphere_equal", (DL_FUNC) &R_graphene_sphere_equal, 2},
+    {"R_graphene_sphere_free", (DL_FUNC) &R_graphene_sphere_free, 1},
+    {"R_graphene_sphere_get_bounding_box", (DL_FUNC) &R_graphene_sphere_get_bounding_box, 1},
+    {"R_graphene_sphere_get_center", (DL_FUNC) &R_graphene_sphere_get_center, 1},
+    {"R_graphene_sphere_get_radius", (DL_FUNC) &R_graphene_sphere_get_radius, 1},
+    {"R_graphene_sphere_init", (DL_FUNC) &R_graphene_sphere_init, 3},
+    {"R_graphene_sphere_init_from_points", (DL_FUNC) &R_graphene_sphere_init_from_points, 4},
+    {"R_graphene_sphere_init_from_vectors", (DL_FUNC) &R_graphene_sphere_init_from_vectors, 4},
+    {"R_graphene_sphere_is_empty", (DL_FUNC) &R_graphene_sphere_is_empty, 1},
+    {"R_graphene_sphere_translate", (DL_FUNC) &R_graphene_sphere_translate, 2},
+    {"R_graphene_triangle_alloc", (DL_FUNC) &R_graphene_triangle_alloc, 0},
+    {"R_graphene_triangle_contains_point", (DL_FUNC) &R_graphene_triangle_contains_point, 2},
+    {"R_graphene_triangle_equal", (DL_FUNC) &R_graphene_triangle_equal, 2},
+    {"R_graphene_triangle_free", (DL_FUNC) &R_graphene_triangle_free, 1},
+    {"R_graphene_triangle_get_area", (DL_FUNC) &R_graphene_triangle_get_area, 1},
+    {"R_graphene_triangle_get_barycoords", (DL_FUNC) &R_graphene_triangle_get_barycoords, 2},
+    {"R_graphene_triangle_get_bounding_box", (DL_FUNC) &R_graphene_triangle_get_bounding_box, 1},
+    {"R_graphene_triangle_get_midpoint", (DL_FUNC) &R_graphene_triangle_get_midpoint, 1},
+    {"R_graphene_triangle_get_normal", (DL_FUNC) &R_graphene_triangle_get_normal, 1},
+    {"R_graphene_triangle_get_plane", (DL_FUNC) &R_graphene_triangle_get_plane, 1},
+    {"R_graphene_triangle_get_points", (DL_FUNC) &R_graphene_triangle_get_points, 1},
+    {"R_graphene_triangle_get_uv", (DL_FUNC) &R_graphene_triangle_get_uv, 5},
+    {"R_graphene_triangle_get_vertices", (DL_FUNC) &R_graphene_triangle_get_vertices, 1},
+    {"R_graphene_triangle_init_from_float", (DL_FUNC) &R_graphene_triangle_init_from_float, 4},
+    {"R_graphene_triangle_init_from_point3d", (DL_FUNC) &R_graphene_triangle_init_from_point3d, 4},
+    {"R_graphene_triangle_init_from_vec3", (DL_FUNC) &R_graphene_triangle_init_from_vec3, 4},
+    {"R_graphene_vec2_alloc", (DL_FUNC) &R_graphene_vec2_alloc, 0},
+    {"R_graphene_vec2_add", (DL_FUNC) &R_graphene_vec2_add, 2},
+    {"R_graphene_vec2_divide", (DL_FUNC) &R_graphene_vec2_divide, 2},
+    {"R_graphene_vec2_dot", (DL_FUNC) &R_graphene_vec2_dot, 2},
+    {"R_graphene_vec2_equal", (DL_FUNC) &R_graphene_vec2_equal, 2},
+    {"R_graphene_vec2_free", (DL_FUNC) &R_graphene_vec2_free, 1},
+    {"R_graphene_vec2_get_x", (DL_FUNC) &R_graphene_vec2_get_x, 1},
+    {"R_graphene_vec2_get_y", (DL_FUNC) &R_graphene_vec2_get_y, 1},
+    {"R_graphene_vec2_init", (DL_FUNC) &R_graphene_vec2_init, 3},
+    {"R_graphene_vec2_init_from_float", (DL_FUNC) &R_graphene_vec2_init_from_float, 2},
+    {"R_graphene_vec2_init_from_vec2", (DL_FUNC) &R_graphene_vec2_init_from_vec2, 2},
+    {"R_graphene_vec2_interpolate", (DL_FUNC) &R_graphene_vec2_interpolate, 3},
+    {"R_graphene_vec2_length", (DL_FUNC) &R_graphene_vec2_length, 1},
+    {"R_graphene_vec2_max", (DL_FUNC) &R_graphene_vec2_max, 2},
+    {"R_graphene_vec2_min", (DL_FUNC) &R_graphene_vec2_min, 2},
+    {"R_graphene_vec2_multiply", (DL_FUNC) &R_graphene_vec2_multiply, 2},
+    {"R_graphene_vec2_near", (DL_FUNC) &R_graphene_vec2_near, 3},
+    {"R_graphene_vec2_negate", (DL_FUNC) &R_graphene_vec2_negate, 1},
+    {"R_graphene_vec2_normalize", (DL_FUNC) &R_graphene_vec2_normalize, 1},
+    {"R_graphene_vec2_scale", (DL_FUNC) &R_graphene_vec2_scale, 2},
+    {"R_graphene_vec2_subtract", (DL_FUNC) &R_graphene_vec2_subtract, 2},
+    {"R_graphene_vec2_to_float", (DL_FUNC) &R_graphene_vec2_to_float, 1},
+    {"R_graphene_vec2_one", (DL_FUNC) &R_graphene_vec2_one, 0},
+    {"R_graphene_vec2_x_axis", (DL_FUNC) &R_graphene_vec2_x_axis, 0},
+    {"R_graphene_vec2_y_axis", (DL_FUNC) &R_graphene_vec2_y_axis, 0},
+    {"R_graphene_vec2_zero", (DL_FUNC) &R_graphene_vec2_zero, 0},
+    {"R_graphene_vec3_alloc", (DL_FUNC) &R_graphene_vec3_alloc, 0},
+    {"R_graphene_vec3_add", (DL_FUNC) &R_graphene_vec3_add, 2},
+    {"R_graphene_vec3_cross", (DL_FUNC) &R_graphene_vec3_cross, 2},
+    {"R_graphene_vec3_divide", (DL_FUNC) &R_graphene_vec3_divide, 2},
+    {"R_graphene_vec3_dot", (DL_FUNC) &R_graphene_vec3_dot, 2},
+    {"R_graphene_vec3_equal", (DL_FUNC) &R_graphene_vec3_equal, 2},
+    {"R_graphene_vec3_free", (DL_FUNC) &R_graphene_vec3_free, 1},
+    {"R_graphene_vec3_get_x", (DL_FUNC) &R_graphene_vec3_get_x, 1},
+    {"R_graphene_vec3_get_xy", (DL_FUNC) &R_graphene_vec3_get_xy, 1},
+    {"R_graphene_vec3_get_xy0", (DL_FUNC) &R_graphene_vec3_get_xy0, 1},
+    {"R_graphene_vec3_get_xyz0", (DL_FUNC) &R_graphene_vec3_get_xyz0, 1},
+    {"R_graphene_vec3_get_xyz1", (DL_FUNC) &R_graphene_vec3_get_xyz1, 1},
+    {"R_graphene_vec3_get_xyzw", (DL_FUNC) &R_graphene_vec3_get_xyzw, 2},
+    {"R_graphene_vec3_get_y", (DL_FUNC) &R_graphene_vec3_get_y, 1},
+    {"R_graphene_vec3_get_z", (DL_FUNC) &R_graphene_vec3_get_z, 1},
+    {"R_graphene_vec3_init", (DL_FUNC) &R_graphene_vec3_init, 4},
+    {"R_graphene_vec3_init_from_float", (DL_FUNC) &R_graphene_vec3_init_from_float, 2},
+    {"R_graphene_vec3_init_from_vec3", (DL_FUNC) &R_graphene_vec3_init_from_vec3, 2},
+    {"R_graphene_vec3_interpolate", (DL_FUNC) &R_graphene_vec3_interpolate, 3},
+    {"R_graphene_vec3_length", (DL_FUNC) &R_graphene_vec3_length, 1},
+    {"R_graphene_vec3_max", (DL_FUNC) &R_graphene_vec3_max, 2},
+    {"R_graphene_vec3_min", (DL_FUNC) &R_graphene_vec3_min, 2},
+    {"R_graphene_vec3_multiply", (DL_FUNC) &R_graphene_vec3_multiply, 2},
+    {"R_graphene_vec3_near", (DL_FUNC) &R_graphene_vec3_near, 3},
+    {"R_graphene_vec3_negate", (DL_FUNC) &R_graphene_vec3_negate, 1},
+    {"R_graphene_vec3_normalize", (DL_FUNC) &R_graphene_vec3_normalize, 1},
+    {"R_graphene_vec3_scale", (DL_FUNC) &R_graphene_vec3_scale, 2},
+    {"R_graphene_vec3_subtract", (DL_FUNC) &R_graphene_vec3_subtract, 2},
+    {"R_graphene_vec3_to_float", (DL_FUNC) &R_graphene_vec3_to_float, 1},
+    {"R_graphene_vec3_one", (DL_FUNC) &R_graphene_vec3_one, 0},
+    {"R_graphene_vec3_x_axis", (DL_FUNC) &R_graphene_vec3_x_axis, 0},
+    {"R_graphene_vec3_y_axis", (DL_FUNC) &R_graphene_vec3_y_axis, 0},
+    {"R_graphene_vec3_z_axis", (DL_FUNC) &R_graphene_vec3_z_axis, 0},
+    {"R_graphene_vec3_zero", (DL_FUNC) &R_graphene_vec3_zero, 0},
+    {"R_graphene_vec4_alloc", (DL_FUNC) &R_graphene_vec4_alloc, 0},
+    {"R_graphene_vec4_add", (DL_FUNC) &R_graphene_vec4_add, 2},
+    {"R_graphene_vec4_divide", (DL_FUNC) &R_graphene_vec4_divide, 2},
+    {"R_graphene_vec4_dot", (DL_FUNC) &R_graphene_vec4_dot, 2},
+    {"R_graphene_vec4_equal", (DL_FUNC) &R_graphene_vec4_equal, 2},
+    {"R_graphene_vec4_free", (DL_FUNC) &R_graphene_vec4_free, 1},
+    {"R_graphene_vec4_get_w", (DL_FUNC) &R_graphene_vec4_get_w, 1},
+    {"R_graphene_vec4_get_x", (DL_FUNC) &R_graphene_vec4_get_x, 1},
+    {"R_graphene_vec4_get_xy", (DL_FUNC) &R_graphene_vec4_get_xy, 1},
+    {"R_graphene_vec4_get_xyz", (DL_FUNC) &R_graphene_vec4_get_xyz, 1},
+    {"R_graphene_vec4_get_y", (DL_FUNC) &R_graphene_vec4_get_y, 1},
+    {"R_graphene_vec4_get_z", (DL_FUNC) &R_graphene_vec4_get_z, 1},
+    {"R_graphene_vec4_init", (DL_FUNC) &R_graphene_vec4_init, 5},
+    {"R_graphene_vec4_init_from_float", (DL_FUNC) &R_graphene_vec4_init_from_float, 2},
+    {"R_graphene_vec4_init_from_vec2", (DL_FUNC) &R_graphene_vec4_init_from_vec2, 4},
+    {"R_graphene_vec4_init_from_vec3", (DL_FUNC) &R_graphene_vec4_init_from_vec3, 3},
+    {"R_graphene_vec4_init_from_vec4", (DL_FUNC) &R_graphene_vec4_init_from_vec4, 2},
+    {"R_graphene_vec4_interpolate", (DL_FUNC) &R_graphene_vec4_interpolate, 3},
+    {"R_graphene_vec4_length", (DL_FUNC) &R_graphene_vec4_length, 1},
+    {"R_graphene_vec4_max", (DL_FUNC) &R_graphene_vec4_max, 2},
+    {"R_graphene_vec4_min", (DL_FUNC) &R_graphene_vec4_min, 2},
+    {"R_graphene_vec4_multiply", (DL_FUNC) &R_graphene_vec4_multiply, 2},
+    {"R_graphene_vec4_near", (DL_FUNC) &R_graphene_vec4_near, 3},
+    {"R_graphene_vec4_negate", (DL_FUNC) &R_graphene_vec4_negate, 1},
+    {"R_graphene_vec4_normalize", (DL_FUNC) &R_graphene_vec4_normalize, 1},
+    {"R_graphene_vec4_scale", (DL_FUNC) &R_graphene_vec4_scale, 2},
+    {"R_graphene_vec4_subtract", (DL_FUNC) &R_graphene_vec4_subtract, 2},
+    {"R_graphene_vec4_to_float", (DL_FUNC) &R_graphene_vec4_to_float, 1},
+    {"R_graphene_vec4_one", (DL_FUNC) &R_graphene_vec4_one, 0},
+    {"R_graphene_vec4_w_axis", (DL_FUNC) &R_graphene_vec4_w_axis, 0},
+    {"R_graphene_vec4_x_axis", (DL_FUNC) &R_graphene_vec4_x_axis, 0},
+    {"R_graphene_vec4_y_axis", (DL_FUNC) &R_graphene_vec4_y_axis, 0},
+    {"R_graphene_vec4_z_axis", (DL_FUNC) &R_graphene_vec4_z_axis, 0},
+    {"R_graphene_vec4_zero", (DL_FUNC) &R_graphene_vec4_zero, 0},
+    {"R_gsk_blend_node_new", (DL_FUNC) &R_gsk_blend_node_new, 3},
+    {"R_gsk_blend_node_get_blend_mode", (DL_FUNC) &R_gsk_blend_node_get_blend_mode, 1},
+    {"R_gsk_blend_node_get_bottom_child", (DL_FUNC) &R_gsk_blend_node_get_bottom_child, 1},
+    {"R_gsk_blend_node_get_top_child", (DL_FUNC) &R_gsk_blend_node_get_top_child, 1},
+    {"R_gsk_blur_node_new", (DL_FUNC) &R_gsk_blur_node_new, 2},
+    {"R_gsk_blur_node_get_child", (DL_FUNC) &R_gsk_blur_node_get_child, 1},
+    {"R_gsk_blur_node_get_radius", (DL_FUNC) &R_gsk_blur_node_get_radius, 1},
+    {"R_gsk_border_node_new", (DL_FUNC) &R_gsk_border_node_new, 3},
+    {"R_gsk_border_node_get_colors", (DL_FUNC) &R_gsk_border_node_get_colors, 1},
+    {"R_gsk_border_node_get_outline", (DL_FUNC) &R_gsk_border_node_get_outline, 1},
+    {"R_gsk_border_node_get_widths", (DL_FUNC) &R_gsk_border_node_get_widths, 1},
+    {"R_gsk_cairo_node_new", (DL_FUNC) &R_gsk_cairo_node_new, 1},
+    {"R_gsk_cairo_node_get_draw_context", (DL_FUNC) &R_gsk_cairo_node_get_draw_context, 1},
+    {"R_gsk_cairo_node_get_surface", (DL_FUNC) &R_gsk_cairo_node_get_surface, 1},
+    {"R_gsk_cairo_renderer_new", (DL_FUNC) &R_gsk_cairo_renderer_new, 0},
+    {"R_gsk_clip_node_new", (DL_FUNC) &R_gsk_clip_node_new, 2},
+    {"R_gsk_clip_node_get_child", (DL_FUNC) &R_gsk_clip_node_get_child, 1},
+    {"R_gsk_clip_node_get_clip", (DL_FUNC) &R_gsk_clip_node_get_clip, 1},
+    {"R_gsk_color_matrix_node_new", (DL_FUNC) &R_gsk_color_matrix_node_new, 3},
+    {"R_gsk_color_matrix_node_get_child", (DL_FUNC) &R_gsk_color_matrix_node_get_child, 1},
+    {"R_gsk_color_matrix_node_get_color_matrix", (DL_FUNC) &R_gsk_color_matrix_node_get_color_matrix, 1},
+    {"R_gsk_color_matrix_node_get_color_offset", (DL_FUNC) &R_gsk_color_matrix_node_get_color_offset, 1},
+    {"R_gsk_color_node_new", (DL_FUNC) &R_gsk_color_node_new, 2},
+    {"R_gsk_color_node_get_color", (DL_FUNC) &R_gsk_color_node_get_color, 1},
+    {"R_gsk_component_transfer_new_discrete", (DL_FUNC) &R_gsk_component_transfer_new_discrete, 2},
+    {"R_gsk_component_transfer_new_gamma", (DL_FUNC) &R_gsk_component_transfer_new_gamma, 3},
+    {"R_gsk_component_transfer_new_identity", (DL_FUNC) &R_gsk_component_transfer_new_identity, 0},
+    {"R_gsk_component_transfer_new_levels", (DL_FUNC) &R_gsk_component_transfer_new_levels, 1},
+    {"R_gsk_component_transfer_new_linear", (DL_FUNC) &R_gsk_component_transfer_new_linear, 2},
+    {"R_gsk_component_transfer_new_table", (DL_FUNC) &R_gsk_component_transfer_new_table, 2},
+    {"R_gsk_component_transfer_copy", (DL_FUNC) &R_gsk_component_transfer_copy, 1},
+    {"R_gsk_component_transfer_free", (DL_FUNC) &R_gsk_component_transfer_free, 1},
+    {"R_gsk_component_transfer_equal", (DL_FUNC) &R_gsk_component_transfer_equal, 2},
+    {"R_gsk_component_transfer_node_new", (DL_FUNC) &R_gsk_component_transfer_node_new, 5},
+    {"R_gsk_component_transfer_node_get_child", (DL_FUNC) &R_gsk_component_transfer_node_get_child, 1},
+    {"R_gsk_component_transfer_node_get_transfer", (DL_FUNC) &R_gsk_component_transfer_node_get_transfer, 2},
+    {"R_gsk_composite_node_new", (DL_FUNC) &R_gsk_composite_node_new, 3},
+    {"R_gsk_composite_node_get_child", (DL_FUNC) &R_gsk_composite_node_get_child, 1},
+    {"R_gsk_composite_node_get_mask", (DL_FUNC) &R_gsk_composite_node_get_mask, 1},
+    {"R_gsk_composite_node_get_operator", (DL_FUNC) &R_gsk_composite_node_get_operator, 1},
+    {"R_gsk_conic_gradient_node_new", (DL_FUNC) &R_gsk_conic_gradient_node_new, 5},
+    {"R_gsk_conic_gradient_node_get_angle", (DL_FUNC) &R_gsk_conic_gradient_node_get_angle, 1},
+    {"R_gsk_conic_gradient_node_get_center", (DL_FUNC) &R_gsk_conic_gradient_node_get_center, 1},
+    {"R_gsk_conic_gradient_node_get_color_stops", (DL_FUNC) &R_gsk_conic_gradient_node_get_color_stops, 1},
+    {"R_gsk_conic_gradient_node_get_n_color_stops", (DL_FUNC) &R_gsk_conic_gradient_node_get_n_color_stops, 1},
+    {"R_gsk_conic_gradient_node_get_rotation", (DL_FUNC) &R_gsk_conic_gradient_node_get_rotation, 1},
+    {"R_gsk_container_node_new", (DL_FUNC) &R_gsk_container_node_new, 2},
+    {"R_gsk_container_node_get_child", (DL_FUNC) &R_gsk_container_node_get_child, 2},
+    {"R_gsk_container_node_get_n_children", (DL_FUNC) &R_gsk_container_node_get_n_children, 1},
+    {"R_gsk_copy_node_new", (DL_FUNC) &R_gsk_copy_node_new, 1},
+    {"R_gsk_copy_node_get_child", (DL_FUNC) &R_gsk_copy_node_get_child, 1},
+    {"R_gsk_cross_fade_node_new", (DL_FUNC) &R_gsk_cross_fade_node_new, 3},
+    {"R_gsk_cross_fade_node_get_end_child", (DL_FUNC) &R_gsk_cross_fade_node_get_end_child, 1},
+    {"R_gsk_cross_fade_node_get_progress", (DL_FUNC) &R_gsk_cross_fade_node_get_progress, 1},
+    {"R_gsk_cross_fade_node_get_start_child", (DL_FUNC) &R_gsk_cross_fade_node_get_start_child, 1},
+    {"R_gsk_debug_node_new", (DL_FUNC) &R_gsk_debug_node_new, 2},
+    {"R_gsk_debug_node_get_child", (DL_FUNC) &R_gsk_debug_node_get_child, 1},
+    {"R_gsk_debug_node_get_message", (DL_FUNC) &R_gsk_debug_node_get_message, 1},
+    {"R_gsk_fill_node_new", (DL_FUNC) &R_gsk_fill_node_new, 3},
+    {"R_gsk_fill_node_get_child", (DL_FUNC) &R_gsk_fill_node_get_child, 1},
+    {"R_gsk_fill_node_get_fill_rule", (DL_FUNC) &R_gsk_fill_node_get_fill_rule, 1},
+    {"R_gsk_fill_node_get_path", (DL_FUNC) &R_gsk_fill_node_get_path, 1},
+    {"R_gsk_gl_renderer_new", (DL_FUNC) &R_gsk_gl_renderer_new, 0},
+    {"R_gsk_gl_shader_new_from_bytes", (DL_FUNC) &R_gsk_gl_shader_new_from_bytes, 1},
+    {"R_gsk_gl_shader_new_from_resource", (DL_FUNC) &R_gsk_gl_shader_new_from_resource, 1},
+    {"R_gsk_gl_shader_compile", (DL_FUNC) &R_gsk_gl_shader_compile, 2},
+    {"R_gsk_gl_shader_find_uniform_by_name", (DL_FUNC) &R_gsk_gl_shader_find_uniform_by_name, 2},
+    {"R_gsk_gl_shader_get_arg_bool", (DL_FUNC) &R_gsk_gl_shader_get_arg_bool, 3},
+    {"R_gsk_gl_shader_get_arg_float", (DL_FUNC) &R_gsk_gl_shader_get_arg_float, 3},
+    {"R_gsk_gl_shader_get_arg_int", (DL_FUNC) &R_gsk_gl_shader_get_arg_int, 3},
+    {"R_gsk_gl_shader_get_arg_uint", (DL_FUNC) &R_gsk_gl_shader_get_arg_uint, 3},
+    {"R_gsk_gl_shader_get_arg_vec2", (DL_FUNC) &R_gsk_gl_shader_get_arg_vec2, 4},
+    {"R_gsk_gl_shader_get_arg_vec3", (DL_FUNC) &R_gsk_gl_shader_get_arg_vec3, 4},
+    {"R_gsk_gl_shader_get_arg_vec4", (DL_FUNC) &R_gsk_gl_shader_get_arg_vec4, 4},
+    {"R_gsk_gl_shader_get_args_size", (DL_FUNC) &R_gsk_gl_shader_get_args_size, 1},
+    {"R_gsk_gl_shader_get_n_textures", (DL_FUNC) &R_gsk_gl_shader_get_n_textures, 1},
+    {"R_gsk_gl_shader_get_n_uniforms", (DL_FUNC) &R_gsk_gl_shader_get_n_uniforms, 1},
+    {"R_gsk_gl_shader_get_resource", (DL_FUNC) &R_gsk_gl_shader_get_resource, 1},
+    {"R_gsk_gl_shader_get_source", (DL_FUNC) &R_gsk_gl_shader_get_source, 1},
+    {"R_gsk_gl_shader_get_uniform_name", (DL_FUNC) &R_gsk_gl_shader_get_uniform_name, 2},
+    {"R_gsk_gl_shader_get_uniform_offset", (DL_FUNC) &R_gsk_gl_shader_get_uniform_offset, 2},
+    {"R_gsk_gl_shader_get_uniform_type", (DL_FUNC) &R_gsk_gl_shader_get_uniform_type, 2},
+    {"R_gsk_gl_shader_node_new", (DL_FUNC) &R_gsk_gl_shader_node_new, 5},
+    {"R_gsk_gl_shader_node_get_args", (DL_FUNC) &R_gsk_gl_shader_node_get_args, 1},
+    {"R_gsk_gl_shader_node_get_child", (DL_FUNC) &R_gsk_gl_shader_node_get_child, 2},
+    {"R_gsk_gl_shader_node_get_n_children", (DL_FUNC) &R_gsk_gl_shader_node_get_n_children, 1},
+    {"R_gsk_gl_shader_node_get_shader", (DL_FUNC) &R_gsk_gl_shader_node_get_shader, 1},
+    {"R_gsk_inset_shadow_node_new", (DL_FUNC) &R_gsk_inset_shadow_node_new, 6},
+    {"R_gsk_inset_shadow_node_get_blur_radius", (DL_FUNC) &R_gsk_inset_shadow_node_get_blur_radius, 1},
+    {"R_gsk_inset_shadow_node_get_color", (DL_FUNC) &R_gsk_inset_shadow_node_get_color, 1},
+    {"R_gsk_inset_shadow_node_get_dx", (DL_FUNC) &R_gsk_inset_shadow_node_get_dx, 1},
+    {"R_gsk_inset_shadow_node_get_dy", (DL_FUNC) &R_gsk_inset_shadow_node_get_dy, 1},
+    {"R_gsk_inset_shadow_node_get_outline", (DL_FUNC) &R_gsk_inset_shadow_node_get_outline, 1},
+    {"R_gsk_inset_shadow_node_get_spread", (DL_FUNC) &R_gsk_inset_shadow_node_get_spread, 1},
+    {"R_gsk_isolation_node_new", (DL_FUNC) &R_gsk_isolation_node_new, 2},
+    {"R_gsk_isolation_node_get_child", (DL_FUNC) &R_gsk_isolation_node_get_child, 1},
+    {"R_gsk_isolation_node_get_isolations", (DL_FUNC) &R_gsk_isolation_node_get_isolations, 1},
+    {"R_gsk_linear_gradient_node_new", (DL_FUNC) &R_gsk_linear_gradient_node_new, 5},
+    {"R_gsk_linear_gradient_node_get_color_stops", (DL_FUNC) &R_gsk_linear_gradient_node_get_color_stops, 1},
+    {"R_gsk_linear_gradient_node_get_end", (DL_FUNC) &R_gsk_linear_gradient_node_get_end, 1},
+    {"R_gsk_linear_gradient_node_get_n_color_stops", (DL_FUNC) &R_gsk_linear_gradient_node_get_n_color_stops, 1},
+    {"R_gsk_linear_gradient_node_get_start", (DL_FUNC) &R_gsk_linear_gradient_node_get_start, 1},
+    {"R_gsk_mask_node_new", (DL_FUNC) &R_gsk_mask_node_new, 3},
+    {"R_gsk_mask_node_get_mask", (DL_FUNC) &R_gsk_mask_node_get_mask, 1},
+    {"R_gsk_mask_node_get_mask_mode", (DL_FUNC) &R_gsk_mask_node_get_mask_mode, 1},
+    {"R_gsk_mask_node_get_source", (DL_FUNC) &R_gsk_mask_node_get_source, 1},
+    {"R_gsk_ngl_renderer_new", (DL_FUNC) &R_gsk_ngl_renderer_new, 0},
+    {"R_gsk_opacity_node_new", (DL_FUNC) &R_gsk_opacity_node_new, 2},
+    {"R_gsk_opacity_node_get_child", (DL_FUNC) &R_gsk_opacity_node_get_child, 1},
+    {"R_gsk_opacity_node_get_opacity", (DL_FUNC) &R_gsk_opacity_node_get_opacity, 1},
+    {"R_gsk_outset_shadow_node_new", (DL_FUNC) &R_gsk_outset_shadow_node_new, 6},
+    {"R_gsk_outset_shadow_node_get_blur_radius", (DL_FUNC) &R_gsk_outset_shadow_node_get_blur_radius, 1},
+    {"R_gsk_outset_shadow_node_get_color", (DL_FUNC) &R_gsk_outset_shadow_node_get_color, 1},
+    {"R_gsk_outset_shadow_node_get_dx", (DL_FUNC) &R_gsk_outset_shadow_node_get_dx, 1},
+    {"R_gsk_outset_shadow_node_get_dy", (DL_FUNC) &R_gsk_outset_shadow_node_get_dy, 1},
+    {"R_gsk_outset_shadow_node_get_outline", (DL_FUNC) &R_gsk_outset_shadow_node_get_outline, 1},
+    {"R_gsk_outset_shadow_node_get_spread", (DL_FUNC) &R_gsk_outset_shadow_node_get_spread, 1},
+    {"R_gsk_paste_node_new", (DL_FUNC) &R_gsk_paste_node_new, 2},
+    {"R_gsk_paste_node_get_depth", (DL_FUNC) &R_gsk_paste_node_get_depth, 1},
+    {"R_gsk_path_equal", (DL_FUNC) &R_gsk_path_equal, 2},
+    {"R_gsk_path_foreach", (DL_FUNC) &R_gsk_path_foreach, 4},
+    {"R_gsk_path_foreach_intersection", (DL_FUNC) &R_gsk_path_foreach_intersection, 4},
+    {"R_gsk_path_get_bounds", (DL_FUNC) &R_gsk_path_get_bounds, 1},
+    {"R_gsk_path_get_closest_point", (DL_FUNC) &R_gsk_path_get_closest_point, 3},
+    {"R_gsk_path_get_end_point", (DL_FUNC) &R_gsk_path_get_end_point, 1},
+    {"R_gsk_path_get_next", (DL_FUNC) &R_gsk_path_get_next, 1},
+    {"R_gsk_path_get_previous", (DL_FUNC) &R_gsk_path_get_previous, 1},
+    {"R_gsk_path_get_start_point", (DL_FUNC) &R_gsk_path_get_start_point, 1},
+    {"R_gsk_path_get_stroke_bounds", (DL_FUNC) &R_gsk_path_get_stroke_bounds, 2},
+    {"R_gsk_path_get_tight_bounds", (DL_FUNC) &R_gsk_path_get_tight_bounds, 1},
+    {"R_gsk_path_in_fill", (DL_FUNC) &R_gsk_path_in_fill, 3},
+    {"R_gsk_path_is_closed", (DL_FUNC) &R_gsk_path_is_closed, 1},
+    {"R_gsk_path_is_empty", (DL_FUNC) &R_gsk_path_is_empty, 1},
+    {"R_gsk_path_print", (DL_FUNC) &R_gsk_path_print, 2},
+    {"R_gsk_path_ref", (DL_FUNC) &R_gsk_path_ref, 1},
+    {"R_gsk_path_to_cairo", (DL_FUNC) &R_gsk_path_to_cairo, 2},
+    {"R_gsk_path_to_string", (DL_FUNC) &R_gsk_path_to_string, 1},
+    {"R_gsk_path_unref", (DL_FUNC) &R_gsk_path_unref, 1},
+    {"R_gsk_path_parse", (DL_FUNC) &R_gsk_path_parse, 1},
+    {"R_gsk_path_builder_new", (DL_FUNC) &R_gsk_path_builder_new, 0},
+    {"R_gsk_path_builder_add_cairo_path", (DL_FUNC) &R_gsk_path_builder_add_cairo_path, 2},
+    {"R_gsk_path_builder_add_circle", (DL_FUNC) &R_gsk_path_builder_add_circle, 3},
+    {"R_gsk_path_builder_add_layout", (DL_FUNC) &R_gsk_path_builder_add_layout, 2},
+    {"R_gsk_path_builder_add_path", (DL_FUNC) &R_gsk_path_builder_add_path, 2},
+    {"R_gsk_path_builder_add_rect", (DL_FUNC) &R_gsk_path_builder_add_rect, 2},
+    {"R_gsk_path_builder_add_reverse_path", (DL_FUNC) &R_gsk_path_builder_add_reverse_path, 2},
+    {"R_gsk_path_builder_add_rounded_rect", (DL_FUNC) &R_gsk_path_builder_add_rounded_rect, 2},
+    {"R_gsk_path_builder_add_segment", (DL_FUNC) &R_gsk_path_builder_add_segment, 4},
+    {"R_gsk_path_builder_arc_to", (DL_FUNC) &R_gsk_path_builder_arc_to, 5},
+    {"R_gsk_path_builder_close", (DL_FUNC) &R_gsk_path_builder_close, 1},
+    {"R_gsk_path_builder_conic_to", (DL_FUNC) &R_gsk_path_builder_conic_to, 6},
+    {"R_gsk_path_builder_cubic_to", (DL_FUNC) &R_gsk_path_builder_cubic_to, 7},
+    {"R_gsk_path_builder_get_current_point", (DL_FUNC) &R_gsk_path_builder_get_current_point, 1},
+    {"R_gsk_path_builder_html_arc_to", (DL_FUNC) &R_gsk_path_builder_html_arc_to, 6},
+    {"R_gsk_path_builder_line_to", (DL_FUNC) &R_gsk_path_builder_line_to, 3},
+    {"R_gsk_path_builder_move_to", (DL_FUNC) &R_gsk_path_builder_move_to, 3},
+    {"R_gsk_path_builder_quad_to", (DL_FUNC) &R_gsk_path_builder_quad_to, 5},
+    {"R_gsk_path_builder_ref", (DL_FUNC) &R_gsk_path_builder_ref, 1},
+    {"R_gsk_path_builder_rel_arc_to", (DL_FUNC) &R_gsk_path_builder_rel_arc_to, 5},
+    {"R_gsk_path_builder_rel_conic_to", (DL_FUNC) &R_gsk_path_builder_rel_conic_to, 6},
+    {"R_gsk_path_builder_rel_cubic_to", (DL_FUNC) &R_gsk_path_builder_rel_cubic_to, 7},
+    {"R_gsk_path_builder_rel_html_arc_to", (DL_FUNC) &R_gsk_path_builder_rel_html_arc_to, 6},
+    {"R_gsk_path_builder_rel_line_to", (DL_FUNC) &R_gsk_path_builder_rel_line_to, 3},
+    {"R_gsk_path_builder_rel_move_to", (DL_FUNC) &R_gsk_path_builder_rel_move_to, 3},
+    {"R_gsk_path_builder_rel_quad_to", (DL_FUNC) &R_gsk_path_builder_rel_quad_to, 5},
+    {"R_gsk_path_builder_rel_svg_arc_to", (DL_FUNC) &R_gsk_path_builder_rel_svg_arc_to, 8},
+    {"R_gsk_path_builder_svg_arc_to", (DL_FUNC) &R_gsk_path_builder_svg_arc_to, 8},
+    {"R_gsk_path_builder_to_path", (DL_FUNC) &R_gsk_path_builder_to_path, 1},
+    {"R_gsk_path_builder_unref", (DL_FUNC) &R_gsk_path_builder_unref, 1},
+    {"R_gsk_path_measure_new", (DL_FUNC) &R_gsk_path_measure_new, 1},
+    {"R_gsk_path_measure_new_with_tolerance", (DL_FUNC) &R_gsk_path_measure_new_with_tolerance, 2},
+    {"R_gsk_path_measure_get_length", (DL_FUNC) &R_gsk_path_measure_get_length, 1},
+    {"R_gsk_path_measure_get_path", (DL_FUNC) &R_gsk_path_measure_get_path, 1},
+    {"R_gsk_path_measure_get_point", (DL_FUNC) &R_gsk_path_measure_get_point, 2},
+    {"R_gsk_path_measure_get_tolerance", (DL_FUNC) &R_gsk_path_measure_get_tolerance, 1},
+    {"R_gsk_path_measure_ref", (DL_FUNC) &R_gsk_path_measure_ref, 1},
+    {"R_gsk_path_measure_unref", (DL_FUNC) &R_gsk_path_measure_unref, 1},
+    {"R_gsk_path_point_compare", (DL_FUNC) &R_gsk_path_point_compare, 2},
+    {"R_gsk_path_point_copy", (DL_FUNC) &R_gsk_path_point_copy, 1},
+    {"R_gsk_path_point_equal", (DL_FUNC) &R_gsk_path_point_equal, 2},
+    {"R_gsk_path_point_free", (DL_FUNC) &R_gsk_path_point_free, 1},
+    {"R_gsk_path_point_get_curvature", (DL_FUNC) &R_gsk_path_point_get_curvature, 3},
+    {"R_gsk_path_point_get_distance", (DL_FUNC) &R_gsk_path_point_get_distance, 2},
+    {"R_gsk_path_point_get_position", (DL_FUNC) &R_gsk_path_point_get_position, 2},
+    {"R_gsk_path_point_get_rotation", (DL_FUNC) &R_gsk_path_point_get_rotation, 3},
+    {"R_gsk_path_point_get_tangent", (DL_FUNC) &R_gsk_path_point_get_tangent, 3},
+    {"R_gsk_radial_gradient_node_new", (DL_FUNC) &R_gsk_radial_gradient_node_new, 8},
+    {"R_gsk_radial_gradient_node_get_center", (DL_FUNC) &R_gsk_radial_gradient_node_get_center, 1},
+    {"R_gsk_radial_gradient_node_get_color_stops", (DL_FUNC) &R_gsk_radial_gradient_node_get_color_stops, 1},
+    {"R_gsk_radial_gradient_node_get_end", (DL_FUNC) &R_gsk_radial_gradient_node_get_end, 1},
+    {"R_gsk_radial_gradient_node_get_hradius", (DL_FUNC) &R_gsk_radial_gradient_node_get_hradius, 1},
+    {"R_gsk_radial_gradient_node_get_n_color_stops", (DL_FUNC) &R_gsk_radial_gradient_node_get_n_color_stops, 1},
+    {"R_gsk_radial_gradient_node_get_start", (DL_FUNC) &R_gsk_radial_gradient_node_get_start, 1},
+    {"R_gsk_radial_gradient_node_get_vradius", (DL_FUNC) &R_gsk_radial_gradient_node_get_vradius, 1},
+    {"R_gsk_render_node_deserialize", (DL_FUNC) &R_gsk_render_node_deserialize, 3},
+    {"R_gsk_render_node_draw", (DL_FUNC) &R_gsk_render_node_draw, 2},
+    {"R_gsk_render_node_get_bounds", (DL_FUNC) &R_gsk_render_node_get_bounds, 1},
+    {"R_gsk_render_node_get_children", (DL_FUNC) &R_gsk_render_node_get_children, 1},
+    {"R_gsk_render_node_get_node_type", (DL_FUNC) &R_gsk_render_node_get_node_type, 1},
+    {"R_gsk_render_node_get_opaque_rect", (DL_FUNC) &R_gsk_render_node_get_opaque_rect, 1},
+    {"R_gsk_render_node_ref", (DL_FUNC) &R_gsk_render_node_ref, 1},
+    {"R_gsk_render_node_serialize", (DL_FUNC) &R_gsk_render_node_serialize, 1},
+    {"R_gsk_render_node_unref", (DL_FUNC) &R_gsk_render_node_unref, 1},
+    {"R_gsk_render_node_write_to_file", (DL_FUNC) &R_gsk_render_node_write_to_file, 2},
+    {"R_gsk_render_replay_new", (DL_FUNC) &R_gsk_render_replay_new, 0},
+    {"R_gsk_render_replay_default", (DL_FUNC) &R_gsk_render_replay_default, 2},
+    {"R_gsk_render_replay_filter_font", (DL_FUNC) &R_gsk_render_replay_filter_font, 2},
+    {"R_gsk_render_replay_filter_node", (DL_FUNC) &R_gsk_render_replay_filter_node, 2},
+    {"R_gsk_render_replay_filter_texture", (DL_FUNC) &R_gsk_render_replay_filter_texture, 2},
+    {"R_gsk_render_replay_free", (DL_FUNC) &R_gsk_render_replay_free, 1},
+    {"R_gsk_render_replay_set_font_filter", (DL_FUNC) &R_gsk_render_replay_set_font_filter, 4},
+    {"R_gsk_render_replay_set_node_filter", (DL_FUNC) &R_gsk_render_replay_set_node_filter, 4},
+    {"R_gsk_render_replay_set_texture_filter", (DL_FUNC) &R_gsk_render_replay_set_texture_filter, 4},
+    {"R_gsk_renderer_new_for_surface", (DL_FUNC) &R_gsk_renderer_new_for_surface, 1},
+    {"R_gsk_renderer_get_surface", (DL_FUNC) &R_gsk_renderer_get_surface, 1},
+    {"R_gsk_renderer_is_realized", (DL_FUNC) &R_gsk_renderer_is_realized, 1},
+    {"R_gsk_renderer_realize", (DL_FUNC) &R_gsk_renderer_realize, 2},
+    {"R_gsk_renderer_realize_for_display", (DL_FUNC) &R_gsk_renderer_realize_for_display, 2},
+    {"R_gsk_renderer_render", (DL_FUNC) &R_gsk_renderer_render, 3},
+    {"R_gsk_renderer_render_texture", (DL_FUNC) &R_gsk_renderer_render_texture, 3},
+    {"R_gsk_renderer_unrealize", (DL_FUNC) &R_gsk_renderer_unrealize, 1},
+    {"R_gsk_repeat_node_new", (DL_FUNC) &R_gsk_repeat_node_new, 3},
+    {"R_gsk_repeat_node_get_child", (DL_FUNC) &R_gsk_repeat_node_get_child, 1},
+    {"R_gsk_repeat_node_get_child_bounds", (DL_FUNC) &R_gsk_repeat_node_get_child_bounds, 1},
+    {"R_gsk_repeating_linear_gradient_node_new", (DL_FUNC) &R_gsk_repeating_linear_gradient_node_new, 5},
+    {"R_gsk_repeating_radial_gradient_node_new", (DL_FUNC) &R_gsk_repeating_radial_gradient_node_new, 8},
+    {"R_gsk_rounded_clip_node_new", (DL_FUNC) &R_gsk_rounded_clip_node_new, 2},
+    {"R_gsk_rounded_clip_node_get_child", (DL_FUNC) &R_gsk_rounded_clip_node_get_child, 1},
+    {"R_gsk_rounded_clip_node_get_clip", (DL_FUNC) &R_gsk_rounded_clip_node_get_clip, 1},
+    {"R_gsk_rounded_rect_contains_point", (DL_FUNC) &R_gsk_rounded_rect_contains_point, 2},
+    {"R_gsk_rounded_rect_contains_rect", (DL_FUNC) &R_gsk_rounded_rect_contains_rect, 2},
+    {"R_gsk_rounded_rect_init", (DL_FUNC) &R_gsk_rounded_rect_init, 6},
+    {"R_gsk_rounded_rect_init_copy", (DL_FUNC) &R_gsk_rounded_rect_init_copy, 2},
+    {"R_gsk_rounded_rect_init_from_rect", (DL_FUNC) &R_gsk_rounded_rect_init_from_rect, 3},
+    {"R_gsk_rounded_rect_intersects_rect", (DL_FUNC) &R_gsk_rounded_rect_intersects_rect, 2},
+    {"R_gsk_rounded_rect_is_rectilinear", (DL_FUNC) &R_gsk_rounded_rect_is_rectilinear, 1},
+    {"R_gsk_rounded_rect_normalize", (DL_FUNC) &R_gsk_rounded_rect_normalize, 1},
+    {"R_gsk_rounded_rect_offset", (DL_FUNC) &R_gsk_rounded_rect_offset, 3},
+    {"R_gsk_rounded_rect_shrink", (DL_FUNC) &R_gsk_rounded_rect_shrink, 5},
+    {"R_gsk_serialization_error_quark", (DL_FUNC) &R_gsk_serialization_error_quark, 0},
+    {"R_gsk_shader_args_builder_new", (DL_FUNC) &R_gsk_shader_args_builder_new, 2},
+    {"R_gsk_shader_args_builder_ref", (DL_FUNC) &R_gsk_shader_args_builder_ref, 1},
+    {"R_gsk_shader_args_builder_set_bool", (DL_FUNC) &R_gsk_shader_args_builder_set_bool, 3},
+    {"R_gsk_shader_args_builder_set_float", (DL_FUNC) &R_gsk_shader_args_builder_set_float, 3},
+    {"R_gsk_shader_args_builder_set_int", (DL_FUNC) &R_gsk_shader_args_builder_set_int, 3},
+    {"R_gsk_shader_args_builder_set_uint", (DL_FUNC) &R_gsk_shader_args_builder_set_uint, 3},
+    {"R_gsk_shader_args_builder_set_vec2", (DL_FUNC) &R_gsk_shader_args_builder_set_vec2, 3},
+    {"R_gsk_shader_args_builder_set_vec3", (DL_FUNC) &R_gsk_shader_args_builder_set_vec3, 3},
+    {"R_gsk_shader_args_builder_set_vec4", (DL_FUNC) &R_gsk_shader_args_builder_set_vec4, 3},
+    {"R_gsk_shader_args_builder_to_args", (DL_FUNC) &R_gsk_shader_args_builder_to_args, 1},
+    {"R_gsk_shader_args_builder_unref", (DL_FUNC) &R_gsk_shader_args_builder_unref, 1},
+    {"R_gsk_shadow_node_new", (DL_FUNC) &R_gsk_shadow_node_new, 3},
+    {"R_gsk_shadow_node_get_child", (DL_FUNC) &R_gsk_shadow_node_get_child, 1},
+    {"R_gsk_shadow_node_get_n_shadows", (DL_FUNC) &R_gsk_shadow_node_get_n_shadows, 1},
+    {"R_gsk_shadow_node_get_shadow", (DL_FUNC) &R_gsk_shadow_node_get_shadow, 2},
+    {"R_gsk_stroke_new", (DL_FUNC) &R_gsk_stroke_new, 1},
+    {"R_gsk_stroke_copy", (DL_FUNC) &R_gsk_stroke_copy, 1},
+    {"R_gsk_stroke_free", (DL_FUNC) &R_gsk_stroke_free, 1},
+    {"R_gsk_stroke_get_dash", (DL_FUNC) &R_gsk_stroke_get_dash, 1},
+    {"R_gsk_stroke_get_dash_offset", (DL_FUNC) &R_gsk_stroke_get_dash_offset, 1},
+    {"R_gsk_stroke_get_line_cap", (DL_FUNC) &R_gsk_stroke_get_line_cap, 1},
+    {"R_gsk_stroke_get_line_join", (DL_FUNC) &R_gsk_stroke_get_line_join, 1},
+    {"R_gsk_stroke_get_line_width", (DL_FUNC) &R_gsk_stroke_get_line_width, 1},
+    {"R_gsk_stroke_get_miter_limit", (DL_FUNC) &R_gsk_stroke_get_miter_limit, 1},
+    {"R_gsk_stroke_set_dash", (DL_FUNC) &R_gsk_stroke_set_dash, 3},
+    {"R_gsk_stroke_set_dash_offset", (DL_FUNC) &R_gsk_stroke_set_dash_offset, 2},
+    {"R_gsk_stroke_set_line_cap", (DL_FUNC) &R_gsk_stroke_set_line_cap, 2},
+    {"R_gsk_stroke_set_line_join", (DL_FUNC) &R_gsk_stroke_set_line_join, 2},
+    {"R_gsk_stroke_set_line_width", (DL_FUNC) &R_gsk_stroke_set_line_width, 2},
+    {"R_gsk_stroke_set_miter_limit", (DL_FUNC) &R_gsk_stroke_set_miter_limit, 2},
+    {"R_gsk_stroke_to_cairo", (DL_FUNC) &R_gsk_stroke_to_cairo, 2},
+    {"R_gsk_stroke_equal", (DL_FUNC) &R_gsk_stroke_equal, 2},
+    {"R_gsk_stroke_node_new", (DL_FUNC) &R_gsk_stroke_node_new, 3},
+    {"R_gsk_stroke_node_get_child", (DL_FUNC) &R_gsk_stroke_node_get_child, 1},
+    {"R_gsk_stroke_node_get_path", (DL_FUNC) &R_gsk_stroke_node_get_path, 1},
+    {"R_gsk_stroke_node_get_stroke", (DL_FUNC) &R_gsk_stroke_node_get_stroke, 1},
+    {"R_gsk_subsurface_node_get_child", (DL_FUNC) &R_gsk_subsurface_node_get_child, 1},
+    {"R_gsk_text_node_new", (DL_FUNC) &R_gsk_text_node_new, 4},
+    {"R_gsk_text_node_get_color", (DL_FUNC) &R_gsk_text_node_get_color, 1},
+    {"R_gsk_text_node_get_font", (DL_FUNC) &R_gsk_text_node_get_font, 1},
+    {"R_gsk_text_node_get_glyphs", (DL_FUNC) &R_gsk_text_node_get_glyphs, 1},
+    {"R_gsk_text_node_get_num_glyphs", (DL_FUNC) &R_gsk_text_node_get_num_glyphs, 1},
+    {"R_gsk_text_node_get_offset", (DL_FUNC) &R_gsk_text_node_get_offset, 1},
+    {"R_gsk_text_node_has_color_glyphs", (DL_FUNC) &R_gsk_text_node_has_color_glyphs, 1},
+    {"R_gsk_texture_node_new", (DL_FUNC) &R_gsk_texture_node_new, 2},
+    {"R_gsk_texture_node_get_texture", (DL_FUNC) &R_gsk_texture_node_get_texture, 1},
+    {"R_gsk_texture_scale_node_new", (DL_FUNC) &R_gsk_texture_scale_node_new, 3},
+    {"R_gsk_texture_scale_node_get_filter", (DL_FUNC) &R_gsk_texture_scale_node_get_filter, 1},
+    {"R_gsk_texture_scale_node_get_texture", (DL_FUNC) &R_gsk_texture_scale_node_get_texture, 1},
+    {"R_gsk_transform_new", (DL_FUNC) &R_gsk_transform_new, 0},
+    {"R_gsk_transform_equal", (DL_FUNC) &R_gsk_transform_equal, 2},
+    {"R_gsk_transform_get_category", (DL_FUNC) &R_gsk_transform_get_category, 1},
+    {"R_gsk_transform_invert", (DL_FUNC) &R_gsk_transform_invert, 1},
+    {"R_gsk_transform_matrix", (DL_FUNC) &R_gsk_transform_matrix, 2},
+    {"R_gsk_transform_matrix_2d", (DL_FUNC) &R_gsk_transform_matrix_2d, 7},
+    {"R_gsk_transform_perspective", (DL_FUNC) &R_gsk_transform_perspective, 2},
+    {"R_gsk_transform_print", (DL_FUNC) &R_gsk_transform_print, 2},
+    {"R_gsk_transform_ref", (DL_FUNC) &R_gsk_transform_ref, 1},
+    {"R_gsk_transform_rotate", (DL_FUNC) &R_gsk_transform_rotate, 2},
+    {"R_gsk_transform_rotate_3d", (DL_FUNC) &R_gsk_transform_rotate_3d, 3},
+    {"R_gsk_transform_scale", (DL_FUNC) &R_gsk_transform_scale, 3},
+    {"R_gsk_transform_scale_3d", (DL_FUNC) &R_gsk_transform_scale_3d, 4},
+    {"R_gsk_transform_skew", (DL_FUNC) &R_gsk_transform_skew, 3},
+    {"R_gsk_transform_to_2d", (DL_FUNC) &R_gsk_transform_to_2d, 1},
+    {"R_gsk_transform_to_2d_components", (DL_FUNC) &R_gsk_transform_to_2d_components, 1},
+    {"R_gsk_transform_to_affine", (DL_FUNC) &R_gsk_transform_to_affine, 1},
+    {"R_gsk_transform_to_matrix", (DL_FUNC) &R_gsk_transform_to_matrix, 1},
+    {"R_gsk_transform_to_string", (DL_FUNC) &R_gsk_transform_to_string, 1},
+    {"R_gsk_transform_to_translate", (DL_FUNC) &R_gsk_transform_to_translate, 1},
+    {"R_gsk_transform_transform", (DL_FUNC) &R_gsk_transform_transform, 2},
+    {"R_gsk_transform_transform_bounds", (DL_FUNC) &R_gsk_transform_transform_bounds, 2},
+    {"R_gsk_transform_transform_point", (DL_FUNC) &R_gsk_transform_transform_point, 2},
+    {"R_gsk_transform_translate", (DL_FUNC) &R_gsk_transform_translate, 2},
+    {"R_gsk_transform_translate_3d", (DL_FUNC) &R_gsk_transform_translate_3d, 2},
+    {"R_gsk_transform_unref", (DL_FUNC) &R_gsk_transform_unref, 1},
+    {"R_gsk_transform_parse", (DL_FUNC) &R_gsk_transform_parse, 1},
+    {"R_gsk_transform_node_new", (DL_FUNC) &R_gsk_transform_node_new, 2},
+    {"R_gsk_transform_node_get_child", (DL_FUNC) &R_gsk_transform_node_get_child, 1},
+    {"R_gsk_transform_node_get_transform", (DL_FUNC) &R_gsk_transform_node_get_transform, 1},
+    {"R_gsk_vulkan_renderer_new", (DL_FUNC) &R_gsk_vulkan_renderer_new, 0},
+    {"R_gsk_value_dup_render_node", (DL_FUNC) &R_gsk_value_dup_render_node, 1},
+    {"R_gsk_value_get_render_node", (DL_FUNC) &R_gsk_value_get_render_node, 1},
+    {"R_gsk_value_set_render_node", (DL_FUNC) &R_gsk_value_set_render_node, 2},
+    {"R_gsk_value_take_render_node", (DL_FUNC) &R_gsk_value_take_render_node, 2},
     {"R_gtk_at_context_create", (DL_FUNC) &R_gtk_at_context_create, 3},
     {"R_gtk_at_context_get_accessible", (DL_FUNC) &R_gtk_at_context_get_accessible, 1},
     {"R_gtk_at_context_get_accessible_role", (DL_FUNC) &R_gtk_at_context_get_accessible_role, 1},
