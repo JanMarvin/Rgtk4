@@ -427,3 +427,20 @@ print.GObject <- function(x, ...) {
   }
   invisible(x)
 }
+
+# Manual wrapper for gdk_pixbuf_new_from_data
+# The generator may skip this due to callback parameter
+gdkPixbufNewFromData <- function(data, colorspace = 0L, has_alpha = TRUE,
+                                 bits_per_sample = 8L, width, height, rowstride) {
+  # data: raw vector containing pixel data
+  # colorspace: 0 = GDK_COLORSPACE_RGB
+  # has_alpha: TRUE if data includes alpha channel
+  # bits_per_sample: typically 8
+  # width, height: image dimensions
+  # rowstride: bytes per row (typically width * channels)
+
+  # Call the C function with NULL callback (R manages data lifetime)
+  .Call("R_gdk_pixbuf_new_from_data", data, as.integer(colorspace),
+        has_alpha, as.integer(bits_per_sample), as.integer(width),
+        as.integer(height), as.integer(rowstride))
+}
