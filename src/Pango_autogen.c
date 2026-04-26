@@ -9,6 +9,14 @@
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
 
+/* Agnostic numeric extraction helper */
+static inline double _unbox_numeric(SEXP s) {
+  if (TYPEOF(s) == REALSXP) return REAL(s)[0];
+  if (TYPEOF(s) == INTSXP)  return (double)INTEGER(s)[0];
+  if (TYPEOF(s) == LGLSXP)  return (double)LOGICAL(s)[0];
+  return 0.0;
+}
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -392,8 +400,8 @@ SEXP R_pango_attr_list_ref(SEXP s1) {
 SEXP R_pango_attr_list_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoAttrList* v1 = (PangoAttrList*)(get_ptr(s1)); (void)v1;
   PangoAttrList* v2 = (PangoAttrList*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   pango_attr_list_splice(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -424,9 +432,9 @@ SEXP R_pango_attr_list_unref(SEXP s1) {
 
 SEXP R_pango_attr_list_update(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoAttrList* v1 = (PangoAttrList*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   pango_attr_list_update(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -486,7 +494,7 @@ SEXP R_pango_attr_shape_new_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
 
 
 SEXP R_pango_attr_size_new(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_size_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -502,7 +510,7 @@ SEXP R_pango_attr_size_new(SEXP s1) {
 
 
 SEXP R_pango_attr_size_new_absolute(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_size_new_absolute(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -742,7 +750,7 @@ SEXP R_pango_attribute_init(SEXP s1, SEXP s2) {
 
 
 SEXP R_pango_bidi_type_for_unichar(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   PangoBidiType _ret = (PangoBidiType)pango_bidi_type_for_unichar(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1177,7 +1185,7 @@ SEXP R_pango_coverage_new(void) {
 
 SEXP R_pango_coverage_from_bytes(SEXP s1, SEXP s2) {
   guchar* v1 = (guchar*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)pango_coverage_from_bytes(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1210,7 +1218,7 @@ SEXP R_pango_coverage_copy(SEXP s1) {
 
 SEXP R_pango_coverage_get(SEXP s1, SEXP s2) {
   PangoCoverage* v1 = (PangoCoverage*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoCoverageLevel _ret = (PangoCoverageLevel)pango_coverage_get(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1251,7 +1259,7 @@ SEXP R_pango_coverage_ref(SEXP s1) {
 
 SEXP R_pango_coverage_set(SEXP s1, SEXP s2, SEXP s3) {
   PangoCoverage* v1 = (PangoCoverage*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoCoverageLevel v3 = (PangoCoverageLevel)((PangoCoverageLevel)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   pango_coverage_set(v1, v2, v3);
   return R_NilValue;
@@ -1290,7 +1298,7 @@ SEXP R_pango_coverage_unref(SEXP s1) {
 
 SEXP R_pango_font_descriptions_free(SEXP s1, SEXP s2) {
   PangoFontDescription** v1 = (s1 != R_NilValue) ? (PangoFontDescription**)(get_ptr(s1)) : NULL; (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   pango_font_descriptions_free(v1, v2);
   return R_NilValue;
 }
@@ -1382,7 +1390,7 @@ SEXP R_pango_font_get_face(SEXP s1) {
 SEXP R_pango_font_get_features(SEXP s1, SEXP s2) {
   PangoFont* v1 = (PangoFont*)(get_ptr(s1)); (void)v1;
   hb_feature_t _out_features = {0}; (void)_out_features;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   guint _out_num_features = 0; (void)_out_num_features;
   pango_font_get_features(v1, &_out_features, v2, &_out_num_features);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -1478,7 +1486,7 @@ SEXP R_pango_font_get_metrics(SEXP s1, SEXP s2) {
 
 SEXP R_pango_font_has_char(SEXP s1, SEXP s2) {
   PangoFont* v1 = (PangoFont*)(get_ptr(s1)); (void)v1;
-  gunichar v2 = (gunichar)((gunichar)INTEGER(s2)[0]); (void)v2;
+  gunichar v2 = (gunichar)((gunichar)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)pango_font_has_char(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1599,41 +1607,9 @@ SEXP R_pango_font_description_free(SEXP s1) {
 }
 
 
-SEXP R_pango_font_description_get_color(SEXP s1) {
-  const PangoFontDescription* v1 = (const PangoFontDescription*)(get_ptr(s1)); (void)v1;
-  PangoFontColor _ret = (PangoFontColor)pango_font_description_get_color(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "FontColor"));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("FontColor"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_pango_font_description_get_family(SEXP s1) {
   const PangoFontDescription* v1 = (const PangoFontDescription*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_font_description_get_family(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_pango_font_description_get_features(SEXP s1) {
-  const PangoFontDescription* v1 = (const PangoFontDescription*)(get_ptr(s1)); (void)v1;
-  gconstpointer _ret = (gconstpointer)pango_font_description_get_features(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
@@ -1827,16 +1803,8 @@ SEXP R_pango_font_description_merge_static(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_pango_font_description_set_absolute_size(SEXP s1, SEXP s2) {
   PangoFontDescription* v1 = (PangoFontDescription*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   pango_font_description_set_absolute_size(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_pango_font_description_set_color(SEXP s1, SEXP s2) {
-  PangoFontDescription* v1 = (PangoFontDescription*)(get_ptr(s1)); (void)v1;
-  PangoFontColor v2 = (PangoFontColor)((PangoFontColor)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  pango_font_description_set_color(v1, v2);
   return R_NilValue;
 }
 
@@ -1857,22 +1825,6 @@ SEXP R_pango_font_description_set_family_static(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_pango_font_description_set_features(SEXP s1, SEXP s2) {
-  PangoFontDescription* v1 = (PangoFontDescription*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  pango_font_description_set_features(v1, v2);
-  return R_NilValue;
-}
-
-
-SEXP R_pango_font_description_set_features_static(SEXP s1, SEXP s2) {
-  PangoFontDescription* v1 = (PangoFontDescription*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  pango_font_description_set_features_static(v1, v2);
-  return R_NilValue;
-}
-
-
 SEXP R_pango_font_description_set_gravity(SEXP s1, SEXP s2) {
   PangoFontDescription* v1 = (PangoFontDescription*)(get_ptr(s1)); (void)v1;
   PangoGravity v2 = (PangoGravity)((PangoGravity)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
@@ -1883,7 +1835,7 @@ SEXP R_pango_font_description_set_gravity(SEXP s1, SEXP s2) {
 
 SEXP R_pango_font_description_set_size(SEXP s1, SEXP s2) {
   PangoFontDescription* v1 = (PangoFontDescription*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   pango_font_description_set_size(v1, v2);
   return R_NilValue;
 }
@@ -2168,24 +2120,6 @@ SEXP R_pango_font_family_list_faces(SEXP s1) {
 }
 
 
-SEXP R_pango_font_map_add_font_file(SEXP s1, SEXP s2) {
-  PangoFontMap* v1 = (PangoFontMap*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GError *_err = NULL;
-  gboolean _ret = (gboolean)pango_font_map_add_font_file(v1, v2, &_err);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_pango_font_map_changed(SEXP s1) {
   PangoFontMap* v1 = (PangoFontMap*)(get_ptr(s1)); (void)v1;
   pango_font_map_changed(v1);
@@ -2294,26 +2228,6 @@ SEXP R_pango_font_map_load_fontset(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Fontset"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_pango_font_map_reload_font(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  PangoFontMap* v1 = (PangoFontMap*)(get_ptr(s1)); (void)v1;
-  PangoFont* v2 = (PangoFont*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  PangoContext* v4 = (s4 != R_NilValue) ? (PangoContext*)(get_ptr(s4)) : NULL; (void)v4;
-  const char* v5 = (s5 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s5,0))) : NULL; (void)v5;
-  gconstpointer _ret = (gconstpointer)pango_font_map_reload_font(v1, v2, v3, v4, v5);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Font"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -2500,7 +2414,7 @@ SEXP R_pango_fontset_foreach(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_pango_fontset_get_font(SEXP s1, SEXP s2) {
   PangoFontset* v1 = (PangoFontset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)pango_fontset_get_font(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2634,7 +2548,7 @@ SEXP R_pango_glyph_item_letter_space(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoGlyphItem* v1 = (PangoGlyphItem*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   PangoLogAttr* v3 = (PangoLogAttr*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   pango_glyph_item_letter_space(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -2643,7 +2557,7 @@ SEXP R_pango_glyph_item_letter_space(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_pango_glyph_item_split(SEXP s1, SEXP s2, SEXP s3) {
   PangoGlyphItem* v1 = (PangoGlyphItem*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_glyph_item_split(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2807,8 +2721,8 @@ SEXP R_pango_glyph_string_extents(SEXP s1, SEXP s2) {
 
 SEXP R_pango_glyph_string_extents_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoGlyphString* v1 = (PangoGlyphString*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   PangoFont* v4 = (PangoFont*)(get_ptr(s4)); (void)v4;
   PangoRectangle _out_ink_rect = {0}; (void)_out_ink_rect;
   PangoRectangle _out_logical_rect = {0}; (void)_out_logical_rect;
@@ -2841,8 +2755,8 @@ SEXP R_pango_glyph_string_free(SEXP s1) {
 SEXP R_pango_glyph_string_get_logical_widths(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoGlyphString* v1 = (PangoGlyphString*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   int _out_logical_widths = 0; (void)_out_logical_widths;
   pango_glyph_string_get_logical_widths(v1, v2, v3, v4, &_out_logical_widths);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2877,9 +2791,9 @@ SEXP R_pango_glyph_string_get_width(SEXP s1) {
 SEXP R_pango_glyph_string_index_to_x(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   PangoGlyphString* v1 = (PangoGlyphString*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   PangoAnalysis* v4 = (PangoAnalysis*)(get_ptr(s4)); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gboolean v6 = (gboolean)((gboolean)LOGICAL(s6)[0]); (void)v6;
   int _out_x_pos = 0; (void)_out_x_pos;
   pango_glyph_string_index_to_x(v1, v2, v3, v4, v5, v6, &_out_x_pos);
@@ -2899,10 +2813,10 @@ SEXP R_pango_glyph_string_index_to_x(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
 SEXP R_pango_glyph_string_index_to_x_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   PangoGlyphString* v1 = (PangoGlyphString*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   PangoAnalysis* v4 = (PangoAnalysis*)(get_ptr(s4)); (void)v4;
   PangoLogAttr* v5 = (s5 != R_NilValue) ? (PangoLogAttr*)(get_ptr(s5)) : NULL; (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   gboolean v7 = (gboolean)((gboolean)LOGICAL(s7)[0]); (void)v7;
   int _out_x_pos = 0; (void)_out_x_pos;
   pango_glyph_string_index_to_x_full(v1, v2, v3, v4, v5, v6, v7, &_out_x_pos);
@@ -2921,7 +2835,7 @@ SEXP R_pango_glyph_string_index_to_x_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
 
 SEXP R_pango_glyph_string_set_size(SEXP s1, SEXP s2) {
   PangoGlyphString* v1 = (PangoGlyphString*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   pango_glyph_string_set_size(v1, v2);
   return R_NilValue;
 }
@@ -2930,9 +2844,9 @@ SEXP R_pango_glyph_string_set_size(SEXP s1, SEXP s2) {
 SEXP R_pango_glyph_string_x_to_index(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   PangoGlyphString* v1 = (PangoGlyphString*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   PangoAnalysis* v4 = (PangoAnalysis*)(get_ptr(s4)); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   int _out_index_ = 0; (void)_out_index_;
   int _out_trailing = 0; (void)_out_trailing;
   pango_glyph_string_x_to_index(v1, v2, v3, v4, v5, &_out_index_, &_out_trailing);
@@ -3070,26 +2984,10 @@ SEXP R_pango_item_free(SEXP s1) {
 }
 
 
-SEXP R_pango_item_get_char_offset(SEXP s1) {
-  PangoItem* v1 = (PangoItem*)(get_ptr(s1)); (void)v1;
-  int _ret = (int)pango_item_get_char_offset(v1);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_pango_item_split(SEXP s1, SEXP s2, SEXP s3) {
   PangoItem* v1 = (PangoItem*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_item_split(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3364,7 +3262,7 @@ SEXP R_pango_layout_get_baseline(SEXP s1) {
 
 SEXP R_pango_layout_get_caret_pos(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoRectangle _out_strong_pos = {0}; (void)_out_strong_pos;
   PangoRectangle _out_weak_pos = {0}; (void)_out_weak_pos;
   pango_layout_get_caret_pos(v1, v2, &_out_strong_pos, &_out_weak_pos);
@@ -3420,7 +3318,7 @@ SEXP R_pango_layout_get_context(SEXP s1) {
 
 SEXP R_pango_layout_get_cursor_pos(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoRectangle _out_strong_pos = {0}; (void)_out_strong_pos;
   PangoRectangle _out_weak_pos = {0}; (void)_out_weak_pos;
   pango_layout_get_cursor_pos(v1, v2, &_out_strong_pos, &_out_weak_pos);
@@ -3444,7 +3342,7 @@ SEXP R_pango_layout_get_cursor_pos(SEXP s1, SEXP s2) {
 
 SEXP R_pango_layout_get_direction(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoDirection _ret = (PangoDirection)pango_layout_get_direction(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3596,7 +3494,7 @@ SEXP R_pango_layout_get_justify_last_line(SEXP s1) {
 
 SEXP R_pango_layout_get_line(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)pango_layout_get_line(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3629,7 +3527,7 @@ SEXP R_pango_layout_get_line_count(SEXP s1) {
 
 SEXP R_pango_layout_get_line_readonly(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)pango_layout_get_line_readonly(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3936,7 +3834,7 @@ SEXP R_pango_layout_get_wrap(SEXP s1) {
 
 SEXP R_pango_layout_index_to_line_x(SEXP s1, SEXP s2, SEXP s3) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   int _out_line = 0; (void)_out_line;
   int _out_x_pos = 0; (void)_out_x_pos;
@@ -3961,7 +3859,7 @@ SEXP R_pango_layout_index_to_line_x(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_pango_layout_index_to_pos(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoRectangle _out_pos = {0}; (void)_out_pos;
   pango_layout_index_to_pos(v1, v2, &_out_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4012,9 +3910,9 @@ SEXP R_pango_layout_is_wrapped(SEXP s1) {
 SEXP R_pango_layout_move_cursor_visually(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   int _out_new_index = 0; (void)_out_new_index;
   int _out_new_trailing = 0; (void)_out_new_trailing;
   pango_layout_move_cursor_visually(v1, v2, v3, v4, v5, &_out_new_index, &_out_new_trailing);
@@ -4095,7 +3993,7 @@ SEXP R_pango_layout_set_font_description(SEXP s1, SEXP s2) {
 
 SEXP R_pango_layout_set_height(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   pango_layout_set_height(v1, v2);
   return R_NilValue;
 }
@@ -4103,7 +4001,7 @@ SEXP R_pango_layout_set_height(SEXP s1, SEXP s2) {
 
 SEXP R_pango_layout_set_indent(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   pango_layout_set_indent(v1, v2);
   return R_NilValue;
 }
@@ -4127,7 +4025,7 @@ SEXP R_pango_layout_set_justify_last_line(SEXP s1, SEXP s2) {
 
 SEXP R_pango_layout_set_line_spacing(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   pango_layout_set_line_spacing(v1, v2);
   return R_NilValue;
 }
@@ -4136,7 +4034,7 @@ SEXP R_pango_layout_set_line_spacing(SEXP s1, SEXP s2) {
 SEXP R_pango_layout_set_markup(SEXP s1, SEXP s2, SEXP s3) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   pango_layout_set_markup(v1, v2, v3);
   return R_NilValue;
 }
@@ -4145,8 +4043,8 @@ SEXP R_pango_layout_set_markup(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_pango_layout_set_markup_with_accel(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gunichar v4 = (gunichar)((gunichar)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gunichar v4 = (gunichar)((gunichar)_unbox_numeric(s4)); (void)v4;
   gunichar _out_accel_char = 0; (void)_out_accel_char;
   pango_layout_set_markup_with_accel(v1, v2, v3, v4, &_out_accel_char);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4172,7 +4070,7 @@ SEXP R_pango_layout_set_single_paragraph_mode(SEXP s1, SEXP s2) {
 
 SEXP R_pango_layout_set_spacing(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   pango_layout_set_spacing(v1, v2);
   return R_NilValue;
 }
@@ -4189,7 +4087,7 @@ SEXP R_pango_layout_set_tabs(SEXP s1, SEXP s2) {
 SEXP R_pango_layout_set_text(SEXP s1, SEXP s2, SEXP s3) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   pango_layout_set_text(v1, v2, v3);
   return R_NilValue;
 }
@@ -4197,7 +4095,7 @@ SEXP R_pango_layout_set_text(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_pango_layout_set_width(SEXP s1, SEXP s2) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   pango_layout_set_width(v1, v2);
   return R_NilValue;
 }
@@ -4232,8 +4130,8 @@ SEXP R_pango_layout_write_to_file(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_pango_layout_xy_to_index(SEXP s1, SEXP s2, SEXP s3) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_index_ = 0; (void)_out_index_;
   int _out_trailing = 0; (void)_out_trailing;
   gboolean _ret = (gboolean)pango_layout_xy_to_index(v1, v2, v3, &_out_index_, &_out_trailing);
@@ -4752,8 +4650,8 @@ SEXP R_pango_layout_line_get_start_index(SEXP s1) {
 
 SEXP R_pango_layout_line_get_x_ranges(SEXP s1, SEXP s2, SEXP s3) {
   PangoLayoutLine* v1 = (PangoLayoutLine*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int* _out_ranges = 0; (void)_out_ranges;
   int _out_n_ranges = 0; (void)_out_n_ranges;
   pango_layout_line_get_x_ranges(v1, v2, v3, &_out_ranges, &_out_n_ranges);
@@ -4777,7 +4675,7 @@ SEXP R_pango_layout_line_get_x_ranges(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_pango_layout_line_index_to_x(SEXP s1, SEXP s2, SEXP s3) {
   PangoLayoutLine* v1 = (PangoLayoutLine*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   int _out_x_pos = 0; (void)_out_x_pos;
   pango_layout_line_index_to_x(v1, v2, v3, &_out_x_pos);
@@ -4835,7 +4733,7 @@ SEXP R_pango_layout_line_unref(SEXP s1) {
 
 SEXP R_pango_layout_line_x_to_index(SEXP s1, SEXP s2) {
   PangoLayoutLine* v1 = (PangoLayoutLine*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _out_index_ = 0; (void)_out_index_;
   int _out_trailing = 0; (void)_out_trailing;
   gboolean _ret = (gboolean)pango_layout_line_x_to_index(v1, v2, &_out_index_, &_out_trailing);
@@ -4950,7 +4848,7 @@ SEXP R_pango_matrix_get_slant_ratio(SEXP s1) {
 
 SEXP R_pango_matrix_rotate(SEXP s1, SEXP s2) {
   PangoMatrix* v1 = (PangoMatrix*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   pango_matrix_rotate(v1, v2);
   return R_NilValue;
 }
@@ -4958,8 +4856,8 @@ SEXP R_pango_matrix_rotate(SEXP s1, SEXP s2) {
 
 SEXP R_pango_matrix_scale(SEXP s1, SEXP s2, SEXP s3) {
   PangoMatrix* v1 = (PangoMatrix*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   pango_matrix_scale(v1, v2, v3);
   return R_NilValue;
 }
@@ -5047,8 +4945,8 @@ SEXP R_pango_matrix_transform_rectangle(SEXP s1) {
 
 SEXP R_pango_matrix_translate(SEXP s1, SEXP s2, SEXP s3) {
   PangoMatrix* v1 = (PangoMatrix*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   pango_matrix_translate(v1, v2, v3);
   return R_NilValue;
 }
@@ -5070,10 +4968,10 @@ SEXP R_pango_renderer_deactivate(SEXP s1) {
 
 SEXP R_pango_renderer_draw_error_underline(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   pango_renderer_draw_error_underline(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -5083,8 +4981,8 @@ SEXP R_pango_renderer_draw_glyph(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
   PangoFont* v2 = (PangoFont*)(get_ptr(s2)); (void)v2;
   PangoGlyph v3 = (PangoGlyph)((PangoGlyph)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
   pango_renderer_draw_glyph(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -5094,8 +4992,8 @@ SEXP R_pango_renderer_draw_glyph_item(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   PangoGlyphItem* v3 = (PangoGlyphItem*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   pango_renderer_draw_glyph_item(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -5105,8 +5003,8 @@ SEXP R_pango_renderer_draw_glyphs(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
   PangoFont* v2 = (PangoFont*)(get_ptr(s2)); (void)v2;
   PangoGlyphString* v3 = (PangoGlyphString*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   pango_renderer_draw_glyphs(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -5115,8 +5013,8 @@ SEXP R_pango_renderer_draw_glyphs(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_pango_renderer_draw_layout(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
   PangoLayout* v2 = (PangoLayout*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   pango_renderer_draw_layout(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -5125,8 +5023,8 @@ SEXP R_pango_renderer_draw_layout(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_pango_renderer_draw_layout_line(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
   PangoLayoutLine* v2 = (PangoLayoutLine*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   pango_renderer_draw_layout_line(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -5135,10 +5033,10 @@ SEXP R_pango_renderer_draw_layout_line(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_pango_renderer_draw_rectangle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
   PangoRenderPart v2 = (PangoRenderPart)((PangoRenderPart)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   pango_renderer_draw_rectangle(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -5147,12 +5045,12 @@ SEXP R_pango_renderer_draw_rectangle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
 SEXP R_pango_renderer_draw_trapezoid(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
   PangoRenderPart v2 = (PangoRenderPart)((PangoRenderPart)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
-  gdouble v7 = (gdouble)((gdouble)REAL(s7)[0]); (void)v7;
-  gdouble v8 = (gdouble)((gdouble)REAL(s8)[0]); (void)v8;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
+  gdouble v7 = (gdouble)((gdouble)_unbox_numeric(s7)); (void)v7;
+  gdouble v8 = (gdouble)((gdouble)_unbox_numeric(s8)); (void)v8;
   pango_renderer_draw_trapezoid(v1, v2, v3, v4, v5, v6, v7, v8);
   return R_NilValue;
 }
@@ -5251,7 +5149,7 @@ SEXP R_pango_renderer_part_changed(SEXP s1, SEXP s2) {
 SEXP R_pango_renderer_set_alpha(SEXP s1, SEXP s2, SEXP s3) {
   PangoRenderer* v1 = (PangoRenderer*)(get_ptr(s1)); (void)v1;
   PangoRenderPart v2 = (PangoRenderPart)((PangoRenderPart)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   pango_renderer_set_alpha(v1, v2, v3);
   return R_NilValue;
 }
@@ -5275,7 +5173,7 @@ SEXP R_pango_renderer_set_matrix(SEXP s1, SEXP s2) {
 
 
 SEXP R_pango_script_for_unichar(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   PangoScript _ret = (PangoScript)pango_script_for_unichar(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5308,7 +5206,7 @@ SEXP R_pango_script_get_sample_language(SEXP s1) {
 
 SEXP R_pango_script_iter_new(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)pango_script_iter_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5376,7 +5274,7 @@ SEXP R_pango_script_iter_next(SEXP s1) {
 
 
 SEXP R_pango_tab_array_new(SEXP s1, SEXP s2) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)pango_tab_array_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5417,7 +5315,7 @@ SEXP R_pango_tab_array_free(SEXP s1) {
 
 SEXP R_pango_tab_array_get_decimal_point(SEXP s1, SEXP s2) {
   PangoTabArray* v1 = (PangoTabArray*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gunichar _ret = (gunichar)pango_tab_array_get_decimal_point(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5466,7 +5364,7 @@ SEXP R_pango_tab_array_get_size(SEXP s1) {
 
 SEXP R_pango_tab_array_get_tab(SEXP s1, SEXP s2) {
   PangoTabArray* v1 = (PangoTabArray*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoTabAlign _out_alignment = {0}; (void)_out_alignment;
   gint _out_location = 0; (void)_out_location;
   pango_tab_array_get_tab(v1, v2, &_out_alignment, &_out_location);
@@ -5513,7 +5411,7 @@ SEXP R_pango_tab_array_get_tabs(SEXP s1) {
 
 SEXP R_pango_tab_array_resize(SEXP s1, SEXP s2) {
   PangoTabArray* v1 = (PangoTabArray*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   pango_tab_array_resize(v1, v2);
   return R_NilValue;
 }
@@ -5521,8 +5419,8 @@ SEXP R_pango_tab_array_resize(SEXP s1, SEXP s2) {
 
 SEXP R_pango_tab_array_set_decimal_point(SEXP s1, SEXP s2, SEXP s3) {
   PangoTabArray* v1 = (PangoTabArray*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gunichar v3 = (gunichar)((gunichar)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gunichar v3 = (gunichar)((gunichar)_unbox_numeric(s3)); (void)v3;
   pango_tab_array_set_decimal_point(v1, v2, v3);
   return R_NilValue;
 }
@@ -5538,9 +5436,9 @@ SEXP R_pango_tab_array_set_positions_in_pixels(SEXP s1, SEXP s2) {
 
 SEXP R_pango_tab_array_set_tab(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   PangoTabArray* v1 = (PangoTabArray*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoTabAlign v3 = (PangoTabAlign)((PangoTabAlign)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   pango_tab_array_set_tab(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -5602,7 +5500,7 @@ SEXP R_pango_attr_allow_breaks_new(SEXP s1) {
 
 
 SEXP R_pango_attr_background_alpha_new(SEXP s1) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_background_alpha_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5618,9 +5516,9 @@ SEXP R_pango_attr_background_alpha_new(SEXP s1) {
 
 
 SEXP R_pango_attr_background_new(SEXP s1, SEXP s2, SEXP s3) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_attr_background_new(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5636,7 +5534,7 @@ SEXP R_pango_attr_background_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_pango_attr_baseline_shift_new(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_baseline_shift_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5653,11 +5551,11 @@ SEXP R_pango_attr_baseline_shift_new(SEXP s1) {
 
 SEXP R_pango_attr_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoAttrList* v3 = (PangoAttrList*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   PangoLogAttr _out_attrs = {0}; (void)_out_attrs;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   pango_attr_break(v1, v2, v3, v4, &_out_attrs, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5721,7 +5619,7 @@ SEXP R_pango_attr_font_scale_new(SEXP s1) {
 
 
 SEXP R_pango_attr_foreground_alpha_new(SEXP s1) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_foreground_alpha_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5737,9 +5635,9 @@ SEXP R_pango_attr_foreground_alpha_new(SEXP s1) {
 
 
 SEXP R_pango_attr_foreground_new(SEXP s1, SEXP s2, SEXP s3) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_attr_foreground_new(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5803,7 +5701,7 @@ SEXP R_pango_attr_insert_hyphens_new(SEXP s1) {
 
 
 SEXP R_pango_attr_letter_spacing_new(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_letter_spacing_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5819,7 +5717,7 @@ SEXP R_pango_attr_letter_spacing_new(SEXP s1) {
 
 
 SEXP R_pango_attr_line_height_new(SEXP s1) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_line_height_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5835,7 +5733,7 @@ SEXP R_pango_attr_line_height_new(SEXP s1) {
 
 
 SEXP R_pango_attr_line_height_new_absolute(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_line_height_new_absolute(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5851,9 +5749,9 @@ SEXP R_pango_attr_line_height_new_absolute(SEXP s1) {
 
 
 SEXP R_pango_attr_overline_color_new(SEXP s1, SEXP s2, SEXP s3) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_attr_overline_color_new(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5885,7 +5783,7 @@ SEXP R_pango_attr_overline_new(SEXP s1) {
 
 
 SEXP R_pango_attr_rise_new(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_rise_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5901,7 +5799,7 @@ SEXP R_pango_attr_rise_new(SEXP s1) {
 
 
 SEXP R_pango_attr_scale_new(SEXP s1) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_scale_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5965,9 +5863,9 @@ SEXP R_pango_attr_stretch_new(SEXP s1) {
 
 
 SEXP R_pango_attr_strikethrough_color_new(SEXP s1, SEXP s2, SEXP s3) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_attr_strikethrough_color_new(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6031,9 +5929,9 @@ SEXP R_pango_attr_text_transform_new(SEXP s1) {
 
 
 SEXP R_pango_attr_underline_color_new(SEXP s1, SEXP s2, SEXP s3) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_attr_underline_color_new(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6114,10 +6012,10 @@ SEXP R_pango_attr_word_new(void) {
 
 SEXP R_pango_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoAnalysis* v3 = (PangoAnalysis*)(get_ptr(s3)); (void)v3;
   PangoLogAttr _out_attrs = {0}; (void)_out_attrs;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   pango_break(v1, v2, v3, &_out_attrs, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6134,10 +6032,10 @@ SEXP R_pango_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_pango_default_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoAnalysis* v3 = (s3 != R_NilValue) ? (PangoAnalysis*)(get_ptr(s3)) : NULL; (void)v3;
   PangoLogAttr _out_attrs = {0}; (void)_out_attrs;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   pango_default_break(v1, v2, v3, &_out_attrs, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6176,7 +6074,7 @@ SEXP R_pango_extents_to_pixels(void) {
 
 SEXP R_pango_find_base_dir(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoDirection _ret = (PangoDirection)pango_find_base_dir(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6193,7 +6091,7 @@ SEXP R_pango_find_base_dir(SEXP s1, SEXP s2) {
 
 SEXP R_pango_find_paragraph_boundary(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _out_paragraph_delimiter_index = 0; (void)_out_paragraph_delimiter_index;
   int _out_next_paragraph_start = 0; (void)_out_next_paragraph_start;
   pango_find_paragraph_boundary(v1, v2, &_out_paragraph_delimiter_index, &_out_next_paragraph_start);
@@ -6217,11 +6115,11 @@ SEXP R_pango_find_paragraph_boundary(SEXP s1, SEXP s2) {
 
 SEXP R_pango_get_log_attrs(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   PangoLanguage* v4 = (PangoLanguage*)(get_ptr(s4)); (void)v4;
   PangoLogAttr _out_attrs = {0}; (void)_out_attrs;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   pango_get_log_attrs(v1, v2, v3, v4, &_out_attrs, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6237,7 +6135,7 @@ SEXP R_pango_get_log_attrs(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_pango_get_mirror_char(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gunichar _out_mirrored_ch = 0; (void)_out_mirrored_ch;
   gboolean _ret = (gboolean)pango_get_mirror_char(v1, &_out_mirrored_ch);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -6259,7 +6157,7 @@ SEXP R_pango_get_mirror_char(SEXP s1) {
 
 
 SEXP R_pango_is_zero_width(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)pango_is_zero_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6277,8 +6175,8 @@ SEXP R_pango_is_zero_width(SEXP s1) {
 SEXP R_pango_itemize(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   PangoContext* v1 = (PangoContext*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   PangoAttrList* v5 = (PangoAttrList*)(get_ptr(s5)); (void)v5;
   PangoAttrIterator* v6 = (s6 != R_NilValue) ? (PangoAttrIterator*)(get_ptr(s6)) : NULL; (void)v6;
   gconstpointer _ret = (gconstpointer)pango_itemize(v1, v2, v3, v4, v5, v6);
@@ -6299,8 +6197,8 @@ SEXP R_pango_itemize_with_base_dir(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
   PangoContext* v1 = (PangoContext*)(get_ptr(s1)); (void)v1;
   PangoDirection v2 = (PangoDirection)((PangoDirection)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   PangoAttrList* v6 = (PangoAttrList*)(get_ptr(s6)); (void)v6;
   PangoAttrIterator* v7 = (s7 != R_NilValue) ? (PangoAttrIterator*)(get_ptr(s7)) : NULL; (void)v7;
   gconstpointer _ret = (gconstpointer)pango_itemize_with_base_dir(v1, v2, v3, v4, v5, v6, v7);
@@ -6319,7 +6217,7 @@ SEXP R_pango_itemize_with_base_dir(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
 
 SEXP R_pango_log2vis_get_embedding_levels(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoDirection _out_pbase_dir = {0}; (void)_out_pbase_dir;
   gconstpointer _ret = (gconstpointer)pango_log2vis_get_embedding_levels(v1, v2, &_out_pbase_dir);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -6376,7 +6274,7 @@ SEXP R_pango_markup_parser_finish(SEXP s1) {
 
 
 SEXP R_pango_markup_parser_new(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_markup_parser_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6392,7 +6290,7 @@ SEXP R_pango_markup_parser_new(SEXP s1) {
 
 
 SEXP R_pango_parse_enum(SEXP s1, SEXP s2, SEXP s3) {
-  GType v1 = (GType)((GType)REAL(s1)[0]); (void)v1;
+  GType v1 = (GType)((GType)_unbox_numeric(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   int _out_value = 0; (void)_out_value;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
@@ -6423,8 +6321,8 @@ SEXP R_pango_parse_enum(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_pango_parse_markup(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gunichar v3 = (gunichar)((gunichar)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gunichar v3 = (gunichar)((gunichar)_unbox_numeric(s3)); (void)v3;
   PangoAttrList* _out_attr_list = 0; (void)_out_attr_list;
   char* _out_text = 0; (void)_out_text;
   gunichar _out_accel_char = 0; (void)_out_accel_char;
@@ -6678,7 +6576,7 @@ SEXP R_pango_scan_word(SEXP s1) {
 
 SEXP R_pango_shape(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const PangoAnalysis* v3 = (const PangoAnalysis*)(get_ptr(s3)); (void)v3;
   PangoGlyphString _out_glyphs = {0}; (void)_out_glyphs;
   pango_shape(v1, v2, v3, &_out_glyphs);
@@ -6697,9 +6595,9 @@ SEXP R_pango_shape(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_pango_shape_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   const PangoAnalysis* v5 = (const PangoAnalysis*)(get_ptr(s5)); (void)v5;
   PangoGlyphString _out_glyphs = {0}; (void)_out_glyphs;
   pango_shape_full(v1, v2, v3, v4, v5, &_out_glyphs);
@@ -6719,7 +6617,7 @@ SEXP R_pango_shape_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_pango_shape_item(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   PangoItem* v1 = (PangoItem*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   PangoLogAttr* v4 = (s4 != R_NilValue) ? (PangoLogAttr*)(get_ptr(s4)) : NULL; (void)v4;
   PangoGlyphString _out_glyphs = {0}; (void)_out_glyphs;
   PangoShapeFlags v5 = (PangoShapeFlags)((PangoShapeFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
@@ -6739,9 +6637,9 @@ SEXP R_pango_shape_item(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 SEXP R_pango_shape_with_flags(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   const PangoAnalysis* v5 = (const PangoAnalysis*)(get_ptr(s5)); (void)v5;
   PangoGlyphString _out_glyphs = {0}; (void)_out_glyphs;
   PangoShapeFlags v6 = (PangoShapeFlags)((PangoShapeFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
@@ -6798,11 +6696,11 @@ SEXP R_pango_split_file_list(SEXP s1) {
 
 SEXP R_pango_tailor_break(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   PangoAnalysis* v3 = (PangoAnalysis*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   PangoLogAttr _out_attrs = {0}; (void)_out_attrs;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   pango_tailor_break(v1, v2, v3, v4, &_out_attrs, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6834,7 +6732,7 @@ SEXP R_pango_trim_string(SEXP s1) {
 
 
 SEXP R_pango_unichar_direction(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   PangoDirection _ret = (PangoDirection)pango_unichar_direction(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6850,7 +6748,7 @@ SEXP R_pango_unichar_direction(SEXP s1) {
 
 
 SEXP R_pango_units_from_double(SEXP s1) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
   int _ret = (int)pango_units_from_double(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6866,7 +6764,7 @@ SEXP R_pango_units_from_double(SEXP s1) {
 
 
 SEXP R_pango_units_to_double(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   double _ret = (double)pango_units_to_double(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6898,9 +6796,9 @@ SEXP R_pango_version(void) {
 
 
 SEXP R_pango_version_check(SEXP s1, SEXP s2, SEXP s3) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_version_check(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));

@@ -13,7 +13,6 @@
 \alias{gByteArrayRemoveRange}
 \alias{gByteArraySetSize}
 \alias{gByteArraySizedNew}
-\alias{gByteArraySteal}
 \alias{gByteArrayUnref}
 \alias{gBytesNew}
 \alias{gBytesNewFromBytes}
@@ -21,7 +20,6 @@
 \alias{gBytesCompare}
 \alias{gBytesEqual}
 \alias{gBytesGetData}
-\alias{gBytesGetRegion}
 \alias{gBytesGetSize}
 \alias{gBytesHash}
 \alias{gBytesRef}
@@ -56,8 +54,6 @@ gByteArraySetSize(array, length)
 
 gByteArraySizedNew(reserved_size)
 
-gByteArraySteal(array)
-
 gByteArrayUnref(array)
 
 gBytesNew(data, size)
@@ -71,8 +67,6 @@ gBytesCompare(bytes1, bytes2)
 gBytesEqual(bytes1, bytes2)
 
 gBytesGetData(bytes)
-
-gBytesGetRegion(bytes, element_size, offset, n_elements)
 
 gBytesGetSize(bytes)
 
@@ -115,10 +109,6 @@ gBytesIconGetBytes(icon)
 
 \item{bytes2}{Bytes}
 
-\item{element_size}{gsize}
-
-\item{n_elements}{gsize}
-
 \item{icon}{BytesIcon}
 }
 \value{
@@ -127,8 +117,6 @@ guint8
 guint8
 
 Bytes
-
-guint8
 
 guint8
 
@@ -161,8 +149,6 @@ gint
 gboolean
 
 guint8
-
-gpointer
 
 gsize
 
@@ -205,8 +191,6 @@ gByteArraySetSize
 
 gByteArraySizedNew
 
-gByteArraySteal
-
 gByteArrayUnref
 
 gBytesNew
@@ -220,8 +204,6 @@ gBytesCompare
 gBytesEqual
 
 gBytesGetData
-
-gBytesGetRegion
 
 gBytesGetSize
 

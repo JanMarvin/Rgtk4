@@ -427,30 +427,6 @@ gtkAboutDialogSetWrapLicense <- function(about, wrap_license) {
 
 
 #' @rdname gtk-other
-#' @title gtkAccessibleAnnounce
-#'
-#' @param self Accessible
-#' @param message utf8
-#' @param priority AccessibleAnnouncementPriority
-#' @return Return value from C function
-#' @export
-gtkAccessibleAnnounce <- function(self, message, priority) {
-  invisible(.Call("R_gtk_accessible_announce", self, message, priority))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAccessibleGetAccessibleId
-#'
-#' @param self Accessible
-#' @return utf8
-#' @export
-gtkAccessibleGetAccessibleId <- function(self) {
-  .Call("R_gtk_accessible_get_accessible_id", self)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkAccessibleGetAccessibleParent
 #'
 #' @param self Accessible
@@ -590,18 +566,6 @@ gtkAccessibleUpdateNextAccessibleSibling <- function(self, new_sibling) {
 
 
 #' @rdname gtk-other
-#' @title gtkAccessibleUpdatePlatformState
-#'
-#' @param self Accessible
-#' @param state AccessiblePlatformState
-#' @return Return value from C function
-#' @export
-gtkAccessibleUpdatePlatformState <- function(self, state) {
-  invisible(.Call("R_gtk_accessible_update_platform_state", self, state))
-}
-
-
-#' @rdname gtk-other
 #' @title gtkAccessibleUpdatePropertyValue
 #'
 #' @param self Accessible
@@ -644,67 +608,6 @@ gtkAccessibleUpdateStateValue <- function(self, n_states, states, values) {
 
 
 #' @rdname gtk-other
-#' @title gtkAccessibleHyperlinkNew
-#'
-#' @param parent AccessibleHypertext
-#' @param index guint
-#' @param uri utf8
-#' @param bounds AccessibleTextRange
-#' @return AccessibleHyperlink
-#' @export
-gtkAccessibleHyperlinkNew <- function(parent, index, uri, bounds) {
-  .Call("R_gtk_accessible_hyperlink_new", parent, as.integer(index), uri, bounds)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAccessibleHyperlinkSetPlatformState
-#'
-#' @param self AccessibleHyperlink
-#' @param state AccessiblePlatformState
-#' @param enabled gboolean
-#' @return Return value from C function
-#' @export
-gtkAccessibleHyperlinkSetPlatformState <- function(self, state, enabled) {
-  invisible(.Call("R_gtk_accessible_hyperlink_set_platform_state", self, state, enabled))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAccessibleListNewFromArray
-#'
-#' @param accessibles Accessible
-#' @param n_accessibles gsize
-#' @return AccessibleList
-#' @export
-gtkAccessibleListNewFromArray <- function(accessibles, n_accessibles) {
-  .Call("R_gtk_accessible_list_new_from_array", accessibles, as.integer(n_accessibles))$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAccessibleListNewFromList
-#'
-#' @param list GLib.List
-#' @return AccessibleList
-#' @export
-gtkAccessibleListNewFromList <- function(list) {
-  .Call("R_gtk_accessible_list_new_from_list", list)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAccessibleListGetObjects
-#'
-#' @param accessible_list AccessibleList
-#' @return GLib.List
-#' @export
-gtkAccessibleListGetObjects <- function(accessible_list) {
-  .Call("R_gtk_accessible_list_get_objects", accessible_list)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkAccessiblePropertyInitValue
 #'
 #' @param property AccessibleProperty
@@ -737,42 +640,6 @@ gtkAccessibleRelationInitValue <- function(relation, value) {
 #' @export
 gtkAccessibleStateInitValue <- function(state, value) {
   invisible(.Call("R_gtk_accessible_state_init_value", state, value))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAccessibleTextUpdateCaretPosition
-#'
-#' @param self AccessibleText
-#' @return Return value from C function
-#' @export
-gtkAccessibleTextUpdateCaretPosition <- function(self) {
-  invisible(.Call("R_gtk_accessible_text_update_caret_position", self))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAccessibleTextUpdateContents
-#'
-#' @param self AccessibleText
-#' @param change AccessibleTextContentChange
-#' @param start guint
-#' @param end guint
-#' @return Return value from C function
-#' @export
-gtkAccessibleTextUpdateContents <- function(self, change, start, end) {
-  invisible(.Call("R_gtk_accessible_text_update_contents", self, change, as.integer(start), as.integer(end)))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAccessibleTextUpdateSelectionBound
-#'
-#' @param self AccessibleText
-#' @return Return value from C function
-#' @export
-gtkAccessibleTextUpdateSelectionBound <- function(self) {
-  invisible(.Call("R_gtk_accessible_text_update_selection_bound", self))
 }
 
 
@@ -3906,17 +3773,6 @@ gtkCalendarGetDate <- function(self) {
 
 
 #' @rdname gtk-other
-#' @title gtkCalendarGetDay
-#'
-#' @param self Calendar
-#' @return gint
-#' @export
-gtkCalendarGetDay <- function(self) {
-  .Call("R_gtk_calendar_get_day", self)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkCalendarGetDayIsMarked
 #'
 #' @param calendar Calendar
@@ -3925,17 +3781,6 @@ gtkCalendarGetDay <- function(self) {
 #' @export
 gtkCalendarGetDayIsMarked <- function(calendar, day) {
   .Call("R_gtk_calendar_get_day_is_marked", calendar, as.integer(day))$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkCalendarGetMonth
-#'
-#' @param self Calendar
-#' @return gint
-#' @export
-gtkCalendarGetMonth <- function(self) {
-  .Call("R_gtk_calendar_get_month", self)$result
 }
 
 
@@ -3973,17 +3818,6 @@ gtkCalendarGetShowWeekNumbers <- function(self) {
 
 
 #' @rdname gtk-other
-#' @title gtkCalendarGetYear
-#'
-#' @param self Calendar
-#' @return gint
-#' @export
-gtkCalendarGetYear <- function(self) {
-  .Call("R_gtk_calendar_get_year", self)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkCalendarMarkDay
 #'
 #' @param calendar Calendar
@@ -4004,42 +3838,6 @@ gtkCalendarMarkDay <- function(calendar, day) {
 #' @export
 gtkCalendarSelectDay <- function(self, date) {
   invisible(.Call("R_gtk_calendar_select_day", self, date))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkCalendarSetDate
-#'
-#' @param self Calendar
-#' @param date GLib.DateTime
-#' @return Return value from C function
-#' @export
-gtkCalendarSetDate <- function(self, date) {
-  invisible(.Call("R_gtk_calendar_set_date", self, date))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkCalendarSetDay
-#'
-#' @param self Calendar
-#' @param day gint
-#' @return Return value from C function
-#' @export
-gtkCalendarSetDay <- function(self, day) {
-  invisible(.Call("R_gtk_calendar_set_day", self, as.integer(day)))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkCalendarSetMonth
-#'
-#' @param self Calendar
-#' @param month gint
-#' @return Return value from C function
-#' @export
-gtkCalendarSetMonth <- function(self, month) {
-  invisible(.Call("R_gtk_calendar_set_month", self, as.integer(month)))
 }
 
 
@@ -4076,18 +3874,6 @@ gtkCalendarSetShowHeading <- function(self, value) {
 #' @export
 gtkCalendarSetShowWeekNumbers <- function(self, value) {
   invisible(.Call("R_gtk_calendar_set_show_week_numbers", self, value))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkCalendarSetYear
-#'
-#' @param self Calendar
-#' @param year gint
-#' @return Return value from C function
-#' @export
-gtkCalendarSetYear <- function(self, year) {
-  invisible(.Call("R_gtk_calendar_set_year", self, as.integer(year)))
 }
 
 
@@ -8101,31 +7887,6 @@ gtkCssSectionNew <- function(file, start, end) {
 
 
 #' @rdname gtk-other
-#' @title gtkCssSectionNewWithBytes
-#'
-#' @param file Gio.File
-#' @param bytes GLib.Bytes
-#' @param start CssLocation
-#' @param end CssLocation
-#' @return CssSection
-#' @export
-gtkCssSectionNewWithBytes <- function(file, bytes, start, end) {
-  .Call("R_gtk_css_section_new_with_bytes", file, bytes, start, end)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkCssSectionGetBytes
-#'
-#' @param section CssSection
-#' @return GLib.Bytes
-#' @export
-gtkCssSectionGetBytes <- function(section) {
-  .Call("R_gtk_css_section_get_bytes", section)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkCssSectionGetEndLocation
 #'
 #' @param section CssSection
@@ -9817,18 +9578,6 @@ gtkEntryGetMaxLength <- function(entry) {
 
 
 #' @rdname gtk-text
-#' @title gtkEntryGetMenuEntryIconText
-#'
-#' @param entry Entry
-#' @param icon_pos EntryIconPosition
-#' @return utf8
-#' @export
-gtkEntryGetMenuEntryIconText <- function(entry, icon_pos) {
-  .Call("R_gtk_entry_get_menu_entry_icon_text", entry, icon_pos)$result
-}
-
-
-#' @rdname gtk-text
 #' @title gtkEntryGetOverwriteMode
 #'
 #' @param entry Entry
@@ -10172,19 +9921,6 @@ gtkEntrySetInvisibleChar <- function(entry, ch) {
 #' @export
 gtkEntrySetMaxLength <- function(entry, max) {
   invisible(.Call("R_gtk_entry_set_max_length", entry, as.integer(max)))
-}
-
-
-#' @rdname gtk-text
-#' @title gtkEntrySetMenuEntryIconText
-#'
-#' @param entry Entry
-#' @param icon_pos EntryIconPosition
-#' @param text utf8
-#' @return Return value from C function
-#' @export
-gtkEntrySetMenuEntryIconText <- function(entry, icon_pos, text) {
-  invisible(.Call("R_gtk_entry_set_menu_entry_icon_text", entry, icon_pos, text))
 }
 
 
@@ -11797,30 +11533,6 @@ gtkFileDialogOpenMultipleFinish <- function(self, result) {
 
 
 #' @rdname gtk-other
-#' @title gtkFileDialogOpenMultipleTextFilesFinish
-#'
-#' @param self FileDialog
-#' @param result Gio.AsyncResult
-#' @return Gio.ListModel
-#' @export
-gtkFileDialogOpenMultipleTextFilesFinish <- function(self, result) {
-  .Call("R_gtk_file_dialog_open_multiple_text_files_finish", self, result)
-}
-
-
-#' @rdname gtk-other
-#' @title gtkFileDialogOpenTextFileFinish
-#'
-#' @param self FileDialog
-#' @param result Gio.AsyncResult
-#' @return Gio.File
-#' @export
-gtkFileDialogOpenTextFileFinish <- function(self, result) {
-  .Call("R_gtk_file_dialog_open_text_file_finish", self, result)
-}
-
-
-#' @rdname gtk-other
 #' @title gtkFileDialogSaveFinish
 #'
 #' @param self FileDialog
@@ -11829,18 +11541,6 @@ gtkFileDialogOpenTextFileFinish <- function(self, result) {
 #' @export
 gtkFileDialogSaveFinish <- function(self, result) {
   .Call("R_gtk_file_dialog_save_finish", self, result)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkFileDialogSaveTextFileFinish
-#'
-#' @param self FileDialog
-#' @param result Gio.AsyncResult
-#' @return Gio.File
-#' @export
-gtkFileDialogSaveTextFileFinish <- function(self, result) {
-  .Call("R_gtk_file_dialog_save_text_file_finish", self, result)
 }
 
 
@@ -11998,18 +11698,6 @@ gtkFileFilterAddMimeType <- function(filter, mime_type) {
 
 
 #' @rdname gtk-file-choosers
-#' @title gtkFileFilterAddMimeTypes
-#'
-#' @param filter FileFilter
-#' @param mime_types utf8
-#' @return Return value from C function
-#' @export
-gtkFileFilterAddMimeTypes <- function(filter, mime_types) {
-  invisible(.Call("R_gtk_file_filter_add_mime_types", filter, mime_types))
-}
-
-
-#' @rdname gtk-file-choosers
 #' @title gtkFileFilterAddPattern
 #'
 #' @param filter FileFilter
@@ -12123,17 +11811,6 @@ gtkFileLauncherGetFile <- function(self) {
 
 
 #' @rdname gtk-other
-#' @title gtkFileLauncherGetWritable
-#'
-#' @param self FileLauncher
-#' @return gboolean
-#' @export
-gtkFileLauncherGetWritable <- function(self) {
-  .Call("R_gtk_file_launcher_get_writable", self)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkFileLauncherLaunchFinish
 #'
 #' @param self FileLauncher
@@ -12178,18 +11855,6 @@ gtkFileLauncherSetAlwaysAsk <- function(self, always_ask) {
 #' @export
 gtkFileLauncherSetFile <- function(self, file) {
   invisible(.Call("R_gtk_file_launcher_set_file", self, file))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkFileLauncherSetWritable
-#'
-#' @param self FileLauncher
-#' @param writable gboolean
-#' @return Return value from C function
-#' @export
-gtkFileLauncherSetWritable <- function(self, writable) {
-  invisible(.Call("R_gtk_file_launcher_set_writable", self, writable))
 }
 
 
@@ -12285,17 +11950,6 @@ gtkFilterListModelGetPending <- function(self) {
 
 
 #' @rdname gtk-other
-#' @title gtkFilterListModelGetWatchItems
-#'
-#' @param self FilterListModel
-#' @return gboolean
-#' @export
-gtkFilterListModelGetWatchItems <- function(self) {
-  .Call("R_gtk_filter_list_model_get_watch_items", self)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkFilterListModelSetFilter
 #'
 #' @param self FilterListModel
@@ -12328,18 +11982,6 @@ gtkFilterListModelSetIncremental <- function(self, incremental) {
 #' @export
 gtkFilterListModelSetModel <- function(self, model) {
   invisible(.Call("R_gtk_filter_list_model_set_model", self, model))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkFilterListModelSetWatchItems
-#'
-#' @param self FilterListModel
-#' @param watch_items gboolean
-#' @return Return value from C function
-#' @export
-gtkFilterListModelSetWatchItems <- function(self, watch_items) {
-  invisible(.Call("R_gtk_filter_list_model_set_watch_items", self, watch_items))
 }
 
 
@@ -14487,86 +14129,6 @@ gtkGestureZoomGetScaleDelta <- function(gesture) {
 }
 
 
-#' @rdname gtk-other
-#' @title gtkGraphicsOffloadNew
-#'
-#' @param child Widget
-#' @return Widget
-#' @export
-gtkGraphicsOffloadNew <- function(child) {
-  .Call("R_gtk_graphics_offload_new", child)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkGraphicsOffloadGetBlackBackground
-#'
-#' @param self GraphicsOffload
-#' @return gboolean
-#' @export
-gtkGraphicsOffloadGetBlackBackground <- function(self) {
-  .Call("R_gtk_graphics_offload_get_black_background", self)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkGraphicsOffloadGetChild
-#'
-#' @param self GraphicsOffload
-#' @return Widget
-#' @export
-gtkGraphicsOffloadGetChild <- function(self) {
-  .Call("R_gtk_graphics_offload_get_child", self)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkGraphicsOffloadGetEnabled
-#'
-#' @param self GraphicsOffload
-#' @return GraphicsOffloadEnabled
-#' @export
-gtkGraphicsOffloadGetEnabled <- function(self) {
-  .Call("R_gtk_graphics_offload_get_enabled", self)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkGraphicsOffloadSetBlackBackground
-#'
-#' @param self GraphicsOffload
-#' @param value gboolean
-#' @return Return value from C function
-#' @export
-gtkGraphicsOffloadSetBlackBackground <- function(self, value) {
-  invisible(.Call("R_gtk_graphics_offload_set_black_background", self, value))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkGraphicsOffloadSetChild
-#'
-#' @param self GraphicsOffload
-#' @param child Widget
-#' @return Return value from C function
-#' @export
-gtkGraphicsOffloadSetChild <- function(self, child) {
-  invisible(.Call("R_gtk_graphics_offload_set_child", self, child))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkGraphicsOffloadSetEnabled
-#'
-#' @param self GraphicsOffload
-#' @param enabled GraphicsOffloadEnabled
-#' @return Return value from C function
-#' @export
-gtkGraphicsOffloadSetEnabled <- function(self, enabled) {
-  invisible(.Call("R_gtk_graphics_offload_set_enabled", self, enabled))
-}
-
-
 #' @rdname gtk-layout
 #' @title gtkGridNew
 #'
@@ -15320,17 +14882,6 @@ gtkHeaderBarGetTitleWidget <- function(bar) {
 
 
 #' @rdname gtk-other
-#' @title gtkHeaderBarGetUseNativeControls
-#'
-#' @param bar HeaderBar
-#' @return gboolean
-#' @export
-gtkHeaderBarGetUseNativeControls <- function(bar) {
-  .Call("R_gtk_header_bar_get_use_native_controls", bar)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkHeaderBarPackEnd
 #'
 #' @param bar HeaderBar
@@ -15403,30 +14954,6 @@ gtkHeaderBarSetTitleWidget <- function(bar, title_widget) {
 
 
 #' @rdname gtk-other
-#' @title gtkHeaderBarSetUseNativeControls
-#'
-#' @param bar HeaderBar
-#' @param setting gboolean
-#' @return Return value from C function
-#' @export
-gtkHeaderBarSetUseNativeControls <- function(bar, setting) {
-  invisible(.Call("R_gtk_header_bar_set_use_native_controls", bar, setting))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkImContextActivateOsk
-#'
-#' @param context IMContext
-#' @param event Gdk.Event
-#' @return gboolean
-#' @export
-gtkImContextActivateOsk <- function(context, event) {
-  .Call("R_gtk_im_context_activate_osk", context, event)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkImContextDeleteSurrounding
 #'
 #' @param context IMContext
@@ -15453,7 +14980,7 @@ gtkImContextDeleteSurrounding <- function(context, offset, n_chars) {
 #' @return gboolean
 #' @export
 gtkImContextFilterKey <- function(context, press, surface, device, time, keycode, state, group) {
-  .Call("R_gtk_im_context_filter_key", context, press, surface, device, as.integer(time), as.integer(keycode), state, as.integer(group))$result
+  .Call("R_gtk_im_context_filter_key", context, press, surface, device, time, as.integer(keycode), state, as.integer(group))$result
 }
 
 
@@ -18425,17 +17952,6 @@ gtkListBoxGetShowSeparators <- function(box) {
 
 
 #' @rdname gtk-other
-#' @title gtkListBoxGetTabBehavior
-#'
-#' @param box ListBox
-#' @return ListTabBehavior
-#' @export
-gtkListBoxGetTabBehavior <- function(box) {
-  .Call("R_gtk_list_box_get_tab_behavior", box)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkListBoxInsert
 #'
 #' @param box ListBox
@@ -18596,18 +18112,6 @@ gtkListBoxSetSelectionMode <- function(box, mode) {
 #' @export
 gtkListBoxSetShowSeparators <- function(box, show_separators) {
   invisible(.Call("R_gtk_list_box_set_show_separators", box, show_separators))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkListBoxSetTabBehavior
-#'
-#' @param box ListBox
-#' @param behavior ListTabBehavior
-#' @return Return value from C function
-#' @export
-gtkListBoxSetTabBehavior <- function(box, behavior) {
-  invisible(.Call("R_gtk_list_box_set_tab_behavior", box, behavior))
 }
 
 
@@ -22283,17 +21787,6 @@ gtkPictureGetFile <- function(self) {
 
 
 #' @rdname gtk-images
-#' @title gtkPictureGetIsolateContents
-#'
-#' @param self Picture
-#' @return gboolean
-#' @export
-gtkPictureGetIsolateContents <- function(self) {
-  .Call("R_gtk_picture_get_isolate_contents", self)$result
-}
-
-
-#' @rdname gtk-images
 #' @title gtkPictureGetKeepAspectRatio
 #'
 #' @param self Picture
@@ -22372,18 +21865,6 @@ gtkPictureSetFile <- function(self, file) {
 #' @export
 gtkPictureSetFilename <- function(self, filename) {
   invisible(.Call("R_gtk_picture_set_filename", self, filename))
-}
-
-
-#' @rdname gtk-images
-#' @title gtkPictureSetIsolateContents
-#'
-#' @param self Picture
-#' @param isolate_contents gboolean
-#' @return Return value from C function
-#' @export
-gtkPictureSetIsolateContents <- function(self, isolate_contents) {
-  invisible(.Call("R_gtk_picture_set_isolate_contents", self, isolate_contents))
 }
 
 
@@ -22676,130 +22157,6 @@ gtkPopoverSetPosition <- function(popover, position) {
 
 
 #' @rdname gtk-menus
-#' @title gtkPopoverBinNew
-#'
-#' @return Widget
-#' @export
-gtkPopoverBinNew <- function() {
-  .Call("R_gtk_popover_bin_new")$result
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinGetChild
-#'
-#' @param self PopoverBin
-#' @return Widget
-#' @export
-gtkPopoverBinGetChild <- function(self) {
-  .Call("R_gtk_popover_bin_get_child", self)$result
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinGetHandleInput
-#'
-#' @param self PopoverBin
-#' @return gboolean
-#' @export
-gtkPopoverBinGetHandleInput <- function(self) {
-  .Call("R_gtk_popover_bin_get_handle_input", self)$result
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinGetMenuModel
-#'
-#' @param self PopoverBin
-#' @return Gio.MenuModel
-#' @export
-gtkPopoverBinGetMenuModel <- function(self) {
-  .Call("R_gtk_popover_bin_get_menu_model", self)$result
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinGetPopover
-#'
-#' @param self PopoverBin
-#' @return Popover
-#' @export
-gtkPopoverBinGetPopover <- function(self) {
-  .Call("R_gtk_popover_bin_get_popover", self)$result
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinPopdown
-#'
-#' @param self PopoverBin
-#' @return Return value from C function
-#' @export
-gtkPopoverBinPopdown <- function(self) {
-  invisible(.Call("R_gtk_popover_bin_popdown", self))
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinPopup
-#'
-#' @param self PopoverBin
-#' @return Return value from C function
-#' @export
-gtkPopoverBinPopup <- function(self) {
-  invisible(.Call("R_gtk_popover_bin_popup", self))
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinSetChild
-#'
-#' @param self PopoverBin
-#' @param child Widget
-#' @return Return value from C function
-#' @export
-gtkPopoverBinSetChild <- function(self, child) {
-  invisible(.Call("R_gtk_popover_bin_set_child", self, child))
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinSetHandleInput
-#'
-#' @param self PopoverBin
-#' @param handle_input gboolean
-#' @return Return value from C function
-#' @export
-gtkPopoverBinSetHandleInput <- function(self, handle_input) {
-  invisible(.Call("R_gtk_popover_bin_set_handle_input", self, handle_input))
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinSetMenuModel
-#'
-#' @param self PopoverBin
-#' @param model Gio.MenuModel
-#' @return Return value from C function
-#' @export
-gtkPopoverBinSetMenuModel <- function(self, model) {
-  invisible(.Call("R_gtk_popover_bin_set_menu_model", self, model))
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverBinSetPopover
-#'
-#' @param self PopoverBin
-#' @param popover Popover
-#' @return Return value from C function
-#' @export
-gtkPopoverBinSetPopover <- function(self, popover) {
-  invisible(.Call("R_gtk_popover_bin_set_popover", self, popover))
-}
-
-
-#' @rdname gtk-menus
 #' @title gtkPopoverMenuNewFromModel
 #'
 #' @param model Gio.MenuModel
@@ -22836,17 +22193,6 @@ gtkPopoverMenuAddChild <- function(popover, child, id) {
 
 
 #' @rdname gtk-menus
-#' @title gtkPopoverMenuGetFlags
-#'
-#' @param popover PopoverMenu
-#' @return PopoverMenuFlags
-#' @export
-gtkPopoverMenuGetFlags <- function(popover) {
-  .Call("R_gtk_popover_menu_get_flags", popover)$result
-}
-
-
-#' @rdname gtk-menus
 #' @title gtkPopoverMenuGetMenuModel
 #'
 #' @param popover PopoverMenu
@@ -22866,18 +22212,6 @@ gtkPopoverMenuGetMenuModel <- function(popover) {
 #' @export
 gtkPopoverMenuRemoveChild <- function(popover, child) {
   .Call("R_gtk_popover_menu_remove_child", popover, child)$result
-}
-
-
-#' @rdname gtk-menus
-#' @title gtkPopoverMenuSetFlags
-#'
-#' @param popover PopoverMenu
-#' @param flags PopoverMenuFlags
-#' @return Return value from C function
-#' @export
-gtkPopoverMenuSetFlags <- function(popover, flags) {
-  invisible(.Call("R_gtk_popover_menu_set_flags", popover, flags))
 }
 
 
@@ -24189,17 +23523,6 @@ gtkScaleButtonGetAdjustment <- function(button) {
 
 
 #' @rdname gtk-other
-#' @title gtkScaleButtonGetHasFrame
-#'
-#' @param button ScaleButton
-#' @return gboolean
-#' @export
-gtkScaleButtonGetHasFrame <- function(button) {
-  .Call("R_gtk_scale_button_get_has_frame", button)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkScaleButtonGetMinusButton
 #'
 #' @param button ScaleButton
@@ -24252,18 +23575,6 @@ gtkScaleButtonGetValue <- function(button) {
 #' @export
 gtkScaleButtonSetAdjustment <- function(button, adjustment) {
   invisible(.Call("R_gtk_scale_button_set_adjustment", button, adjustment))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkScaleButtonSetHasFrame
-#'
-#' @param button ScaleButton
-#' @param has_frame gboolean
-#' @return Return value from C function
-#' @export
-gtkScaleButtonSetHasFrame <- function(button, has_frame) {
-  invisible(.Call("R_gtk_scale_button_set_has_frame", button, has_frame))
 }
 
 
@@ -24998,28 +24309,6 @@ gtkSearchEntryNew <- function() {
 
 
 #' @rdname gtk-other
-#' @title gtkSearchEntryGetInputHints
-#'
-#' @param entry SearchEntry
-#' @return InputHints
-#' @export
-gtkSearchEntryGetInputHints <- function(entry) {
-  .Call("R_gtk_search_entry_get_input_hints", entry)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSearchEntryGetInputPurpose
-#'
-#' @param entry SearchEntry
-#' @return InputPurpose
-#' @export
-gtkSearchEntryGetInputPurpose <- function(entry) {
-  .Call("R_gtk_search_entry_get_input_purpose", entry)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkSearchEntryGetKeyCaptureWidget
 #'
 #' @param entry SearchEntry
@@ -25049,30 +24338,6 @@ gtkSearchEntryGetPlaceholderText <- function(entry) {
 #' @export
 gtkSearchEntryGetSearchDelay <- function(entry) {
   .Call("R_gtk_search_entry_get_search_delay", entry)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSearchEntrySetInputHints
-#'
-#' @param entry SearchEntry
-#' @param hints InputHints
-#' @return Return value from C function
-#' @export
-gtkSearchEntrySetInputHints <- function(entry, hints) {
-  invisible(.Call("R_gtk_search_entry_set_input_hints", entry, hints))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSearchEntrySetInputPurpose
-#'
-#' @param entry SearchEntry
-#' @param purpose InputPurpose
-#' @return Return value from C function
-#' @export
-gtkSearchEntrySetInputPurpose <- function(entry, purpose) {
-  invisible(.Call("R_gtk_search_entry_set_input_purpose", entry, purpose))
 }
 
 
@@ -25736,42 +25001,6 @@ gtkShortcutTriggerTrigger <- function(self, event, enable_mnemonics) {
 
 
 #' @rdname gtk-other
-#' @title gtkShortcutsGroupAddShortcut
-#'
-#' @param self ShortcutsGroup
-#' @param shortcut ShortcutsShortcut
-#' @return Return value from C function
-#' @export
-gtkShortcutsGroupAddShortcut <- function(self, shortcut) {
-  invisible(.Call("R_gtk_shortcuts_group_add_shortcut", self, shortcut))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkShortcutsSectionAddGroup
-#'
-#' @param self ShortcutsSection
-#' @param group ShortcutsGroup
-#' @return Return value from C function
-#' @export
-gtkShortcutsSectionAddGroup <- function(self, group) {
-  invisible(.Call("R_gtk_shortcuts_section_add_group", self, group))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkShortcutsWindowAddSection
-#'
-#' @param self ShortcutsWindow
-#' @param section ShortcutsSection
-#' @return Return value from C function
-#' @export
-gtkShortcutsWindowAddSection <- function(self, section) {
-  invisible(.Call("R_gtk_shortcuts_window_add_section", self, section))
-}
-
-
-#' @rdname gtk-other
 #' @title gtkSignalActionNew
 #'
 #' @param signal_name utf8
@@ -26134,20 +25363,6 @@ gtkSnapshotAppendConicGradient <- function(snapshot, bounds, center, rotation, s
 
 
 #' @rdname gtk-other
-#' @title gtkSnapshotAppendFill
-#'
-#' @param snapshot Snapshot
-#' @param path Gsk.Path
-#' @param fill_rule Gsk.FillRule
-#' @param color Gdk.RGBA
-#' @return Return value from C function
-#' @export
-gtkSnapshotAppendFill <- function(snapshot, path, fill_rule, color) {
-  invisible(.Call("R_gtk_snapshot_append_fill", snapshot, path, fill_rule, color))
-}
-
-
-#' @rdname gtk-other
 #' @title gtkSnapshotAppendInsetShadow
 #'
 #' @param snapshot Snapshot
@@ -26223,19 +25438,6 @@ gtkSnapshotAppendOutsetShadow <- function(snapshot, outline, color, dx, dy, spre
 
 
 #' @rdname gtk-other
-#' @title gtkSnapshotAppendPaste
-#'
-#' @param snapshot Snapshot
-#' @param bounds Graphene.Rect
-#' @param nth gsize
-#' @return Return value from C function
-#' @export
-gtkSnapshotAppendPaste <- function(snapshot, bounds, nth) {
-  invisible(.Call("R_gtk_snapshot_append_paste", snapshot, bounds, as.integer(nth)))
-}
-
-
-#' @rdname gtk-other
 #' @title gtkSnapshotAppendRadialGradient
 #'
 #' @param snapshot Snapshot
@@ -26300,20 +25502,6 @@ gtkSnapshotAppendRepeatingRadialGradient <- function(snapshot, bounds, center, h
 #' @export
 gtkSnapshotAppendScaledTexture <- function(snapshot, texture, filter, bounds) {
   invisible(.Call("R_gtk_snapshot_append_scaled_texture", snapshot, texture, filter, bounds))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSnapshotAppendStroke
-#'
-#' @param snapshot Snapshot
-#' @param path Gsk.Path
-#' @param stroke Gsk.Stroke
-#' @param color Gdk.RGBA
-#' @return Return value from C function
-#' @export
-gtkSnapshotAppendStroke <- function(snapshot, path, stroke, color) {
-  invisible(.Call("R_gtk_snapshot_append_stroke", snapshot, path, stroke, color))
 }
 
 
@@ -26414,44 +25602,6 @@ gtkSnapshotPushColorMatrix <- function(snapshot, color_matrix, color_offset) {
 
 
 #' @rdname gtk-other
-#' @title gtkSnapshotPushComponentTransfer
-#'
-#' @param snapshot Snapshot
-#' @param red Gsk.ComponentTransfer
-#' @param green Gsk.ComponentTransfer
-#' @param blue Gsk.ComponentTransfer
-#' @param alpha Gsk.ComponentTransfer
-#' @return Return value from C function
-#' @export
-gtkSnapshotPushComponentTransfer <- function(snapshot, red, green, blue, alpha) {
-  invisible(.Call("R_gtk_snapshot_push_component_transfer", snapshot, red, green, blue, alpha))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSnapshotPushComposite
-#'
-#' @param snapshot Snapshot
-#' @param op Gsk.PorterDuff
-#' @return Return value from C function
-#' @export
-gtkSnapshotPushComposite <- function(snapshot, op) {
-  invisible(.Call("R_gtk_snapshot_push_composite", snapshot, op))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSnapshotPushCopy
-#'
-#' @param snapshot Snapshot
-#' @return Return value from C function
-#' @export
-gtkSnapshotPushCopy <- function(snapshot) {
-  invisible(.Call("R_gtk_snapshot_push_copy", snapshot))
-}
-
-
-#' @rdname gtk-other
 #' @title gtkSnapshotPushCrossFade
 #'
 #' @param snapshot Snapshot
@@ -26460,19 +25610,6 @@ gtkSnapshotPushCopy <- function(snapshot) {
 #' @export
 gtkSnapshotPushCrossFade <- function(snapshot, progress) {
   invisible(.Call("R_gtk_snapshot_push_cross_fade", snapshot, progress))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSnapshotPushFill
-#'
-#' @param snapshot Snapshot
-#' @param path Gsk.Path
-#' @param fill_rule Gsk.FillRule
-#' @return Return value from C function
-#' @export
-gtkSnapshotPushFill <- function(snapshot, path, fill_rule) {
-  invisible(.Call("R_gtk_snapshot_push_fill", snapshot, path, fill_rule))
 }
 
 
@@ -26487,18 +25624,6 @@ gtkSnapshotPushFill <- function(snapshot, path, fill_rule) {
 #' @export
 gtkSnapshotPushGlShader <- function(snapshot, shader, bounds, take_args) {
   invisible(.Call("R_gtk_snapshot_push_gl_shader", snapshot, shader, bounds, take_args))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSnapshotPushIsolation
-#'
-#' @param snapshot Snapshot
-#' @param features Gsk.Isolation
-#' @return Return value from C function
-#' @export
-gtkSnapshotPushIsolation <- function(snapshot, features) {
-  invisible(.Call("R_gtk_snapshot_push_isolation", snapshot, features))
 }
 
 
@@ -26561,19 +25686,6 @@ gtkSnapshotPushRoundedClip <- function(snapshot, bounds) {
 #' @export
 gtkSnapshotPushShadow <- function(snapshot, shadow, n_shadows) {
   invisible(.Call("R_gtk_snapshot_push_shadow", snapshot, shadow, as.integer(n_shadows)))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSnapshotPushStroke
-#'
-#' @param snapshot Snapshot
-#' @param path Gsk.Path
-#' @param stroke Gsk.Stroke
-#' @return Return value from C function
-#' @export
-gtkSnapshotPushStroke <- function(snapshot, path, stroke) {
-  invisible(.Call("R_gtk_snapshot_push_stroke", snapshot, path, stroke))
 }
 
 
@@ -26994,17 +26106,6 @@ gtkSpinButtonConfigure <- function(spin_button, adjustment, climb_rate, digits) 
 
 
 #' @rdname gtk-other
-#' @title gtkSpinButtonGetActivatesDefault
-#'
-#' @param spin_button SpinButton
-#' @return gboolean
-#' @export
-gtkSpinButtonGetActivatesDefault <- function(spin_button) {
-  .Call("R_gtk_spin_button_get_activates_default", spin_button)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkSpinButtonGetAdjustment
 #'
 #' @param spin_button SpinButton
@@ -27122,18 +26223,6 @@ gtkSpinButtonGetValueAsInt <- function(spin_button) {
 #' @export
 gtkSpinButtonGetWrap <- function(spin_button) {
   .Call("R_gtk_spin_button_get_wrap", spin_button)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSpinButtonSetActivatesDefault
-#'
-#' @param spin_button SpinButton
-#' @param activates_default gboolean
-#' @return Return value from C function
-#' @export
-gtkSpinButtonSetActivatesDefault <- function(spin_button, activates_default) {
-  invisible(.Call("R_gtk_spin_button_set_activates_default", spin_button, activates_default))
 }
 
 
@@ -28033,18 +27122,6 @@ gtkStringListAppend <- function(self, string) {
 
 
 #' @rdname gtk-other
-#' @title gtkStringListFind
-#'
-#' @param self StringList
-#' @param string utf8
-#' @return guint
-#' @export
-gtkStringListFind <- function(self, string) {
-  .Call("R_gtk_string_list_find", self, string)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkStringListGetString
 #'
 #' @param self StringList
@@ -28442,253 +27519,6 @@ gtkStyleContextToString <- function(context, flags) {
 
 
 #' @rdname gtk-other
-#' @title gtkSvgNew
-#'
-#' @return Svg
-#' @export
-gtkSvgNew <- function() {
-  .Call("R_gtk_svg_new")$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgNewFromBytes
-#'
-#' @param bytes GLib.Bytes
-#' @return Svg
-#' @export
-gtkSvgNewFromBytes <- function(bytes) {
-  .Call("R_gtk_svg_new_from_bytes", bytes)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgNewFromResource
-#'
-#' @param path utf8
-#' @return Svg
-#' @export
-gtkSvgNewFromResource <- function(path) {
-  .Call("R_gtk_svg_new_from_resource", path)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgGetFeatures
-#'
-#' @param self Svg
-#' @return SvgFeatures
-#' @export
-gtkSvgGetFeatures <- function(self) {
-  .Call("R_gtk_svg_get_features", self)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgGetState
-#'
-#' @param self Svg
-#' @return guint
-#' @export
-gtkSvgGetState <- function(self) {
-  .Call("R_gtk_svg_get_state", self)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgGetStateNames
-#'
-#' @param self Svg
-#' @return utf8
-#' @export
-gtkSvgGetStateNames <- function(self) {
-  .Call("R_gtk_svg_get_state_names", self)
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgGetWeight
-#'
-#' @param self Svg
-#' @return gdouble
-#' @export
-gtkSvgGetWeight <- function(self) {
-  .Call("R_gtk_svg_get_weight", self)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgLoadFromBytes
-#'
-#' @param self Svg
-#' @param bytes GLib.Bytes
-#' @return Return value from C function
-#' @export
-gtkSvgLoadFromBytes <- function(self, bytes) {
-  invisible(.Call("R_gtk_svg_load_from_bytes", self, bytes))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgLoadFromResource
-#'
-#' @param self Svg
-#' @param path utf8
-#' @return Return value from C function
-#' @export
-gtkSvgLoadFromResource <- function(self, path) {
-  invisible(.Call("R_gtk_svg_load_from_resource", self, path))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgPause
-#'
-#' @param self Svg
-#' @return Return value from C function
-#' @export
-gtkSvgPause <- function(self) {
-  invisible(.Call("R_gtk_svg_pause", self))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgPlay
-#'
-#' @param self Svg
-#' @return Return value from C function
-#' @export
-gtkSvgPlay <- function(self) {
-  invisible(.Call("R_gtk_svg_play", self))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgSerialize
-#'
-#' @param self Svg
-#' @return GLib.Bytes
-#' @export
-gtkSvgSerialize <- function(self) {
-  .Call("R_gtk_svg_serialize", self)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgSetFeatures
-#'
-#' @param self Svg
-#' @param features SvgFeatures
-#' @return Return value from C function
-#' @export
-gtkSvgSetFeatures <- function(self, features) {
-  invisible(.Call("R_gtk_svg_set_features", self, features))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgSetFrameClock
-#'
-#' @param self Svg
-#' @param clock Gdk.FrameClock
-#' @return Return value from C function
-#' @export
-gtkSvgSetFrameClock <- function(self, clock) {
-  invisible(.Call("R_gtk_svg_set_frame_clock", self, clock))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgSetState
-#'
-#' @param self Svg
-#' @param state guint
-#' @return Return value from C function
-#' @export
-gtkSvgSetState <- function(self, state) {
-  invisible(.Call("R_gtk_svg_set_state", self, as.integer(state)))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgSetWeight
-#'
-#' @param self Svg
-#' @param weight gdouble
-#' @return Return value from C function
-#' @export
-gtkSvgSetWeight <- function(self, weight) {
-  invisible(.Call("R_gtk_svg_set_weight", self, weight))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgWriteToFile
-#'
-#' @param self Svg
-#' @param filename utf8
-#' @return gboolean
-#' @export
-gtkSvgWriteToFile <- function(self, filename) {
-  .Call("R_gtk_svg_write_to_file", self, filename)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgErrorGetAttribute
-#'
-#' @param error GLib.Error
-#' @return utf8
-#' @export
-gtkSvgErrorGetAttribute <- function(error) {
-  .Call("R_gtk_svg_error_get_attribute", error)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgErrorGetElement
-#'
-#' @param error GLib.Error
-#' @return utf8
-#' @export
-gtkSvgErrorGetElement <- function(error) {
-  .Call("R_gtk_svg_error_get_element", error)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgErrorGetEnd
-#'
-#' @param error GLib.Error
-#' @return SvgLocation
-#' @export
-gtkSvgErrorGetEnd <- function(error) {
-  .Call("R_gtk_svg_error_get_end", error)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgErrorGetStart
-#'
-#' @param error GLib.Error
-#' @return SvgLocation
-#' @export
-gtkSvgErrorGetStart <- function(error) {
-  .Call("R_gtk_svg_error_get_start", error)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSvgErrorQuark
-#'
-#' @return GLib.Quark
-#' @export
-gtkSvgErrorQuark <- function() {
-  .Call("R_gtk_svg_error_quark")$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkSwitchNew
 #'
 #' @return Widget
@@ -28741,39 +27571,6 @@ gtkSwitchSetActive <- function(self, is_active) {
 #' @export
 gtkSwitchSetState <- function(self, state) {
   invisible(.Call("R_gtk_switch_set_state", self, state))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSymbolicPaintableSnapshotSymbolic
-#'
-#' @param paintable SymbolicPaintable
-#' @param snapshot Gdk.Snapshot
-#' @param width gdouble
-#' @param height gdouble
-#' @param colors Gdk.RGBA
-#' @param n_colors gsize
-#' @return Return value from C function
-#' @export
-gtkSymbolicPaintableSnapshotSymbolic <- function(paintable, snapshot, width, height, colors, n_colors) {
-  invisible(.Call("R_gtk_symbolic_paintable_snapshot_symbolic", paintable, snapshot, width, height, colors, as.integer(n_colors)))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkSymbolicPaintableSnapshotWithWeight
-#'
-#' @param paintable SymbolicPaintable
-#' @param snapshot Gdk.Snapshot
-#' @param width gdouble
-#' @param height gdouble
-#' @param colors Gdk.RGBA
-#' @param n_colors gsize
-#' @param weight gdouble
-#' @return Return value from C function
-#' @export
-gtkSymbolicPaintableSnapshotWithWeight <- function(paintable, snapshot, width, height, colors, n_colors, weight) {
-  invisible(.Call("R_gtk_symbolic_paintable_snapshot_with_weight", paintable, snapshot, width, height, colors, as.integer(n_colors), weight))
 }
 
 
@@ -29913,18 +28710,6 @@ gtkTextBufferRedo <- function(buffer) {
 #' @export
 gtkTextBufferRemoveAllTags <- function(buffer, start, end) {
   invisible(.Call("R_gtk_text_buffer_remove_all_tags", buffer, start, end))
-}
-
-
-#' @rdname gtk-text
-#' @title gtkTextBufferRemoveCommitNotify
-#'
-#' @param buffer TextBuffer
-#' @param commit_notify_handler guint
-#' @return Return value from C function
-#' @export
-gtkTextBufferRemoveCommitNotify <- function(buffer, commit_notify_handler) {
-  invisible(.Call("R_gtk_text_buffer_remove_commit_notify", buffer, as.integer(commit_notify_handler)))
 }
 
 
@@ -31746,17 +30531,6 @@ gtkTextViewGetTabs <- function(text_view) {
 #' @export
 gtkTextViewGetTopMargin <- function(text_view) {
   .Call("R_gtk_text_view_get_top_margin", text_view)$result
-}
-
-
-#' @rdname gtk-text
-#' @title gtkTextViewGetVisibleOffset
-#'
-#' @param text_view TextView
-#' @return Return value from C function
-#' @export
-gtkTextViewGetVisibleOffset <- function(text_view) {
-  .Call("R_gtk_text_view_get_visible_offset", text_view)
 }
 
 
@@ -35625,18 +34399,6 @@ gtkTreeViewColumnSetWidget <- function(tree_column, widget) {
 
 
 #' @rdname gtk-other
-#' @title gtkTryExpressionNew
-#'
-#' @param n_expressions guint
-#' @param expressions Expression
-#' @return TryExpression
-#' @export
-gtkTryExpressionNew <- function(n_expressions, expressions) {
-  .Call("R_gtk_try_expression_new", as.integer(n_expressions), expressions)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkUriLauncherNew
 #'
 #' @param uri utf8
@@ -35644,18 +34406,6 @@ gtkTryExpressionNew <- function(n_expressions, expressions) {
 #' @export
 gtkUriLauncherNew <- function(uri) {
   .Call("R_gtk_uri_launcher_new", uri)$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkUriLauncherCanLaunch
-#'
-#' @param self UriLauncher
-#' @param parent Window
-#' @return gboolean
-#' @export
-gtkUriLauncherCanLaunch <- function(self, parent) {
-  .Call("R_gtk_uri_launcher_can_launch", self, parent)$result
 }
 
 
@@ -35771,17 +34521,6 @@ gtkVideoGetFile <- function(self) {
 
 
 #' @rdname gtk-other
-#' @title gtkVideoGetGraphicsOffload
-#'
-#' @param self Video
-#' @return GraphicsOffloadEnabled
-#' @export
-gtkVideoGetGraphicsOffload <- function(self) {
-  .Call("R_gtk_video_get_graphics_offload", self)$result
-}
-
-
-#' @rdname gtk-other
 #' @title gtkVideoGetLoop
 #'
 #' @param self Video
@@ -35836,18 +34575,6 @@ gtkVideoSetFile <- function(self, file) {
 #' @export
 gtkVideoSetFilename <- function(self, filename) {
   invisible(.Call("R_gtk_video_set_filename", self, filename))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkVideoSetGraphicsOffload
-#'
-#' @param self Video
-#' @param enabled GraphicsOffloadEnabled
-#' @return Return value from C function
-#' @export
-gtkVideoSetGraphicsOffload <- function(self, enabled) {
-  invisible(.Call("R_gtk_video_set_graphics_offload", self, enabled))
 }
 
 
@@ -36551,17 +35278,6 @@ gtkWidgetGetLastChild <- function(widget) {
 #' @export
 gtkWidgetGetLayoutManager <- function(widget) {
   .Call("R_gtk_widget_get_layout_manager", widget)$result
-}
-
-
-#' @rdname gtk-widget
-#' @title gtkWidgetGetLimitEvents
-#'
-#' @param widget Widget
-#' @return gboolean
-#' @export
-gtkWidgetGetLimitEvents <- function(widget) {
-  .Call("R_gtk_widget_get_limit_events", widget)$result
 }
 
 
@@ -37518,18 +36234,6 @@ gtkWidgetSetLayoutManager <- function(widget, layout_manager) {
 
 
 #' @rdname gtk-widget
-#' @title gtkWidgetSetLimitEvents
-#'
-#' @param widget Widget
-#' @param limit_events gboolean
-#' @return Return value from C function
-#' @export
-gtkWidgetSetLimitEvents <- function(widget, limit_events) {
-  invisible(.Call("R_gtk_widget_set_limit_events", widget, limit_events))
-}
-
-
-#' @rdname gtk-widget
 #' @title gtkWidgetSetMarginBottom
 #'
 #' @param widget Widget
@@ -38308,17 +37012,6 @@ gtkWindowGetFocusVisible <- function(window) {
 
 
 #' @rdname gtk-windows
-#' @title gtkWindowGetGravity
-#'
-#' @param window Window
-#' @return WindowGravity
-#' @export
-gtkWindowGetGravity <- function(window) {
-  .Call("R_gtk_window_get_gravity", window)$result
-}
-
-
-#' @rdname gtk-windows
 #' @title gtkWindowGetGroup
 #'
 #' @param window Window
@@ -38524,7 +37217,7 @@ gtkWindowPresent <- function(window) {
 #' @return Return value from C function
 #' @export
 gtkWindowPresentWithTime <- function(window, timestamp) {
-  invisible(.Call("R_gtk_window_present_with_time", window, as.integer(timestamp)))
+  invisible(.Call("R_gtk_window_present_with_time", window, timestamp))
 }
 
 
@@ -38646,18 +37339,6 @@ gtkWindowSetFocus <- function(window, focus) {
 #' @export
 gtkWindowSetFocusVisible <- function(window, setting) {
   invisible(.Call("R_gtk_window_set_focus_visible", window, setting))
-}
-
-
-#' @rdname gtk-windows
-#' @title gtkWindowSetGravity
-#'
-#' @param window Window
-#' @param gravity WindowGravity
-#' @return Return value from C function
-#' @export
-gtkWindowSetGravity <- function(window, gravity) {
-  invisible(.Call("R_gtk_window_set_gravity", window, gravity))
 }
 
 
@@ -38859,17 +37540,6 @@ gtkWindowControlsGetSide <- function(self) {
 
 
 #' @rdname gtk-windows
-#' @title gtkWindowControlsGetUseNativeControls
-#'
-#' @param self WindowControls
-#' @return gboolean
-#' @export
-gtkWindowControlsGetUseNativeControls <- function(self) {
-  .Call("R_gtk_window_controls_get_use_native_controls", self)$result
-}
-
-
-#' @rdname gtk-windows
 #' @title gtkWindowControlsSetDecorationLayout
 #'
 #' @param self WindowControls
@@ -38890,18 +37560,6 @@ gtkWindowControlsSetDecorationLayout <- function(self, layout) {
 #' @export
 gtkWindowControlsSetSide <- function(self, side) {
   invisible(.Call("R_gtk_window_controls_set_side", self, side))
-}
-
-
-#' @rdname gtk-windows
-#' @title gtkWindowControlsSetUseNativeControls
-#'
-#' @param self WindowControls
-#' @param setting gboolean
-#' @return Return value from C function
-#' @export
-gtkWindowControlsSetUseNativeControls <- function(self, setting) {
-  invisible(.Call("R_gtk_window_controls_set_use_native_controls", self, setting))
 }
 
 
@@ -38980,18 +37638,6 @@ gtkWindowHandleGetChild <- function(self) {
 #' @export
 gtkWindowHandleSetChild <- function(self, child) {
   invisible(.Call("R_gtk_window_handle_set_child", self, child))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkAcceleratorGetAccessibleLabel
-#'
-#' @param accelerator_key guint
-#' @param accelerator_mods Gdk.ModifierType
-#' @return utf8
-#' @export
-gtkAcceleratorGetAccessibleLabel <- function(accelerator_key, accelerator_mods) {
-  .Call("R_gtk_accelerator_get_accessible_label", as.integer(accelerator_key), accelerator_mods)$result
 }
 
 
@@ -39122,27 +37768,6 @@ gtkCssParserErrorQuark <- function() {
 #' @export
 gtkCssParserWarningQuark <- function() {
   .Call("R_gtk_css_parser_warning_quark")$result
-}
-
-
-#' @rdname gtk-other
-#' @title gtkDisablePortalInterfaces
-#'
-#' @param portal_interfaces utf8
-#' @return Return value from C function
-#' @export
-gtkDisablePortalInterfaces <- function(portal_interfaces) {
-  invisible(.Call("R_gtk_disable_portal_interfaces", portal_interfaces))
-}
-
-
-#' @rdname gtk-other
-#' @title gtkDisablePortals
-#'
-#' @return Return value from C function
-#' @export
-gtkDisablePortals <- function() {
-  invisible(.Call("R_gtk_disable_portals"))
 }
 
 
@@ -39529,7 +38154,7 @@ gtkSetDebugFlags <- function(flags) {
 #' @return Return value from C function
 #' @export
 gtkShowUri <- function(parent, uri, timestamp) {
-  invisible(.Call("R_gtk_show_uri", parent, uri, as.integer(timestamp)))
+  invisible(.Call("R_gtk_show_uri", parent, uri, timestamp))
 }
 
 

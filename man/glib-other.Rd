@@ -29,12 +29,9 @@
 \alias{gBookmarkFileNew}
 \alias{gBookmarkFileAddApplication}
 \alias{gBookmarkFileAddGroup}
-\alias{gBookmarkFileCopy}
 \alias{gBookmarkFileFree}
 \alias{gBookmarkFileGetAdded}
-\alias{gBookmarkFileGetAddedDateTime}
 \alias{gBookmarkFileGetAppInfo}
-\alias{gBookmarkFileGetApplicationInfo}
 \alias{gBookmarkFileGetApplications}
 \alias{gBookmarkFileGetDescription}
 \alias{gBookmarkFileGetGroups}
@@ -42,12 +39,10 @@
 \alias{gBookmarkFileGetIsPrivate}
 \alias{gBookmarkFileGetMimeType}
 \alias{gBookmarkFileGetModified}
-\alias{gBookmarkFileGetModifiedDateTime}
 \alias{gBookmarkFileGetSize}
 \alias{gBookmarkFileGetTitle}
 \alias{gBookmarkFileGetUris}
 \alias{gBookmarkFileGetVisited}
-\alias{gBookmarkFileGetVisitedDateTime}
 \alias{gBookmarkFileHasApplication}
 \alias{gBookmarkFileHasGroup}
 \alias{gBookmarkFileHasItem}
@@ -59,19 +54,15 @@
 \alias{gBookmarkFileRemoveGroup}
 \alias{gBookmarkFileRemoveItem}
 \alias{gBookmarkFileSetAdded}
-\alias{gBookmarkFileSetAddedDateTime}
 \alias{gBookmarkFileSetAppInfo}
-\alias{gBookmarkFileSetApplicationInfo}
 \alias{gBookmarkFileSetDescription}
 \alias{gBookmarkFileSetGroups}
 \alias{gBookmarkFileSetIcon}
 \alias{gBookmarkFileSetIsPrivate}
 \alias{gBookmarkFileSetMimeType}
 \alias{gBookmarkFileSetModified}
-\alias{gBookmarkFileSetModifiedDateTime}
 \alias{gBookmarkFileSetTitle}
 \alias{gBookmarkFileSetVisited}
-\alias{gBookmarkFileSetVisitedDateTime}
 \alias{gBookmarkFileToData}
 \alias{gBookmarkFileToFile}
 \alias{gBookmarkFileErrorQuark}
@@ -113,7 +104,6 @@
 \alias{gDateGetMondayWeekOfYear}
 \alias{gDateGetMonth}
 \alias{gDateGetSundayWeekOfYear}
-\alias{gDateGetWeekOfYear}
 \alias{gDateGetWeekday}
 \alias{gDateGetYear}
 \alias{gDateIsFirstOfMonth}
@@ -136,7 +126,6 @@
 \alias{gDateGetDaysInMonth}
 \alias{gDateGetMondayWeeksInYear}
 \alias{gDateGetSundayWeeksInYear}
-\alias{gDateGetWeeksInYear}
 \alias{gDateIsLeapYear}
 \alias{gDateStrftime}
 \alias{gDateValidDay}
@@ -148,9 +137,7 @@
 \alias{gDirOpen}
 \alias{gDirClose}
 \alias{gDirReadName}
-\alias{gDirRef}
 \alias{gDirRewind}
-\alias{gDirUnref}
 \alias{gDirMakeTmp}
 \alias{gHmacNew}
 \alias{gHmacCopy}
@@ -231,9 +218,7 @@
 \alias{gMarkupParseContextFree}
 \alias{gMarkupParseContextGetElement}
 \alias{gMarkupParseContextGetElementStack}
-\alias{gMarkupParseContextGetOffset}
 \alias{gMarkupParseContextGetPosition}
-\alias{gMarkupParseContextGetTagStart}
 \alias{gMarkupParseContextGetUserData}
 \alias{gMarkupParseContextParse}
 \alias{gMarkupParseContextPop}
@@ -304,24 +289,9 @@
 \alias{gOptionGroupRef}
 \alias{gOptionGroupSetTranslationDomain}
 \alias{gOptionGroupUnref}
-\alias{gPathBufClear}
-\alias{gPathBufClearToPath}
-\alias{gPathBufFree}
-\alias{gPathBufFreeToPath}
-\alias{gPathBufInit}
-\alias{gPathBufInitFromPath}
-\alias{gPathBufPop}
-\alias{gPathBufPush}
-\alias{gPathBufSetExtension}
-\alias{gPathBufSetFilename}
-\alias{gPathBufToPath}
-\alias{gPathBufEqual}
 \alias{gPatternSpecNew}
-\alias{gPatternSpecCopy}
 \alias{gPatternSpecEqual}
 \alias{gPatternSpecFree}
-\alias{gPatternSpecMatch}
-\alias{gPatternSpecMatchString}
 \alias{gPrivateGet}
 \alias{gPrivateReplace}
 \alias{gPrivateSet}
@@ -420,14 +390,11 @@
 \alias{gSequenceIterNext}
 \alias{gSequenceIterPrev}
 \alias{gStaticMutexGetMutexImpl}
-\alias{gTestCaseFree}
 \alias{gTestLogBufferFree}
 \alias{gTestLogBufferPush}
 \alias{gTestLogMsgFree}
 \alias{gTestSuiteAdd}
 \alias{gTestSuiteAddSuite}
-\alias{gTestSuiteFree}
-\alias{gThreadGetName}
 \alias{gThreadJoin}
 \alias{gThreadRef}
 \alias{gThreadUnref}
@@ -451,7 +418,6 @@
 \alias{gTimerContinue}
 \alias{gTimerDestroy}
 \alias{gTimerElapsed}
-\alias{gTimerIsActive}
 \alias{gTimerReset}
 \alias{gTimerStart}
 \alias{gTimerStop}
@@ -462,71 +428,25 @@
 \alias{gTreeDestroy}
 \alias{gTreeHeight}
 \alias{gTreeInsert}
-\alias{gTreeInsertNode}
 \alias{gTreeLookup}
 \alias{gTreeLookupExtended}
-\alias{gTreeLookupNode}
-\alias{gTreeLowerBound}
 \alias{gTreeNnodes}
-\alias{gTreeNodeFirst}
-\alias{gTreeNodeLast}
 \alias{gTreeRef}
 \alias{gTreeRemove}
-\alias{gTreeRemoveAll}
 \alias{gTreeReplace}
-\alias{gTreeReplaceNode}
 \alias{gTreeSteal}
 \alias{gTreeUnref}
-\alias{gTreeUpperBound}
-\alias{gTreeNodeKey}
-\alias{gTreeNodeNext}
-\alias{gTreeNodePrevious}
-\alias{gTreeNodeValue}
 \alias{gTuplesDestroy}
 \alias{gTuplesIndex}
 \alias{gUnicodeScriptFromIso15924}
 \alias{gUnicodeScriptToIso15924}
-\alias{gUriGetAuthParams}
-\alias{gUriGetFlags}
-\alias{gUriGetFragment}
-\alias{gUriGetHost}
-\alias{gUriGetPassword}
-\alias{gUriGetPath}
-\alias{gUriGetPort}
-\alias{gUriGetQuery}
-\alias{gUriGetScheme}
-\alias{gUriGetUser}
-\alias{gUriGetUserinfo}
-\alias{gUriParseRelative}
-\alias{gUriToString}
-\alias{gUriToStringPartial}
-\alias{gUriBuild}
-\alias{gUriBuildWithUser}
 \alias{gUriErrorQuark}
-\alias{gUriEscapeBytes}
 \alias{gUriEscapeString}
-\alias{gUriIsValid}
-\alias{gUriJoin}
-\alias{gUriJoinWithUser}
 \alias{gUriListExtractUris}
-\alias{gUriParse}
-\alias{gUriParseParams}
 \alias{gUriParseScheme}
-\alias{gUriPeekScheme}
-\alias{gUriResolveRelative}
-\alias{gUriSplit}
-\alias{gUriSplitNetwork}
-\alias{gUriSplitWithUser}
-\alias{gUriUnescapeBytes}
 \alias{gUriUnescapeSegment}
 \alias{gUriUnescapeString}
-\alias{gUriParamsIterInit}
-\alias{gUriParamsIterNext}
 \alias{gAccess}
-\alias{gAlignedAlloc}
-\alias{gAlignedAlloc0}
-\alias{gAlignedFree}
-\alias{gAlignedFreeSized}
 \alias{gAsciiDigitValue}
 \alias{gAsciiDtostr}
 \alias{gAsciiFormatd}
@@ -555,17 +475,14 @@
 \alias{gBase64EncodeStep}
 \alias{gBasename}
 \alias{gBitLock}
-\alias{gBitLockAndGet}
 \alias{gBitNthLsf}
 \alias{gBitNthMsf}
 \alias{gBitStorage}
 \alias{gBitTrylock}
 \alias{gBitUnlock}
-\alias{gBitUnlockAndSet}
 \alias{gBlowChunks}
 \alias{gBuildFilenamev}
 \alias{gBuildPathv}
-\alias{gCanonicalizeFilename}
 \alias{gChdir}
 \alias{gChildWatchSourceNew}
 \alias{gChmod}
@@ -584,7 +501,6 @@
 \alias{gDatalistGetData}
 \alias{gDatalistGetFlags}
 \alias{gDatalistIdGetData}
-\alias{gDatalistIdRemoveMultiple}
 \alias{gDatalistSetFlags}
 \alias{gDatalistUnsetFlags}
 \alias{gDatasetDestroy}
@@ -613,13 +529,10 @@
 \alias{gFormatSizeForDisplay}
 \alias{gFormatSizeFull}
 \alias{gFree}
-\alias{gFreeSized}
 \alias{gFreopen}
-\alias{gFsync}
 \alias{gGetApplicationName}
 \alias{gGetCharset}
 \alias{gGetCodeset}
-\alias{gGetConsoleCharset}
 \alias{gGetCurrentDir}
 \alias{gGetCurrentTime}
 \alias{gGetEnviron}
@@ -627,12 +540,9 @@
 \alias{gGetHomeDir}
 \alias{gGetHostName}
 \alias{gGetLanguageNames}
-\alias{gGetLanguageNamesWithCategory}
 \alias{gGetLocaleVariants}
 \alias{gGetMonotonicTime}
-\alias{gGetMonotonicTimeNs}
 \alias{gGetNumProcessors}
-\alias{gGetOsInfo}
 \alias{gGetPrgname}
 \alias{gGetRealName}
 \alias{gGetRealTime}
@@ -645,7 +555,6 @@
 \alias{gGetUserName}
 \alias{gGetUserRuntimeDir}
 \alias{gGetUserSpecialDir}
-\alias{gGetUserStateDir}
 \alias{gGetenv}
 \alias{gHostnameIsAsciiEncoded}
 \alias{gHostnameIsIpAddress}
@@ -672,7 +581,6 @@
 \alias{gMemProfile}
 \alias{gMemSetVtable}
 \alias{gMemdup}
-\alias{gMemdup2}
 \alias{gMkdir}
 \alias{gMkdirWithParents}
 \alias{gNullifyPointer}
@@ -688,7 +596,6 @@
 \alias{gPathSkipRoot}
 \alias{gPatternMatchSimple}
 \alias{gPoll}
-\alias{gPrefixErrorLiteral}
 \alias{gPropagateError}
 \alias{gQuarkFromStaticString}
 \alias{gQuarkFromString}
@@ -699,25 +606,8 @@
 \alias{gRandomInt}
 \alias{gRandomIntRange}
 \alias{gRandomSetSeed}
-\alias{gRcBoxAcquire}
-\alias{gRcBoxAlloc}
-\alias{gRcBoxAlloc0}
-\alias{gRcBoxDup}
-\alias{gRcBoxGetSize}
-\alias{gRcBoxRelease}
 \alias{gRealloc}
 \alias{gReallocN}
-\alias{gRefCountCompare}
-\alias{gRefCountDec}
-\alias{gRefCountInc}
-\alias{gRefCountInit}
-\alias{gRefStringAcquire}
-\alias{gRefStringEqual}
-\alias{gRefStringLength}
-\alias{gRefStringNew}
-\alias{gRefStringNewIntern}
-\alias{gRefStringNewLen}
-\alias{gRefStringRelease}
 \alias{gReloadUserSpecialDirsCache}
 \alias{gRemove}
 \alias{gRename}
@@ -740,7 +630,6 @@
 \alias{gSliceSetConfig}
 \alias{gSpacedPrimesClosest}
 \alias{gSpawnCheckExitStatus}
-\alias{gSpawnCheckWaitStatus}
 \alias{gSpawnClosePid}
 \alias{gSpawnCommandLineAsync}
 \alias{gSpawnCommandLineSync}
@@ -776,12 +665,10 @@
 \alias{gTestAssertExpectedMessagesInternal}
 \alias{gTestBug}
 \alias{gTestBugBase}
-\alias{gTestDisableCrashReporting}
 \alias{gTestExpectMessage}
 \alias{gTestFail}
 \alias{gTestFailed}
 \alias{gTestGetDir}
-\alias{gTestGetPath}
 \alias{gTestIncomplete}
 \alias{gTestLogTypeName}
 \alias{gTestQueueFree}
@@ -794,17 +681,14 @@
 \alias{gTestSetNonfatalAssertions}
 \alias{gTestSkip}
 \alias{gTestSubprocess}
-\alias{gTestSummary}
 \alias{gTestTimerElapsed}
 \alias{gTestTimerLast}
 \alias{gTestTimerStart}
 \alias{gTestTrapAssertions}
 \alias{gTestTrapFork}
 \alias{gTestTrapHasPassed}
-\alias{gTestTrapHasSkipped}
 \alias{gTestTrapReachedTimeout}
 \alias{gTestTrapSubprocess}
-\alias{gTestTrapSubprocessWithEnvp}
 \alias{gTryMalloc}
 \alias{gTryMalloc0}
 \alias{gTryMalloc0N}
@@ -876,25 +760,16 @@
 \alias{gUtf8ToUcs4}
 \alias{gUtf8ToUcs4Fast}
 \alias{gUtf8ToUtf16}
-\alias{gUtf8TruncateMiddle}
 \alias{gUtf8Validate}
-\alias{gUtf8ValidateLen}
 \alias{gUtime}
 \alias{gUuidStringIsValid}
 \alias{gUuidStringRandom}
-\alias{gBindingDupSource}
-\alias{gBindingDupTarget}
 \alias{gBindingGetFlags}
 \alias{gBindingGetSource}
 \alias{gBindingGetSourceProperty}
 \alias{gBindingGetTarget}
 \alias{gBindingGetTargetProperty}
 \alias{gBindingUnbind}
-\alias{gBindingGroupNew}
-\alias{gBindingGroupBind}
-\alias{gBindingGroupBindWithClosures}
-\alias{gBindingGroupDupSource}
-\alias{gBindingGroupSetSource}
 \alias{gCclosureMarshalBOOLEANBOXEDBOXED}
 \alias{gCclosureMarshalBOOLEANFLAGS}
 \alias{gCclosureMarshalSTRINGOBJECTPOINTER}
@@ -925,7 +800,6 @@
 \alias{gClosureRef}
 \alias{gClosureSink}
 \alias{gClosureUnref}
-\alias{gParamSpecIsValidName}
 \alias{gParamSpecGetBlurb}
 \alias{gParamSpecGetDefaultValue}
 \alias{gParamSpecGetName}
@@ -936,7 +810,6 @@
 \alias{gParamSpecSetQdata}
 \alias{gParamSpecSink}
 \alias{gParamSpecStealQdata}
-\alias{gParamSpecPoolFree}
 \alias{gParamSpecPoolInsert}
 \alias{gParamSpecPoolList}
 \alias{gParamSpecPoolListOwned}
@@ -947,7 +820,6 @@
 \alias{gTypeClassPeekParent}
 \alias{gTypeClassUnref}
 \alias{gTypeClassAdjustPrivateOffset}
-\alias{gTypeClassGet}
 \alias{gTypeClassPeek}
 \alias{gTypeClassPeekStatic}
 \alias{gTypeClassRef}
@@ -955,7 +827,6 @@
 \alias{gTypeInterfacePeekParent}
 \alias{gTypeInterfaceAddPrerequisite}
 \alias{gTypeInterfaceGetPlugin}
-\alias{gTypeInterfaceInstantiatablePrerequisite}
 \alias{gTypeInterfacePeek}
 \alias{gTypeInterfacePrerequisites}
 \alias{gTypeModuleAddInterface}
@@ -1011,7 +882,6 @@
 \alias{gValueSetInstance}
 \alias{gValueSetInt}
 \alias{gValueSetInt64}
-\alias{gValueSetInternedString}
 \alias{gValueSetLong}
 \alias{gValueSetObject}
 \alias{gValueSetParam}
@@ -1026,7 +896,6 @@
 \alias{gValueSetUint64}
 \alias{gValueSetUlong}
 \alias{gValueSetVariant}
-\alias{gValueStealString}
 \alias{gValueTakeBoxed}
 \alias{gValueTakeString}
 \alias{gValueTakeVariant}
@@ -1043,7 +912,6 @@
 \alias{gValueArrayRemove}
 \alias{gBoxedCopy}
 \alias{gBoxedFree}
-\alias{gClearSignalHandler}
 \alias{gEnumCompleteTypeInfo}
 \alias{gEnumGetValue}
 \alias{gEnumGetValueByName}
@@ -1081,7 +949,6 @@
 \alias{gParamTypeRegisterStatic}
 \alias{gParamValueConvert}
 \alias{gParamValueDefaults}
-\alias{gParamValueIsValid}
 \alias{gParamValueSetDefault}
 \alias{gParamValueValidate}
 \alias{gParamValuesCmp}
@@ -1098,7 +965,6 @@
 \alias{gTypeCheckValue}
 \alias{gTypeCheckValueHolds}
 \alias{gTypeChildren}
-\alias{gTypeDefaultInterfaceGet}
 \alias{gTypeDefaultInterfacePeek}
 \alias{gTypeDefaultInterfaceRef}
 \alias{gTypeDefaultInterfaceUnref}
@@ -1157,7 +1023,6 @@
 \alias{gActionMapAddActionEntries}
 \alias{gActionMapLookupAction}
 \alias{gActionMapRemoveAction}
-\alias{gActionMapRemoveActionEntries}
 \alias{gAppLaunchContextNew}
 \alias{gAppLaunchContextGetDisplay}
 \alias{gAppLaunchContextGetEnvironment}
@@ -1205,18 +1070,14 @@
 \alias{gCharsetConverterGetUseFallback}
 \alias{gCharsetConverterSetUseFallback}
 \alias{gConverterConvert}
-\alias{gConverterConvertBytes}
 \alias{gConverterReset}
 \alias{gConverterInputStreamNew}
 \alias{gConverterInputStreamGetConverter}
 \alias{gConverterOutputStreamNew}
 \alias{gConverterOutputStreamGetConverter}
 \alias{gCredentialsNew}
-\alias{gCredentialsGetUnixPid}
-\alias{gCredentialsGetUnixUser}
 \alias{gCredentialsIsSameUser}
 \alias{gCredentialsSetNative}
-\alias{gCredentialsSetUnixUser}
 \alias{gCredentialsToString}
 \alias{gDataInputStreamNew}
 \alias{gDataInputStreamGetByteOrder}
@@ -1254,10 +1115,6 @@
 \alias{gDatagramBasedCreateSource}
 \alias{gDatagramBasedReceiveMessages}
 \alias{gDatagramBasedSendMessages}
-\alias{gDebugControllerGetDebugEnabled}
-\alias{gDebugControllerSetDebugEnabled}
-\alias{gDebugControllerDbusNew}
-\alias{gDebugControllerDbusStop}
 \alias{gDriveCanEject}
 \alias{gDriveCanPollForMedia}
 \alias{gDriveCanStart}
@@ -1300,12 +1157,6 @@
 \alias{gFilterOutputStreamGetBaseStream}
 \alias{gFilterOutputStreamGetCloseBaseStream}
 \alias{gFilterOutputStreamSetCloseBaseStream}
-\alias{gIpTosMessageNew}
-\alias{gIpTosMessageGetDscp}
-\alias{gIpTosMessageGetEcn}
-\alias{gIpv6TclassMessageNew}
-\alias{gIpv6TclassMessageGetDscp}
-\alias{gIpv6TclassMessageGetEcn}
 \alias{gIconDeserialize}
 \alias{gIconNewForString}
 \alias{gIconEqual}
@@ -1314,12 +1165,10 @@
 \alias{gIconToString}
 \alias{gInetAddressNewAny}
 \alias{gInetAddressNewFromBytes}
-\alias{gInetAddressNewFromBytesWithIpv6Info}
 \alias{gInetAddressNewFromString}
 \alias{gInetAddressNewLoopback}
 \alias{gInetAddressEqual}
 \alias{gInetAddressGetFamily}
-\alias{gInetAddressGetFlowinfo}
 \alias{gInetAddressGetIsAny}
 \alias{gInetAddressGetIsLinkLocal}
 \alias{gInetAddressGetIsLoopback}
@@ -1331,7 +1180,6 @@
 \alias{gInetAddressGetIsMulticast}
 \alias{gInetAddressGetIsSiteLocal}
 \alias{gInetAddressGetNativeSize}
-\alias{gInetAddressGetScopeId}
 \alias{gInetAddressToString}
 \alias{gInetAddressMaskNew}
 \alias{gInetAddressMaskNewFromString}
@@ -1354,7 +1202,6 @@
 \alias{gMemoryInputStreamNew}
 \alias{gMemoryInputStreamNewFromBytes}
 \alias{gMemoryInputStreamAddBytes}
-\alias{gMemoryMonitorDupDefault}
 \alias{gMemoryOutputStreamNewResizable}
 \alias{gMemoryOutputStreamGetData}
 \alias{gMemoryOutputStreamGetDataSize}
@@ -1431,21 +1278,15 @@
 \alias{gMountOperationGetAnonymous}
 \alias{gMountOperationGetChoice}
 \alias{gMountOperationGetDomain}
-\alias{gMountOperationGetIsTcryptHiddenVolume}
-\alias{gMountOperationGetIsTcryptSystemVolume}
 \alias{gMountOperationGetPassword}
 \alias{gMountOperationGetPasswordSave}
-\alias{gMountOperationGetPim}
 \alias{gMountOperationGetUsername}
 \alias{gMountOperationReply}
 \alias{gMountOperationSetAnonymous}
 \alias{gMountOperationSetChoice}
 \alias{gMountOperationSetDomain}
-\alias{gMountOperationSetIsTcryptHiddenVolume}
-\alias{gMountOperationSetIsTcryptSystemVolume}
 \alias{gMountOperationSetPassword}
 \alias{gMountOperationSetPasswordSave}
-\alias{gMountOperationSetPim}
 \alias{gMountOperationSetUsername}
 \alias{gNativeSocketAddressNew}
 \alias{gNetworkAddressNew}
@@ -1471,7 +1312,6 @@
 \alias{gNotificationAddButton}
 \alias{gNotificationAddButtonWithTargetValue}
 \alias{gNotificationSetBody}
-\alias{gNotificationSetCategory}
 \alias{gNotificationSetDefaultAction}
 \alias{gNotificationSetDefaultActionAndTargetValue}
 \alias{gNotificationSetIcon}
@@ -1494,9 +1334,6 @@
 \alias{gPollableOutputStreamCreateSource}
 \alias{gPollableOutputStreamIsWritable}
 \alias{gPollableOutputStreamWriteNonblocking}
-\alias{gPollableOutputStreamWritevNonblocking}
-\alias{gPowerProfileMonitorDupDefault}
-\alias{gPowerProfileMonitorGetPowerSaverEnabled}
 \alias{gPropertyActionNew}
 \alias{gProxyGetDefaultForProtocol}
 \alias{gProxyConnect}
@@ -1517,26 +1354,21 @@
 \alias{gRemoteActionGroupActivateActionFull}
 \alias{gRemoteActionGroupChangeActionStateFull}
 \alias{gResolverGetDefault}
-\alias{gResolverGetTimeout}
 \alias{gResolverLookupByAddress}
 \alias{gResolverLookupByAddressFinish}
 \alias{gResolverLookupByName}
 \alias{gResolverLookupByNameFinish}
-\alias{gResolverLookupByNameWithFlags}
-\alias{gResolverLookupByNameWithFlagsFinish}
 \alias{gResolverLookupRecords}
 \alias{gResolverLookupRecordsFinish}
 \alias{gResolverLookupService}
 \alias{gResolverLookupServiceFinish}
 \alias{gResolverSetDefault}
-\alias{gResolverSetTimeout}
 \alias{gResolverErrorQuark}
 \alias{gResourceNewFromData}
 \alias{gResourcesRegister}
 \alias{gResourcesUnregister}
 \alias{gResourceEnumerateChildren}
 \alias{gResourceGetInfo}
-\alias{gResourceHasChildren}
 \alias{gResourceLookupData}
 \alias{gResourceOpenStream}
 \alias{gResourceRef}
@@ -1611,15 +1443,12 @@
 \alias{gSocketLeaveMulticastGroupSsm}
 \alias{gSocketListen}
 \alias{gSocketReceive}
-\alias{gSocketReceiveBytes}
-\alias{gSocketReceiveBytesFrom}
 \alias{gSocketReceiveFrom}
 \alias{gSocketReceiveMessage}
 \alias{gSocketReceiveMessages}
 \alias{gSocketReceiveWithBlocking}
 \alias{gSocketSend}
 \alias{gSocketSendMessage}
-\alias{gSocketSendMessageWithTimeout}
 \alias{gSocketSendMessages}
 \alias{gSocketSendTo}
 \alias{gSocketSendWithBlocking}
@@ -1709,49 +1538,11 @@
 \alias{gStaticResourceFini}
 \alias{gStaticResourceGetResource}
 \alias{gStaticResourceInit}
-\alias{gSubprocessNewv}
-\alias{gSubprocessCommunicate}
-\alias{gSubprocessCommunicateFinish}
-\alias{gSubprocessCommunicateUtf8}
-\alias{gSubprocessCommunicateUtf8Finish}
-\alias{gSubprocessForceExit}
-\alias{gSubprocessGetExitStatus}
-\alias{gSubprocessGetIdentifier}
-\alias{gSubprocessGetIfExited}
-\alias{gSubprocessGetIfSignaled}
-\alias{gSubprocessGetStatus}
-\alias{gSubprocessGetStderrPipe}
-\alias{gSubprocessGetStdinPipe}
-\alias{gSubprocessGetStdoutPipe}
-\alias{gSubprocessGetSuccessful}
-\alias{gSubprocessGetTermSig}
-\alias{gSubprocessSendSignal}
-\alias{gSubprocessWait}
-\alias{gSubprocessWaitCheck}
-\alias{gSubprocessWaitCheckFinish}
-\alias{gSubprocessWaitFinish}
-\alias{gSubprocessLauncherNew}
-\alias{gSubprocessLauncherClose}
-\alias{gSubprocessLauncherGetenv}
-\alias{gSubprocessLauncherSetCwd}
-\alias{gSubprocessLauncherSetEnviron}
-\alias{gSubprocessLauncherSetFlags}
-\alias{gSubprocessLauncherSetStderrFilePath}
-\alias{gSubprocessLauncherSetStdinFilePath}
-\alias{gSubprocessLauncherSetStdoutFilePath}
-\alias{gSubprocessLauncherSetenv}
-\alias{gSubprocessLauncherSpawnv}
-\alias{gSubprocessLauncherTakeFd}
-\alias{gSubprocessLauncherTakeStderrFd}
-\alias{gSubprocessLauncherTakeStdinFd}
-\alias{gSubprocessLauncherTakeStdoutFd}
-\alias{gSubprocessLauncherUnsetenv}
 \alias{gTaskIsValid}
 \alias{gTaskGetCancellable}
 \alias{gTaskGetCheckCancellable}
 \alias{gTaskGetCompleted}
 \alias{gTaskGetContext}
-\alias{gTaskGetName}
 \alias{gTaskGetPriority}
 \alias{gTaskGetReturnOnCancel}
 \alias{gTaskGetSourceObject}
@@ -1761,19 +1552,14 @@
 \alias{gTaskPropagateBoolean}
 \alias{gTaskPropagateInt}
 \alias{gTaskPropagatePointer}
-\alias{gTaskPropagateValue}
 \alias{gTaskReturnBoolean}
 \alias{gTaskReturnError}
 \alias{gTaskReturnErrorIfCancelled}
 \alias{gTaskReturnInt}
-\alias{gTaskReturnNewErrorLiteral}
-\alias{gTaskReturnValue}
 \alias{gTaskSetCheckCancellable}
-\alias{gTaskSetName}
 \alias{gTaskSetPriority}
 \alias{gTaskSetReturnOnCancel}
 \alias{gTaskSetSourceTag}
-\alias{gTaskSetStaticName}
 \alias{gTcpConnectionGetGracefulDisconnect}
 \alias{gTcpConnectionSetGracefulDisconnect}
 \alias{gTcpWrapperConnectionNew}
@@ -1826,9 +1612,7 @@
 \alias{gVolumeMonitorGetVolumes}
 \alias{gZlibCompressorNew}
 \alias{gZlibCompressorGetFileInfo}
-\alias{gZlibCompressorGetOs}
 \alias{gZlibCompressorSetFileInfo}
-\alias{gZlibCompressorSetOs}
 \alias{gZlibDecompressorNew}
 \alias{gZlibDecompressorGetFileInfo}
 \alias{gBusGetFinish}
@@ -1845,7 +1629,6 @@
 \alias{gContentTypeGetDescription}
 \alias{gContentTypeGetGenericIconName}
 \alias{gContentTypeGetIcon}
-\alias{gContentTypeGetMimeDirs}
 \alias{gContentTypeGetMimeType}
 \alias{gContentTypeGetSymbolicIcon}
 \alias{gContentTypeGuess}
@@ -1853,7 +1636,6 @@
 \alias{gContentTypeIsA}
 \alias{gContentTypeIsMimeType}
 \alias{gContentTypeIsUnknown}
-\alias{gContentTypeSetMimeDirs}
 \alias{gContentTypesGetRegistered}
 \alias{gKeyfileSettingsBackendNew}
 \alias{gMemorySettingsBackendNew}
@@ -1866,7 +1648,6 @@
 \alias{gPollableStreamWriteAll}
 \alias{gResourcesEnumerateChildren}
 \alias{gResourcesGetInfo}
-\alias{gResourcesHasChildren}
 \alias{gResourcesLookupData}
 \alias{gResourcesOpenStream}
 \title{gAllocatorFree}
@@ -1925,17 +1706,11 @@ gBookmarkFileAddApplication(bookmark, uri, name, exec)
 
 gBookmarkFileAddGroup(bookmark, uri, group)
 
-gBookmarkFileCopy(bookmark)
-
 gBookmarkFileFree(bookmark)
 
 gBookmarkFileGetAdded(bookmark, uri)
 
-gBookmarkFileGetAddedDateTime(bookmark, uri)
-
 gBookmarkFileGetAppInfo(bookmark, uri, name)
-
-gBookmarkFileGetApplicationInfo(bookmark, uri, name)
 
 gBookmarkFileGetApplications(bookmark, uri)
 
@@ -1951,8 +1726,6 @@ gBookmarkFileGetMimeType(bookmark, uri)
 
 gBookmarkFileGetModified(bookmark, uri)
 
-gBookmarkFileGetModifiedDateTime(bookmark, uri)
-
 gBookmarkFileGetSize(bookmark)
 
 gBookmarkFileGetTitle(bookmark, uri)
@@ -1960,8 +1733,6 @@ gBookmarkFileGetTitle(bookmark, uri)
 gBookmarkFileGetUris(bookmark)
 
 gBookmarkFileGetVisited(bookmark, uri)
-
-gBookmarkFileGetVisitedDateTime(bookmark, uri)
 
 gBookmarkFileHasApplication(bookmark, uri, name)
 
@@ -1985,11 +1756,7 @@ gBookmarkFileRemoveItem(bookmark, uri)
 
 gBookmarkFileSetAdded(bookmark, uri, added)
 
-gBookmarkFileSetAddedDateTime(bookmark, uri, added)
-
 gBookmarkFileSetAppInfo(bookmark, uri, name, exec, count, stamp)
-
-gBookmarkFileSetApplicationInfo(bookmark, uri, name, exec, count, stamp)
 
 gBookmarkFileSetDescription(bookmark, uri, description)
 
@@ -2003,13 +1770,9 @@ gBookmarkFileSetMimeType(bookmark, uri, mime_type)
 
 gBookmarkFileSetModified(bookmark, uri, modified)
 
-gBookmarkFileSetModifiedDateTime(bookmark, uri, modified)
-
 gBookmarkFileSetTitle(bookmark, uri, title)
 
 gBookmarkFileSetVisited(bookmark, uri, visited)
-
-gBookmarkFileSetVisitedDateTime(bookmark, uri, visited)
 
 gBookmarkFileToData(bookmark)
 
@@ -2093,8 +1856,6 @@ gDateGetMonth(date)
 
 gDateGetSundayWeekOfYear(date)
 
-gDateGetWeekOfYear(date, first_day_of_week)
-
 gDateGetWeekday(date)
 
 gDateGetYear(date)
@@ -2139,8 +1900,6 @@ gDateGetMondayWeeksInYear(year)
 
 gDateGetSundayWeeksInYear(year)
 
-gDateGetWeeksInYear(year, first_day_of_week)
-
 gDateIsLeapYear(year)
 
 gDateStrftime(s, slen, format, date)
@@ -2163,11 +1922,7 @@ gDirClose(dir)
 
 gDirReadName(dir)
 
-gDirRef(dir)
-
 gDirRewind(dir)
-
-gDirUnref(dir)
 
 gDirMakeTmp(tmpl)
 
@@ -2329,11 +2084,7 @@ gMarkupParseContextGetElement(context)
 
 gMarkupParseContextGetElementStack(context)
 
-gMarkupParseContextGetOffset(context)
-
 gMarkupParseContextGetPosition(context)
-
-gMarkupParseContextGetTagStart(context)
 
 gMarkupParseContextGetUserData(context)
 
@@ -2475,41 +2226,11 @@ gOptionGroupSetTranslationDomain(group, domain)
 
 gOptionGroupUnref(group)
 
-gPathBufClear(buf)
-
-gPathBufClearToPath(buf)
-
-gPathBufFree(buf)
-
-gPathBufFreeToPath(buf)
-
-gPathBufInit(buf)
-
-gPathBufInitFromPath(buf, path)
-
-gPathBufPop(buf)
-
-gPathBufPush(buf, path)
-
-gPathBufSetExtension(buf, extension)
-
-gPathBufSetFilename(buf, file_name)
-
-gPathBufToPath(buf)
-
-gPathBufEqual(v1, v2)
-
 gPatternSpecNew(pattern)
-
-gPatternSpecCopy(pspec)
 
 gPatternSpecEqual(pspec1, pspec2)
 
 gPatternSpecFree(pspec)
-
-gPatternSpecMatch(pspec, string_length, string, string_reversed)
-
-gPatternSpecMatchString(pspec, string)
 
 gPrivateGet(key)
 
@@ -2736,8 +2457,6 @@ gSequenceIterPrev(iter)
 
 gStaticMutexGetMutexImpl(mutex)
 
-gTestCaseFree(test_case)
-
 gTestLogBufferFree(tbuffer)
 
 gTestLogBufferPush(tbuffer, n_bytes, bytes)
@@ -2747,10 +2466,6 @@ gTestLogMsgFree(tmsg)
 gTestSuiteAdd(suite, test_case)
 
 gTestSuiteAddSuite(suite, nestedsuite)
-
-gTestSuiteFree(suite)
-
-gThreadGetName(thread)
 
 gThreadJoin(thread)
 
@@ -2798,8 +2513,6 @@ gTimerDestroy(timer)
 
 gTimerElapsed(timer, microseconds)
 
-gTimerIsActive(timer)
-
 gTimerReset(timer)
 
 gTimerStart(timer)
@@ -2820,45 +2533,21 @@ gTreeHeight(tree)
 
 gTreeInsert(tree, key, value)
 
-gTreeInsertNode(tree, key, value)
-
 gTreeLookup(tree, key)
 
 gTreeLookupExtended(tree, lookup_key)
 
-gTreeLookupNode(tree, key)
-
-gTreeLowerBound(tree, key)
-
 gTreeNnodes(tree)
-
-gTreeNodeFirst(tree)
-
-gTreeNodeLast(tree)
 
 gTreeRef(tree)
 
 gTreeRemove(tree, key)
 
-gTreeRemoveAll(tree)
-
 gTreeReplace(tree, key, value)
-
-gTreeReplaceNode(tree, key, value)
 
 gTreeSteal(tree, key)
 
 gTreeUnref(tree)
-
-gTreeUpperBound(tree, key)
-
-gTreeNodeKey(node)
-
-gTreeNodeNext(node)
-
-gTreeNodePrevious(node)
-
-gTreeNodeValue(node)
 
 gTuplesDestroy(tuples)
 
@@ -2868,109 +2557,19 @@ gUnicodeScriptFromIso15924(iso15924)
 
 gUnicodeScriptToIso15924(script)
 
-gUriGetAuthParams(uri)
-
-gUriGetFlags(uri)
-
-gUriGetFragment(uri)
-
-gUriGetHost(uri)
-
-gUriGetPassword(uri)
-
-gUriGetPath(uri)
-
-gUriGetPort(uri)
-
-gUriGetQuery(uri)
-
-gUriGetScheme(uri)
-
-gUriGetUser(uri)
-
-gUriGetUserinfo(uri)
-
-gUriParseRelative(base_uri, uri_ref, flags)
-
-gUriToString(uri)
-
-gUriToStringPartial(uri, flags)
-
-gUriBuild(flags, scheme, userinfo, host, port, path, query, fragment)
-
-gUriBuildWithUser(
-  flags,
-  scheme,
-  user,
-  password,
-  auth_params,
-  host,
-  port,
-  path,
-  query,
-  fragment
-)
-
 gUriErrorQuark()
-
-gUriEscapeBytes(unescaped, length, reserved_chars_allowed)
 
 gUriEscapeString(unescaped, reserved_chars_allowed, allow_utf8)
 
-gUriIsValid(uri_string, flags)
-
-gUriJoin(flags, scheme, userinfo, host, port, path, query, fragment)
-
-gUriJoinWithUser(
-  flags,
-  scheme,
-  user,
-  password,
-  auth_params,
-  host,
-  port,
-  path,
-  query,
-  fragment
-)
-
 gUriListExtractUris(uri_list)
 
-gUriParse(uri_string, flags)
-
-gUriParseParams(params, length, separators, flags)
-
 gUriParseScheme(uri)
-
-gUriPeekScheme(uri)
-
-gUriResolveRelative(base_uri_string, uri_ref, flags)
-
-gUriSplit(uri_ref, flags)
-
-gUriSplitNetwork(uri_string, flags)
-
-gUriSplitWithUser(uri_ref, flags)
-
-gUriUnescapeBytes(escaped_string, length, illegal_characters)
 
 gUriUnescapeSegment(escaped_string, escaped_string_end, illegal_characters)
 
 gUriUnescapeString(escaped_string, illegal_characters)
 
-gUriParamsIterInit(iter, params, length, separators, flags)
-
-gUriParamsIterNext(iter)
-
 gAccess(filename, mode)
-
-gAlignedAlloc(n_blocks, n_block_bytes, alignment)
-
-gAlignedAlloc0(n_blocks, n_block_bytes, alignment)
-
-gAlignedFree(mem)
-
-gAlignedFreeSized(mem, alignment, size)
 
 gAsciiDigitValue(c)
 
@@ -3056,8 +2655,6 @@ gBasename(file_name)
 
 gBitLock(address, lock_bit)
 
-gBitLockAndGet(address, lock_bit)
-
 gBitNthLsf(mask, nth_bit)
 
 gBitNthMsf(mask, nth_bit)
@@ -3068,15 +2665,11 @@ gBitTrylock(address, lock_bit)
 
 gBitUnlock(address, lock_bit)
 
-gBitUnlockAndSet(address, lock_bit, new_val, preserve_mask)
-
 gBlowChunks()
 
 gBuildFilenamev(args)
 
 gBuildPathv(separator, args)
-
-gCanonicalizeFilename(filename, relative_to)
 
 gChdir(path)
 
@@ -3113,8 +2706,6 @@ gDatalistGetData(datalist, key)
 gDatalistGetFlags(datalist)
 
 gDatalistIdGetData(datalist, key_id)
-
-gDatalistIdRemoveMultiple(datalist, keys, n_keys)
 
 gDatalistSetFlags(datalist, flags)
 
@@ -3172,19 +2763,13 @@ gFormatSizeFull(size, flags)
 
 gFree(mem)
 
-gFreeSized(mem, size)
-
 gFreopen(filename, mode, stream)
-
-gFsync(fd)
 
 gGetApplicationName()
 
 gGetCharset()
 
 gGetCodeset()
-
-gGetConsoleCharset()
 
 gGetCurrentDir()
 
@@ -3200,17 +2785,11 @@ gGetHostName()
 
 gGetLanguageNames()
 
-gGetLanguageNamesWithCategory(category_name)
-
 gGetLocaleVariants(locale)
 
 gGetMonotonicTime()
 
-gGetMonotonicTimeNs()
-
 gGetNumProcessors()
-
-gGetOsInfo(key_name)
 
 gGetPrgname()
 
@@ -3235,8 +2814,6 @@ gGetUserName()
 gGetUserRuntimeDir()
 
 gGetUserSpecialDir(directory)
-
-gGetUserStateDir()
 
 gGetenv(variable)
 
@@ -3290,8 +2867,6 @@ gMemSetVtable(vtable)
 
 gMemdup(mem, byte_size)
 
-gMemdup2(mem, byte_size)
-
 gMkdir(filename, mode)
 
 gMkdirWithParents(pathname, mode)
@@ -3322,8 +2897,6 @@ gPatternMatchSimple(pattern, string)
 
 gPoll(fds, nfds, timeout)
 
-gPrefixErrorLiteral(prefix)
-
 gPropagateError(src)
 
 gQuarkFromStaticString(string)
@@ -3344,43 +2917,9 @@ gRandomIntRange(begin, end)
 
 gRandomSetSeed(seed)
 
-gRcBoxAcquire(mem_block)
-
-gRcBoxAlloc(block_size)
-
-gRcBoxAlloc0(block_size)
-
-gRcBoxDup(block_size, mem_block)
-
-gRcBoxGetSize(mem_block)
-
-gRcBoxRelease(mem_block)
-
 gRealloc(mem, n_bytes)
 
 gReallocN(mem, n_blocks, n_block_bytes)
-
-gRefCountCompare(rc, val)
-
-gRefCountDec()
-
-gRefCountInc()
-
-gRefCountInit()
-
-gRefStringAcquire(str)
-
-gRefStringEqual(str1, str2)
-
-gRefStringLength(str)
-
-gRefStringNew(str)
-
-gRefStringNewIntern(str)
-
-gRefStringNewLen(str, len)
-
-gRefStringRelease(str)
 
 gReloadUserSpecialDirsCache()
 
@@ -3425,8 +2964,6 @@ gSliceSetConfig(ckey, value)
 gSpacedPrimesClosest(num)
 
 gSpawnCheckExitStatus(wait_status)
-
-gSpawnCheckWaitStatus(wait_status)
 
 gSpawnClosePid(pid)
 
@@ -3498,8 +3035,6 @@ gTestBug(bug_uri_snippet)
 
 gTestBugBase(uri_pattern)
 
-gTestDisableCrashReporting()
-
 gTestExpectMessage(log_domain, log_level, pattern)
 
 gTestFail()
@@ -3507,8 +3042,6 @@ gTestFail()
 gTestFailed()
 
 gTestGetDir(file_type)
-
-gTestGetPath()
 
 gTestIncomplete(msg)
 
@@ -3534,8 +3067,6 @@ gTestSkip(msg)
 
 gTestSubprocess()
 
-gTestSummary(summary)
-
 gTestTimerElapsed()
 
 gTestTimerLast()
@@ -3548,13 +3079,9 @@ gTestTrapFork(usec_timeout, test_trap_flags)
 
 gTestTrapHasPassed()
 
-gTestTrapHasSkipped()
-
 gTestTrapReachedTimeout()
 
 gTestTrapSubprocess(test_path, usec_timeout, test_flags)
-
-gTestTrapSubprocessWithEnvp(test_path, envp, usec_timeout, test_flags)
 
 gTryMalloc(n_bytes)
 
@@ -3698,21 +3225,13 @@ gUtf8ToUcs4Fast(str, len)
 
 gUtf8ToUtf16(str, len)
 
-gUtf8TruncateMiddle(string, truncate_length)
-
 gUtf8Validate(str, max_len)
-
-gUtf8ValidateLen(str, max_len)
 
 gUtime(filename, utb)
 
 gUuidStringIsValid(str)
 
 gUuidStringRandom()
-
-gBindingDupSource(binding)
-
-gBindingDupTarget(binding)
 
 gBindingGetFlags(binding)
 
@@ -3725,24 +3244,6 @@ gBindingGetTarget(binding)
 gBindingGetTargetProperty(binding)
 
 gBindingUnbind(binding)
-
-gBindingGroupNew()
-
-gBindingGroupBind(self, source_property, target, target_property, flags)
-
-gBindingGroupBindWithClosures(
-  self,
-  source_property,
-  target,
-  target_property,
-  flags,
-  transform_to,
-  transform_from
-)
-
-gBindingGroupDupSource(self)
-
-gBindingGroupSetSource(self, source)
 
 gCclosureMarshalBOOLEANBOXEDBOXED(
   closure,
@@ -3965,8 +3466,6 @@ gClosureSink(closure)
 
 gClosureUnref(closure)
 
-gParamSpecIsValidName(name)
-
 gParamSpecGetBlurb(pspec)
 
 gParamSpecGetDefaultValue(pspec)
@@ -3986,8 +3485,6 @@ gParamSpecSetQdata(pspec, quark, data)
 gParamSpecSink(pspec)
 
 gParamSpecStealQdata(pspec, quark)
-
-gParamSpecPoolFree(pool)
 
 gParamSpecPoolInsert(pool, pspec, owner_type)
 
@@ -4009,8 +3506,6 @@ gTypeClassUnref(g_class)
 
 gTypeClassAdjustPrivateOffset(g_class, private_size_or_offset)
 
-gTypeClassGet(type)
-
 gTypeClassPeek(type)
 
 gTypeClassPeekStatic(type)
@@ -4024,8 +3519,6 @@ gTypeInterfacePeekParent(g_iface)
 gTypeInterfaceAddPrerequisite(interface_type, prerequisite_type)
 
 gTypeInterfaceGetPlugin(instance_type, interface_type)
-
-gTypeInterfaceInstantiatablePrerequisite(interface_type)
 
 gTypeInterfacePeek(instance_class, iface_type)
 
@@ -4137,8 +3630,6 @@ gValueSetInt(value, v_int)
 
 gValueSetInt64(value, v_int64)
 
-gValueSetInternedString(value, v_string)
-
 gValueSetLong(value, v_long)
 
 gValueSetObject(value, v_object)
@@ -4166,8 +3657,6 @@ gValueSetUint64(value, v_uint64)
 gValueSetUlong(value, v_ulong)
 
 gValueSetVariant(value, variant)
-
-gValueStealString(value)
 
 gValueTakeBoxed(value, v_boxed)
 
@@ -4200,8 +3689,6 @@ gValueArrayRemove(value_array, index_)
 gBoxedCopy(boxed_type, src_boxed)
 
 gBoxedFree(boxed_type, boxed)
-
-gClearSignalHandler(handler_id_ptr, instance)
 
 gEnumCompleteTypeInfo(g_enum_type, const_values)
 
@@ -4277,8 +3764,6 @@ gParamValueConvert(pspec, src_value, dest_value, strict_validation)
 
 gParamValueDefaults(pspec, value)
 
-gParamValueIsValid(pspec, value)
-
 gParamValueSetDefault(pspec, value)
 
 gParamValueValidate(pspec, value)
@@ -4310,8 +3795,6 @@ gTypeCheckValue(value)
 gTypeCheckValueHolds(value, type)
 
 gTypeChildren(type)
-
-gTypeDefaultInterfaceGet(g_type)
 
 gTypeDefaultInterfacePeek(g_type)
 
@@ -4429,8 +3912,6 @@ gActionMapLookupAction(action_map, action_name)
 
 gActionMapRemoveAction(action_map, action_name)
 
-gActionMapRemoveActionEntries(action_map, entries, n_entries)
-
 gAppLaunchContextNew()
 
 gAppLaunchContextGetDisplay(context, info, files)
@@ -4525,8 +4006,6 @@ gCharsetConverterSetUseFallback(converter, use_fallback)
 
 gConverterConvert(converter, inbuf, inbuf_size, outbuf, outbuf_size, flags)
 
-gConverterConvertBytes(converter, bytes)
-
 gConverterReset(converter)
 
 gConverterInputStreamNew(base_stream, converter)
@@ -4539,15 +4018,9 @@ gConverterOutputStreamGetConverter(converter_stream)
 
 gCredentialsNew()
 
-gCredentialsGetUnixPid(credentials)
-
-gCredentialsGetUnixUser(credentials)
-
 gCredentialsIsSameUser(credentials, other_credentials)
 
 gCredentialsSetNative(credentials, native_type, native)
-
-gCredentialsSetUnixUser(credentials, uid)
 
 gCredentialsToString(credentials)
 
@@ -4637,14 +4110,6 @@ gDatagramBasedSendMessages(
   cancellable
 )
 
-gDebugControllerGetDebugEnabled(self)
-
-gDebugControllerSetDebugEnabled(self, debug_enabled)
-
-gDebugControllerDbusNew(connection, cancellable)
-
-gDebugControllerDbusStop(self)
-
 gDriveCanEject(drive)
 
 gDriveCanPollForMedia(drive)
@@ -4729,18 +4194,6 @@ gFilterOutputStreamGetCloseBaseStream(stream)
 
 gFilterOutputStreamSetCloseBaseStream(stream, close_base)
 
-gIpTosMessageNew(dscp, ecn)
-
-gIpTosMessageGetDscp(message)
-
-gIpTosMessageGetEcn(message)
-
-gIpv6TclassMessageNew(dscp, ecn)
-
-gIpv6TclassMessageGetDscp(message)
-
-gIpv6TclassMessageGetEcn(message)
-
 gIconDeserialize(value)
 
 gIconNewForString(str)
@@ -4757,8 +4210,6 @@ gInetAddressNewAny(family)
 
 gInetAddressNewFromBytes(bytes, family)
 
-gInetAddressNewFromBytesWithIpv6Info(bytes, family, flowinfo, scope_id)
-
 gInetAddressNewFromString(string)
 
 gInetAddressNewLoopback(family)
@@ -4766,8 +4217,6 @@ gInetAddressNewLoopback(family)
 gInetAddressEqual(address, other_address)
 
 gInetAddressGetFamily(address)
-
-gInetAddressGetFlowinfo(address)
 
 gInetAddressGetIsAny(address)
 
@@ -4790,8 +4239,6 @@ gInetAddressGetIsMulticast(address)
 gInetAddressGetIsSiteLocal(address)
 
 gInetAddressGetNativeSize(address)
-
-gInetAddressGetScopeId(address)
 
 gInetAddressToString(address)
 
@@ -4836,8 +4283,6 @@ gMemoryInputStreamNew()
 gMemoryInputStreamNewFromBytes(bytes)
 
 gMemoryInputStreamAddBytes(stream, bytes)
-
-gMemoryMonitorDupDefault()
 
 gMemoryOutputStreamNewResizable()
 
@@ -4991,15 +4436,9 @@ gMountOperationGetChoice(op)
 
 gMountOperationGetDomain(op)
 
-gMountOperationGetIsTcryptHiddenVolume(op)
-
-gMountOperationGetIsTcryptSystemVolume(op)
-
 gMountOperationGetPassword(op)
 
 gMountOperationGetPasswordSave(op)
-
-gMountOperationGetPim(op)
 
 gMountOperationGetUsername(op)
 
@@ -5011,15 +4450,9 @@ gMountOperationSetChoice(op, choice)
 
 gMountOperationSetDomain(op, domain)
 
-gMountOperationSetIsTcryptHiddenVolume(op, hidden_volume)
-
-gMountOperationSetIsTcryptSystemVolume(op, system_volume)
-
 gMountOperationSetPassword(op, password)
 
 gMountOperationSetPasswordSave(op, save)
-
-gMountOperationSetPim(op, pim)
 
 gMountOperationSetUsername(op, username)
 
@@ -5071,8 +4504,6 @@ gNotificationAddButtonWithTargetValue(notification, label, action, target)
 
 gNotificationSetBody(notification, body)
 
-gNotificationSetCategory(notification, category)
-
 gNotificationSetDefaultAction(notification, detailed_action)
 
 gNotificationSetDefaultActionAndTargetValue(notification, action, target)
@@ -5116,12 +4547,6 @@ gPollableOutputStreamCreateSource(stream, cancellable)
 gPollableOutputStreamIsWritable(stream)
 
 gPollableOutputStreamWriteNonblocking(stream, buffer, count, cancellable)
-
-gPollableOutputStreamWritevNonblocking(stream, vectors, n_vectors, cancellable)
-
-gPowerProfileMonitorDupDefault()
-
-gPowerProfileMonitorGetPowerSaverEnabled(monitor)
 
 gPropertyActionNew(name, object, property_name)
 
@@ -5181,8 +4606,6 @@ gRemoteActionGroupChangeActionStateFull(
 
 gResolverGetDefault()
 
-gResolverGetTimeout(resolver)
-
 gResolverLookupByAddress(resolver, address, cancellable)
 
 gResolverLookupByAddressFinish(resolver, result)
@@ -5190,10 +4613,6 @@ gResolverLookupByAddressFinish(resolver, result)
 gResolverLookupByName(resolver, hostname, cancellable)
 
 gResolverLookupByNameFinish(resolver, result)
-
-gResolverLookupByNameWithFlags(resolver, hostname, flags, cancellable)
-
-gResolverLookupByNameWithFlagsFinish(resolver, result)
 
 gResolverLookupRecords(resolver, rrname, record_type, cancellable)
 
@@ -5204,8 +4623,6 @@ gResolverLookupService(resolver, service, protocol, domain, cancellable)
 gResolverLookupServiceFinish(resolver, result)
 
 gResolverSetDefault(resolver)
-
-gResolverSetTimeout(resolver, timeout_ms)
 
 gResolverErrorQuark()
 
@@ -5218,8 +4635,6 @@ gResourcesUnregister(resource)
 gResourceEnumerateChildren(resource, path, lookup_flags)
 
 gResourceGetInfo(resource, path, lookup_flags)
-
-gResourceHasChildren(resource, path)
 
 gResourceLookupData(resource, path, lookup_flags)
 
@@ -5369,10 +4784,6 @@ gSocketListen(socket)
 
 gSocketReceive(socket, size, cancellable)
 
-gSocketReceiveBytes(socket, size, timeout_us, cancellable)
-
-gSocketReceiveBytesFrom(socket, size, timeout_us, cancellable)
-
 gSocketReceiveFrom(socket, size, cancellable)
 
 gSocketReceiveMessage(socket, vectors, num_vectors, cancellable)
@@ -5391,18 +4802,6 @@ gSocketSendMessage(
   messages,
   num_messages,
   flags,
-  cancellable
-)
-
-gSocketSendMessageWithTimeout(
-  socket,
-  address,
-  vectors,
-  num_vectors,
-  messages,
-  num_messages,
-  flags,
-  timeout_us,
   cancellable
 )
 
@@ -5584,80 +4983,6 @@ gStaticResourceGetResource(static_resource)
 
 gStaticResourceInit(static_resource)
 
-gSubprocessNewv(argv, flags)
-
-gSubprocessCommunicate(subprocess, stdin_buf, cancellable)
-
-gSubprocessCommunicateFinish(subprocess, result)
-
-gSubprocessCommunicateUtf8(subprocess, stdin_buf, cancellable)
-
-gSubprocessCommunicateUtf8Finish(subprocess, result)
-
-gSubprocessForceExit(subprocess)
-
-gSubprocessGetExitStatus(subprocess)
-
-gSubprocessGetIdentifier(subprocess)
-
-gSubprocessGetIfExited(subprocess)
-
-gSubprocessGetIfSignaled(subprocess)
-
-gSubprocessGetStatus(subprocess)
-
-gSubprocessGetStderrPipe(subprocess)
-
-gSubprocessGetStdinPipe(subprocess)
-
-gSubprocessGetStdoutPipe(subprocess)
-
-gSubprocessGetSuccessful(subprocess)
-
-gSubprocessGetTermSig(subprocess)
-
-gSubprocessSendSignal(subprocess, signal_num)
-
-gSubprocessWait(subprocess, cancellable)
-
-gSubprocessWaitCheck(subprocess, cancellable)
-
-gSubprocessWaitCheckFinish(subprocess, result)
-
-gSubprocessWaitFinish(subprocess, result)
-
-gSubprocessLauncherNew(flags)
-
-gSubprocessLauncherClose(self)
-
-gSubprocessLauncherGetenv(self, variable)
-
-gSubprocessLauncherSetCwd(self, cwd)
-
-gSubprocessLauncherSetEnviron(self, env)
-
-gSubprocessLauncherSetFlags(self, flags)
-
-gSubprocessLauncherSetStderrFilePath(self, path)
-
-gSubprocessLauncherSetStdinFilePath(self, path)
-
-gSubprocessLauncherSetStdoutFilePath(self, path)
-
-gSubprocessLauncherSetenv(self, variable, value, overwrite)
-
-gSubprocessLauncherSpawnv(self, argv)
-
-gSubprocessLauncherTakeFd(self, source_fd, target_fd)
-
-gSubprocessLauncherTakeStderrFd(self, fd)
-
-gSubprocessLauncherTakeStdinFd(self, fd)
-
-gSubprocessLauncherTakeStdoutFd(self, fd)
-
-gSubprocessLauncherUnsetenv(self, variable)
-
 gTaskIsValid(result, source_object)
 
 gTaskGetCancellable(task)
@@ -5667,8 +4992,6 @@ gTaskGetCheckCancellable(task)
 gTaskGetCompleted(task)
 
 gTaskGetContext(task)
-
-gTaskGetName(task)
 
 gTaskGetPriority(task)
 
@@ -5688,8 +5011,6 @@ gTaskPropagateInt(task)
 
 gTaskPropagatePointer(task)
 
-gTaskPropagateValue(task)
-
 gTaskReturnBoolean(task, result)
 
 gTaskReturnError(task, error)
@@ -5698,21 +5019,13 @@ gTaskReturnErrorIfCancelled(task)
 
 gTaskReturnInt(task, result)
 
-gTaskReturnNewErrorLiteral(task, domain, code, message)
-
-gTaskReturnValue(task, result)
-
 gTaskSetCheckCancellable(task, check_cancellable)
-
-gTaskSetName(task, name)
 
 gTaskSetPriority(task, priority)
 
 gTaskSetReturnOnCancel(task, return_on_cancel)
 
 gTaskSetSourceTag(task, source_tag)
-
-gTaskSetStaticName(task, name)
 
 gTcpConnectionGetGracefulDisconnect(connection)
 
@@ -5818,11 +5131,7 @@ gZlibCompressorNew(format, level)
 
 gZlibCompressorGetFileInfo(compressor)
 
-gZlibCompressorGetOs(compressor)
-
 gZlibCompressorSetFileInfo(compressor, file_info)
-
-gZlibCompressorSetOs(compressor, os)
 
 gZlibDecompressorNew(format)
 
@@ -5881,8 +5190,6 @@ gContentTypeGetGenericIconName(type)
 
 gContentTypeGetIcon(type)
 
-gContentTypeGetMimeDirs()
-
 gContentTypeGetMimeType(type)
 
 gContentTypeGetSymbolicIcon(type)
@@ -5896,8 +5203,6 @@ gContentTypeIsA(type, supertype)
 gContentTypeIsMimeType(type, mime_type)
 
 gContentTypeIsUnknown(type)
-
-gContentTypeSetMimeDirs(dirs)
 
 gContentTypesGetRegistered()
 
@@ -5922,8 +5227,6 @@ gPollableStreamWriteAll(stream, buffer, count, blocking, cancellable)
 gResourcesEnumerateChildren(path, lookup_flags)
 
 gResourcesGetInfo(path, lookup_flags)
-
-gResourcesHasChildren(path)
 
 gResourcesLookupData(path, lookup_flags)
 
@@ -5966,7 +5269,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{count}{gsize}
 
-\item{stamp}{DateTime}
+\item{stamp}{time_t}
 
 \item{description}{utf8}
 
@@ -5978,17 +5281,17 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{is_private}{gboolean}
 
-\item{modified}{DateTime}
+\item{modified}{time_t}
 
 \item{title}{utf8}
 
-\item{visited}{DateTime}
+\item{visited}{time_t}
 
 \item{cache}{Cache}
 
 \item{key}{utf8}
 
-\item{value}{filename}
+\item{value}{gint}
 
 \item{checksum_type}{ChecksumType}
 
@@ -6033,8 +5336,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{date1}{Date}
 
 \item{date2}{Date}
-
-\item{first_day_of_week}{DateWeekday}
 
 \item{y}{DateYear}
 
@@ -6134,7 +5435,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{mem}{gpointer}
 
-\item{node}{TreeNode}
+\item{node}{Node}
 
 \item{child}{Node}
 
@@ -6156,29 +5457,15 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{summary}{utf8}
 
-\item{domain}{GLib.Quark}
-
-\item{buf}{StatBuf}
-
-\item{extension}{filename}
-
-\item{file_name}{filename}
-
-\item{v1}{gpointer}
-
-\item{v2}{gpointer}
+\item{domain}{utf8}
 
 \item{pattern}{utf8}
-
-\item{pspec}{ParamSpec}
 
 \item{pspec1}{PatternSpec}
 
 \item{pspec2}{PatternSpec}
 
-\item{string_length}{gsize}
-
-\item{string_reversed}{utf8}
+\item{pspec}{ParamSpec}
 
 \item{rw_lock}{RWLock}
 
@@ -6218,7 +5505,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{symbol}{utf8}
 
-\item{scope_id}{guint32}
+\item{scope_id}{guint}
 
 \item{expected_token}{TokenType}
 
@@ -6228,7 +5515,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{symbol_name}{utf8}
 
-\item{message}{utf8}
+\item{message}{SocketControlMessage}
 
 \item{is_error}{gint}
 
@@ -6248,8 +5535,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{delta}{gint}
 
-\item{test_case}{TestCase}
-
 \item{tbuffer}{TestLogBuffer}
 
 \item{n_bytes}{gsize}
@@ -6257,6 +5542,8 @@ gResourcesOpenStream(path, lookup_flags)
 \item{tmsg}{TestLogMsg}
 
 \item{suite}{TestSuite}
+
+\item{test_case}{TestCase}
 
 \item{nestedsuite}{TestSuite}
 
@@ -6294,59 +5581,21 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{script}{UnicodeScript}
 
-\item{base_uri}{Uri}
-
-\item{uri_ref}{utf8}
-
-\item{scheme}{utf8}
-
-\item{userinfo}{utf8}
-
-\item{host}{utf8}
-
-\item{port}{guint16}
-
-\item{query}{utf8}
-
-\item{fragment}{utf8}
-
-\item{user}{utf8}
-
-\item{password}{utf8}
-
-\item{auth_params}{utf8}
-
 \item{unescaped}{utf8}
 
 \item{reserved_chars_allowed}{utf8}
 
 \item{allow_utf8}{gboolean}
 
-\item{uri_string}{utf8}
-
 \item{uri_list}{utf8}
-
-\item{params}{utf8}
-
-\item{separators}{utf8}
-
-\item{base_uri_string}{utf8}
 
 \item{escaped_string}{utf8}
 
-\item{illegal_characters}{utf8}
-
 \item{escaped_string_end}{utf8}
 
+\item{illegal_characters}{utf8}
+
 \item{mode}{NormalizeMode}
-
-\item{n_blocks}{gsize}
-
-\item{n_block_bytes}{gsize}
-
-\item{alignment}{gsize}
-
-\item{size}{gsize}
 
 \item{c}{gunichar}
 
@@ -6400,9 +5649,11 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{in_}{guint8}
 
+\item{file_name}{filename}
+
 \item{address}{SocketAddress}
 
-\item{lock_bit}{guint}
+\item{lock_bit}{gint}
 
 \item{mask}{InetAddressMask}
 
@@ -6410,13 +5661,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{number}{gulong}
 
-\item{new_val}{gint}
-
-\item{preserve_mask}{gint}
-
 \item{args}{filename}
-
-\item{relative_to}{filename}
 
 \item{pid}{Pid}
 
@@ -6430,15 +5675,15 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{key_id}{Quark}
 
-\item{keys}{DebugKey}
-
-\item{n_keys}{gsize}
-
 \item{dataset_location}{gpointer}
 
 \item{msgid}{utf8}
 
-\item{category}{utf8}
+\item{category}{gint}
+
+\item{v1}{gpointer}
+
+\item{v2}{gpointer}
 
 \item{v}{gpointer}
 
@@ -6462,25 +5707,31 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{program}{filename}
 
+\item{size}{gsize}
+
 \item{stream}{OutputStream}
 
 \item{result}{AsyncResult}
 
-\item{category_name}{utf8}
-
-\item{key_name}{utf8}
-
 \item{directory}{UserDirectory}
+
+\item{buf}{StatBuf}
+
+\item{n_blocks}{gsize}
+
+\item{n_block_bytes}{gsize}
 
 \item{vtable}{MemVTable}
 
-\item{byte_size}{gsize}
+\item{byte_size}{guint}
 
 \item{pathname}{filename}
 
 \item{nullify_location}{gpointer}
 
 \item{prg_name}{utf8}
+
+\item{keys}{DebugKey}
 
 \item{nkeys}{guint}
 
@@ -6489,18 +5740,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{nfds}{guint}
 
 \item{quark}{GLib.Quark}
-
-\item{mem_block}{gpointer}
-
-\item{block_size}{gsize}
-
-\item{rc}{gint}
-
-\item{val}{gint}
-
-\item{str1}{utf8}
-
-\item{str2}{utf8}
 
 \item{oldfilename}{filename}
 
@@ -6518,6 +5757,10 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{quoted_string}{filename}
 
+\item{block_size}{gsize}
+
+\item{mem_block}{gpointer}
+
 \item{mem_chain}{gpointer}
 
 \item{next_offset}{gsize}
@@ -6533,6 +5776,10 @@ gResourcesOpenStream(path, lookup_flags)
 \item{valid_chars}{utf8}
 
 \item{substitutor}{gchar}
+
+\item{str1}{utf8}
+
+\item{str2}{utf8}
 
 \item{source}{GObject.Object}
 
@@ -6596,7 +5843,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{p}{utf8}
 
-\item{max_len}{gsize}
+\item{max_len}{gssize}
 
 \item{offset}{gint64}
 
@@ -6604,23 +5851,9 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{end_pos}{glong}
 
-\item{truncate_length}{gsize}
-
 \item{utb}{gpointer}
 
 \item{binding}{Binding}
-
-\item{self}{TestDBus}
-
-\item{source_property}{utf8}
-
-\item{target}{SrvTarget}
-
-\item{target_property}{utf8}
-
-\item{transform_to}{Closure}
-
-\item{transform_from}{Closure}
 
 \item{closure}{Closure}
 
@@ -6714,8 +5947,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{v_int64}{gint64}
 
-\item{v_string}{utf8}
-
 \item{v_long}{glong}
 
 \item{v_object}{Object}
@@ -6723,6 +5954,8 @@ gResourcesOpenStream(path, lookup_flags)
 \item{param}{ParamSpec}
 
 \item{v_pointer}{gpointer}
+
+\item{v_string}{utf8}
 
 \item{v_uchar}{guint8}
 
@@ -6747,8 +5980,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{src_boxed}{gpointer}
 
 \item{boxed}{gpointer}
-
-\item{handler_id_ptr}{gulong}
 
 \item{g_enum_type}{GType}
 
@@ -6868,8 +6099,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{native}{gpointer}
 
-\item{uid}{uid_t}
-
 \item{stop_chars}{utf8}
 
 \item{stop_chars_len}{gssize}
@@ -6883,10 +6112,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{messages}{OutputMessage}
 
 \item{num_messages}{guint}
-
-\item{debug_enabled}{gboolean}
-
-\item{connection}{DBusConnection}
 
 \item{drive}{Drive}
 
@@ -6908,17 +6133,11 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{close_base}{gboolean}
 
-\item{dscp}{guint8}
-
-\item{ecn}{EcnCodePoint}
-
 \item{icon1}{Icon}
 
 \item{icon2}{Icon}
 
 \item{family}{SocketFamily}
-
-\item{flowinfo}{guint32}
 
 \item{other_address}{InetAddress}
 
@@ -6927,6 +6146,8 @@ gResourcesOpenStream(path, lookup_flags)
 \item{mask_string}{utf8}
 
 \item{mask2}{InetAddressMask}
+
+\item{port}{guint16}
 
 \item{n_parameters}{guint}
 
@@ -6970,13 +6191,9 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{choice}{gint}
 
-\item{hidden_volume}{gboolean}
-
-\item{system_volume}{gboolean}
+\item{password}{utf8}
 
 \item{save}{PasswordSave}
-
-\item{pim}{guint}
 
 \item{username}{utf8}
 
@@ -6984,7 +6201,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{default_port}{guint16}
 
-\item{monitor}{PowerProfileMonitor}
+\item{monitor}{NetworkMonitor}
 
 \item{connectable}{SocketConnectable}
 
@@ -6994,7 +6211,11 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{srv}{NetworkService}
 
+\item{scheme}{utf8}
+
 \item{notification}{Notification}
+
+\item{target}{SrvTarget}
 
 \item{body}{utf8}
 
@@ -7010,13 +6231,11 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{can_release}{gboolean}
 
-\item{vectors}{OutputVector}
-
-\item{n_vectors}{gsize}
-
 \item{property_name}{utf8}
 
 \item{proxy}{utf8}
+
+\item{connection}{DBusConnection}
 
 \item{proxy_address}{ProxyAddress}
 
@@ -7035,8 +6254,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{rrname}{utf8}
 
 \item{record_type}{ResolverRecordType}
-
-\item{timeout_ms}{guint}
 
 \item{resource}{Resource}
 
@@ -7080,6 +6297,8 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{iface}{utf8}
 
+\item{vectors}{OutputVector}
+
 \item{num_vectors}{gint}
 
 \item{blocking}{gboolean}
@@ -7122,22 +6341,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{static_resource}{StaticResource}
 
-\item{argv}{filename}
-
-\item{subprocess}{Subprocess}
-
-\item{stdin_buf}{utf8}
-
-\item{signal_num}{gint}
-
-\item{cwd}{filename}
-
-\item{env}{filename}
-
-\item{source_fd}{gint}
-
-\item{target_fd}{gint}
-
 \item{task}{Task}
 
 \item{return_on_cancel}{gboolean}
@@ -7147,6 +6350,8 @@ gResourcesOpenStream(path, lookup_flags)
 \item{base_io_stream}{IOStream}
 
 \item{conn}{TcpWrapperConnection}
+
+\item{self}{TestDBus}
 
 \item{iconname}{utf8}
 
@@ -7165,8 +6370,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{compressor}{ZlibCompressor}
 
 \item{file_info}{FileInfo}
-
-\item{os}{gint}
 
 \item{decompressor}{ZlibDecompressor}
 
@@ -7193,8 +6396,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{data_size}{gsize}
 
 \item{supertype}{utf8}
-
-\item{dirs}{utf8}
 
 \item{root_path}{utf8}
 
@@ -7259,16 +6460,10 @@ Return value from C function
 
 Return value from C function
 
-BookmarkFile
-
 Return value from C function
 
 time_t
 
-DateTime
-
-gboolean
-
 gboolean
 
 utf8
@@ -7284,8 +6479,6 @@ gboolean
 utf8
 
 time_t
-
-DateTime
 
 gint
 
@@ -7295,8 +6488,6 @@ utf8
 
 time_t
 
-DateTime
-
 gboolean
 
 gboolean
@@ -7319,15 +6510,7 @@ gboolean
 
 Return value from C function
 
-Return value from C function
-
 gboolean
-
-gboolean
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -7427,8 +6610,6 @@ DateMonth
 
 guint
 
-guint
-
 DateWeekday
 
 DateYear
@@ -7473,8 +6654,6 @@ guint8
 
 guint8
 
-guint8
-
 gboolean
 
 gsize
@@ -7496,10 +6675,6 @@ Dir
 Return value from C function
 
 filename
-
-Dir
-
-Return value from C function
 
 Return value from C function
 
@@ -7663,10 +6838,6 @@ utf8
 
 GLib.SList
 
-gsize
-
-Return value from C function
-
 Return value from C function
 
 gpointer
@@ -7809,41 +6980,11 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
-filename
-
-Return value from C function
-
-filename
-
-PathBuf
-
-PathBuf
-
-gboolean
-
-PathBuf
-
-gboolean
-
-gboolean
-
-filename
-
-gboolean
-
-PatternSpec
-
 PatternSpec
 
 gboolean
 
 Return value from C function
-
-gboolean
-
-gboolean
 
 gpointer
 
@@ -8051,12 +7192,6 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
-Return value from C function
-
-utf8
-
 gpointer
 
 Thread
@@ -8103,8 +7238,6 @@ Return value from C function
 
 gdouble
 
-gboolean
-
 Return value from C function
 
 Return value from C function
@@ -8125,21 +7258,11 @@ gint
 
 Return value from C function
 
-TreeNode
-
 gpointer
 
 gboolean
 
-TreeNode
-
-TreeNode
-
 gint
-
-TreeNode
-
-TreeNode
 
 Tree
 
@@ -8147,23 +7270,9 @@ gboolean
 
 Return value from C function
 
-Return value from C function
-
-TreeNode
-
 gboolean
 
 Return value from C function
-
-TreeNode
-
-gpointer
-
-TreeNode
-
-TreeNode
-
-gpointer
 
 Return value from C function
 
@@ -8173,87 +7282,19 @@ UnicodeScript
 
 guint32
 
-utf8
-
-UriFlags
-
-utf8
-
-utf8
-
-utf8
-
-utf8
-
-gint
-
-utf8
-
-utf8
-
-utf8
-
-utf8
-
-Uri
-
-utf8
-
-utf8
-
-Uri
-
-Uri
-
 Quark
 
 utf8
 
 utf8
 
-gboolean
-
 utf8
 
 utf8
 
 utf8
-
-Uri
-
-GLib.HashTable
-
-utf8
-
-utf8
-
-utf8
-
-gboolean
-
-gboolean
-
-gboolean
-
-Bytes
-
-utf8
-
-utf8
-
-Return value from C function
-
-gboolean
 
 gint
-
-gpointer
-
-gpointer
-
-Return value from C function
-
-Return value from C function
 
 gint
 
@@ -8311,8 +7352,6 @@ filename
 
 Return value from C function
 
-Return value from C function
-
 gint
 
 gint
@@ -8324,10 +7363,6 @@ gboolean
 Return value from C function
 
 Return value from C function
-
-Return value from C function
-
-filename
 
 filename
 
@@ -8375,8 +7410,6 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
 gpointer
 
 utf8
@@ -8427,19 +7460,13 @@ utf8
 
 Return value from C function
 
-Return value from C function
-
 gpointer
 
-gint
-
 utf8
 
 gboolean
 
 utf8
-
-gboolean
 
 filename
 
@@ -8450,8 +7477,6 @@ filename
 gboolean
 
 filename
-
-utf8
 
 utf8
 
@@ -8461,19 +7486,13 @@ utf8
 
 gint64
 
-guint64
-
 guint
-
-utf8
 
 utf8
 
 filename
 
 gint64
-
-filename
 
 filename
 
@@ -8545,8 +7564,6 @@ Return value from C function
 
 gpointer
 
-gpointer
-
 gint
 
 gint
@@ -8576,8 +7593,6 @@ filename
 gboolean
 
 gint
-
-Return value from C function
 
 Return value from C function
 
@@ -8603,40 +7618,6 @@ gpointer
 
 gpointer
 
-gpointer
-
-gpointer
-
-gsize
-
-Return value from C function
-
-gpointer
-
-gpointer
-
-gboolean
-
-gboolean
-
-Return value from C function
-
-Return value from C function
-
-utf8
-
-gboolean
-
-gsize
-
-utf8
-
-utf8
-
-utf8
-
-Return value from C function
-
 Return value from C function
 
 gint
@@ -8681,8 +7662,6 @@ guint
 
 gboolean
 
-gboolean
-
 Return value from C function
 
 gboolean
@@ -8746,8 +7725,6 @@ utf8
 gdouble
 
 utf8
-
-Return value from C function
 
 Return value from C function
 
@@ -8763,8 +7740,6 @@ gboolean
 
 filename
 
-utf8
-
 Return value from C function
 
 utf8
@@ -8789,8 +7764,6 @@ Return value from C function
 
 gboolean
 
-Return value from C function
-
 gdouble
 
 gdouble
@@ -8804,10 +7777,6 @@ gboolean
 gboolean
 
 gboolean
-
-gboolean
-
-Return value from C function
 
 Return value from C function
 
@@ -8953,10 +7922,6 @@ gunichar
 
 guint16
 
-utf8
-
-gboolean
-
 gboolean
 
 gint
@@ -8964,10 +7929,6 @@ gint
 gboolean
 
 utf8
-
-Object
-
-Object
 
 BindingFlags
 
@@ -8981,16 +7942,6 @@ utf8
 
 Return value from C function
 
-BindingGroup
-
-Return value from C function
-
-Return value from C function
-
-Object
-
-Return value from C function
-
 Return value from C function
 
 Return value from C function
@@ -9050,8 +8001,6 @@ Closure
 Return value from C function
 
 Return value from C function
-
-gboolean
 
 utf8
 
@@ -9072,8 +8021,6 @@ Return value from C function
 Return value from C function
 
 gpointer
-
-Return value from C function
 
 Return value from C function
 
@@ -9101,8 +8048,6 @@ TypeClass
 
 TypeClass
 
-TypeClass
-
 gpointer
 
 TypeInterface
@@ -9110,8 +8055,6 @@ TypeInterface
 Return value from C function
 
 TypePlugin
-
-GType
 
 TypeInterface
 
@@ -9253,10 +8196,6 @@ Return value from C function
 
 Return value from C function
 
-utf8
-
-Return value from C function
-
 Return value from C function
 
 Return value from C function
@@ -9289,8 +8228,6 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
 EnumValue
 
 EnumValue
@@ -9363,8 +8300,6 @@ gboolean
 
 gboolean
 
-gboolean
-
 Return value from C function
 
 gboolean
@@ -9396,8 +8331,6 @@ gboolean
 gboolean
 
 GType
-
-TypeInterface
 
 TypeInterface
 
@@ -9515,8 +8448,6 @@ Action
 
 Return value from C function
 
-Return value from C function
-
 AppLaunchContext
 
 utf8
@@ -9611,8 +8542,6 @@ Return value from C function
 
 ConverterResult
 
-GLib.Bytes
-
 Return value from C function
 
 InputStream
@@ -9625,15 +8554,9 @@ Converter
 
 Credentials
 
-pid_t
-
-uid_t
-
 gboolean
 
 Return value from C function
-
-gboolean
 
 utf8
 
@@ -9708,14 +8631,6 @@ GLib.Source
 gint
 
 gint
-
-gboolean
-
-Return value from C function
-
-DebugControllerDBus
-
-Return value from C function
 
 gboolean
 
@@ -9801,18 +8716,6 @@ gboolean
 
 Return value from C function
 
-SocketControlMessage
-
-guint8
-
-EcnCodePoint
-
-SocketControlMessage
-
-guint8
-
-EcnCodePoint
-
 Icon
 
 Icon
@@ -9833,13 +8736,9 @@ InetAddress
 
 InetAddress
 
-InetAddress
-
 gboolean
 
 SocketFamily
-
-guint32
 
 gboolean
 
@@ -9862,8 +8761,6 @@ gboolean
 gboolean
 
 gsize
-
-guint32
 
 utf8
 
@@ -9908,8 +8805,6 @@ InputStream
 InputStream
 
 Return value from C function
-
-MemoryMonitor
 
 OutputStream
 
@@ -10063,23 +8958,11 @@ gint
 
 utf8
 
-gboolean
-
-gboolean
-
 utf8
 
 PasswordSave
 
-guint
-
 utf8
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -10155,8 +9038,6 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
 gboolean
 
 gboolean
@@ -10188,12 +9069,6 @@ GLib.Source
 gboolean
 
 gssize
-
-PollableReturn
-
-PowerProfileMonitor
-
-gboolean
 
 PropertyAction
 
@@ -10235,8 +9110,6 @@ Return value from C function
 
 Resolver
 
-guint
-
 utf8
 
 utf8
@@ -10252,12 +9125,6 @@ GLib.List
 GLib.List
 
 GLib.List
-
-GLib.List
-
-GLib.List
-
-Return value from C function
 
 Return value from C function
 
@@ -10270,8 +9137,6 @@ Return value from C function
 Return value from C function
 
 utf8
-
-gboolean
 
 gboolean
 
@@ -10423,10 +9288,6 @@ gboolean
 
 gssize
 
-GLib.Bytes
-
-GLib.Bytes
-
 gssize
 
 gssize
@@ -10438,8 +9299,6 @@ gssize
 gssize
 
 gssize
-
-PollableReturn
 
 gint
 
@@ -10619,80 +9478,6 @@ Resource
 
 Return value from C function
 
-Subprocess
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-Return value from C function
-
-gint
-
-utf8
-
-gboolean
-
-gboolean
-
-gint
-
-InputStream
-
-OutputStream
-
-InputStream
-
-gboolean
-
-gint
-
-Return value from C function
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-SubprocessLauncher
-
-Return value from C function
-
-filename
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Subprocess
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
 gboolean
 
 Cancellable
@@ -10702,8 +9487,6 @@ gboolean
 gboolean
 
 GLib.MainContext
-
-utf8
 
 gint
 
@@ -10723,8 +9506,6 @@ gssize
 
 gpointer
 
-gboolean
-
 Return value from C function
 
 Return value from C function
@@ -10737,15 +9518,7 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
 gboolean
-
-Return value from C function
 
 Return value from C function
 
@@ -10853,10 +9626,6 @@ ZlibCompressor
 
 FileInfo
 
-gint
-
-Return value from C function
-
 Return value from C function
 
 ZlibDecompressor
@@ -10893,8 +9662,6 @@ Icon
 
 utf8
 
-utf8
-
 Icon
 
 utf8
@@ -10906,8 +9673,6 @@ gboolean
 gboolean
 
 gboolean
-
-Return value from C function
 
 GLib.List
 
@@ -10930,8 +9695,6 @@ gssize
 gboolean
 
 utf8
-
-gboolean
 
 gboolean
 
@@ -10994,17 +9757,11 @@ gBookmarkFileAddApplication
 
 gBookmarkFileAddGroup
 
-gBookmarkFileCopy
-
 gBookmarkFileFree
 
 gBookmarkFileGetAdded
 
-gBookmarkFileGetAddedDateTime
-
 gBookmarkFileGetAppInfo
-
-gBookmarkFileGetApplicationInfo
 
 gBookmarkFileGetApplications
 
@@ -11020,8 +9777,6 @@ gBookmarkFileGetMimeType
 
 gBookmarkFileGetModified
 
-gBookmarkFileGetModifiedDateTime
-
 gBookmarkFileGetSize
 
 gBookmarkFileGetTitle
@@ -11029,8 +9784,6 @@ gBookmarkFileGetTitle
 gBookmarkFileGetUris
 
 gBookmarkFileGetVisited
-
-gBookmarkFileGetVisitedDateTime
 
 gBookmarkFileHasApplication
 
@@ -11054,11 +9807,7 @@ gBookmarkFileRemoveItem
 
 gBookmarkFileSetAdded
 
-gBookmarkFileSetAddedDateTime
-
 gBookmarkFileSetAppInfo
-
-gBookmarkFileSetApplicationInfo
 
 gBookmarkFileSetDescription
 
@@ -11072,13 +9821,9 @@ gBookmarkFileSetMimeType
 
 gBookmarkFileSetModified
 
-gBookmarkFileSetModifiedDateTime
-
 gBookmarkFileSetTitle
 
 gBookmarkFileSetVisited
-
-gBookmarkFileSetVisitedDateTime
 
 gBookmarkFileToData
 
@@ -11162,8 +9907,6 @@ gDateGetMonth
 
 gDateGetSundayWeekOfYear
 
-gDateGetWeekOfYear
-
 gDateGetWeekday
 
 gDateGetYear
@@ -11208,8 +9951,6 @@ gDateGetMondayWeeksInYear
 
 gDateGetSundayWeeksInYear
 
-gDateGetWeeksInYear
-
 gDateIsLeapYear
 
 gDateStrftime
@@ -11232,11 +9973,7 @@ gDirClose
 
 gDirReadName
 
-gDirRef
-
 gDirRewind
-
-gDirUnref
 
 gDirMakeTmp
 
@@ -11398,11 +10135,7 @@ gMarkupParseContextGetElement
 
 gMarkupParseContextGetElementStack
 
-gMarkupParseContextGetOffset
-
 gMarkupParseContextGetPosition
-
-gMarkupParseContextGetTagStart
 
 gMarkupParseContextGetUserData
 
@@ -11544,41 +10277,11 @@ gOptionGroupSetTranslationDomain
 
 gOptionGroupUnref
 
-gPathBufClear
-
-gPathBufClearToPath
-
-gPathBufFree
-
-gPathBufFreeToPath
-
-gPathBufInit
-
-gPathBufInitFromPath
-
-gPathBufPop
-
-gPathBufPush
-
-gPathBufSetExtension
-
-gPathBufSetFilename
-
-gPathBufToPath
-
-gPathBufEqual
-
 gPatternSpecNew
-
-gPatternSpecCopy
 
 gPatternSpecEqual
 
 gPatternSpecFree
-
-gPatternSpecMatch
-
-gPatternSpecMatchString
 
 gPrivateGet
 
@@ -11776,8 +10479,6 @@ gSequenceIterPrev
 
 gStaticMutexGetMutexImpl
 
-gTestCaseFree
-
 gTestLogBufferFree
 
 gTestLogBufferPush
@@ -11787,10 +10488,6 @@ gTestLogMsgFree
 gTestSuiteAdd
 
 gTestSuiteAddSuite
-
-gTestSuiteFree
-
-gThreadGetName
 
 gThreadJoin
 
@@ -11838,8 +10535,6 @@ gTimerDestroy
 
 gTimerElapsed
 
-gTimerIsActive
-
 gTimerReset
 
 gTimerStart
@@ -11860,45 +10555,21 @@ gTreeHeight
 
 gTreeInsert
 
-gTreeInsertNode
-
 gTreeLookup
 
 gTreeLookupExtended
 
-gTreeLookupNode
-
-gTreeLowerBound
-
 gTreeNnodes
-
-gTreeNodeFirst
-
-gTreeNodeLast
 
 gTreeRef
 
 gTreeRemove
 
-gTreeRemoveAll
-
 gTreeReplace
-
-gTreeReplaceNode
 
 gTreeSteal
 
 gTreeUnref
-
-gTreeUpperBound
-
-gTreeNodeKey
-
-gTreeNodeNext
-
-gTreeNodePrevious
-
-gTreeNodeValue
 
 gTuplesDestroy
 
@@ -11908,87 +10579,19 @@ gUnicodeScriptFromIso15924
 
 gUnicodeScriptToIso15924
 
-gUriGetAuthParams
-
-gUriGetFlags
-
-gUriGetFragment
-
-gUriGetHost
-
-gUriGetPassword
-
-gUriGetPath
-
-gUriGetPort
-
-gUriGetQuery
-
-gUriGetScheme
-
-gUriGetUser
-
-gUriGetUserinfo
-
-gUriParseRelative
-
-gUriToString
-
-gUriToStringPartial
-
-gUriBuild
-
-gUriBuildWithUser
-
 gUriErrorQuark
-
-gUriEscapeBytes
 
 gUriEscapeString
 
-gUriIsValid
-
-gUriJoin
-
-gUriJoinWithUser
-
 gUriListExtractUris
 
-gUriParse
-
-gUriParseParams
-
 gUriParseScheme
-
-gUriPeekScheme
-
-gUriResolveRelative
-
-gUriSplit
-
-gUriSplitNetwork
-
-gUriSplitWithUser
-
-gUriUnescapeBytes
 
 gUriUnescapeSegment
 
 gUriUnescapeString
 
-gUriParamsIterInit
-
-gUriParamsIterNext
-
 gAccess
-
-gAlignedAlloc
-
-gAlignedAlloc0
-
-gAlignedFree
-
-gAlignedFreeSized
 
 gAsciiDigitValue
 
@@ -12046,8 +10649,6 @@ gBasename
 
 gBitLock
 
-gBitLockAndGet
-
 gBitNthLsf
 
 gBitNthMsf
@@ -12058,15 +10659,11 @@ gBitTrylock
 
 gBitUnlock
 
-gBitUnlockAndSet
-
 gBlowChunks
 
 gBuildFilenamev
 
 gBuildPathv
-
-gCanonicalizeFilename
 
 gChdir
 
@@ -12103,8 +10700,6 @@ gDatalistGetData
 gDatalistGetFlags
 
 gDatalistIdGetData
-
-gDatalistIdRemoveMultiple
 
 gDatalistSetFlags
 
@@ -12162,19 +10757,13 @@ gFormatSizeFull
 
 gFree
 
-gFreeSized
-
 gFreopen
-
-gFsync
 
 gGetApplicationName
 
 gGetCharset
 
 gGetCodeset
-
-gGetConsoleCharset
 
 gGetCurrentDir
 
@@ -12190,17 +10779,11 @@ gGetHostName
 
 gGetLanguageNames
 
-gGetLanguageNamesWithCategory
-
 gGetLocaleVariants
 
 gGetMonotonicTime
 
-gGetMonotonicTimeNs
-
 gGetNumProcessors
-
-gGetOsInfo
 
 gGetPrgname
 
@@ -12225,8 +10808,6 @@ gGetUserName
 gGetUserRuntimeDir
 
 gGetUserSpecialDir
-
-gGetUserStateDir
 
 gGetenv
 
@@ -12280,8 +10861,6 @@ gMemSetVtable
 
 gMemdup
 
-gMemdup2
-
 gMkdir
 
 gMkdirWithParents
@@ -12312,8 +10891,6 @@ gPatternMatchSimple
 
 gPoll
 
-gPrefixErrorLiteral
-
 gPropagateError
 
 gQuarkFromStaticString
@@ -12334,43 +10911,9 @@ gRandomIntRange
 
 gRandomSetSeed
 
-gRcBoxAcquire
-
-gRcBoxAlloc
-
-gRcBoxAlloc0
-
-gRcBoxDup
-
-gRcBoxGetSize
-
-gRcBoxRelease
-
 gRealloc
 
 gReallocN
-
-gRefCountCompare
-
-gRefCountDec
-
-gRefCountInc
-
-gRefCountInit
-
-gRefStringAcquire
-
-gRefStringEqual
-
-gRefStringLength
-
-gRefStringNew
-
-gRefStringNewIntern
-
-gRefStringNewLen
-
-gRefStringRelease
 
 gReloadUserSpecialDirsCache
 
@@ -12415,8 +10958,6 @@ gSliceSetConfig
 gSpacedPrimesClosest
 
 gSpawnCheckExitStatus
-
-gSpawnCheckWaitStatus
 
 gSpawnClosePid
 
@@ -12488,8 +11029,6 @@ gTestBug
 
 gTestBugBase
 
-gTestDisableCrashReporting
-
 gTestExpectMessage
 
 gTestFail
@@ -12497,8 +11036,6 @@ gTestFail
 gTestFailed
 
 gTestGetDir
-
-gTestGetPath
 
 gTestIncomplete
 
@@ -12524,8 +11061,6 @@ gTestSkip
 
 gTestSubprocess
 
-gTestSummary
-
 gTestTimerElapsed
 
 gTestTimerLast
@@ -12538,13 +11073,9 @@ gTestTrapFork
 
 gTestTrapHasPassed
 
-gTestTrapHasSkipped
-
 gTestTrapReachedTimeout
 
 gTestTrapSubprocess
-
-gTestTrapSubprocessWithEnvp
 
 gTryMalloc
 
@@ -12688,21 +11219,13 @@ gUtf8ToUcs4Fast
 
 gUtf8ToUtf16
 
-gUtf8TruncateMiddle
-
 gUtf8Validate
-
-gUtf8ValidateLen
 
 gUtime
 
 gUuidStringIsValid
 
 gUuidStringRandom
-
-gBindingDupSource
-
-gBindingDupTarget
 
 gBindingGetFlags
 
@@ -12715,16 +11238,6 @@ gBindingGetTarget
 gBindingGetTargetProperty
 
 gBindingUnbind
-
-gBindingGroupNew
-
-gBindingGroupBind
-
-gBindingGroupBindWithClosures
-
-gBindingGroupDupSource
-
-gBindingGroupSetSource
 
 gCclosureMarshalBOOLEANBOXEDBOXED
 
@@ -12786,8 +11299,6 @@ gClosureSink
 
 gClosureUnref
 
-gParamSpecIsValidName
-
 gParamSpecGetBlurb
 
 gParamSpecGetDefaultValue
@@ -12807,8 +11318,6 @@ gParamSpecSetQdata
 gParamSpecSink
 
 gParamSpecStealQdata
-
-gParamSpecPoolFree
 
 gParamSpecPoolInsert
 
@@ -12830,8 +11339,6 @@ gTypeClassUnref
 
 gTypeClassAdjustPrivateOffset
 
-gTypeClassGet
-
 gTypeClassPeek
 
 gTypeClassPeekStatic
@@ -12845,8 +11352,6 @@ gTypeInterfacePeekParent
 gTypeInterfaceAddPrerequisite
 
 gTypeInterfaceGetPlugin
-
-gTypeInterfaceInstantiatablePrerequisite
 
 gTypeInterfacePeek
 
@@ -12958,8 +11463,6 @@ gValueSetInt
 
 gValueSetInt64
 
-gValueSetInternedString
-
 gValueSetLong
 
 gValueSetObject
@@ -12987,8 +11490,6 @@ gValueSetUint64
 gValueSetUlong
 
 gValueSetVariant
-
-gValueStealString
 
 gValueTakeBoxed
 
@@ -13021,8 +11522,6 @@ gValueArrayRemove
 gBoxedCopy
 
 gBoxedFree
-
-gClearSignalHandler
 
 gEnumCompleteTypeInfo
 
@@ -13098,8 +11597,6 @@ gParamValueConvert
 
 gParamValueDefaults
 
-gParamValueIsValid
-
 gParamValueSetDefault
 
 gParamValueValidate
@@ -13131,8 +11628,6 @@ gTypeCheckValue
 gTypeCheckValueHolds
 
 gTypeChildren
-
-gTypeDefaultInterfaceGet
 
 gTypeDefaultInterfacePeek
 
@@ -13250,8 +11745,6 @@ gActionMapLookupAction
 
 gActionMapRemoveAction
 
-gActionMapRemoveActionEntries
-
 gAppLaunchContextNew
 
 gAppLaunchContextGetDisplay
@@ -13346,8 +11839,6 @@ gCharsetConverterSetUseFallback
 
 gConverterConvert
 
-gConverterConvertBytes
-
 gConverterReset
 
 gConverterInputStreamNew
@@ -13360,15 +11851,9 @@ gConverterOutputStreamGetConverter
 
 gCredentialsNew
 
-gCredentialsGetUnixPid
-
-gCredentialsGetUnixUser
-
 gCredentialsIsSameUser
 
 gCredentialsSetNative
-
-gCredentialsSetUnixUser
 
 gCredentialsToString
 
@@ -13443,14 +11928,6 @@ gDatagramBasedCreateSource
 gDatagramBasedReceiveMessages
 
 gDatagramBasedSendMessages
-
-gDebugControllerGetDebugEnabled
-
-gDebugControllerSetDebugEnabled
-
-gDebugControllerDbusNew
-
-gDebugControllerDbusStop
 
 gDriveCanEject
 
@@ -13536,18 +12013,6 @@ gFilterOutputStreamGetCloseBaseStream
 
 gFilterOutputStreamSetCloseBaseStream
 
-gIpTosMessageNew
-
-gIpTosMessageGetDscp
-
-gIpTosMessageGetEcn
-
-gIpv6TclassMessageNew
-
-gIpv6TclassMessageGetDscp
-
-gIpv6TclassMessageGetEcn
-
 gIconDeserialize
 
 gIconNewForString
@@ -13564,8 +12029,6 @@ gInetAddressNewAny
 
 gInetAddressNewFromBytes
 
-gInetAddressNewFromBytesWithIpv6Info
-
 gInetAddressNewFromString
 
 gInetAddressNewLoopback
@@ -13573,8 +12036,6 @@ gInetAddressNewLoopback
 gInetAddressEqual
 
 gInetAddressGetFamily
-
-gInetAddressGetFlowinfo
 
 gInetAddressGetIsAny
 
@@ -13597,8 +12058,6 @@ gInetAddressGetIsMulticast
 gInetAddressGetIsSiteLocal
 
 gInetAddressGetNativeSize
-
-gInetAddressGetScopeId
 
 gInetAddressToString
 
@@ -13643,8 +12102,6 @@ gMemoryInputStreamNew
 gMemoryInputStreamNewFromBytes
 
 gMemoryInputStreamAddBytes
-
-gMemoryMonitorDupDefault
 
 gMemoryOutputStreamNewResizable
 
@@ -13798,15 +12255,9 @@ gMountOperationGetChoice
 
 gMountOperationGetDomain
 
-gMountOperationGetIsTcryptHiddenVolume
-
-gMountOperationGetIsTcryptSystemVolume
-
 gMountOperationGetPassword
 
 gMountOperationGetPasswordSave
-
-gMountOperationGetPim
 
 gMountOperationGetUsername
 
@@ -13818,15 +12269,9 @@ gMountOperationSetChoice
 
 gMountOperationSetDomain
 
-gMountOperationSetIsTcryptHiddenVolume
-
-gMountOperationSetIsTcryptSystemVolume
-
 gMountOperationSetPassword
 
 gMountOperationSetPasswordSave
-
-gMountOperationSetPim
 
 gMountOperationSetUsername
 
@@ -13878,8 +12323,6 @@ gNotificationAddButtonWithTargetValue
 
 gNotificationSetBody
 
-gNotificationSetCategory
-
 gNotificationSetDefaultAction
 
 gNotificationSetDefaultActionAndTargetValue
@@ -13924,12 +12367,6 @@ gPollableOutputStreamIsWritable
 
 gPollableOutputStreamWriteNonblocking
 
-gPollableOutputStreamWritevNonblocking
-
-gPowerProfileMonitorDupDefault
-
-gPowerProfileMonitorGetPowerSaverEnabled
-
 gPropertyActionNew
 
 gProxyGetDefaultForProtocol
@@ -13970,8 +12407,6 @@ gRemoteActionGroupChangeActionStateFull
 
 gResolverGetDefault
 
-gResolverGetTimeout
-
 gResolverLookupByAddress
 
 gResolverLookupByAddressFinish
@@ -13979,10 +12414,6 @@ gResolverLookupByAddressFinish
 gResolverLookupByName
 
 gResolverLookupByNameFinish
-
-gResolverLookupByNameWithFlags
-
-gResolverLookupByNameWithFlagsFinish
 
 gResolverLookupRecords
 
@@ -13993,8 +12424,6 @@ gResolverLookupService
 gResolverLookupServiceFinish
 
 gResolverSetDefault
-
-gResolverSetTimeout
 
 gResolverErrorQuark
 
@@ -14007,8 +12436,6 @@ gResourcesUnregister
 gResourceEnumerateChildren
 
 gResourceGetInfo
-
-gResourceHasChildren
 
 gResourceLookupData
 
@@ -14158,10 +12585,6 @@ gSocketListen
 
 gSocketReceive
 
-gSocketReceiveBytes
-
-gSocketReceiveBytesFrom
-
 gSocketReceiveFrom
 
 gSocketReceiveMessage
@@ -14173,8 +12596,6 @@ gSocketReceiveWithBlocking
 gSocketSend
 
 gSocketSendMessage
-
-gSocketSendMessageWithTimeout
 
 gSocketSendMessages
 
@@ -14354,80 +12775,6 @@ gStaticResourceGetResource
 
 gStaticResourceInit
 
-gSubprocessNewv
-
-gSubprocessCommunicate
-
-gSubprocessCommunicateFinish
-
-gSubprocessCommunicateUtf8
-
-gSubprocessCommunicateUtf8Finish
-
-gSubprocessForceExit
-
-gSubprocessGetExitStatus
-
-gSubprocessGetIdentifier
-
-gSubprocessGetIfExited
-
-gSubprocessGetIfSignaled
-
-gSubprocessGetStatus
-
-gSubprocessGetStderrPipe
-
-gSubprocessGetStdinPipe
-
-gSubprocessGetStdoutPipe
-
-gSubprocessGetSuccessful
-
-gSubprocessGetTermSig
-
-gSubprocessSendSignal
-
-gSubprocessWait
-
-gSubprocessWaitCheck
-
-gSubprocessWaitCheckFinish
-
-gSubprocessWaitFinish
-
-gSubprocessLauncherNew
-
-gSubprocessLauncherClose
-
-gSubprocessLauncherGetenv
-
-gSubprocessLauncherSetCwd
-
-gSubprocessLauncherSetEnviron
-
-gSubprocessLauncherSetFlags
-
-gSubprocessLauncherSetStderrFilePath
-
-gSubprocessLauncherSetStdinFilePath
-
-gSubprocessLauncherSetStdoutFilePath
-
-gSubprocessLauncherSetenv
-
-gSubprocessLauncherSpawnv
-
-gSubprocessLauncherTakeFd
-
-gSubprocessLauncherTakeStderrFd
-
-gSubprocessLauncherTakeStdinFd
-
-gSubprocessLauncherTakeStdoutFd
-
-gSubprocessLauncherUnsetenv
-
 gTaskIsValid
 
 gTaskGetCancellable
@@ -14437,8 +12784,6 @@ gTaskGetCheckCancellable
 gTaskGetCompleted
 
 gTaskGetContext
-
-gTaskGetName
 
 gTaskGetPriority
 
@@ -14458,8 +12803,6 @@ gTaskPropagateInt
 
 gTaskPropagatePointer
 
-gTaskPropagateValue
-
 gTaskReturnBoolean
 
 gTaskReturnError
@@ -14468,21 +12811,13 @@ gTaskReturnErrorIfCancelled
 
 gTaskReturnInt
 
-gTaskReturnNewErrorLiteral
-
-gTaskReturnValue
-
 gTaskSetCheckCancellable
-
-gTaskSetName
 
 gTaskSetPriority
 
 gTaskSetReturnOnCancel
 
 gTaskSetSourceTag
-
-gTaskSetStaticName
 
 gTcpConnectionGetGracefulDisconnect
 
@@ -14588,11 +12923,7 @@ gZlibCompressorNew
 
 gZlibCompressorGetFileInfo
 
-gZlibCompressorGetOs
-
 gZlibCompressorSetFileInfo
-
-gZlibCompressorSetOs
 
 gZlibDecompressorNew
 
@@ -14626,8 +12957,6 @@ gContentTypeGetGenericIconName
 
 gContentTypeGetIcon
 
-gContentTypeGetMimeDirs
-
 gContentTypeGetMimeType
 
 gContentTypeGetSymbolicIcon
@@ -14641,8 +12970,6 @@ gContentTypeIsA
 gContentTypeIsMimeType
 
 gContentTypeIsUnknown
-
-gContentTypeSetMimeDirs
 
 gContentTypesGetRegistered
 
@@ -14667,8 +12994,6 @@ gPollableStreamWriteAll
 gResourcesEnumerateChildren
 
 gResourcesGetInfo
-
-gResourcesHasChildren
 
 gResourcesLookupData
 

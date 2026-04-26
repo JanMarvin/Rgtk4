@@ -11,7 +11,6 @@
 \alias{gdkDisplayGetAppLaunchContext}
 \alias{gdkDisplayGetClipboard}
 \alias{gdkDisplayGetDefaultSeat}
-\alias{gdkDisplayGetDmabufFormats}
 \alias{gdkDisplayGetMonitorAtSurface}
 \alias{gdkDisplayGetMonitors}
 \alias{gdkDisplayGetName}
@@ -28,7 +27,6 @@
 \alias{gdkDisplayPrepareGl}
 \alias{gdkDisplayPutEvent}
 \alias{gdkDisplaySupportsInputShapes}
-\alias{gdkDisplaySupportsShadowWidth}
 \alias{gdkDisplaySync}
 \alias{gdkDisplayTranslateKey}
 \alias{gdkDisplayManagerGet}
@@ -44,7 +42,6 @@
 \alias{gdkMonitorGetManufacturer}
 \alias{gdkMonitorGetModel}
 \alias{gdkMonitorGetRefreshRate}
-\alias{gdkMonitorGetScale}
 \alias{gdkMonitorGetScaleFactor}
 \alias{gdkMonitorGetSubpixelLayout}
 \alias{gdkMonitorGetWidthMm}
@@ -98,8 +95,6 @@ gdkDisplayGetClipboard(display)
 
 gdkDisplayGetDefaultSeat(display)
 
-gdkDisplayGetDmabufFormats(display)
-
 gdkDisplayGetMonitorAtSurface(display, surface)
 
 gdkDisplayGetMonitors(self)
@@ -132,8 +127,6 @@ gdkDisplayPutEvent(display, event)
 
 gdkDisplaySupportsInputShapes(display)
 
-gdkDisplaySupportsShadowWidth(display)
-
 gdkDisplaySync(display)
 
 gdkDisplayTranslateKey(display, keycode, state, group)
@@ -163,8 +156,6 @@ gdkMonitorGetManufacturer(monitor)
 gdkMonitorGetModel(monitor)
 
 gdkMonitorGetRefreshRate(monitor)
-
-gdkMonitorGetScale(monitor)
 
 gdkMonitorGetScaleFactor(monitor)
 
@@ -298,8 +289,6 @@ Clipboard
 
 Seat
 
-DmabufFormats
-
 Monitor
 
 Gio.ListModel
@@ -332,8 +321,6 @@ Return value from C function
 
 gboolean
 
-gboolean
-
 Return value from C function
 
 gboolean
@@ -363,8 +350,6 @@ utf8
 utf8
 
 gint
-
-gdouble
 
 gint
 
@@ -449,8 +434,6 @@ gdkDisplayGetClipboard
 
 gdkDisplayGetDefaultSeat
 
-gdkDisplayGetDmabufFormats
-
 gdkDisplayGetMonitorAtSurface
 
 gdkDisplayGetMonitors
@@ -483,8 +466,6 @@ gdkDisplayPutEvent
 
 gdkDisplaySupportsInputShapes
 
-gdkDisplaySupportsShadowWidth
-
 gdkDisplaySync
 
 gdkDisplayTranslateKey
@@ -514,8 +495,6 @@ gdkMonitorGetManufacturer
 gdkMonitorGetModel
 
 gdkMonitorGetRefreshRate
-
-gdkMonitorGetScale
 
 gdkMonitorGetScaleFactor
 

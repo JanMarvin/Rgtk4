@@ -8,16 +8,6 @@
 \alias{gdkAppLaunchContextSetTimestamp}
 \alias{gdkButtonEventGetButton}
 \alias{gdkCairoContextCairoCreate}
-\alias{gdkCicpParamsNew}
-\alias{gdkCicpParamsBuildColorState}
-\alias{gdkCicpParamsGetColorPrimaries}
-\alias{gdkCicpParamsGetMatrixCoefficients}
-\alias{gdkCicpParamsGetRange}
-\alias{gdkCicpParamsGetTransferFunction}
-\alias{gdkCicpParamsSetColorPrimaries}
-\alias{gdkCicpParamsSetMatrixCoefficients}
-\alias{gdkCicpParamsSetRange}
-\alias{gdkCicpParamsSetTransferFunction}
 \alias{gdkClipboardGetContent}
 \alias{gdkClipboardGetDisplay}
 \alias{gdkClipboardGetFormats}
@@ -29,17 +19,6 @@
 \alias{gdkClipboardSetContent}
 \alias{gdkClipboardSetValue}
 \alias{gdkClipboardStoreFinish}
-\alias{gdkColorStateCreateCicpParams}
-\alias{gdkColorStateEqual}
-\alias{gdkColorStateEquivalent}
-\alias{gdkColorStateRef}
-\alias{gdkColorStateUnref}
-\alias{gdkColorStateGetOklab}
-\alias{gdkColorStateGetOklch}
-\alias{gdkColorStateGetRec2100Linear}
-\alias{gdkColorStateGetRec2100Pq}
-\alias{gdkColorStateGetSrgb}
-\alias{gdkColorStateGetSrgbLinear}
 \alias{gdkContentDeserializerGetCancellable}
 \alias{gdkContentDeserializerGetGtype}
 \alias{gdkContentDeserializerGetInputStream}
@@ -56,7 +35,6 @@
 \alias{gdkContentFormatsContainMimeType}
 \alias{gdkContentFormatsGetGtypes}
 \alias{gdkContentFormatsGetMimeTypes}
-\alias{gdkContentFormatsIsEmpty}
 \alias{gdkContentFormatsMatch}
 \alias{gdkContentFormatsMatchGtype}
 \alias{gdkContentFormatsMatchMimeType}
@@ -107,39 +85,6 @@
 \alias{gdkCursorGetTexture}
 \alias{gdkDndEventGetDrop}
 \alias{gdkDmabufErrorQuark}
-\alias{gdkDmabufFormatsContains}
-\alias{gdkDmabufFormatsEqual}
-\alias{gdkDmabufFormatsGetFormat}
-\alias{gdkDmabufFormatsGetNFormats}
-\alias{gdkDmabufFormatsRef}
-\alias{gdkDmabufFormatsUnref}
-\alias{gdkDmabufTextureBuilderNew}
-\alias{gdkDmabufTextureBuilderGetColorState}
-\alias{gdkDmabufTextureBuilderGetDisplay}
-\alias{gdkDmabufTextureBuilderGetFd}
-\alias{gdkDmabufTextureBuilderGetFourcc}
-\alias{gdkDmabufTextureBuilderGetHeight}
-\alias{gdkDmabufTextureBuilderGetModifier}
-\alias{gdkDmabufTextureBuilderGetNPlanes}
-\alias{gdkDmabufTextureBuilderGetOffset}
-\alias{gdkDmabufTextureBuilderGetPremultiplied}
-\alias{gdkDmabufTextureBuilderGetStride}
-\alias{gdkDmabufTextureBuilderGetUpdateRegion}
-\alias{gdkDmabufTextureBuilderGetUpdateTexture}
-\alias{gdkDmabufTextureBuilderGetWidth}
-\alias{gdkDmabufTextureBuilderSetColorState}
-\alias{gdkDmabufTextureBuilderSetDisplay}
-\alias{gdkDmabufTextureBuilderSetFd}
-\alias{gdkDmabufTextureBuilderSetFourcc}
-\alias{gdkDmabufTextureBuilderSetHeight}
-\alias{gdkDmabufTextureBuilderSetModifier}
-\alias{gdkDmabufTextureBuilderSetNPlanes}
-\alias{gdkDmabufTextureBuilderSetOffset}
-\alias{gdkDmabufTextureBuilderSetPremultiplied}
-\alias{gdkDmabufTextureBuilderSetStride}
-\alias{gdkDmabufTextureBuilderSetUpdateRegion}
-\alias{gdkDmabufTextureBuilderSetUpdateTexture}
-\alias{gdkDmabufTextureBuilderSetWidth}
 \alias{gdkDragBegin}
 \alias{gdkDragDropDone}
 \alias{gdkDragGetActions}
@@ -219,7 +164,6 @@
 \alias{gdkGlErrorQuark}
 \alias{gdkGlTextureRelease}
 \alias{gdkGlTextureBuilderNew}
-\alias{gdkGlTextureBuilderGetColorState}
 \alias{gdkGlTextureBuilderGetContext}
 \alias{gdkGlTextureBuilderGetFormat}
 \alias{gdkGlTextureBuilderGetHasMipmap}
@@ -229,7 +173,6 @@
 \alias{gdkGlTextureBuilderGetUpdateRegion}
 \alias{gdkGlTextureBuilderGetUpdateTexture}
 \alias{gdkGlTextureBuilderGetWidth}
-\alias{gdkGlTextureBuilderSetColorState}
 \alias{gdkGlTextureBuilderSetContext}
 \alias{gdkGlTextureBuilderSetFormat}
 \alias{gdkGlTextureBuilderSetHasMipmap}
@@ -250,28 +193,6 @@
 \alias{gdkKeyEventIsModifier}
 \alias{gdkKeyEventMatches}
 \alias{gdkMemoryTextureNew}
-\alias{gdkMemoryTextureBuilderNew}
-\alias{gdkMemoryTextureBuilderBuild}
-\alias{gdkMemoryTextureBuilderGetBytes}
-\alias{gdkMemoryTextureBuilderGetColorState}
-\alias{gdkMemoryTextureBuilderGetFormat}
-\alias{gdkMemoryTextureBuilderGetHeight}
-\alias{gdkMemoryTextureBuilderGetOffset}
-\alias{gdkMemoryTextureBuilderGetStride}
-\alias{gdkMemoryTextureBuilderGetStrideForPlane}
-\alias{gdkMemoryTextureBuilderGetUpdateRegion}
-\alias{gdkMemoryTextureBuilderGetUpdateTexture}
-\alias{gdkMemoryTextureBuilderGetWidth}
-\alias{gdkMemoryTextureBuilderSetBytes}
-\alias{gdkMemoryTextureBuilderSetColorState}
-\alias{gdkMemoryTextureBuilderSetFormat}
-\alias{gdkMemoryTextureBuilderSetHeight}
-\alias{gdkMemoryTextureBuilderSetOffset}
-\alias{gdkMemoryTextureBuilderSetStride}
-\alias{gdkMemoryTextureBuilderSetStrideForPlane}
-\alias{gdkMemoryTextureBuilderSetUpdateRegion}
-\alias{gdkMemoryTextureBuilderSetUpdateTexture}
-\alias{gdkMemoryTextureBuilderSetWidth}
 \alias{gdkPadEventGetAxisValue}
 \alias{gdkPadEventGetButton}
 \alias{gdkPadEventGetGroupMode}
@@ -316,7 +237,6 @@
 \alias{gdkRgbaIsClear}
 \alias{gdkRgbaIsOpaque}
 \alias{gdkRgbaParse}
-\alias{gdkRgbaPrint}
 \alias{gdkRgbaToString}
 \alias{gdkRectangleContainsPoint}
 \alias{gdkRectangleEqual}
@@ -324,7 +244,6 @@
 \alias{gdkRectangleUnion}
 \alias{gdkScrollEventGetDeltas}
 \alias{gdkScrollEventGetDirection}
-\alias{gdkScrollEventGetRelativeDirection}
 \alias{gdkScrollEventGetUnit}
 \alias{gdkScrollEventIsStop}
 \alias{gdkSeatGetCapabilities}
@@ -336,8 +255,6 @@
 \alias{gdkToplevelBeginMove}
 \alias{gdkToplevelBeginResize}
 \alias{gdkToplevelFocus}
-\alias{gdkToplevelGetCapabilities}
-\alias{gdkToplevelGetGravity}
 \alias{gdkToplevelGetState}
 \alias{gdkToplevelInhibitSystemShortcuts}
 \alias{gdkToplevelLower}
@@ -346,7 +263,6 @@
 \alias{gdkToplevelRestoreSystemShortcuts}
 \alias{gdkToplevelSetDecorated}
 \alias{gdkToplevelSetDeletable}
-\alias{gdkToplevelSetGravity}
 \alias{gdkToplevelSetIconList}
 \alias{gdkToplevelSetModal}
 \alias{gdkToplevelSetStartupId}
@@ -413,26 +329,6 @@ gdkButtonEventGetButton(event)
 
 gdkCairoContextCairoCreate(self)
 
-gdkCicpParamsNew()
-
-gdkCicpParamsBuildColorState(self)
-
-gdkCicpParamsGetColorPrimaries(self)
-
-gdkCicpParamsGetMatrixCoefficients(self)
-
-gdkCicpParamsGetRange(self)
-
-gdkCicpParamsGetTransferFunction(self)
-
-gdkCicpParamsSetColorPrimaries(self, color_primaries)
-
-gdkCicpParamsSetMatrixCoefficients(self, matrix_coefficients)
-
-gdkCicpParamsSetRange(self, range)
-
-gdkCicpParamsSetTransferFunction(self, transfer_function)
-
 gdkClipboardGetContent(clipboard)
 
 gdkClipboardGetDisplay(clipboard)
@@ -454,28 +350,6 @@ gdkClipboardSetContent(clipboard, provider)
 gdkClipboardSetValue(clipboard, value)
 
 gdkClipboardStoreFinish(clipboard, result)
-
-gdkColorStateCreateCicpParams(self)
-
-gdkColorStateEqual(self, other)
-
-gdkColorStateEquivalent(self, other)
-
-gdkColorStateRef(self)
-
-gdkColorStateUnref(self)
-
-gdkColorStateGetOklab()
-
-gdkColorStateGetOklch()
-
-gdkColorStateGetRec2100Linear()
-
-gdkColorStateGetRec2100Pq()
-
-gdkColorStateGetSrgb()
-
-gdkColorStateGetSrgbLinear()
 
 gdkContentDeserializerGetCancellable(deserializer)
 
@@ -508,8 +382,6 @@ gdkContentFormatsContainMimeType(formats, mime_type)
 gdkContentFormatsGetGtypes(formats)
 
 gdkContentFormatsGetMimeTypes(formats)
-
-gdkContentFormatsIsEmpty(formats)
 
 gdkContentFormatsMatch(first, second)
 
@@ -610,72 +482,6 @@ gdkCursorGetTexture(cursor)
 gdkDndEventGetDrop(event)
 
 gdkDmabufErrorQuark()
-
-gdkDmabufFormatsContains(formats, fourcc, modifier)
-
-gdkDmabufFormatsEqual(formats1, formats2)
-
-gdkDmabufFormatsGetFormat(formats, idx)
-
-gdkDmabufFormatsGetNFormats(formats)
-
-gdkDmabufFormatsRef(formats)
-
-gdkDmabufFormatsUnref(formats)
-
-gdkDmabufTextureBuilderNew()
-
-gdkDmabufTextureBuilderGetColorState(self)
-
-gdkDmabufTextureBuilderGetDisplay(self)
-
-gdkDmabufTextureBuilderGetFd(self, plane)
-
-gdkDmabufTextureBuilderGetFourcc(self)
-
-gdkDmabufTextureBuilderGetHeight(self)
-
-gdkDmabufTextureBuilderGetModifier(self)
-
-gdkDmabufTextureBuilderGetNPlanes(self)
-
-gdkDmabufTextureBuilderGetOffset(self, plane)
-
-gdkDmabufTextureBuilderGetPremultiplied(self)
-
-gdkDmabufTextureBuilderGetStride(self, plane)
-
-gdkDmabufTextureBuilderGetUpdateRegion(self)
-
-gdkDmabufTextureBuilderGetUpdateTexture(self)
-
-gdkDmabufTextureBuilderGetWidth(self)
-
-gdkDmabufTextureBuilderSetColorState(self, color_state)
-
-gdkDmabufTextureBuilderSetDisplay(self, display)
-
-gdkDmabufTextureBuilderSetFd(self, plane, fd)
-
-gdkDmabufTextureBuilderSetFourcc(self, fourcc)
-
-gdkDmabufTextureBuilderSetHeight(self, height)
-
-gdkDmabufTextureBuilderSetModifier(self, modifier)
-
-gdkDmabufTextureBuilderSetNPlanes(self, n_planes)
-
-gdkDmabufTextureBuilderSetOffset(self, plane, offset)
-
-gdkDmabufTextureBuilderSetPremultiplied(self, premultiplied)
-
-gdkDmabufTextureBuilderSetStride(self, plane, stride)
-
-gdkDmabufTextureBuilderSetUpdateRegion(self, region)
-
-gdkDmabufTextureBuilderSetUpdateTexture(self, texture)
-
-gdkDmabufTextureBuilderSetWidth(self, width)
 
 gdkDragBegin(surface, device, content, actions, dx, dy)
 
@@ -835,8 +641,6 @@ gdkGlTextureRelease(self)
 
 gdkGlTextureBuilderNew()
 
-gdkGlTextureBuilderGetColorState(self)
-
 gdkGlTextureBuilderGetContext(self)
 
 gdkGlTextureBuilderGetFormat(self)
@@ -854,8 +658,6 @@ gdkGlTextureBuilderGetUpdateRegion(self)
 gdkGlTextureBuilderGetUpdateTexture(self)
 
 gdkGlTextureBuilderGetWidth(self)
-
-gdkGlTextureBuilderSetColorState(self, color_state)
 
 gdkGlTextureBuilderSetContext(self, context)
 
@@ -896,50 +698,6 @@ gdkKeyEventIsModifier(event)
 gdkKeyEventMatches(event, keyval, modifiers)
 
 gdkMemoryTextureNew(width, height, format, bytes, stride)
-
-gdkMemoryTextureBuilderNew()
-
-gdkMemoryTextureBuilderBuild(self)
-
-gdkMemoryTextureBuilderGetBytes(self)
-
-gdkMemoryTextureBuilderGetColorState(self)
-
-gdkMemoryTextureBuilderGetFormat(self)
-
-gdkMemoryTextureBuilderGetHeight(self)
-
-gdkMemoryTextureBuilderGetOffset(self, plane)
-
-gdkMemoryTextureBuilderGetStride(self)
-
-gdkMemoryTextureBuilderGetStrideForPlane(self, plane)
-
-gdkMemoryTextureBuilderGetUpdateRegion(self)
-
-gdkMemoryTextureBuilderGetUpdateTexture(self)
-
-gdkMemoryTextureBuilderGetWidth(self)
-
-gdkMemoryTextureBuilderSetBytes(self, bytes)
-
-gdkMemoryTextureBuilderSetColorState(self, color_state)
-
-gdkMemoryTextureBuilderSetFormat(self, format)
-
-gdkMemoryTextureBuilderSetHeight(self, height)
-
-gdkMemoryTextureBuilderSetOffset(self, plane, offset)
-
-gdkMemoryTextureBuilderSetStride(self, stride)
-
-gdkMemoryTextureBuilderSetStrideForPlane(self, plane, stride)
-
-gdkMemoryTextureBuilderSetUpdateRegion(self, region)
-
-gdkMemoryTextureBuilderSetUpdateTexture(self, texture)
-
-gdkMemoryTextureBuilderSetWidth(self, width)
 
 gdkPadEventGetAxisValue(event)
 
@@ -1035,8 +793,6 @@ gdkRgbaIsOpaque(rgba)
 
 gdkRgbaParse(rgba, spec)
 
-gdkRgbaPrint(rgba, string)
-
 gdkRgbaToString(rgba)
 
 gdkRectangleContainsPoint(rect, x, y)
@@ -1050,8 +806,6 @@ gdkRectangleUnion(src1, src2)
 gdkScrollEventGetDeltas(event)
 
 gdkScrollEventGetDirection(event)
-
-gdkScrollEventGetRelativeDirection(event)
 
 gdkScrollEventGetUnit(event)
 
@@ -1075,10 +829,6 @@ gdkToplevelBeginResize(toplevel, edge, device, button, x, y, timestamp)
 
 gdkToplevelFocus(toplevel, timestamp)
 
-gdkToplevelGetCapabilities(toplevel)
-
-gdkToplevelGetGravity(toplevel)
-
 gdkToplevelGetState(toplevel)
 
 gdkToplevelInhibitSystemShortcuts(toplevel, event)
@@ -1094,8 +844,6 @@ gdkToplevelRestoreSystemShortcuts(toplevel)
 gdkToplevelSetDecorated(toplevel, decorated)
 
 gdkToplevelSetDeletable(toplevel, deletable)
-
-gdkToplevelSetGravity(toplevel, gravity)
 
 gdkToplevelSetIconList(toplevel, surfaces)
 
@@ -1220,15 +968,7 @@ gdkUnicodeToKeyval(wc)
 
 \item{event}{TouchpadEvent}
 
-\item{self}{MemoryTextureBuilder}
-
-\item{color_primaries}{guint}
-
-\item{matrix_coefficients}{guint}
-
-\item{range}{CicpRange}
-
-\item{transfer_function}{guint}
+\item{self}{GLTextureBuilder}
 
 \item{clipboard}{Clipboard}
 
@@ -1237,8 +977,6 @@ gdkUnicodeToKeyval(wc)
 \item{provider}{ContentProvider}
 
 \item{value}{GObject.Value}
-
-\item{other}{ToplevelLayout}
 
 \item{deserializer}{ContentDeserializer}
 
@@ -1250,7 +988,7 @@ gdkUnicodeToKeyval(wc)
 
 \item{type}{GType}
 
-\item{formats}{DmabufFormats}
+\item{formats}{ContentFormats}
 
 \item{mime_type}{utf8}
 
@@ -1282,38 +1020,6 @@ gdkUnicodeToKeyval(wc)
 
 \item{cursor}{Cursor}
 
-\item{fourcc}{guint32}
-
-\item{modifier}{guint64}
-
-\item{formats1}{DmabufFormats}
-
-\item{formats2}{DmabufFormats}
-
-\item{idx}{gsize}
-
-\item{plane}{guint}
-
-\item{color_state}{ColorState}
-
-\item{display}{Display}
-
-\item{fd}{gint}
-
-\item{height}{gint}
-
-\item{n_planes}{guint}
-
-\item{offset}{gsize}
-
-\item{premultiplied}{gboolean}
-
-\item{stride}{gsize}
-
-\item{region}{cairo.Region}
-
-\item{width}{gint}
-
 \item{surface}{cairo.Surface}
 
 \item{device}{Device}
@@ -1338,7 +1044,13 @@ gdkUnicodeToKeyval(wc)
 
 \item{drag_surface}{DragSurface}
 
+\item{width}{gint}
+
+\item{height}{gint}
+
 \item{size}{ToplevelSize}
+
+\item{region}{cairo.Region}
 
 \item{preferred}{DragAction}
 
@@ -1361,6 +1073,8 @@ gdkUnicodeToKeyval(wc)
 \item{phase}{FrameClockPhase}
 
 \item{timings}{FrameTimings}
+
+\item{other}{ToplevelLayout}
 
 \item{apis}{GLAPI}
 
@@ -1385,6 +1099,8 @@ gdkUnicodeToKeyval(wc)
 \item{keyval}{guint}
 
 \item{modifiers}{ModifierType}
+
+\item{stride}{gsize}
 
 \item{intrinsic_width}{gint}
 
@@ -1462,8 +1178,6 @@ gdkUnicodeToKeyval(wc)
 
 \item{deletable}{gboolean}
 
-\item{gravity}{Gravity}
-
 \item{surfaces}{GLib.List}
 
 \item{modal}{gboolean}
@@ -1527,26 +1241,6 @@ guint
 
 cairo.Context
 
-CicpParams
-
-ColorState
-
-guint
-
-guint
-
-CicpRange
-
-guint
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
 ContentProvider
 
 Display
@@ -1568,28 +1262,6 @@ gboolean
 Return value from C function
 
 gboolean
-
-CicpParams
-
-gboolean
-
-gboolean
-
-ColorState
-
-Return value from C function
-
-ColorState
-
-ColorState
-
-ColorState
-
-ColorState
-
-ColorState
-
-ColorState
 
 Gio.Cancellable
 
@@ -1622,8 +1294,6 @@ gboolean
 GType
 
 utf8
-
-gboolean
 
 gboolean
 
@@ -1724,72 +1394,6 @@ Texture
 Drop
 
 GLib.Quark
-
-gboolean
-
-gboolean
-
-Return value from C function
-
-gsize
-
-DmabufFormats
-
-Return value from C function
-
-DmabufTextureBuilder
-
-ColorState
-
-Display
-
-gint
-
-guint32
-
-guint
-
-guint64
-
-guint
-
-guint
-
-gboolean
-
-guint
-
-cairo.Region
-
-Texture
-
-guint
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
 
 Drag
 
@@ -1949,8 +1553,6 @@ Return value from C function
 
 GLTextureBuilder
 
-ColorState
-
 GLContext
 
 MemoryFormat
@@ -1968,8 +1570,6 @@ cairo.Region
 Texture
 
 gint
-
-Return value from C function
 
 Return value from C function
 
@@ -2010,50 +1610,6 @@ gboolean
 KeyMatch
 
 MemoryTexture
-
-MemoryTextureBuilder
-
-Texture
-
-GLib.Bytes
-
-ColorState
-
-MemoryFormat
-
-gint
-
-gsize
-
-gsize
-
-gsize
-
-cairo.Region
-
-Texture
-
-gint
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -2143,8 +1699,6 @@ gboolean
 
 gboolean
 
-GLib.String
-
 utf8
 
 gboolean
@@ -2158,8 +1712,6 @@ Return value from C function
 Return value from C function
 
 ScrollDirection
-
-ScrollRelativeDirection
 
 ScrollUnit
 
@@ -2183,10 +1735,6 @@ Return value from C function
 
 Return value from C function
 
-ToplevelCapabilities
-
-Gravity
-
 ToplevelState
 
 Return value from C function
@@ -2194,8 +1742,6 @@ Return value from C function
 gboolean
 
 gboolean
-
-Return value from C function
 
 Return value from C function
 
@@ -2320,26 +1866,6 @@ gdkButtonEventGetButton
 
 gdkCairoContextCairoCreate
 
-gdkCicpParamsNew
-
-gdkCicpParamsBuildColorState
-
-gdkCicpParamsGetColorPrimaries
-
-gdkCicpParamsGetMatrixCoefficients
-
-gdkCicpParamsGetRange
-
-gdkCicpParamsGetTransferFunction
-
-gdkCicpParamsSetColorPrimaries
-
-gdkCicpParamsSetMatrixCoefficients
-
-gdkCicpParamsSetRange
-
-gdkCicpParamsSetTransferFunction
-
 gdkClipboardGetContent
 
 gdkClipboardGetDisplay
@@ -2361,28 +1887,6 @@ gdkClipboardSetContent
 gdkClipboardSetValue
 
 gdkClipboardStoreFinish
-
-gdkColorStateCreateCicpParams
-
-gdkColorStateEqual
-
-gdkColorStateEquivalent
-
-gdkColorStateRef
-
-gdkColorStateUnref
-
-gdkColorStateGetOklab
-
-gdkColorStateGetOklch
-
-gdkColorStateGetRec2100Linear
-
-gdkColorStateGetRec2100Pq
-
-gdkColorStateGetSrgb
-
-gdkColorStateGetSrgbLinear
 
 gdkContentDeserializerGetCancellable
 
@@ -2415,8 +1919,6 @@ gdkContentFormatsContainMimeType
 gdkContentFormatsGetGtypes
 
 gdkContentFormatsGetMimeTypes
-
-gdkContentFormatsIsEmpty
 
 gdkContentFormatsMatch
 
@@ -2517,72 +2019,6 @@ gdkCursorGetTexture
 gdkDndEventGetDrop
 
 gdkDmabufErrorQuark
-
-gdkDmabufFormatsContains
-
-gdkDmabufFormatsEqual
-
-gdkDmabufFormatsGetFormat
-
-gdkDmabufFormatsGetNFormats
-
-gdkDmabufFormatsRef
-
-gdkDmabufFormatsUnref
-
-gdkDmabufTextureBuilderNew
-
-gdkDmabufTextureBuilderGetColorState
-
-gdkDmabufTextureBuilderGetDisplay
-
-gdkDmabufTextureBuilderGetFd
-
-gdkDmabufTextureBuilderGetFourcc
-
-gdkDmabufTextureBuilderGetHeight
-
-gdkDmabufTextureBuilderGetModifier
-
-gdkDmabufTextureBuilderGetNPlanes
-
-gdkDmabufTextureBuilderGetOffset
-
-gdkDmabufTextureBuilderGetPremultiplied
-
-gdkDmabufTextureBuilderGetStride
-
-gdkDmabufTextureBuilderGetUpdateRegion
-
-gdkDmabufTextureBuilderGetUpdateTexture
-
-gdkDmabufTextureBuilderGetWidth
-
-gdkDmabufTextureBuilderSetColorState
-
-gdkDmabufTextureBuilderSetDisplay
-
-gdkDmabufTextureBuilderSetFd
-
-gdkDmabufTextureBuilderSetFourcc
-
-gdkDmabufTextureBuilderSetHeight
-
-gdkDmabufTextureBuilderSetModifier
-
-gdkDmabufTextureBuilderSetNPlanes
-
-gdkDmabufTextureBuilderSetOffset
-
-gdkDmabufTextureBuilderSetPremultiplied
-
-gdkDmabufTextureBuilderSetStride
-
-gdkDmabufTextureBuilderSetUpdateRegion
-
-gdkDmabufTextureBuilderSetUpdateTexture
-
-gdkDmabufTextureBuilderSetWidth
 
 gdkDragBegin
 
@@ -2742,8 +2178,6 @@ gdkGlTextureRelease
 
 gdkGlTextureBuilderNew
 
-gdkGlTextureBuilderGetColorState
-
 gdkGlTextureBuilderGetContext
 
 gdkGlTextureBuilderGetFormat
@@ -2761,8 +2195,6 @@ gdkGlTextureBuilderGetUpdateRegion
 gdkGlTextureBuilderGetUpdateTexture
 
 gdkGlTextureBuilderGetWidth
-
-gdkGlTextureBuilderSetColorState
 
 gdkGlTextureBuilderSetContext
 
@@ -2803,50 +2235,6 @@ gdkKeyEventIsModifier
 gdkKeyEventMatches
 
 gdkMemoryTextureNew
-
-gdkMemoryTextureBuilderNew
-
-gdkMemoryTextureBuilderBuild
-
-gdkMemoryTextureBuilderGetBytes
-
-gdkMemoryTextureBuilderGetColorState
-
-gdkMemoryTextureBuilderGetFormat
-
-gdkMemoryTextureBuilderGetHeight
-
-gdkMemoryTextureBuilderGetOffset
-
-gdkMemoryTextureBuilderGetStride
-
-gdkMemoryTextureBuilderGetStrideForPlane
-
-gdkMemoryTextureBuilderGetUpdateRegion
-
-gdkMemoryTextureBuilderGetUpdateTexture
-
-gdkMemoryTextureBuilderGetWidth
-
-gdkMemoryTextureBuilderSetBytes
-
-gdkMemoryTextureBuilderSetColorState
-
-gdkMemoryTextureBuilderSetFormat
-
-gdkMemoryTextureBuilderSetHeight
-
-gdkMemoryTextureBuilderSetOffset
-
-gdkMemoryTextureBuilderSetStride
-
-gdkMemoryTextureBuilderSetStrideForPlane
-
-gdkMemoryTextureBuilderSetUpdateRegion
-
-gdkMemoryTextureBuilderSetUpdateTexture
-
-gdkMemoryTextureBuilderSetWidth
 
 gdkPadEventGetAxisValue
 
@@ -2936,8 +2324,6 @@ gdkRgbaIsOpaque
 
 gdkRgbaParse
 
-gdkRgbaPrint
-
 gdkRgbaToString
 
 gdkRectangleContainsPoint
@@ -2951,8 +2337,6 @@ gdkRectangleUnion
 gdkScrollEventGetDeltas
 
 gdkScrollEventGetDirection
-
-gdkScrollEventGetRelativeDirection
 
 gdkScrollEventGetUnit
 
@@ -2976,10 +2360,6 @@ gdkToplevelBeginResize
 
 gdkToplevelFocus
 
-gdkToplevelGetCapabilities
-
-gdkToplevelGetGravity
-
 gdkToplevelGetState
 
 gdkToplevelInhibitSystemShortcuts
@@ -2995,8 +2375,6 @@ gdkToplevelRestoreSystemShortcuts
 gdkToplevelSetDecorated
 
 gdkToplevelSetDeletable
-
-gdkToplevelSetGravity
 
 gdkToplevelSetIconList
 

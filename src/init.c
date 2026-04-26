@@ -6764,9 +6764,7 @@ extern SEXP R_pango_font_description_copy(SEXP s1);
 extern SEXP R_pango_font_description_copy_static(SEXP s1);
 extern SEXP R_pango_font_description_equal(SEXP s1, SEXP s2);
 extern SEXP R_pango_font_description_free(SEXP s1);
-extern SEXP R_pango_font_description_get_color(SEXP s1);
 extern SEXP R_pango_font_description_get_family(SEXP s1);
-extern SEXP R_pango_font_description_get_features(SEXP s1);
 extern SEXP R_pango_font_description_get_gravity(SEXP s1);
 extern SEXP R_pango_font_description_get_set_fields(SEXP s1);
 extern SEXP R_pango_font_description_get_size(SEXP s1);
@@ -6780,11 +6778,8 @@ extern SEXP R_pango_font_description_hash(SEXP s1);
 extern SEXP R_pango_font_description_merge(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_pango_font_description_merge_static(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_pango_font_description_set_absolute_size(SEXP s1, SEXP s2);
-extern SEXP R_pango_font_description_set_color(SEXP s1, SEXP s2);
 extern SEXP R_pango_font_description_set_family(SEXP s1, SEXP s2);
 extern SEXP R_pango_font_description_set_family_static(SEXP s1, SEXP s2);
-extern SEXP R_pango_font_description_set_features(SEXP s1, SEXP s2);
-extern SEXP R_pango_font_description_set_features_static(SEXP s1, SEXP s2);
 extern SEXP R_pango_font_description_set_gravity(SEXP s1, SEXP s2);
 extern SEXP R_pango_font_description_set_size(SEXP s1, SEXP s2);
 extern SEXP R_pango_font_description_set_stretch(SEXP s1, SEXP s2);
@@ -6807,7 +6802,6 @@ extern SEXP R_pango_font_family_get_name(SEXP s1);
 extern SEXP R_pango_font_family_is_monospace(SEXP s1);
 extern SEXP R_pango_font_family_is_variable(SEXP s1);
 extern SEXP R_pango_font_family_list_faces(SEXP s1);
-extern SEXP R_pango_font_map_add_font_file(SEXP s1, SEXP s2);
 extern SEXP R_pango_font_map_changed(SEXP s1);
 extern SEXP R_pango_font_map_create_context(SEXP s1);
 extern SEXP R_pango_font_map_get_family(SEXP s1, SEXP s2);
@@ -6815,7 +6809,6 @@ extern SEXP R_pango_font_map_get_serial(SEXP s1);
 extern SEXP R_pango_font_map_list_families(SEXP s1);
 extern SEXP R_pango_font_map_load_font(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_pango_font_map_load_fontset(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_pango_font_map_reload_font(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_pango_font_metrics_get_approximate_char_width(SEXP s1);
 extern SEXP R_pango_font_metrics_get_approximate_digit_width(SEXP s1);
 extern SEXP R_pango_font_metrics_get_ascent(SEXP s1);
@@ -6864,7 +6857,6 @@ extern SEXP R_pango_item_new(void);
 extern SEXP R_pango_item_apply_attrs(SEXP s1, SEXP s2);
 extern SEXP R_pango_item_copy(SEXP s1);
 extern SEXP R_pango_item_free(SEXP s1);
-extern SEXP R_pango_item_get_char_offset(SEXP s1);
 extern SEXP R_pango_item_split(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_pango_language_get_sample_string(SEXP s1);
 extern SEXP R_pango_language_get_scripts(SEXP s1);
@@ -7106,6 +7098,7 @@ extern SEXP R_gtk_start_event_loop(void);
 extern SEXP R_gtk_stop_event_loop(void);
 extern SEXP R_gtk_force_foreground(void);
 extern SEXP R_gtk_hide_from_dock(void);
+extern SEXP R_gtk_window_untrack(SEXP s_window);
 extern SEXP R_gtk_window_track(SEXP s_window);
 extern SEXP R_gtk_main_iteration(void);
 extern SEXP R_gtk_main_iteration_do(SEXP s_blocking);
@@ -13885,9 +13878,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_pango_font_description_copy_static", (DL_FUNC) &R_pango_font_description_copy_static, 1},
     {"R_pango_font_description_equal", (DL_FUNC) &R_pango_font_description_equal, 2},
     {"R_pango_font_description_free", (DL_FUNC) &R_pango_font_description_free, 1},
-    {"R_pango_font_description_get_color", (DL_FUNC) &R_pango_font_description_get_color, 1},
     {"R_pango_font_description_get_family", (DL_FUNC) &R_pango_font_description_get_family, 1},
-    {"R_pango_font_description_get_features", (DL_FUNC) &R_pango_font_description_get_features, 1},
     {"R_pango_font_description_get_gravity", (DL_FUNC) &R_pango_font_description_get_gravity, 1},
     {"R_pango_font_description_get_set_fields", (DL_FUNC) &R_pango_font_description_get_set_fields, 1},
     {"R_pango_font_description_get_size", (DL_FUNC) &R_pango_font_description_get_size, 1},
@@ -13901,11 +13892,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_pango_font_description_merge", (DL_FUNC) &R_pango_font_description_merge, 3},
     {"R_pango_font_description_merge_static", (DL_FUNC) &R_pango_font_description_merge_static, 3},
     {"R_pango_font_description_set_absolute_size", (DL_FUNC) &R_pango_font_description_set_absolute_size, 2},
-    {"R_pango_font_description_set_color", (DL_FUNC) &R_pango_font_description_set_color, 2},
     {"R_pango_font_description_set_family", (DL_FUNC) &R_pango_font_description_set_family, 2},
     {"R_pango_font_description_set_family_static", (DL_FUNC) &R_pango_font_description_set_family_static, 2},
-    {"R_pango_font_description_set_features", (DL_FUNC) &R_pango_font_description_set_features, 2},
-    {"R_pango_font_description_set_features_static", (DL_FUNC) &R_pango_font_description_set_features_static, 2},
     {"R_pango_font_description_set_gravity", (DL_FUNC) &R_pango_font_description_set_gravity, 2},
     {"R_pango_font_description_set_size", (DL_FUNC) &R_pango_font_description_set_size, 2},
     {"R_pango_font_description_set_stretch", (DL_FUNC) &R_pango_font_description_set_stretch, 2},
@@ -13928,7 +13916,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_pango_font_family_is_monospace", (DL_FUNC) &R_pango_font_family_is_monospace, 1},
     {"R_pango_font_family_is_variable", (DL_FUNC) &R_pango_font_family_is_variable, 1},
     {"R_pango_font_family_list_faces", (DL_FUNC) &R_pango_font_family_list_faces, 1},
-    {"R_pango_font_map_add_font_file", (DL_FUNC) &R_pango_font_map_add_font_file, 2},
     {"R_pango_font_map_changed", (DL_FUNC) &R_pango_font_map_changed, 1},
     {"R_pango_font_map_create_context", (DL_FUNC) &R_pango_font_map_create_context, 1},
     {"R_pango_font_map_get_family", (DL_FUNC) &R_pango_font_map_get_family, 2},
@@ -13936,7 +13923,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_pango_font_map_list_families", (DL_FUNC) &R_pango_font_map_list_families, 1},
     {"R_pango_font_map_load_font", (DL_FUNC) &R_pango_font_map_load_font, 3},
     {"R_pango_font_map_load_fontset", (DL_FUNC) &R_pango_font_map_load_fontset, 4},
-    {"R_pango_font_map_reload_font", (DL_FUNC) &R_pango_font_map_reload_font, 5},
     {"R_pango_font_metrics_get_approximate_char_width", (DL_FUNC) &R_pango_font_metrics_get_approximate_char_width, 1},
     {"R_pango_font_metrics_get_approximate_digit_width", (DL_FUNC) &R_pango_font_metrics_get_approximate_digit_width, 1},
     {"R_pango_font_metrics_get_ascent", (DL_FUNC) &R_pango_font_metrics_get_ascent, 1},
@@ -13985,7 +13971,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_pango_item_apply_attrs", (DL_FUNC) &R_pango_item_apply_attrs, 2},
     {"R_pango_item_copy", (DL_FUNC) &R_pango_item_copy, 1},
     {"R_pango_item_free", (DL_FUNC) &R_pango_item_free, 1},
-    {"R_pango_item_get_char_offset", (DL_FUNC) &R_pango_item_get_char_offset, 1},
     {"R_pango_item_split", (DL_FUNC) &R_pango_item_split, 3},
     {"R_pango_language_get_sample_string", (DL_FUNC) &R_pango_language_get_sample_string, 1},
     {"R_pango_language_get_scripts", (DL_FUNC) &R_pango_language_get_scripts, 1},
@@ -14227,6 +14212,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gtk_stop_event_loop", (DL_FUNC) &R_gtk_stop_event_loop, 0},
     {"R_gtk_force_foreground", (DL_FUNC) &R_gtk_force_foreground, 0},
     {"R_gtk_hide_from_dock", (DL_FUNC) &R_gtk_hide_from_dock, 0},
+    {"R_gtk_window_untrack", (DL_FUNC) &R_gtk_window_untrack, 1},
     {"R_gtk_window_track", (DL_FUNC) &R_gtk_window_track, 1},
     {"R_gtk_main_iteration", (DL_FUNC) &R_gtk_main_iteration, 0},
     {"R_gtk_main_iteration_do", (DL_FUNC) &R_gtk_main_iteration_do, 1},

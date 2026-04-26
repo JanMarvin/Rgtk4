@@ -21,7 +21,6 @@
 \alias{gtkWindowGetDestroyWithParent}
 \alias{gtkWindowGetFocus}
 \alias{gtkWindowGetFocusVisible}
-\alias{gtkWindowGetGravity}
 \alias{gtkWindowGetGroup}
 \alias{gtkWindowGetHandleMenubarAccel}
 \alias{gtkWindowGetHideOnClose}
@@ -51,7 +50,6 @@
 \alias{gtkWindowSetDisplay}
 \alias{gtkWindowSetFocus}
 \alias{gtkWindowSetFocusVisible}
-\alias{gtkWindowSetGravity}
 \alias{gtkWindowSetHandleMenubarAccel}
 \alias{gtkWindowSetHideOnClose}
 \alias{gtkWindowSetIconName}
@@ -69,10 +67,8 @@
 \alias{gtkWindowControlsGetDecorationLayout}
 \alias{gtkWindowControlsGetEmpty}
 \alias{gtkWindowControlsGetSide}
-\alias{gtkWindowControlsGetUseNativeControls}
 \alias{gtkWindowControlsSetDecorationLayout}
 \alias{gtkWindowControlsSetSide}
-\alias{gtkWindowControlsSetUseNativeControls}
 \alias{gtkWindowGroupNew}
 \alias{gtkWindowGroupAddWindow}
 \alias{gtkWindowGroupListWindows}
@@ -121,8 +117,6 @@ gtkWindowGetDestroyWithParent(window)
 gtkWindowGetFocus(window)
 
 gtkWindowGetFocusVisible(window)
-
-gtkWindowGetGravity(window)
 
 gtkWindowGetGroup(window)
 
@@ -182,8 +176,6 @@ gtkWindowSetFocus(window, focus)
 
 gtkWindowSetFocusVisible(window, setting)
 
-gtkWindowSetGravity(window, gravity)
-
 gtkWindowSetHandleMenubarAccel(window, handle_menubar_accel)
 
 gtkWindowSetHideOnClose(window, setting)
@@ -218,13 +210,9 @@ gtkWindowControlsGetEmpty(self)
 
 gtkWindowControlsGetSide(self)
 
-gtkWindowControlsGetUseNativeControls(self)
-
 gtkWindowControlsSetDecorationLayout(self, layout)
 
 gtkWindowControlsSetSide(self, side)
-
-gtkWindowControlsSetUseNativeControls(self, setting)
 
 gtkWindowGroupNew()
 
@@ -266,8 +254,6 @@ gtkWindowHandleSetChild(self, child)
 \item{display}{Gdk.Display}
 
 \item{focus}{Widget}
-
-\item{gravity}{WindowGravity}
 
 \item{handle_menubar_accel}{gboolean}
 
@@ -331,8 +317,6 @@ gboolean
 Widget
 
 gboolean
-
-WindowGravity
 
 WindowGroup
 
@@ -418,8 +402,6 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
 Widget
 
 utf8
@@ -427,10 +409,6 @@ utf8
 gboolean
 
 PackType
-
-gboolean
-
-Return value from C function
 
 Return value from C function
 
@@ -491,8 +469,6 @@ gtkWindowGetFocus
 
 gtkWindowGetFocusVisible
 
-gtkWindowGetGravity
-
 gtkWindowGetGroup
 
 gtkWindowGetHandleMenubarAccel
@@ -551,8 +527,6 @@ gtkWindowSetFocus
 
 gtkWindowSetFocusVisible
 
-gtkWindowSetGravity
-
 gtkWindowSetHandleMenubarAccel
 
 gtkWindowSetHideOnClose
@@ -587,13 +561,9 @@ gtkWindowControlsGetEmpty
 
 gtkWindowControlsGetSide
 
-gtkWindowControlsGetUseNativeControls
-
 gtkWindowControlsSetDecorationLayout
 
 gtkWindowControlsSetSide
-
-gtkWindowControlsSetUseNativeControls
 
 gtkWindowGroupNew
 

@@ -2,7 +2,6 @@
 % Please edit documentation in R/GLib_autogen.R, R/GObject_autogen.R
 \name{gMainContextNew}
 \alias{gMainContextNew}
-\alias{gMainContextNewWithFlags}
 \alias{gMainContextAcquire}
 \alias{gMainContextAddPoll}
 \alias{gMainContextCheck}
@@ -16,7 +15,6 @@
 \alias{gMainContextPopThreadDefault}
 \alias{gMainContextPrepare}
 \alias{gMainContextPushThreadDefault}
-\alias{gMainContextPusherNew}
 \alias{gMainContextQuery}
 \alias{gMainContextRef}
 \alias{gMainContextRelease}
@@ -37,10 +35,8 @@
 \alias{gSourceNew}
 \alias{gSourceAddChildSource}
 \alias{gSourceAddPoll}
-\alias{gSourceAddUnixFd}
 \alias{gSourceAttach}
 \alias{gSourceDestroy}
-\alias{gSourceDupContext}
 \alias{gSourceGetCanRecurse}
 \alias{gSourceGetContext}
 \alias{gSourceGetCurrentTime}
@@ -50,19 +46,15 @@
 \alias{gSourceGetReadyTime}
 \alias{gSourceGetTime}
 \alias{gSourceIsDestroyed}
-\alias{gSourceModifyUnixFd}
-\alias{gSourceQueryUnixFd}
 \alias{gSourceRef}
 \alias{gSourceRemoveChildSource}
 \alias{gSourceRemovePoll}
-\alias{gSourceRemoveUnixFd}
 \alias{gSourceSetCallbackIndirect}
 \alias{gSourceSetCanRecurse}
 \alias{gSourceSetFuncs}
 \alias{gSourceSetName}
 \alias{gSourceSetPriority}
 \alias{gSourceSetReadyTime}
-\alias{gSourceSetStaticName}
 \alias{gSourceUnref}
 \alias{gSourceRemove}
 \alias{gSourceRemoveByFuncsUserData}
@@ -79,8 +71,6 @@
 \title{gMainContextNew}
 \usage{
 gMainContextNew()
-
-gMainContextNewWithFlags(flags)
 
 gMainContextAcquire(context)
 
@@ -107,8 +97,6 @@ gMainContextPopThreadDefault(context)
 gMainContextPrepare(context)
 
 gMainContextPushThreadDefault(context)
-
-gMainContextPusherNew(main_context)
 
 gMainContextQuery(context, max_priority, n_fds)
 
@@ -150,13 +138,9 @@ gSourceAddChildSource(source, child_source)
 
 gSourceAddPoll(source, fd)
 
-gSourceAddUnixFd(source, fd, events)
-
 gSourceAttach(source, context)
 
 gSourceDestroy(source)
-
-gSourceDupContext(source)
 
 gSourceGetCanRecurse(source)
 
@@ -176,17 +160,11 @@ gSourceGetTime(source)
 
 gSourceIsDestroyed(source)
 
-gSourceModifyUnixFd(source, tag, new_events)
-
-gSourceQueryUnixFd(source, tag)
-
 gSourceRef(source)
 
 gSourceRemoveChildSource(source, child_source)
 
 gSourceRemovePoll(source, fd)
-
-gSourceRemoveUnixFd(source, tag)
 
 gSourceSetCallbackIndirect(source, callback_data, callback_funcs)
 
@@ -199,8 +177,6 @@ gSourceSetName(source, name)
 gSourceSetPriority(source, priority)
 
 gSourceSetReadyTime(source, ready_time)
-
-gSourceSetStaticName(source, name)
 
 gSourceUnref(source)
 
@@ -229,8 +205,6 @@ gSourceSetClosure(source, closure)
 gSourceSetDummyCallback(source)
 }
 \arguments{
-\item{flags}{MainContextFlags}
-
 \item{context}{MainContext}
 
 \item{fd}{PollFD}
@@ -251,8 +225,6 @@ gSourceSetDummyCallback(source)
 
 \item{may_block}{gboolean}
 
-\item{main_context}{MainContext}
-
 \item{cond}{Cond}
 
 \item{mutex}{Mutex}
@@ -269,13 +241,7 @@ gSourceSetDummyCallback(source)
 
 \item{child_source}{Source}
 
-\item{events}{IOCondition}
-
 \item{timeval}{TimeVal}
-
-\item{tag}{guint}
-
-\item{new_events}{IOCondition}
 
 \item{callback_data}{gpointer}
 
@@ -287,6 +253,8 @@ gSourceSetDummyCallback(source)
 
 \item{ready_time}{gint64}
 
+\item{tag}{guint}
+
 \item{data}{gpointer}
 
 \item{interval}{guint}
@@ -296,8 +264,6 @@ gSourceSetDummyCallback(source)
 \value{
 MainContext
 
-MainContext
-
 gboolean
 
 Return value from C function
@@ -323,8 +289,6 @@ Return value from C function
 gboolean
 
 Return value from C function
-
-MainContextPusher
 
 gint
 
@@ -366,13 +330,9 @@ Return value from C function
 
 Return value from C function
 
-gpointer
-
 guint
 
 Return value from C function
-
-MainContext
 
 gboolean
 
@@ -392,15 +352,7 @@ gint64
 
 gboolean
 
-Return value from C function
-
-IOCondition
-
 Source
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -447,8 +399,6 @@ Return value from C function
 \description{
 gMainContextNew
 
-gMainContextNewWithFlags
-
 gMainContextAcquire
 
 gMainContextAddPoll
@@ -474,8 +424,6 @@ gMainContextPopThreadDefault
 gMainContextPrepare
 
 gMainContextPushThreadDefault
-
-gMainContextPusherNew
 
 gMainContextQuery
 
@@ -517,13 +465,9 @@ gSourceAddChildSource
 
 gSourceAddPoll
 
-gSourceAddUnixFd
-
 gSourceAttach
 
 gSourceDestroy
-
-gSourceDupContext
 
 gSourceGetCanRecurse
 
@@ -543,17 +487,11 @@ gSourceGetTime
 
 gSourceIsDestroyed
 
-gSourceModifyUnixFd
-
-gSourceQueryUnixFd
-
 gSourceRef
 
 gSourceRemoveChildSource
 
 gSourceRemovePoll
-
-gSourceRemoveUnixFd
 
 gSourceSetCallbackIndirect
 
@@ -566,8 +504,6 @@ gSourceSetName
 gSourceSetPriority
 
 gSourceSetReadyTime
-
-gSourceSetStaticName
 
 gSourceUnref
 

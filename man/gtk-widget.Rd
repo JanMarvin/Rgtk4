@@ -51,7 +51,6 @@
 \alias{gtkWidgetGetHexpandSet}
 \alias{gtkWidgetGetLastChild}
 \alias{gtkWidgetGetLayoutManager}
-\alias{gtkWidgetGetLimitEvents}
 \alias{gtkWidgetGetMapped}
 \alias{gtkWidgetGetMarginBottom}
 \alias{gtkWidgetGetMarginEnd}
@@ -135,7 +134,6 @@
 \alias{gtkWidgetSetHexpand}
 \alias{gtkWidgetSetHexpandSet}
 \alias{gtkWidgetSetLayoutManager}
-\alias{gtkWidgetSetLimitEvents}
 \alias{gtkWidgetSetMarginBottom}
 \alias{gtkWidgetSetMarginEnd}
 \alias{gtkWidgetSetMarginStart}
@@ -284,8 +282,6 @@ gtkWidgetGetHexpandSet(widget)
 gtkWidgetGetLastChild(widget)
 
 gtkWidgetGetLayoutManager(widget)
-
-gtkWidgetGetLimitEvents(widget)
 
 gtkWidgetGetMapped(widget)
 
@@ -452,8 +448,6 @@ gtkWidgetSetHexpand(widget, expand)
 gtkWidgetSetHexpandSet(widget, set)
 
 gtkWidgetSetLayoutManager(widget, layout_manager)
-
-gtkWidgetSetLimitEvents(widget, limit_events)
 
 gtkWidgetSetMarginBottom(widget, margin)
 
@@ -647,8 +641,6 @@ gtkWidgetPaintableSetWidget(self, widget)
 
 \item{layout_manager}{LayoutManager}
 
-\item{limit_events}{gboolean}
-
 \item{margin}{gint}
 
 \item{opacity}{gdouble}
@@ -806,8 +798,6 @@ LayoutManager
 
 gboolean
 
-gboolean
-
 gint
 
 gint
@@ -921,8 +911,6 @@ Gio.ListModel
 Gio.ListModel
 
 Widget
-
-Return value from C function
 
 Return value from C function
 
@@ -1169,8 +1157,6 @@ gtkWidgetGetLastChild
 
 gtkWidgetGetLayoutManager
 
-gtkWidgetGetLimitEvents
-
 gtkWidgetGetMapped
 
 gtkWidgetGetMarginBottom
@@ -1336,8 +1322,6 @@ gtkWidgetSetHexpand
 gtkWidgetSetHexpandSet
 
 gtkWidgetSetLayoutManager
-
-gtkWidgetSetLimitEvents
 
 gtkWidgetSetMarginBottom
 

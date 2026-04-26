@@ -7,21 +7,15 @@
 \alias{gFileOpenTmp}
 \alias{gFileReadLink}
 \alias{gFileSetContents}
-\alias{gFileSetContentsFull}
 \alias{gFileTest}
-\alias{gFileNewBuildFilenamev}
 \alias{gFileNewForCommandlineArg}
 \alias{gFileNewForCommandlineArgAndCwd}
 \alias{gFileNewForPath}
 \alias{gFileNewForUri}
 \alias{gFileNewTmp}
-\alias{gFileNewTmpDirFinish}
-\alias{gFileNewTmpFinish}
 \alias{gFileParseName}
 \alias{gFileAppendTo}
 \alias{gFileAppendToFinish}
-\alias{gFileBuildAttributeListForCopy}
-\alias{gFileCopyAsyncWithClosures}
 \alias{gFileCopyAttributes}
 \alias{gFileCopyFinish}
 \alias{gFileCreate}
@@ -61,21 +55,17 @@
 \alias{gFileMakeDirectoryFinish}
 \alias{gFileMakeDirectoryWithParents}
 \alias{gFileMakeSymbolicLink}
-\alias{gFileMakeSymbolicLinkFinish}
 \alias{gFileMeasureDiskUsageFinish}
 \alias{gFileMonitor}
 \alias{gFileMonitorDirectory}
 \alias{gFileMonitorFile}
 \alias{gFileMountEnclosingVolumeFinish}
 \alias{gFileMountMountableFinish}
-\alias{gFileMoveAsyncWithClosures}
-\alias{gFileMoveFinish}
 \alias{gFileOpenReadwrite}
 \alias{gFileOpenReadwriteFinish}
 \alias{gFilePeekPath}
 \alias{gFilePollMountableFinish}
 \alias{gFileQueryDefaultHandler}
-\alias{gFileQueryDefaultHandlerFinish}
 \alias{gFileQueryExists}
 \alias{gFileQueryFileType}
 \alias{gFileQueryFilesystemInfo}
@@ -145,12 +135,10 @@
 \alias{gFileInfoClearStatus}
 \alias{gFileInfoCopyInto}
 \alias{gFileInfoDup}
-\alias{gFileInfoGetAccessDateTime}
 \alias{gFileInfoGetAttributeAsString}
 \alias{gFileInfoGetAttributeBoolean}
 \alias{gFileInfoGetAttributeByteString}
 \alias{gFileInfoGetAttributeData}
-\alias{gFileInfoGetAttributeFilePath}
 \alias{gFileInfoGetAttributeInt32}
 \alias{gFileInfoGetAttributeInt64}
 \alias{gFileInfoGetAttributeObject}
@@ -161,7 +149,6 @@
 \alias{gFileInfoGetAttributeUint32}
 \alias{gFileInfoGetAttributeUint64}
 \alias{gFileInfoGetContentType}
-\alias{gFileInfoGetCreationDateTime}
 \alias{gFileInfoGetDeletionDate}
 \alias{gFileInfoGetDisplayName}
 \alias{gFileInfoGetEditName}
@@ -171,7 +158,6 @@
 \alias{gFileInfoGetIsBackup}
 \alias{gFileInfoGetIsHidden}
 \alias{gFileInfoGetIsSymlink}
-\alias{gFileInfoGetModificationDateTime}
 \alias{gFileInfoGetModificationTime}
 \alias{gFileInfoGetName}
 \alias{gFileInfoGetSize}
@@ -182,11 +168,9 @@
 \alias{gFileInfoHasNamespace}
 \alias{gFileInfoListAttributes}
 \alias{gFileInfoRemoveAttribute}
-\alias{gFileInfoSetAccessDateTime}
 \alias{gFileInfoSetAttribute}
 \alias{gFileInfoSetAttributeBoolean}
 \alias{gFileInfoSetAttributeByteString}
-\alias{gFileInfoSetAttributeFilePath}
 \alias{gFileInfoSetAttributeInt32}
 \alias{gFileInfoSetAttributeInt64}
 \alias{gFileInfoSetAttributeMask}
@@ -197,14 +181,12 @@
 \alias{gFileInfoSetAttributeUint32}
 \alias{gFileInfoSetAttributeUint64}
 \alias{gFileInfoSetContentType}
-\alias{gFileInfoSetCreationDateTime}
 \alias{gFileInfoSetDisplayName}
 \alias{gFileInfoSetEditName}
 \alias{gFileInfoSetFileType}
 \alias{gFileInfoSetIcon}
 \alias{gFileInfoSetIsHidden}
 \alias{gFileInfoSetIsSymlink}
-\alias{gFileInfoSetModificationDateTime}
 \alias{gFileInfoSetModificationTime}
 \alias{gFileInfoSetName}
 \alias{gFileInfoSetSize}
@@ -235,11 +217,7 @@ gFileReadLink(filename)
 
 gFileSetContents(filename, contents, length)
 
-gFileSetContentsFull(filename, contents, length, flags, mode)
-
 gFileTest(filename, test)
-
-gFileNewBuildFilenamev(args)
 
 gFileNewForCommandlineArg(arg)
 
@@ -251,27 +229,11 @@ gFileNewForUri(uri)
 
 gFileNewTmp(tmpl)
 
-gFileNewTmpDirFinish(result)
-
-gFileNewTmpFinish(result)
-
 gFileParseName(parse_name)
 
 gFileAppendTo(file, flags, cancellable)
 
 gFileAppendToFinish(file, res)
-
-gFileBuildAttributeListForCopy(file, flags, cancellable)
-
-gFileCopyAsyncWithClosures(
-  source,
-  destination,
-  flags,
-  io_priority,
-  cancellable,
-  progress_callback_closure,
-  ready_callback_closure
-)
 
 gFileCopyAttributes(source, destination, flags, cancellable)
 
@@ -351,8 +313,6 @@ gFileMakeDirectoryWithParents(file, cancellable)
 
 gFileMakeSymbolicLink(file, symlink_value, cancellable)
 
-gFileMakeSymbolicLinkFinish(file, result)
-
 gFileMeasureDiskUsageFinish(file, result)
 
 gFileMonitor(file, flags, cancellable)
@@ -365,18 +325,6 @@ gFileMountEnclosingVolumeFinish(location, result)
 
 gFileMountMountableFinish(file, result)
 
-gFileMoveAsyncWithClosures(
-  source,
-  destination,
-  flags,
-  io_priority,
-  cancellable,
-  progress_callback_closure,
-  ready_callback_closure
-)
-
-gFileMoveFinish(file, result)
-
 gFileOpenReadwrite(file, cancellable)
 
 gFileOpenReadwriteFinish(file, res)
@@ -386,8 +334,6 @@ gFilePeekPath(file)
 gFilePollMountableFinish(file, result)
 
 gFileQueryDefaultHandler(file, cancellable)
-
-gFileQueryDefaultHandlerFinish(file, result)
 
 gFileQueryExists(file, cancellable)
 
@@ -535,8 +481,6 @@ gFileInfoCopyInto(src_info, dest_info)
 
 gFileInfoDup(other)
 
-gFileInfoGetAccessDateTime(info)
-
 gFileInfoGetAttributeAsString(info, attribute)
 
 gFileInfoGetAttributeBoolean(info, attribute)
@@ -544,8 +488,6 @@ gFileInfoGetAttributeBoolean(info, attribute)
 gFileInfoGetAttributeByteString(info, attribute)
 
 gFileInfoGetAttributeData(info, attribute)
-
-gFileInfoGetAttributeFilePath(info, attribute)
 
 gFileInfoGetAttributeInt32(info, attribute)
 
@@ -567,8 +509,6 @@ gFileInfoGetAttributeUint64(info, attribute)
 
 gFileInfoGetContentType(info)
 
-gFileInfoGetCreationDateTime(info)
-
 gFileInfoGetDeletionDate(info)
 
 gFileInfoGetDisplayName(info)
@@ -586,8 +526,6 @@ gFileInfoGetIsBackup(info)
 gFileInfoGetIsHidden(info)
 
 gFileInfoGetIsSymlink(info)
-
-gFileInfoGetModificationDateTime(info)
 
 gFileInfoGetModificationTime(info)
 
@@ -609,15 +547,11 @@ gFileInfoListAttributes(info, name_space)
 
 gFileInfoRemoveAttribute(info, attribute)
 
-gFileInfoSetAccessDateTime(info, atime)
-
 gFileInfoSetAttribute(info, attribute, type, value_p)
 
 gFileInfoSetAttributeBoolean(info, attribute, attr_value)
 
 gFileInfoSetAttributeByteString(info, attribute, attr_value)
-
-gFileInfoSetAttributeFilePath(info, attribute, attr_value)
 
 gFileInfoSetAttributeInt32(info, attribute, attr_value)
 
@@ -639,8 +573,6 @@ gFileInfoSetAttributeUint64(info, attribute, attr_value)
 
 gFileInfoSetContentType(info, content_type)
 
-gFileInfoSetCreationDateTime(info, creation_time)
-
 gFileInfoSetDisplayName(info, display_name)
 
 gFileInfoSetEditName(info, edit_name)
@@ -652,8 +584,6 @@ gFileInfoSetIcon(info, icon)
 gFileInfoSetIsHidden(info, is_hidden)
 
 gFileInfoSetIsSymlink(info, is_symlink)
-
-gFileInfoSetModificationDateTime(info, mtime)
 
 gFileInfoSetModificationTime(info, mtime)
 
@@ -698,13 +628,7 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{length}{gsize}
 
-\item{flags}{FileAttributeInfoFlags}
-
-\item{mode}{gint}
-
 \item{test}{FileTest}
-
-\item{args}{filename}
 
 \item{arg}{filename}
 
@@ -714,11 +638,11 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{uri}{utf8}
 
-\item{result}{AsyncResult}
-
 \item{parse_name}{utf8}
 
 \item{file}{File}
+
+\item{flags}{FileAttributeInfoFlags}
 
 \item{cancellable}{Cancellable}
 
@@ -728,11 +652,7 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{destination}{File}
 
-\item{io_priority}{gint}
-
-\item{progress_callback_closure}{GObject.Closure}
-
-\item{ready_callback_closure}{GObject.Closure}
+\item{result}{AsyncResult}
 
 \item{attributes}{utf8}
 
@@ -798,8 +718,6 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{name_space}{utf8}
 
-\item{atime}{GLib.DateTime}
-
 \item{attr_value}{guint64}
 
 \item{mask}{FileAttributeMatcher}
@@ -807,8 +725,6 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 \item{status}{FileAttributeStatus}
 
 \item{content_type}{utf8}
-
-\item{creation_time}{GLib.DateTime}
 
 \item{edit_name}{utf8}
 
@@ -849,14 +765,6 @@ gboolean
 
 gboolean
 
-gboolean
-
-File
-
-File
-
-File
-
 File
 
 File
@@ -872,10 +780,6 @@ File
 FileOutputStream
 
 FileOutputStream
-
-utf8
-
-Return value from C function
 
 gboolean
 
@@ -957,8 +861,6 @@ gboolean
 
 gboolean
 
-gboolean
-
 FileMonitor
 
 FileMonitor
@@ -969,10 +871,6 @@ gboolean
 
 File
 
-Return value from C function
-
-gboolean
-
 FileIOStream
 
 FileIOStream
@@ -980,8 +878,6 @@ FileIOStream
 filename
 
 gboolean
-
-AppInfo
 
 AppInfo
 
@@ -1123,8 +1019,6 @@ Return value from C function
 
 FileInfo
 
-GLib.DateTime
-
 utf8
 
 gboolean
@@ -1132,8 +1026,6 @@ gboolean
 utf8
 
 gboolean
-
-filename
 
 gint32
 
@@ -1157,8 +1049,6 @@ utf8
 
 GLib.DateTime
 
-GLib.DateTime
-
 utf8
 
 utf8
@@ -1174,8 +1064,6 @@ gboolean
 gboolean
 
 gboolean
-
-GLib.DateTime
 
 Return value from C function
 
@@ -1211,15 +1099,7 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
-Return value from C function
-
 gboolean
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -1288,11 +1168,7 @@ gFileReadLink
 
 gFileSetContents
 
-gFileSetContentsFull
-
 gFileTest
-
-gFileNewBuildFilenamev
 
 gFileNewForCommandlineArg
 
@@ -1304,19 +1180,11 @@ gFileNewForUri
 
 gFileNewTmp
 
-gFileNewTmpDirFinish
-
-gFileNewTmpFinish
-
 gFileParseName
 
 gFileAppendTo
 
 gFileAppendToFinish
-
-gFileBuildAttributeListForCopy
-
-gFileCopyAsyncWithClosures
 
 gFileCopyAttributes
 
@@ -1396,8 +1264,6 @@ gFileMakeDirectoryWithParents
 
 gFileMakeSymbolicLink
 
-gFileMakeSymbolicLinkFinish
-
 gFileMeasureDiskUsageFinish
 
 gFileMonitor
@@ -1410,10 +1276,6 @@ gFileMountEnclosingVolumeFinish
 
 gFileMountMountableFinish
 
-gFileMoveAsyncWithClosures
-
-gFileMoveFinish
-
 gFileOpenReadwrite
 
 gFileOpenReadwriteFinish
@@ -1423,8 +1285,6 @@ gFilePeekPath
 gFilePollMountableFinish
 
 gFileQueryDefaultHandler
-
-gFileQueryDefaultHandlerFinish
 
 gFileQueryExists
 
@@ -1564,8 +1424,6 @@ gFileInfoCopyInto
 
 gFileInfoDup
 
-gFileInfoGetAccessDateTime
-
 gFileInfoGetAttributeAsString
 
 gFileInfoGetAttributeBoolean
@@ -1573,8 +1431,6 @@ gFileInfoGetAttributeBoolean
 gFileInfoGetAttributeByteString
 
 gFileInfoGetAttributeData
-
-gFileInfoGetAttributeFilePath
 
 gFileInfoGetAttributeInt32
 
@@ -1596,8 +1452,6 @@ gFileInfoGetAttributeUint64
 
 gFileInfoGetContentType
 
-gFileInfoGetCreationDateTime
-
 gFileInfoGetDeletionDate
 
 gFileInfoGetDisplayName
@@ -1615,8 +1469,6 @@ gFileInfoGetIsBackup
 gFileInfoGetIsHidden
 
 gFileInfoGetIsSymlink
-
-gFileInfoGetModificationDateTime
 
 gFileInfoGetModificationTime
 
@@ -1638,15 +1490,11 @@ gFileInfoListAttributes
 
 gFileInfoRemoveAttribute
 
-gFileInfoSetAccessDateTime
-
 gFileInfoSetAttribute
 
 gFileInfoSetAttributeBoolean
 
 gFileInfoSetAttributeByteString
-
-gFileInfoSetAttributeFilePath
 
 gFileInfoSetAttributeInt32
 
@@ -1668,8 +1516,6 @@ gFileInfoSetAttributeUint64
 
 gFileInfoSetContentType
 
-gFileInfoSetCreationDateTime
-
 gFileInfoSetDisplayName
 
 gFileInfoSetEditName
@@ -1681,8 +1527,6 @@ gFileInfoSetIcon
 gFileInfoSetIsHidden
 
 gFileInfoSetIsSymlink
-
-gFileInfoSetModificationDateTime
 
 gFileInfoSetModificationTime
 

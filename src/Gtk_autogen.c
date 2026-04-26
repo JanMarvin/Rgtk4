@@ -9,6 +9,14 @@
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
 
+/* Agnostic numeric extraction helper */
+static inline double _unbox_numeric(SEXP s) {
+  if (TYPEOF(s) == REALSXP) return REAL(s)[0];
+  if (TYPEOF(s) == INTSXP)  return (double)INTEGER(s)[0];
+  if (TYPEOF(s) == LGLSXP)  return (double)LOGICAL(s)[0];
+  return 0.0;
+}
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -722,7 +730,7 @@ SEXP R_gtk_accessible_update_next_accessible_sibling(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_accessible_update_property_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkAccessible* v1 = (GtkAccessible*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkAccessibleProperty* v3 = (GtkAccessibleProperty*)(get_ptr(s3)); (void)v3;
   const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
   gtk_accessible_update_property_value(v1, v2, v3, v4);
@@ -732,7 +740,7 @@ SEXP R_gtk_accessible_update_property_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) 
 
 SEXP R_gtk_accessible_update_relation_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkAccessible* v1 = (GtkAccessible*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkAccessibleRelation* v3 = (GtkAccessibleRelation*)(get_ptr(s3)); (void)v3;
   const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
   gtk_accessible_update_relation_value(v1, v2, v3, v4);
@@ -742,7 +750,7 @@ SEXP R_gtk_accessible_update_relation_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) 
 
 SEXP R_gtk_accessible_update_state_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkAccessible* v1 = (GtkAccessible*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkAccessibleState* v3 = (GtkAccessibleState*)(get_ptr(s3)); (void)v3;
   const GValue* v4 = (const GValue*)(get_ptr(s4)); (void)v4;
   gtk_accessible_update_state_value(v1, v2, v3, v4);
@@ -935,12 +943,12 @@ SEXP R_gtk_activate_action_get(void) {
 
 
 SEXP R_gtk_adjustment_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gconstpointer _ret = (gconstpointer)gtk_adjustment_new(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -957,8 +965,8 @@ SEXP R_gtk_adjustment_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) 
 
 SEXP R_gtk_adjustment_clamp_page(SEXP s1, SEXP s2, SEXP s3) {
   GtkAdjustment* v1 = (GtkAdjustment*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gtk_adjustment_clamp_page(v1, v2, v3);
   return R_NilValue;
 }
@@ -966,12 +974,12 @@ SEXP R_gtk_adjustment_clamp_page(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_adjustment_configure(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GtkAdjustment* v1 = (GtkAdjustment*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
-  gdouble v7 = (gdouble)((gdouble)REAL(s7)[0]); (void)v7;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
+  gdouble v7 = (gdouble)((gdouble)_unbox_numeric(s7)); (void)v7;
   gtk_adjustment_configure(v1, v2, v3, v4, v5, v6, v7);
   return R_NilValue;
 }
@@ -1091,7 +1099,7 @@ SEXP R_gtk_adjustment_get_value(SEXP s1) {
 
 SEXP R_gtk_adjustment_set_lower(SEXP s1, SEXP s2) {
   GtkAdjustment* v1 = (GtkAdjustment*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_adjustment_set_lower(v1, v2);
   return R_NilValue;
 }
@@ -1099,7 +1107,7 @@ SEXP R_gtk_adjustment_set_lower(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_adjustment_set_page_increment(SEXP s1, SEXP s2) {
   GtkAdjustment* v1 = (GtkAdjustment*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_adjustment_set_page_increment(v1, v2);
   return R_NilValue;
 }
@@ -1107,7 +1115,7 @@ SEXP R_gtk_adjustment_set_page_increment(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_adjustment_set_page_size(SEXP s1, SEXP s2) {
   GtkAdjustment* v1 = (GtkAdjustment*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_adjustment_set_page_size(v1, v2);
   return R_NilValue;
 }
@@ -1115,7 +1123,7 @@ SEXP R_gtk_adjustment_set_page_size(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_adjustment_set_step_increment(SEXP s1, SEXP s2) {
   GtkAdjustment* v1 = (GtkAdjustment*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_adjustment_set_step_increment(v1, v2);
   return R_NilValue;
 }
@@ -1123,7 +1131,7 @@ SEXP R_gtk_adjustment_set_step_increment(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_adjustment_set_upper(SEXP s1, SEXP s2) {
   GtkAdjustment* v1 = (GtkAdjustment*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_adjustment_set_upper(v1, v2);
   return R_NilValue;
 }
@@ -1131,7 +1139,7 @@ SEXP R_gtk_adjustment_set_upper(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_adjustment_set_value(SEXP s1, SEXP s2) {
   GtkAdjustment* v1 = (GtkAdjustment*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_adjustment_set_value(v1, v2);
   return R_NilValue;
 }
@@ -1272,7 +1280,7 @@ SEXP R_gtk_alert_dialog_set_buttons(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_alert_dialog_set_cancel_button(SEXP s1, SEXP s2) {
   GtkAlertDialog* v1 = (GtkAlertDialog*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_alert_dialog_set_cancel_button(v1, v2);
   return R_NilValue;
 }
@@ -1280,7 +1288,7 @@ SEXP R_gtk_alert_dialog_set_cancel_button(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_alert_dialog_set_default_button(SEXP s1, SEXP s2) {
   GtkAlertDialog* v1 = (GtkAlertDialog*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_alert_dialog_set_default_button(v1, v2);
   return R_NilValue;
 }
@@ -1905,7 +1913,7 @@ SEXP R_gtk_application_get_menubar(SEXP s1) {
 
 SEXP R_gtk_application_get_window_by_id(SEXP s1, SEXP s2) {
   GtkApplication* v1 = (GtkApplication*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_application_get_window_by_id(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1998,7 +2006,7 @@ SEXP R_gtk_application_set_menubar(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_application_uninhibit(SEXP s1, SEXP s2) {
   GtkApplication* v1 = (GtkApplication*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_application_uninhibit(v1, v2);
   return R_NilValue;
 }
@@ -2085,9 +2093,9 @@ SEXP R_gtk_application_window_set_show_menubar(SEXP s1, SEXP s2) {
 
 
 SEXP R_gtk_aspect_frame_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  gfloat v1 = (gfloat)((gfloat)REAL(s1)[0]); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
-  gfloat v3 = (gfloat)((gfloat)REAL(s3)[0]); (void)v3;
+  gfloat v1 = (gfloat)((gfloat)_unbox_numeric(s1)); (void)v1;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
+  gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   gconstpointer _ret = (gconstpointer)gtk_aspect_frame_new(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2201,7 +2209,7 @@ SEXP R_gtk_aspect_frame_set_obey_child(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_aspect_frame_set_ratio(SEXP s1, SEXP s2) {
   GtkAspectFrame* v1 = (GtkAspectFrame*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_aspect_frame_set_ratio(v1, v2);
   return R_NilValue;
 }
@@ -2209,7 +2217,7 @@ SEXP R_gtk_aspect_frame_set_ratio(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_aspect_frame_set_xalign(SEXP s1, SEXP s2) {
   GtkAspectFrame* v1 = (GtkAspectFrame*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_aspect_frame_set_xalign(v1, v2);
   return R_NilValue;
 }
@@ -2217,7 +2225,7 @@ SEXP R_gtk_aspect_frame_set_xalign(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_aspect_frame_set_yalign(SEXP s1, SEXP s2) {
   GtkAspectFrame* v1 = (GtkAspectFrame*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_aspect_frame_set_yalign(v1, v2);
   return R_NilValue;
 }
@@ -2305,7 +2313,7 @@ SEXP R_gtk_assistant_get_n_pages(SEXP s1) {
 
 SEXP R_gtk_assistant_get_nth_page(SEXP s1, SEXP s2) {
   GtkAssistant* v1 = (GtkAssistant*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_assistant_get_nth_page(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2407,7 +2415,7 @@ SEXP R_gtk_assistant_get_pages(SEXP s1) {
 SEXP R_gtk_assistant_insert_page(SEXP s1, SEXP s2, SEXP s3) {
   GtkAssistant* v1 = (GtkAssistant*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _ret = (int)gtk_assistant_insert_page(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2463,7 +2471,7 @@ SEXP R_gtk_assistant_remove_action_widget(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_assistant_remove_page(SEXP s1, SEXP s2) {
   GtkAssistant* v1 = (GtkAssistant*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_assistant_remove_page(v1, v2);
   return R_NilValue;
 }
@@ -2471,7 +2479,7 @@ SEXP R_gtk_assistant_remove_page(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_assistant_set_current_page(SEXP s1, SEXP s2) {
   GtkAssistant* v1 = (GtkAssistant*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_assistant_set_current_page(v1, v2);
   return R_NilValue;
 }
@@ -2570,8 +2578,8 @@ SEXP R_gtk_bitset_new_empty(void) {
 
 
 SEXP R_gtk_bitset_new_range(SEXP s1, SEXP s2) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_bitset_new_range(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2588,7 +2596,7 @@ SEXP R_gtk_bitset_new_range(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_bitset_add(SEXP s1, SEXP s2) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_bitset_add(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2605,8 +2613,8 @@ SEXP R_gtk_bitset_add(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_bitset_add_range(SEXP s1, SEXP s2, SEXP s3) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_bitset_add_range(v1, v2, v3);
   return R_NilValue;
 }
@@ -2614,8 +2622,8 @@ SEXP R_gtk_bitset_add_range(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_bitset_add_range_closed(SEXP s1, SEXP s2, SEXP s3) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_bitset_add_range_closed(v1, v2, v3);
   return R_NilValue;
 }
@@ -2623,10 +2631,10 @@ SEXP R_gtk_bitset_add_range_closed(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_bitset_add_rectangle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  guint v4 = (guint)((guint)INTEGER(s4)[0]); (void)v4;
-  guint v5 = (guint)((guint)INTEGER(s5)[0]); (void)v5;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
+  guint v4 = (guint)((guint)_unbox_numeric(s4)); (void)v4;
+  guint v5 = (guint)((guint)_unbox_numeric(s5)); (void)v5;
   gtk_bitset_add_rectangle(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -2634,7 +2642,7 @@ SEXP R_gtk_bitset_add_rectangle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 SEXP R_gtk_bitset_contains(SEXP s1, SEXP s2) {
   const GtkBitset* v1 = (const GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_bitset_contains(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2724,7 +2732,7 @@ SEXP R_gtk_bitset_get_minimum(SEXP s1) {
 
 SEXP R_gtk_bitset_get_nth(SEXP s1, SEXP s2) {
   const GtkBitset* v1 = (const GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   guint _ret = (guint)gtk_bitset_get_nth(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2757,8 +2765,8 @@ SEXP R_gtk_bitset_get_size(SEXP s1) {
 
 SEXP R_gtk_bitset_get_size_in_range(SEXP s1, SEXP s2, SEXP s3) {
   const GtkBitset* v1 = (const GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   guint64 _ret = (guint64)gtk_bitset_get_size_in_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2815,7 +2823,7 @@ SEXP R_gtk_bitset_ref(SEXP s1) {
 
 SEXP R_gtk_bitset_remove(SEXP s1, SEXP s2) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_bitset_remove(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2839,8 +2847,8 @@ SEXP R_gtk_bitset_remove_all(SEXP s1) {
 
 SEXP R_gtk_bitset_remove_range(SEXP s1, SEXP s2, SEXP s3) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_bitset_remove_range(v1, v2, v3);
   return R_NilValue;
 }
@@ -2848,8 +2856,8 @@ SEXP R_gtk_bitset_remove_range(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_bitset_remove_range_closed(SEXP s1, SEXP s2, SEXP s3) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_bitset_remove_range_closed(v1, v2, v3);
   return R_NilValue;
 }
@@ -2857,10 +2865,10 @@ SEXP R_gtk_bitset_remove_range_closed(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_bitset_remove_rectangle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  guint v4 = (guint)((guint)INTEGER(s4)[0]); (void)v4;
-  guint v5 = (guint)((guint)INTEGER(s5)[0]); (void)v5;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
+  guint v4 = (guint)((guint)_unbox_numeric(s4)); (void)v4;
+  guint v5 = (guint)((guint)_unbox_numeric(s5)); (void)v5;
   gtk_bitset_remove_rectangle(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -2868,7 +2876,7 @@ SEXP R_gtk_bitset_remove_rectangle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 
 SEXP R_gtk_bitset_shift_left(SEXP s1, SEXP s2) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_bitset_shift_left(v1, v2);
   return R_NilValue;
 }
@@ -2876,7 +2884,7 @@ SEXP R_gtk_bitset_shift_left(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_bitset_shift_right(SEXP s1, SEXP s2) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_bitset_shift_right(v1, v2);
   return R_NilValue;
 }
@@ -2884,9 +2892,9 @@ SEXP R_gtk_bitset_shift_right(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_bitset_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkBitset* v1 = (GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  guint v4 = (guint)((guint)INTEGER(s4)[0]); (void)v4;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
+  guint v4 = (guint)((guint)_unbox_numeric(s4)); (void)v4;
   gtk_bitset_splice(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -2994,7 +3002,7 @@ SEXP R_gtk_bitset_iter_previous(SEXP s1) {
 SEXP R_gtk_bitset_iter_init_at(SEXP s1, SEXP s2) {
   GtkBitsetIter _out_iter = {0}; (void)_out_iter;
   const GtkBitset* v1 = (const GtkBitset*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   guint _out_value = 0; (void)_out_value;
   gboolean _ret = (gboolean)gtk_bitset_iter_init_at(&_out_iter, v1, v2, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
@@ -3167,7 +3175,7 @@ SEXP R_gtk_bookmark_list_set_attributes(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_bookmark_list_set_io_priority(SEXP s1, SEXP s2) {
   GtkBookmarkList* v1 = (GtkBookmarkList*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_bookmark_list_set_io_priority(v1, v2);
   return R_NilValue;
 }
@@ -3278,7 +3286,7 @@ SEXP R_gtk_border_free(SEXP s1) {
 
 SEXP R_gtk_box_new(SEXP s1, SEXP s2) {
   GtkOrientation v1 = (GtkOrientation)((GtkOrientation)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_box_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3401,7 +3409,7 @@ SEXP R_gtk_box_reorder_child_after(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_box_set_baseline_child(SEXP s1, SEXP s2) {
   GtkBox* v1 = (GtkBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_box_set_baseline_child(v1, v2);
   return R_NilValue;
 }
@@ -3425,7 +3433,7 @@ SEXP R_gtk_box_set_homogeneous(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_box_set_spacing(SEXP s1, SEXP s2) {
   GtkBox* v1 = (GtkBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_box_set_spacing(v1, v2);
   return R_NilValue;
 }
@@ -3513,7 +3521,7 @@ SEXP R_gtk_box_layout_get_spacing(SEXP s1) {
 
 SEXP R_gtk_box_layout_set_baseline_child(SEXP s1, SEXP s2) {
   GtkBoxLayout* v1 = (GtkBoxLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_box_layout_set_baseline_child(v1, v2);
   return R_NilValue;
 }
@@ -3537,7 +3545,7 @@ SEXP R_gtk_box_layout_set_homogeneous(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_box_layout_set_spacing(SEXP s1, SEXP s2) {
   GtkBoxLayout* v1 = (GtkBoxLayout*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_box_layout_set_spacing(v1, v2);
   return R_NilValue;
 }
@@ -3689,7 +3697,7 @@ SEXP R_gtk_builder_new_from_resource(SEXP s1) {
 
 SEXP R_gtk_builder_new_from_string(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_builder_new_from_string(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3743,7 +3751,7 @@ SEXP R_gtk_builder_add_from_resource(SEXP s1, SEXP s2) {
 SEXP R_gtk_builder_add_from_string(SEXP s1, SEXP s2, SEXP s3) {
   GtkBuilder* v1 = (GtkBuilder*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)gtk_builder_add_from_string(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3800,7 +3808,7 @@ SEXP R_gtk_builder_add_objects_from_resource(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_builder_add_objects_from_string(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkBuilder* v1 = (GtkBuilder*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   const char** v4 = (const char**)(get_ptr(s4)); (void)v4;
   GError *_err = NULL;
   gboolean _ret = (gboolean)gtk_builder_add_objects_from_string(v1, v2, v3, v4, &_err);
@@ -3851,7 +3859,7 @@ SEXP R_gtk_builder_extend_with_template(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP
   GObject* v2 = (GObject*)(get_ptr(s2)); (void)v2;
   GType v3 = (GType)((GType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : REAL(s3)[0])); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
-  gssize v5 = (gssize)((gssize)REAL(s5)[0]); (void)v5;
+  gssize v5 = (gssize)((gssize)_unbox_numeric(s5)); (void)v5;
   GError *_err = NULL;
   gboolean _ret = (gboolean)gtk_builder_extend_with_template(v1, v2, v3, v4, v5, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4373,7 +4381,7 @@ SEXP R_gtk_button_set_use_underline(SEXP s1, SEXP s2) {
 SEXP R_gtk_cclosure_expression_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   GClosureMarshal v2 = (s2 != R_NilValue) ? (GClosureMarshal)(get_ptr(s2)) : NULL; (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   GtkExpression** v4 = (GtkExpression**)(get_ptr(s4)); (void)v4;
   GCallback v5 = (GCallback)(get_ptr(s5)); (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -4433,7 +4441,7 @@ SEXP R_gtk_calendar_get_date(SEXP s1) {
 
 SEXP R_gtk_calendar_get_day_is_marked(SEXP s1, SEXP s2) {
   GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_calendar_get_day_is_marked(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -4498,7 +4506,7 @@ SEXP R_gtk_calendar_get_show_week_numbers(SEXP s1) {
 
 SEXP R_gtk_calendar_mark_day(SEXP s1, SEXP s2) {
   GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_calendar_mark_day(v1, v2);
   return R_NilValue;
 }
@@ -4538,7 +4546,7 @@ SEXP R_gtk_calendar_set_show_week_numbers(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_calendar_unmark_day(SEXP s1, SEXP s2) {
   GtkCalendar* v1 = (GtkCalendar*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_calendar_unmark_day(v1, v2);
   return R_NilValue;
 }
@@ -4636,7 +4644,7 @@ SEXP R_gtk_cell_area_attribute_connect(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkCellArea* v1 = (GtkCellArea*)(get_ptr(s1)); (void)v1;
   GtkCellRenderer* v2 = (GtkCellRenderer*)(get_ptr(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_cell_area_attribute_connect(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -4808,8 +4816,8 @@ SEXP R_gtk_cell_area_get_cell_at_position(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
   GtkCellAreaContext* v2 = (GtkCellAreaContext*)(get_ptr(s2)); (void)v2;
   GtkWidget* v3 = (GtkWidget*)(get_ptr(s3)); (void)v3;
   const GdkRectangle* v4 = (const GdkRectangle*)(get_ptr(s4)); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   GdkRectangle _out_alloc_area = {0}; (void)_out_alloc_area;
   gconstpointer _ret = (gconstpointer)gtk_cell_area_get_cell_at_position(v1, v2, v3, v4, v5, v6, &_out_alloc_area);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -4957,7 +4965,7 @@ SEXP R_gtk_cell_area_get_preferred_height_for_width(SEXP s1, SEXP s2, SEXP s3, S
   GtkCellArea* v1 = (GtkCellArea*)(get_ptr(s1)); (void)v1;
   GtkCellAreaContext* v2 = (GtkCellAreaContext*)(get_ptr(s2)); (void)v2;
   GtkWidget* v3 = (GtkWidget*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   int _out_minimum_height = 0; (void)_out_minimum_height;
   int _out_natural_height = 0; (void)_out_natural_height;
   gtk_cell_area_get_preferred_height_for_width(v1, v2, v3, v4, &_out_minimum_height, &_out_natural_height);
@@ -5008,7 +5016,7 @@ SEXP R_gtk_cell_area_get_preferred_width_for_height(SEXP s1, SEXP s2, SEXP s3, S
   GtkCellArea* v1 = (GtkCellArea*)(get_ptr(s1)); (void)v1;
   GtkCellAreaContext* v2 = (GtkCellAreaContext*)(get_ptr(s2)); (void)v2;
   GtkWidget* v3 = (GtkWidget*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   int _out_minimum_width = 0; (void)_out_minimum_width;
   int _out_natural_width = 0; (void)_out_natural_width;
   gtk_cell_area_get_preferred_width_for_height(v1, v2, v3, v4, &_out_minimum_width, &_out_natural_width);
@@ -5138,7 +5146,7 @@ SEXP R_gtk_cell_area_request_renderer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
   GtkCellRenderer* v2 = (GtkCellRenderer*)(get_ptr(s2)); (void)v2;
   GtkOrientation v3 = (GtkOrientation)((GtkOrientation)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GtkWidget* v4 = (GtkWidget*)(get_ptr(s4)); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   int _out_minimum_size = 0; (void)_out_minimum_size;
   int _out_natural_size = 0; (void)_out_natural_size;
   gtk_cell_area_request_renderer(v1, v2, v3, v4, v5, &_out_minimum_size, &_out_natural_size);
@@ -5246,7 +5254,7 @@ SEXP R_gtk_cell_area_box_pack_start(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5)
 
 SEXP R_gtk_cell_area_box_set_spacing(SEXP s1, SEXP s2) {
   GtkCellAreaBox* v1 = (GtkCellAreaBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_cell_area_box_set_spacing(v1, v2);
   return R_NilValue;
 }
@@ -5271,7 +5279,7 @@ SEXP R_gtk_cell_area_class_find_cell_property(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_cell_area_class_install_cell_property(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellAreaClass* v1 = (GtkCellAreaClass*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GParamSpec* v3 = (GParamSpec*)(get_ptr(s3)); (void)v3;
   gtk_cell_area_class_install_cell_property(v1, v2, v3);
   return R_NilValue;
@@ -5302,8 +5310,8 @@ SEXP R_gtk_cell_area_class_list_cell_properties(SEXP s1) {
 
 SEXP R_gtk_cell_area_context_allocate(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellAreaContext* v1 = (GtkCellAreaContext*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_cell_area_context_allocate(v1, v2, v3);
   return R_NilValue;
 }
@@ -5373,7 +5381,7 @@ SEXP R_gtk_cell_area_context_get_preferred_height(SEXP s1) {
 
 SEXP R_gtk_cell_area_context_get_preferred_height_for_width(SEXP s1, SEXP s2) {
   GtkCellAreaContext* v1 = (GtkCellAreaContext*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _out_minimum_height = 0; (void)_out_minimum_height;
   int _out_natural_height = 0; (void)_out_natural_height;
   gtk_cell_area_context_get_preferred_height_for_width(v1, v2, &_out_minimum_height, &_out_natural_height);
@@ -5420,7 +5428,7 @@ SEXP R_gtk_cell_area_context_get_preferred_width(SEXP s1) {
 
 SEXP R_gtk_cell_area_context_get_preferred_width_for_height(SEXP s1, SEXP s2) {
   GtkCellAreaContext* v1 = (GtkCellAreaContext*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _out_minimum_width = 0; (void)_out_minimum_width;
   int _out_natural_width = 0; (void)_out_natural_width;
   gtk_cell_area_context_get_preferred_width_for_height(v1, v2, &_out_minimum_width, &_out_natural_width);
@@ -5444,8 +5452,8 @@ SEXP R_gtk_cell_area_context_get_preferred_width_for_height(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_cell_area_context_push_preferred_height(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellAreaContext* v1 = (GtkCellAreaContext*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_cell_area_context_push_preferred_height(v1, v2, v3);
   return R_NilValue;
 }
@@ -5453,8 +5461,8 @@ SEXP R_gtk_cell_area_context_push_preferred_height(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_cell_area_context_push_preferred_width(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellAreaContext* v1 = (GtkCellAreaContext*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_cell_area_context_push_preferred_width(v1, v2, v3);
   return R_NilValue;
 }
@@ -5493,7 +5501,7 @@ SEXP R_gtk_cell_layout_add_attribute(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkCellLayout* v1 = (GtkCellLayout*)(get_ptr(s1)); (void)v1;
   GtkCellRenderer* v2 = (GtkCellRenderer*)(get_ptr(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_cell_layout_add_attribute(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -5567,7 +5575,7 @@ SEXP R_gtk_cell_layout_pack_start(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_cell_layout_reorder(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellLayout* v1 = (GtkCellLayout*)(get_ptr(s1)); (void)v1;
   GtkCellRenderer* v2 = (GtkCellRenderer*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_cell_layout_reorder(v1, v2, v3);
   return R_NilValue;
 }
@@ -5754,7 +5762,7 @@ SEXP R_gtk_cell_renderer_get_preferred_height(SEXP s1, SEXP s2) {
 SEXP R_gtk_cell_renderer_get_preferred_height_for_width(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellRenderer* v1 = (GtkCellRenderer*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_minimum_height = 0; (void)_out_minimum_height;
   int _out_natural_height = 0; (void)_out_natural_height;
   gtk_cell_renderer_get_preferred_height_for_width(v1, v2, v3, &_out_minimum_height, &_out_natural_height);
@@ -5827,7 +5835,7 @@ SEXP R_gtk_cell_renderer_get_preferred_width(SEXP s1, SEXP s2) {
 SEXP R_gtk_cell_renderer_get_preferred_width_for_height(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellRenderer* v1 = (GtkCellRenderer*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_minimum_width = 0; (void)_out_minimum_width;
   int _out_natural_width = 0; (void)_out_natural_width;
   gtk_cell_renderer_get_preferred_width_for_height(v1, v2, v3, &_out_minimum_width, &_out_natural_width);
@@ -5933,8 +5941,8 @@ SEXP R_gtk_cell_renderer_is_activatable(SEXP s1) {
 
 SEXP R_gtk_cell_renderer_set_alignment(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellRenderer* v1 = (GtkCellRenderer*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
-  gfloat v3 = (gfloat)((gfloat)REAL(s3)[0]); (void)v3;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
+  gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
   gtk_cell_renderer_set_alignment(v1, v2, v3);
   return R_NilValue;
 }
@@ -5942,8 +5950,8 @@ SEXP R_gtk_cell_renderer_set_alignment(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_cell_renderer_set_fixed_size(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellRenderer* v1 = (GtkCellRenderer*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_cell_renderer_set_fixed_size(v1, v2, v3);
   return R_NilValue;
 }
@@ -5967,8 +5975,8 @@ SEXP R_gtk_cell_renderer_set_is_expander(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_cell_renderer_set_padding(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellRenderer* v1 = (GtkCellRenderer*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_cell_renderer_set_padding(v1, v2, v3);
   return R_NilValue;
 }
@@ -6146,7 +6154,7 @@ SEXP R_gtk_cell_renderer_text_new(void) {
 
 SEXP R_gtk_cell_renderer_text_set_fixed_height_from_font(SEXP s1, SEXP s2) {
   GtkCellRendererText* v1 = (GtkCellRendererText*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_cell_renderer_text_set_fixed_height_from_font(v1, v2);
   return R_NilValue;
 }
@@ -6892,7 +6900,7 @@ SEXP R_gtk_check_button_set_use_underline(SEXP s1, SEXP s2) {
 SEXP R_gtk_closure_expression_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   GClosure* v2 = (GClosure*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   GtkExpression** v4 = (s4 != R_NilValue) ? (GtkExpression**)(get_ptr(s4)) : NULL; (void)v4;
   gconstpointer _ret = (gconstpointer)gtk_closure_expression_new(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6991,8 +6999,8 @@ SEXP R_gtk_color_button_set_title(SEXP s1, SEXP s2) {
 SEXP R_gtk_color_chooser_add_palette(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkColorChooser* v1 = (GtkColorChooser*)(get_ptr(s1)); (void)v1;
   GtkOrientation v2 = (GtkOrientation)((GtkOrientation)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GdkRGBA* v5 = (s5 != R_NilValue) ? (GdkRGBA*)(get_ptr(s5)) : NULL; (void)v5;
   gtk_color_chooser_add_palette(v1, v2, v3, v4, v5);
   return R_NilValue;
@@ -7465,7 +7473,7 @@ SEXP R_gtk_column_view_get_tab_behavior(SEXP s1) {
 
 SEXP R_gtk_column_view_insert_column(SEXP s1, SEXP s2, SEXP s3) {
   GtkColumnView* v1 = (GtkColumnView*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GtkColumnViewColumn* v3 = (GtkColumnViewColumn*)(get_ptr(s3)); (void)v3;
   gtk_column_view_insert_column(v1, v2, v3);
   return R_NilValue;
@@ -7482,7 +7490,7 @@ SEXP R_gtk_column_view_remove_column(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_column_view_scroll_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkColumnView* v1 = (GtkColumnView*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GtkColumnViewColumn* v3 = (s3 != R_NilValue) ? (GtkColumnViewColumn*)(get_ptr(s3)) : NULL; (void)v3;
   GtkListScrollFlags v4 = (GtkListScrollFlags)((GtkListScrollFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GtkScrollInfo* v5 = (s5 != R_NilValue) ? (GtkScrollInfo*)(get_ptr(s5)) : NULL; (void)v5;
@@ -7863,7 +7871,7 @@ SEXP R_gtk_column_view_column_set_factory(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_column_view_column_set_fixed_width(SEXP s1, SEXP s2) {
   GtkColumnViewColumn* v1 = (GtkColumnViewColumn*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_column_view_column_set_fixed_width(v1, v2);
   return R_NilValue;
 }
@@ -8103,7 +8111,7 @@ SEXP R_gtk_column_view_sorter_get_n_sort_columns(SEXP s1) {
 
 SEXP R_gtk_column_view_sorter_get_nth_sort_column(SEXP s1, SEXP s2) {
   GtkColumnViewSorter* v1 = (GtkColumnViewSorter*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GtkSortType _out_sort_order = {0}; (void)_out_sort_order;
   gconstpointer _ret = (gconstpointer)gtk_column_view_sorter_get_nth_sort_column(v1, v2, &_out_sort_order);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -8410,7 +8418,7 @@ SEXP R_gtk_combo_box_popup_for_device(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_combo_box_set_active(SEXP s1, SEXP s2) {
   GtkComboBox* v1 = (GtkComboBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_combo_box_set_active(v1, v2);
   return R_NilValue;
 }
@@ -8459,7 +8467,7 @@ SEXP R_gtk_combo_box_set_child(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_combo_box_set_entry_text_column(SEXP s1, SEXP s2) {
   GtkComboBox* v1 = (GtkComboBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_combo_box_set_entry_text_column(v1, v2);
   return R_NilValue;
 }
@@ -8467,7 +8475,7 @@ SEXP R_gtk_combo_box_set_entry_text_column(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_combo_box_set_id_column(SEXP s1, SEXP s2) {
   GtkComboBox* v1 = (GtkComboBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_combo_box_set_id_column(v1, v2);
   return R_NilValue;
 }
@@ -8566,7 +8574,7 @@ SEXP R_gtk_combo_box_text_get_active_text(SEXP s1) {
 
 SEXP R_gtk_combo_box_text_insert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkComboBoxText* v1 = (GtkComboBoxText*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   gtk_combo_box_text_insert(v1, v2, v3, v4);
@@ -8576,7 +8584,7 @@ SEXP R_gtk_combo_box_text_insert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_combo_box_text_insert_text(SEXP s1, SEXP s2, SEXP s3) {
   GtkComboBoxText* v1 = (GtkComboBoxText*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gtk_combo_box_text_insert_text(v1, v2, v3);
   return R_NilValue;
@@ -8602,7 +8610,7 @@ SEXP R_gtk_combo_box_text_prepend_text(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_combo_box_text_remove(SEXP s1, SEXP s2) {
   GtkComboBoxText* v1 = (GtkComboBoxText*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_combo_box_text_remove(v1, v2);
   return R_NilValue;
 }
@@ -8653,9 +8661,9 @@ SEXP R_gtk_constraint_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, 
   GtkConstraintRelation v3 = (GtkConstraintRelation)((GtkConstraintRelation)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   GtkConstraintAttribute v5 = (GtkConstraintAttribute)((GtkConstraintAttribute)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
-  gdouble v7 = (gdouble)((gdouble)REAL(s7)[0]); (void)v7;
-  gint v8 = (gint)((gint)INTEGER(s8)[0]); (void)v8;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
+  gdouble v7 = (gdouble)((gdouble)_unbox_numeric(s7)); (void)v7;
+  gint v8 = (gint)((gint)_unbox_numeric(s8)); (void)v8;
   gconstpointer _ret = (gconstpointer)gtk_constraint_new(v1, v2, v3, v4, v5, v6, v7, v8);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8674,8 +8682,8 @@ SEXP R_gtk_constraint_new_constant(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
   GtkConstraintAttribute v2 = (GtkConstraintAttribute)((GtkConstraintAttribute)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GtkConstraintRelation v3 = (GtkConstraintRelation)((GtkConstraintRelation)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gconstpointer _ret = (gconstpointer)gtk_constraint_new_constant(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8985,8 +8993,8 @@ SEXP R_gtk_constraint_guide_get_strength(SEXP s1) {
 
 SEXP R_gtk_constraint_guide_set_max_size(SEXP s1, SEXP s2, SEXP s3) {
   GtkConstraintGuide* v1 = (GtkConstraintGuide*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_constraint_guide_set_max_size(v1, v2, v3);
   return R_NilValue;
 }
@@ -8994,8 +9002,8 @@ SEXP R_gtk_constraint_guide_set_max_size(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_constraint_guide_set_min_size(SEXP s1, SEXP s2, SEXP s3) {
   GtkConstraintGuide* v1 = (GtkConstraintGuide*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_constraint_guide_set_min_size(v1, v2, v3);
   return R_NilValue;
 }
@@ -9011,8 +9019,8 @@ SEXP R_gtk_constraint_guide_set_name(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_constraint_guide_set_nat_size(SEXP s1, SEXP s2, SEXP s3) {
   GtkConstraintGuide* v1 = (GtkConstraintGuide*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_constraint_guide_set_nat_size(v1, v2, v3);
   return R_NilValue;
 }
@@ -9053,9 +9061,9 @@ SEXP R_gtk_constraint_layout_add_constraint(SEXP s1, SEXP s2) {
 SEXP R_gtk_constraint_layout_add_constraints_from_descriptionv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkConstraintLayout* v1 = (GtkConstraintLayout*)(get_ptr(s1)); (void)v1;
   const char* const* v2 = (const char* const*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   GHashTable* v6 = (GHashTable*)(get_ptr(s6)); (void)v6;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gtk_constraint_layout_add_constraints_from_descriptionv(v1, v2, v3, v4, v5, v6, &_err);
@@ -9178,7 +9186,7 @@ SEXP R_gtk_css_provider_load_from_bytes(SEXP s1, SEXP s2) {
 SEXP R_gtk_css_provider_load_from_data(SEXP s1, SEXP s2, SEXP s3) {
   GtkCssProvider* v1 = (GtkCssProvider*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gtk_css_provider_load_from_data(v1, v2, v3);
   return R_NilValue;
 }
@@ -9463,7 +9471,7 @@ SEXP R_gtk_dialog_new(void) {
 SEXP R_gtk_dialog_add_action_widget(SEXP s1, SEXP s2, SEXP s3) {
   GtkDialog* v1 = (GtkDialog*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_dialog_add_action_widget(v1, v2, v3);
   return R_NilValue;
 }
@@ -9472,7 +9480,7 @@ SEXP R_gtk_dialog_add_action_widget(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_dialog_add_button(SEXP s1, SEXP s2, SEXP s3) {
   GtkDialog* v1 = (GtkDialog*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_dialog_add_button(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9538,7 +9546,7 @@ SEXP R_gtk_dialog_get_response_for_widget(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_dialog_get_widget_for_response(SEXP s1, SEXP s2) {
   GtkDialog* v1 = (GtkDialog*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_dialog_get_widget_for_response(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9555,7 +9563,7 @@ SEXP R_gtk_dialog_get_widget_for_response(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_dialog_response(SEXP s1, SEXP s2) {
   GtkDialog* v1 = (GtkDialog*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_dialog_response(v1, v2);
   return R_NilValue;
 }
@@ -9563,7 +9571,7 @@ SEXP R_gtk_dialog_response(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_dialog_set_default_response(SEXP s1, SEXP s2) {
   GtkDialog* v1 = (GtkDialog*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_dialog_set_default_response(v1, v2);
   return R_NilValue;
 }
@@ -9571,7 +9579,7 @@ SEXP R_gtk_dialog_set_default_response(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_dialog_set_response_sensitive(SEXP s1, SEXP s2, SEXP s3) {
   GtkDialog* v1 = (GtkDialog*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   gtk_dialog_set_response_sensitive(v1, v2, v3);
   return R_NilValue;
@@ -9725,7 +9733,7 @@ SEXP R_gtk_directory_list_set_file(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_directory_list_set_io_priority(SEXP s1, SEXP s2) {
   GtkDirectoryList* v1 = (GtkDirectoryList*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_directory_list_set_io_priority(v1, v2);
   return R_NilValue;
 }
@@ -9774,8 +9782,8 @@ SEXP R_gtk_drag_icon_create_widget_for_value(SEXP s1) {
 SEXP R_gtk_drag_icon_set_from_paintable(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   GdkPaintable* v2 = (GdkPaintable*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_drag_icon_set_from_paintable(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -9895,8 +9903,8 @@ SEXP R_gtk_drag_source_set_content(SEXP s1, SEXP s2) {
 SEXP R_gtk_drag_source_set_icon(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkDragSource* v1 = (GtkDragSource*)(get_ptr(s1)); (void)v1;
   GdkPaintable* v2 = (s2 != R_NilValue) ? (GdkPaintable*)(get_ptr(s2)) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_drag_source_set_icon(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -9952,7 +9960,7 @@ SEXP R_gtk_drawing_area_get_content_width(SEXP s1) {
 
 SEXP R_gtk_drawing_area_set_content_height(SEXP s1, SEXP s2) {
   GtkDrawingArea* v1 = (GtkDrawingArea*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_drawing_area_set_content_height(v1, v2);
   return R_NilValue;
 }
@@ -9960,7 +9968,7 @@ SEXP R_gtk_drawing_area_set_content_height(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_drawing_area_set_content_width(SEXP s1, SEXP s2) {
   GtkDrawingArea* v1 = (GtkDrawingArea*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_drawing_area_set_content_width(v1, v2);
   return R_NilValue;
 }
@@ -10291,7 +10299,7 @@ SEXP R_gtk_drop_down_set_search_match_mode(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_drop_down_set_selected(SEXP s1, SEXP s2) {
   GtkDropDown* v1 = (GtkDropDown*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_drop_down_set_selected(v1, v2);
   return R_NilValue;
 }
@@ -10458,7 +10466,7 @@ SEXP R_gtk_drop_target_set_actions(SEXP s1, SEXP s2) {
 SEXP R_gtk_drop_target_set_gtypes(SEXP s1, SEXP s2, SEXP s3) {
   GtkDropTarget* v1 = (GtkDropTarget*)(get_ptr(s1)); (void)v1;
   GType* v2 = (s2 != R_NilValue) ? (GType*)(get_ptr(s2)) : NULL; (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gtk_drop_target_set_gtypes(v1, v2, v3);
   return R_NilValue;
 }
@@ -10547,7 +10555,7 @@ SEXP R_gtk_drop_target_async_set_formats(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_editable_delegate_get_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GValue* v3 = (GValue*)(get_ptr(s3)); (void)v3;
   GParamSpec* v4 = (GParamSpec*)(get_ptr(s4)); (void)v4;
   gboolean _ret = (gboolean)gtk_editable_delegate_get_property(v1, v2, v3, v4);
@@ -10566,7 +10574,7 @@ SEXP R_gtk_editable_delegate_get_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_editable_delegate_set_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GObject* v1 = (GObject*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   const GValue* v3 = (const GValue*)(get_ptr(s3)); (void)v3;
   GParamSpec* v4 = (GParamSpec*)(get_ptr(s4)); (void)v4;
   gboolean _ret = (gboolean)gtk_editable_delegate_set_property(v1, v2, v3, v4);
@@ -10585,7 +10593,7 @@ SEXP R_gtk_editable_delegate_set_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_editable_install_properties(SEXP s1, SEXP s2) {
   GObjectClass* v1 = (GObjectClass*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   guint _ret = (guint)gtk_editable_install_properties(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10626,8 +10634,8 @@ SEXP R_gtk_editable_delete_selection(SEXP s1) {
 
 SEXP R_gtk_editable_delete_text(SEXP s1, SEXP s2, SEXP s3) {
   GtkEditable* v1 = (GtkEditable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_editable_delete_text(v1, v2, v3);
   return R_NilValue;
 }
@@ -10658,8 +10666,8 @@ SEXP R_gtk_editable_get_alignment(SEXP s1) {
 
 SEXP R_gtk_editable_get_chars(SEXP s1, SEXP s2, SEXP s3) {
   GtkEditable* v1 = (GtkEditable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_editable_get_chars(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10824,7 +10832,7 @@ SEXP R_gtk_editable_init_delegate(SEXP s1) {
 SEXP R_gtk_editable_insert_text(SEXP s1, SEXP s2, SEXP s3) {
   GtkEditable* v1 = (GtkEditable*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_position = 0; (void)_out_position;
   gtk_editable_insert_text(v1, v2, v3, &_out_position);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -10842,8 +10850,8 @@ SEXP R_gtk_editable_insert_text(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_editable_select_region(SEXP s1, SEXP s2, SEXP s3) {
   GtkEditable* v1 = (GtkEditable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_editable_select_region(v1, v2, v3);
   return R_NilValue;
 }
@@ -10851,7 +10859,7 @@ SEXP R_gtk_editable_select_region(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_editable_set_alignment(SEXP s1, SEXP s2) {
   GtkEditable* v1 = (GtkEditable*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_editable_set_alignment(v1, v2);
   return R_NilValue;
 }
@@ -10875,7 +10883,7 @@ SEXP R_gtk_editable_set_enable_undo(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_editable_set_max_width_chars(SEXP s1, SEXP s2) {
   GtkEditable* v1 = (GtkEditable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_editable_set_max_width_chars(v1, v2);
   return R_NilValue;
 }
@@ -10883,7 +10891,7 @@ SEXP R_gtk_editable_set_max_width_chars(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_editable_set_position(SEXP s1, SEXP s2) {
   GtkEditable* v1 = (GtkEditable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_editable_set_position(v1, v2);
   return R_NilValue;
 }
@@ -10899,7 +10907,7 @@ SEXP R_gtk_editable_set_text(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_editable_set_width_chars(SEXP s1, SEXP s2) {
   GtkEditable* v1 = (GtkEditable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_editable_set_width_chars(v1, v2);
   return R_NilValue;
 }
@@ -11165,8 +11173,8 @@ SEXP R_gtk_entry_get_icon_area(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_entry_get_icon_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _ret = (int)gtk_entry_get_icon_at_pos(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11516,7 +11524,7 @@ SEXP R_gtk_entry_set_activates_default(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_entry_set_alignment(SEXP s1, SEXP s2) {
   GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_entry_set_alignment(v1, v2);
   return R_NilValue;
 }
@@ -11653,7 +11661,7 @@ SEXP R_gtk_entry_set_input_purpose(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_entry_set_invisible_char(SEXP s1, SEXP s2) {
   GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
-  gunichar v2 = (gunichar)((gunichar)INTEGER(s2)[0]); (void)v2;
+  gunichar v2 = (gunichar)((gunichar)_unbox_numeric(s2)); (void)v2;
   gtk_entry_set_invisible_char(v1, v2);
   return R_NilValue;
 }
@@ -11661,7 +11669,7 @@ SEXP R_gtk_entry_set_invisible_char(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_entry_set_max_length(SEXP s1, SEXP s2) {
   GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_entry_set_max_length(v1, v2);
   return R_NilValue;
 }
@@ -11685,7 +11693,7 @@ SEXP R_gtk_entry_set_placeholder_text(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_entry_set_progress_fraction(SEXP s1, SEXP s2) {
   GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_entry_set_progress_fraction(v1, v2);
   return R_NilValue;
 }
@@ -11693,7 +11701,7 @@ SEXP R_gtk_entry_set_progress_fraction(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_entry_set_progress_pulse_step(SEXP s1, SEXP s2) {
   GtkEntry* v1 = (GtkEntry*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_entry_set_progress_pulse_step(v1, v2);
   return R_NilValue;
 }
@@ -11724,7 +11732,7 @@ SEXP R_gtk_entry_unset_invisible_char(SEXP s1) {
 
 SEXP R_gtk_entry_buffer_new(SEXP s1, SEXP s2) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_entry_buffer_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11741,8 +11749,8 @@ SEXP R_gtk_entry_buffer_new(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_entry_buffer_delete_text(SEXP s1, SEXP s2, SEXP s3) {
   GtkEntryBuffer* v1 = (GtkEntryBuffer*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   guint _ret = (guint)gtk_entry_buffer_delete_text(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11759,8 +11767,8 @@ SEXP R_gtk_entry_buffer_delete_text(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_entry_buffer_emit_deleted_text(SEXP s1, SEXP s2, SEXP s3) {
   GtkEntryBuffer* v1 = (GtkEntryBuffer*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_entry_buffer_emit_deleted_text(v1, v2, v3);
   return R_NilValue;
 }
@@ -11768,9 +11776,9 @@ SEXP R_gtk_entry_buffer_emit_deleted_text(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_entry_buffer_emit_inserted_text(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkEntryBuffer* v1 = (GtkEntryBuffer*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  guint v4 = (guint)((guint)INTEGER(s4)[0]); (void)v4;
+  guint v4 = (guint)((guint)_unbox_numeric(s4)); (void)v4;
   gtk_entry_buffer_emit_inserted_text(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -11842,9 +11850,9 @@ SEXP R_gtk_entry_buffer_get_text(SEXP s1) {
 
 SEXP R_gtk_entry_buffer_insert_text(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkEntryBuffer* v1 = (GtkEntryBuffer*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   guint _ret = (guint)gtk_entry_buffer_insert_text(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11861,7 +11869,7 @@ SEXP R_gtk_entry_buffer_insert_text(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_entry_buffer_set_max_length(SEXP s1, SEXP s2) {
   GtkEntryBuffer* v1 = (GtkEntryBuffer*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_entry_buffer_set_max_length(v1, v2);
   return R_NilValue;
 }
@@ -11870,7 +11878,7 @@ SEXP R_gtk_entry_buffer_set_max_length(SEXP s1, SEXP s2) {
 SEXP R_gtk_entry_buffer_set_text(SEXP s1, SEXP s2, SEXP s3) {
   GtkEntryBuffer* v1 = (GtkEntryBuffer*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_entry_buffer_set_text(v1, v2, v3);
   return R_NilValue;
 }
@@ -12127,7 +12135,7 @@ SEXP R_gtk_entry_completion_set_match_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_entry_completion_set_minimum_key_length(SEXP s1, SEXP s2) {
   GtkEntryCompletion* v1 = (GtkEntryCompletion*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_entry_completion_set_minimum_key_length(v1, v2);
   return R_NilValue;
 }
@@ -12167,7 +12175,7 @@ SEXP R_gtk_entry_completion_set_popup_single_match(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_entry_completion_set_text_column(SEXP s1, SEXP s2) {
   GtkEntryCompletion* v1 = (GtkEntryCompletion*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_entry_completion_set_text_column(v1, v2);
   return R_NilValue;
 }
@@ -14189,8 +14197,8 @@ SEXP R_gtk_fixed_get_child_transform(SEXP s1, SEXP s2) {
 SEXP R_gtk_fixed_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFixed* v1 = (GtkFixed*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   gtk_fixed_move(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -14199,8 +14207,8 @@ SEXP R_gtk_fixed_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_gtk_fixed_put(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFixed* v1 = (GtkFixed*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   gtk_fixed_put(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -14297,7 +14305,7 @@ SEXP R_gtk_flatten_list_model_get_model(SEXP s1) {
 
 SEXP R_gtk_flatten_list_model_get_model_for_item(SEXP s1, SEXP s2) {
   GtkFlattenListModel* v1 = (GtkFlattenListModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_flatten_list_model_get_model_for_item(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14373,7 +14381,7 @@ SEXP R_gtk_flow_box_get_activate_on_single_click(SEXP s1) {
 
 SEXP R_gtk_flow_box_get_child_at_index(SEXP s1, SEXP s2) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_flow_box_get_child_at_index(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14390,8 +14398,8 @@ SEXP R_gtk_flow_box_get_child_at_index(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_flow_box_get_child_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_flow_box_get_child_at_pos(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14521,7 +14529,7 @@ SEXP R_gtk_flow_box_get_selection_mode(SEXP s1) {
 SEXP R_gtk_flow_box_insert(SEXP s1, SEXP s2, SEXP s3) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_flow_box_insert(v1, v2, v3);
   return R_NilValue;
 }
@@ -14598,7 +14606,7 @@ SEXP R_gtk_flow_box_set_activate_on_single_click(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_flow_box_set_column_spacing(SEXP s1, SEXP s2) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_flow_box_set_column_spacing(v1, v2);
   return R_NilValue;
 }
@@ -14632,7 +14640,7 @@ SEXP R_gtk_flow_box_set_homogeneous(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_flow_box_set_max_children_per_line(SEXP s1, SEXP s2) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_flow_box_set_max_children_per_line(v1, v2);
   return R_NilValue;
 }
@@ -14640,7 +14648,7 @@ SEXP R_gtk_flow_box_set_max_children_per_line(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_flow_box_set_min_children_per_line(SEXP s1, SEXP s2) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_flow_box_set_min_children_per_line(v1, v2);
   return R_NilValue;
 }
@@ -14648,7 +14656,7 @@ SEXP R_gtk_flow_box_set_min_children_per_line(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_flow_box_set_row_spacing(SEXP s1, SEXP s2) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_flow_box_set_row_spacing(v1, v2);
   return R_NilValue;
 }
@@ -15733,7 +15741,7 @@ SEXP R_gtk_frame_set_label(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_frame_set_label_align(SEXP s1, SEXP s2) {
   GtkFrame* v1 = (GtkFrame*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_frame_set_label_align(v1, v2);
   return R_NilValue;
 }
@@ -15977,8 +15985,8 @@ SEXP R_gtk_gl_area_set_has_stencil_buffer(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_gl_area_set_required_version(SEXP s1, SEXP s2, SEXP s3) {
   GtkGLArea* v1 = (GtkGLArea*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_gl_area_set_required_version(v1, v2, v3);
   return R_NilValue;
 }
@@ -16407,7 +16415,7 @@ SEXP R_gtk_gesture_long_press_get_delay_factor(SEXP s1) {
 
 SEXP R_gtk_gesture_long_press_set_delay_factor(SEXP s1, SEXP s2) {
   GtkGestureLongPress* v1 = (GtkGestureLongPress*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_gesture_long_press_set_delay_factor(v1, v2);
   return R_NilValue;
 }
@@ -16567,7 +16575,7 @@ SEXP R_gtk_gesture_single_get_touch_only(SEXP s1) {
 
 SEXP R_gtk_gesture_single_set_button(SEXP s1, SEXP s2) {
   GtkGestureSingle* v1 = (GtkGestureSingle*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_gesture_single_set_button(v1, v2);
   return R_NilValue;
 }
@@ -16814,10 +16822,10 @@ SEXP R_gtk_grid_new(void) {
 SEXP R_gtk_grid_attach(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   gtk_grid_attach(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -16828,8 +16836,8 @@ SEXP R_gtk_grid_attach_next_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
   GtkWidget* v3 = (s3 != R_NilValue) ? (GtkWidget*)(get_ptr(s3)) : NULL; (void)v3;
   GtkPositionType v4 = (GtkPositionType)((GtkPositionType)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   gtk_grid_attach_next_to(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -16853,8 +16861,8 @@ SEXP R_gtk_grid_get_baseline_row(SEXP s1) {
 
 SEXP R_gtk_grid_get_child_at(SEXP s1, SEXP s2, SEXP s3) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_grid_get_child_at(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16903,7 +16911,7 @@ SEXP R_gtk_grid_get_column_spacing(SEXP s1) {
 
 SEXP R_gtk_grid_get_row_baseline_position(SEXP s1, SEXP s2) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkBaselinePosition _ret = (GtkBaselinePosition)gtk_grid_get_row_baseline_position(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16952,7 +16960,7 @@ SEXP R_gtk_grid_get_row_spacing(SEXP s1) {
 
 SEXP R_gtk_grid_insert_column(SEXP s1, SEXP s2) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_insert_column(v1, v2);
   return R_NilValue;
 }
@@ -16969,7 +16977,7 @@ SEXP R_gtk_grid_insert_next_to(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_grid_insert_row(SEXP s1, SEXP s2) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_insert_row(v1, v2);
   return R_NilValue;
 }
@@ -17021,7 +17029,7 @@ SEXP R_gtk_grid_remove(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_remove_column(SEXP s1, SEXP s2) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_remove_column(v1, v2);
   return R_NilValue;
 }
@@ -17029,7 +17037,7 @@ SEXP R_gtk_grid_remove_column(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_remove_row(SEXP s1, SEXP s2) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_remove_row(v1, v2);
   return R_NilValue;
 }
@@ -17037,7 +17045,7 @@ SEXP R_gtk_grid_remove_row(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_set_baseline_row(SEXP s1, SEXP s2) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_set_baseline_row(v1, v2);
   return R_NilValue;
 }
@@ -17053,7 +17061,7 @@ SEXP R_gtk_grid_set_column_homogeneous(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_set_column_spacing(SEXP s1, SEXP s2) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_set_column_spacing(v1, v2);
   return R_NilValue;
 }
@@ -17061,7 +17069,7 @@ SEXP R_gtk_grid_set_column_spacing(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_set_row_baseline_position(SEXP s1, SEXP s2, SEXP s3) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkBaselinePosition v3 = (GtkBaselinePosition)((GtkBaselinePosition)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gtk_grid_set_row_baseline_position(v1, v2, v3);
   return R_NilValue;
@@ -17078,7 +17086,7 @@ SEXP R_gtk_grid_set_row_homogeneous(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_set_row_spacing(SEXP s1, SEXP s2) {
   GtkGrid* v1 = (GtkGrid*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_set_row_spacing(v1, v2);
   return R_NilValue;
 }
@@ -17150,7 +17158,7 @@ SEXP R_gtk_grid_layout_get_column_spacing(SEXP s1) {
 
 SEXP R_gtk_grid_layout_get_row_baseline_position(SEXP s1, SEXP s2) {
   GtkGridLayout* v1 = (GtkGridLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkBaselinePosition _ret = (GtkBaselinePosition)gtk_grid_layout_get_row_baseline_position(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17199,7 +17207,7 @@ SEXP R_gtk_grid_layout_get_row_spacing(SEXP s1) {
 
 SEXP R_gtk_grid_layout_set_baseline_row(SEXP s1, SEXP s2) {
   GtkGridLayout* v1 = (GtkGridLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_layout_set_baseline_row(v1, v2);
   return R_NilValue;
 }
@@ -17215,7 +17223,7 @@ SEXP R_gtk_grid_layout_set_column_homogeneous(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_layout_set_column_spacing(SEXP s1, SEXP s2) {
   GtkGridLayout* v1 = (GtkGridLayout*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_layout_set_column_spacing(v1, v2);
   return R_NilValue;
 }
@@ -17223,7 +17231,7 @@ SEXP R_gtk_grid_layout_set_column_spacing(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_layout_set_row_baseline_position(SEXP s1, SEXP s2, SEXP s3) {
   GtkGridLayout* v1 = (GtkGridLayout*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkBaselinePosition v3 = (GtkBaselinePosition)((GtkBaselinePosition)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gtk_grid_layout_set_row_baseline_position(v1, v2, v3);
   return R_NilValue;
@@ -17240,7 +17248,7 @@ SEXP R_gtk_grid_layout_set_row_homogeneous(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_layout_set_row_spacing(SEXP s1, SEXP s2) {
   GtkGridLayout* v1 = (GtkGridLayout*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_layout_set_row_spacing(v1, v2);
   return R_NilValue;
 }
@@ -17312,7 +17320,7 @@ SEXP R_gtk_grid_layout_child_get_row_span(SEXP s1) {
 
 SEXP R_gtk_grid_layout_child_set_column(SEXP s1, SEXP s2) {
   GtkGridLayoutChild* v1 = (GtkGridLayoutChild*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_layout_child_set_column(v1, v2);
   return R_NilValue;
 }
@@ -17320,7 +17328,7 @@ SEXP R_gtk_grid_layout_child_set_column(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_layout_child_set_column_span(SEXP s1, SEXP s2) {
   GtkGridLayoutChild* v1 = (GtkGridLayoutChild*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_layout_child_set_column_span(v1, v2);
   return R_NilValue;
 }
@@ -17328,7 +17336,7 @@ SEXP R_gtk_grid_layout_child_set_column_span(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_layout_child_set_row(SEXP s1, SEXP s2) {
   GtkGridLayoutChild* v1 = (GtkGridLayoutChild*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_layout_child_set_row(v1, v2);
   return R_NilValue;
 }
@@ -17336,7 +17344,7 @@ SEXP R_gtk_grid_layout_child_set_row(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_layout_child_set_row_span(SEXP s1, SEXP s2) {
   GtkGridLayoutChild* v1 = (GtkGridLayoutChild*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_layout_child_set_row_span(v1, v2);
   return R_NilValue;
 }
@@ -17473,7 +17481,7 @@ SEXP R_gtk_grid_view_get_tab_behavior(SEXP s1) {
 
 SEXP R_gtk_grid_view_scroll_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkGridView* v1 = (GtkGridView*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GtkListScrollFlags v3 = (GtkListScrollFlags)((GtkListScrollFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GtkScrollInfo* v4 = (s4 != R_NilValue) ? (GtkScrollInfo*)(get_ptr(s4)) : NULL; (void)v4;
   gtk_grid_view_scroll_to(v1, v2, v3, v4);
@@ -17499,7 +17507,7 @@ SEXP R_gtk_grid_view_set_factory(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_view_set_max_columns(SEXP s1, SEXP s2) {
   GtkGridView* v1 = (GtkGridView*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_view_set_max_columns(v1, v2);
   return R_NilValue;
 }
@@ -17507,7 +17515,7 @@ SEXP R_gtk_grid_view_set_max_columns(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_grid_view_set_min_columns(SEXP s1, SEXP s2) {
   GtkGridView* v1 = (GtkGridView*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_grid_view_set_min_columns(v1, v2);
   return R_NilValue;
 }
@@ -17651,8 +17659,8 @@ SEXP R_gtk_header_bar_set_title_widget(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_im_context_delete_surrounding(SEXP s1, SEXP s2, SEXP s3) {
   GtkIMContext* v1 = (GtkIMContext*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_im_context_delete_surrounding(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17672,10 +17680,10 @@ SEXP R_gtk_im_context_filter_key(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   GdkSurface* v3 = (GdkSurface*)(get_ptr(s3)); (void)v3;
   GdkDevice* v4 = (GdkDevice*)(get_ptr(s4)); (void)v4;
-  guint32 v5 = (guint32)((guint32)INTEGER(s5)[0]); (void)v5;
-  guint v6 = (guint)((guint)INTEGER(s6)[0]); (void)v6;
+  guint32 v5 = (guint32)((guint32)_unbox_numeric(s5)); (void)v5;
+  guint v6 = (guint)((guint)_unbox_numeric(s6)); (void)v6;
   GdkModifierType v7 = (GdkModifierType)((GdkModifierType)(TYPEOF(s7)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s7) : INTEGER(s7)[0])); (void)v7;
-  gint v8 = (gint)((gint)INTEGER(s8)[0]); (void)v8;
+  gint v8 = (gint)((gint)_unbox_numeric(s8)); (void)v8;
   gboolean _ret = (gboolean)gtk_im_context_filter_key(v1, v2, v3, v4, v5, v6, v7, v8);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17838,8 +17846,8 @@ SEXP R_gtk_im_context_set_cursor_location(SEXP s1, SEXP s2) {
 SEXP R_gtk_im_context_set_surrounding(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkIMContext* v1 = (GtkIMContext*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_im_context_set_surrounding(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -17848,9 +17856,9 @@ SEXP R_gtk_im_context_set_surrounding(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_gtk_im_context_set_surrounding_with_selection(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkIMContext* v1 = (GtkIMContext*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gtk_im_context_set_surrounding_with_selection(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -17930,8 +17938,8 @@ SEXP R_gtk_im_multicontext_set_context_id(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_paintable_new_for_file(SEXP s1, SEXP s2, SEXP s3) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_icon_paintable_new_for_file(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18176,8 +18184,8 @@ SEXP R_gtk_icon_theme_has_icon(SEXP s1, SEXP s2) {
 SEXP R_gtk_icon_theme_lookup_by_gicon(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkIconTheme* v1 = (GtkIconTheme*)(get_ptr(s1)); (void)v1;
   GIcon* v2 = (GIcon*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GtkTextDirection v5 = (GtkTextDirection)((GtkTextDirection)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   GtkIconLookupFlags v6 = (GtkIconLookupFlags)((GtkIconLookupFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
   gconstpointer _ret = (gconstpointer)gtk_icon_theme_lookup_by_gicon(v1, v2, v3, v4, v5, v6);
@@ -18198,8 +18206,8 @@ SEXP R_gtk_icon_theme_lookup_icon(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
   GtkIconTheme* v1 = (GtkIconTheme*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char** v3 = (s3 != R_NilValue) ? (const char**)(get_ptr(s3)) : NULL; (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   GtkTextDirection v6 = (GtkTextDirection)((GtkTextDirection)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
   GtkIconLookupFlags v7 = (GtkIconLookupFlags)((GtkIconLookupFlags)(TYPEOF(s7)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s7) : INTEGER(s7)[0])); (void)v7;
   gconstpointer _ret = (gconstpointer)gtk_icon_theme_lookup_icon(v1, v2, v3, v4, v5, v6, v7);
@@ -18442,8 +18450,8 @@ SEXP R_gtk_icon_view_get_cursor(SEXP s1) {
 
 SEXP R_gtk_icon_view_get_dest_item_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GtkTreePath* _out_path = 0; (void)_out_path;
   GtkIconViewDropPosition _out_pos = {0}; (void)_out_pos;
   gboolean _ret = (gboolean)gtk_icon_view_get_dest_item_at_pos(v1, v2, v3, &_out_path, &_out_pos);
@@ -18495,8 +18503,8 @@ SEXP R_gtk_icon_view_get_drag_dest_item(SEXP s1) {
 
 SEXP R_gtk_icon_view_get_item_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GtkTreePath* _out_path = 0; (void)_out_path;
   GtkCellRenderer* _out_cell = 0; (void)_out_cell;
   gboolean _ret = (gboolean)gtk_icon_view_get_item_at_pos(v1, v2, v3, &_out_path, &_out_cell);
@@ -18655,8 +18663,8 @@ SEXP R_gtk_icon_view_get_model(SEXP s1) {
 
 SEXP R_gtk_icon_view_get_path_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_icon_view_get_path_at_pos(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18801,8 +18809,8 @@ SEXP R_gtk_icon_view_get_tooltip_column(SEXP s1) {
 
 SEXP R_gtk_icon_view_get_tooltip_context(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GtkTreeModel* _out_model = 0; (void)_out_model;
   GtkTreePath* _out_path = 0; (void)_out_path;
@@ -18893,8 +18901,8 @@ SEXP R_gtk_icon_view_scroll_to_path(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5)
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
   GtkTreePath* v2 = (GtkTreePath*)(get_ptr(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
-  gfloat v4 = (gfloat)((gfloat)REAL(s4)[0]); (void)v4;
-  gfloat v5 = (gfloat)((gfloat)REAL(s5)[0]); (void)v5;
+  gfloat v4 = (gfloat)((gfloat)_unbox_numeric(s4)); (void)v4;
+  gfloat v5 = (gfloat)((gfloat)_unbox_numeric(s5)); (void)v5;
   gtk_icon_view_scroll_to_path(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -18934,7 +18942,7 @@ SEXP R_gtk_icon_view_set_activate_on_single_click(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_column_spacing(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_column_spacing(v1, v2);
   return R_NilValue;
 }
@@ -18942,7 +18950,7 @@ SEXP R_gtk_icon_view_set_column_spacing(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_columns(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_columns(v1, v2);
   return R_NilValue;
 }
@@ -18977,7 +18985,7 @@ SEXP R_gtk_icon_view_set_item_orientation(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_item_padding(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_item_padding(v1, v2);
   return R_NilValue;
 }
@@ -18985,7 +18993,7 @@ SEXP R_gtk_icon_view_set_item_padding(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_item_width(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_item_width(v1, v2);
   return R_NilValue;
 }
@@ -18993,7 +19001,7 @@ SEXP R_gtk_icon_view_set_item_width(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_margin(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_margin(v1, v2);
   return R_NilValue;
 }
@@ -19001,7 +19009,7 @@ SEXP R_gtk_icon_view_set_margin(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_markup_column(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_markup_column(v1, v2);
   return R_NilValue;
 }
@@ -19017,7 +19025,7 @@ SEXP R_gtk_icon_view_set_model(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_pixbuf_column(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_pixbuf_column(v1, v2);
   return R_NilValue;
 }
@@ -19033,7 +19041,7 @@ SEXP R_gtk_icon_view_set_reorderable(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_row_spacing(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_row_spacing(v1, v2);
   return R_NilValue;
 }
@@ -19049,7 +19057,7 @@ SEXP R_gtk_icon_view_set_selection_mode(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_spacing(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_spacing(v1, v2);
   return R_NilValue;
 }
@@ -19057,7 +19065,7 @@ SEXP R_gtk_icon_view_set_spacing(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_icon_view_set_text_column(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_text_column(v1, v2);
   return R_NilValue;
 }
@@ -19075,7 +19083,7 @@ SEXP R_gtk_icon_view_set_tooltip_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_icon_view_set_tooltip_column(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_icon_view_set_tooltip_column(v1, v2);
   return R_NilValue;
 }
@@ -19392,7 +19400,7 @@ SEXP R_gtk_image_set_icon_size(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_image_set_pixel_size(SEXP s1, SEXP s2) {
   GtkImage* v1 = (GtkImage*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_image_set_pixel_size(v1, v2);
   return R_NilValue;
 }
@@ -19417,7 +19425,7 @@ SEXP R_gtk_info_bar_new(void) {
 SEXP R_gtk_info_bar_add_action_widget(SEXP s1, SEXP s2, SEXP s3) {
   GtkInfoBar* v1 = (GtkInfoBar*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_info_bar_add_action_widget(v1, v2, v3);
   return R_NilValue;
 }
@@ -19426,7 +19434,7 @@ SEXP R_gtk_info_bar_add_action_widget(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_info_bar_add_button(SEXP s1, SEXP s2, SEXP s3) {
   GtkInfoBar* v1 = (GtkInfoBar*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_info_bar_add_button(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -19515,7 +19523,7 @@ SEXP R_gtk_info_bar_remove_child(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_info_bar_response(SEXP s1, SEXP s2) {
   GtkInfoBar* v1 = (GtkInfoBar*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_info_bar_response(v1, v2);
   return R_NilValue;
 }
@@ -19523,7 +19531,7 @@ SEXP R_gtk_info_bar_response(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_info_bar_set_default_response(SEXP s1, SEXP s2) {
   GtkInfoBar* v1 = (GtkInfoBar*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_info_bar_set_default_response(v1, v2);
   return R_NilValue;
 }
@@ -19539,7 +19547,7 @@ SEXP R_gtk_info_bar_set_message_type(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_info_bar_set_response_sensitive(SEXP s1, SEXP s2, SEXP s3) {
   GtkInfoBar* v1 = (GtkInfoBar*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   gtk_info_bar_set_response_sensitive(v1, v2, v3);
   return R_NilValue;
@@ -19756,7 +19764,7 @@ SEXP R_gtk_inscription_set_markup(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_inscription_set_min_chars(SEXP s1, SEXP s2) {
   GtkInscription* v1 = (GtkInscription*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_inscription_set_min_chars(v1, v2);
   return R_NilValue;
 }
@@ -19764,7 +19772,7 @@ SEXP R_gtk_inscription_set_min_chars(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_inscription_set_min_lines(SEXP s1, SEXP s2) {
   GtkInscription* v1 = (GtkInscription*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_inscription_set_min_lines(v1, v2);
   return R_NilValue;
 }
@@ -19772,7 +19780,7 @@ SEXP R_gtk_inscription_set_min_lines(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_inscription_set_nat_chars(SEXP s1, SEXP s2) {
   GtkInscription* v1 = (GtkInscription*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_inscription_set_nat_chars(v1, v2);
   return R_NilValue;
 }
@@ -19780,7 +19788,7 @@ SEXP R_gtk_inscription_set_nat_chars(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_inscription_set_nat_lines(SEXP s1, SEXP s2) {
   GtkInscription* v1 = (GtkInscription*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_inscription_set_nat_lines(v1, v2);
   return R_NilValue;
 }
@@ -19812,7 +19820,7 @@ SEXP R_gtk_inscription_set_wrap_mode(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_inscription_set_xalign(SEXP s1, SEXP s2) {
   GtkInscription* v1 = (GtkInscription*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_inscription_set_xalign(v1, v2);
   return R_NilValue;
 }
@@ -19820,14 +19828,14 @@ SEXP R_gtk_inscription_set_xalign(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_inscription_set_yalign(SEXP s1, SEXP s2) {
   GtkInscription* v1 = (GtkInscription*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_inscription_set_yalign(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_gtk_keyval_trigger_new(SEXP s1, SEXP s2) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   GdkModifierType v2 = (GdkModifierType)((GdkModifierType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_keyval_trigger_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -20328,8 +20336,8 @@ SEXP R_gtk_label_get_yalign(SEXP s1) {
 
 SEXP R_gtk_label_select_region(SEXP s1, SEXP s2, SEXP s3) {
   GtkLabel* v1 = (GtkLabel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_label_select_region(v1, v2, v3);
   return R_NilValue;
 }
@@ -20377,7 +20385,7 @@ SEXP R_gtk_label_set_label(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_label_set_lines(SEXP s1, SEXP s2) {
   GtkLabel* v1 = (GtkLabel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_label_set_lines(v1, v2);
   return R_NilValue;
 }
@@ -20401,7 +20409,7 @@ SEXP R_gtk_label_set_markup_with_mnemonic(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_label_set_max_width_chars(SEXP s1, SEXP s2) {
   GtkLabel* v1 = (GtkLabel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_label_set_max_width_chars(v1, v2);
   return R_NilValue;
 }
@@ -20481,7 +20489,7 @@ SEXP R_gtk_label_set_use_underline(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_label_set_width_chars(SEXP s1, SEXP s2) {
   GtkLabel* v1 = (GtkLabel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_label_set_width_chars(v1, v2);
   return R_NilValue;
 }
@@ -20505,7 +20513,7 @@ SEXP R_gtk_label_set_wrap_mode(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_label_set_xalign(SEXP s1, SEXP s2) {
   GtkLabel* v1 = (GtkLabel*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_label_set_xalign(v1, v2);
   return R_NilValue;
 }
@@ -20513,7 +20521,7 @@ SEXP R_gtk_label_set_xalign(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_label_set_yalign(SEXP s1, SEXP s2) {
   GtkLabel* v1 = (GtkLabel*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_label_set_yalign(v1, v2);
   return R_NilValue;
 }
@@ -20554,9 +20562,9 @@ SEXP R_gtk_layout_child_get_layout_manager(SEXP s1) {
 SEXP R_gtk_layout_manager_allocate(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkLayoutManager* v1 = (GtkLayoutManager*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gtk_layout_manager_allocate(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -20622,7 +20630,7 @@ SEXP R_gtk_layout_manager_measure(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkLayoutManager* v1 = (GtkLayoutManager*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
   GtkOrientation v3 = (GtkOrientation)((GtkOrientation)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   int _out_minimum = 0; (void)_out_minimum;
   int _out_natural = 0; (void)_out_natural;
   int _out_minimum_baseline = 0; (void)_out_minimum_baseline;
@@ -20673,8 +20681,8 @@ SEXP R_gtk_level_bar_new(void) {
 
 
 SEXP R_gtk_level_bar_new_for_interval(SEXP s1, SEXP s2) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_level_bar_new_for_interval(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -20692,7 +20700,7 @@ SEXP R_gtk_level_bar_new_for_interval(SEXP s1, SEXP s2) {
 SEXP R_gtk_level_bar_add_offset_value(SEXP s1, SEXP s2, SEXP s3) {
   GtkLevelBar* v1 = (GtkLevelBar*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gtk_level_bar_add_offset_value(v1, v2, v3);
   return R_NilValue;
 }
@@ -20819,7 +20827,7 @@ SEXP R_gtk_level_bar_set_inverted(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_level_bar_set_max_value(SEXP s1, SEXP s2) {
   GtkLevelBar* v1 = (GtkLevelBar*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_level_bar_set_max_value(v1, v2);
   return R_NilValue;
 }
@@ -20827,7 +20835,7 @@ SEXP R_gtk_level_bar_set_max_value(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_level_bar_set_min_value(SEXP s1, SEXP s2) {
   GtkLevelBar* v1 = (GtkLevelBar*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_level_bar_set_min_value(v1, v2);
   return R_NilValue;
 }
@@ -20843,7 +20851,7 @@ SEXP R_gtk_level_bar_set_mode(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_level_bar_set_value(SEXP s1, SEXP s2) {
   GtkLevelBar* v1 = (GtkLevelBar*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_level_bar_set_value(v1, v2);
   return R_NilValue;
 }
@@ -21014,7 +21022,7 @@ SEXP R_gtk_list_box_get_adjustment(SEXP s1) {
 
 SEXP R_gtk_list_box_get_row_at_index(SEXP s1, SEXP s2) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_list_box_get_row_at_index(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -21031,7 +21039,7 @@ SEXP R_gtk_list_box_get_row_at_index(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_list_box_get_row_at_y(SEXP s1, SEXP s2) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_list_box_get_row_at_y(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -21113,7 +21121,7 @@ SEXP R_gtk_list_box_get_show_separators(SEXP s1) {
 SEXP R_gtk_list_box_insert(SEXP s1, SEXP s2, SEXP s3) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_list_box_insert(v1, v2, v3);
   return R_NilValue;
 }
@@ -21704,7 +21712,7 @@ SEXP R_gtk_list_item_set_selectable(SEXP s1, SEXP s2) {
 
 
 SEXP R_gtk_list_store_newv(SEXP s1, SEXP s2) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GType* v2 = (GType*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_list_store_newv(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -21747,7 +21755,7 @@ SEXP R_gtk_list_store_clear(SEXP s1) {
 SEXP R_gtk_list_store_insert(SEXP s1, SEXP s2) {
   GtkListStore* v1 = (GtkListStore*)(get_ptr(s1)); (void)v1;
   GtkTreeIter _out_iter = {0}; (void)_out_iter;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_list_store_insert(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -21801,10 +21809,10 @@ SEXP R_gtk_list_store_insert_before(SEXP s1, SEXP s2) {
 SEXP R_gtk_list_store_insert_with_valuesv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkListStore* v1 = (GtkListStore*)(get_ptr(s1)); (void)v1;
   GtkTreeIter _out_iter = {0}; (void)_out_iter;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int* v3 = (int*)(get_ptr(s3)); (void)v3;
   GValue* v4 = (GValue*)(get_ptr(s4)); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gtk_list_store_insert_with_valuesv(v1, &_out_iter, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -21898,7 +21906,7 @@ SEXP R_gtk_list_store_reorder(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_list_store_set_column_types(SEXP s1, SEXP s2, SEXP s3) {
   GtkListStore* v1 = (GtkListStore*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GType* v3 = (GType*)(get_ptr(s3)); (void)v3;
   gtk_list_store_set_column_types(v1, v2, v3);
   return R_NilValue;
@@ -21908,7 +21916,7 @@ SEXP R_gtk_list_store_set_column_types(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_list_store_set_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkListStore* v1 = (GtkListStore*)(get_ptr(s1)); (void)v1;
   GtkTreeIter* v2 = (GtkTreeIter*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GValue* v4 = (GValue*)(get_ptr(s4)); (void)v4;
   gtk_list_store_set_value(v1, v2, v3, v4);
   return R_NilValue;
@@ -21920,7 +21928,7 @@ SEXP R_gtk_list_store_set_valuesv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkTreeIter* v2 = (GtkTreeIter*)(get_ptr(s2)); (void)v2;
   int* v3 = (int*)(get_ptr(s3)); (void)v3;
   GValue* v4 = (GValue*)(get_ptr(s4)); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gtk_list_store_set_valuesv(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -22066,7 +22074,7 @@ SEXP R_gtk_list_view_get_tab_behavior(SEXP s1) {
 
 SEXP R_gtk_list_view_scroll_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkListView* v1 = (GtkListView*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GtkListScrollFlags v3 = (GtkListScrollFlags)((GtkListScrollFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GtkScrollInfo* v4 = (s4 != R_NilValue) ? (GtkScrollInfo*)(get_ptr(s4)) : NULL; (void)v4;
   gtk_list_view_scroll_to(v1, v2, v3, v4);
@@ -22670,7 +22678,7 @@ SEXP R_gtk_media_stream_realize(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_media_stream_seek(SEXP s1, SEXP s2) {
   GtkMediaStream* v1 = (GtkMediaStream*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   gtk_media_stream_seek(v1, v2);
   return R_NilValue;
 }
@@ -22716,7 +22724,7 @@ SEXP R_gtk_media_stream_set_playing(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_media_stream_set_volume(SEXP s1, SEXP s2) {
   GtkMediaStream* v1 = (GtkMediaStream*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_media_stream_set_volume(v1, v2);
   return R_NilValue;
 }
@@ -22734,7 +22742,7 @@ SEXP R_gtk_media_stream_stream_prepared(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
-  gint64 v5 = (gint64)((gint64)REAL(s5)[0]); (void)v5;
+  gint64 v5 = (gint64)((gint64)_unbox_numeric(s5)); (void)v5;
   gtk_media_stream_stream_prepared(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -22757,7 +22765,7 @@ SEXP R_gtk_media_stream_unrealize(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_media_stream_update(SEXP s1, SEXP s2) {
   GtkMediaStream* v1 = (GtkMediaStream*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   gtk_media_stream_update(v1, v2);
   return R_NilValue;
 }
@@ -23132,7 +23140,7 @@ SEXP R_gtk_mnemonic_action_get(void) {
 
 
 SEXP R_gtk_mnemonic_trigger_new(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_mnemonic_trigger_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -23253,7 +23261,7 @@ SEXP R_gtk_multi_filter_append(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_multi_filter_remove(SEXP s1, SEXP s2) {
   GtkMultiFilter* v1 = (GtkMultiFilter*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_multi_filter_remove(v1, v2);
   return R_NilValue;
 }
@@ -23325,7 +23333,7 @@ SEXP R_gtk_multi_sorter_append(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_multi_sorter_remove(SEXP s1, SEXP s2) {
   GtkMultiSorter* v1 = (GtkMultiSorter*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_multi_sorter_remove(v1, v2);
   return R_NilValue;
 }
@@ -23775,7 +23783,7 @@ SEXP R_gtk_notebook_get_n_pages(SEXP s1) {
 
 SEXP R_gtk_notebook_get_nth_page(SEXP s1, SEXP s2) {
   GtkNotebook* v1 = (GtkNotebook*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_notebook_get_nth_page(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -23959,7 +23967,7 @@ SEXP R_gtk_notebook_insert_page(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkNotebook* v1 = (GtkNotebook*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
   GtkWidget* v3 = (s3 != R_NilValue) ? (GtkWidget*)(get_ptr(s3)) : NULL; (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   int _ret = (int)gtk_notebook_insert_page(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -23979,7 +23987,7 @@ SEXP R_gtk_notebook_insert_page_menu(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
   GtkWidget* v3 = (s3 != R_NilValue) ? (GtkWidget*)(get_ptr(s3)) : NULL; (void)v3;
   GtkWidget* v4 = (s4 != R_NilValue) ? (GtkWidget*)(get_ptr(s4)) : NULL; (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   int _ret = (int)gtk_notebook_insert_page_menu(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -24078,7 +24086,7 @@ SEXP R_gtk_notebook_prev_page(SEXP s1) {
 
 SEXP R_gtk_notebook_remove_page(SEXP s1, SEXP s2) {
   GtkNotebook* v1 = (GtkNotebook*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_notebook_remove_page(v1, v2);
   return R_NilValue;
 }
@@ -24087,7 +24095,7 @@ SEXP R_gtk_notebook_remove_page(SEXP s1, SEXP s2) {
 SEXP R_gtk_notebook_reorder_child(SEXP s1, SEXP s2, SEXP s3) {
   GtkNotebook* v1 = (GtkNotebook*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_notebook_reorder_child(v1, v2, v3);
   return R_NilValue;
 }
@@ -24104,7 +24112,7 @@ SEXP R_gtk_notebook_set_action_widget(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_notebook_set_current_page(SEXP s1, SEXP s2) {
   GtkNotebook* v1 = (GtkNotebook*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_notebook_set_current_page(v1, v2);
   return R_NilValue;
 }
@@ -24548,8 +24556,8 @@ SEXP R_gtk_pad_controller_new(SEXP s1, SEXP s2) {
 SEXP R_gtk_pad_controller_set_action(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkPadController* v1 = (GtkPadController*)(get_ptr(s1)); (void)v1;
   GtkPadActionType v2 = (GtkPadActionType)((GtkPadActionType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   const char* v6 = (const char*)(CHAR(STRING_ELT(s6,0))); (void)v6;
   gtk_pad_controller_set_action(v1, v2, v3, v4, v5, v6);
@@ -24560,7 +24568,7 @@ SEXP R_gtk_pad_controller_set_action(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
 SEXP R_gtk_pad_controller_set_action_entries(SEXP s1, SEXP s2, SEXP s3) {
   GtkPadController* v1 = (GtkPadController*)(get_ptr(s1)); (void)v1;
   const GtkPadActionEntry* v2 = (const GtkPadActionEntry*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_pad_controller_set_action_entries(v1, v2, v3);
   return R_NilValue;
 }
@@ -24720,7 +24728,7 @@ SEXP R_gtk_paned_set_end_child(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_paned_set_position(SEXP s1, SEXP s2) {
   GtkPaned* v1 = (GtkPaned*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_paned_set_position(v1, v2);
   return R_NilValue;
 }
@@ -24793,8 +24801,8 @@ SEXP R_gtk_paper_size_new(SEXP s1) {
 SEXP R_gtk_paper_size_new_custom(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   GtkUnit v5 = (GtkUnit)((GtkUnit)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   gconstpointer _ret = (gconstpointer)gtk_paper_size_new_custom(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -24828,8 +24836,8 @@ SEXP R_gtk_paper_size_new_from_gvariant(SEXP s1) {
 
 SEXP R_gtk_paper_size_new_from_ipp(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_paper_size_new_from_ipp(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -24865,8 +24873,8 @@ SEXP R_gtk_paper_size_new_from_key_file(SEXP s1, SEXP s2) {
 SEXP R_gtk_paper_size_new_from_ppd(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)gtk_paper_size_new_from_ppd(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -25105,8 +25113,8 @@ SEXP R_gtk_paper_size_is_ipp(SEXP s1) {
 
 SEXP R_gtk_paper_size_set_size(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkPaperSize* v1 = (GtkPaperSize*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   GtkUnit v4 = (GtkUnit)((GtkUnit)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   gtk_paper_size_set_size(v1, v2, v3, v4);
   return R_NilValue;
@@ -25742,8 +25750,8 @@ SEXP R_gtk_popover_set_mnemonics_visible(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_popover_set_offset(SEXP s1, SEXP s2, SEXP s3) {
   GtkPopover* v1 = (GtkPopover*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_popover_set_offset(v1, v2, v3);
   return R_NilValue;
 }
@@ -26061,7 +26069,7 @@ SEXP R_gtk_progress_bar_set_ellipsize(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_progress_bar_set_fraction(SEXP s1, SEXP s2) {
   GtkProgressBar* v1 = (GtkProgressBar*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_progress_bar_set_fraction(v1, v2);
   return R_NilValue;
 }
@@ -26077,7 +26085,7 @@ SEXP R_gtk_progress_bar_set_inverted(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_progress_bar_set_pulse_step(SEXP s1, SEXP s2) {
   GtkProgressBar* v1 = (GtkProgressBar*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_progress_bar_set_pulse_step(v1, v2);
   return R_NilValue;
 }
@@ -26360,7 +26368,7 @@ SEXP R_gtk_range_set_adjustment(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_range_set_fill_level(SEXP s1, SEXP s2) {
   GtkRange* v1 = (GtkRange*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_range_set_fill_level(v1, v2);
   return R_NilValue;
 }
@@ -26376,8 +26384,8 @@ SEXP R_gtk_range_set_flippable(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_range_set_increments(SEXP s1, SEXP s2, SEXP s3) {
   GtkRange* v1 = (GtkRange*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gtk_range_set_increments(v1, v2, v3);
   return R_NilValue;
 }
@@ -26393,8 +26401,8 @@ SEXP R_gtk_range_set_inverted(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_range_set_range(SEXP s1, SEXP s2, SEXP s3) {
   GtkRange* v1 = (GtkRange*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gtk_range_set_range(v1, v2, v3);
   return R_NilValue;
 }
@@ -26410,7 +26418,7 @@ SEXP R_gtk_range_set_restrict_to_fill_level(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_range_set_round_digits(SEXP s1, SEXP s2) {
   GtkRange* v1 = (GtkRange*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_range_set_round_digits(v1, v2);
   return R_NilValue;
 }
@@ -26434,7 +26442,7 @@ SEXP R_gtk_range_set_slider_size_fixed(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_range_set_value(SEXP s1, SEXP s2) {
   GtkRange* v1 = (GtkRange*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_range_set_value(v1, v2);
   return R_NilValue;
 }
@@ -27192,7 +27200,7 @@ SEXP R_gtk_revealer_set_reveal_child(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_revealer_set_transition_duration(SEXP s1, SEXP s2) {
   GtkRevealer* v1 = (GtkRevealer*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_revealer_set_transition_duration(v1, v2);
   return R_NilValue;
 }
@@ -27265,9 +27273,9 @@ SEXP R_gtk_scale_new(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_scale_new_with_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkOrientation v1 = (GtkOrientation)((GtkOrientation)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)gtk_scale_new_with_range(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -27284,7 +27292,7 @@ SEXP R_gtk_scale_new_with_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_scale_add_mark(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkScale* v1 = (GtkScale*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   GtkPositionType v3 = (GtkPositionType)((GtkPositionType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
   gtk_scale_add_mark(v1, v2, v3, v4);
@@ -27404,7 +27412,7 @@ SEXP R_gtk_scale_get_value_pos(SEXP s1) {
 
 SEXP R_gtk_scale_set_digits(SEXP s1, SEXP s2) {
   GtkScale* v1 = (GtkScale*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_scale_set_digits(v1, v2);
   return R_NilValue;
 }
@@ -27445,9 +27453,9 @@ SEXP R_gtk_scale_set_value_pos(SEXP s1, SEXP s2) {
 
 
 SEXP R_gtk_scale_button_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   const char** v4 = (s4 != R_NilValue) ? (const char**)(get_ptr(s4)) : NULL; (void)v4;
   gconstpointer _ret = (gconstpointer)gtk_scale_button_new(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -27577,7 +27585,7 @@ SEXP R_gtk_scale_button_set_icons(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_scale_button_set_value(SEXP s1, SEXP s2) {
   GtkScaleButton* v1 = (GtkScaleButton*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_scale_button_set_value(v1, v2);
   return R_NilValue;
 }
@@ -28142,7 +28150,7 @@ SEXP R_gtk_scrolled_window_set_kinetic_scrolling(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_scrolled_window_set_max_content_height(SEXP s1, SEXP s2) {
   GtkScrolledWindow* v1 = (GtkScrolledWindow*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_scrolled_window_set_max_content_height(v1, v2);
   return R_NilValue;
 }
@@ -28150,7 +28158,7 @@ SEXP R_gtk_scrolled_window_set_max_content_height(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_scrolled_window_set_max_content_width(SEXP s1, SEXP s2) {
   GtkScrolledWindow* v1 = (GtkScrolledWindow*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_scrolled_window_set_max_content_width(v1, v2);
   return R_NilValue;
 }
@@ -28158,7 +28166,7 @@ SEXP R_gtk_scrolled_window_set_max_content_width(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_scrolled_window_set_min_content_height(SEXP s1, SEXP s2) {
   GtkScrolledWindow* v1 = (GtkScrolledWindow*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_scrolled_window_set_min_content_height(v1, v2);
   return R_NilValue;
 }
@@ -28166,7 +28174,7 @@ SEXP R_gtk_scrolled_window_set_min_content_height(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_scrolled_window_set_min_content_width(SEXP s1, SEXP s2) {
   GtkScrolledWindow* v1 = (GtkScrolledWindow*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_scrolled_window_set_min_content_width(v1, v2);
   return R_NilValue;
 }
@@ -28430,7 +28438,7 @@ SEXP R_gtk_search_entry_set_placeholder_text(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_search_entry_set_search_delay(SEXP s1, SEXP s2) {
   GtkSearchEntry* v1 = (GtkSearchEntry*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_search_entry_set_search_delay(v1, v2);
   return R_NilValue;
 }
@@ -28438,7 +28446,7 @@ SEXP R_gtk_search_entry_set_search_delay(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_section_model_get_section(SEXP s1, SEXP s2) {
   GtkSectionModel* v1 = (GtkSectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   guint _out_out_start = 0; (void)_out_out_start;
   guint _out_out_end = 0; (void)_out_out_end;
   gtk_section_model_get_section(v1, v2, &_out_out_start, &_out_out_end);
@@ -28462,8 +28470,8 @@ SEXP R_gtk_section_model_get_section(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_section_model_sections_changed(SEXP s1, SEXP s2, SEXP s3) {
   GtkSectionModel* v1 = (GtkSectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_section_model_sections_changed(v1, v2, v3);
   return R_NilValue;
 }
@@ -28527,8 +28535,8 @@ SEXP R_gtk_selection_model_get_selection(SEXP s1) {
 
 SEXP R_gtk_selection_model_get_selection_in_range(SEXP s1, SEXP s2, SEXP s3) {
   GtkSelectionModel* v1 = (GtkSelectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_selection_model_get_selection_in_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -28545,7 +28553,7 @@ SEXP R_gtk_selection_model_get_selection_in_range(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_selection_model_is_selected(SEXP s1, SEXP s2) {
   GtkSelectionModel* v1 = (GtkSelectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_selection_model_is_selected(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -28578,7 +28586,7 @@ SEXP R_gtk_selection_model_select_all(SEXP s1) {
 
 SEXP R_gtk_selection_model_select_item(SEXP s1, SEXP s2, SEXP s3) {
   GtkSelectionModel* v1 = (GtkSelectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   gboolean _ret = (gboolean)gtk_selection_model_select_item(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -28596,8 +28604,8 @@ SEXP R_gtk_selection_model_select_item(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_selection_model_select_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkSelectionModel* v1 = (GtkSelectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   gboolean _ret = (gboolean)gtk_selection_model_select_range(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -28615,8 +28623,8 @@ SEXP R_gtk_selection_model_select_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_selection_model_selection_changed(SEXP s1, SEXP s2, SEXP s3) {
   GtkSelectionModel* v1 = (GtkSelectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_selection_model_selection_changed(v1, v2, v3);
   return R_NilValue;
 }
@@ -28658,7 +28666,7 @@ SEXP R_gtk_selection_model_unselect_all(SEXP s1) {
 
 SEXP R_gtk_selection_model_unselect_item(SEXP s1, SEXP s2) {
   GtkSelectionModel* v1 = (GtkSelectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_selection_model_unselect_item(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -28675,8 +28683,8 @@ SEXP R_gtk_selection_model_unselect_item(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_selection_model_unselect_range(SEXP s1, SEXP s2, SEXP s3) {
   GtkSelectionModel* v1 = (GtkSelectionModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_selection_model_unselect_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -29368,7 +29376,7 @@ SEXP R_gtk_single_selection_set_model(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_single_selection_set_selected(SEXP s1, SEXP s2) {
   GtkSingleSelection* v1 = (GtkSingleSelection*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_single_selection_set_selected(v1, v2);
   return R_NilValue;
 }
@@ -29448,8 +29456,8 @@ SEXP R_gtk_size_group_set_mode(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_slice_list_model_new(SEXP s1, SEXP s2, SEXP s3) {
   GListModel* v1 = (s1 != R_NilValue) ? (GListModel*)(get_ptr(s1)) : NULL; (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_slice_list_model_new(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -29522,7 +29530,7 @@ SEXP R_gtk_slice_list_model_set_model(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_slice_list_model_set_offset(SEXP s1, SEXP s2) {
   GtkSliceListModel* v1 = (GtkSliceListModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_slice_list_model_set_offset(v1, v2);
   return R_NilValue;
 }
@@ -29530,7 +29538,7 @@ SEXP R_gtk_slice_list_model_set_offset(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_slice_list_model_set_size(SEXP s1, SEXP s2) {
   GtkSliceListModel* v1 = (GtkSliceListModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_slice_list_model_set_size(v1, v2);
   return R_NilValue;
 }
@@ -29592,9 +29600,9 @@ SEXP R_gtk_snapshot_append_conic_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   const graphene_point_t* v3 = (const graphene_point_t*)(get_ptr(s3)); (void)v3;
-  gfloat v4 = (gfloat)((gfloat)REAL(s4)[0]); (void)v4;
+  gfloat v4 = (gfloat)((gfloat)_unbox_numeric(s4)); (void)v4;
   const GskColorStop* v5 = (const GskColorStop*)(get_ptr(s5)); (void)v5;
-  gsize v6 = (gsize)((gsize)REAL(s6)[0]); (void)v6;
+  gsize v6 = (gsize)((gsize)_unbox_numeric(s6)); (void)v6;
   gtk_snapshot_append_conic_gradient(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -29604,10 +29612,10 @@ SEXP R_gtk_snapshot_append_inset_shadow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   const GskRoundedRect* v2 = (const GskRoundedRect*)(get_ptr(s2)); (void)v2;
   const GdkRGBA* v3 = (const GdkRGBA*)(get_ptr(s3)); (void)v3;
-  gfloat v4 = (gfloat)((gfloat)REAL(s4)[0]); (void)v4;
-  gfloat v5 = (gfloat)((gfloat)REAL(s5)[0]); (void)v5;
-  gfloat v6 = (gfloat)((gfloat)REAL(s6)[0]); (void)v6;
-  gfloat v7 = (gfloat)((gfloat)REAL(s7)[0]); (void)v7;
+  gfloat v4 = (gfloat)((gfloat)_unbox_numeric(s4)); (void)v4;
+  gfloat v5 = (gfloat)((gfloat)_unbox_numeric(s5)); (void)v5;
+  gfloat v6 = (gfloat)((gfloat)_unbox_numeric(s6)); (void)v6;
+  gfloat v7 = (gfloat)((gfloat)_unbox_numeric(s7)); (void)v7;
   gtk_snapshot_append_inset_shadow(v1, v2, v3, v4, v5, v6, v7);
   return R_NilValue;
 }
@@ -29628,7 +29636,7 @@ SEXP R_gtk_snapshot_append_linear_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, S
   const graphene_point_t* v3 = (const graphene_point_t*)(get_ptr(s3)); (void)v3;
   const graphene_point_t* v4 = (const graphene_point_t*)(get_ptr(s4)); (void)v4;
   const GskColorStop* v5 = (const GskColorStop*)(get_ptr(s5)); (void)v5;
-  gsize v6 = (gsize)((gsize)REAL(s6)[0]); (void)v6;
+  gsize v6 = (gsize)((gsize)_unbox_numeric(s6)); (void)v6;
   gtk_snapshot_append_linear_gradient(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -29646,10 +29654,10 @@ SEXP R_gtk_snapshot_append_outset_shadow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   const GskRoundedRect* v2 = (const GskRoundedRect*)(get_ptr(s2)); (void)v2;
   const GdkRGBA* v3 = (const GdkRGBA*)(get_ptr(s3)); (void)v3;
-  gfloat v4 = (gfloat)((gfloat)REAL(s4)[0]); (void)v4;
-  gfloat v5 = (gfloat)((gfloat)REAL(s5)[0]); (void)v5;
-  gfloat v6 = (gfloat)((gfloat)REAL(s6)[0]); (void)v6;
-  gfloat v7 = (gfloat)((gfloat)REAL(s7)[0]); (void)v7;
+  gfloat v4 = (gfloat)((gfloat)_unbox_numeric(s4)); (void)v4;
+  gfloat v5 = (gfloat)((gfloat)_unbox_numeric(s5)); (void)v5;
+  gfloat v6 = (gfloat)((gfloat)_unbox_numeric(s6)); (void)v6;
+  gfloat v7 = (gfloat)((gfloat)_unbox_numeric(s7)); (void)v7;
   gtk_snapshot_append_outset_shadow(v1, v2, v3, v4, v5, v6, v7);
   return R_NilValue;
 }
@@ -29659,12 +29667,12 @@ SEXP R_gtk_snapshot_append_radial_gradient(SEXP s1, SEXP s2, SEXP s3, SEXP s4, S
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   const graphene_point_t* v3 = (const graphene_point_t*)(get_ptr(s3)); (void)v3;
-  gfloat v4 = (gfloat)((gfloat)REAL(s4)[0]); (void)v4;
-  gfloat v5 = (gfloat)((gfloat)REAL(s5)[0]); (void)v5;
-  gfloat v6 = (gfloat)((gfloat)REAL(s6)[0]); (void)v6;
-  gfloat v7 = (gfloat)((gfloat)REAL(s7)[0]); (void)v7;
+  gfloat v4 = (gfloat)((gfloat)_unbox_numeric(s4)); (void)v4;
+  gfloat v5 = (gfloat)((gfloat)_unbox_numeric(s5)); (void)v5;
+  gfloat v6 = (gfloat)((gfloat)_unbox_numeric(s6)); (void)v6;
+  gfloat v7 = (gfloat)((gfloat)_unbox_numeric(s7)); (void)v7;
   const GskColorStop* v8 = (const GskColorStop*)(get_ptr(s8)); (void)v8;
-  gsize v9 = (gsize)((gsize)REAL(s9)[0]); (void)v9;
+  gsize v9 = (gsize)((gsize)_unbox_numeric(s9)); (void)v9;
   gtk_snapshot_append_radial_gradient(v1, v2, v3, v4, v5, v6, v7, v8, v9);
   return R_NilValue;
 }
@@ -29676,7 +29684,7 @@ SEXP R_gtk_snapshot_append_repeating_linear_gradient(SEXP s1, SEXP s2, SEXP s3, 
   const graphene_point_t* v3 = (const graphene_point_t*)(get_ptr(s3)); (void)v3;
   const graphene_point_t* v4 = (const graphene_point_t*)(get_ptr(s4)); (void)v4;
   const GskColorStop* v5 = (const GskColorStop*)(get_ptr(s5)); (void)v5;
-  gsize v6 = (gsize)((gsize)REAL(s6)[0]); (void)v6;
+  gsize v6 = (gsize)((gsize)_unbox_numeric(s6)); (void)v6;
   gtk_snapshot_append_repeating_linear_gradient(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -29686,12 +29694,12 @@ SEXP R_gtk_snapshot_append_repeating_radial_gradient(SEXP s1, SEXP s2, SEXP s3, 
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   const graphene_point_t* v3 = (const graphene_point_t*)(get_ptr(s3)); (void)v3;
-  gfloat v4 = (gfloat)((gfloat)REAL(s4)[0]); (void)v4;
-  gfloat v5 = (gfloat)((gfloat)REAL(s5)[0]); (void)v5;
-  gfloat v6 = (gfloat)((gfloat)REAL(s6)[0]); (void)v6;
-  gfloat v7 = (gfloat)((gfloat)REAL(s7)[0]); (void)v7;
+  gfloat v4 = (gfloat)((gfloat)_unbox_numeric(s4)); (void)v4;
+  gfloat v5 = (gfloat)((gfloat)_unbox_numeric(s5)); (void)v5;
+  gfloat v6 = (gfloat)((gfloat)_unbox_numeric(s6)); (void)v6;
+  gfloat v7 = (gfloat)((gfloat)_unbox_numeric(s7)); (void)v7;
   const GskColorStop* v8 = (const GskColorStop*)(get_ptr(s8)); (void)v8;
-  gsize v9 = (gsize)((gsize)REAL(s9)[0]); (void)v9;
+  gsize v9 = (gsize)((gsize)_unbox_numeric(s9)); (void)v9;
   gtk_snapshot_append_repeating_radial_gradient(v1, v2, v3, v4, v5, v6, v7, v8, v9);
   return R_NilValue;
 }
@@ -29725,7 +29733,7 @@ SEXP R_gtk_snapshot_gl_shader_pop_texture(SEXP s1) {
 
 SEXP R_gtk_snapshot_perspective(SEXP s1, SEXP s2) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_snapshot_perspective(v1, v2);
   return R_NilValue;
 }
@@ -29748,7 +29756,7 @@ SEXP R_gtk_snapshot_push_blend(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_snapshot_push_blur(SEXP s1, SEXP s2) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_snapshot_push_blur(v1, v2);
   return R_NilValue;
 }
@@ -29773,7 +29781,7 @@ SEXP R_gtk_snapshot_push_color_matrix(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_snapshot_push_cross_fade(SEXP s1, SEXP s2) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_snapshot_push_cross_fade(v1, v2);
   return R_NilValue;
 }
@@ -29799,7 +29807,7 @@ SEXP R_gtk_snapshot_push_mask(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_snapshot_push_opacity(SEXP s1, SEXP s2) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_snapshot_push_opacity(v1, v2);
   return R_NilValue;
 }
@@ -29825,7 +29833,7 @@ SEXP R_gtk_snapshot_push_rounded_clip(SEXP s1, SEXP s2) {
 SEXP R_gtk_snapshot_push_shadow(SEXP s1, SEXP s2, SEXP s3) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   const GskShadow* v2 = (const GskShadow*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gtk_snapshot_push_shadow(v1, v2, v3);
   return R_NilValue;
 }
@@ -29834,10 +29842,10 @@ SEXP R_gtk_snapshot_push_shadow(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_snapshot_render_background(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   GtkStyleContext* v2 = (GtkStyleContext*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_snapshot_render_background(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -29846,10 +29854,10 @@ SEXP R_gtk_snapshot_render_background(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
 SEXP R_gtk_snapshot_render_focus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   GtkStyleContext* v2 = (GtkStyleContext*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_snapshot_render_focus(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -29858,10 +29866,10 @@ SEXP R_gtk_snapshot_render_focus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
 SEXP R_gtk_snapshot_render_frame(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   GtkStyleContext* v2 = (GtkStyleContext*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_snapshot_render_frame(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -29870,10 +29878,10 @@ SEXP R_gtk_snapshot_render_frame(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
 SEXP R_gtk_snapshot_render_insertion_cursor(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   GtkStyleContext* v2 = (GtkStyleContext*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   PangoLayout* v5 = (PangoLayout*)(get_ptr(s5)); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   PangoDirection v7 = (PangoDirection)(get_ptr(s7)); (void)v7;
   gtk_snapshot_render_insertion_cursor(v1, v2, v3, v4, v5, v6, v7);
   return R_NilValue;
@@ -29883,8 +29891,8 @@ SEXP R_gtk_snapshot_render_insertion_cursor(SEXP s1, SEXP s2, SEXP s3, SEXP s4, 
 SEXP R_gtk_snapshot_render_layout(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   GtkStyleContext* v2 = (GtkStyleContext*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   PangoLayout* v5 = (PangoLayout*)(get_ptr(s5)); (void)v5;
   gtk_snapshot_render_layout(v1, v2, v3, v4, v5);
   return R_NilValue;
@@ -29900,7 +29908,7 @@ SEXP R_gtk_snapshot_restore(SEXP s1) {
 
 SEXP R_gtk_snapshot_rotate(SEXP s1, SEXP s2) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_snapshot_rotate(v1, v2);
   return R_NilValue;
 }
@@ -29908,7 +29916,7 @@ SEXP R_gtk_snapshot_rotate(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_snapshot_rotate_3d(SEXP s1, SEXP s2, SEXP s3) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   const graphene_vec3_t* v3 = (const graphene_vec3_t*)(get_ptr(s3)); (void)v3;
   gtk_snapshot_rotate_3d(v1, v2, v3);
   return R_NilValue;
@@ -29924,8 +29932,8 @@ SEXP R_gtk_snapshot_save(SEXP s1) {
 
 SEXP R_gtk_snapshot_scale(SEXP s1, SEXP s2, SEXP s3) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
-  gfloat v3 = (gfloat)((gfloat)REAL(s3)[0]); (void)v3;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
+  gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
   gtk_snapshot_scale(v1, v2, v3);
   return R_NilValue;
 }
@@ -29933,9 +29941,9 @@ SEXP R_gtk_snapshot_scale(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_snapshot_scale_3d(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
-  gfloat v3 = (gfloat)((gfloat)REAL(s3)[0]); (void)v3;
-  gfloat v4 = (gfloat)((gfloat)REAL(s4)[0]); (void)v4;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
+  gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
+  gfloat v4 = (gfloat)((gfloat)_unbox_numeric(s4)); (void)v4;
   gtk_snapshot_scale_3d(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -30179,8 +30187,8 @@ SEXP R_gtk_sorter_get_order(SEXP s1) {
 
 SEXP R_gtk_spin_button_new(SEXP s1, SEXP s2, SEXP s3) {
   GtkAdjustment* v1 = (s1 != R_NilValue) ? (GtkAdjustment*)(get_ptr(s1)) : NULL; (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_spin_button_new(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -30196,9 +30204,9 @@ SEXP R_gtk_spin_button_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gtk_spin_button_new_with_range(SEXP s1, SEXP s2, SEXP s3) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_spin_button_new_with_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -30216,8 +30224,8 @@ SEXP R_gtk_spin_button_new_with_range(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_spin_button_configure(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
   GtkAdjustment* v2 = (s2 != R_NilValue) ? (GtkAdjustment*)(get_ptr(s2)) : NULL; (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  guint v4 = (guint)((guint)INTEGER(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  guint v4 = (guint)((guint)_unbox_numeric(s4)); (void)v4;
   gtk_spin_button_configure(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -30423,7 +30431,7 @@ SEXP R_gtk_spin_button_set_adjustment(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_spin_button_set_climb_rate(SEXP s1, SEXP s2) {
   GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_spin_button_set_climb_rate(v1, v2);
   return R_NilValue;
 }
@@ -30431,7 +30439,7 @@ SEXP R_gtk_spin_button_set_climb_rate(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_spin_button_set_digits(SEXP s1, SEXP s2) {
   GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_spin_button_set_digits(v1, v2);
   return R_NilValue;
 }
@@ -30439,8 +30447,8 @@ SEXP R_gtk_spin_button_set_digits(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_spin_button_set_increments(SEXP s1, SEXP s2, SEXP s3) {
   GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gtk_spin_button_set_increments(v1, v2, v3);
   return R_NilValue;
 }
@@ -30456,8 +30464,8 @@ SEXP R_gtk_spin_button_set_numeric(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_spin_button_set_range(SEXP s1, SEXP s2, SEXP s3) {
   GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gtk_spin_button_set_range(v1, v2, v3);
   return R_NilValue;
 }
@@ -30481,7 +30489,7 @@ SEXP R_gtk_spin_button_set_update_policy(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_spin_button_set_value(SEXP s1, SEXP s2) {
   GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_spin_button_set_value(v1, v2);
   return R_NilValue;
 }
@@ -30498,7 +30506,7 @@ SEXP R_gtk_spin_button_set_wrap(SEXP s1, SEXP s2) {
 SEXP R_gtk_spin_button_spin(SEXP s1, SEXP s2, SEXP s3) {
   GtkSpinButton* v1 = (GtkSpinButton*)(get_ptr(s1)); (void)v1;
   GtkSpinType v2 = (GtkSpinType)((GtkSpinType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gtk_spin_button_spin(v1, v2, v3);
   return R_NilValue;
 }
@@ -30839,7 +30847,7 @@ SEXP R_gtk_stack_set_interpolate_size(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_stack_set_transition_duration(SEXP s1, SEXP s2) {
   GtkStack* v1 = (GtkStack*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_stack_set_transition_duration(v1, v2);
   return R_NilValue;
 }
@@ -31161,7 +31169,7 @@ SEXP R_gtk_statusbar_get_context_id(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_statusbar_pop(SEXP s1, SEXP s2) {
   GtkStatusbar* v1 = (GtkStatusbar*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_statusbar_pop(v1, v2);
   return R_NilValue;
 }
@@ -31169,7 +31177,7 @@ SEXP R_gtk_statusbar_pop(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_statusbar_push(SEXP s1, SEXP s2, SEXP s3) {
   GtkStatusbar* v1 = (GtkStatusbar*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   guint _ret = (guint)gtk_statusbar_push(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -31187,8 +31195,8 @@ SEXP R_gtk_statusbar_push(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_statusbar_remove(SEXP s1, SEXP s2, SEXP s3) {
   GtkStatusbar* v1 = (GtkStatusbar*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_statusbar_remove(v1, v2, v3);
   return R_NilValue;
 }
@@ -31196,7 +31204,7 @@ SEXP R_gtk_statusbar_remove(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_statusbar_remove_all(SEXP s1, SEXP s2) {
   GtkStatusbar* v1 = (GtkStatusbar*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_statusbar_remove_all(v1, v2);
   return R_NilValue;
 }
@@ -31340,7 +31348,7 @@ SEXP R_gtk_string_list_append(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_string_list_get_string(SEXP s1, SEXP s2) {
   GtkStringList* v1 = (GtkStringList*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_string_list_get_string(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -31357,7 +31365,7 @@ SEXP R_gtk_string_list_get_string(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_string_list_remove(SEXP s1, SEXP s2) {
   GtkStringList* v1 = (GtkStringList*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_string_list_remove(v1, v2);
   return R_NilValue;
 }
@@ -31365,8 +31373,8 @@ SEXP R_gtk_string_list_remove(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_string_list_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkStringList* v1 = (GtkStringList*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   const char* const* v4 = (s4 != R_NilValue) ? (const char* const*)(get_ptr(s4)) : NULL; (void)v4;
   gtk_string_list_splice(v1, v2, v3, v4);
   return R_NilValue;
@@ -31504,7 +31512,7 @@ SEXP R_gtk_string_sorter_set_ignore_case(SEXP s1, SEXP s2) {
 SEXP R_gtk_style_context_add_provider_for_display(SEXP s1, SEXP s2, SEXP s3) {
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   GtkStyleProvider* v2 = (GtkStyleProvider*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_style_context_add_provider_for_display(v1, v2, v3);
   return R_NilValue;
 }
@@ -31529,7 +31537,7 @@ SEXP R_gtk_style_context_add_class(SEXP s1, SEXP s2) {
 SEXP R_gtk_style_context_add_provider(SEXP s1, SEXP s2, SEXP s3) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   GtkStyleProvider* v2 = (GtkStyleProvider*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gtk_style_context_add_provider(v1, v2, v3);
   return R_NilValue;
 }
@@ -31731,7 +31739,7 @@ SEXP R_gtk_style_context_set_display(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_style_context_set_scale(SEXP s1, SEXP s2) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_style_context_set_scale(v1, v2);
   return R_NilValue;
 }
@@ -31860,7 +31868,7 @@ SEXP R_gtk_text_new_with_buffer(SEXP s1) {
 
 SEXP R_gtk_text_compute_cursor_extents(SEXP s1, SEXP s2) {
   GtkText* v1 = (GtkText*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   graphene_rect_t _out_strong = {0}; (void)_out_strong;
   graphene_rect_t _out_weak = {0}; (void)_out_weak;
   gtk_text_compute_cursor_extents(v1, v2, &_out_strong, &_out_weak);
@@ -32212,7 +32220,7 @@ SEXP R_gtk_text_set_input_purpose(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_set_invisible_char(SEXP s1, SEXP s2) {
   GtkText* v1 = (GtkText*)(get_ptr(s1)); (void)v1;
-  gunichar v2 = (gunichar)((gunichar)INTEGER(s2)[0]); (void)v2;
+  gunichar v2 = (gunichar)((gunichar)_unbox_numeric(s2)); (void)v2;
   gtk_text_set_invisible_char(v1, v2);
   return R_NilValue;
 }
@@ -32220,7 +32228,7 @@ SEXP R_gtk_text_set_invisible_char(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_set_max_length(SEXP s1, SEXP s2) {
   GtkText* v1 = (GtkText*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_set_max_length(v1, v2);
   return R_NilValue;
 }
@@ -32653,7 +32661,7 @@ SEXP R_gtk_text_buffer_get_iter_at_child_anchor(SEXP s1, SEXP s2) {
 SEXP R_gtk_text_buffer_get_iter_at_line(SEXP s1, SEXP s2) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   GtkTextIter _out_iter = {0}; (void)_out_iter;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_buffer_get_iter_at_line(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
@@ -32676,8 +32684,8 @@ SEXP R_gtk_text_buffer_get_iter_at_line(SEXP s1, SEXP s2) {
 SEXP R_gtk_text_buffer_get_iter_at_line_index(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   GtkTextIter _out_iter = {0}; (void)_out_iter;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_text_buffer_get_iter_at_line_index(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
@@ -32700,8 +32708,8 @@ SEXP R_gtk_text_buffer_get_iter_at_line_index(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_text_buffer_get_iter_at_line_offset(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   GtkTextIter _out_iter = {0}; (void)_out_iter;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_text_buffer_get_iter_at_line_offset(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
@@ -32742,7 +32750,7 @@ SEXP R_gtk_text_buffer_get_iter_at_mark(SEXP s1, SEXP s2) {
 SEXP R_gtk_text_buffer_get_iter_at_offset(SEXP s1, SEXP s2) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   GtkTextIter _out_iter = {0}; (void)_out_iter;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_buffer_get_iter_at_offset(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -32957,7 +32965,7 @@ SEXP R_gtk_text_buffer_insert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   GtkTextIter* v2 = (GtkTextIter*)(get_ptr(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_text_buffer_insert(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -32966,7 +32974,7 @@ SEXP R_gtk_text_buffer_insert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_gtk_text_buffer_insert_at_cursor(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_text_buffer_insert_at_cursor(v1, v2, v3);
   return R_NilValue;
 }
@@ -32985,7 +32993,7 @@ SEXP R_gtk_text_buffer_insert_interactive(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   GtkTextIter* v2 = (GtkTextIter*)(get_ptr(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gboolean v5 = (gboolean)((gboolean)LOGICAL(s5)[0]); (void)v5;
   gboolean _ret = (gboolean)gtk_text_buffer_insert_interactive(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -33004,7 +33012,7 @@ SEXP R_gtk_text_buffer_insert_interactive(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
 SEXP R_gtk_text_buffer_insert_interactive_at_cursor(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   gboolean _ret = (gboolean)gtk_text_buffer_insert_interactive_at_cursor(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -33024,7 +33032,7 @@ SEXP R_gtk_text_buffer_insert_markup(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   GtkTextIter* v2 = (GtkTextIter*)(get_ptr(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_text_buffer_insert_markup(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -33168,7 +33176,7 @@ SEXP R_gtk_text_buffer_set_enable_undo(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_buffer_set_max_undo_levels(SEXP s1, SEXP s2) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_text_buffer_set_max_undo_levels(v1, v2);
   return R_NilValue;
 }
@@ -33185,7 +33193,7 @@ SEXP R_gtk_text_buffer_set_modified(SEXP s1, SEXP s2) {
 SEXP R_gtk_text_buffer_set_text(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextBuffer* v1 = (GtkTextBuffer*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_text_buffer_set_text(v1, v2, v3);
   return R_NilValue;
 }
@@ -33294,7 +33302,7 @@ SEXP R_gtk_text_iter_backward_char(SEXP s1) {
 
 SEXP R_gtk_text_iter_backward_chars(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_backward_chars(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33327,7 +33335,7 @@ SEXP R_gtk_text_iter_backward_cursor_position(SEXP s1) {
 
 SEXP R_gtk_text_iter_backward_cursor_positions(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_backward_cursor_positions(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33379,7 +33387,7 @@ SEXP R_gtk_text_iter_backward_line(SEXP s1) {
 
 SEXP R_gtk_text_iter_backward_lines(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_backward_lines(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33443,7 +33451,7 @@ SEXP R_gtk_text_iter_backward_sentence_start(SEXP s1) {
 
 SEXP R_gtk_text_iter_backward_sentence_starts(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_backward_sentence_starts(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33493,7 +33501,7 @@ SEXP R_gtk_text_iter_backward_visible_cursor_position(SEXP s1) {
 
 SEXP R_gtk_text_iter_backward_visible_cursor_positions(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_cursor_positions(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33526,7 +33534,7 @@ SEXP R_gtk_text_iter_backward_visible_line(SEXP s1) {
 
 SEXP R_gtk_text_iter_backward_visible_lines(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_lines(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33559,7 +33567,7 @@ SEXP R_gtk_text_iter_backward_visible_word_start(SEXP s1) {
 
 SEXP R_gtk_text_iter_backward_visible_word_starts(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_word_starts(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33592,7 +33600,7 @@ SEXP R_gtk_text_iter_backward_word_start(SEXP s1) {
 
 SEXP R_gtk_text_iter_backward_word_starts(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_backward_word_starts(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33774,7 +33782,7 @@ SEXP R_gtk_text_iter_forward_char(SEXP s1) {
 
 SEXP R_gtk_text_iter_forward_chars(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_forward_chars(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33807,7 +33815,7 @@ SEXP R_gtk_text_iter_forward_cursor_position(SEXP s1) {
 
 SEXP R_gtk_text_iter_forward_cursor_positions(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_forward_cursor_positions(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33859,7 +33867,7 @@ SEXP R_gtk_text_iter_forward_line(SEXP s1) {
 
 SEXP R_gtk_text_iter_forward_lines(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_forward_lines(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33923,7 +33931,7 @@ SEXP R_gtk_text_iter_forward_sentence_end(SEXP s1) {
 
 SEXP R_gtk_text_iter_forward_sentence_ends(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_forward_sentence_ends(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -33996,7 +34004,7 @@ SEXP R_gtk_text_iter_forward_visible_cursor_position(SEXP s1) {
 
 SEXP R_gtk_text_iter_forward_visible_cursor_positions(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_cursor_positions(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -34029,7 +34037,7 @@ SEXP R_gtk_text_iter_forward_visible_line(SEXP s1) {
 
 SEXP R_gtk_text_iter_forward_visible_lines(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_lines(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -34062,7 +34070,7 @@ SEXP R_gtk_text_iter_forward_visible_word_end(SEXP s1) {
 
 SEXP R_gtk_text_iter_forward_visible_word_ends(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_word_ends(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -34095,7 +34103,7 @@ SEXP R_gtk_text_iter_forward_word_end(SEXP s1) {
 
 SEXP R_gtk_text_iter_forward_word_ends(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)gtk_text_iter_forward_word_ends(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -34567,7 +34575,7 @@ SEXP R_gtk_text_iter_order(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_iter_set_line(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_iter_set_line(v1, v2);
   return R_NilValue;
 }
@@ -34575,7 +34583,7 @@ SEXP R_gtk_text_iter_set_line(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_iter_set_line_index(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_iter_set_line_index(v1, v2);
   return R_NilValue;
 }
@@ -34583,7 +34591,7 @@ SEXP R_gtk_text_iter_set_line_index(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_iter_set_line_offset(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_iter_set_line_offset(v1, v2);
   return R_NilValue;
 }
@@ -34591,7 +34599,7 @@ SEXP R_gtk_text_iter_set_line_offset(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_iter_set_offset(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_iter_set_offset(v1, v2);
   return R_NilValue;
 }
@@ -34599,7 +34607,7 @@ SEXP R_gtk_text_iter_set_offset(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_iter_set_visible_line_index(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_iter_set_visible_line_index(v1, v2);
   return R_NilValue;
 }
@@ -34607,7 +34615,7 @@ SEXP R_gtk_text_iter_set_visible_line_index(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_iter_set_visible_line_offset(SEXP s1, SEXP s2) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_iter_set_visible_line_offset(v1, v2);
   return R_NilValue;
 }
@@ -34842,7 +34850,7 @@ SEXP R_gtk_text_tag_get_priority(SEXP s1) {
 
 SEXP R_gtk_text_tag_set_priority(SEXP s1, SEXP s2) {
   GtkTextTag* v1 = (GtkTextTag*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_tag_set_priority(v1, v2);
   return R_NilValue;
 }
@@ -34975,8 +34983,8 @@ SEXP R_gtk_text_view_add_child_at_anchor(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_text_view_add_overlay(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_text_view_add_overlay(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -35019,8 +35027,8 @@ SEXP R_gtk_text_view_backward_display_line_start(SEXP s1, SEXP s2) {
 SEXP R_gtk_text_view_buffer_to_window_coords(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkTextWindowType v2 = (GtkTextWindowType)((GtkTextWindowType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   int _out_window_x = 0; (void)_out_window_x;
   int _out_window_y = 0; (void)_out_window_y;
   gtk_text_view_buffer_to_window_coords(v1, v2, v3, v4, &_out_window_x, &_out_window_y);
@@ -35264,8 +35272,8 @@ SEXP R_gtk_text_view_get_input_purpose(SEXP s1) {
 SEXP R_gtk_text_view_get_iter_at_location(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkTextIter _out_iter = {0}; (void)_out_iter;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_text_view_get_iter_at_location(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
@@ -35289,8 +35297,8 @@ SEXP R_gtk_text_view_get_iter_at_position(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkTextIter _out_iter = {0}; (void)_out_iter;
   int _out_trailing = 0; (void)_out_trailing;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_text_view_get_iter_at_position(v1, &_out_iter, &_out_trailing, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
@@ -35368,7 +35376,7 @@ SEXP R_gtk_text_view_get_left_margin(SEXP s1) {
 SEXP R_gtk_text_view_get_line_at_y(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkTextIter _out_target_iter = {0}; (void)_out_target_iter;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _out_line_top = 0; (void)_out_line_top;
   gtk_text_view_get_line_at_y(v1, &_out_target_iter, v2, &_out_line_top);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -35643,8 +35651,8 @@ SEXP R_gtk_text_view_move_mark_onscreen(SEXP s1, SEXP s2) {
 SEXP R_gtk_text_view_move_overlay(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_text_view_move_overlay(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -35653,7 +35661,7 @@ SEXP R_gtk_text_view_move_overlay(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_gtk_text_view_move_visually(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkTextIter* v2 = (GtkTextIter*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_text_view_move_visually(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -35717,10 +35725,10 @@ SEXP R_gtk_text_view_scroll_mark_onscreen(SEXP s1, SEXP s2) {
 SEXP R_gtk_text_view_scroll_to_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkTextIter* v2 = (GtkTextIter*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gboolean _ret = (gboolean)gtk_text_view_scroll_to_iter(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -35738,10 +35746,10 @@ SEXP R_gtk_text_view_scroll_to_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
 SEXP R_gtk_text_view_scroll_to_mark(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkTextMark* v2 = (GtkTextMark*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_text_view_scroll_to_mark(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -35757,7 +35765,7 @@ SEXP R_gtk_text_view_set_accepts_tab(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_view_set_bottom_margin(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_view_set_bottom_margin(v1, v2);
   return R_NilValue;
 }
@@ -35806,7 +35814,7 @@ SEXP R_gtk_text_view_set_gutter(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_text_view_set_indent(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_view_set_indent(v1, v2);
   return R_NilValue;
 }
@@ -35838,7 +35846,7 @@ SEXP R_gtk_text_view_set_justification(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_view_set_left_margin(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_view_set_left_margin(v1, v2);
   return R_NilValue;
 }
@@ -35862,7 +35870,7 @@ SEXP R_gtk_text_view_set_overwrite(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_view_set_pixels_above_lines(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_view_set_pixels_above_lines(v1, v2);
   return R_NilValue;
 }
@@ -35870,7 +35878,7 @@ SEXP R_gtk_text_view_set_pixels_above_lines(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_view_set_pixels_below_lines(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_view_set_pixels_below_lines(v1, v2);
   return R_NilValue;
 }
@@ -35878,7 +35886,7 @@ SEXP R_gtk_text_view_set_pixels_below_lines(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_view_set_pixels_inside_wrap(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_view_set_pixels_inside_wrap(v1, v2);
   return R_NilValue;
 }
@@ -35886,7 +35894,7 @@ SEXP R_gtk_text_view_set_pixels_inside_wrap(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_view_set_right_margin(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_view_set_right_margin(v1, v2);
   return R_NilValue;
 }
@@ -35902,7 +35910,7 @@ SEXP R_gtk_text_view_set_tabs(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_text_view_set_top_margin(SEXP s1, SEXP s2) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_text_view_set_top_margin(v1, v2);
   return R_NilValue;
 }
@@ -35936,8 +35944,8 @@ SEXP R_gtk_text_view_starts_display_line(SEXP s1, SEXP s2) {
 SEXP R_gtk_text_view_window_to_buffer_coords(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTextView* v1 = (GtkTextView*)(get_ptr(s1)); (void)v1;
   GtkTextWindowType v2 = (GtkTextWindowType)((GtkTextWindowType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   int _out_buffer_x = 0; (void)_out_buffer_x;
   int _out_buffer_y = 0; (void)_out_buffer_y;
   gtk_text_view_window_to_buffer_coords(v1, v2, v3, v4, &_out_buffer_x, &_out_buffer_y);
@@ -36403,7 +36411,7 @@ SEXP R_gtk_tree_list_model_get_autoexpand(SEXP s1) {
 
 SEXP R_gtk_tree_list_model_get_child_row(SEXP s1, SEXP s2) {
   GtkTreeListModel* v1 = (GtkTreeListModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_tree_list_model_get_child_row(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -36452,7 +36460,7 @@ SEXP R_gtk_tree_list_model_get_passthrough(SEXP s1) {
 
 SEXP R_gtk_tree_list_model_get_row(SEXP s1, SEXP s2) {
   GtkTreeListModel* v1 = (GtkTreeListModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_tree_list_model_get_row(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -36477,7 +36485,7 @@ SEXP R_gtk_tree_list_model_set_autoexpand(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_list_row_get_child_row(SEXP s1, SEXP s2) {
   GtkTreeListRow* v1 = (GtkTreeListRow*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_tree_list_row_get_child_row(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -36680,7 +36688,7 @@ SEXP R_gtk_tree_model_foreach(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_tree_model_get_column_type(SEXP s1, SEXP s2) {
   GtkTreeModel* v1 = (GtkTreeModel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GType _ret = (GType)gtk_tree_model_get_column_type(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -36832,7 +36840,7 @@ SEXP R_gtk_tree_model_get_string_from_iter(SEXP s1, SEXP s2) {
 SEXP R_gtk_tree_model_get_value(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeModel* v1 = (GtkTreeModel*)(get_ptr(s1)); (void)v1;
   GtkTreeIter* v2 = (GtkTreeIter*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GValue _out_value = {0}; (void)_out_value;
   gtk_tree_model_get_value(v1, v2, v3, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -36926,7 +36934,7 @@ SEXP R_gtk_tree_model_iter_nth_child(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeModel* v1 = (GtkTreeModel*)(get_ptr(s1)); (void)v1;
   GtkTreeIter _out_iter = {0}; (void)_out_iter;
   GtkTreeIter* v2 = (s2 != R_NilValue) ? (GtkTreeIter*)(get_ptr(s2)) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_tree_model_iter_nth_child(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
@@ -37034,7 +37042,7 @@ SEXP R_gtk_tree_model_rows_reordered_with_length(SEXP s1, SEXP s2, SEXP s3, SEXP
   GtkTreePath* v2 = (GtkTreePath*)(get_ptr(s2)); (void)v2;
   GtkTreeIter* v3 = (s3 != R_NilValue) ? (GtkTreeIter*)(get_ptr(s3)) : NULL; (void)v3;
   int* v4 = (int*)(get_ptr(s4)); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gtk_tree_model_rows_reordered_with_length(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -37155,7 +37163,7 @@ SEXP R_gtk_tree_model_filter_refilter(SEXP s1) {
 
 SEXP R_gtk_tree_model_filter_set_modify_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkTreeModelFilter* v1 = (GtkTreeModelFilter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GType* v3 = (GType*)(get_ptr(s3)); (void)v3;
   GtkTreeModelFilterModifyFunc v4 = (GtkTreeModelFilterModifyFunc)(get_ptr(s4)); (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -37167,7 +37175,7 @@ SEXP R_gtk_tree_model_filter_set_modify_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4,
 
 SEXP R_gtk_tree_model_filter_set_visible_column(SEXP s1, SEXP s2) {
   GtkTreeModelFilter* v1 = (GtkTreeModelFilter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_model_filter_set_visible_column(v1, v2);
   return R_NilValue;
 }
@@ -37355,7 +37363,7 @@ SEXP R_gtk_tree_path_new_first(void) {
 
 SEXP R_gtk_tree_path_new_from_indicesv(SEXP s1, SEXP s2) {
   int* v1 = (int*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_tree_path_new_from_indicesv(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -37388,7 +37396,7 @@ SEXP R_gtk_tree_path_new_from_string(SEXP s1) {
 
 SEXP R_gtk_tree_path_append_index(SEXP s1, SEXP s2) {
   GtkTreePath* v1 = (GtkTreePath*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_path_append_index(v1, v2);
   return R_NilValue;
 }
@@ -37522,7 +37530,7 @@ SEXP R_gtk_tree_path_next(SEXP s1) {
 
 SEXP R_gtk_tree_path_prepend_index(SEXP s1, SEXP s2) {
   GtkTreePath* v1 = (GtkTreePath*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_path_prepend_index(v1, v2);
   return R_NilValue;
 }
@@ -37977,7 +37985,7 @@ SEXP R_gtk_tree_sortable_set_default_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s
 
 SEXP R_gtk_tree_sortable_set_sort_column_id(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeSortable* v1 = (GtkTreeSortable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkSortType v3 = (GtkSortType)((GtkSortType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gtk_tree_sortable_set_sort_column_id(v1, v2, v3);
   return R_NilValue;
@@ -37986,7 +37994,7 @@ SEXP R_gtk_tree_sortable_set_sort_column_id(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_tree_sortable_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkTreeSortable* v1 = (GtkTreeSortable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GtkTreeIterCompareFunc v3 = (GtkTreeIterCompareFunc)(get_ptr(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
@@ -38003,7 +38011,7 @@ SEXP R_gtk_tree_sortable_sort_column_changed(SEXP s1) {
 
 
 SEXP R_gtk_tree_store_newv(SEXP s1, SEXP s2) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GType* v2 = (GType*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_tree_store_newv(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -38048,7 +38056,7 @@ SEXP R_gtk_tree_store_insert(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeStore* v1 = (GtkTreeStore*)(get_ptr(s1)); (void)v1;
   GtkTreeIter _out_iter = {0}; (void)_out_iter;
   GtkTreeIter* v2 = (s2 != R_NilValue) ? (GtkTreeIter*)(get_ptr(s2)) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_tree_store_insert(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -38105,10 +38113,10 @@ SEXP R_gtk_tree_store_insert_with_valuesv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
   GtkTreeStore* v1 = (GtkTreeStore*)(get_ptr(s1)); (void)v1;
   GtkTreeIter _out_iter = {0}; (void)_out_iter;
   GtkTreeIter* v2 = (s2 != R_NilValue) ? (GtkTreeIter*)(get_ptr(s2)) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int* v4 = (int*)(get_ptr(s4)); (void)v4;
   GValue* v5 = (GValue*)(get_ptr(s5)); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   gtk_tree_store_insert_with_valuesv(v1, &_out_iter, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -38230,7 +38238,7 @@ SEXP R_gtk_tree_store_remove(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_store_set_column_types(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeStore* v1 = (GtkTreeStore*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GType* v3 = (GType*)(get_ptr(s3)); (void)v3;
   gtk_tree_store_set_column_types(v1, v2, v3);
   return R_NilValue;
@@ -38240,7 +38248,7 @@ SEXP R_gtk_tree_store_set_column_types(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_tree_store_set_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTreeStore* v1 = (GtkTreeStore*)(get_ptr(s1)); (void)v1;
   GtkTreeIter* v2 = (GtkTreeIter*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GValue* v4 = (GValue*)(get_ptr(s4)); (void)v4;
   gtk_tree_store_set_value(v1, v2, v3, v4);
   return R_NilValue;
@@ -38252,7 +38260,7 @@ SEXP R_gtk_tree_store_set_valuesv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkTreeIter* v2 = (GtkTreeIter*)(get_ptr(s2)); (void)v2;
   int* v3 = (int*)(get_ptr(s3)); (void)v3;
   GValue* v4 = (GValue*)(get_ptr(s4)); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gtk_tree_store_set_valuesv(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -38349,8 +38357,8 @@ SEXP R_gtk_tree_view_columns_autosize(SEXP s1) {
 
 SEXP R_gtk_tree_view_convert_bin_window_to_tree_coords(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_tx = 0; (void)_out_tx;
   int _out_ty = 0; (void)_out_ty;
   gtk_tree_view_convert_bin_window_to_tree_coords(v1, v2, v3, &_out_tx, &_out_ty);
@@ -38374,8 +38382,8 @@ SEXP R_gtk_tree_view_convert_bin_window_to_tree_coords(SEXP s1, SEXP s2, SEXP s3
 
 SEXP R_gtk_tree_view_convert_bin_window_to_widget_coords(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_wx = 0; (void)_out_wx;
   int _out_wy = 0; (void)_out_wy;
   gtk_tree_view_convert_bin_window_to_widget_coords(v1, v2, v3, &_out_wx, &_out_wy);
@@ -38399,8 +38407,8 @@ SEXP R_gtk_tree_view_convert_bin_window_to_widget_coords(SEXP s1, SEXP s2, SEXP 
 
 SEXP R_gtk_tree_view_convert_tree_to_bin_window_coords(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_bx = 0; (void)_out_bx;
   int _out_by = 0; (void)_out_by;
   gtk_tree_view_convert_tree_to_bin_window_coords(v1, v2, v3, &_out_bx, &_out_by);
@@ -38424,8 +38432,8 @@ SEXP R_gtk_tree_view_convert_tree_to_bin_window_coords(SEXP s1, SEXP s2, SEXP s3
 
 SEXP R_gtk_tree_view_convert_tree_to_widget_coords(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_wx = 0; (void)_out_wx;
   int _out_wy = 0; (void)_out_wy;
   gtk_tree_view_convert_tree_to_widget_coords(v1, v2, v3, &_out_wx, &_out_wy);
@@ -38449,8 +38457,8 @@ SEXP R_gtk_tree_view_convert_tree_to_widget_coords(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_tree_view_convert_widget_to_bin_window_coords(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_bx = 0; (void)_out_bx;
   int _out_by = 0; (void)_out_by;
   gtk_tree_view_convert_widget_to_bin_window_coords(v1, v2, v3, &_out_bx, &_out_by);
@@ -38474,8 +38482,8 @@ SEXP R_gtk_tree_view_convert_widget_to_bin_window_coords(SEXP s1, SEXP s2, SEXP 
 
 SEXP R_gtk_tree_view_convert_widget_to_tree_coords(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_tx = 0; (void)_out_tx;
   int _out_ty = 0; (void)_out_ty;
   gtk_tree_view_convert_widget_to_tree_coords(v1, v2, v3, &_out_tx, &_out_ty);
@@ -38622,7 +38630,7 @@ SEXP R_gtk_tree_view_get_cell_area(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_tree_view_get_column(SEXP s1, SEXP s2) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_tree_view_get_column(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -38678,8 +38686,8 @@ SEXP R_gtk_tree_view_get_cursor(SEXP s1) {
 
 SEXP R_gtk_tree_view_get_dest_row_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GtkTreePath* _out_path = 0; (void)_out_path;
   GtkTreeViewDropPosition _out_pos = {0}; (void)_out_pos;
   gboolean _ret = (gboolean)gtk_tree_view_get_dest_row_at_pos(v1, v2, v3, &_out_path, &_out_pos);
@@ -38923,8 +38931,8 @@ SEXP R_gtk_tree_view_get_n_columns(SEXP s1) {
 
 SEXP R_gtk_tree_view_get_path_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GtkTreePath* _out_path = 0; (void)_out_path;
   GtkTreeViewColumn* _out_column = 0; (void)_out_column;
   int _out_cell_x = 0; (void)_out_cell_x;
@@ -39077,8 +39085,8 @@ SEXP R_gtk_tree_view_get_tooltip_column(SEXP s1) {
 
 SEXP R_gtk_tree_view_get_tooltip_context(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GtkTreeModel* _out_model = 0; (void)_out_model;
   GtkTreePath* _out_path = 0; (void)_out_path;
@@ -39160,7 +39168,7 @@ SEXP R_gtk_tree_view_get_visible_rect(SEXP s1) {
 SEXP R_gtk_tree_view_insert_column(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
   GtkTreeViewColumn* v2 = (GtkTreeViewColumn*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _ret = (int)gtk_tree_view_insert_column(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -39177,7 +39185,7 @@ SEXP R_gtk_tree_view_insert_column(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_tree_view_insert_column_with_data_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   GtkCellRenderer* v4 = (GtkCellRenderer*)(get_ptr(s4)); (void)v4;
   GtkTreeCellDataFunc v5 = (GtkTreeCellDataFunc)(get_ptr(s5)); (void)v5;
@@ -39199,8 +39207,8 @@ SEXP R_gtk_tree_view_insert_column_with_data_func(SEXP s1, SEXP s2, SEXP s3, SEX
 
 SEXP R_gtk_tree_view_is_blank_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GtkTreePath* _out_path = 0; (void)_out_path;
   GtkTreeViewColumn* _out_column = 0; (void)_out_column;
   int _out_cell_x = 0; (void)_out_cell_x;
@@ -39321,8 +39329,8 @@ SEXP R_gtk_tree_view_scroll_to_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
   GtkTreePath* v2 = (s2 != R_NilValue) ? (GtkTreePath*)(get_ptr(s2)) : NULL; (void)v2;
   GtkTreeViewColumn* v3 = (s3 != R_NilValue) ? (GtkTreeViewColumn*)(get_ptr(s3)) : NULL; (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
-  gfloat v5 = (gfloat)((gfloat)REAL(s5)[0]); (void)v5;
-  gfloat v6 = (gfloat)((gfloat)REAL(s6)[0]); (void)v6;
+  gfloat v5 = (gfloat)((gfloat)_unbox_numeric(s5)); (void)v5;
+  gfloat v6 = (gfloat)((gfloat)_unbox_numeric(s6)); (void)v6;
   gtk_tree_view_scroll_to_cell(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -39330,8 +39338,8 @@ SEXP R_gtk_tree_view_scroll_to_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
 
 SEXP R_gtk_tree_view_scroll_to_point(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_tree_view_scroll_to_point(v1, v2, v3);
   return R_NilValue;
 }
@@ -39459,7 +39467,7 @@ SEXP R_gtk_tree_view_set_hover_selection(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_view_set_level_indentation(SEXP s1, SEXP s2) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_set_level_indentation(v1, v2);
   return R_NilValue;
 }
@@ -39501,7 +39509,7 @@ SEXP R_gtk_tree_view_set_rubber_banding(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_view_set_search_column(SEXP s1, SEXP s2) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_set_search_column(v1, v2);
   return R_NilValue;
 }
@@ -39546,7 +39554,7 @@ SEXP R_gtk_tree_view_set_tooltip_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
 
 SEXP R_gtk_tree_view_set_tooltip_column(SEXP s1, SEXP s2) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_set_tooltip_column(v1, v2);
   return R_NilValue;
 }
@@ -39611,7 +39619,7 @@ SEXP R_gtk_tree_view_column_add_attribute(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTreeViewColumn* v1 = (GtkTreeViewColumn*)(get_ptr(s1)); (void)v1;
   GtkCellRenderer* v2 = (GtkCellRenderer*)(get_ptr(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gtk_tree_view_column_add_attribute(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -40085,7 +40093,7 @@ SEXP R_gtk_tree_view_column_queue_resize(SEXP s1) {
 
 SEXP R_gtk_tree_view_column_set_alignment(SEXP s1, SEXP s2) {
   GtkTreeViewColumn* v1 = (GtkTreeViewColumn*)(get_ptr(s1)); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_column_set_alignment(v1, v2);
   return R_NilValue;
 }
@@ -40120,7 +40128,7 @@ SEXP R_gtk_tree_view_column_set_expand(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_view_column_set_fixed_width(SEXP s1, SEXP s2) {
   GtkTreeViewColumn* v1 = (GtkTreeViewColumn*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_column_set_fixed_width(v1, v2);
   return R_NilValue;
 }
@@ -40128,7 +40136,7 @@ SEXP R_gtk_tree_view_column_set_fixed_width(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_view_column_set_max_width(SEXP s1, SEXP s2) {
   GtkTreeViewColumn* v1 = (GtkTreeViewColumn*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_column_set_max_width(v1, v2);
   return R_NilValue;
 }
@@ -40136,7 +40144,7 @@ SEXP R_gtk_tree_view_column_set_max_width(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_view_column_set_min_width(SEXP s1, SEXP s2) {
   GtkTreeViewColumn* v1 = (GtkTreeViewColumn*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_column_set_min_width(v1, v2);
   return R_NilValue;
 }
@@ -40168,7 +40176,7 @@ SEXP R_gtk_tree_view_column_set_sizing(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_view_column_set_sort_column_id(SEXP s1, SEXP s2) {
   GtkTreeViewColumn* v1 = (GtkTreeViewColumn*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_column_set_sort_column_id(v1, v2);
   return R_NilValue;
 }
@@ -40192,7 +40200,7 @@ SEXP R_gtk_tree_view_column_set_sort_order(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_tree_view_column_set_spacing(SEXP s1, SEXP s2) {
   GtkTreeViewColumn* v1 = (GtkTreeViewColumn*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_tree_view_column_set_spacing(v1, v2);
   return R_NilValue;
 }
@@ -40691,9 +40699,9 @@ SEXP R_gtk_widget_add_tick_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_widget_allocate(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GskTransform* v5 = (s5 != R_NilValue) ? (GskTransform*)(get_ptr(s5)) : NULL; (void)v5;
   gtk_widget_allocate(v1, v2, v3, v4, v5);
   return R_NilValue;
@@ -40806,8 +40814,8 @@ SEXP R_gtk_widget_compute_transform(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_contains(SEXP s1, SEXP s2, SEXP s3) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)gtk_widget_contains(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -40865,10 +40873,10 @@ SEXP R_gtk_widget_dispose_template(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_drag_check_threshold(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gboolean _ret = (gboolean)gtk_drag_check_threshold(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -42196,7 +42204,7 @@ SEXP R_gtk_widget_map(SEXP s1) {
 SEXP R_gtk_widget_measure(SEXP s1, SEXP s2, SEXP s3) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
   GtkOrientation v2 = (GtkOrientation)((GtkOrientation)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _out_minimum = 0; (void)_out_minimum;
   int _out_natural = 0; (void)_out_natural;
   int _out_minimum_baseline = 0; (void)_out_minimum_baseline;
@@ -42281,8 +42289,8 @@ SEXP R_gtk_widget_observe_controllers(SEXP s1) {
 
 SEXP R_gtk_widget_pick(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   GtkPickFlags v4 = (GtkPickFlags)((GtkPickFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   gconstpointer _ret = (gconstpointer)gtk_widget_pick(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -42352,7 +42360,7 @@ SEXP R_gtk_widget_remove_mnemonic_label(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_remove_tick_callback(SEXP s1, SEXP s2) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_widget_remove_tick_callback(v1, v2);
   return R_NilValue;
 }
@@ -42496,7 +42504,7 @@ SEXP R_gtk_widget_set_layout_manager(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_set_margin_bottom(SEXP s1, SEXP s2) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_widget_set_margin_bottom(v1, v2);
   return R_NilValue;
 }
@@ -42504,7 +42512,7 @@ SEXP R_gtk_widget_set_margin_bottom(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_set_margin_end(SEXP s1, SEXP s2) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_widget_set_margin_end(v1, v2);
   return R_NilValue;
 }
@@ -42512,7 +42520,7 @@ SEXP R_gtk_widget_set_margin_end(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_set_margin_start(SEXP s1, SEXP s2) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_widget_set_margin_start(v1, v2);
   return R_NilValue;
 }
@@ -42520,7 +42528,7 @@ SEXP R_gtk_widget_set_margin_start(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_set_margin_top(SEXP s1, SEXP s2) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gtk_widget_set_margin_top(v1, v2);
   return R_NilValue;
 }
@@ -42536,7 +42544,7 @@ SEXP R_gtk_widget_set_name(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_set_opacity(SEXP s1, SEXP s2) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gtk_widget_set_opacity(v1, v2);
   return R_NilValue;
 }
@@ -42576,8 +42584,8 @@ SEXP R_gtk_widget_set_sensitive(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_set_size_request(SEXP s1, SEXP s2, SEXP s3) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_widget_set_size_request(v1, v2, v3);
   return R_NilValue;
 }
@@ -42666,7 +42674,7 @@ SEXP R_gtk_widget_show(SEXP s1) {
 SEXP R_gtk_widget_size_allocate(SEXP s1, SEXP s2, SEXP s3) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
   const GtkAllocation* v2 = (const GtkAllocation*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_widget_size_allocate(v1, v2, v3);
   return R_NilValue;
 }
@@ -42684,8 +42692,8 @@ SEXP R_gtk_widget_snapshot_child(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_widget_translate_coordinates(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
   GtkWidget* v2 = (GtkWidget*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   double _out_dest_x = 0; (void)_out_dest_x;
   double _out_dest_y = 0; (void)_out_dest_y;
   gboolean _ret = (gboolean)gtk_widget_translate_coordinates(v1, v2, v3, v4, &_out_dest_x, &_out_dest_y);
@@ -42769,7 +42777,7 @@ SEXP R_gtk_widget_class_bind_template_child_full(SEXP s1, SEXP s2, SEXP s3, SEXP
   GtkWidgetClass* v1 = (GtkWidgetClass*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
-  gssize v4 = (gssize)((gssize)REAL(s4)[0]); (void)v4;
+  gssize v4 = (gssize)((gssize)_unbox_numeric(s4)); (void)v4;
   gtk_widget_class_bind_template_child_full(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -42860,7 +42868,7 @@ SEXP R_gtk_widget_class_install_property_action(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_gtk_widget_class_query_action(SEXP s1, SEXP s2) {
   GtkWidgetClass* v1 = (GtkWidgetClass*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GType _out_owner = 0; (void)_out_owner;
   const char* _out_action_name = 0; (void)_out_action_name;
   const GVariantType* _out_parameter_type = 0; (void)_out_parameter_type;
@@ -42909,7 +42917,7 @@ SEXP R_gtk_widget_class_set_accessible_role(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_widget_class_set_activate_signal(SEXP s1, SEXP s2) {
   GtkWidgetClass* v1 = (GtkWidgetClass*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gtk_widget_class_set_activate_signal(v1, v2);
   return R_NilValue;
 }
@@ -43531,7 +43539,7 @@ SEXP R_gtk_window_present(SEXP s1) {
 
 SEXP R_gtk_window_present_with_time(SEXP s1, SEXP s2) {
   GtkWindow* v1 = (GtkWindow*)(get_ptr(s1)); (void)v1;
-  guint32 v2 = (guint32)((guint32)INTEGER(s2)[0]); (void)v2;
+  guint32 v2 = (guint32)((guint32)_unbox_numeric(s2)); (void)v2;
   gtk_window_present_with_time(v1, v2);
   return R_NilValue;
 }
@@ -43563,8 +43571,8 @@ SEXP R_gtk_window_set_decorated(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_window_set_default_size(SEXP s1, SEXP s2, SEXP s3) {
   GtkWindow* v1 = (GtkWindow*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gtk_window_set_default_size(v1, v2, v3);
   return R_NilValue;
 }
@@ -43904,7 +43912,7 @@ SEXP R_gtk_accelerator_get_default_mod_mask(void) {
 
 
 SEXP R_gtk_accelerator_get_label(SEXP s1, SEXP s2) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   GdkModifierType v2 = (GdkModifierType)((GdkModifierType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_accelerator_get_label(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -43922,8 +43930,8 @@ SEXP R_gtk_accelerator_get_label(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_accelerator_get_label_with_keycode(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GdkDisplay* v1 = (s1 != R_NilValue) ? (GdkDisplay*)(get_ptr(s1)) : NULL; (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   GdkModifierType v4 = (GdkModifierType)((GdkModifierType)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   gconstpointer _ret = (gconstpointer)gtk_accelerator_get_label_with_keycode(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -43940,7 +43948,7 @@ SEXP R_gtk_accelerator_get_label_with_keycode(SEXP s1, SEXP s2, SEXP s3, SEXP s4
 
 
 SEXP R_gtk_accelerator_name(SEXP s1, SEXP s2) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   GdkModifierType v2 = (GdkModifierType)((GdkModifierType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_accelerator_name(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -43958,8 +43966,8 @@ SEXP R_gtk_accelerator_name(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_accelerator_name_with_keycode(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GdkDisplay* v1 = (s1 != R_NilValue) ? (GdkDisplay*)(get_ptr(s1)) : NULL; (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   GdkModifierType v4 = (GdkModifierType)((GdkModifierType)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   gconstpointer _ret = (gconstpointer)gtk_accelerator_name_with_keycode(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -44039,7 +44047,7 @@ SEXP R_gtk_accelerator_parse_with_keycode(SEXP s1, SEXP s2) {
 
 
 SEXP R_gtk_accelerator_valid(SEXP s1, SEXP s2) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   GdkModifierType v2 = (GdkModifierType)((GdkModifierType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gboolean _ret = (gboolean)gtk_accelerator_valid(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -44056,9 +44064,9 @@ SEXP R_gtk_accelerator_valid(SEXP s1, SEXP s2) {
 
 
 SEXP R_gtk_check_version(SEXP s1, SEXP s2, SEXP s3) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)gtk_check_version(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -44113,8 +44121,8 @@ SEXP R_gtk_disable_setlocale(void) {
 
 
 SEXP R_gtk_distribute_natural_allocation(SEXP s1, SEXP s2, SEXP s3) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GtkRequestedSize* v3 = (GtkRequestedSize*)(get_ptr(s3)); (void)v3;
   int _ret = (int)gtk_distribute_natural_allocation(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -44259,9 +44267,9 @@ SEXP R_gtk_get_minor_version(void) {
 
 
 SEXP R_gtk_hsv_to_rgb(SEXP s1, SEXP s2, SEXP s3) {
-  gfloat v1 = (gfloat)((gfloat)REAL(s1)[0]); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
-  gfloat v3 = (gfloat)((gfloat)REAL(s3)[0]); (void)v3;
+  gfloat v1 = (gfloat)((gfloat)_unbox_numeric(s1)); (void)v1;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
+  gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
   float _out_r = 0; (void)_out_r;
   float _out_g = 0; (void)_out_g;
   float _out_b = 0; (void)_out_b;
@@ -44350,10 +44358,10 @@ SEXP R_gtk_param_spec_expression(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_gtk_render_activity(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_activity(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44362,10 +44370,10 @@ SEXP R_gtk_render_activity(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6)
 SEXP R_gtk_render_arrow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_arrow(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44374,10 +44382,10 @@ SEXP R_gtk_render_arrow(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 SEXP R_gtk_render_background(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_background(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44386,10 +44394,10 @@ SEXP R_gtk_render_background(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s
 SEXP R_gtk_render_check(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_check(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44398,10 +44406,10 @@ SEXP R_gtk_render_check(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 SEXP R_gtk_render_expander(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_expander(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44410,10 +44418,10 @@ SEXP R_gtk_render_expander(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6)
 SEXP R_gtk_render_focus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_focus(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44422,10 +44430,10 @@ SEXP R_gtk_render_focus(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 SEXP R_gtk_render_frame(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_frame(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44434,10 +44442,10 @@ SEXP R_gtk_render_frame(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 SEXP R_gtk_render_handle(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_handle(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44447,8 +44455,8 @@ SEXP R_gtk_render_icon(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
   GdkTexture* v3 = (GdkTexture*)(get_ptr(s3)); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
   gtk_render_icon(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -44457,8 +44465,8 @@ SEXP R_gtk_render_icon(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_gtk_render_layout(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   PangoLayout* v5 = (PangoLayout*)(get_ptr(s5)); (void)v5;
   gtk_render_layout(v1, v2, v3, v4, v5);
   return R_NilValue;
@@ -44468,10 +44476,10 @@ SEXP R_gtk_render_layout(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_gtk_render_line(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_line(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -44480,19 +44488,19 @@ SEXP R_gtk_render_line(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 SEXP R_gtk_render_option(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkStyleContext* v1 = (GtkStyleContext*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
-  gdouble v5 = (gdouble)((gdouble)REAL(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
+  gdouble v5 = (gdouble)((gdouble)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gtk_render_option(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
 
 
 SEXP R_gtk_rgb_to_hsv(SEXP s1, SEXP s2, SEXP s3) {
-  gfloat v1 = (gfloat)((gfloat)REAL(s1)[0]); (void)v1;
-  gfloat v2 = (gfloat)((gfloat)REAL(s2)[0]); (void)v2;
-  gfloat v3 = (gfloat)((gfloat)REAL(s3)[0]); (void)v3;
+  gfloat v1 = (gfloat)((gfloat)_unbox_numeric(s1)); (void)v1;
+  gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
+  gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
   float _out_h = 0; (void)_out_h;
   float _out_s = 0; (void)_out_s;
   float _out_v = 0; (void)_out_v;
@@ -44530,7 +44538,7 @@ SEXP R_gtk_set_debug_flags(SEXP s1) {
 SEXP R_gtk_show_uri(SEXP s1, SEXP s2, SEXP s3) {
   GtkWindow* v1 = (s1 != R_NilValue) ? (GtkWindow*)(get_ptr(s1)) : NULL; (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint32 v3 = (guint32)((guint32)INTEGER(s3)[0]); (void)v3;
+  guint32 v3 = (guint32)((guint32)_unbox_numeric(s3)); (void)v3;
   gtk_show_uri(v1, v2, v3);
   return R_NilValue;
 }
@@ -44539,7 +44547,7 @@ SEXP R_gtk_show_uri(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gtk_show_uri_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkWindow* v1 = (s1 != R_NilValue) ? (GtkWindow*)(get_ptr(s1)) : NULL; (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint32 v3 = (guint32)((guint32)INTEGER(s3)[0]); (void)v3;
+  guint32 v3 = (guint32)((guint32)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -44569,7 +44577,7 @@ SEXP R_gtk_show_uri_full_finish(SEXP s1, SEXP s2) {
 SEXP R_gtk_test_accessible_assertion_message_role(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   GtkAccessible* v6 = (GtkAccessible*)(get_ptr(s6)); (void)v6;

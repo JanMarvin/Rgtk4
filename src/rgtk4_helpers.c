@@ -315,8 +315,7 @@ SEXP R_g_object_set_double(SEXP s1, SEXP s2, SEXP s3) {
   return R_NilValue;
 }
 
-SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type,
-                                   SEXP buttons, SEXP message) {
+SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type, SEXP buttons, SEXP message) {
   GtkWindow *parent = NULL;
   if (parent_ptr != R_NilValue) {
     parent = (GtkWindow*)get_ptr(parent_ptr);

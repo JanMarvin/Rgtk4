@@ -6,24 +6,17 @@
 \alias{gErrorFree}
 \alias{gErrorMatches}
 \alias{gLogDefaultHandler}
-\alias{gLogGetAlwaysFatal}
-\alias{gLogGetDebugEnabled}
 \alias{gLogRemoveHandler}
 \alias{gLogSetAlwaysFatal}
-\alias{gLogSetDebugEnabled}
 \alias{gLogSetFatalMask}
 \alias{gLogStructuredArray}
 \alias{gLogVariant}
 \alias{gLogWriterDefault}
-\alias{gLogWriterDefaultSetDebugDomains}
-\alias{gLogWriterDefaultSetUseStderr}
-\alias{gLogWriterDefaultWouldDrop}
 \alias{gLogWriterFormatFields}
 \alias{gLogWriterIsJournald}
 \alias{gLogWriterJournald}
 \alias{gLogWriterStandardStreams}
 \alias{gLogWriterSupportsColor}
-\alias{gLogWriterSyslog}
 \title{gErrorNewLiteral}
 \usage{
 gErrorNewLiteral(domain, code, message)
@@ -36,15 +29,9 @@ gErrorMatches(error, domain, code)
 
 gLogDefaultHandler(log_domain, log_level, message, unused_data)
 
-gLogGetAlwaysFatal()
-
-gLogGetDebugEnabled()
-
 gLogRemoveHandler(log_domain, handler_id)
 
 gLogSetAlwaysFatal(fatal_mask)
-
-gLogSetDebugEnabled(enabled)
 
 gLogSetFatalMask(log_domain, fatal_mask)
 
@@ -53,12 +40,6 @@ gLogStructuredArray(log_level, fields, n_fields)
 gLogVariant(log_domain, log_level, fields)
 
 gLogWriterDefault(log_level, fields, n_fields, user_data)
-
-gLogWriterDefaultSetDebugDomains(domains)
-
-gLogWriterDefaultSetUseStderr(use_stderr)
-
-gLogWriterDefaultWouldDrop(log_level, log_domain)
 
 gLogWriterFormatFields(log_level, fields, n_fields, use_color)
 
@@ -69,8 +50,6 @@ gLogWriterJournald(log_level, fields, n_fields, user_data)
 gLogWriterStandardStreams(log_level, fields, n_fields, user_data)
 
 gLogWriterSupportsColor(output_fd)
-
-gLogWriterSyslog(log_level, fields, n_fields, user_data)
 }
 \arguments{
 \item{domain}{Quark}
@@ -91,17 +70,11 @@ gLogWriterSyslog(log_level, fields, n_fields, user_data)
 
 \item{fatal_mask}{LogLevelFlags}
 
-\item{enabled}{gboolean}
-
 \item{fields}{LogField}
 
 \item{n_fields}{gsize}
 
 \item{user_data}{gpointer}
-
-\item{domains}{utf8}
-
-\item{use_stderr}{gboolean}
 
 \item{use_color}{gboolean}
 
@@ -118,15 +91,9 @@ gboolean
 
 Return value from C function
 
-LogLevelFlags
-
-gboolean
-
 Return value from C function
 
 LogLevelFlags
-
-Return value from C function
 
 LogLevelFlags
 
@@ -135,12 +102,6 @@ Return value from C function
 Return value from C function
 
 LogWriterOutput
-
-Return value from C function
-
-Return value from C function
-
-gboolean
 
 utf8
 
@@ -151,8 +112,6 @@ LogWriterOutput
 LogWriterOutput
 
 gboolean
-
-LogWriterOutput
 }
 \description{
 gErrorNewLiteral
@@ -165,15 +124,9 @@ gErrorMatches
 
 gLogDefaultHandler
 
-gLogGetAlwaysFatal
-
-gLogGetDebugEnabled
-
 gLogRemoveHandler
 
 gLogSetAlwaysFatal
-
-gLogSetDebugEnabled
 
 gLogSetFatalMask
 
@@ -182,12 +135,6 @@ gLogStructuredArray
 gLogVariant
 
 gLogWriterDefault
-
-gLogWriterDefaultSetDebugDomains
-
-gLogWriterDefaultSetUseStderr
-
-gLogWriterDefaultWouldDrop
 
 gLogWriterFormatFields
 
@@ -198,6 +145,4 @@ gLogWriterJournald
 gLogWriterStandardStreams
 
 gLogWriterSupportsColor
-
-gLogWriterSyslog
 }

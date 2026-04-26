@@ -3,7 +3,6 @@
 \name{gStringNew}
 \alias{gStringNew}
 \alias{gStringNewLen}
-\alias{gStringNewTake}
 \alias{gStringSizedNew}
 \alias{gStringAppend}
 \alias{gStringAppendC}
@@ -13,12 +12,10 @@
 \alias{gStringAsciiDown}
 \alias{gStringAsciiUp}
 \alias{gStringAssign}
-\alias{gStringCopy}
 \alias{gStringDown}
 \alias{gStringEqual}
 \alias{gStringErase}
 \alias{gStringFree}
-\alias{gStringFreeAndSteal}
 \alias{gStringFreeToBytes}
 \alias{gStringHash}
 \alias{gStringInsert}
@@ -31,7 +28,6 @@
 \alias{gStringPrependC}
 \alias{gStringPrependLen}
 \alias{gStringPrependUnichar}
-\alias{gStringReplace}
 \alias{gStringSetSize}
 \alias{gStringTruncate}
 \alias{gStringUp}
@@ -40,14 +36,10 @@
 \alias{gStringChunkInsert}
 \alias{gStringChunkInsertConst}
 \alias{gStringChunkInsertLen}
-\alias{gStrvBuilderNew}
 \alias{gStrvBuilderAdd}
 \alias{gStrvBuilderAddv}
 \alias{gStrvBuilderEnd}
-\alias{gStrvBuilderRef}
 \alias{gStrvBuilderTake}
-\alias{gStrvBuilderUnref}
-\alias{gStrvBuilderUnrefToStrv}
 \alias{gStrEqual}
 \alias{gStrHasPrefix}
 \alias{gStrHasSuffix}
@@ -61,7 +53,6 @@
 \alias{gStrsplitSet}
 \alias{gStrstrLen}
 \alias{gStrvContains}
-\alias{gStrvEqual}
 \alias{gStrvGetType}
 \alias{gStrvLength}
 \alias{gStrdupValueContents}
@@ -70,8 +61,6 @@
 gStringNew(init)
 
 gStringNewLen(init, len)
-
-gStringNewTake(init)
 
 gStringSizedNew(dfl_size)
 
@@ -91,8 +80,6 @@ gStringAsciiUp(string)
 
 gStringAssign(string, rval)
 
-gStringCopy(string)
-
 gStringDown(string)
 
 gStringEqual(v, v2)
@@ -100,8 +87,6 @@ gStringEqual(v, v2)
 gStringErase(string, pos, len)
 
 gStringFree(string, free_segment)
-
-gStringFreeAndSteal(string)
 
 gStringFreeToBytes(string)
 
@@ -127,8 +112,6 @@ gStringPrependLen(string, val, len)
 
 gStringPrependUnichar(string, wc)
 
-gStringReplace(string, find, replace, limit)
-
 gStringSetSize(string, len)
 
 gStringTruncate(string, len)
@@ -145,21 +128,13 @@ gStringChunkInsertConst(chunk, string)
 
 gStringChunkInsertLen(chunk, string, len)
 
-gStrvBuilderNew()
-
 gStrvBuilderAdd(builder, value)
 
 gStrvBuilderAddv(builder, value)
 
 gStrvBuilderEnd(builder)
 
-gStrvBuilderRef(builder)
-
 gStrvBuilderTake(builder, value)
-
-gStrvBuilderUnref(builder)
-
-gStrvBuilderUnrefToStrv(builder)
 
 gStrEqual(v1, v2)
 
@@ -186,8 +161,6 @@ gStrsplitSet(string, delimiters, max_tokens)
 gStrstrLen(haystack, haystack_len, needle)
 
 gStrvContains(strv, str)
-
-gStrvEqual(strv1, strv2)
 
 gStrvGetType()
 
@@ -228,12 +201,6 @@ gStrdupValueContents(value)
 
 \item{str}{utf8}
 
-\item{find}{utf8}
-
-\item{replace}{utf8}
-
-\item{limit}{guint}
-
 \item{chunk}{StringChunk}
 
 \item{builder}{StrvBuilder}
@@ -272,10 +239,6 @@ gStrdupValueContents(value)
 
 \item{strv}{utf8}
 
-\item{strv1}{utf8}
-
-\item{strv2}{utf8}
-
 \item{str_array}{utf8}
 }
 \value{
@@ -303,15 +266,9 @@ String
 
 String
 
-String
-
-String
-
 gboolean
 
 String
-
-utf8
 
 utf8
 
@@ -339,8 +296,6 @@ String
 
 String
 
-guint
-
 String
 
 String
@@ -357,21 +312,13 @@ utf8
 
 utf8
 
-StrvBuilder
-
 Return value from C function
 
 Return value from C function
 
 utf8
 
-StrvBuilder
-
 Return value from C function
-
-Return value from C function
-
-utf8
 
 gboolean
 
@@ -396,8 +343,6 @@ utf8
 utf8
 
 utf8
-
-gboolean
 
 gboolean
 
@@ -411,8 +356,6 @@ utf8
 gStringNew
 
 gStringNewLen
-
-gStringNewTake
 
 gStringSizedNew
 
@@ -432,8 +375,6 @@ gStringAsciiUp
 
 gStringAssign
 
-gStringCopy
-
 gStringDown
 
 gStringEqual
@@ -441,8 +382,6 @@ gStringEqual
 gStringErase
 
 gStringFree
-
-gStringFreeAndSteal
 
 gStringFreeToBytes
 
@@ -468,8 +407,6 @@ gStringPrependLen
 
 gStringPrependUnichar
 
-gStringReplace
-
 gStringSetSize
 
 gStringTruncate
@@ -486,21 +423,13 @@ gStringChunkInsertConst
 
 gStringChunkInsertLen
 
-gStrvBuilderNew
-
 gStrvBuilderAdd
 
 gStrvBuilderAddv
 
 gStrvBuilderEnd
 
-gStrvBuilderRef
-
 gStrvBuilderTake
-
-gStrvBuilderUnref
-
-gStrvBuilderUnrefToStrv
 
 gStrEqual
 
@@ -527,8 +456,6 @@ gStrsplitSet
 gStrstrLen
 
 gStrvContains
-
-gStrvEqual
 
 gStrvGetType
 

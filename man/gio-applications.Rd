@@ -5,9 +5,7 @@
 \alias{gAppInfoGetAll}
 \alias{gAppInfoGetAllForType}
 \alias{gAppInfoGetDefaultForType}
-\alias{gAppInfoGetDefaultForTypeFinish}
 \alias{gAppInfoGetDefaultForUriScheme}
-\alias{gAppInfoGetDefaultForUriSchemeFinish}
 \alias{gAppInfoGetFallbackForType}
 \alias{gAppInfoGetRecommendedForType}
 \alias{gAppInfoLaunchDefaultForUri}
@@ -29,7 +27,6 @@
 \alias{gAppInfoGetSupportedTypes}
 \alias{gAppInfoLaunch}
 \alias{gAppInfoLaunchUris}
-\alias{gAppInfoLaunchUrisFinish}
 \alias{gAppInfoRemoveSupportsType}
 \alias{gAppInfoSetAsDefaultForExtension}
 \alias{gAppInfoSetAsDefaultForType}
@@ -55,7 +52,6 @@
 \alias{gApplicationGetIsRegistered}
 \alias{gApplicationGetIsRemote}
 \alias{gApplicationGetResourceBasePath}
-\alias{gApplicationGetVersion}
 \alias{gApplicationHold}
 \alias{gApplicationMarkBusy}
 \alias{gApplicationOpen}
@@ -73,12 +69,10 @@
 \alias{gApplicationSetOptionContextParameterString}
 \alias{gApplicationSetOptionContextSummary}
 \alias{gApplicationSetResourceBasePath}
-\alias{gApplicationSetVersion}
 \alias{gApplicationUnbindBusyProperty}
 \alias{gApplicationUnmarkBusy}
 \alias{gApplicationWithdrawNotification}
 \alias{gApplicationCommandLineCreateFileForArg}
-\alias{gApplicationCommandLineDone}
 \alias{gApplicationCommandLineGetArguments}
 \alias{gApplicationCommandLineGetCwd}
 \alias{gApplicationCommandLineGetEnviron}
@@ -88,8 +82,6 @@
 \alias{gApplicationCommandLineGetPlatformData}
 \alias{gApplicationCommandLineGetStdin}
 \alias{gApplicationCommandLineGetenv}
-\alias{gApplicationCommandLinePrintLiteral}
-\alias{gApplicationCommandLinePrinterrLiteral}
 \alias{gApplicationCommandLineSetExitStatus}
 \title{gAppInfoCreateFromCommandline}
 \usage{
@@ -101,11 +93,7 @@ gAppInfoGetAllForType(content_type)
 
 gAppInfoGetDefaultForType(content_type, must_support_uris)
 
-gAppInfoGetDefaultForTypeFinish(result)
-
 gAppInfoGetDefaultForUriScheme(uri_scheme)
-
-gAppInfoGetDefaultForUriSchemeFinish(result)
 
 gAppInfoGetFallbackForType(content_type)
 
@@ -148,8 +136,6 @@ gAppInfoGetSupportedTypes(appinfo)
 gAppInfoLaunch(appinfo, files, context)
 
 gAppInfoLaunchUris(appinfo, uris, context)
-
-gAppInfoLaunchUrisFinish(appinfo, result)
 
 gAppInfoRemoveSupportsType(appinfo, content_type)
 
@@ -209,8 +195,6 @@ gApplicationGetIsRemote(application)
 
 gApplicationGetResourceBasePath(application)
 
-gApplicationGetVersion(application)
-
 gApplicationHold(application)
 
 gApplicationMarkBusy(application)
@@ -245,8 +229,6 @@ gApplicationSetOptionContextSummary(application, summary)
 
 gApplicationSetResourceBasePath(application, resource_path)
 
-gApplicationSetVersion(application, version)
-
 gApplicationUnbindBusyProperty(application, object, property)
 
 gApplicationUnmarkBusy(application)
@@ -254,8 +236,6 @@ gApplicationUnmarkBusy(application)
 gApplicationWithdrawNotification(application, id)
 
 gApplicationCommandLineCreateFileForArg(cmdline, arg)
-
-gApplicationCommandLineDone(cmdline)
 
 gApplicationCommandLineGetArguments(cmdline)
 
@@ -275,10 +255,6 @@ gApplicationCommandLineGetStdin(cmdline)
 
 gApplicationCommandLineGetenv(cmdline, name)
 
-gApplicationCommandLinePrintLiteral(cmdline, message)
-
-gApplicationCommandLinePrinterrLiteral(cmdline, message)
-
 gApplicationCommandLineSetExitStatus(cmdline, exit_status)
 }
 \arguments{
@@ -292,13 +268,13 @@ gApplicationCommandLineSetExitStatus(cmdline, exit_status)
 
 \item{must_support_uris}{gboolean}
 
-\item{result}{AsyncResult}
-
 \item{uri_scheme}{utf8}
 
 \item{uri}{utf8}
 
 \item{context}{AppLaunchContext}
+
+\item{result}{AsyncResult}
 
 \item{appinfo}{AppInfo}
 
@@ -358,13 +334,9 @@ gApplicationCommandLineSetExitStatus(cmdline, exit_status)
 
 \item{resource_path}{utf8}
 
-\item{version}{utf8}
-
 \item{cmdline}{ApplicationCommandLine}
 
 \item{name}{filename}
-
-\item{message}{utf8}
 
 \item{exit_status}{gint}
 }
@@ -374,10 +346,6 @@ AppInfo
 GLib.List
 
 GLib.List
-
-AppInfo
-
-AppInfo
 
 AppInfo
 
@@ -439,8 +407,6 @@ gboolean
 
 gboolean
 
-gboolean
-
 AppInfoMonitor
 
 Application
@@ -477,8 +443,6 @@ gboolean
 
 utf8
 
-utf8
-
 Return value from C function
 
 Return value from C function
@@ -492,8 +456,6 @@ gboolean
 Return value from C function
 
 gint
-
-Return value from C function
 
 Return value from C function
 
@@ -523,8 +485,6 @@ Return value from C function
 
 File
 
-Return value from C function
-
 filename
 
 filename
@@ -544,10 +504,6 @@ InputStream
 utf8
 
 Return value from C function
-
-Return value from C function
-
-Return value from C function
 }
 \description{
 gAppInfoCreateFromCommandline
@@ -558,11 +514,7 @@ gAppInfoGetAllForType
 
 gAppInfoGetDefaultForType
 
-gAppInfoGetDefaultForTypeFinish
-
 gAppInfoGetDefaultForUriScheme
-
-gAppInfoGetDefaultForUriSchemeFinish
 
 gAppInfoGetFallbackForType
 
@@ -605,8 +557,6 @@ gAppInfoGetSupportedTypes
 gAppInfoLaunch
 
 gAppInfoLaunchUris
-
-gAppInfoLaunchUrisFinish
 
 gAppInfoRemoveSupportsType
 
@@ -658,8 +608,6 @@ gApplicationGetIsRemote
 
 gApplicationGetResourceBasePath
 
-gApplicationGetVersion
-
 gApplicationHold
 
 gApplicationMarkBusy
@@ -694,8 +642,6 @@ gApplicationSetOptionContextSummary
 
 gApplicationSetResourceBasePath
 
-gApplicationSetVersion
-
 gApplicationUnbindBusyProperty
 
 gApplicationUnmarkBusy
@@ -703,8 +649,6 @@ gApplicationUnmarkBusy
 gApplicationWithdrawNotification
 
 gApplicationCommandLineCreateFileForArg
-
-gApplicationCommandLineDone
 
 gApplicationCommandLineGetArguments
 
@@ -723,10 +667,6 @@ gApplicationCommandLineGetPlatformData
 gApplicationCommandLineGetStdin
 
 gApplicationCommandLineGetenv
-
-gApplicationCommandLinePrintLiteral
-
-gApplicationCommandLinePrinterrLiteral
 
 gApplicationCommandLineSetExitStatus
 }

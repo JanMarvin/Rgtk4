@@ -117,7 +117,6 @@
 \alias{gtkPictureGetCanShrink}
 \alias{gtkPictureGetContentFit}
 \alias{gtkPictureGetFile}
-\alias{gtkPictureGetIsolateContents}
 \alias{gtkPictureGetKeepAspectRatio}
 \alias{gtkPictureGetPaintable}
 \alias{gtkPictureSetAlternativeText}
@@ -125,7 +124,6 @@
 \alias{gtkPictureSetContentFit}
 \alias{gtkPictureSetFile}
 \alias{gtkPictureSetFilename}
-\alias{gtkPictureSetIsolateContents}
 \alias{gtkPictureSetKeepAspectRatio}
 \alias{gtkPictureSetPaintable}
 \alias{gtkPictureSetPixbuf}
@@ -377,8 +375,6 @@ gtkPictureGetContentFit(self)
 
 gtkPictureGetFile(self)
 
-gtkPictureGetIsolateContents(self)
-
 gtkPictureGetKeepAspectRatio(self)
 
 gtkPictureGetPaintable(self)
@@ -392,8 +388,6 @@ gtkPictureSetContentFit(self, content_fit)
 gtkPictureSetFile(self, file)
 
 gtkPictureSetFilename(self, filename)
-
-gtkPictureSetIsolateContents(self, isolate_contents)
 
 gtkPictureSetKeepAspectRatio(self, keep_aspect_ratio)
 
@@ -509,8 +503,6 @@ gtkPictureSetResource(self, resource_path)
 \item{can_shrink}{gboolean}
 
 \item{content_fit}{ContentFit}
-
-\item{isolate_contents}{gboolean}
 
 \item{keep_aspect_ratio}{gboolean}
 }
@@ -749,11 +741,7 @@ Gio.File
 
 gboolean
 
-gboolean
-
 Gdk.Paintable
-
-Return value from C function
 
 Return value from C function
 
@@ -1006,8 +994,6 @@ gtkPictureGetContentFit
 
 gtkPictureGetFile
 
-gtkPictureGetIsolateContents
-
 gtkPictureGetKeepAspectRatio
 
 gtkPictureGetPaintable
@@ -1021,8 +1007,6 @@ gtkPictureSetContentFit
 gtkPictureSetFile
 
 gtkPictureSetFilename
-
-gtkPictureSetIsolateContents
 
 gtkPictureSetKeepAspectRatio
 

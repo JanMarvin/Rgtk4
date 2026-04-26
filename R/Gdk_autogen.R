@@ -55,7 +55,7 @@ gdkAppLaunchContextSetIconName <- function(context, icon_name) {
 #' @return Return value from C function
 #' @export
 gdkAppLaunchContextSetTimestamp <- function(context, timestamp) {
-  invisible(.Call("R_gdk_app_launch_context_set_timestamp", context, as.integer(timestamp)))
+  invisible(.Call("R_gdk_app_launch_context_set_timestamp", context, timestamp))
 }
 
 
@@ -78,119 +78,6 @@ gdkButtonEventGetButton <- function(event) {
 #' @export
 gdkCairoContextCairoCreate <- function(self) {
   .Call("R_gdk_cairo_context_cairo_create", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsNew
-#'
-#' @return CicpParams
-#' @export
-gdkCicpParamsNew <- function() {
-  .Call("R_gdk_cicp_params_new")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsBuildColorState
-#'
-#' @param self CicpParams
-#' @return ColorState
-#' @export
-gdkCicpParamsBuildColorState <- function(self) {
-  .Call("R_gdk_cicp_params_build_color_state", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsGetColorPrimaries
-#'
-#' @param self CicpParams
-#' @return guint
-#' @export
-gdkCicpParamsGetColorPrimaries <- function(self) {
-  .Call("R_gdk_cicp_params_get_color_primaries", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsGetMatrixCoefficients
-#'
-#' @param self CicpParams
-#' @return guint
-#' @export
-gdkCicpParamsGetMatrixCoefficients <- function(self) {
-  .Call("R_gdk_cicp_params_get_matrix_coefficients", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsGetRange
-#'
-#' @param self CicpParams
-#' @return CicpRange
-#' @export
-gdkCicpParamsGetRange <- function(self) {
-  .Call("R_gdk_cicp_params_get_range", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsGetTransferFunction
-#'
-#' @param self CicpParams
-#' @return guint
-#' @export
-gdkCicpParamsGetTransferFunction <- function(self) {
-  .Call("R_gdk_cicp_params_get_transfer_function", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsSetColorPrimaries
-#'
-#' @param self CicpParams
-#' @param color_primaries guint
-#' @return Return value from C function
-#' @export
-gdkCicpParamsSetColorPrimaries <- function(self, color_primaries) {
-  invisible(.Call("R_gdk_cicp_params_set_color_primaries", self, as.integer(color_primaries)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsSetMatrixCoefficients
-#'
-#' @param self CicpParams
-#' @param matrix_coefficients guint
-#' @return Return value from C function
-#' @export
-gdkCicpParamsSetMatrixCoefficients <- function(self, matrix_coefficients) {
-  invisible(.Call("R_gdk_cicp_params_set_matrix_coefficients", self, as.integer(matrix_coefficients)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsSetRange
-#'
-#' @param self CicpParams
-#' @param range CicpRange
-#' @return Return value from C function
-#' @export
-gdkCicpParamsSetRange <- function(self, range) {
-  invisible(.Call("R_gdk_cicp_params_set_range", self, range))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkCicpParamsSetTransferFunction
-#'
-#' @param self CicpParams
-#' @param transfer_function guint
-#' @return Return value from C function
-#' @export
-gdkCicpParamsSetTransferFunction <- function(self, transfer_function) {
-  invisible(.Call("R_gdk_cicp_params_set_transfer_function", self, as.integer(transfer_function)))
 }
 
 
@@ -319,123 +206,6 @@ gdkClipboardSetValue <- function(clipboard, value) {
 #' @export
 gdkClipboardStoreFinish <- function(clipboard, result) {
   .Call("R_gdk_clipboard_store_finish", clipboard, result)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateCreateCicpParams
-#'
-#' @param self ColorState
-#' @return CicpParams
-#' @export
-gdkColorStateCreateCicpParams <- function(self) {
-  .Call("R_gdk_color_state_create_cicp_params", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateEqual
-#'
-#' @param self ColorState
-#' @param other ColorState
-#' @return gboolean
-#' @export
-gdkColorStateEqual <- function(self, other) {
-  .Call("R_gdk_color_state_equal", self, other)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateEquivalent
-#'
-#' @param self ColorState
-#' @param other ColorState
-#' @return gboolean
-#' @export
-gdkColorStateEquivalent <- function(self, other) {
-  .Call("R_gdk_color_state_equivalent", self, other)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateRef
-#'
-#' @param self ColorState
-#' @return ColorState
-#' @export
-gdkColorStateRef <- function(self) {
-  .Call("R_gdk_color_state_ref", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateUnref
-#'
-#' @param self ColorState
-#' @return Return value from C function
-#' @export
-gdkColorStateUnref <- function(self) {
-  invisible(.Call("R_gdk_color_state_unref", self))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateGetOklab
-#'
-#' @return ColorState
-#' @export
-gdkColorStateGetOklab <- function() {
-  .Call("R_gdk_color_state_get_oklab")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateGetOklch
-#'
-#' @return ColorState
-#' @export
-gdkColorStateGetOklch <- function() {
-  .Call("R_gdk_color_state_get_oklch")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateGetRec2100Linear
-#'
-#' @return ColorState
-#' @export
-gdkColorStateGetRec2100Linear <- function() {
-  .Call("R_gdk_color_state_get_rec2100_linear")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateGetRec2100Pq
-#'
-#' @return ColorState
-#' @export
-gdkColorStateGetRec2100Pq <- function() {
-  .Call("R_gdk_color_state_get_rec2100_pq")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateGetSrgb
-#'
-#' @return ColorState
-#' @export
-gdkColorStateGetSrgb <- function() {
-  .Call("R_gdk_color_state_get_srgb")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkColorStateGetSrgbLinear
-#'
-#' @return ColorState
-#' @export
-gdkColorStateGetSrgbLinear <- function() {
-  .Call("R_gdk_color_state_get_srgb_linear")$result
 }
 
 
@@ -616,17 +386,6 @@ gdkContentFormatsGetGtypes <- function(formats) {
 #' @export
 gdkContentFormatsGetMimeTypes <- function(formats) {
   .Call("R_gdk_content_formats_get_mime_types", formats)
-}
-
-
-#' @rdname gdk-other
-#' @title gdkContentFormatsIsEmpty
-#'
-#' @param formats ContentFormats
-#' @return gboolean
-#' @export
-gdkContentFormatsIsEmpty <- function(formats) {
-  .Call("R_gdk_content_formats_is_empty", formats)$result
 }
 
 
@@ -1185,17 +944,6 @@ gdkDndEventGetDrop <- function(event) {
 
 
 #' @rdname gdk-events
-#' @title gdkDeviceGetActiveLayoutIndex
-#'
-#' @param device Device
-#' @return gint
-#' @export
-gdkDeviceGetActiveLayoutIndex <- function(device) {
-  .Call("R_gdk_device_get_active_layout_index", device)$result
-}
-
-
-#' @rdname gdk-events
 #' @title gdkDeviceGetCapsLockState
 #'
 #' @param device Device
@@ -1247,17 +995,6 @@ gdkDeviceGetDisplay <- function(device) {
 #' @export
 gdkDeviceGetHasCursor <- function(device) {
   .Call("R_gdk_device_get_has_cursor", device)$result
-}
-
-
-#' @rdname gdk-events
-#' @title gdkDeviceGetLayoutNames
-#'
-#' @param device Device
-#' @return utf8
-#' @export
-gdkDeviceGetLayoutNames <- function(device) {
-  .Call("R_gdk_device_get_layout_names", device)$result
 }
 
 
@@ -1596,17 +1333,6 @@ gdkDisplayGetDefaultSeat <- function(display) {
 
 
 #' @rdname gdk-display
-#' @title gdkDisplayGetDmabufFormats
-#'
-#' @param display Display
-#' @return DmabufFormats
-#' @export
-gdkDisplayGetDmabufFormats <- function(display) {
-  .Call("R_gdk_display_get_dmabuf_formats", display)$result
-}
-
-
-#' @rdname gdk-display
 #' @title gdkDisplayGetMonitorAtSurface
 #'
 #' @param display Display
@@ -1790,17 +1516,6 @@ gdkDisplaySupportsInputShapes <- function(display) {
 
 
 #' @rdname gdk-display
-#' @title gdkDisplaySupportsShadowWidth
-#'
-#' @param display Display
-#' @return gboolean
-#' @export
-gdkDisplaySupportsShadowWidth <- function(display) {
-  .Call("R_gdk_display_supports_shadow_width", display)$result
-}
-
-
-#' @rdname gdk-display
 #' @title gdkDisplaySync
 #'
 #' @param display Display
@@ -1888,391 +1603,6 @@ gdkDisplayManagerSetDefaultDisplay <- function(manager, display) {
 #' @export
 gdkDmabufErrorQuark <- function() {
   .Call("R_gdk_dmabuf_error_quark")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufFormatsContains
-#'
-#' @param formats DmabufFormats
-#' @param fourcc guint32
-#' @param modifier guint64
-#' @return gboolean
-#' @export
-gdkDmabufFormatsContains <- function(formats, fourcc, modifier) {
-  .Call("R_gdk_dmabuf_formats_contains", formats, as.integer(fourcc), as.integer(modifier))$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufFormatsEqual
-#'
-#' @param formats1 DmabufFormats
-#' @param formats2 DmabufFormats
-#' @return gboolean
-#' @export
-gdkDmabufFormatsEqual <- function(formats1, formats2) {
-  .Call("R_gdk_dmabuf_formats_equal", formats1, formats2)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufFormatsGetFormat
-#'
-#' @param formats DmabufFormats
-#' @param idx gsize
-#' @return Return value from C function
-#' @export
-gdkDmabufFormatsGetFormat <- function(formats, idx) {
-  .Call("R_gdk_dmabuf_formats_get_format", formats, as.integer(idx))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufFormatsGetNFormats
-#'
-#' @param formats DmabufFormats
-#' @return gsize
-#' @export
-gdkDmabufFormatsGetNFormats <- function(formats) {
-  .Call("R_gdk_dmabuf_formats_get_n_formats", formats)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufFormatsRef
-#'
-#' @param formats DmabufFormats
-#' @return DmabufFormats
-#' @export
-gdkDmabufFormatsRef <- function(formats) {
-  .Call("R_gdk_dmabuf_formats_ref", formats)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufFormatsUnref
-#'
-#' @param formats DmabufFormats
-#' @return Return value from C function
-#' @export
-gdkDmabufFormatsUnref <- function(formats) {
-  invisible(.Call("R_gdk_dmabuf_formats_unref", formats))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderNew
-#'
-#' @return DmabufTextureBuilder
-#' @export
-gdkDmabufTextureBuilderNew <- function() {
-  .Call("R_gdk_dmabuf_texture_builder_new")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetColorState
-#'
-#' @param self DmabufTextureBuilder
-#' @return ColorState
-#' @export
-gdkDmabufTextureBuilderGetColorState <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_color_state", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetDisplay
-#'
-#' @param self DmabufTextureBuilder
-#' @return Display
-#' @export
-gdkDmabufTextureBuilderGetDisplay <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_display", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetFd
-#'
-#' @param self DmabufTextureBuilder
-#' @param plane guint
-#' @return gint
-#' @export
-gdkDmabufTextureBuilderGetFd <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_fd", self, as.integer(plane))$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetFourcc
-#'
-#' @param self DmabufTextureBuilder
-#' @return guint32
-#' @export
-gdkDmabufTextureBuilderGetFourcc <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_fourcc", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetHeight
-#'
-#' @param self DmabufTextureBuilder
-#' @return guint
-#' @export
-gdkDmabufTextureBuilderGetHeight <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_height", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetModifier
-#'
-#' @param self DmabufTextureBuilder
-#' @return guint64
-#' @export
-gdkDmabufTextureBuilderGetModifier <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_modifier", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetNPlanes
-#'
-#' @param self DmabufTextureBuilder
-#' @return guint
-#' @export
-gdkDmabufTextureBuilderGetNPlanes <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_n_planes", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetOffset
-#'
-#' @param self DmabufTextureBuilder
-#' @param plane guint
-#' @return guint
-#' @export
-gdkDmabufTextureBuilderGetOffset <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_offset", self, as.integer(plane))$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetPremultiplied
-#'
-#' @param self DmabufTextureBuilder
-#' @return gboolean
-#' @export
-gdkDmabufTextureBuilderGetPremultiplied <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_premultiplied", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetStride
-#'
-#' @param self DmabufTextureBuilder
-#' @param plane guint
-#' @return guint
-#' @export
-gdkDmabufTextureBuilderGetStride <- function(self, plane) {
-  .Call("R_gdk_dmabuf_texture_builder_get_stride", self, as.integer(plane))$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetUpdateRegion
-#'
-#' @param self DmabufTextureBuilder
-#' @return cairo.Region
-#' @export
-gdkDmabufTextureBuilderGetUpdateRegion <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_update_region", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetUpdateTexture
-#'
-#' @param self DmabufTextureBuilder
-#' @return Texture
-#' @export
-gdkDmabufTextureBuilderGetUpdateTexture <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_update_texture", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderGetWidth
-#'
-#' @param self DmabufTextureBuilder
-#' @return guint
-#' @export
-gdkDmabufTextureBuilderGetWidth <- function(self) {
-  .Call("R_gdk_dmabuf_texture_builder_get_width", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetColorState
-#'
-#' @param self DmabufTextureBuilder
-#' @param color_state ColorState
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetColorState <- function(self, color_state) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_color_state", self, color_state))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetDisplay
-#'
-#' @param self DmabufTextureBuilder
-#' @param display Display
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetDisplay <- function(self, display) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_display", self, display))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetFd
-#'
-#' @param self DmabufTextureBuilder
-#' @param plane guint
-#' @param fd gint
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetFd <- function(self, plane, fd) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_fd", self, as.integer(plane), as.integer(fd)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetFourcc
-#'
-#' @param self DmabufTextureBuilder
-#' @param fourcc guint32
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetFourcc <- function(self, fourcc) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_fourcc", self, as.integer(fourcc)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetHeight
-#'
-#' @param self DmabufTextureBuilder
-#' @param height guint
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetHeight <- function(self, height) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_height", self, as.integer(height)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetModifier
-#'
-#' @param self DmabufTextureBuilder
-#' @param modifier guint64
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetModifier <- function(self, modifier) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_modifier", self, as.integer(modifier)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetNPlanes
-#'
-#' @param self DmabufTextureBuilder
-#' @param n_planes guint
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetNPlanes <- function(self, n_planes) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_n_planes", self, as.integer(n_planes)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetOffset
-#'
-#' @param self DmabufTextureBuilder
-#' @param plane guint
-#' @param offset guint
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetOffset <- function(self, plane, offset) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_offset", self, as.integer(plane), as.integer(offset)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetPremultiplied
-#'
-#' @param self DmabufTextureBuilder
-#' @param premultiplied gboolean
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetPremultiplied <- function(self, premultiplied) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_premultiplied", self, premultiplied))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetStride
-#'
-#' @param self DmabufTextureBuilder
-#' @param plane guint
-#' @param stride guint
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetStride <- function(self, plane, stride) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_stride", self, as.integer(plane), as.integer(stride)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetUpdateRegion
-#'
-#' @param self DmabufTextureBuilder
-#' @param region cairo.Region
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetUpdateRegion <- function(self, region) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_update_region", self, region))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetUpdateTexture
-#'
-#' @param self DmabufTextureBuilder
-#' @param texture Texture
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetUpdateTexture <- function(self, texture) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_update_texture", self, texture))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkDmabufTextureBuilderSetWidth
-#'
-#' @param self DmabufTextureBuilder
-#' @param width guint
-#' @return Return value from C function
-#' @export
-gdkDmabufTextureBuilderSetWidth <- function(self, width) {
-  invisible(.Call("R_gdk_dmabuf_texture_builder_set_width", self, as.integer(width)))
 }
 
 
@@ -3362,17 +2692,6 @@ gdkGlTextureBuilderNew <- function() {
 
 
 #' @rdname gdk-other
-#' @title gdkGlTextureBuilderGetColorState
-#'
-#' @param self GLTextureBuilder
-#' @return ColorState
-#' @export
-gdkGlTextureBuilderGetColorState <- function(self) {
-  .Call("R_gdk_gl_texture_builder_get_color_state", self)$result
-}
-
-
-#' @rdname gdk-other
 #' @title gdkGlTextureBuilderGetContext
 #'
 #' @param self GLTextureBuilder
@@ -3468,18 +2787,6 @@ gdkGlTextureBuilderGetUpdateTexture <- function(self) {
 #' @export
 gdkGlTextureBuilderGetWidth <- function(self) {
   .Call("R_gdk_gl_texture_builder_get_width", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkGlTextureBuilderSetColorState
-#'
-#' @param self GLTextureBuilder
-#' @param color_state ColorState
-#' @return Return value from C function
-#' @export
-gdkGlTextureBuilderSetColorState <- function(self, color_state) {
-  invisible(.Call("R_gdk_gl_texture_builder_set_color_state", self, color_state))
 }
 
 
@@ -3718,261 +3025,6 @@ gdkMemoryTextureNew <- function(width, height, format, bytes, stride) {
 }
 
 
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderNew
-#'
-#' @return MemoryTextureBuilder
-#' @export
-gdkMemoryTextureBuilderNew <- function() {
-  .Call("R_gdk_memory_texture_builder_new")$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderBuild
-#'
-#' @param self MemoryTextureBuilder
-#' @return Texture
-#' @export
-gdkMemoryTextureBuilderBuild <- function(self) {
-  .Call("R_gdk_memory_texture_builder_build", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetBytes
-#'
-#' @param self MemoryTextureBuilder
-#' @return GLib.Bytes
-#' @export
-gdkMemoryTextureBuilderGetBytes <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_bytes", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetColorState
-#'
-#' @param self MemoryTextureBuilder
-#' @return ColorState
-#' @export
-gdkMemoryTextureBuilderGetColorState <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_color_state", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetFormat
-#'
-#' @param self MemoryTextureBuilder
-#' @return MemoryFormat
-#' @export
-gdkMemoryTextureBuilderGetFormat <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_format", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetHeight
-#'
-#' @param self MemoryTextureBuilder
-#' @return gint
-#' @export
-gdkMemoryTextureBuilderGetHeight <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_height", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetOffset
-#'
-#' @param self MemoryTextureBuilder
-#' @param plane guint
-#' @return gsize
-#' @export
-gdkMemoryTextureBuilderGetOffset <- function(self, plane) {
-  .Call("R_gdk_memory_texture_builder_get_offset", self, as.integer(plane))$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetStride
-#'
-#' @param self MemoryTextureBuilder
-#' @return gsize
-#' @export
-gdkMemoryTextureBuilderGetStride <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_stride", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetStrideForPlane
-#'
-#' @param self MemoryTextureBuilder
-#' @param plane guint
-#' @return gsize
-#' @export
-gdkMemoryTextureBuilderGetStrideForPlane <- function(self, plane) {
-  .Call("R_gdk_memory_texture_builder_get_stride_for_plane", self, as.integer(plane))$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetUpdateRegion
-#'
-#' @param self MemoryTextureBuilder
-#' @return cairo.Region
-#' @export
-gdkMemoryTextureBuilderGetUpdateRegion <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_update_region", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetUpdateTexture
-#'
-#' @param self MemoryTextureBuilder
-#' @return Texture
-#' @export
-gdkMemoryTextureBuilderGetUpdateTexture <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_update_texture", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderGetWidth
-#'
-#' @param self MemoryTextureBuilder
-#' @return gint
-#' @export
-gdkMemoryTextureBuilderGetWidth <- function(self) {
-  .Call("R_gdk_memory_texture_builder_get_width", self)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetBytes
-#'
-#' @param self MemoryTextureBuilder
-#' @param bytes GLib.Bytes
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetBytes <- function(self, bytes) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_bytes", self, bytes))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetColorState
-#'
-#' @param self MemoryTextureBuilder
-#' @param color_state ColorState
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetColorState <- function(self, color_state) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_color_state", self, color_state))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetFormat
-#'
-#' @param self MemoryTextureBuilder
-#' @param format MemoryFormat
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetFormat <- function(self, format) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_format", self, format))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetHeight
-#'
-#' @param self MemoryTextureBuilder
-#' @param height gint
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetHeight <- function(self, height) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_height", self, as.integer(height)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetOffset
-#'
-#' @param self MemoryTextureBuilder
-#' @param plane guint
-#' @param offset gsize
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetOffset <- function(self, plane, offset) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_offset", self, as.integer(plane), as.integer(offset)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetStride
-#'
-#' @param self MemoryTextureBuilder
-#' @param stride gsize
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetStride <- function(self, stride) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_stride", self, as.integer(stride)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetStrideForPlane
-#'
-#' @param self MemoryTextureBuilder
-#' @param plane guint
-#' @param stride gsize
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetStrideForPlane <- function(self, plane, stride) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_stride_for_plane", self, as.integer(plane), as.integer(stride)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetUpdateRegion
-#'
-#' @param self MemoryTextureBuilder
-#' @param region cairo.Region
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetUpdateRegion <- function(self, region) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_update_region", self, region))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetUpdateTexture
-#'
-#' @param self MemoryTextureBuilder
-#' @param texture Texture
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetUpdateTexture <- function(self, texture) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_update_texture", self, texture))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkMemoryTextureBuilderSetWidth
-#'
-#' @param self MemoryTextureBuilder
-#' @param width gint
-#' @return Return value from C function
-#' @export
-gdkMemoryTextureBuilderSetWidth <- function(self, width) {
-  invisible(.Call("R_gdk_memory_texture_builder_set_width", self, as.integer(width)))
-}
-
-
 #' @rdname gdk-display
 #' @title gdkMonitorGetConnector
 #'
@@ -4058,17 +3110,6 @@ gdkMonitorGetModel <- function(monitor) {
 #' @export
 gdkMonitorGetRefreshRate <- function(monitor) {
   .Call("R_gdk_monitor_get_refresh_rate", monitor)$result
-}
-
-
-#' @rdname gdk-display
-#' @title gdkMonitorGetScale
-#'
-#' @param monitor Monitor
-#' @return gdouble
-#' @export
-gdkMonitorGetScale <- function(monitor) {
-  .Call("R_gdk_monitor_get_scale", monitor)$result
 }
 
 
@@ -4627,18 +3668,6 @@ gdkRgbaParse <- function(rgba, spec) {
 
 
 #' @rdname gdk-other
-#' @title gdkRgbaPrint
-#'
-#' @param rgba RGBA
-#' @param string GLib.String
-#' @return GLib.String
-#' @export
-gdkRgbaPrint <- function(rgba, string) {
-  .Call("R_gdk_rgba_print", rgba, string)$result
-}
-
-
-#' @rdname gdk-other
 #' @title gdkRgbaToString
 #'
 #' @param rgba RGBA
@@ -4717,17 +3746,6 @@ gdkScrollEventGetDeltas <- function(event) {
 #' @export
 gdkScrollEventGetDirection <- function(event) {
   .Call("R_gdk_scroll_event_get_direction", event)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkScrollEventGetRelativeDirection
-#'
-#' @param event ScrollEvent
-#' @return ScrollRelativeDirection
-#' @export
-gdkScrollEventGetRelativeDirection <- function(event) {
-  .Call("R_gdk_scroll_event_get_relative_direction", event)$result
 }
 
 
@@ -5198,17 +4216,6 @@ gdkTextureDownload <- function(texture, data, stride) {
 
 
 #' @rdname gdk-graphics
-#' @title gdkTextureGetColorState
-#'
-#' @param self Texture
-#' @return ColorState
-#' @export
-gdkTextureGetColorState <- function(self) {
-  .Call("R_gdk_texture_get_color_state", self)$result
-}
-
-
-#' @rdname gdk-graphics
 #' @title gdkTextureGetFormat
 #'
 #' @param self Texture
@@ -5321,17 +4328,6 @@ gdkTextureDownloaderDownloadBytes <- function(self) {
 
 
 #' @rdname gdk-graphics
-#' @title gdkTextureDownloaderDownloadBytesWithPlanes
-#'
-#' @param self TextureDownloader
-#' @return GLib.Bytes
-#' @export
-gdkTextureDownloaderDownloadBytesWithPlanes <- function(self) {
-  .Call("R_gdk_texture_downloader_download_bytes_with_planes", self)
-}
-
-
-#' @rdname gdk-graphics
 #' @title gdkTextureDownloaderDownloadInto
 #'
 #' @param self TextureDownloader
@@ -5356,17 +4352,6 @@ gdkTextureDownloaderFree <- function(self) {
 
 
 #' @rdname gdk-graphics
-#' @title gdkTextureDownloaderGetColorState
-#'
-#' @param self TextureDownloader
-#' @return ColorState
-#' @export
-gdkTextureDownloaderGetColorState <- function(self) {
-  .Call("R_gdk_texture_downloader_get_color_state", self)$result
-}
-
-
-#' @rdname gdk-graphics
 #' @title gdkTextureDownloaderGetFormat
 #'
 #' @param self TextureDownloader
@@ -5385,18 +4370,6 @@ gdkTextureDownloaderGetFormat <- function(self) {
 #' @export
 gdkTextureDownloaderGetTexture <- function(self) {
   .Call("R_gdk_texture_downloader_get_texture", self)$result
-}
-
-
-#' @rdname gdk-graphics
-#' @title gdkTextureDownloaderSetColorState
-#'
-#' @param self TextureDownloader
-#' @param color_state ColorState
-#' @return Return value from C function
-#' @export
-gdkTextureDownloaderSetColorState <- function(self, color_state) {
-  invisible(.Call("R_gdk_texture_downloader_set_color_state", self, color_state))
 }
 
 
@@ -5446,7 +4419,7 @@ gdkTextureErrorQuark <- function() {
 #' @return Return value from C function
 #' @export
 gdkToplevelBeginMove <- function(toplevel, device, button, x, y, timestamp) {
-  invisible(.Call("R_gdk_toplevel_begin_move", toplevel, device, as.integer(button), x, y, as.integer(timestamp)))
+  invisible(.Call("R_gdk_toplevel_begin_move", toplevel, device, as.integer(button), x, y, timestamp))
 }
 
 
@@ -5463,7 +4436,7 @@ gdkToplevelBeginMove <- function(toplevel, device, button, x, y, timestamp) {
 #' @return Return value from C function
 #' @export
 gdkToplevelBeginResize <- function(toplevel, edge, device, button, x, y, timestamp) {
-  invisible(.Call("R_gdk_toplevel_begin_resize", toplevel, edge, device, as.integer(button), x, y, as.integer(timestamp)))
+  invisible(.Call("R_gdk_toplevel_begin_resize", toplevel, edge, device, as.integer(button), x, y, timestamp))
 }
 
 
@@ -5475,29 +4448,7 @@ gdkToplevelBeginResize <- function(toplevel, edge, device, button, x, y, timesta
 #' @return Return value from C function
 #' @export
 gdkToplevelFocus <- function(toplevel, timestamp) {
-  invisible(.Call("R_gdk_toplevel_focus", toplevel, as.integer(timestamp)))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkToplevelGetCapabilities
-#'
-#' @param toplevel Toplevel
-#' @return ToplevelCapabilities
-#' @export
-gdkToplevelGetCapabilities <- function(toplevel) {
-  .Call("R_gdk_toplevel_get_capabilities", toplevel)$result
-}
-
-
-#' @rdname gdk-other
-#' @title gdkToplevelGetGravity
-#'
-#' @param toplevel Toplevel
-#' @return Gravity
-#' @export
-gdkToplevelGetGravity <- function(toplevel) {
-  .Call("R_gdk_toplevel_get_gravity", toplevel)$result
+  invisible(.Call("R_gdk_toplevel_focus", toplevel, timestamp))
 }
 
 
@@ -5590,18 +4541,6 @@ gdkToplevelSetDecorated <- function(toplevel, decorated) {
 #' @export
 gdkToplevelSetDeletable <- function(toplevel, deletable) {
   invisible(.Call("R_gdk_toplevel_set_deletable", toplevel, deletable))
-}
-
-
-#' @rdname gdk-other
-#' @title gdkToplevelSetGravity
-#'
-#' @param toplevel Toplevel
-#' @param gravity Gravity
-#' @return Return value from C function
-#' @export
-gdkToplevelSetGravity <- function(toplevel, gravity) {
-  invisible(.Call("R_gdk_toplevel_set_gravity", toplevel, gravity))
 }
 
 
@@ -6209,7 +5148,7 @@ gdkSetAllowedBackends <- function(backends) {
 #' @return guint
 #' @export
 gdkUnicodeToKeyval <- function(wc) {
-  .Call("R_gdk_unicode_to_keyval", as.integer(wc))$result
+  .Call("R_gdk_unicode_to_keyval", wc)$result
 }
 
 

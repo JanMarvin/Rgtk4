@@ -36,7 +36,6 @@
 \alias{gtkFileFilterNew}
 \alias{gtkFileFilterNewFromGvariant}
 \alias{gtkFileFilterAddMimeType}
-\alias{gtkFileFilterAddMimeTypes}
 \alias{gtkFileFilterAddPattern}
 \alias{gtkFileFilterAddPixbufFormats}
 \alias{gtkFileFilterAddSuffix}
@@ -116,8 +115,6 @@ gtkFileFilterNewFromGvariant(variant)
 
 gtkFileFilterAddMimeType(filter, mime_type)
 
-gtkFileFilterAddMimeTypes(filter, mime_types)
-
 gtkFileFilterAddPattern(filter, pattern)
 
 gtkFileFilterAddPixbufFormats(filter)
@@ -172,8 +169,6 @@ gtkFileFilterToGvariant(filter)
 \item{variant}{GLib.Variant}
 
 \item{mime_type}{utf8}
-
-\item{mime_types}{utf8}
 
 \item{pattern}{utf8}
 
@@ -247,8 +242,6 @@ Widget
 FileFilter
 
 FileFilter
-
-Return value from C function
 
 Return value from C function
 
@@ -336,8 +329,6 @@ gtkFileFilterNew
 gtkFileFilterNewFromGvariant
 
 gtkFileFilterAddMimeType
-
-gtkFileFilterAddMimeTypes
 
 gtkFileFilterAddPattern
 

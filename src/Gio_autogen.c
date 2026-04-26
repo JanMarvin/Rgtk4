@@ -19,6 +19,14 @@
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
 
+/* Agnostic numeric extraction helper */
+static inline double _unbox_numeric(SEXP s) {
+  if (TYPEOF(s) == REALSXP) return REAL(s)[0];
+  if (TYPEOF(s) == INTSXP)  return (double)INTEGER(s)[0];
+  if (TYPEOF(s) == LGLSXP)  return (double)LOGICAL(s)[0];
+  return 0.0;
+}
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -495,7 +503,7 @@ SEXP R_g_action_map_add_action(SEXP s1, SEXP s2) {
 SEXP R_g_action_map_add_action_entries(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GActionMap* v1 = (GActionMap*)(get_ptr(s1)); (void)v1;
   const GActionEntry* v2 = (const GActionEntry*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   g_action_map_add_action_entries(v1, v2, v3, v4);
   return R_NilValue;
@@ -1249,7 +1257,7 @@ SEXP R_g_application_activate(SEXP s1) {
 SEXP R_g_application_add_main_option(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GApplication* v1 = (GApplication*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gchar v3 = (gchar)((gchar)INTEGER(s3)[0]); (void)v3;
+  gchar v3 = (gchar)((gchar)_unbox_numeric(s3)); (void)v3;
   GOptionFlags v4 = (GOptionFlags)((GOptionFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GOptionArg v5 = (GOptionArg)((GOptionArg)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   const char* v6 = (const char*)(CHAR(STRING_ELT(s6,0))); (void)v6;
@@ -1445,7 +1453,7 @@ SEXP R_g_application_mark_busy(SEXP s1) {
 SEXP R_g_application_open(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GApplication* v1 = (GApplication*)(get_ptr(s1)); (void)v1;
   GFile** v2 = (GFile**)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   g_application_open(v1, v2, v3, v4);
   return R_NilValue;
@@ -1486,7 +1494,7 @@ SEXP R_g_application_release(SEXP s1) {
 
 SEXP R_g_application_run(SEXP s1, SEXP s2, SEXP s3) {
   GApplication* v1 = (GApplication*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   char** v3 = (s3 != R_NilValue) ? (char**)(get_ptr(s3)) : NULL; (void)v3;
   int _ret = (int)g_application_run(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1544,7 +1552,7 @@ SEXP R_g_application_set_flags(SEXP s1, SEXP s2) {
 
 SEXP R_g_application_set_inactivity_timeout(SEXP s1, SEXP s2) {
   GApplication* v1 = (GApplication*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_application_set_inactivity_timeout(v1, v2);
   return R_NilValue;
 }
@@ -1776,7 +1784,7 @@ SEXP R_g_application_command_line_getenv(SEXP s1, SEXP s2) {
 
 SEXP R_g_application_command_line_set_exit_status(SEXP s1, SEXP s2) {
   GApplicationCommandLine* v1 = (GApplicationCommandLine*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_application_command_line_set_exit_status(v1, v2);
   return R_NilValue;
 }
@@ -1784,9 +1792,9 @@ SEXP R_g_application_command_line_set_exit_status(SEXP s1, SEXP s2) {
 
 SEXP R_g_async_initable_newv_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GParameter* v3 = (GParameter*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -1797,7 +1805,7 @@ SEXP R_g_async_initable_newv_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
 
 SEXP R_g_async_initable_init_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GAsyncInitable* v1 = (GAsyncInitable*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -1926,7 +1934,7 @@ SEXP R_g_buffered_input_stream_new(SEXP s1) {
 
 SEXP R_g_buffered_input_stream_new_sized(SEXP s1, SEXP s2) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_buffered_input_stream_new_sized(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1943,7 +1951,7 @@ SEXP R_g_buffered_input_stream_new_sized(SEXP s1, SEXP s2) {
 
 SEXP R_g_buffered_input_stream_fill(SEXP s1, SEXP s2, SEXP s3) {
   GBufferedInputStream* v1 = (GBufferedInputStream*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gssize _ret = (gssize)g_buffered_input_stream_fill(v1, v2, v3, &_err);
@@ -1962,8 +1970,8 @@ SEXP R_g_buffered_input_stream_fill(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_buffered_input_stream_fill_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GBufferedInputStream* v1 = (GBufferedInputStream*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -2025,8 +2033,8 @@ SEXP R_g_buffered_input_stream_get_buffer_size(SEXP s1) {
 SEXP R_g_buffered_input_stream_peek(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GBufferedInputStream* v1 = (GBufferedInputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gsize v4 = (gsize)((gsize)REAL(s4)[0]); (void)v4;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
+  gsize v4 = (gsize)((gsize)_unbox_numeric(s4)); (void)v4;
   gsize _ret = (gsize)g_buffered_input_stream_peek(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2083,7 +2091,7 @@ SEXP R_g_buffered_input_stream_read_byte(SEXP s1, SEXP s2) {
 
 SEXP R_g_buffered_input_stream_set_buffer_size(SEXP s1, SEXP s2) {
   GBufferedInputStream* v1 = (GBufferedInputStream*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   g_buffered_input_stream_set_buffer_size(v1, v2);
   return R_NilValue;
 }
@@ -2107,7 +2115,7 @@ SEXP R_g_buffered_output_stream_new(SEXP s1) {
 
 SEXP R_g_buffered_output_stream_new_sized(SEXP s1, SEXP s2) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_buffered_output_stream_new_sized(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2164,7 +2172,7 @@ SEXP R_g_buffered_output_stream_set_auto_grow(SEXP s1, SEXP s2) {
 
 SEXP R_g_buffered_output_stream_set_buffer_size(SEXP s1, SEXP s2) {
   GBufferedOutputStream* v1 = (GBufferedOutputStream*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   g_buffered_output_stream_set_buffer_size(v1, v2);
   return R_NilValue;
 }
@@ -2262,7 +2270,7 @@ SEXP R_g_cancellable_connect(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_cancellable_disconnect(SEXP s1, SEXP s2) {
   GCancellable* v1 = (s1 != R_NilValue) ? (GCancellable*)(get_ptr(s1)) : NULL; (void)v1;
-  gulong v2 = (gulong)((gulong)REAL(s2)[0]); (void)v2;
+  gulong v2 = (gulong)((gulong)_unbox_numeric(s2)); (void)v2;
   g_cancellable_disconnect(v1, v2);
   return R_NilValue;
 }
@@ -2439,9 +2447,9 @@ SEXP R_g_charset_converter_set_use_fallback(SEXP s1, SEXP s2) {
 SEXP R_g_converter_convert(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GConverter* v1 = (GConverter*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   void* v4 = (void*)(get_ptr(s4)); (void)v4;
-  gsize v5 = (gsize)((gsize)REAL(s5)[0]); (void)v5;
+  gsize v5 = (gsize)((gsize)_unbox_numeric(s5)); (void)v5;
   GConverterFlags v6 = (GConverterFlags)((GConverterFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
   gsize _out_bytes_read = 0; (void)_out_bytes_read;
   gsize _out_bytes_written = 0; (void)_out_bytes_written;
@@ -2748,7 +2756,7 @@ SEXP R_g_data_input_stream_read_line(SEXP s1, SEXP s2) {
 
 SEXP R_g_data_input_stream_read_line_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GDataInputStream* v1 = (GDataInputStream*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -2911,7 +2919,7 @@ SEXP R_g_data_input_stream_read_until(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_data_input_stream_read_until_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GDataInputStream* v1 = (GDataInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -2947,7 +2955,7 @@ SEXP R_g_data_input_stream_read_until_finish(SEXP s1, SEXP s2) {
 SEXP R_g_data_input_stream_read_upto(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GDataInputStream* v1 = (GDataInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gsize _out_length = 0; (void)_out_length;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
@@ -2973,8 +2981,8 @@ SEXP R_g_data_input_stream_read_upto(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_data_input_stream_read_upto_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GDataInputStream* v1 = (GDataInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -3057,7 +3065,7 @@ SEXP R_g_data_output_stream_get_byte_order(SEXP s1) {
 
 SEXP R_g_data_output_stream_put_byte(SEXP s1, SEXP s2, SEXP s3) {
   GDataOutputStream* v1 = (GDataOutputStream*)(get_ptr(s1)); (void)v1;
-  guint8 v2 = (guint8)((guint8)INTEGER(s2)[0]); (void)v2;
+  guint8 v2 = (guint8)((guint8)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_data_output_stream_put_byte(v1, v2, v3, &_err);
@@ -3076,7 +3084,7 @@ SEXP R_g_data_output_stream_put_byte(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_data_output_stream_put_int16(SEXP s1, SEXP s2, SEXP s3) {
   GDataOutputStream* v1 = (GDataOutputStream*)(get_ptr(s1)); (void)v1;
-  gint16 v2 = (gint16)((gint16)INTEGER(s2)[0]); (void)v2;
+  gint16 v2 = (gint16)((gint16)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_data_output_stream_put_int16(v1, v2, v3, &_err);
@@ -3095,7 +3103,7 @@ SEXP R_g_data_output_stream_put_int16(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_data_output_stream_put_int32(SEXP s1, SEXP s2, SEXP s3) {
   GDataOutputStream* v1 = (GDataOutputStream*)(get_ptr(s1)); (void)v1;
-  gint32 v2 = (gint32)((gint32)INTEGER(s2)[0]); (void)v2;
+  gint32 v2 = (gint32)((gint32)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_data_output_stream_put_int32(v1, v2, v3, &_err);
@@ -3114,7 +3122,7 @@ SEXP R_g_data_output_stream_put_int32(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_data_output_stream_put_int64(SEXP s1, SEXP s2, SEXP s3) {
   GDataOutputStream* v1 = (GDataOutputStream*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_data_output_stream_put_int64(v1, v2, v3, &_err);
@@ -3152,7 +3160,7 @@ SEXP R_g_data_output_stream_put_string(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_data_output_stream_put_uint16(SEXP s1, SEXP s2, SEXP s3) {
   GDataOutputStream* v1 = (GDataOutputStream*)(get_ptr(s1)); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_data_output_stream_put_uint16(v1, v2, v3, &_err);
@@ -3171,7 +3179,7 @@ SEXP R_g_data_output_stream_put_uint16(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_data_output_stream_put_uint32(SEXP s1, SEXP s2, SEXP s3) {
   GDataOutputStream* v1 = (GDataOutputStream*)(get_ptr(s1)); (void)v1;
-  guint32 v2 = (guint32)((guint32)INTEGER(s2)[0]); (void)v2;
+  guint32 v2 = (guint32)((guint32)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_data_output_stream_put_uint32(v1, v2, v3, &_err);
@@ -3190,7 +3198,7 @@ SEXP R_g_data_output_stream_put_uint32(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_data_output_stream_put_uint64(SEXP s1, SEXP s2, SEXP s3) {
   GDataOutputStream* v1 = (GDataOutputStream*)(get_ptr(s1)); (void)v1;
-  guint64 v2 = (guint64)((guint64)REAL(s2)[0]); (void)v2;
+  guint64 v2 = (guint64)((guint64)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_data_output_stream_put_uint64(v1, v2, v3, &_err);
@@ -3235,7 +3243,7 @@ SEXP R_g_datagram_based_condition_check(SEXP s1, SEXP s2) {
 SEXP R_g_datagram_based_condition_wait(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GDatagramBased* v1 = (GDatagramBased*)(get_ptr(s1)); (void)v1;
   GIOCondition v2 = (GIOCondition)((GIOCondition)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint64 v3 = (gint64)((gint64)REAL(s3)[0]); (void)v3;
+  gint64 v3 = (gint64)((gint64)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_datagram_based_condition_wait(v1, v2, v3, v4, &_err);
@@ -3273,9 +3281,9 @@ SEXP R_g_datagram_based_create_source(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_datagram_based_receive_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GDatagramBased* v1 = (GDatagramBased*)(get_ptr(s1)); (void)v1;
   GInputMessage* v2 = (GInputMessage*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint64 v5 = (gint64)((gint64)REAL(s5)[0]); (void)v5;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint64 v5 = (gint64)((gint64)_unbox_numeric(s5)); (void)v5;
   GCancellable* v6 = (s6 != R_NilValue) ? (GCancellable*)(get_ptr(s6)) : NULL; (void)v6;
   GError *_err = NULL;
   gint _ret = (gint)g_datagram_based_receive_messages(v1, v2, v3, v4, v5, v6, &_err);
@@ -3295,9 +3303,9 @@ SEXP R_g_datagram_based_receive_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
 SEXP R_g_datagram_based_send_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GDatagramBased* v1 = (GDatagramBased*)(get_ptr(s1)); (void)v1;
   GOutputMessage* v2 = (GOutputMessage*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint64 v5 = (gint64)((gint64)REAL(s5)[0]); (void)v5;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint64 v5 = (gint64)((gint64)_unbox_numeric(s5)); (void)v5;
   GCancellable* v6 = (s6 != R_NilValue) ? (GCancellable*)(get_ptr(s6)) : NULL; (void)v6;
   GError *_err = NULL;
   gint _ret = (gint)g_datagram_based_send_messages(v1, v2, v3, v4, v5, v6, &_err);
@@ -4005,7 +4013,7 @@ SEXP R_g_file_append_to(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_append_to_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileCreateFlags v2 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -4058,7 +4066,7 @@ SEXP R_g_file_copy_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, S
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFile* v2 = (GFile*)(get_ptr(s2)); (void)v2;
   GFileCopyFlags v3 = (GFileCopyFlags)((GFileCopyFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GFileProgressCallback v6 = (s6 != R_NilValue) ? (GFileProgressCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -4129,7 +4137,7 @@ SEXP R_g_file_create(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_create_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileCreateFlags v2 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -4178,7 +4186,7 @@ SEXP R_g_file_create_readwrite(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_create_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileCreateFlags v2 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -4225,7 +4233,7 @@ SEXP R_g_file_delete(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_delete_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -4351,7 +4359,7 @@ SEXP R_g_file_enumerate_children_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP 
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GFileQueryInfoFlags v3 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -4415,7 +4423,7 @@ SEXP R_g_file_find_enclosing_mount(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_find_enclosing_mount_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -4869,7 +4877,7 @@ SEXP R_g_file_make_directory(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_make_directory_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -5167,7 +5175,7 @@ SEXP R_g_file_open_readwrite(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_open_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -5313,7 +5321,7 @@ SEXP R_g_file_query_filesystem_info(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_query_filesystem_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -5364,7 +5372,7 @@ SEXP R_g_file_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GFileQueryInfoFlags v3 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -5447,7 +5455,7 @@ SEXP R_g_file_read(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -5500,7 +5508,7 @@ SEXP R_g_file_replace_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   GFileCreateFlags v4 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   GCancellable* v6 = (s6 != R_NilValue) ? (GCancellable*)(get_ptr(s6)) : NULL; (void)v6;
   GAsyncReadyCallback v7 = (s7 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s7)) : NULL; (void)v7;
   gpointer v8 = (s8 != R_NilValue) ? (gpointer)(get_ptr(s8)) : NULL; (void)v8;
@@ -5512,7 +5520,7 @@ SEXP R_g_file_replace_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6
 SEXP R_g_file_replace_contents(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
   gboolean v5 = (gboolean)((gboolean)LOGICAL(s5)[0]); (void)v5;
   GFileCreateFlags v6 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
@@ -5541,7 +5549,7 @@ SEXP R_g_file_replace_contents(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP
 SEXP R_g_file_replace_contents_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
   gboolean v5 = (gboolean)((gboolean)LOGICAL(s5)[0]); (void)v5;
   GFileCreateFlags v6 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
@@ -5635,7 +5643,7 @@ SEXP R_g_file_replace_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   GFileCreateFlags v4 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   GCancellable* v6 = (s6 != R_NilValue) ? (GCancellable*)(get_ptr(s6)) : NULL; (void)v6;
   GAsyncReadyCallback v7 = (s7 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s7)) : NULL; (void)v7;
   gpointer v8 = (s8 != R_NilValue) ? (gpointer)(get_ptr(s8)) : NULL; (void)v8;
@@ -5725,7 +5733,7 @@ SEXP R_g_file_set_attribute_byte_string(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP
 SEXP R_g_file_set_attribute_int32(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint32 v3 = (gint32)((gint32)INTEGER(s3)[0]); (void)v3;
+  gint32 v3 = (gint32)((gint32)_unbox_numeric(s3)); (void)v3;
   GFileQueryInfoFlags v4 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
@@ -5746,7 +5754,7 @@ SEXP R_g_file_set_attribute_int32(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_file_set_attribute_int64(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint64 v3 = (gint64)((gint64)REAL(s3)[0]); (void)v3;
+  gint64 v3 = (gint64)((gint64)_unbox_numeric(s3)); (void)v3;
   GFileQueryInfoFlags v4 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
@@ -5788,7 +5796,7 @@ SEXP R_g_file_set_attribute_string(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 SEXP R_g_file_set_attribute_uint32(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint32 v3 = (guint32)((guint32)INTEGER(s3)[0]); (void)v3;
+  guint32 v3 = (guint32)((guint32)_unbox_numeric(s3)); (void)v3;
   GFileQueryInfoFlags v4 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
@@ -5809,7 +5817,7 @@ SEXP R_g_file_set_attribute_uint32(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 SEXP R_g_file_set_attribute_uint64(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint64 v3 = (guint64)((guint64)REAL(s3)[0]); (void)v3;
+  guint64 v3 = (guint64)((guint64)_unbox_numeric(s3)); (void)v3;
   GFileQueryInfoFlags v4 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
@@ -5831,7 +5839,7 @@ SEXP R_g_file_set_attributes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileInfo* v2 = (GFileInfo*)(get_ptr(s2)); (void)v2;
   GFileQueryInfoFlags v3 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -5906,7 +5914,7 @@ SEXP R_g_file_set_display_name(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_set_display_name_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -6029,7 +6037,7 @@ SEXP R_g_file_trash(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_trash_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -6356,7 +6364,7 @@ SEXP R_g_file_enumerator_close(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_enumerator_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFileEnumerator* v1 = (GFileEnumerator*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -6498,8 +6506,8 @@ SEXP R_g_file_enumerator_next_file(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_enumerator_next_files_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFileEnumerator* v1 = (GFileEnumerator*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -6572,7 +6580,7 @@ SEXP R_g_file_io_stream_query_info(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_io_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFileIOStream* v1 = (GFileIOStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -7264,7 +7272,7 @@ SEXP R_g_file_info_set_attribute_byte_string(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_info_set_attribute_int32(SEXP s1, SEXP s2, SEXP s3) {
   GFileInfo* v1 = (GFileInfo*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint32 v3 = (gint32)((gint32)INTEGER(s3)[0]); (void)v3;
+  gint32 v3 = (gint32)((gint32)_unbox_numeric(s3)); (void)v3;
   g_file_info_set_attribute_int32(v1, v2, v3);
   return R_NilValue;
 }
@@ -7273,7 +7281,7 @@ SEXP R_g_file_info_set_attribute_int32(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_info_set_attribute_int64(SEXP s1, SEXP s2, SEXP s3) {
   GFileInfo* v1 = (GFileInfo*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint64 v3 = (gint64)((gint64)REAL(s3)[0]); (void)v3;
+  gint64 v3 = (gint64)((gint64)_unbox_numeric(s3)); (void)v3;
   g_file_info_set_attribute_int64(v1, v2, v3);
   return R_NilValue;
 }
@@ -7335,7 +7343,7 @@ SEXP R_g_file_info_set_attribute_stringv(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_info_set_attribute_uint32(SEXP s1, SEXP s2, SEXP s3) {
   GFileInfo* v1 = (GFileInfo*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint32 v3 = (guint32)((guint32)INTEGER(s3)[0]); (void)v3;
+  guint32 v3 = (guint32)((guint32)_unbox_numeric(s3)); (void)v3;
   g_file_info_set_attribute_uint32(v1, v2, v3);
   return R_NilValue;
 }
@@ -7344,7 +7352,7 @@ SEXP R_g_file_info_set_attribute_uint32(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_info_set_attribute_uint64(SEXP s1, SEXP s2, SEXP s3) {
   GFileInfo* v1 = (GFileInfo*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint64 v3 = (guint64)((guint64)REAL(s3)[0]); (void)v3;
+  guint64 v3 = (guint64)((guint64)_unbox_numeric(s3)); (void)v3;
   g_file_info_set_attribute_uint64(v1, v2, v3);
   return R_NilValue;
 }
@@ -7424,7 +7432,7 @@ SEXP R_g_file_info_set_name(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_info_set_size(SEXP s1, SEXP s2) {
   GFileInfo* v1 = (GFileInfo*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   g_file_info_set_size(v1, v2);
   return R_NilValue;
 }
@@ -7432,7 +7440,7 @@ SEXP R_g_file_info_set_size(SEXP s1, SEXP s2) {
 
 SEXP R_g_file_info_set_sort_order(SEXP s1, SEXP s2) {
   GFileInfo* v1 = (GFileInfo*)(get_ptr(s1)); (void)v1;
-  gint32 v2 = (gint32)((gint32)INTEGER(s2)[0]); (void)v2;
+  gint32 v2 = (gint32)((gint32)_unbox_numeric(s2)); (void)v2;
   g_file_info_set_sort_order(v1, v2);
   return R_NilValue;
 }
@@ -7483,7 +7491,7 @@ SEXP R_g_file_input_stream_query_info(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_input_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFileInputStream* v1 = (GFileInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -7554,7 +7562,7 @@ SEXP R_g_file_monitor_is_cancelled(SEXP s1) {
 
 SEXP R_g_file_monitor_set_rate_limit(SEXP s1, SEXP s2) {
   GFileMonitor* v1 = (GFileMonitor*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_file_monitor_set_rate_limit(v1, v2);
   return R_NilValue;
 }
@@ -7598,7 +7606,7 @@ SEXP R_g_file_output_stream_query_info(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_file_output_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFileOutputStream* v1 = (GFileOutputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -7872,7 +7880,7 @@ SEXP R_g_io_extension_point_implement(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)g_io_extension_point_implement(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -7992,7 +8000,7 @@ SEXP R_g_io_stream_close(SEXP s1, SEXP s2) {
 
 SEXP R_g_io_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GIOStream* v1 = (GIOStream*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -8104,7 +8112,7 @@ SEXP R_g_io_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEX
   GIOStream* v1 = (GIOStream*)(get_ptr(s1)); (void)v1;
   GIOStream* v2 = (GIOStream*)(get_ptr(s2)); (void)v2;
   GIOStreamSpliceFlags v3 = (GIOStreamSpliceFlags)((GIOStreamSpliceFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -8503,7 +8511,7 @@ SEXP R_g_inet_address_to_string(SEXP s1) {
 
 SEXP R_g_inet_address_mask_new(SEXP s1, SEXP s2) {
   GInetAddress* v1 = (GInetAddress*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_inet_address_mask_new(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -8636,7 +8644,7 @@ SEXP R_g_inet_address_mask_to_string(SEXP s1) {
 
 SEXP R_g_inet_socket_address_new(SEXP s1, SEXP s2) {
   GInetAddress* v1 = (GInetAddress*)(get_ptr(s1)); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_inet_socket_address_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8653,7 +8661,7 @@ SEXP R_g_inet_socket_address_new(SEXP s1, SEXP s2) {
 
 SEXP R_g_inet_socket_address_new_from_string(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_inet_socket_address_new_from_string(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8734,7 +8742,7 @@ SEXP R_g_inet_socket_address_get_scope_id(SEXP s1) {
 
 SEXP R_g_initable_newv(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GParameter* v3 = (GParameter*)(get_ptr(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
@@ -8797,7 +8805,7 @@ SEXP R_g_input_stream_close(SEXP s1, SEXP s2) {
 
 SEXP R_g_input_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -8859,7 +8867,7 @@ SEXP R_g_input_stream_is_closed(SEXP s1) {
 SEXP R_g_input_stream_read(SEXP s1, SEXP s2, SEXP s3) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gpointer _out_buffer = 0; (void)_out_buffer;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gssize _ret = (gssize)g_input_stream_read(v1, &_out_buffer, v2, v3, &_err);
@@ -8884,7 +8892,7 @@ SEXP R_g_input_stream_read(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_input_stream_read_all(SEXP s1, SEXP s2, SEXP s3) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gpointer _out_buffer = 0; (void)_out_buffer;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gsize _out_bytes_read = 0; (void)_out_bytes_read;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
@@ -8915,8 +8923,8 @@ SEXP R_g_input_stream_read_all(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_input_stream_read_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gpointer _out_buffer = 0; (void)_out_buffer;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -8961,8 +8969,8 @@ SEXP R_g_input_stream_read_all_finish(SEXP s1, SEXP s2) {
 SEXP R_g_input_stream_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gpointer _out_buffer = 0; (void)_out_buffer;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -8982,7 +8990,7 @@ SEXP R_g_input_stream_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
 
 SEXP R_g_input_stream_read_bytes(SEXP s1, SEXP s2, SEXP s3) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_input_stream_read_bytes(v1, v2, v3, &_err);
@@ -9001,8 +9009,8 @@ SEXP R_g_input_stream_read_bytes(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_input_stream_read_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -9066,7 +9074,7 @@ SEXP R_g_input_stream_set_pending(SEXP s1) {
 
 SEXP R_g_input_stream_skip(SEXP s1, SEXP s2, SEXP s3) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gssize _ret = (gssize)g_input_stream_skip(v1, v2, v3, &_err);
@@ -9085,8 +9093,8 @@ SEXP R_g_input_stream_skip(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_input_stream_skip_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -9147,7 +9155,7 @@ SEXP R_g_list_model_get_n_items(SEXP s1) {
 
 SEXP R_g_list_model_get_object(SEXP s1, SEXP s2) {
   GListModel* v1 = (GListModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_list_model_get_object(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9164,9 +9172,9 @@ SEXP R_g_list_model_get_object(SEXP s1, SEXP s2) {
 
 SEXP R_g_list_model_items_changed(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GListModel* v1 = (GListModel*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  guint v4 = (guint)((guint)INTEGER(s4)[0]); (void)v4;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
+  guint v4 = (guint)((guint)_unbox_numeric(s4)); (void)v4;
   g_list_model_items_changed(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -9198,7 +9206,7 @@ SEXP R_g_list_store_append(SEXP s1, SEXP s2) {
 
 SEXP R_g_list_store_insert(SEXP s1, SEXP s2, SEXP s3) {
   GListStore* v1 = (GListStore*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gpointer v3 = (gpointer)(get_ptr(s3)); (void)v3;
   g_list_store_insert(v1, v2, v3);
   return R_NilValue;
@@ -9226,7 +9234,7 @@ SEXP R_g_list_store_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_list_store_remove(SEXP s1, SEXP s2) {
   GListStore* v1 = (GListStore*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_list_store_remove(v1, v2);
   return R_NilValue;
 }
@@ -9250,10 +9258,10 @@ SEXP R_g_list_store_sort(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_list_store_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GListStore* v1 = (GListStore*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gpointer* v4 = (gpointer*)(get_ptr(s4)); (void)v4;
-  guint v5 = (guint)((guint)INTEGER(s5)[0]); (void)v5;
+  guint v5 = (guint)((guint)_unbox_numeric(s5)); (void)v5;
   g_list_store_splice(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -9261,7 +9269,7 @@ SEXP R_g_list_store_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 SEXP R_g_loadable_icon_load(SEXP s1, SEXP s2, SEXP s3) {
   GLoadableIcon* v1 = (GLoadableIcon*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   char* _out_type = 0; (void)_out_type;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
@@ -9286,7 +9294,7 @@ SEXP R_g_loadable_icon_load(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_loadable_icon_load_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GLoadableIcon* v1 = (GLoadableIcon*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -9353,7 +9361,7 @@ SEXP R_g_memory_input_stream_new_from_bytes(SEXP s1) {
 
 SEXP R_g_memory_input_stream_new_from_data(SEXP s1, SEXP s2, SEXP s3) {
   void* v1 = (void*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   GDestroyNotify v3 = (s3 != R_NilValue) ? (GDestroyNotify)(get_ptr(s3)) : NULL; (void)v3;
   gconstpointer _ret = (gconstpointer)g_memory_input_stream_new_from_data(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -9380,7 +9388,7 @@ SEXP R_g_memory_input_stream_add_bytes(SEXP s1, SEXP s2) {
 SEXP R_g_memory_input_stream_add_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMemoryInputStream* v1 = (GMemoryInputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
   g_memory_input_stream_add_data(v1, v2, v3, v4);
   return R_NilValue;
@@ -9543,7 +9551,7 @@ SEXP R_g_menu_freeze(SEXP s1) {
 
 SEXP R_g_menu_insert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMenu* v1 = (GMenu*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
   const char* v4 = (s4 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s4,0))) : NULL; (void)v4;
   g_menu_insert(v1, v2, v3, v4);
@@ -9553,7 +9561,7 @@ SEXP R_g_menu_insert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_menu_insert_item(SEXP s1, SEXP s2, SEXP s3) {
   GMenu* v1 = (GMenu*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GMenuItem* v3 = (GMenuItem*)(get_ptr(s3)); (void)v3;
   g_menu_insert_item(v1, v2, v3);
   return R_NilValue;
@@ -9562,7 +9570,7 @@ SEXP R_g_menu_insert_item(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_menu_insert_section(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMenu* v1 = (GMenu*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
   GMenuModel* v4 = (GMenuModel*)(get_ptr(s4)); (void)v4;
   g_menu_insert_section(v1, v2, v3, v4);
@@ -9572,7 +9580,7 @@ SEXP R_g_menu_insert_section(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_menu_insert_submenu(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMenu* v1 = (GMenu*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
   GMenuModel* v4 = (GMenuModel*)(get_ptr(s4)); (void)v4;
   g_menu_insert_submenu(v1, v2, v3, v4);
@@ -9617,7 +9625,7 @@ SEXP R_g_menu_prepend_submenu(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_menu_remove(SEXP s1, SEXP s2) {
   GMenu* v1 = (GMenu*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_menu_remove(v1, v2);
   return R_NilValue;
 }
@@ -9725,7 +9733,7 @@ SEXP R_g_menu_item_new(SEXP s1, SEXP s2) {
 
 SEXP R_g_menu_item_new_from_model(SEXP s1, SEXP s2) {
   GMenuModel* v1 = (GMenuModel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_menu_item_new_from_model(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9954,7 +9962,7 @@ SEXP R_g_menu_link_iter_next(SEXP s1) {
 
 SEXP R_g_menu_model_get_item_attribute_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMenuModel* v1 = (GMenuModel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const GVariantType* v4 = (s4 != R_NilValue) ? (const GVariantType*)(get_ptr(s4)) : NULL; (void)v4;
   gconstpointer _ret = (gconstpointer)g_menu_model_get_item_attribute_value(v1, v2, v3, v4);
@@ -9973,7 +9981,7 @@ SEXP R_g_menu_model_get_item_attribute_value(SEXP s1, SEXP s2, SEXP s3, SEXP s4)
 
 SEXP R_g_menu_model_get_item_link(SEXP s1, SEXP s2, SEXP s3) {
   GMenuModel* v1 = (GMenuModel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gconstpointer _ret = (gconstpointer)g_menu_model_get_item_link(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -10023,9 +10031,9 @@ SEXP R_g_menu_model_is_mutable(SEXP s1) {
 
 SEXP R_g_menu_model_items_changed(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMenuModel* v1 = (GMenuModel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   g_menu_model_items_changed(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -10033,7 +10041,7 @@ SEXP R_g_menu_model_items_changed(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_menu_model_iterate_item_attributes(SEXP s1, SEXP s2) {
   GMenuModel* v1 = (GMenuModel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_menu_model_iterate_item_attributes(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10050,7 +10058,7 @@ SEXP R_g_menu_model_iterate_item_attributes(SEXP s1, SEXP s2) {
 
 SEXP R_g_menu_model_iterate_item_links(SEXP s1, SEXP s2) {
   GMenuModel* v1 = (GMenuModel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_menu_model_iterate_item_links(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10597,7 +10605,7 @@ SEXP R_g_mount_operation_set_anonymous(SEXP s1, SEXP s2) {
 
 SEXP R_g_mount_operation_set_choice(SEXP s1, SEXP s2) {
   GMountOperation* v1 = (GMountOperation*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_mount_operation_set_choice(v1, v2);
   return R_NilValue;
 }
@@ -10637,7 +10645,7 @@ SEXP R_g_mount_operation_set_username(SEXP s1, SEXP s2) {
 
 SEXP R_g_native_socket_address_new(SEXP s1, SEXP s2) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_native_socket_address_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10654,7 +10662,7 @@ SEXP R_g_native_socket_address_new(SEXP s1, SEXP s2) {
 
 SEXP R_g_network_address_new(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_network_address_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10670,7 +10678,7 @@ SEXP R_g_network_address_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_network_address_new_loopback(SEXP s1) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_network_address_new_loopback(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10687,7 +10695,7 @@ SEXP R_g_network_address_new_loopback(SEXP s1) {
 
 SEXP R_g_network_address_parse(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_network_address_parse(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -10705,7 +10713,7 @@ SEXP R_g_network_address_parse(SEXP s1, SEXP s2) {
 
 SEXP R_g_network_address_parse_uri(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_network_address_parse_uri(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -11090,7 +11098,7 @@ SEXP R_g_output_stream_close(SEXP s1, SEXP s2) {
 
 SEXP R_g_output_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -11137,7 +11145,7 @@ SEXP R_g_output_stream_flush(SEXP s1, SEXP s2) {
 
 SEXP R_g_output_stream_flush_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -11253,7 +11261,7 @@ SEXP R_g_output_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   GInputStream* v2 = (GInputStream*)(get_ptr(s2)); (void)v2;
   GOutputStreamSpliceFlags v3 = (GOutputStreamSpliceFlags)((GOutputStreamSpliceFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -11283,7 +11291,7 @@ SEXP R_g_output_stream_splice_finish(SEXP s1, SEXP s2) {
 SEXP R_g_output_stream_write(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
   gssize _ret = (gssize)g_output_stream_write(v1, v2, v3, v4, &_err);
@@ -11303,7 +11311,7 @@ SEXP R_g_output_stream_write(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_output_stream_write_all(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gsize _out_bytes_written = 0; (void)_out_bytes_written;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
@@ -11329,8 +11337,8 @@ SEXP R_g_output_stream_write_all(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_output_stream_write_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -11366,8 +11374,8 @@ SEXP R_g_output_stream_write_all_finish(SEXP s1, SEXP s2) {
 SEXP R_g_output_stream_write_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -11398,7 +11406,7 @@ SEXP R_g_output_stream_write_bytes(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_output_stream_write_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -11645,7 +11653,7 @@ SEXP R_g_pollable_input_stream_is_readable(SEXP s1) {
 SEXP R_g_pollable_input_stream_read_nonblocking(SEXP s1, SEXP s2, SEXP s3) {
   GPollableInputStream* v1 = (GPollableInputStream*)(get_ptr(s1)); (void)v1;
   gpointer _out_buffer = 0; (void)_out_buffer;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gssize _ret = (gssize)g_pollable_input_stream_read_nonblocking(v1, &_out_buffer, v2, v3, &_err);
@@ -11719,7 +11727,7 @@ SEXP R_g_pollable_output_stream_is_writable(SEXP s1) {
 SEXP R_g_pollable_output_stream_write_nonblocking(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GPollableOutputStream* v1 = (GPollableOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
   gssize _ret = (gssize)g_pollable_output_stream_write_nonblocking(v1, v2, v3, v4, &_err);
@@ -11838,10 +11846,10 @@ SEXP R_g_proxy_supports_hostname(SEXP s1) {
 
 SEXP R_g_proxy_address_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GInetAddress* v1 = (GInetAddress*)(get_ptr(s1)); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
-  guint16 v5 = (guint16)((guint16)INTEGER(s5)[0]); (void)v5;
+  guint16 v5 = (guint16)((guint16)_unbox_numeric(s5)); (void)v5;
   const char* v6 = (s6 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s6,0))) : NULL; (void)v6;
   const char* v7 = (s7 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s7,0))) : NULL; (void)v7;
   gconstpointer _ret = (gconstpointer)g_proxy_address_new(v1, v2, v3, v4, v5, v6, v7);
@@ -12502,7 +12510,7 @@ SEXP R_g_seekable_can_truncate(SEXP s1) {
 
 SEXP R_g_seekable_seek(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSeekable* v1 = (GSeekable*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   GSeekType v3 = (GSeekType)((GSeekType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
@@ -12538,7 +12546,7 @@ SEXP R_g_seekable_tell(SEXP s1) {
 
 SEXP R_g_seekable_truncate(SEXP s1, SEXP s2, SEXP s3) {
   GSeekable* v1 = (GSeekable*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_seekable_truncate(v1, v2, v3, &_err);
@@ -13134,7 +13142,7 @@ SEXP R_g_settings_set_boolean(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_settings_set_double(SEXP s1, SEXP s2, SEXP s3) {
   GSettings* v1 = (GSettings*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_settings_set_double(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13152,7 +13160,7 @@ SEXP R_g_settings_set_double(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_settings_set_enum(SEXP s1, SEXP s2, SEXP s3) {
   GSettings* v1 = (GSettings*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_settings_set_enum(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13170,7 +13178,7 @@ SEXP R_g_settings_set_enum(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_settings_set_flags(SEXP s1, SEXP s2, SEXP s3) {
   GSettings* v1 = (GSettings*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_settings_set_flags(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13188,7 +13196,7 @@ SEXP R_g_settings_set_flags(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_settings_set_int(SEXP s1, SEXP s2, SEXP s3) {
   GSettings* v1 = (GSettings*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_settings_set_int(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13206,7 +13214,7 @@ SEXP R_g_settings_set_int(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_settings_set_int64(SEXP s1, SEXP s2, SEXP s3) {
   GSettings* v1 = (GSettings*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint64 v3 = (gint64)((gint64)REAL(s3)[0]); (void)v3;
+  gint64 v3 = (gint64)((gint64)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_settings_set_int64(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13260,7 +13268,7 @@ SEXP R_g_settings_set_strv(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_settings_set_uint(SEXP s1, SEXP s2, SEXP s3) {
   GSettings* v1 = (GSettings*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_settings_set_uint(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13278,7 +13286,7 @@ SEXP R_g_settings_set_uint(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_settings_set_uint64(SEXP s1, SEXP s2, SEXP s3) {
   GSettings* v1 = (GSettings*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint64 v3 = (guint64)((guint64)REAL(s3)[0]); (void)v3;
+  guint64 v3 = (guint64)((guint64)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_settings_set_uint64(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13844,7 +13852,7 @@ SEXP R_g_simple_action_group_new(void) {
 SEXP R_g_simple_action_group_add_entries(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSimpleActionGroup* v1 = (GSimpleActionGroup*)(get_ptr(s1)); (void)v1;
   const GActionEntry* v2 = (const GActionEntry*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   g_simple_action_group_add_entries(v1, v2, v3, v4);
   return R_NilValue;
@@ -14037,7 +14045,7 @@ SEXP R_g_simple_async_result_set_op_res_gboolean(SEXP s1, SEXP s2) {
 
 SEXP R_g_simple_async_result_set_op_res_gssize(SEXP s1, SEXP s2) {
   GSimpleAsyncResult* v1 = (GSimpleAsyncResult*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   g_simple_async_result_set_op_res_gssize(v1, v2);
   return R_NilValue;
 }
@@ -14138,7 +14146,7 @@ SEXP R_g_socket_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_socket_new_from_fd(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_socket_new_from_fd(v1, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -14245,7 +14253,7 @@ SEXP R_g_socket_condition_check(SEXP s1, SEXP s2) {
 SEXP R_g_socket_condition_timed_wait(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   GIOCondition v2 = (GIOCondition)((GIOCondition)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint64 v3 = (gint64)((gint64)REAL(s3)[0]); (void)v3;
+  gint64 v3 = (gint64)((gint64)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_socket_condition_timed_wait(v1, v2, v3, v4, &_err);
@@ -14496,8 +14504,8 @@ SEXP R_g_socket_get_multicast_ttl(SEXP s1) {
 
 SEXP R_g_socket_get_option(SEXP s1, SEXP s2, SEXP s3) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gint _out_value = 0; (void)_out_value;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_socket_get_option(v1, v2, v3, &_out_value, &_err);
@@ -14732,7 +14740,7 @@ SEXP R_g_socket_listen(SEXP s1) {
 SEXP R_g_socket_receive(SEXP s1, SEXP s2, SEXP s3) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   gchar _out_buffer = 0; (void)_out_buffer;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gssize _ret = (gssize)g_socket_receive(v1, &_out_buffer, v2, v3, &_err);
@@ -14758,7 +14766,7 @@ SEXP R_g_socket_receive_from(SEXP s1, SEXP s2, SEXP s3) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   GSocketAddress* _out_address = 0; (void)_out_address;
   gchar _out_buffer = 0; (void)_out_buffer;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gssize _ret = (gssize)g_socket_receive_from(v1, &_out_address, &_out_buffer, v2, v3, &_err);
@@ -14789,7 +14797,7 @@ SEXP R_g_socket_receive_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   GSocketAddress* _out_address = 0; (void)_out_address;
   GInputVector* v2 = (GInputVector*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GSocketControlMessage** _out_messages = 0; (void)_out_messages;
   gint _out_num_messages = 0; (void)_out_num_messages;
   gint _out_flags = 0; (void)_out_flags;
@@ -14832,8 +14840,8 @@ SEXP R_g_socket_receive_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_socket_receive_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   GInputMessage* v2 = (GInputMessage*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
   gint _ret = (gint)g_socket_receive_messages(v1, v2, v3, v4, v5, &_err);
@@ -14853,7 +14861,7 @@ SEXP R_g_socket_receive_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_socket_receive_with_blocking(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   gchar _out_buffer = 0; (void)_out_buffer;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
@@ -14879,7 +14887,7 @@ SEXP R_g_socket_receive_with_blocking(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_socket_send(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
   gssize _ret = (gssize)g_socket_send(v1, v2, v3, v4, &_err);
@@ -14900,10 +14908,10 @@ SEXP R_g_socket_send_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   GSocketAddress* v2 = (s2 != R_NilValue) ? (GSocketAddress*)(get_ptr(s2)) : NULL; (void)v2;
   GOutputVector* v3 = (GOutputVector*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GSocketControlMessage** v5 = (s5 != R_NilValue) ? (GSocketControlMessage**)(get_ptr(s5)) : NULL; (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
-  gint v7 = (gint)((gint)INTEGER(s7)[0]); (void)v7;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
+  gint v7 = (gint)((gint)_unbox_numeric(s7)); (void)v7;
   GCancellable* v8 = (s8 != R_NilValue) ? (GCancellable*)(get_ptr(s8)) : NULL; (void)v8;
   GError *_err = NULL;
   gssize _ret = (gssize)g_socket_send_message(v1, v2, v3, v4, v5, v6, v7, v8, &_err);
@@ -14923,8 +14931,8 @@ SEXP R_g_socket_send_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s
 SEXP R_g_socket_send_messages(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   GOutputMessage* v2 = (GOutputMessage*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
   gint _ret = (gint)g_socket_send_messages(v1, v2, v3, v4, v5, &_err);
@@ -14945,7 +14953,7 @@ SEXP R_g_socket_send_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   GSocketAddress* v2 = (s2 != R_NilValue) ? (GSocketAddress*)(get_ptr(s2)) : NULL; (void)v2;
   const gchar* v3 = (const gchar*)(get_ptr(s3)); (void)v3;
-  gsize v4 = (gsize)((gsize)REAL(s4)[0]); (void)v4;
+  gsize v4 = (gsize)((gsize)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
   gssize _ret = (gssize)g_socket_send_to(v1, v2, v3, v4, v5, &_err);
@@ -14965,7 +14973,7 @@ SEXP R_g_socket_send_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_socket_send_with_blocking(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
@@ -15009,7 +15017,7 @@ SEXP R_g_socket_set_keepalive(SEXP s1, SEXP s2) {
 
 SEXP R_g_socket_set_listen_backlog(SEXP s1, SEXP s2) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_socket_set_listen_backlog(v1, v2);
   return R_NilValue;
 }
@@ -15025,7 +15033,7 @@ SEXP R_g_socket_set_multicast_loopback(SEXP s1, SEXP s2) {
 
 SEXP R_g_socket_set_multicast_ttl(SEXP s1, SEXP s2) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_socket_set_multicast_ttl(v1, v2);
   return R_NilValue;
 }
@@ -15033,9 +15041,9 @@ SEXP R_g_socket_set_multicast_ttl(SEXP s1, SEXP s2) {
 
 SEXP R_g_socket_set_option(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_socket_set_option(v1, v2, v3, v4, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -15053,7 +15061,7 @@ SEXP R_g_socket_set_option(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_socket_set_timeout(SEXP s1, SEXP s2) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_socket_set_timeout(v1, v2);
   return R_NilValue;
 }
@@ -15061,7 +15069,7 @@ SEXP R_g_socket_set_timeout(SEXP s1, SEXP s2) {
 
 SEXP R_g_socket_set_ttl(SEXP s1, SEXP s2) {
   GSocket* v1 = (GSocket*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_socket_set_ttl(v1, v2);
   return R_NilValue;
 }
@@ -15104,7 +15112,7 @@ SEXP R_g_socket_speaks_ipv4(SEXP s1) {
 
 SEXP R_g_socket_address_new_from_native(SEXP s1, SEXP s2) {
   gpointer v1 = (gpointer)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_socket_address_new_from_native(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15154,7 +15162,7 @@ SEXP R_g_socket_address_get_native_size(SEXP s1) {
 SEXP R_g_socket_address_to_native(SEXP s1, SEXP s2, SEXP s3) {
   GSocketAddress* v1 = (GSocketAddress*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_socket_address_to_native(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -15291,7 +15299,7 @@ SEXP R_g_socket_client_connect_finish(SEXP s1, SEXP s2) {
 SEXP R_g_socket_client_connect_to_host(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_socket_client_connect_to_host(v1, v2, v3, v4, &_err);
@@ -15311,7 +15319,7 @@ SEXP R_g_socket_client_connect_to_host(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_socket_client_connect_to_host_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -15391,7 +15399,7 @@ SEXP R_g_socket_client_connect_to_service_finish(SEXP s1, SEXP s2) {
 SEXP R_g_socket_client_connect_to_uri(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_socket_client_connect_to_uri(v1, v2, v3, v4, &_err);
@@ -15411,7 +15419,7 @@ SEXP R_g_socket_client_connect_to_uri(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_socket_client_connect_to_uri_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
   GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -15632,7 +15640,7 @@ SEXP R_g_socket_client_set_socket_type(SEXP s1, SEXP s2) {
 
 SEXP R_g_socket_client_set_timeout(SEXP s1, SEXP s2) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_socket_client_set_timeout(v1, v2);
   return R_NilValue;
 }
@@ -15705,7 +15713,7 @@ SEXP R_g_socket_connectable_to_string(SEXP s1) {
 SEXP R_g_socket_connection_factory_lookup_type(SEXP s1, SEXP s2, SEXP s3) {
   GSocketFamily v1 = (GSocketFamily)((GSocketFamily)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   GSocketType v2 = (GSocketType)((GSocketType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GType _ret = (GType)g_socket_connection_factory_lookup_type(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15724,7 +15732,7 @@ SEXP R_g_socket_connection_factory_register_type(SEXP s1, SEXP s2, SEXP s3, SEXP
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   GSocketFamily v2 = (GSocketFamily)((GSocketFamily)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GSocketType v3 = (GSocketType)((GSocketType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   g_socket_connection_factory_register_type(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -15845,9 +15853,9 @@ SEXP R_g_socket_connection_is_connected(SEXP s1) {
 
 
 SEXP R_g_socket_control_message_deserialize(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gpointer v4 = (gpointer)(get_ptr(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)g_socket_control_message_deserialize(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -16098,7 +16106,7 @@ SEXP R_g_socket_listener_add_any_inet_port(SEXP s1, SEXP s2) {
 
 SEXP R_g_socket_listener_add_inet_port(SEXP s1, SEXP s2, SEXP s3) {
   GSocketListener* v1 = (GSocketListener*)(get_ptr(s1)); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
   GObject* v3 = (s3 != R_NilValue) ? (GObject*)(get_ptr(s3)) : NULL; (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_socket_listener_add_inet_port(v1, v2, v3, &_err);
@@ -16143,7 +16151,7 @@ SEXP R_g_socket_listener_close(SEXP s1) {
 
 SEXP R_g_socket_listener_set_backlog(SEXP s1, SEXP s2) {
   GSocketListener* v1 = (GSocketListener*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_socket_listener_set_backlog(v1, v2);
   return R_NilValue;
 }
@@ -16197,9 +16205,9 @@ SEXP R_g_socket_service_stop(SEXP s1) {
 
 SEXP R_g_srv_target_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint16 v2 = (guint16)((guint16)INTEGER(s2)[0]); (void)v2;
-  guint16 v3 = (guint16)((guint16)INTEGER(s3)[0]); (void)v3;
-  guint16 v4 = (guint16)((guint16)INTEGER(s4)[0]); (void)v4;
+  guint16 v2 = (guint16)((guint16)_unbox_numeric(s2)); (void)v2;
+  guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
+  guint16 v4 = (guint16)((guint16)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)g_srv_target_new(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16623,7 +16631,7 @@ SEXP R_g_task_return_error_if_cancelled(SEXP s1) {
 
 SEXP R_g_task_return_int(SEXP s1, SEXP s2) {
   GTask* v1 = (GTask*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   g_task_return_int(v1, v2);
   return R_NilValue;
 }
@@ -16664,7 +16672,7 @@ SEXP R_g_task_set_check_cancellable(SEXP s1, SEXP s2) {
 
 SEXP R_g_task_set_priority(SEXP s1, SEXP s2) {
   GTask* v1 = (GTask*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_task_set_priority(v1, v2);
   return R_NilValue;
 }
@@ -16863,7 +16871,7 @@ SEXP R_g_themed_icon_new(SEXP s1) {
 
 SEXP R_g_themed_icon_new_from_names(SEXP s1, SEXP s2) {
   char** v1 = (char**)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_themed_icon_new_from_names(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16927,7 +16935,7 @@ SEXP R_g_themed_icon_prepend_name(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_threaded_socket_service_new(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_threaded_socket_service_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17511,7 +17519,7 @@ SEXP R_g_volume_monitor_get_volumes(SEXP s1) {
 
 SEXP R_g_zlib_compressor_new(SEXP s1, SEXP s2) {
   GZlibCompressorFormat v1 = (GZlibCompressorFormat)((GZlibCompressorFormat)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_zlib_compressor_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17714,14 +17722,14 @@ SEXP R_g_bus_own_name_with_closures(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
 
 
 SEXP R_g_bus_unown_name(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   g_bus_unown_name(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_bus_unwatch_name(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   g_bus_unwatch_name(v1);
   return R_NilValue;
 }
@@ -17943,7 +17951,7 @@ SEXP R_g_content_type_get_symbolic_icon(SEXP s1) {
 SEXP R_g_content_type_guess(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   const guchar* v2 = (s2 != R_NilValue) ? (const guchar*)(get_ptr(s2)) : NULL; (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gboolean _out_result_uncertain = 0; (void)_out_result_uncertain;
   gconstpointer _ret = (gconstpointer)g_content_type_guess(v1, v2, v3, &_out_result_uncertain);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -18047,7 +18055,7 @@ SEXP R_g_content_types_get_registered(void) {
 
 
 SEXP R_g_io_error_from_errno(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GIOErrorEnum _ret = (GIOErrorEnum)g_io_error_from_errno(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18137,7 +18145,7 @@ SEXP R_g_io_scheduler_push_job(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GIOSchedulerJobFunc v1 = (GIOSchedulerJobFunc)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   GDestroyNotify v3 = (s3 != R_NilValue) ? (GDestroyNotify)(get_ptr(s3)) : NULL; (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   g_io_scheduler_push_job(v1, v2, v3, v4, v5);
   return R_NilValue;
@@ -18238,7 +18246,7 @@ SEXP R_g_pollable_source_new_full(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_pollable_stream_read(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
@@ -18259,7 +18267,7 @@ SEXP R_g_pollable_stream_read(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_pollable_stream_write(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
@@ -18280,7 +18288,7 @@ SEXP R_g_pollable_stream_write(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_pollable_stream_write_all(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   gsize _out_bytes_written = 0; (void)_out_bytes_written;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;

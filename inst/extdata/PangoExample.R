@@ -15,13 +15,15 @@ gtkWindowSetChild(window, scrolled)
 
 # Example 1: Pango Markup
 label1 <- gtkLabelNew("")
+# Example 1: Pango Markup (Fixed)
+label1 <- gtkLabelNew("")
 markup1 <- paste0(
   "<span font='24' weight='bold' foreground='#2196F3'>Pango Markup Examples</span>\n\n",
   "<span font='16'>Basic formatting: <b>bold</b>, <i>italic</i>, <u>underline</u></span>\n",
   "<span font='16'>Colors: <span foreground='red'>red</span> ",
   "<span foreground='#00AA00'>green</span> ",
   "<span foreground='blue' background='yellow'>blue on yellow</span></span>\n",
-  "<span font='14' font_family='monospace' background='#f0f0f0'>  code: fn <- function(x) x + 1  </span>\n"
+  "<span font='14' font_family='monospace' background='#f0f0f0'>  code: fn &lt;- function(x) x + 1  </span>\n"
 )
 gtkLabelSetMarkup(label1, markup1)
 gtkLabelSetSelectable(label1, TRUE)

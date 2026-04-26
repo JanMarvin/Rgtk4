@@ -99,7 +99,6 @@
 \alias{gdkTextureNewFromFilename}
 \alias{gdkTextureNewFromResource}
 \alias{gdkTextureDownload}
-\alias{gdkTextureGetColorState}
 \alias{gdkTextureGetFormat}
 \alias{gdkTextureGetHeight}
 \alias{gdkTextureGetWidth}
@@ -110,13 +109,10 @@
 \alias{gdkTextureDownloaderNew}
 \alias{gdkTextureDownloaderCopy}
 \alias{gdkTextureDownloaderDownloadBytes}
-\alias{gdkTextureDownloaderDownloadBytesWithPlanes}
 \alias{gdkTextureDownloaderDownloadInto}
 \alias{gdkTextureDownloaderFree}
-\alias{gdkTextureDownloaderGetColorState}
 \alias{gdkTextureDownloaderGetFormat}
 \alias{gdkTextureDownloaderGetTexture}
-\alias{gdkTextureDownloaderSetColorState}
 \alias{gdkTextureDownloaderSetFormat}
 \alias{gdkTextureDownloaderSetTexture}
 \alias{gdkTextureErrorQuark}
@@ -413,8 +409,6 @@ gdkTextureNewFromResource(resource_path)
 
 gdkTextureDownload(texture, data, stride)
 
-gdkTextureGetColorState(self)
-
 gdkTextureGetFormat(self)
 
 gdkTextureGetHeight(texture)
@@ -435,19 +429,13 @@ gdkTextureDownloaderCopy(self)
 
 gdkTextureDownloaderDownloadBytes(self)
 
-gdkTextureDownloaderDownloadBytesWithPlanes(self)
-
 gdkTextureDownloaderDownloadInto(self, data, stride)
 
 gdkTextureDownloaderFree(self)
 
-gdkTextureDownloaderGetColorState(self)
-
 gdkTextureDownloaderGetFormat(self)
 
 gdkTextureDownloaderGetTexture(self)
-
-gdkTextureDownloaderSetColorState(self, color_state)
 
 gdkTextureDownloaderSetFormat(self, format)
 
@@ -603,8 +591,6 @@ gdkPixbufGetFromTexture(texture)
 \item{stride}{gsize}
 
 \item{self}{TextureDownloader}
-
-\item{color_state}{ColorState}
 
 \item{surface}{cairo.Surface}
 }
@@ -805,8 +791,6 @@ Texture
 
 Return value from C function
 
-ColorState
-
 MemoryFormat
 
 gint
@@ -827,19 +811,13 @@ TextureDownloader
 
 GLib.Bytes
 
-GLib.Bytes
-
 Return value from C function
 
 Return value from C function
-
-ColorState
 
 MemoryFormat
 
 Texture
-
-Return value from C function
 
 Return value from C function
 
@@ -1048,8 +1026,6 @@ gdkTextureNewFromResource
 
 gdkTextureDownload
 
-gdkTextureGetColorState
-
 gdkTextureGetFormat
 
 gdkTextureGetHeight
@@ -1070,19 +1046,13 @@ gdkTextureDownloaderCopy
 
 gdkTextureDownloaderDownloadBytes
 
-gdkTextureDownloaderDownloadBytesWithPlanes
-
 gdkTextureDownloaderDownloadInto
 
 gdkTextureDownloaderFree
 
-gdkTextureDownloaderGetColorState
-
 gdkTextureDownloaderGetFormat
 
 gdkTextureDownloaderGetTexture
-
-gdkTextureDownloaderSetColorState
 
 gdkTextureDownloaderSetFormat
 

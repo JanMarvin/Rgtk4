@@ -32,12 +32,6 @@
 \alias{gObjectClassInstallProperty}
 \alias{gObjectClassListProperties}
 \alias{gObjectClassOverrideProperty}
-\alias{gSignalGroupNew}
-\alias{gSignalGroupBlock}
-\alias{gSignalGroupConnectClosure}
-\alias{gSignalGroupDupTarget}
-\alias{gSignalGroupSetTarget}
-\alias{gSignalGroupUnblock}
 \alias{gSignalAccumulatorFirstWins}
 \alias{gSignalAccumulatorTrueHandled}
 \alias{gSignalChainFromOverridden}
@@ -55,7 +49,6 @@
 \alias{gSignalHandlersDisconnectMatched}
 \alias{gSignalHandlersUnblockMatched}
 \alias{gSignalHasHandlerPending}
-\alias{gSignalIsValidName}
 \alias{gSignalListIds}
 \alias{gSignalLookup}
 \alias{gSignalName}
@@ -138,18 +131,6 @@ gObjectClassListProperties(oclass)
 
 gObjectClassOverrideProperty(oclass, property_id, name)
 
-gSignalGroupNew(target_type)
-
-gSignalGroupBlock(self)
-
-gSignalGroupConnectClosure(self, detailed_signal, closure, after)
-
-gSignalGroupDupTarget(self)
-
-gSignalGroupSetTarget(self, target)
-
-gSignalGroupUnblock(self)
-
 gSignalAccumulatorFirstWins(ihint, return_accu, handler_return, dummy)
 
 gSignalAccumulatorTrueHandled(ihint, return_accu, handler_return, dummy)
@@ -207,8 +188,6 @@ gSignalHandlersUnblockMatched(
 )
 
 gSignalHasHandlerPending(instance, signal_id, detail, may_be_blocked)
-
-gSignalIsValidName(name)
 
 gSignalListIds(itype)
 
@@ -287,14 +266,6 @@ gSignalTypeCclosureNew(itype, struct_offset)
 
 \item{name}{utf8}
 
-\item{target_type}{GType}
-
-\item{self}{SignalGroup}
-
-\item{detailed_signal}{utf8}
-
-\item{after}{gboolean}
-
 \item{ihint}{SignalInvocationHint}
 
 \item{return_accu}{Value}
@@ -308,6 +279,10 @@ gSignalTypeCclosureNew(itype, struct_offset)
 \item{return_value}{Value}
 
 \item{instance}{Object}
+
+\item{detailed_signal}{utf8}
+
+\item{after}{gboolean}
 
 \item{signal_id}{guint}
 
@@ -396,18 +371,6 @@ ParamSpec
 
 Return value from C function
 
-SignalGroup
-
-Return value from C function
-
-Return value from C function
-
-Object
-
-Return value from C function
-
-Return value from C function
-
 gboolean
 
 gboolean
@@ -439,8 +402,6 @@ Return value from C function
 guint
 
 guint
-
-gboolean
 
 gboolean
 
@@ -527,18 +488,6 @@ gObjectClassListProperties
 
 gObjectClassOverrideProperty
 
-gSignalGroupNew
-
-gSignalGroupBlock
-
-gSignalGroupConnectClosure
-
-gSignalGroupDupTarget
-
-gSignalGroupSetTarget
-
-gSignalGroupUnblock
-
 gSignalAccumulatorFirstWins
 
 gSignalAccumulatorTrueHandled
@@ -572,8 +521,6 @@ gSignalHandlersDisconnectMatched
 gSignalHandlersUnblockMatched
 
 gSignalHasHandlerPending
-
-gSignalIsValidName
 
 gSignalListIds
 

@@ -25,7 +25,6 @@
 \alias{gtkEntryGetInputPurpose}
 \alias{gtkEntryGetInvisibleChar}
 \alias{gtkEntryGetMaxLength}
-\alias{gtkEntryGetMenuEntryIconText}
 \alias{gtkEntryGetOverwriteMode}
 \alias{gtkEntryGetPlaceholderText}
 \alias{gtkEntryGetProgressFraction}
@@ -55,7 +54,6 @@
 \alias{gtkEntrySetInputPurpose}
 \alias{gtkEntrySetInvisibleChar}
 \alias{gtkEntrySetMaxLength}
-\alias{gtkEntrySetMenuEntryIconText}
 \alias{gtkEntrySetOverwriteMode}
 \alias{gtkEntrySetPlaceholderText}
 \alias{gtkEntrySetProgressFraction}
@@ -243,7 +241,6 @@
 \alias{gtkTextBufferPlaceCursor}
 \alias{gtkTextBufferRedo}
 \alias{gtkTextBufferRemoveAllTags}
-\alias{gtkTextBufferRemoveCommitNotify}
 \alias{gtkTextBufferRemoveSelectionClipboard}
 \alias{gtkTextBufferRemoveTag}
 \alias{gtkTextBufferRemoveTagByName}
@@ -401,7 +398,6 @@
 \alias{gtkTextViewGetRtlContext}
 \alias{gtkTextViewGetTabs}
 \alias{gtkTextViewGetTopMargin}
-\alias{gtkTextViewGetVisibleOffset}
 \alias{gtkTextViewGetVisibleRect}
 \alias{gtkTextViewGetWrapMode}
 \alias{gtkTextViewImContextFilterKeypress}
@@ -488,8 +484,6 @@ gtkEntryGetInvisibleChar(entry)
 
 gtkEntryGetMaxLength(entry)
 
-gtkEntryGetMenuEntryIconText(entry, icon_pos)
-
 gtkEntryGetOverwriteMode(entry)
 
 gtkEntryGetPlaceholderText(entry)
@@ -547,8 +541,6 @@ gtkEntrySetInputPurpose(entry, purpose)
 gtkEntrySetInvisibleChar(entry, ch)
 
 gtkEntrySetMaxLength(entry, max)
-
-gtkEntrySetMenuEntryIconText(entry, icon_pos, text)
 
 gtkEntrySetOverwriteMode(entry, overwrite)
 
@@ -929,8 +921,6 @@ gtkTextBufferRedo(buffer)
 
 gtkTextBufferRemoveAllTags(buffer, start, end)
 
-gtkTextBufferRemoveCommitNotify(buffer, commit_notify_handler)
-
 gtkTextBufferRemoveSelectionClipboard(buffer, clipboard)
 
 gtkTextBufferRemoveTag(buffer, tag, start, end)
@@ -1245,8 +1235,6 @@ gtkTextViewGetTabs(text_view)
 
 gtkTextViewGetTopMargin(text_view)
 
-gtkTextViewGetVisibleOffset(text_view)
-
 gtkTextViewGetVisibleRect(text_view)
 
 gtkTextViewGetWrapMode(text_view)
@@ -1378,9 +1366,9 @@ gtkTextViewWindowToBufferCoords(text_view, win, window_x, window_y)
 
 \item{max}{gint}
 
-\item{text}{utf8}
-
 \item{overwrite}{gboolean}
+
+\item{text}{utf8}
 
 \item{fraction}{gdouble}
 
@@ -1495,8 +1483,6 @@ gtkTextViewWindowToBufferCoords(text_view, win, window_x, window_y)
 \item{markup}{utf8}
 
 \item{override_location}{TextIter}
-
-\item{commit_notify_handler}{guint}
 
 \item{ins}{TextIter}
 
@@ -1641,8 +1627,6 @@ gunichar
 
 gint
 
-utf8
-
 gboolean
 
 utf8
@@ -1658,8 +1642,6 @@ guint16
 gboolean
 
 gboolean
-
-Return value from C function
 
 Return value from C function
 
@@ -2095,8 +2077,6 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
 TextChildAnchor
 
 TextChildAnchor
@@ -2395,8 +2375,6 @@ gint
 
 Return value from C function
 
-Return value from C function
-
 WrapMode
 
 gboolean
@@ -2516,8 +2494,6 @@ gtkEntryGetInvisibleChar
 
 gtkEntryGetMaxLength
 
-gtkEntryGetMenuEntryIconText
-
 gtkEntryGetOverwriteMode
 
 gtkEntryGetPlaceholderText
@@ -2575,8 +2551,6 @@ gtkEntrySetInputPurpose
 gtkEntrySetInvisibleChar
 
 gtkEntrySetMaxLength
-
-gtkEntrySetMenuEntryIconText
 
 gtkEntrySetOverwriteMode
 
@@ -2952,8 +2926,6 @@ gtkTextBufferRedo
 
 gtkTextBufferRemoveAllTags
 
-gtkTextBufferRemoveCommitNotify
-
 gtkTextBufferRemoveSelectionClipboard
 
 gtkTextBufferRemoveTag
@@ -3267,8 +3239,6 @@ gtkTextViewGetRtlContext
 gtkTextViewGetTabs
 
 gtkTextViewGetTopMargin
-
-gtkTextViewGetVisibleOffset
 
 gtkTextViewGetVisibleRect
 

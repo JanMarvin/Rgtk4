@@ -49,24 +49,11 @@
 \alias{gtkPopoverSetOffset}
 \alias{gtkPopoverSetPointingTo}
 \alias{gtkPopoverSetPosition}
-\alias{gtkPopoverBinNew}
-\alias{gtkPopoverBinGetChild}
-\alias{gtkPopoverBinGetHandleInput}
-\alias{gtkPopoverBinGetMenuModel}
-\alias{gtkPopoverBinGetPopover}
-\alias{gtkPopoverBinPopdown}
-\alias{gtkPopoverBinPopup}
-\alias{gtkPopoverBinSetChild}
-\alias{gtkPopoverBinSetHandleInput}
-\alias{gtkPopoverBinSetMenuModel}
-\alias{gtkPopoverBinSetPopover}
 \alias{gtkPopoverMenuNewFromModel}
 \alias{gtkPopoverMenuNewFromModelFull}
 \alias{gtkPopoverMenuAddChild}
-\alias{gtkPopoverMenuGetFlags}
 \alias{gtkPopoverMenuGetMenuModel}
 \alias{gtkPopoverMenuRemoveChild}
-\alias{gtkPopoverMenuSetFlags}
 \alias{gtkPopoverMenuSetMenuModel}
 \alias{gtkPopoverMenuBarNewFromModel}
 \alias{gtkPopoverMenuBarAddChild}
@@ -171,41 +158,15 @@ gtkPopoverSetPointingTo(popover, rect)
 
 gtkPopoverSetPosition(popover, position)
 
-gtkPopoverBinNew()
-
-gtkPopoverBinGetChild(self)
-
-gtkPopoverBinGetHandleInput(self)
-
-gtkPopoverBinGetMenuModel(self)
-
-gtkPopoverBinGetPopover(self)
-
-gtkPopoverBinPopdown(self)
-
-gtkPopoverBinPopup(self)
-
-gtkPopoverBinSetChild(self, child)
-
-gtkPopoverBinSetHandleInput(self, handle_input)
-
-gtkPopoverBinSetMenuModel(self, model)
-
-gtkPopoverBinSetPopover(self, popover)
-
 gtkPopoverMenuNewFromModel(model)
 
 gtkPopoverMenuNewFromModelFull(model, flags)
 
 gtkPopoverMenuAddChild(popover, child, id)
 
-gtkPopoverMenuGetFlags(popover)
-
 gtkPopoverMenuGetMenuModel(popover)
 
 gtkPopoverMenuRemoveChild(popover, child)
-
-gtkPopoverMenuSetFlags(popover, flags)
 
 gtkPopoverMenuSetMenuModel(popover, model)
 
@@ -263,10 +224,6 @@ gtkPopoverMenuBarSetMenuModel(bar, model)
 \item{rect}{Gdk.Rectangle}
 
 \item{position}{PositionType}
-
-\item{self}{PopoverBin}
-
-\item{handle_input}{gboolean}
 
 \item{model}{Gio.MenuModel}
 
@@ -381,33 +338,7 @@ gboolean
 
 Gio.MenuModel
 
-Popover
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Widget
-
-Widget
-
 gboolean
-
-PopoverMenuFlags
-
-Gio.MenuModel
-
-gboolean
-
-Return value from C function
 
 Return value from C function
 
@@ -518,41 +449,15 @@ gtkPopoverSetPointingTo
 
 gtkPopoverSetPosition
 
-gtkPopoverBinNew
-
-gtkPopoverBinGetChild
-
-gtkPopoverBinGetHandleInput
-
-gtkPopoverBinGetMenuModel
-
-gtkPopoverBinGetPopover
-
-gtkPopoverBinPopdown
-
-gtkPopoverBinPopup
-
-gtkPopoverBinSetChild
-
-gtkPopoverBinSetHandleInput
-
-gtkPopoverBinSetMenuModel
-
-gtkPopoverBinSetPopover
-
 gtkPopoverMenuNewFromModel
 
 gtkPopoverMenuNewFromModelFull
 
 gtkPopoverMenuAddChild
 
-gtkPopoverMenuGetFlags
-
 gtkPopoverMenuGetMenuModel
 
 gtkPopoverMenuRemoveChild
-
-gtkPopoverMenuSetFlags
 
 gtkPopoverMenuSetMenuModel
 

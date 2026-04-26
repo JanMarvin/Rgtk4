@@ -92,8 +92,8 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
 
 
 SEXP R_gdk_pixbuf_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GdkColorspace v1 = (GdkColorspace)((GdkColorspace)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : _unbox_numeric(s1))); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)_unbox_numeric(s2)); (void)v2;
+  GdkColorspace v1 = (GdkColorspace)((GdkColorspace)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
+  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
@@ -113,8 +113,8 @@ SEXP R_gdk_pixbuf_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 SEXP R_gdk_pixbuf_new_from_bytes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GBytes* v1 = (GBytes*)(get_ptr(s1)); (void)v1;
-  GdkColorspace v2 = (GdkColorspace)((GdkColorspace)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : _unbox_numeric(s2))); (void)v2;
-  gboolean v3 = (gboolean)((gboolean)_unbox_numeric(s3)); (void)v3;
+  GdkColorspace v2 = (GdkColorspace)((GdkColorspace)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
+  gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
@@ -135,8 +135,8 @@ SEXP R_gdk_pixbuf_new_from_bytes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
 
 SEXP R_gdk_pixbuf_new_from_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
   const guchar* v1 = (const guchar*)(get_ptr(s1)); (void)v1;
-  GdkColorspace v2 = (GdkColorspace)((GdkColorspace)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : _unbox_numeric(s2))); (void)v2;
-  gboolean v3 = (gboolean)((gboolean)_unbox_numeric(s3)); (void)v3;
+  GdkColorspace v2 = (GdkColorspace)((GdkColorspace)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
+  gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
@@ -178,7 +178,7 @@ SEXP R_gdk_pixbuf_new_from_file_at_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
-  gboolean v4 = (gboolean)((gboolean)_unbox_numeric(s4)); (void)v4;
+  gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_new_from_file_at_scale(v1, v2, v3, v4, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -216,7 +216,7 @@ SEXP R_gdk_pixbuf_new_from_file_at_size(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_gdk_pixbuf_new_from_inline(SEXP s1, SEXP s2, SEXP s3) {
   gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   const guint8* v2 = (const guint8*)(get_ptr(s2)); (void)v2;
-  gboolean v3 = (gboolean)((gboolean)_unbox_numeric(s3)); (void)v3;
+  gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_new_from_inline(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -253,7 +253,7 @@ SEXP R_gdk_pixbuf_new_from_resource_at_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4)
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
-  gboolean v4 = (gboolean)((gboolean)_unbox_numeric(s4)); (void)v4;
+  gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_new_from_resource_at_scale(v1, v2, v3, v4, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -291,7 +291,7 @@ SEXP R_gdk_pixbuf_new_from_stream_at_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4, S
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
-  gboolean v4 = (gboolean)((gboolean)_unbox_numeric(s4)); (void)v4;
+  gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_new_from_stream_at_scale(v1, v2, v3, v4, v5, &_err);
@@ -342,8 +342,8 @@ SEXP R_gdk_pixbuf_new_from_xpm_data(SEXP s1) {
 
 
 SEXP R_gdk_pixbuf_calculate_rowstride(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GdkColorspace v1 = (GdkColorspace)((GdkColorspace)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : _unbox_numeric(s1))); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)_unbox_numeric(s2)); (void)v2;
+  GdkColorspace v1 = (GdkColorspace)((GdkColorspace)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
+  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
@@ -475,7 +475,7 @@ SEXP R_gdk_pixbuf_new_from_stream_at_scale_async(SEXP s1, SEXP s2, SEXP s3, SEXP
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
-  gboolean v4 = (gboolean)((gboolean)_unbox_numeric(s4)); (void)v4;
+  gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
   GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -503,7 +503,7 @@ SEXP R_gdk_pixbuf_save_to_stream_finish(SEXP s1) {
 
 SEXP R_gdk_pixbuf_add_alpha(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const GdkPixbuf* v1 = (const GdkPixbuf*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)_unbox_numeric(s2)); (void)v2;
+  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   guint8 v3 = (guint8)((guint8)_unbox_numeric(s3)); (void)v3;
   guint8 v4 = (guint8)((guint8)_unbox_numeric(s4)); (void)v4;
   guint8 v5 = (guint8)((guint8)_unbox_numeric(s5)); (void)v5;
@@ -548,7 +548,7 @@ SEXP R_gdk_pixbuf_composite(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6
   gdouble v8 = (gdouble)((gdouble)_unbox_numeric(s8)); (void)v8;
   gdouble v9 = (gdouble)((gdouble)_unbox_numeric(s9)); (void)v9;
   gdouble v10 = (gdouble)((gdouble)_unbox_numeric(s10)); (void)v10;
-  GdkInterpType v11 = (GdkInterpType)((GdkInterpType)(TYPEOF(s11)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s11) : _unbox_numeric(s11))); (void)v11;
+  GdkInterpType v11 = (GdkInterpType)((GdkInterpType)(TYPEOF(s11)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s11) : INTEGER(s11)[0])); (void)v11;
   gint v12 = (gint)((gint)_unbox_numeric(s12)); (void)v12;
   gdk_pixbuf_composite(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12);
   return R_NilValue;
@@ -566,7 +566,7 @@ SEXP R_gdk_pixbuf_composite_color(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
   gdouble v8 = (gdouble)((gdouble)_unbox_numeric(s8)); (void)v8;
   gdouble v9 = (gdouble)((gdouble)_unbox_numeric(s9)); (void)v9;
   gdouble v10 = (gdouble)((gdouble)_unbox_numeric(s10)); (void)v10;
-  GdkInterpType v11 = (GdkInterpType)((GdkInterpType)(TYPEOF(s11)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s11) : _unbox_numeric(s11))); (void)v11;
+  GdkInterpType v11 = (GdkInterpType)((GdkInterpType)(TYPEOF(s11)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s11) : INTEGER(s11)[0])); (void)v11;
   gint v12 = (gint)((gint)_unbox_numeric(s12)); (void)v12;
   gint v13 = (gint)((gint)_unbox_numeric(s13)); (void)v13;
   gint v14 = (gint)((gint)_unbox_numeric(s14)); (void)v14;
@@ -582,7 +582,7 @@ SEXP R_gdk_pixbuf_composite_color_simple(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
   const GdkPixbuf* v1 = (const GdkPixbuf*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
-  GdkInterpType v4 = (GdkInterpType)((GdkInterpType)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : _unbox_numeric(s4))); (void)v4;
+  GdkInterpType v4 = (GdkInterpType)((GdkInterpType)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   guint32 v7 = (guint32)((guint32)_unbox_numeric(s7)); (void)v7;
@@ -658,7 +658,7 @@ SEXP R_gdk_pixbuf_fill(SEXP s1, SEXP s2) {
 
 SEXP R_gdk_pixbuf_flip(SEXP s1, SEXP s2) {
   const GdkPixbuf* v1 = (const GdkPixbuf*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)_unbox_numeric(s2)); (void)v2;
+  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_flip(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -943,7 +943,7 @@ SEXP R_gdk_pixbuf_remove_option(SEXP s1, SEXP s2) {
 
 SEXP R_gdk_pixbuf_rotate_simple(SEXP s1, SEXP s2) {
   const GdkPixbuf* v1 = (const GdkPixbuf*)(get_ptr(s1)); (void)v1;
-  GdkPixbufRotation v2 = (GdkPixbufRotation)((GdkPixbufRotation)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : _unbox_numeric(s2))); (void)v2;
+  GdkPixbufRotation v2 = (GdkPixbufRotation)((GdkPixbufRotation)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_rotate_simple(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -962,7 +962,7 @@ SEXP R_gdk_pixbuf_saturate_and_pixelate(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const GdkPixbuf* v1 = (const GdkPixbuf*)(get_ptr(s1)); (void)v1;
   GdkPixbuf* v2 = (GdkPixbuf*)(get_ptr(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
-  gboolean v4 = (gboolean)((gboolean)_unbox_numeric(s4)); (void)v4;
+  gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   gdk_pixbuf_saturate_and_pixelate(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -1090,7 +1090,7 @@ SEXP R_gdk_pixbuf_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SE
   gdouble v8 = (gdouble)((gdouble)_unbox_numeric(s8)); (void)v8;
   gdouble v9 = (gdouble)((gdouble)_unbox_numeric(s9)); (void)v9;
   gdouble v10 = (gdouble)((gdouble)_unbox_numeric(s10)); (void)v10;
-  GdkInterpType v11 = (GdkInterpType)((GdkInterpType)(TYPEOF(s11)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s11) : _unbox_numeric(s11))); (void)v11;
+  GdkInterpType v11 = (GdkInterpType)((GdkInterpType)(TYPEOF(s11)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s11) : INTEGER(s11)[0])); (void)v11;
   gdk_pixbuf_scale(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11);
   return R_NilValue;
 }
@@ -1100,7 +1100,7 @@ SEXP R_gdk_pixbuf_scale_simple(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const GdkPixbuf* v1 = (const GdkPixbuf*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
-  GdkInterpType v4 = (GdkInterpType)((GdkInterpType)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : _unbox_numeric(s4))); (void)v4;
+  GdkInterpType v4 = (GdkInterpType)((GdkInterpType)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_scale_simple(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1544,7 +1544,7 @@ SEXP R_gdk_pixbuf_format_is_writable(SEXP s1) {
 
 SEXP R_gdk_pixbuf_format_set_disabled(SEXP s1, SEXP s2) {
   GdkPixbufFormat* v1 = (GdkPixbufFormat*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)_unbox_numeric(s2)); (void)v2;
+  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_pixbuf_format_set_disabled(v1, v2);
   return R_NilValue;
 }
@@ -1755,7 +1755,7 @@ SEXP R_gdk_pixbuf_simple_anim_get_loop(SEXP s1) {
 
 SEXP R_gdk_pixbuf_simple_anim_set_loop(SEXP s1, SEXP s2) {
   GdkPixbufSimpleAnim* v1 = (GdkPixbufSimpleAnim*)(get_ptr(s1)); (void)v1;
-  gboolean v2 = (gboolean)((gboolean)_unbox_numeric(s2)); (void)v2;
+  gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_pixbuf_simple_anim_set_loop(v1, v2);
   return R_NilValue;
 }

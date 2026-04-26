@@ -7,7 +7,6 @@
 \alias{gHashTableInsert}
 \alias{gHashTableLookup}
 \alias{gHashTableLookupExtended}
-\alias{gHashTableNewSimilar}
 \alias{gHashTableRef}
 \alias{gHashTableRemove}
 \alias{gHashTableRemoveAll}
@@ -15,7 +14,6 @@
 \alias{gHashTableSize}
 \alias{gHashTableSteal}
 \alias{gHashTableStealAll}
-\alias{gHashTableStealExtended}
 \alias{gHashTableUnref}
 \alias{gHashTableIterGetHashTable}
 \alias{gHashTableIterInit}
@@ -37,8 +35,6 @@ gHashTableLookup(hash_table, key)
 
 gHashTableLookupExtended(hash_table, lookup_key)
 
-gHashTableNewSimilar(other_hash_table)
-
 gHashTableRef(hash_table)
 
 gHashTableRemove(hash_table, key)
@@ -52,8 +48,6 @@ gHashTableSize(hash_table)
 gHashTableSteal(hash_table, key)
 
 gHashTableStealAll(hash_table)
-
-gHashTableStealExtended(hash_table, lookup_key)
 
 gHashTableUnref(hash_table)
 
@@ -78,8 +72,6 @@ gHashTableIterSteal(iter)
 
 \item{lookup_key}{gpointer}
 
-\item{other_hash_table}{GLib.HashTable}
-
 \item{iter}{HashTableIter}
 }
 \value{
@@ -97,8 +89,6 @@ gboolean
 
 GLib.HashTable
 
-GLib.HashTable
-
 gboolean
 
 Return value from C function
@@ -110,8 +100,6 @@ guint
 gboolean
 
 Return value from C function
-
-gboolean
 
 Return value from C function
 
@@ -140,8 +128,6 @@ gHashTableLookup
 
 gHashTableLookupExtended
 
-gHashTableNewSimilar
-
 gHashTableRef
 
 gHashTableRemove
@@ -155,8 +141,6 @@ gHashTableSize
 gHashTableSteal
 
 gHashTableStealAll
-
-gHashTableStealExtended
 
 gHashTableUnref
 

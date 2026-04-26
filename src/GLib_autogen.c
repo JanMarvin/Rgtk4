@@ -17,6 +17,14 @@
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
 
+/* Agnostic numeric extraction helper */
+static inline double _unbox_numeric(SEXP s) {
+  if (TYPEOF(s) == REALSXP) return REAL(s)[0];
+  if (TYPEOF(s) == INTSXP)  return (double)INTEGER(s)[0];
+  if (TYPEOF(s) == LGLSXP)  return (double)LOGICAL(s)[0];
+  return 0.0;
+}
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -332,7 +340,7 @@ SEXP R_g_async_queue_timed_pop_unlocked(SEXP s1, SEXP s2) {
 
 SEXP R_g_async_queue_timeout_pop(SEXP s1, SEXP s2) {
   GAsyncQueue* v1 = (GAsyncQueue*)(get_ptr(s1)); (void)v1;
-  guint64 v2 = (guint64)((guint64)REAL(s2)[0]); (void)v2;
+  guint64 v2 = (guint64)((guint64)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_async_queue_timeout_pop(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -349,7 +357,7 @@ SEXP R_g_async_queue_timeout_pop(SEXP s1, SEXP s2) {
 
 SEXP R_g_async_queue_timeout_pop_unlocked(SEXP s1, SEXP s2) {
   GAsyncQueue* v1 = (GAsyncQueue*)(get_ptr(s1)); (void)v1;
-  guint64 v2 = (guint64)((guint64)REAL(s2)[0]); (void)v2;
+  guint64 v2 = (guint64)((guint64)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_async_queue_timeout_pop_unlocked(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -828,7 +836,7 @@ SEXP R_g_bookmark_file_has_item(SEXP s1, SEXP s2) {
 SEXP R_g_bookmark_file_load_from_data(SEXP s1, SEXP s2, SEXP s3) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_bookmark_file_load_from_data(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -964,7 +972,7 @@ SEXP R_g_bookmark_file_remove_item(SEXP s1, SEXP s2) {
 SEXP R_g_bookmark_file_set_added(SEXP s1, SEXP s2, SEXP s3) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  time_t v3 = (time_t)((time_t)REAL(s3)[0]); (void)v3;
+  time_t v3 = (time_t)((time_t)_unbox_numeric(s3)); (void)v3;
   g_bookmark_file_set_added(v1, v2, v3);
   return R_NilValue;
 }
@@ -975,8 +983,8 @@ SEXP R_g_bookmark_file_set_app_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  time_t v6 = (time_t)((time_t)REAL(s6)[0]); (void)v6;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  time_t v6 = (time_t)((time_t)_unbox_numeric(s6)); (void)v6;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_bookmark_file_set_app_info(v1, v2, v3, v4, v5, v6, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1005,7 +1013,7 @@ SEXP R_g_bookmark_file_set_groups(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const gchar** v3 = (s3 != R_NilValue) ? (const gchar**)(get_ptr(s3)) : NULL; (void)v3;
-  gsize v4 = (gsize)((gsize)REAL(s4)[0]); (void)v4;
+  gsize v4 = (gsize)((gsize)_unbox_numeric(s4)); (void)v4;
   g_bookmark_file_set_groups(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -1042,7 +1050,7 @@ SEXP R_g_bookmark_file_set_mime_type(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_bookmark_file_set_modified(SEXP s1, SEXP s2, SEXP s3) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  time_t v3 = (time_t)((time_t)REAL(s3)[0]); (void)v3;
+  time_t v3 = (time_t)((time_t)_unbox_numeric(s3)); (void)v3;
   g_bookmark_file_set_modified(v1, v2, v3);
   return R_NilValue;
 }
@@ -1060,7 +1068,7 @@ SEXP R_g_bookmark_file_set_title(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_bookmark_file_set_visited(SEXP s1, SEXP s2, SEXP s3) {
   GBookmarkFile* v1 = (GBookmarkFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  time_t v3 = (time_t)((time_t)REAL(s3)[0]); (void)v3;
+  time_t v3 = (time_t)((time_t)_unbox_numeric(s3)); (void)v3;
   g_bookmark_file_set_visited(v1, v2, v3);
   return R_NilValue;
 }
@@ -1126,7 +1134,7 @@ SEXP R_g_bookmark_file_error_quark(void) {
 SEXP R_g_byte_array_append(SEXP s1, SEXP s2, SEXP s3) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
   const guint8* v2 = (const guint8*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_byte_array_append(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1192,7 +1200,7 @@ SEXP R_g_byte_array_new(void) {
 
 SEXP R_g_byte_array_new_take(SEXP s1, SEXP s2) {
   guint8* v1 = (guint8*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_byte_array_new_take(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1210,7 +1218,7 @@ SEXP R_g_byte_array_new_take(SEXP s1, SEXP s2) {
 SEXP R_g_byte_array_prepend(SEXP s1, SEXP s2, SEXP s3) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
   const guint8* v2 = (const guint8*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_byte_array_prepend(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1243,7 +1251,7 @@ SEXP R_g_byte_array_ref(SEXP s1) {
 
 SEXP R_g_byte_array_remove_index(SEXP s1, SEXP s2) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_byte_array_remove_index(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1260,7 +1268,7 @@ SEXP R_g_byte_array_remove_index(SEXP s1, SEXP s2) {
 
 SEXP R_g_byte_array_remove_index_fast(SEXP s1, SEXP s2) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_byte_array_remove_index_fast(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1277,8 +1285,8 @@ SEXP R_g_byte_array_remove_index_fast(SEXP s1, SEXP s2) {
 
 SEXP R_g_byte_array_remove_range(SEXP s1, SEXP s2, SEXP s3) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_byte_array_remove_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1295,7 +1303,7 @@ SEXP R_g_byte_array_remove_range(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_byte_array_set_size(SEXP s1, SEXP s2) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_byte_array_set_size(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1311,7 +1319,7 @@ SEXP R_g_byte_array_set_size(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_byte_array_sized_new(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_byte_array_sized_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1352,7 +1360,7 @@ SEXP R_g_byte_array_unref(SEXP s1) {
 
 SEXP R_g_bytes_new(SEXP s1, SEXP s2) {
   gconstpointer v1 = (s1 != R_NilValue) ? (gconstpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_bytes_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1369,8 +1377,8 @@ SEXP R_g_bytes_new(SEXP s1, SEXP s2) {
 
 SEXP R_g_bytes_new_from_bytes(SEXP s1, SEXP s2, SEXP s3) {
   GBytes* v1 = (GBytes*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_bytes_new_from_bytes(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1387,7 +1395,7 @@ SEXP R_g_bytes_new_from_bytes(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_bytes_new_take(SEXP s1, SEXP s2) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_bytes_new_take(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1666,7 +1674,7 @@ SEXP R_g_checksum_reset(SEXP s1) {
 SEXP R_g_checksum_update(SEXP s1, SEXP s2, SEXP s3) {
   GChecksum* v1 = (GChecksum*)(get_ptr(s1)); (void)v1;
   const guchar* v2 = (const guchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   g_checksum_update(v1, v2, v3);
   return R_NilValue;
 }
@@ -1759,7 +1767,7 @@ SEXP R_g_cond_wait(SEXP s1, SEXP s2) {
 SEXP R_g_cond_wait_until(SEXP s1, SEXP s2, SEXP s3) {
   GCond* v1 = (GCond*)(get_ptr(s1)); (void)v1;
   GMutex* v2 = (GMutex*)(get_ptr(s2)); (void)v2;
-  gint64 v3 = (gint64)((gint64)REAL(s3)[0]); (void)v3;
+  gint64 v3 = (gint64)((gint64)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_cond_wait_until(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1809,7 +1817,7 @@ SEXP R_g_date_new_dmy(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_date_new_julian(SEXP s1) {
-  guint32 v1 = (guint32)((guint32)INTEGER(s1)[0]); (void)v1;
+  guint32 v1 = (guint32)((guint32)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_date_new_julian(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -1826,7 +1834,7 @@ SEXP R_g_date_new_julian(SEXP s1) {
 
 SEXP R_g_date_add_days(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_date_add_days(v1, v2);
   return R_NilValue;
 }
@@ -1834,7 +1842,7 @@ SEXP R_g_date_add_days(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_add_months(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_date_add_months(v1, v2);
   return R_NilValue;
 }
@@ -1842,7 +1850,7 @@ SEXP R_g_date_add_months(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_add_years(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_date_add_years(v1, v2);
   return R_NilValue;
 }
@@ -1859,7 +1867,7 @@ SEXP R_g_date_clamp(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_date_clear(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_date_clear(v1, v2);
   return R_NilValue;
 }
@@ -2126,7 +2134,7 @@ SEXP R_g_date_set_dmy(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_date_set_julian(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  guint32 v2 = (guint32)((guint32)INTEGER(s2)[0]); (void)v2;
+  guint32 v2 = (guint32)((guint32)_unbox_numeric(s2)); (void)v2;
   g_date_set_julian(v1, v2);
   return R_NilValue;
 }
@@ -2158,7 +2166,7 @@ SEXP R_g_date_set_time(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_set_time_t(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  time_t v2 = (time_t)((time_t)REAL(s2)[0]); (void)v2;
+  time_t v2 = (time_t)((time_t)_unbox_numeric(s2)); (void)v2;
   g_date_set_time_t(v1, v2);
   return R_NilValue;
 }
@@ -2182,7 +2190,7 @@ SEXP R_g_date_set_year(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_subtract_days(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_date_subtract_days(v1, v2);
   return R_NilValue;
 }
@@ -2190,7 +2198,7 @@ SEXP R_g_date_subtract_days(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_subtract_months(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_date_subtract_months(v1, v2);
   return R_NilValue;
 }
@@ -2198,7 +2206,7 @@ SEXP R_g_date_subtract_months(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_subtract_years(SEXP s1, SEXP s2) {
   GDate* v1 = (GDate*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_date_subtract_years(v1, v2);
   return R_NilValue;
 }
@@ -2295,7 +2303,7 @@ SEXP R_g_date_is_leap_year(SEXP s1) {
 
 SEXP R_g_date_strftime(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gchar* v1 = (gchar*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const GDate* v4 = (const GDate*)(get_ptr(s4)); (void)v4;
   gsize _ret = (gsize)g_date_strftime(v1, v2, v3, v4);
@@ -2347,7 +2355,7 @@ SEXP R_g_date_valid_dmy(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_date_valid_julian(SEXP s1) {
-  guint32 v1 = (guint32)((guint32)INTEGER(s1)[0]); (void)v1;
+  guint32 v1 = (guint32)((guint32)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_date_valid_julian(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2412,12 +2420,12 @@ SEXP R_g_date_valid_year(SEXP s1) {
 
 SEXP R_g_date_time_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GTimeZone* v1 = (GTimeZone*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
-  gdouble v7 = (gdouble)((gdouble)REAL(s7)[0]); (void)v7;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
+  gdouble v7 = (gdouble)((gdouble)_unbox_numeric(s7)); (void)v7;
   gconstpointer _ret = (gconstpointer)g_date_time_new(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2482,7 +2490,7 @@ SEXP R_g_date_time_new_from_timeval_utc(SEXP s1) {
 
 
 SEXP R_g_date_time_new_from_unix_local(SEXP s1) {
-  gint64 v1 = (gint64)((gint64)REAL(s1)[0]); (void)v1;
+  gint64 v1 = (gint64)((gint64)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_date_time_new_from_unix_local(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2498,7 +2506,7 @@ SEXP R_g_date_time_new_from_unix_local(SEXP s1) {
 
 
 SEXP R_g_date_time_new_from_unix_utc(SEXP s1) {
-  gint64 v1 = (gint64)((gint64)REAL(s1)[0]); (void)v1;
+  gint64 v1 = (gint64)((gint64)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_date_time_new_from_unix_utc(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2514,12 +2522,12 @@ SEXP R_g_date_time_new_from_unix_utc(SEXP s1) {
 
 
 SEXP R_g_date_time_new_local(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gconstpointer _ret = (gconstpointer)g_date_time_new_local(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2583,12 +2591,12 @@ SEXP R_g_date_time_new_now_utc(void) {
 
 
 SEXP R_g_date_time_new_utc(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  gdouble v6 = (gdouble)((gdouble)REAL(s6)[0]); (void)v6;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  gdouble v6 = (gdouble)((gdouble)_unbox_numeric(s6)); (void)v6;
   gconstpointer _ret = (gconstpointer)g_date_time_new_utc(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2622,7 +2630,7 @@ SEXP R_g_date_time_add(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_time_add_days(SEXP s1, SEXP s2) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_date_time_add_days(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2639,12 +2647,12 @@ SEXP R_g_date_time_add_days(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_time_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
-  gint v5 = (gint)((gint)INTEGER(s5)[0]); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
-  gdouble v7 = (gdouble)((gdouble)REAL(s7)[0]); (void)v7;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
+  gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
+  gdouble v7 = (gdouble)((gdouble)_unbox_numeric(s7)); (void)v7;
   gconstpointer _ret = (gconstpointer)g_date_time_add_full(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2661,7 +2669,7 @@ SEXP R_g_date_time_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6
 
 SEXP R_g_date_time_add_hours(SEXP s1, SEXP s2) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_date_time_add_hours(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2678,7 +2686,7 @@ SEXP R_g_date_time_add_hours(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_time_add_minutes(SEXP s1, SEXP s2) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_date_time_add_minutes(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2695,7 +2703,7 @@ SEXP R_g_date_time_add_minutes(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_time_add_months(SEXP s1, SEXP s2) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_date_time_add_months(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2712,7 +2720,7 @@ SEXP R_g_date_time_add_months(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_time_add_seconds(SEXP s1, SEXP s2) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_date_time_add_seconds(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2729,7 +2737,7 @@ SEXP R_g_date_time_add_seconds(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_time_add_weeks(SEXP s1, SEXP s2) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_date_time_add_weeks(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -2746,7 +2754,7 @@ SEXP R_g_date_time_add_weeks(SEXP s1, SEXP s2) {
 
 SEXP R_g_date_time_add_years(SEXP s1, SEXP s2) {
   GDateTime* v1 = (GDateTime*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_date_time_add_years(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3221,7 +3229,7 @@ SEXP R_g_date_time_unref(SEXP s1) {
 
 SEXP R_g_dir_open(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_dir_open(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3286,7 +3294,7 @@ SEXP R_g_dir_make_tmp(SEXP s1) {
 
 SEXP R_g_error_new_literal(SEXP s1, SEXP s2, SEXP s3) {
   GQuark v1 = (GQuark)((GQuark)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gconstpointer _ret = (gconstpointer)g_error_new_literal(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3328,7 +3336,7 @@ SEXP R_g_error_free(SEXP s1) {
 SEXP R_g_error_matches(SEXP s1, SEXP s2, SEXP s3) {
   const GError* v1 = (s1 != R_NilValue) ? (const GError*)(get_ptr(s1)) : NULL; (void)v1;
   GQuark v2 = (GQuark)((GQuark)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gboolean _ret = (gboolean)g_error_matches(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3693,7 +3701,7 @@ SEXP R_g_hash_table_iter_steal(SEXP s1) {
 SEXP R_g_hmac_new(SEXP s1, SEXP s2, SEXP s3) {
   GChecksumType v1 = (GChecksumType)((GChecksumType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const guchar* v2 = (const guchar*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_hmac_new(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3784,7 +3792,7 @@ SEXP R_g_hmac_unref(SEXP s1) {
 SEXP R_g_hmac_update(SEXP s1, SEXP s2, SEXP s3) {
   GHmac* v1 = (GHmac*)(get_ptr(s1)); (void)v1;
   const guchar* v2 = (const guchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   g_hmac_update(v1, v2, v3);
   return R_NilValue;
 }
@@ -3809,7 +3817,7 @@ SEXP R_g_hook_compare_ids(SEXP s1, SEXP s2) {
 
 SEXP R_g_hook_destroy(SEXP s1, SEXP s2) {
   GHookList* v1 = (GHookList*)(get_ptr(s1)); (void)v1;
-  gulong v2 = (gulong)((gulong)REAL(s2)[0]); (void)v2;
+  gulong v2 = (gulong)((gulong)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)g_hook_destroy(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -3883,7 +3891,7 @@ SEXP R_g_hook_list_clear(SEXP s1) {
 
 SEXP R_g_hook_list_init(SEXP s1, SEXP s2) {
   GHookList* v1 = (GHookList*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_hook_list_init(v1, v2);
   return R_NilValue;
 }
@@ -3944,7 +3952,7 @@ SEXP R_g_io_channel_new_file(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_io_channel_unix_new(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_io_channel_unix_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -4111,7 +4119,7 @@ SEXP R_g_io_channel_init(SEXP s1) {
 SEXP R_g_io_channel_read(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
   gchar* v2 = (gchar*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gsize* v4 = (gsize*)(get_ptr(s4)); (void)v4;
   GIOError _ret = (GIOError)g_io_channel_read(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4130,7 +4138,7 @@ SEXP R_g_io_channel_read(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_io_channel_read_chars(SEXP s1, SEXP s2) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
   gchar _out_buf = 0; (void)_out_buf;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gsize _out_bytes_read = 0; (void)_out_bytes_read;
   GError *_err = NULL;
   GIOStatus _ret = (GIOStatus)g_io_channel_read_chars(v1, &_out_buf, v2, &_out_bytes_read, &_err);
@@ -4281,7 +4289,7 @@ SEXP R_g_io_channel_ref(SEXP s1) {
 
 SEXP R_g_io_channel_seek(SEXP s1, SEXP s2, SEXP s3) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   GSeekType v3 = (GSeekType)((GSeekType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GIOError _ret = (GIOError)g_io_channel_seek(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4299,7 +4307,7 @@ SEXP R_g_io_channel_seek(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_io_channel_seek_position(SEXP s1, SEXP s2, SEXP s3) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   GSeekType v3 = (GSeekType)((GSeekType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GError *_err = NULL;
   GIOStatus _ret = (GIOStatus)g_io_channel_seek_position(v1, v2, v3, &_err);
@@ -4318,7 +4326,7 @@ SEXP R_g_io_channel_seek_position(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_io_channel_set_buffer_size(SEXP s1, SEXP s2) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   g_io_channel_set_buffer_size(v1, v2);
   return R_NilValue;
 }
@@ -4379,7 +4387,7 @@ SEXP R_g_io_channel_set_flags(SEXP s1, SEXP s2) {
 SEXP R_g_io_channel_set_line_term(SEXP s1, SEXP s2, SEXP s3) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   g_io_channel_set_line_term(v1, v2, v3);
   return R_NilValue;
 }
@@ -4429,7 +4437,7 @@ SEXP R_g_io_channel_unref(SEXP s1) {
 SEXP R_g_io_channel_write(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gsize* v4 = (gsize*)(get_ptr(s4)); (void)v4;
   GIOError _ret = (GIOError)g_io_channel_write(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4448,7 +4456,7 @@ SEXP R_g_io_channel_write(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_io_channel_write_chars(SEXP s1, SEXP s2, SEXP s3) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gsize _out_bytes_written = 0; (void)_out_bytes_written;
   GError *_err = NULL;
   GIOStatus _ret = (GIOStatus)g_io_channel_write_chars(v1, v2, v3, &_out_bytes_written, &_err);
@@ -4472,7 +4480,7 @@ SEXP R_g_io_channel_write_chars(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_io_channel_write_unichar(SEXP s1, SEXP s2) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
-  gunichar v2 = (gunichar)((gunichar)INTEGER(s2)[0]); (void)v2;
+  gunichar v2 = (gunichar)((gunichar)_unbox_numeric(s2)); (void)v2;
   GError *_err = NULL;
   GIOStatus _ret = (GIOStatus)g_io_channel_write_unichar(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4489,7 +4497,7 @@ SEXP R_g_io_channel_write_unichar(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_io_channel_error_from_errno(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GIOChannelError _ret = (GIOChannelError)g_io_channel_error_from_errno(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -4954,7 +4962,7 @@ SEXP R_g_key_file_load_from_bytes(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_key_file_load_from_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GKeyFile* v1 = (GKeyFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   GKeyFileFlags v4 = (GKeyFileFlags)((GKeyFileFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_key_file_load_from_data(v1, v2, v3, v4, &_err);
@@ -5130,7 +5138,7 @@ SEXP R_g_key_file_set_boolean_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gboolean* v4 = (gboolean*)(get_ptr(s4)); (void)v4;
-  gsize v5 = (gsize)((gsize)REAL(s5)[0]); (void)v5;
+  gsize v5 = (gsize)((gsize)_unbox_numeric(s5)); (void)v5;
   g_key_file_set_boolean_list(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -5160,7 +5168,7 @@ SEXP R_g_key_file_set_double(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GKeyFile* v1 = (GKeyFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   g_key_file_set_double(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -5171,7 +5179,7 @@ SEXP R_g_key_file_set_double_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gdouble* v4 = (gdouble*)(get_ptr(s4)); (void)v4;
-  gsize v5 = (gsize)((gsize)REAL(s5)[0]); (void)v5;
+  gsize v5 = (gsize)((gsize)_unbox_numeric(s5)); (void)v5;
   g_key_file_set_double_list(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -5181,7 +5189,7 @@ SEXP R_g_key_file_set_int64(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GKeyFile* v1 = (GKeyFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint64 v4 = (gint64)((gint64)REAL(s4)[0]); (void)v4;
+  gint64 v4 = (gint64)((gint64)_unbox_numeric(s4)); (void)v4;
   g_key_file_set_int64(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -5191,7 +5199,7 @@ SEXP R_g_key_file_set_integer(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GKeyFile* v1 = (GKeyFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   g_key_file_set_integer(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -5202,7 +5210,7 @@ SEXP R_g_key_file_set_integer_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gint* v4 = (gint*)(get_ptr(s4)); (void)v4;
-  gsize v5 = (gsize)((gsize)REAL(s5)[0]); (void)v5;
+  gsize v5 = (gsize)((gsize)_unbox_numeric(s5)); (void)v5;
   g_key_file_set_integer_list(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -5210,7 +5218,7 @@ SEXP R_g_key_file_set_integer_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 
 SEXP R_g_key_file_set_list_separator(SEXP s1, SEXP s2) {
   GKeyFile* v1 = (GKeyFile*)(get_ptr(s1)); (void)v1;
-  gchar v2 = (gchar)((gchar)INTEGER(s2)[0]); (void)v2;
+  gchar v2 = (gchar)((gchar)_unbox_numeric(s2)); (void)v2;
   g_key_file_set_list_separator(v1, v2);
   return R_NilValue;
 }
@@ -5233,7 +5241,7 @@ SEXP R_g_key_file_set_locale_string_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const gchar* const* v5 = (const gchar* const*)(get_ptr(s5)); (void)v5;
-  gsize v6 = (gsize)((gsize)REAL(s6)[0]); (void)v6;
+  gsize v6 = (gsize)((gsize)_unbox_numeric(s6)); (void)v6;
   g_key_file_set_locale_string_list(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
 }
@@ -5254,7 +5262,7 @@ SEXP R_g_key_file_set_string_list(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const gchar* const* v4 = (const gchar* const*)(get_ptr(s4)); (void)v4;
-  gsize v5 = (gsize)((gsize)REAL(s5)[0]); (void)v5;
+  gsize v5 = (gsize)((gsize)_unbox_numeric(s5)); (void)v5;
   g_key_file_set_string_list(v1, v2, v3, v4, v5);
   return R_NilValue;
 }
@@ -5264,7 +5272,7 @@ SEXP R_g_key_file_set_uint64(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GKeyFile* v1 = (GKeyFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  guint64 v4 = (guint64)((guint64)REAL(s4)[0]); (void)v4;
+  guint64 v4 = (guint64)((guint64)_unbox_numeric(s4)); (void)v4;
   g_key_file_set_uint64(v1, v2, v3, v4);
   return R_NilValue;
 }
@@ -5375,7 +5383,7 @@ SEXP R_g_main_context_acquire(SEXP s1) {
 SEXP R_g_main_context_add_poll(SEXP s1, SEXP s2, SEXP s3) {
   GMainContext* v1 = (s1 != R_NilValue) ? (GMainContext*)(get_ptr(s1)) : NULL; (void)v1;
   GPollFD* v2 = (GPollFD*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   g_main_context_add_poll(v1, v2, v3);
   return R_NilValue;
 }
@@ -5383,9 +5391,9 @@ SEXP R_g_main_context_add_poll(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_main_context_check(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMainContext* v1 = (s1 != R_NilValue) ? (GMainContext*)(get_ptr(s1)) : NULL; (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GPollFD* v3 = (GPollFD*)(get_ptr(s3)); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   gboolean _ret = (gboolean)g_main_context_check(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5427,7 +5435,7 @@ SEXP R_g_main_context_find_source_by_funcs_user_data(SEXP s1, SEXP s2, SEXP s3) 
 
 SEXP R_g_main_context_find_source_by_id(SEXP s1, SEXP s2) {
   GMainContext* v1 = (s1 != R_NilValue) ? (GMainContext*)(get_ptr(s1)) : NULL; (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_main_context_find_source_by_id(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -5461,7 +5469,7 @@ SEXP R_g_main_context_find_source_by_user_data(SEXP s1, SEXP s2) {
 
 SEXP R_g_main_context_invoke_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GMainContext* v1 = (s1 != R_NilValue) ? (GMainContext*)(get_ptr(s1)) : NULL; (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GSourceFunc v3 = (GSourceFunc)(get_ptr(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
@@ -5557,10 +5565,10 @@ SEXP R_g_main_context_push_thread_default(SEXP s1) {
 
 SEXP R_g_main_context_query(SEXP s1, SEXP s2, SEXP s3) {
   GMainContext* v1 = (s1 != R_NilValue) ? (GMainContext*)(get_ptr(s1)) : NULL; (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint _out_timeout_ = 0; (void)_out_timeout_;
   GPollFD _out_fds = {0}; (void)_out_fds;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gint _ret = (gint)g_main_context_query(v1, v2, &_out_timeout_, &_out_fds, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
@@ -5801,7 +5809,7 @@ SEXP R_g_mapped_file_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_mapped_file_new_from_fd(SEXP s1, SEXP s2) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_mapped_file_new_from_fd(v1, v2, &_err);
@@ -6013,7 +6021,7 @@ SEXP R_g_markup_parse_context_get_user_data(SEXP s1) {
 SEXP R_g_markup_parse_context_parse(SEXP s1, SEXP s2, SEXP s3) {
   GMarkupParseContext* v1 = (GMarkupParseContext*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_markup_parse_context_parse(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6097,7 +6105,7 @@ SEXP R_g_match_info_expand_references(SEXP s1, SEXP s2) {
 
 SEXP R_g_match_info_fetch(SEXP s1, SEXP s2) {
   const GMatchInfo* v1 = (const GMatchInfo*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_match_info_fetch(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -6176,7 +6184,7 @@ SEXP R_g_match_info_fetch_named_pos(SEXP s1, SEXP s2) {
 
 SEXP R_g_match_info_fetch_pos(SEXP s1, SEXP s2) {
   const GMatchInfo* v1 = (const GMatchInfo*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint _out_start_pos = 0; (void)_out_start_pos;
   gint _out_end_pos = 0; (void)_out_end_pos;
   gboolean _ret = (gboolean)g_match_info_fetch_pos(v1, v2, &_out_start_pos, &_out_end_pos);
@@ -6593,7 +6601,7 @@ SEXP R_g_node_traverse(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GNode* v1 = (GNode*)(get_ptr(s1)); (void)v1;
   GTraverseType v2 = (GTraverseType)((GTraverseType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GTraverseFlags v3 = (GTraverseFlags)((GTraverseFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GNodeTraverseFunc v5 = (GNodeTraverseFunc)(get_ptr(s5)); (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
   g_node_traverse(v1, v2, v3, v4, v5, v6);
@@ -7141,7 +7149,7 @@ SEXP R_g_queue_peek_head(SEXP s1) {
 
 SEXP R_g_queue_peek_nth(SEXP s1, SEXP s2) {
   GQueue* v1 = (GQueue*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_queue_peek_nth(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -7190,7 +7198,7 @@ SEXP R_g_queue_pop_head(SEXP s1) {
 
 SEXP R_g_queue_pop_nth(SEXP s1, SEXP s2) {
   GQueue* v1 = (GQueue*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_queue_pop_nth(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -7232,7 +7240,7 @@ SEXP R_g_queue_push_head(SEXP s1, SEXP s2) {
 SEXP R_g_queue_push_nth(SEXP s1, SEXP s2, SEXP s3) {
   GQueue* v1 = (GQueue*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   g_queue_push_nth(v1, v2, v3);
   return R_NilValue;
 }
@@ -7387,7 +7395,7 @@ SEXP R_g_rand_new(void) {
 
 
 SEXP R_g_rand_new_with_seed(SEXP s1) {
-  guint32 v1 = (guint32)((guint32)INTEGER(s1)[0]); (void)v1;
+  guint32 v1 = (guint32)((guint32)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_rand_new_with_seed(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -7403,8 +7411,8 @@ SEXP R_g_rand_new_with_seed(SEXP s1) {
 
 
 SEXP R_g_rand_new_with_seed_array(SEXP s1, SEXP s2) {
-  const guint32* v1 = (const guint32*)((const guint32*)INTEGER(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  const guint32* v1 = (const guint32*)((guint32)REAL(s1)[0]); (void)v1;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_rand_new_with_seed_array(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -7453,8 +7461,8 @@ SEXP R_g_rand_double(SEXP s1) {
 
 SEXP R_g_rand_double_range(SEXP s1, SEXP s2, SEXP s3) {
   GRand* v1 = (GRand*)(get_ptr(s1)); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gdouble _ret = (gdouble)g_rand_double_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -7494,8 +7502,8 @@ SEXP R_g_rand_int(SEXP s1) {
 
 SEXP R_g_rand_int_range(SEXP s1, SEXP s2, SEXP s3) {
   GRand* v1 = (GRand*)(get_ptr(s1)); (void)v1;
-  gint32 v2 = (gint32)((gint32)INTEGER(s2)[0]); (void)v2;
-  gint32 v3 = (gint32)((gint32)INTEGER(s3)[0]); (void)v3;
+  gint32 v2 = (gint32)((gint32)_unbox_numeric(s2)); (void)v2;
+  gint32 v3 = (gint32)((gint32)_unbox_numeric(s3)); (void)v3;
   gint32 _ret = (gint32)g_rand_int_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -7512,7 +7520,7 @@ SEXP R_g_rand_int_range(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_rand_set_seed(SEXP s1, SEXP s2) {
   GRand* v1 = (GRand*)(get_ptr(s1)); (void)v1;
-  guint32 v2 = (guint32)((guint32)INTEGER(s2)[0]); (void)v2;
+  guint32 v2 = (guint32)((guint32)_unbox_numeric(s2)); (void)v2;
   g_rand_set_seed(v1, v2);
   return R_NilValue;
 }
@@ -7520,8 +7528,8 @@ SEXP R_g_rand_set_seed(SEXP s1, SEXP s2) {
 
 SEXP R_g_rand_set_seed_array(SEXP s1, SEXP s2, SEXP s3) {
   GRand* v1 = (GRand*)(get_ptr(s1)); (void)v1;
-  const guint32* v2 = (const guint32*)((const guint32*)INTEGER(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  const guint32* v2 = (const guint32*)((guint32)REAL(s2)[0]); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   g_rand_set_seed_array(v1, v2, v3);
   return R_NilValue;
 }
@@ -7770,8 +7778,8 @@ SEXP R_g_regex_match_all(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_regex_match_all_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const GRegex* v1 = (const GRegex*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GRegexMatchFlags v5 = (GRegexMatchFlags)((GRegexMatchFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   GMatchInfo* _out_match_info = 0; (void)_out_match_info;
   GError *_err = NULL;
@@ -7797,8 +7805,8 @@ SEXP R_g_regex_match_all_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_regex_match_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const GRegex* v1 = (const GRegex*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GRegexMatchFlags v5 = (GRegexMatchFlags)((GRegexMatchFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   GMatchInfo* _out_match_info = 0; (void)_out_match_info;
   GError *_err = NULL;
@@ -7840,8 +7848,8 @@ SEXP R_g_regex_ref(SEXP s1) {
 SEXP R_g_regex_replace(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   const GRegex* v1 = (const GRegex*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   GRegexMatchFlags v6 = (GRegexMatchFlags)((GRegexMatchFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
   GError *_err = NULL;
@@ -7862,8 +7870,8 @@ SEXP R_g_regex_replace(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 SEXP R_g_regex_replace_eval(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   const GRegex* v1 = (const GRegex*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GRegexMatchFlags v5 = (GRegexMatchFlags)((GRegexMatchFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   GRegexEvalCallback v6 = (GRegexEvalCallback)(get_ptr(s6)); (void)v6;
   gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
@@ -7885,8 +7893,8 @@ SEXP R_g_regex_replace_eval(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6
 SEXP R_g_regex_replace_literal(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   const GRegex* v1 = (const GRegex*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   GRegexMatchFlags v6 = (GRegexMatchFlags)((GRegexMatchFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
   GError *_err = NULL;
@@ -7925,10 +7933,10 @@ SEXP R_g_regex_split(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_regex_split_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   const GRegex* v1 = (const GRegex*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
-  gint v4 = (gint)((gint)INTEGER(s4)[0]); (void)v4;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
+  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GRegexMatchFlags v5 = (GRegexMatchFlags)((GRegexMatchFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
-  gint v6 = (gint)((gint)INTEGER(s6)[0]); (void)v6;
+  gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)g_regex_split_full(v1, v2, v3, v4, v5, v6, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -7992,7 +8000,7 @@ SEXP R_g_regex_error_quark(void) {
 
 SEXP R_g_regex_escape_nul(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_regex_escape_nul(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8009,7 +8017,7 @@ SEXP R_g_regex_escape_nul(SEXP s1, SEXP s2) {
 
 SEXP R_g_regex_escape_string(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_regex_escape_string(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8065,7 +8073,7 @@ SEXP R_g_regex_split_simple(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_relation_count(SEXP s1, SEXP s2, SEXP s3) {
   GRelation* v1 = (GRelation*)(get_ptr(s1)); (void)v1;
   gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gint _ret = (gint)g_relation_count(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8083,7 +8091,7 @@ SEXP R_g_relation_count(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_relation_delete(SEXP s1, SEXP s2, SEXP s3) {
   GRelation* v1 = (GRelation*)(get_ptr(s1)); (void)v1;
   gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gint _ret = (gint)g_relation_delete(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8215,7 +8223,7 @@ SEXP R_g_scanner_get_next_token(SEXP s1) {
 
 SEXP R_g_scanner_input_file(SEXP s1, SEXP s2) {
   GScanner* v1 = (GScanner*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_scanner_input_file(v1, v2);
   return R_NilValue;
 }
@@ -8224,7 +8232,7 @@ SEXP R_g_scanner_input_file(SEXP s1, SEXP s2) {
 SEXP R_g_scanner_input_text(SEXP s1, SEXP s2, SEXP s3) {
   GScanner* v1 = (GScanner*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   g_scanner_input_text(v1, v2, v3);
   return R_NilValue;
 }
@@ -8265,7 +8273,7 @@ SEXP R_g_scanner_peek_next_token(SEXP s1) {
 
 SEXP R_g_scanner_scope_add_symbol(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GScanner* v1 = (GScanner*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   g_scanner_scope_add_symbol(v1, v2, v3, v4);
@@ -8275,7 +8283,7 @@ SEXP R_g_scanner_scope_add_symbol(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_scanner_scope_foreach_symbol(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GScanner* v1 = (GScanner*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GHFunc v3 = (GHFunc)(get_ptr(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   g_scanner_scope_foreach_symbol(v1, v2, v3, v4);
@@ -8285,7 +8293,7 @@ SEXP R_g_scanner_scope_foreach_symbol(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_scanner_scope_lookup_symbol(SEXP s1, SEXP s2, SEXP s3) {
   GScanner* v1 = (GScanner*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gpointer _ret = (gpointer)g_scanner_scope_lookup_symbol(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -8303,7 +8311,7 @@ SEXP R_g_scanner_scope_lookup_symbol(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_scanner_scope_remove_symbol(SEXP s1, SEXP s2, SEXP s3) {
   GScanner* v1 = (GScanner*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   g_scanner_scope_remove_symbol(v1, v2, v3);
   return R_NilValue;
@@ -8312,7 +8320,7 @@ SEXP R_g_scanner_scope_remove_symbol(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_scanner_set_scope(SEXP s1, SEXP s2) {
   GScanner* v1 = (GScanner*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   guint _ret = (guint)g_scanner_set_scope(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8341,7 +8349,7 @@ SEXP R_g_scanner_unexp_token(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   const char* v6 = (const char*)(CHAR(STRING_ELT(s6,0))); (void)v6;
-  gint v7 = (gint)((gint)INTEGER(s7)[0]); (void)v7;
+  gint v7 = (gint)((gint)_unbox_numeric(s7)); (void)v7;
   g_scanner_unexp_token(v1, v2, v3, v4, v5, v6, v7);
   return R_NilValue;
 }
@@ -8414,7 +8422,7 @@ SEXP R_g_sequence_get_end_iter(SEXP s1) {
 
 SEXP R_g_sequence_get_iter_at_pos(SEXP s1, SEXP s2) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_sequence_get_iter_at_pos(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8819,7 +8827,7 @@ SEXP R_g_sequence_iter_is_end(SEXP s1) {
 
 SEXP R_g_sequence_iter_move(SEXP s1, SEXP s2) {
   GSequenceIter* v1 = (GSequenceIter*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_sequence_iter_move(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -8868,7 +8876,7 @@ SEXP R_g_sequence_iter_prev(SEXP s1) {
 
 SEXP R_g_source_new(SEXP s1, SEXP s2) {
   GSourceFuncs* v1 = (GSourceFuncs*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_source_new(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9136,7 +9144,7 @@ SEXP R_g_source_set_name(SEXP s1, SEXP s2) {
 
 SEXP R_g_source_set_priority(SEXP s1, SEXP s2) {
   GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_source_set_priority(v1, v2);
   return R_NilValue;
 }
@@ -9144,7 +9152,7 @@ SEXP R_g_source_set_priority(SEXP s1, SEXP s2) {
 
 SEXP R_g_source_set_ready_time(SEXP s1, SEXP s2) {
   GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   g_source_set_ready_time(v1, v2);
   return R_NilValue;
 }
@@ -9158,7 +9166,7 @@ SEXP R_g_source_unref(SEXP s1) {
 
 
 SEXP R_g_source_remove(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_source_remove(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9207,7 +9215,7 @@ SEXP R_g_source_remove_by_user_data(SEXP s1) {
 
 
 SEXP R_g_source_set_name_by_id(SEXP s1, SEXP s2) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   g_source_set_name_by_id(v1, v2);
   return R_NilValue;
@@ -9248,7 +9256,7 @@ SEXP R_g_string_new(SEXP s1) {
 
 SEXP R_g_string_new_len(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_new_len(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9264,7 +9272,7 @@ SEXP R_g_string_new_len(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_string_sized_new(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_string_sized_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9298,7 +9306,7 @@ SEXP R_g_string_append(SEXP s1, SEXP s2) {
 
 SEXP R_g_string_append_c(SEXP s1, SEXP s2) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gchar v2 = (gchar)((gchar)INTEGER(s2)[0]); (void)v2;
+  gchar v2 = (gchar)((gchar)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_append_c(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9316,7 +9324,7 @@ SEXP R_g_string_append_c(SEXP s1, SEXP s2) {
 SEXP R_g_string_append_len(SEXP s1, SEXP s2, SEXP s3) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_string_append_len(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9333,7 +9341,7 @@ SEXP R_g_string_append_len(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_string_append_unichar(SEXP s1, SEXP s2) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gunichar v2 = (gunichar)((gunichar)INTEGER(s2)[0]); (void)v2;
+  gunichar v2 = (gunichar)((gunichar)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_append_unichar(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9451,8 +9459,8 @@ SEXP R_g_string_equal(SEXP s1, SEXP s2) {
 
 SEXP R_g_string_erase(SEXP s1, SEXP s2, SEXP s3) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_string_erase(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9518,7 +9526,7 @@ SEXP R_g_string_hash(SEXP s1) {
 
 SEXP R_g_string_insert(SEXP s1, SEXP s2, SEXP s3) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gconstpointer _ret = (gconstpointer)g_string_insert(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -9536,8 +9544,8 @@ SEXP R_g_string_insert(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_string_insert_c(SEXP s1, SEXP s2, SEXP s3) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  gchar v3 = (gchar)((gchar)INTEGER(s3)[0]); (void)v3;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
+  gchar v3 = (gchar)((gchar)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_string_insert_c(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9554,9 +9562,9 @@ SEXP R_g_string_insert_c(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_string_insert_len(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gssize v4 = (gssize)((gssize)REAL(s4)[0]); (void)v4;
+  gssize v4 = (gssize)((gssize)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)g_string_insert_len(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9573,8 +9581,8 @@ SEXP R_g_string_insert_len(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_string_insert_unichar(SEXP s1, SEXP s2, SEXP s3) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  gunichar v3 = (gunichar)((gunichar)INTEGER(s3)[0]); (void)v3;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
+  gunichar v3 = (gunichar)((gunichar)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_string_insert_unichar(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9591,7 +9599,7 @@ SEXP R_g_string_insert_unichar(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_string_overwrite(SEXP s1, SEXP s2, SEXP s3) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gconstpointer _ret = (gconstpointer)g_string_overwrite(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -9609,9 +9617,9 @@ SEXP R_g_string_overwrite(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_string_overwrite_len(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gssize v4 = (gssize)((gssize)REAL(s4)[0]); (void)v4;
+  gssize v4 = (gssize)((gssize)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)g_string_overwrite_len(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9645,7 +9653,7 @@ SEXP R_g_string_prepend(SEXP s1, SEXP s2) {
 
 SEXP R_g_string_prepend_c(SEXP s1, SEXP s2) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gchar v2 = (gchar)((gchar)INTEGER(s2)[0]); (void)v2;
+  gchar v2 = (gchar)((gchar)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_prepend_c(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9663,7 +9671,7 @@ SEXP R_g_string_prepend_c(SEXP s1, SEXP s2) {
 SEXP R_g_string_prepend_len(SEXP s1, SEXP s2, SEXP s3) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_string_prepend_len(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9680,7 +9688,7 @@ SEXP R_g_string_prepend_len(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_string_prepend_unichar(SEXP s1, SEXP s2) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gunichar v2 = (gunichar)((gunichar)INTEGER(s2)[0]); (void)v2;
+  gunichar v2 = (gunichar)((gunichar)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_prepend_unichar(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9697,7 +9705,7 @@ SEXP R_g_string_prepend_unichar(SEXP s1, SEXP s2) {
 
 SEXP R_g_string_set_size(SEXP s1, SEXP s2) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_set_size(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9714,7 +9722,7 @@ SEXP R_g_string_set_size(SEXP s1, SEXP s2) {
 
 SEXP R_g_string_truncate(SEXP s1, SEXP s2) {
   GString* v1 = (GString*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_string_truncate(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9796,7 +9804,7 @@ SEXP R_g_string_chunk_insert_const(SEXP s1, SEXP s2) {
 SEXP R_g_string_chunk_insert_len(SEXP s1, SEXP s2, SEXP s3) {
   GStringChunk* v1 = (GStringChunk*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_string_chunk_insert_len(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -9860,7 +9868,7 @@ SEXP R_g_test_log_buffer_free(SEXP s1) {
 
 SEXP R_g_test_log_buffer_push(SEXP s1, SEXP s2, SEXP s3) {
   GTestLogBuffer* v1 = (GTestLogBuffer*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   const guint8* v3 = (const guint8*)((const guint8*)RAW(s3)); (void)v3;
   g_test_log_buffer_push(v1, v2, v3);
   return R_NilValue;
@@ -10090,7 +10098,7 @@ SEXP R_g_thread_pool_push(SEXP s1, SEXP s2) {
 
 SEXP R_g_thread_pool_set_max_threads(SEXP s1, SEXP s2) {
   GThreadPool* v1 = (GThreadPool*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_thread_pool_set_max_threads(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -10171,14 +10179,14 @@ SEXP R_g_thread_pool_get_num_unused_threads(void) {
 
 
 SEXP R_g_thread_pool_set_max_idle_time(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   g_thread_pool_set_max_idle_time(v1);
   return R_NilValue;
 }
 
 
 SEXP R_g_thread_pool_set_max_unused_threads(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   g_thread_pool_set_max_unused_threads(v1);
   return R_NilValue;
 }
@@ -10193,7 +10201,7 @@ SEXP R_g_thread_pool_stop_unused_threads(void) {
 
 SEXP R_g_time_val_add(SEXP s1, SEXP s2) {
   GTimeVal* v1 = (GTimeVal*)(get_ptr(s1)); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   g_time_val_add(v1, v2);
   return R_NilValue;
 }
@@ -10311,7 +10319,7 @@ SEXP R_g_time_zone_adjust_time(SEXP s1, SEXP s2) {
 SEXP R_g_time_zone_find_interval(SEXP s1, SEXP s2, SEXP s3) {
   GTimeZone* v1 = (GTimeZone*)(get_ptr(s1)); (void)v1;
   GTimeType v2 = (GTimeType)((GTimeType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  gint64 v3 = (gint64)((gint64)REAL(s3)[0]); (void)v3;
+  gint64 v3 = (gint64)((gint64)_unbox_numeric(s3)); (void)v3;
   gint _ret = (gint)g_time_zone_find_interval(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10328,7 +10336,7 @@ SEXP R_g_time_zone_find_interval(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_time_zone_get_abbreviation(SEXP s1, SEXP s2) {
   GTimeZone* v1 = (GTimeZone*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_time_zone_get_abbreviation(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10345,7 +10353,7 @@ SEXP R_g_time_zone_get_abbreviation(SEXP s1, SEXP s2) {
 
 SEXP R_g_time_zone_get_offset(SEXP s1, SEXP s2) {
   GTimeZone* v1 = (GTimeZone*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint32 _ret = (gint32)g_time_zone_get_offset(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10362,7 +10370,7 @@ SEXP R_g_time_zone_get_offset(SEXP s1, SEXP s2) {
 
 SEXP R_g_time_zone_is_dst(SEXP s1, SEXP s2) {
   GTimeZone* v1 = (GTimeZone*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)g_time_zone_is_dst(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10733,8 +10741,8 @@ SEXP R_g_tuples_destroy(SEXP s1) {
 
 SEXP R_g_tuples_index(SEXP s1, SEXP s2, SEXP s3) {
   GTuples* v1 = (GTuples*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gpointer _ret = (gpointer)g_tuples_index(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10750,7 +10758,7 @@ SEXP R_g_tuples_index(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_unicode_script_from_iso15924(SEXP s1) {
-  guint32 v1 = (guint32)((guint32)INTEGER(s1)[0]); (void)v1;
+  guint32 v1 = (guint32)((guint32)_unbox_numeric(s1)); (void)v1;
   GUnicodeScript _ret = (GUnicodeScript)g_unicode_script_from_iso15924(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10885,7 +10893,7 @@ SEXP R_g_uri_unescape_string(SEXP s1, SEXP s2) {
 SEXP R_g_variant_new_array(SEXP s1, SEXP s2, SEXP s3) {
   const GVariantType* v1 = (s1 != R_NilValue) ? (const GVariantType*)(get_ptr(s1)) : NULL; (void)v1;
   GVariant* const* v2 = (s2 != R_NilValue) ? (GVariant* const*)(get_ptr(s2)) : NULL; (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_variant_new_array(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10917,7 +10925,7 @@ SEXP R_g_variant_new_boolean(SEXP s1) {
 
 
 SEXP R_g_variant_new_byte(SEXP s1) {
-  guint8 v1 = (guint8)((guint8)INTEGER(s1)[0]); (void)v1;
+  guint8 v1 = (guint8)((guint8)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_byte(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10950,7 +10958,7 @@ SEXP R_g_variant_new_bytestring(SEXP s1) {
 
 SEXP R_g_variant_new_bytestring_array(SEXP s1, SEXP s2) {
   const gchar* const* v1 = (const gchar* const*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_variant_new_bytestring_array(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -10983,7 +10991,7 @@ SEXP R_g_variant_new_dict_entry(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_variant_new_double(SEXP s1) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_double(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11001,8 +11009,8 @@ SEXP R_g_variant_new_double(SEXP s1) {
 SEXP R_g_variant_new_fixed_array(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const GVariantType* v1 = (const GVariantType*)(get_ptr(s1)); (void)v1;
   gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
-  gsize v4 = (gsize)((gsize)REAL(s4)[0]); (void)v4;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
+  gsize v4 = (gsize)((gsize)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)g_variant_new_fixed_array(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11038,7 +11046,7 @@ SEXP R_g_variant_new_from_bytes(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_variant_new_from_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   const GVariantType* v1 = (const GVariantType*)(get_ptr(s1)); (void)v1;
   gconstpointer v2 = (gconstpointer)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
   gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
@@ -11057,7 +11065,7 @@ SEXP R_g_variant_new_from_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP
 
 
 SEXP R_g_variant_new_handle(SEXP s1) {
-  gint32 v1 = (gint32)((gint32)INTEGER(s1)[0]); (void)v1;
+  gint32 v1 = (gint32)((gint32)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_handle(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11073,7 +11081,7 @@ SEXP R_g_variant_new_handle(SEXP s1) {
 
 
 SEXP R_g_variant_new_int16(SEXP s1) {
-  gint16 v1 = (gint16)((gint16)INTEGER(s1)[0]); (void)v1;
+  gint16 v1 = (gint16)((gint16)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_int16(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11089,7 +11097,7 @@ SEXP R_g_variant_new_int16(SEXP s1) {
 
 
 SEXP R_g_variant_new_int32(SEXP s1) {
-  gint32 v1 = (gint32)((gint32)INTEGER(s1)[0]); (void)v1;
+  gint32 v1 = (gint32)((gint32)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_int32(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11105,7 +11113,7 @@ SEXP R_g_variant_new_int32(SEXP s1) {
 
 
 SEXP R_g_variant_new_int64(SEXP s1) {
-  gint64 v1 = (gint64)((gint64)REAL(s1)[0]); (void)v1;
+  gint64 v1 = (gint64)((gint64)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_int64(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11155,7 +11163,7 @@ SEXP R_g_variant_new_object_path(SEXP s1) {
 
 SEXP R_g_variant_new_objv(SEXP s1, SEXP s2) {
   const gchar* const* v1 = (const gchar* const*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_variant_new_objv(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11204,7 +11212,7 @@ SEXP R_g_variant_new_string(SEXP s1) {
 
 SEXP R_g_variant_new_strv(SEXP s1, SEXP s2) {
   const gchar* const* v1 = (const gchar* const*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_variant_new_strv(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11221,7 +11229,7 @@ SEXP R_g_variant_new_strv(SEXP s1, SEXP s2) {
 
 SEXP R_g_variant_new_tuple(SEXP s1, SEXP s2) {
   GVariant* const* v1 = (GVariant* const*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_variant_new_tuple(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11237,7 +11245,7 @@ SEXP R_g_variant_new_tuple(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_variant_new_uint16(SEXP s1) {
-  guint16 v1 = (guint16)((guint16)INTEGER(s1)[0]); (void)v1;
+  guint16 v1 = (guint16)((guint16)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_uint16(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11253,7 +11261,7 @@ SEXP R_g_variant_new_uint16(SEXP s1) {
 
 
 SEXP R_g_variant_new_uint32(SEXP s1) {
-  guint32 v1 = (guint32)((guint32)INTEGER(s1)[0]); (void)v1;
+  guint32 v1 = (guint32)((guint32)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_uint32(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11269,7 +11277,7 @@ SEXP R_g_variant_new_uint32(SEXP s1) {
 
 
 SEXP R_g_variant_new_uint64(SEXP s1) {
-  guint64 v1 = (guint64)((guint64)REAL(s1)[0]); (void)v1;
+  guint64 v1 = (guint64)((guint64)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_variant_new_uint64(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -11566,7 +11574,7 @@ SEXP R_g_variant_get_bytestring_array(SEXP s1) {
 
 SEXP R_g_variant_get_child_value(SEXP s1, SEXP s2) {
   GVariant* v1 = (GVariant*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_variant_get_child_value(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -12506,7 +12514,7 @@ SEXP R_g_variant_type_new_maybe(SEXP s1) {
 
 SEXP R_g_variant_type_new_tuple(SEXP s1, SEXP s2) {
   const GVariantType* const* v1 = (const GVariantType* const*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_variant_type_new_tuple(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -12923,7 +12931,7 @@ SEXP R_g_variant_type_string_scan(SEXP s1, SEXP s2) {
 
 SEXP R_g_access(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _ret = (int)g_access(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -12939,7 +12947,7 @@ SEXP R_g_access(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_ascii_digit_value(SEXP s1) {
-  gchar v1 = (gchar)((gchar)INTEGER(s1)[0]); (void)v1;
+  gchar v1 = (gchar)((gchar)_unbox_numeric(s1)); (void)v1;
   gint _ret = (gint)g_ascii_digit_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -12956,8 +12964,8 @@ SEXP R_g_ascii_digit_value(SEXP s1) {
 
 SEXP R_g_ascii_dtostr(SEXP s1, SEXP s2, SEXP s3) {
   gchar* v1 = (gchar*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gdouble v3 = (gdouble)((gdouble)REAL(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_ascii_dtostr(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -12974,9 +12982,9 @@ SEXP R_g_ascii_dtostr(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_ascii_formatd(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gchar* v1 = (gchar*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gdouble v4 = (gdouble)((gdouble)REAL(s4)[0]); (void)v4;
+  gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)g_ascii_formatd(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13010,7 +13018,7 @@ SEXP R_g_ascii_strcasecmp(SEXP s1, SEXP s2) {
 
 SEXP R_g_ascii_strdown(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_ascii_strdown(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13027,9 +13035,9 @@ SEXP R_g_ascii_strdown(SEXP s1, SEXP s2) {
 
 SEXP R_g_ascii_string_to_signed(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gint64 v3 = (gint64)((gint64)REAL(s3)[0]); (void)v3;
-  gint64 v4 = (gint64)((gint64)REAL(s4)[0]); (void)v4;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  gint64 v3 = (gint64)((gint64)_unbox_numeric(s3)); (void)v3;
+  gint64 v4 = (gint64)((gint64)_unbox_numeric(s4)); (void)v4;
   gint64 _out_out_num = 0; (void)_out_out_num;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_ascii_string_to_signed(v1, v2, v3, v4, &_out_out_num, &_err);
@@ -13053,9 +13061,9 @@ SEXP R_g_ascii_string_to_signed(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_ascii_string_to_unsigned(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint64 v3 = (guint64)((guint64)REAL(s3)[0]); (void)v3;
-  guint64 v4 = (guint64)((guint64)REAL(s4)[0]); (void)v4;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint64 v3 = (guint64)((guint64)_unbox_numeric(s3)); (void)v3;
+  guint64 v4 = (guint64)((guint64)_unbox_numeric(s4)); (void)v4;
   guint64 _out_out_num = 0; (void)_out_out_num;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_ascii_string_to_unsigned(v1, v2, v3, v4, &_out_out_num, &_err);
@@ -13080,7 +13088,7 @@ SEXP R_g_ascii_string_to_unsigned(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_ascii_strncasecmp(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gint _ret = (gint)g_ascii_strncasecmp(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13120,7 +13128,7 @@ SEXP R_g_ascii_strtod(SEXP s1) {
 SEXP R_g_ascii_strtoll(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gchar* _out_endptr = 0; (void)_out_endptr;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gint64 _ret = (gint64)g_ascii_strtoll(v1, &_out_endptr, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
@@ -13143,7 +13151,7 @@ SEXP R_g_ascii_strtoll(SEXP s1, SEXP s2) {
 SEXP R_g_ascii_strtoull(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gchar* _out_endptr = 0; (void)_out_endptr;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   guint64 _ret = (guint64)g_ascii_strtoull(v1, &_out_endptr, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
@@ -13165,7 +13173,7 @@ SEXP R_g_ascii_strtoull(SEXP s1, SEXP s2) {
 
 SEXP R_g_ascii_strup(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_ascii_strup(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13181,7 +13189,7 @@ SEXP R_g_ascii_strup(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_ascii_tolower(SEXP s1) {
-  gchar v1 = (gchar)((gchar)INTEGER(s1)[0]); (void)v1;
+  gchar v1 = (gchar)((gchar)_unbox_numeric(s1)); (void)v1;
   gchar _ret = (gchar)g_ascii_tolower(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13197,7 +13205,7 @@ SEXP R_g_ascii_tolower(SEXP s1) {
 
 
 SEXP R_g_ascii_toupper(SEXP s1) {
-  gchar v1 = (gchar)((gchar)INTEGER(s1)[0]); (void)v1;
+  gchar v1 = (gchar)((gchar)_unbox_numeric(s1)); (void)v1;
   gchar _ret = (gchar)g_ascii_toupper(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13213,7 +13221,7 @@ SEXP R_g_ascii_toupper(SEXP s1) {
 
 
 SEXP R_g_ascii_xdigit_value(SEXP s1) {
-  gchar v1 = (gchar)((gchar)INTEGER(s1)[0]); (void)v1;
+  gchar v1 = (gchar)((gchar)_unbox_numeric(s1)); (void)v1;
   gint _ret = (gint)g_ascii_xdigit_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13231,7 +13239,7 @@ SEXP R_g_ascii_xdigit_value(SEXP s1) {
 SEXP R_g_assert_warning(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   g_assert_warning(v1, v2, v3, v4, v5);
@@ -13242,7 +13250,7 @@ SEXP R_g_assert_warning(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_assertion_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   g_assertion_message(v1, v2, v3, v4, v5);
@@ -13253,13 +13261,13 @@ SEXP R_g_assertion_message(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_assertion_message_cmpint(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
-  guint64 v6 = (guint64)((guint64)REAL(s6)[0]); (void)v6;
+  guint64 v6 = (guint64)((guint64)_unbox_numeric(s6)); (void)v6;
   const char* v7 = (const char*)(CHAR(STRING_ELT(s7,0))); (void)v7;
-  guint64 v8 = (guint64)((guint64)REAL(s8)[0]); (void)v8;
-  gchar v9 = (gchar)((gchar)INTEGER(s9)[0]); (void)v9;
+  guint64 v8 = (guint64)((guint64)_unbox_numeric(s8)); (void)v8;
+  gchar v9 = (gchar)((gchar)_unbox_numeric(s9)); (void)v9;
   g_assertion_message_cmpint(v1, v2, v3, v4, v5, v6, v7, v8, v9);
   return R_NilValue;
 }
@@ -13268,7 +13276,7 @@ SEXP R_g_assertion_message_cmpint(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
 SEXP R_g_assertion_message_cmpstr(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   const char* v6 = (const char*)(CHAR(STRING_ELT(s6,0))); (void)v6;
@@ -13282,12 +13290,12 @@ SEXP R_g_assertion_message_cmpstr(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
 SEXP R_g_assertion_message_cmpstrv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   const char* const* v6 = (const char* const*)(CHAR(STRING_ELT(s6,0))); (void)v6;
   const char* const* v7 = (const char* const*)(CHAR(STRING_ELT(s7,0))); (void)v7;
-  gsize v8 = (gsize)((gsize)REAL(s8)[0]); (void)v8;
+  gsize v8 = (gsize)((gsize)_unbox_numeric(s8)); (void)v8;
   g_assertion_message_cmpstrv(v1, v2, v3, v4, v5, v6, v7, v8);
   return R_NilValue;
 }
@@ -13296,12 +13304,12 @@ SEXP R_g_assertion_message_cmpstrv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
 SEXP R_g_assertion_message_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
   const GError* v6 = (const GError*)(get_ptr(s6)); (void)v6;
   GQuark v7 = (GQuark)((GQuark)(TYPEOF(s7)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s7) : INTEGER(s7)[0])); (void)v7;
-  gint v8 = (gint)((gint)INTEGER(s8)[0]); (void)v8;
+  gint v8 = (gint)((gint)_unbox_numeric(s8)); (void)v8;
   g_assertion_message_error(v1, v2, v3, v4, v5, v6, v7, v8);
   return R_NilValue;
 }
@@ -13365,7 +13373,7 @@ SEXP R_g_base64_decode_inplace(void) {
 
 SEXP R_g_base64_encode(SEXP s1, SEXP s2) {
   const guchar* v1 = (s1 != R_NilValue) ? (const guchar*)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_base64_encode(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13416,7 +13424,7 @@ SEXP R_g_base64_encode_close(SEXP s1) {
 
 SEXP R_g_base64_encode_step(SEXP s1, SEXP s2, SEXP s3) {
   const guchar* v1 = (const guchar*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   gchar _out_out = 0; (void)_out_out;
   gint _out_state = 0; (void)_out_state;
@@ -13468,15 +13476,15 @@ SEXP R_g_basename(SEXP s1) {
 
 SEXP R_g_bit_lock(SEXP s1, SEXP s2) {
   volatile gint* v1 = (s1 != R_NilValue) ? (volatile gint*)(get_ptr(s1)) : NULL; (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_bit_lock(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_bit_nth_lsf(SEXP s1, SEXP s2) {
-  gulong v1 = (gulong)((gulong)REAL(s1)[0]); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gulong v1 = (gulong)((gulong)_unbox_numeric(s1)); (void)v1;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint _ret = (gint)g_bit_nth_lsf(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13492,8 +13500,8 @@ SEXP R_g_bit_nth_lsf(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_bit_nth_msf(SEXP s1, SEXP s2) {
-  gulong v1 = (gulong)((gulong)REAL(s1)[0]); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gulong v1 = (gulong)((gulong)_unbox_numeric(s1)); (void)v1;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint _ret = (gint)g_bit_nth_msf(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13509,7 +13517,7 @@ SEXP R_g_bit_nth_msf(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_bit_storage(SEXP s1) {
-  gulong v1 = (gulong)((gulong)REAL(s1)[0]); (void)v1;
+  gulong v1 = (gulong)((gulong)_unbox_numeric(s1)); (void)v1;
   guint _ret = (guint)g_bit_storage(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13526,7 +13534,7 @@ SEXP R_g_bit_storage(SEXP s1) {
 
 SEXP R_g_bit_trylock(SEXP s1, SEXP s2) {
   volatile gint* v1 = (s1 != R_NilValue) ? (volatile gint*)(get_ptr(s1)) : NULL; (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean _ret = (gboolean)g_bit_trylock(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13543,7 +13551,7 @@ SEXP R_g_bit_trylock(SEXP s1, SEXP s2) {
 
 SEXP R_g_bit_unlock(SEXP s1, SEXP s2) {
   volatile gint* v1 = (s1 != R_NilValue) ? (volatile gint*)(get_ptr(s1)) : NULL; (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   g_bit_unlock(v1, v2);
   return R_NilValue;
 }
@@ -13606,9 +13614,9 @@ SEXP R_g_chdir(SEXP s1) {
 
 
 SEXP R_glib_check_version(SEXP s1, SEXP s2, SEXP s3) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)glib_check_version(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13624,7 +13632,7 @@ SEXP R_glib_check_version(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_child_watch_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GPid v2 = (GPid)((GPid)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GChildWatchFunc v3 = (GChildWatchFunc)(get_ptr(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
@@ -13661,7 +13669,7 @@ SEXP R_g_child_watch_source_new(SEXP s1) {
 
 SEXP R_g_chmod(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _ret = (int)g_chmod(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13684,7 +13692,7 @@ SEXP R_g_clear_error(void) {
 
 
 SEXP R_g_close(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_close(v1, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -13720,7 +13728,7 @@ SEXP R_g_compute_checksum_for_bytes(SEXP s1, SEXP s2) {
 SEXP R_g_compute_checksum_for_data(SEXP s1, SEXP s2, SEXP s3) {
   GChecksumType v1 = (GChecksumType)((GChecksumType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const guchar* v2 = (const guchar*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_compute_checksum_for_data(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13738,7 +13746,7 @@ SEXP R_g_compute_checksum_for_data(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_compute_checksum_for_string(SEXP s1, SEXP s2, SEXP s3) {
   GChecksumType v1 = (GChecksumType)((GChecksumType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_compute_checksum_for_string(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13774,9 +13782,9 @@ SEXP R_g_compute_hmac_for_bytes(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_compute_hmac_for_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GChecksumType v1 = (GChecksumType)((GChecksumType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const guchar* v2 = (const guchar*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   const guchar* v4 = (const guchar*)(get_ptr(s4)); (void)v4;
-  gsize v5 = (gsize)((gsize)REAL(s5)[0]); (void)v5;
+  gsize v5 = (gsize)((gsize)_unbox_numeric(s5)); (void)v5;
   gconstpointer _ret = (gconstpointer)g_compute_hmac_for_data(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13794,9 +13802,9 @@ SEXP R_g_compute_hmac_for_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 SEXP R_g_compute_hmac_for_string(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GChecksumType v1 = (GChecksumType)((GChecksumType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const guchar* v2 = (const guchar*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
-  gssize v5 = (gssize)((gssize)REAL(s5)[0]); (void)v5;
+  gssize v5 = (gssize)((gssize)_unbox_numeric(s5)); (void)v5;
   gconstpointer _ret = (gconstpointer)g_compute_hmac_for_string(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13813,7 +13821,7 @@ SEXP R_g_compute_hmac_for_string(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 SEXP R_g_convert(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const gchar* v1 = (const gchar*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   gsize _out_bytes_read = 0; (void)_out_bytes_read;
@@ -13861,7 +13869,7 @@ SEXP R_g_convert_error_quark(void) {
 
 SEXP R_g_convert_with_fallback(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const gchar* v1 = (const gchar*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   const char* v5 = (const char*)(CHAR(STRING_ELT(s5,0))); (void)v5;
@@ -13894,7 +13902,7 @@ SEXP R_g_convert_with_fallback(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 SEXP R_g_creat(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _ret = (int)g_creat(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -13970,7 +13978,7 @@ SEXP R_g_datalist_id_get_data(SEXP s1, SEXP s2) {
 
 SEXP R_g_datalist_set_flags(SEXP s1, SEXP s2) {
   GData** v1 = (GData**)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_datalist_set_flags(v1, v2);
   return R_NilValue;
 }
@@ -13978,7 +13986,7 @@ SEXP R_g_datalist_set_flags(SEXP s1, SEXP s2) {
 
 SEXP R_g_datalist_unset_flags(SEXP s1, SEXP s2) {
   GData** v1 = (GData**)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_datalist_unset_flags(v1, v2);
   return R_NilValue;
 }
@@ -14020,7 +14028,7 @@ SEXP R_g_dataset_id_get_data(SEXP s1, SEXP s2) {
 SEXP R_g_dcgettext(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_dcgettext(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14089,7 +14097,7 @@ SEXP R_g_dngettext(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
-  gulong v4 = (gulong)((gulong)REAL(s4)[0]); (void)v4;
+  gulong v4 = (gulong)((gulong)_unbox_numeric(s4)); (void)v4;
   gconstpointer _ret = (gconstpointer)g_dngettext(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14140,7 +14148,7 @@ SEXP R_g_double_hash(SEXP s1) {
 SEXP R_g_dpgettext(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_dpgettext(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14227,7 +14235,7 @@ SEXP R_g_environ_unsetenv(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_file_error_from_errno(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GFileError _ret = (GFileError)g_file_error_from_errno(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14330,7 +14338,7 @@ SEXP R_g_file_read_link(SEXP s1) {
 SEXP R_g_file_set_contents(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gssize v3 = (gssize)((gssize)REAL(s3)[0]); (void)v3;
+  gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_file_set_contents(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -14420,7 +14428,7 @@ SEXP R_g_filename_from_uri(SEXP s1) {
 
 SEXP R_g_filename_from_utf8(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gsize _out_bytes_read = 0; (void)_out_bytes_read;
   gsize _out_bytes_written = 0; (void)_out_bytes_written;
   GError *_err = NULL;
@@ -14468,7 +14476,7 @@ SEXP R_g_filename_to_uri(SEXP s1, SEXP s2) {
 
 SEXP R_g_filename_to_utf8(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gsize _out_bytes_read = 0; (void)_out_bytes_read;
   gsize _out_bytes_written = 0; (void)_out_bytes_written;
   GError *_err = NULL;
@@ -14530,7 +14538,7 @@ SEXP R_g_fopen(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_format_size(SEXP s1) {
-  guint64 v1 = (guint64)((guint64)REAL(s1)[0]); (void)v1;
+  guint64 v1 = (guint64)((guint64)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_format_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14546,7 +14554,7 @@ SEXP R_g_format_size(SEXP s1) {
 
 
 SEXP R_g_format_size_for_display(SEXP s1) {
-  gint64 v1 = (gint64)((gint64)REAL(s1)[0]); (void)v1;
+  gint64 v1 = (gint64)((gint64)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_format_size_for_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -14562,7 +14570,7 @@ SEXP R_g_format_size_for_display(SEXP s1) {
 
 
 SEXP R_g_format_size_full(SEXP s1, SEXP s2) {
-  guint64 v1 = (guint64)((guint64)REAL(s1)[0]); (void)v1;
+  guint64 v1 = (guint64)((guint64)_unbox_numeric(s1)); (void)v1;
   GFormatSizeFlags v2 = (GFormatSizeFlags)((GFormatSizeFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)g_format_size_full(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -15101,7 +15109,7 @@ SEXP R_g_hostname_to_unicode(SEXP s1) {
 
 
 SEXP R_g_idle_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GSourceFunc v2 = (GSourceFunc)(get_ptr(s2)); (void)v2;
   gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
   GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
@@ -15251,7 +15259,7 @@ SEXP R_g_intern_string(SEXP s1) {
 
 SEXP R_g_io_add_watch_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GIOCondition v3 = (GIOCondition)((GIOCondition)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GIOFunc v4 = (GIOFunc)(get_ptr(s4)); (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
@@ -15305,7 +15313,7 @@ SEXP R_g_listenv(void) {
 
 SEXP R_g_locale_from_utf8(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gsize _out_bytes_read = 0; (void)_out_bytes_read;
   gsize _out_bytes_written = 0; (void)_out_bytes_written;
   GError *_err = NULL;
@@ -15335,7 +15343,7 @@ SEXP R_g_locale_from_utf8(SEXP s1, SEXP s2) {
 
 SEXP R_g_locale_to_utf8(SEXP s1, SEXP s2) {
   const gchar* v1 = (const gchar*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gsize _out_bytes_read = 0; (void)_out_bytes_read;
   gsize _out_bytes_written = 0; (void)_out_bytes_written;
   GError *_err = NULL;
@@ -15375,7 +15383,7 @@ SEXP R_g_log_default_handler(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_g_log_remove_handler(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   g_log_remove_handler(v1, v2);
   return R_NilValue;
 }
@@ -15446,7 +15454,7 @@ SEXP R_g_log_set_writer_func(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_log_structured_array(SEXP s1, SEXP s2, SEXP s3) {
   GLogLevelFlags v1 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const GLogField* v2 = (const GLogField*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   g_log_structured_array(v1, v2, v3);
   return R_NilValue;
 }
@@ -15464,7 +15472,7 @@ SEXP R_g_log_variant(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_log_writer_default(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GLogLevelFlags v1 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const GLogField* v2 = (const GLogField*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   GLogWriterOutput _ret = (GLogWriterOutput)g_log_writer_default(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -15483,7 +15491,7 @@ SEXP R_g_log_writer_default(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_log_writer_format_fields(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GLogLevelFlags v1 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const GLogField* v2 = (const GLogField*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   gconstpointer _ret = (gconstpointer)g_log_writer_format_fields(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -15500,7 +15508,7 @@ SEXP R_g_log_writer_format_fields(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_g_log_writer_is_journald(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_log_writer_is_journald(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15518,7 +15526,7 @@ SEXP R_g_log_writer_is_journald(SEXP s1) {
 SEXP R_g_log_writer_journald(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GLogLevelFlags v1 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const GLogField* v2 = (const GLogField*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   GLogWriterOutput _ret = (GLogWriterOutput)g_log_writer_journald(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -15537,7 +15545,7 @@ SEXP R_g_log_writer_journald(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 SEXP R_g_log_writer_standard_streams(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GLogLevelFlags v1 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   const GLogField* v2 = (const GLogField*)(get_ptr(s2)); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   GLogWriterOutput _ret = (GLogWriterOutput)g_log_writer_standard_streams(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -15554,7 +15562,7 @@ SEXP R_g_log_writer_standard_streams(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_g_log_writer_supports_color(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_log_writer_supports_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15619,7 +15627,7 @@ SEXP R_g_main_depth(void) {
 
 
 SEXP R_g_malloc(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gpointer _ret = (gpointer)g_malloc(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15635,7 +15643,7 @@ SEXP R_g_malloc(SEXP s1) {
 
 
 SEXP R_g_malloc0(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gpointer _ret = (gpointer)g_malloc0(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15651,8 +15659,8 @@ SEXP R_g_malloc0(SEXP s1) {
 
 
 SEXP R_g_malloc0_n(SEXP s1, SEXP s2) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_malloc0_n(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15668,8 +15676,8 @@ SEXP R_g_malloc0_n(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_malloc_n(SEXP s1, SEXP s2) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_malloc_n(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15702,7 +15710,7 @@ SEXP R_g_markup_error_quark(void) {
 
 SEXP R_g_markup_escape_text(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_markup_escape_text(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15749,7 +15757,7 @@ SEXP R_g_mem_set_vtable(SEXP s1) {
 
 SEXP R_g_memdup(SEXP s1, SEXP s2) {
   gconstpointer v1 = (s1 != R_NilValue) ? (gconstpointer)(get_ptr(s1)) : NULL; (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_memdup(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15766,7 +15774,7 @@ SEXP R_g_memdup(SEXP s1, SEXP s2) {
 
 SEXP R_g_mkdir(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _ret = (int)g_mkdir(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15783,7 +15791,7 @@ SEXP R_g_mkdir(SEXP s1, SEXP s2) {
 
 SEXP R_g_mkdir_with_parents(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint _ret = (gint)g_mkdir_with_parents(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15837,8 +15845,8 @@ SEXP R_g_on_error_stack_trace(SEXP s1) {
 
 SEXP R_g_open(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   int _ret = (int)g_open(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15872,7 +15880,7 @@ SEXP R_g_option_error_quark(void) {
 SEXP R_g_parse_debug_string(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   const GDebugKey* v2 = (const GDebugKey*)(get_ptr(s2)); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   guint _ret = (guint)g_parse_debug_string(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -15970,8 +15978,8 @@ SEXP R_g_pattern_match_simple(SEXP s1, SEXP s2) {
 
 SEXP R_g_poll(SEXP s1, SEXP s2, SEXP s3) {
   GPollFD* v1 = (GPollFD*)(get_ptr(s1)); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gint _ret = (gint)g_poll(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16005,8 +16013,8 @@ SEXP R_g_propagate_error(SEXP s1) {
 
 SEXP R_g_qsort_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   gconstpointer v1 = (gconstpointer)(get_ptr(s1)); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   GCompareDataFunc v4 = (GCompareDataFunc)(get_ptr(s4)); (void)v4;
   gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
   g_qsort_with_data(v1, v2, v3, v4, v5);
@@ -16095,8 +16103,8 @@ SEXP R_g_random_double(void) {
 
 
 SEXP R_g_random_double_range(SEXP s1, SEXP s2) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gdouble _ret = (gdouble)g_random_double_range(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16128,8 +16136,8 @@ SEXP R_g_random_int(void) {
 
 
 SEXP R_g_random_int_range(SEXP s1, SEXP s2) {
-  gint32 v1 = (gint32)((gint32)INTEGER(s1)[0]); (void)v1;
-  gint32 v2 = (gint32)((gint32)INTEGER(s2)[0]); (void)v2;
+  gint32 v1 = (gint32)((gint32)_unbox_numeric(s1)); (void)v1;
+  gint32 v2 = (gint32)((gint32)_unbox_numeric(s2)); (void)v2;
   gint32 _ret = (gint32)g_random_int_range(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16145,7 +16153,7 @@ SEXP R_g_random_int_range(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_random_set_seed(SEXP s1) {
-  guint32 v1 = (guint32)((guint32)INTEGER(s1)[0]); (void)v1;
+  guint32 v1 = (guint32)((guint32)_unbox_numeric(s1)); (void)v1;
   g_random_set_seed(v1);
   return R_NilValue;
 }
@@ -16153,7 +16161,7 @@ SEXP R_g_random_set_seed(SEXP s1) {
 
 SEXP R_g_realloc(SEXP s1, SEXP s2) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_realloc(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16170,8 +16178,8 @@ SEXP R_g_realloc(SEXP s1, SEXP s2) {
 
 SEXP R_g_realloc_n(SEXP s1, SEXP s2, SEXP s3) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gpointer _ret = (gpointer)g_realloc_n(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16252,7 +16260,7 @@ SEXP R_g_set_application_name(SEXP s1) {
 SEXP R_g_set_error_literal(SEXP s1, SEXP s2, SEXP s3) {
   GError* _out_err = 0; (void)_out_err;
   GQuark v1 = (GQuark)((GQuark)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  gint v2 = (gint)((gint)INTEGER(s2)[0]); (void)v2;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   g_set_error_literal(&_out_err, v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -16372,7 +16380,7 @@ SEXP R_g_shell_unquote(SEXP s1) {
 
 
 SEXP R_g_slice_alloc(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gpointer _ret = (gpointer)g_slice_alloc(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16388,7 +16396,7 @@ SEXP R_g_slice_alloc(SEXP s1) {
 
 
 SEXP R_g_slice_alloc0(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gpointer _ret = (gpointer)g_slice_alloc0(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16404,7 +16412,7 @@ SEXP R_g_slice_alloc0(SEXP s1) {
 
 
 SEXP R_g_slice_copy(SEXP s1, SEXP s2) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
   gpointer _ret = (gpointer)g_slice_copy(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -16421,7 +16429,7 @@ SEXP R_g_slice_copy(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_slice_free1(SEXP s1, SEXP s2) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   g_slice_free1(v1, v2);
   return R_NilValue;
@@ -16429,9 +16437,9 @@ SEXP R_g_slice_free1(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_slice_free_chain_with_offset(SEXP s1, SEXP s2, SEXP s3) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   g_slice_free_chain_with_offset(v1, v2, v3);
   return R_NilValue;
 }
@@ -16455,7 +16463,7 @@ SEXP R_g_slice_get_config(SEXP s1) {
 
 SEXP R_g_slice_get_config_state(SEXP s1, SEXP s2, SEXP s3) {
   GSliceConfig v1 = (GSliceConfig)((GSliceConfig)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   guint* v3 = (guint*)((guint*)INTEGER(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_slice_get_config_state(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -16473,14 +16481,14 @@ SEXP R_g_slice_get_config_state(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_slice_set_config(SEXP s1, SEXP s2) {
   GSliceConfig v1 = (GSliceConfig)((GSliceConfig)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  gint64 v2 = (gint64)((gint64)REAL(s2)[0]); (void)v2;
+  gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   g_slice_set_config(v1, v2);
   return R_NilValue;
 }
 
 
 SEXP R_g_spaced_primes_closest(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   guint _ret = (guint)g_spaced_primes_closest(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16570,7 +16578,7 @@ SEXP R_g_spawn_async_with_pipes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEX
 
 
 SEXP R_g_spawn_check_exit_status(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GError *_err = NULL;
   gboolean _ret = (gboolean)g_spawn_check_exit_status(v1, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -16895,7 +16903,7 @@ SEXP R_g_str_tokenize_and_fold(SEXP s1, SEXP s2) {
 SEXP R_g_strcanon(SEXP s1, SEXP s2, SEXP s3) {
   gchar* v1 = (gchar*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gchar v3 = (gchar)((gchar)INTEGER(s3)[0]); (void)v3;
+  gchar v3 = (gchar)((gchar)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_strcanon(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -16995,7 +17003,7 @@ SEXP R_g_strcompress(SEXP s1) {
 SEXP R_g_strdelimit(SEXP s1, SEXP s2, SEXP s3) {
   gchar* v1 = (gchar*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
-  gchar v3 = (gchar)((gchar)INTEGER(s3)[0]); (void)v3;
+  gchar v3 = (gchar)((gchar)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_strdelimit(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17059,7 +17067,7 @@ SEXP R_g_strdupv(SEXP s1) {
 
 
 SEXP R_g_strerror(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_strerror(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17135,7 +17143,7 @@ SEXP R_g_strjoinv(SEXP s1, SEXP s2) {
 SEXP R_g_strlcat(SEXP s1, SEXP s2, SEXP s3) {
   gchar* v1 = (gchar*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gsize _ret = (gsize)g_strlcat(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17153,7 +17161,7 @@ SEXP R_g_strlcat(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_strlcpy(SEXP s1, SEXP s2, SEXP s3) {
   gchar* v1 = (gchar*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gsize _ret = (gsize)g_strlcpy(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17171,7 +17179,7 @@ SEXP R_g_strlcpy(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_strncasecmp(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  guint v3 = (guint)((guint)INTEGER(s3)[0]); (void)v3;
+  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
   gint _ret = (gint)g_strncasecmp(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17188,7 +17196,7 @@ SEXP R_g_strncasecmp(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_strndup(SEXP s1, SEXP s2) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_strndup(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17204,8 +17212,8 @@ SEXP R_g_strndup(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_strnfill(SEXP s1, SEXP s2) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gchar v2 = (gchar)((gchar)INTEGER(s2)[0]); (void)v2;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
+  gchar v2 = (gchar)((gchar)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_strnfill(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17255,7 +17263,7 @@ SEXP R_g_strrstr(SEXP s1, SEXP s2) {
 
 SEXP R_g_strrstr_len(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gconstpointer _ret = (gconstpointer)g_strrstr_len(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -17272,7 +17280,7 @@ SEXP R_g_strrstr_len(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_strsignal(SEXP s1) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_strsignal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17290,7 +17298,7 @@ SEXP R_g_strsignal(SEXP s1) {
 SEXP R_g_strsplit(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_strsplit(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17308,7 +17316,7 @@ SEXP R_g_strsplit(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_strsplit_set(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_strsplit_set(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17325,7 +17333,7 @@ SEXP R_g_strsplit_set(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_strstr_len(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   gconstpointer _ret = (gconstpointer)g_strstr_len(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -17458,7 +17466,7 @@ SEXP R_g_test_add_func(SEXP s1, SEXP s2) {
 SEXP R_g_test_assert_expected_messages_internal(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   g_test_assert_expected_messages_internal(v1, v2, v3, v4);
   return R_NilValue;
@@ -17582,8 +17590,8 @@ SEXP R_g_test_rand_double(void) {
 
 
 SEXP R_g_test_rand_double_range(SEXP s1, SEXP s2) {
-  gdouble v1 = (gdouble)((gdouble)REAL(s1)[0]); (void)v1;
-  gdouble v2 = (gdouble)((gdouble)REAL(s2)[0]); (void)v2;
+  gdouble v1 = (gdouble)((gdouble)_unbox_numeric(s1)); (void)v1;
+  gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   double _ret = (double)g_test_rand_double_range(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17615,8 +17623,8 @@ SEXP R_g_test_rand_int(void) {
 
 
 SEXP R_g_test_rand_int_range(SEXP s1, SEXP s2) {
-  gint32 v1 = (gint32)((gint32)INTEGER(s1)[0]); (void)v1;
-  gint32 v2 = (gint32)((gint32)INTEGER(s2)[0]); (void)v2;
+  gint32 v1 = (gint32)((gint32)_unbox_numeric(s1)); (void)v1;
+  gint32 v2 = (gint32)((gint32)_unbox_numeric(s2)); (void)v2;
   gint32 _ret = (gint32)g_test_rand_int_range(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17735,9 +17743,9 @@ SEXP R_g_test_timer_start(void) {
 SEXP R_g_test_trap_assertions(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gint v3 = (gint)((gint)INTEGER(s3)[0]); (void)v3;
+  gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
-  guint64 v5 = (guint64)((guint64)REAL(s5)[0]); (void)v5;
+  guint64 v5 = (guint64)((guint64)_unbox_numeric(s5)); (void)v5;
   const char* v6 = (const char*)(CHAR(STRING_ELT(s6,0))); (void)v6;
   g_test_trap_assertions(v1, v2, v3, v4, v5, v6);
   return R_NilValue;
@@ -17745,7 +17753,7 @@ SEXP R_g_test_trap_assertions(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP 
 
 
 SEXP R_g_test_trap_fork(SEXP s1, SEXP s2) {
-  guint64 v1 = (guint64)((guint64)REAL(s1)[0]); (void)v1;
+  guint64 v1 = (guint64)((guint64)_unbox_numeric(s1)); (void)v1;
   GTestTrapFlags v2 = (GTestTrapFlags)((GTestTrapFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gboolean _ret = (gboolean)g_test_trap_fork(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -17795,7 +17803,7 @@ SEXP R_g_test_trap_reached_timeout(void) {
 
 SEXP R_g_test_trap_subprocess(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  guint64 v2 = (guint64)((guint64)REAL(s2)[0]); (void)v2;
+  guint64 v2 = (guint64)((guint64)_unbox_numeric(s2)); (void)v2;
   GTestSubprocessFlags v3 = (GTestSubprocessFlags)((GTestSubprocessFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   g_test_trap_subprocess(v1, v2, v3);
   return R_NilValue;
@@ -17803,8 +17811,8 @@ SEXP R_g_test_trap_subprocess(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_timeout_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GSourceFunc v3 = (GSourceFunc)(get_ptr(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
@@ -17823,8 +17831,8 @@ SEXP R_g_timeout_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_g_timeout_add_seconds_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  gint v1 = (gint)((gint)INTEGER(s1)[0]); (void)v1;
-  guint v2 = (guint)((guint)INTEGER(s2)[0]); (void)v2;
+  gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
+  guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GSourceFunc v3 = (GSourceFunc)(get_ptr(s3)); (void)v3;
   gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
   GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
@@ -17843,7 +17851,7 @@ SEXP R_g_timeout_add_seconds_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_g_timeout_source_new(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_timeout_source_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17859,7 +17867,7 @@ SEXP R_g_timeout_source_new(SEXP s1) {
 
 
 SEXP R_g_timeout_source_new_seconds(SEXP s1) {
-  guint v1 = (guint)((guint)INTEGER(s1)[0]); (void)v1;
+  guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)g_timeout_source_new_seconds(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17875,7 +17883,7 @@ SEXP R_g_timeout_source_new_seconds(SEXP s1) {
 
 
 SEXP R_g_try_malloc(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gpointer _ret = (gpointer)g_try_malloc(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17891,7 +17899,7 @@ SEXP R_g_try_malloc(SEXP s1) {
 
 
 SEXP R_g_try_malloc0(SEXP s1) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
   gpointer _ret = (gpointer)g_try_malloc0(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17907,8 +17915,8 @@ SEXP R_g_try_malloc0(SEXP s1) {
 
 
 SEXP R_g_try_malloc0_n(SEXP s1, SEXP s2) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_try_malloc0_n(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17924,8 +17932,8 @@ SEXP R_g_try_malloc0_n(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_try_malloc_n(SEXP s1, SEXP s2) {
-  gsize v1 = (gsize)((gsize)REAL(s1)[0]); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v1 = (gsize)((gsize)_unbox_numeric(s1)); (void)v1;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_try_malloc_n(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17942,7 +17950,7 @@ SEXP R_g_try_malloc_n(SEXP s1, SEXP s2) {
 
 SEXP R_g_try_realloc(SEXP s1, SEXP s2) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gpointer _ret = (gpointer)g_try_realloc(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17959,8 +17967,8 @@ SEXP R_g_try_realloc(SEXP s1, SEXP s2) {
 
 SEXP R_g_try_realloc_n(SEXP s1, SEXP s2, SEXP s3) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gpointer _ret = (gpointer)g_try_realloc_n(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -17977,7 +17985,7 @@ SEXP R_g_try_realloc_n(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_ucs4_to_utf16(SEXP s1, SEXP s2) {
   const gunichar* v1 = (const gunichar*)(get_ptr(s1)); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   glong _out_items_read = 0; (void)_out_items_read;
   glong _out_items_written = 0; (void)_out_items_written;
   GError *_err = NULL;
@@ -18007,7 +18015,7 @@ SEXP R_g_ucs4_to_utf16(SEXP s1, SEXP s2) {
 
 SEXP R_g_ucs4_to_utf8(SEXP s1, SEXP s2) {
   const gunichar* v1 = (const gunichar*)(get_ptr(s1)); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   glong _out_items_read = 0; (void)_out_items_read;
   glong _out_items_written = 0; (void)_out_items_written;
   GError *_err = NULL;
@@ -18036,7 +18044,7 @@ SEXP R_g_ucs4_to_utf8(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_unichar_break_type(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   GUnicodeBreakType _ret = (GUnicodeBreakType)g_unichar_break_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18052,7 +18060,7 @@ SEXP R_g_unichar_break_type(SEXP s1) {
 
 
 SEXP R_g_unichar_combining_class(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gint _ret = (gint)g_unichar_combining_class(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18068,8 +18076,8 @@ SEXP R_g_unichar_combining_class(SEXP s1) {
 
 
 SEXP R_g_unichar_compose(SEXP s1, SEXP s2) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
-  gunichar v2 = (gunichar)((gunichar)INTEGER(s2)[0]); (void)v2;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
+  gunichar v2 = (gunichar)((gunichar)_unbox_numeric(s2)); (void)v2;
   gunichar _out_ch = 0; (void)_out_ch;
   gboolean _ret = (gboolean)g_unichar_compose(v1, v2, &_out_ch);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -18091,7 +18099,7 @@ SEXP R_g_unichar_compose(SEXP s1, SEXP s2) {
 
 
 SEXP R_g_unichar_decompose(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gunichar _out_a = 0; (void)_out_a;
   gunichar _out_b = 0; (void)_out_b;
   gboolean _ret = (gboolean)g_unichar_decompose(v1, &_out_a, &_out_b);
@@ -18119,7 +18127,7 @@ SEXP R_g_unichar_decompose(SEXP s1) {
 
 
 SEXP R_g_unichar_digit_value(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gint _ret = (gint)g_unichar_digit_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18135,10 +18143,10 @@ SEXP R_g_unichar_digit_value(SEXP s1) {
 
 
 SEXP R_g_unichar_fully_decompose(SEXP s1, SEXP s2, SEXP s3) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gunichar _out_result = 0; (void)_out_result;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gsize _ret = (gsize)g_unichar_fully_decompose(v1, v2, &_out_result, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
@@ -18159,7 +18167,7 @@ SEXP R_g_unichar_fully_decompose(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_g_unichar_get_mirror_char(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gunichar _out_mirrored_ch = 0; (void)_out_mirrored_ch;
   gboolean _ret = (gboolean)g_unichar_get_mirror_char(v1, &_out_mirrored_ch);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -18181,7 +18189,7 @@ SEXP R_g_unichar_get_mirror_char(SEXP s1) {
 
 
 SEXP R_g_unichar_get_script(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   GUnicodeScript _ret = (GUnicodeScript)g_unichar_get_script(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18197,7 +18205,7 @@ SEXP R_g_unichar_get_script(SEXP s1) {
 
 
 SEXP R_g_unichar_isalnum(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isalnum(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18213,7 +18221,7 @@ SEXP R_g_unichar_isalnum(SEXP s1) {
 
 
 SEXP R_g_unichar_isalpha(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isalpha(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18229,7 +18237,7 @@ SEXP R_g_unichar_isalpha(SEXP s1) {
 
 
 SEXP R_g_unichar_iscntrl(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_iscntrl(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18245,7 +18253,7 @@ SEXP R_g_unichar_iscntrl(SEXP s1) {
 
 
 SEXP R_g_unichar_isdefined(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isdefined(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18261,7 +18269,7 @@ SEXP R_g_unichar_isdefined(SEXP s1) {
 
 
 SEXP R_g_unichar_isdigit(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isdigit(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18277,7 +18285,7 @@ SEXP R_g_unichar_isdigit(SEXP s1) {
 
 
 SEXP R_g_unichar_isgraph(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isgraph(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18293,7 +18301,7 @@ SEXP R_g_unichar_isgraph(SEXP s1) {
 
 
 SEXP R_g_unichar_islower(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_islower(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18309,7 +18317,7 @@ SEXP R_g_unichar_islower(SEXP s1) {
 
 
 SEXP R_g_unichar_ismark(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_ismark(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18325,7 +18333,7 @@ SEXP R_g_unichar_ismark(SEXP s1) {
 
 
 SEXP R_g_unichar_isprint(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isprint(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18341,7 +18349,7 @@ SEXP R_g_unichar_isprint(SEXP s1) {
 
 
 SEXP R_g_unichar_ispunct(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_ispunct(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18357,7 +18365,7 @@ SEXP R_g_unichar_ispunct(SEXP s1) {
 
 
 SEXP R_g_unichar_isspace(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isspace(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18373,7 +18381,7 @@ SEXP R_g_unichar_isspace(SEXP s1) {
 
 
 SEXP R_g_unichar_istitle(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_istitle(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18389,7 +18397,7 @@ SEXP R_g_unichar_istitle(SEXP s1) {
 
 
 SEXP R_g_unichar_isupper(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isupper(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18405,7 +18413,7 @@ SEXP R_g_unichar_isupper(SEXP s1) {
 
 
 SEXP R_g_unichar_iswide(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_iswide(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18421,7 +18429,7 @@ SEXP R_g_unichar_iswide(SEXP s1) {
 
 
 SEXP R_g_unichar_iswide_cjk(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_iswide_cjk(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18437,7 +18445,7 @@ SEXP R_g_unichar_iswide_cjk(SEXP s1) {
 
 
 SEXP R_g_unichar_isxdigit(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_isxdigit(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18453,7 +18461,7 @@ SEXP R_g_unichar_isxdigit(SEXP s1) {
 
 
 SEXP R_g_unichar_iszerowidth(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_iszerowidth(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18469,7 +18477,7 @@ SEXP R_g_unichar_iszerowidth(SEXP s1) {
 
 
 SEXP R_g_unichar_to_utf8(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gchar _out_outbuf = 0; (void)_out_outbuf;
   gint _ret = (gint)g_unichar_to_utf8(v1, &_out_outbuf);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -18491,7 +18499,7 @@ SEXP R_g_unichar_to_utf8(SEXP s1) {
 
 
 SEXP R_g_unichar_tolower(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gunichar _ret = (gunichar)g_unichar_tolower(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18507,7 +18515,7 @@ SEXP R_g_unichar_tolower(SEXP s1) {
 
 
 SEXP R_g_unichar_totitle(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gunichar _ret = (gunichar)g_unichar_totitle(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18523,7 +18531,7 @@ SEXP R_g_unichar_totitle(SEXP s1) {
 
 
 SEXP R_g_unichar_toupper(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gunichar _ret = (gunichar)g_unichar_toupper(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18539,7 +18547,7 @@ SEXP R_g_unichar_toupper(SEXP s1) {
 
 
 SEXP R_g_unichar_type(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   GUnicodeType _ret = (GUnicodeType)g_unichar_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18555,7 +18563,7 @@ SEXP R_g_unichar_type(SEXP s1) {
 
 
 SEXP R_g_unichar_validate(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)g_unichar_validate(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18571,7 +18579,7 @@ SEXP R_g_unichar_validate(SEXP s1) {
 
 
 SEXP R_g_unichar_xdigit_value(SEXP s1) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gint _ret = (gint)g_unichar_xdigit_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18587,7 +18595,7 @@ SEXP R_g_unichar_xdigit_value(SEXP s1) {
 
 
 SEXP R_g_unicode_canonical_decomposition(SEXP s1, SEXP s2) {
-  gunichar v1 = (gunichar)((gunichar)INTEGER(s1)[0]); (void)v1;
+  gunichar v1 = (gunichar)((gunichar)_unbox_numeric(s1)); (void)v1;
   gsize* v2 = (gsize*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_unicode_canonical_decomposition(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -18605,7 +18613,7 @@ SEXP R_g_unicode_canonical_decomposition(SEXP s1, SEXP s2) {
 
 SEXP R_g_unicode_canonical_ordering(SEXP s1, SEXP s2) {
   gunichar* v1 = (gunichar*)(get_ptr(s1)); (void)v1;
-  gsize v2 = (gsize)((gsize)REAL(s2)[0]); (void)v2;
+  gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   g_unicode_canonical_ordering(v1, v2);
   return R_NilValue;
 }
@@ -18635,7 +18643,7 @@ SEXP R_g_unsetenv(SEXP s1) {
 
 
 SEXP R_g_usleep(SEXP s1) {
-  gulong v1 = (gulong)((gulong)REAL(s1)[0]); (void)v1;
+  gulong v1 = (gulong)((gulong)_unbox_numeric(s1)); (void)v1;
   g_usleep(v1);
   return R_NilValue;
 }
@@ -18643,7 +18651,7 @@ SEXP R_g_usleep(SEXP s1) {
 
 SEXP R_g_utf16_to_ucs4(SEXP s1, SEXP s2) {
   const gunichar2* v1 = (const gunichar2*)(get_ptr(s1)); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   glong _out_items_read = 0; (void)_out_items_read;
   glong _out_items_written = 0; (void)_out_items_written;
   GError *_err = NULL;
@@ -18673,7 +18681,7 @@ SEXP R_g_utf16_to_ucs4(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf16_to_utf8(SEXP s1, SEXP s2) {
   const gunichar2* v1 = (const gunichar2*)(get_ptr(s1)); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   glong _out_items_read = 0; (void)_out_items_read;
   glong _out_items_written = 0; (void)_out_items_written;
   GError *_err = NULL;
@@ -18703,7 +18711,7 @@ SEXP R_g_utf16_to_utf8(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_casefold(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_utf8_casefold(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18737,7 +18745,7 @@ SEXP R_g_utf8_collate(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_collate_key(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_utf8_collate_key(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18754,7 +18762,7 @@ SEXP R_g_utf8_collate_key(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_collate_key_for_filename(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_utf8_collate_key_for_filename(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18821,7 +18829,7 @@ SEXP R_g_utf8_get_char(SEXP s1) {
 
 SEXP R_g_utf8_get_char_validated(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gunichar _ret = (gunichar)g_utf8_get_char_validated(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18838,7 +18846,7 @@ SEXP R_g_utf8_get_char_validated(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_make_valid(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_utf8_make_valid(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18855,7 +18863,7 @@ SEXP R_g_utf8_make_valid(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_normalize(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   GNormalizeMode v3 = (GNormalizeMode)((GNormalizeMode)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gconstpointer _ret = (gconstpointer)g_utf8_normalize(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -18873,7 +18881,7 @@ SEXP R_g_utf8_normalize(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_utf8_offset_to_pointer(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_utf8_offset_to_pointer(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18923,8 +18931,8 @@ SEXP R_g_utf8_prev_char(SEXP s1) {
 
 SEXP R_g_utf8_strchr(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  gunichar v3 = (gunichar)((gunichar)INTEGER(s3)[0]); (void)v3;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
+  gunichar v3 = (gunichar)((gunichar)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_utf8_strchr(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18941,7 +18949,7 @@ SEXP R_g_utf8_strchr(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_utf8_strdown(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_utf8_strdown(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18958,7 +18966,7 @@ SEXP R_g_utf8_strdown(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_strlen(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   glong _ret = (glong)g_utf8_strlen(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18976,7 +18984,7 @@ SEXP R_g_utf8_strlen(SEXP s1, SEXP s2) {
 SEXP R_g_utf8_strncpy(SEXP s1, SEXP s2, SEXP s3) {
   gchar* v1 = (gchar*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  gsize v3 = (gsize)((gsize)REAL(s3)[0]); (void)v3;
+  gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_utf8_strncpy(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -18993,8 +19001,8 @@ SEXP R_g_utf8_strncpy(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_utf8_strrchr(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
-  gunichar v3 = (gunichar)((gunichar)INTEGER(s3)[0]); (void)v3;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
+  gunichar v3 = (gunichar)((gunichar)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_utf8_strrchr(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -19011,7 +19019,7 @@ SEXP R_g_utf8_strrchr(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_utf8_strreverse(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_utf8_strreverse(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -19028,7 +19036,7 @@ SEXP R_g_utf8_strreverse(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_strup(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)g_utf8_strup(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -19045,8 +19053,8 @@ SEXP R_g_utf8_strup(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_substring(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
-  glong v3 = (glong)((glong)REAL(s3)[0]); (void)v3;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
+  glong v3 = (glong)((glong)_unbox_numeric(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)g_utf8_substring(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -19063,7 +19071,7 @@ SEXP R_g_utf8_substring(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_utf8_to_ucs4(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   glong _out_items_read = 0; (void)_out_items_read;
   glong _out_items_written = 0; (void)_out_items_written;
   GError *_err = NULL;
@@ -19093,7 +19101,7 @@ SEXP R_g_utf8_to_ucs4(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_to_ucs4_fast(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   glong _out_items_written = 0; (void)_out_items_written;
   gconstpointer _ret = (gconstpointer)g_utf8_to_ucs4_fast(v1, v2, &_out_items_written);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
@@ -19116,7 +19124,7 @@ SEXP R_g_utf8_to_ucs4_fast(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_to_utf16(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  glong v2 = (glong)((glong)REAL(s2)[0]); (void)v2;
+  glong v2 = (glong)((glong)_unbox_numeric(s2)); (void)v2;
   glong _out_items_read = 0; (void)_out_items_read;
   glong _out_items_written = 0; (void)_out_items_written;
   GError *_err = NULL;
@@ -19146,7 +19154,7 @@ SEXP R_g_utf8_to_utf16(SEXP s1, SEXP s2) {
 
 SEXP R_g_utf8_validate(SEXP s1, SEXP s2) {
   const gchar* v1 = (const gchar*)(get_ptr(s1)); (void)v1;
-  gssize v2 = (gssize)((gssize)REAL(s2)[0]); (void)v2;
+  gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   const gchar* _out_end = 0; (void)_out_end;
   gboolean _ret = (gboolean)g_utf8_validate(v1, v2, &_out_end);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));

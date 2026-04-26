@@ -87,12 +87,7 @@
 \alias{gOutputStreamWriteBytes}
 \alias{gOutputStreamWriteBytesFinish}
 \alias{gOutputStreamWriteFinish}
-\alias{gOutputStreamWritev}
-\alias{gOutputStreamWritevAll}
-\alias{gOutputStreamWritevAllFinish}
-\alias{gOutputStreamWritevFinish}
 \alias{gIoErrorFromErrno}
-\alias{gIoErrorFromFileError}
 \alias{gIoErrorQuark}
 \alias{gIoModulesLoadAllInDirectory}
 \alias{gIoModulesLoadAllInDirectoryWithScope}
@@ -278,17 +273,7 @@ gOutputStreamWriteBytesFinish(stream, result)
 
 gOutputStreamWriteFinish(stream, result)
 
-gOutputStreamWritev(stream, vectors, n_vectors, cancellable)
-
-gOutputStreamWritevAll(stream, vectors, n_vectors, cancellable)
-
-gOutputStreamWritevAllFinish(stream, result)
-
-gOutputStreamWritevFinish(stream, result)
-
 gIoErrorFromErrno(err_no)
-
-gIoErrorFromFileError(file_error)
 
 gIoErrorQuark()
 
@@ -371,13 +356,7 @@ gIoSchedulerCancelAllJobs()
 
 \item{bytes}{GLib.Bytes}
 
-\item{vectors}{OutputVector}
-
-\item{n_vectors}{gsize}
-
 \item{err_no}{gint}
-
-\item{file_error}{GLib.FileError}
 
 \item{dirname}{filename}
 
@@ -555,16 +534,6 @@ gssize
 gssize
 
 gssize
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-IOErrorEnum
 
 IOErrorEnum
 
@@ -753,17 +722,7 @@ gOutputStreamWriteBytesFinish
 
 gOutputStreamWriteFinish
 
-gOutputStreamWritev
-
-gOutputStreamWritevAll
-
-gOutputStreamWritevAllFinish
-
-gOutputStreamWritevFinish
-
 gIoErrorFromErrno
-
-gIoErrorFromFileError
 
 gIoErrorQuark
 

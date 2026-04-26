@@ -12,7 +12,6 @@
 \alias{gSettingsUnbind}
 \alias{gSettingsApply}
 \alias{gSettingsBind}
-\alias{gSettingsBindWithMappingClosures}
 \alias{gSettingsBindWritable}
 \alias{gSettingsCreateAction}
 \alias{gSettingsDelay}
@@ -104,16 +103,6 @@ gSettingsUnbind(object, property)
 gSettingsApply(settings)
 
 gSettingsBind(settings, key, object, property, flags)
-
-gSettingsBindWithMappingClosures(
-  settings,
-  key,
-  object,
-  property,
-  flags,
-  get_mapping,
-  set_mapping
-)
 
 gSettingsBindWritable(settings, key, object, property, inverted)
 
@@ -270,10 +259,6 @@ gSettingsSchemaSourceGetDefault()
 
 \item{flags}{SettingsBindFlags}
 
-\item{get_mapping}{GObject.Closure}
-
-\item{set_mapping}{GObject.Closure}
-
 \item{inverted}{gboolean}
 
 \item{name}{utf8}
@@ -314,8 +299,6 @@ Settings
 utf8
 
 utf8
-
-Return value from C function
 
 Return value from C function
 
@@ -483,8 +466,6 @@ gSettingsUnbind
 gSettingsApply
 
 gSettingsBind
-
-gSettingsBindWithMappingClosures
 
 gSettingsBindWritable
 

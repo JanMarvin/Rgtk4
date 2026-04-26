@@ -6,9 +6,7 @@
 \alias{gDateTimeNewFromTimevalLocal}
 \alias{gDateTimeNewFromTimevalUtc}
 \alias{gDateTimeNewFromUnixLocal}
-\alias{gDateTimeNewFromUnixLocalUsec}
 \alias{gDateTimeNewFromUnixUtc}
-\alias{gDateTimeNewFromUnixUtcUsec}
 \alias{gDateTimeNewLocal}
 \alias{gDateTimeNewNow}
 \alias{gDateTimeNewNowLocal}
@@ -27,7 +25,6 @@
 \alias{gDateTimeDifference}
 \alias{gDateTimeEqual}
 \alias{gDateTimeFormat}
-\alias{gDateTimeFormatIso8601}
 \alias{gDateTimeGetDayOfMonth}
 \alias{gDateTimeGetDayOfWeek}
 \alias{gDateTimeGetDayOfYear}
@@ -37,7 +34,6 @@
 \alias{gDateTimeGetMonth}
 \alias{gDateTimeGetSecond}
 \alias{gDateTimeGetSeconds}
-\alias{gDateTimeGetTimezone}
 \alias{gDateTimeGetTimezoneAbbreviation}
 \alias{gDateTimeGetUtcOffset}
 \alias{gDateTimeGetWeekNumberingYear}
@@ -51,21 +47,17 @@
 \alias{gDateTimeToTimeval}
 \alias{gDateTimeToTimezone}
 \alias{gDateTimeToUnix}
-\alias{gDateTimeToUnixUsec}
 \alias{gDateTimeToUtc}
 \alias{gDateTimeUnref}
 \alias{gTimeValAdd}
 \alias{gTimeValToIso8601}
 \alias{gTimeValFromIso8601}
 \alias{gTimeZoneNew}
-\alias{gTimeZoneNewIdentifier}
 \alias{gTimeZoneNewLocal}
-\alias{gTimeZoneNewOffset}
 \alias{gTimeZoneNewUtc}
 \alias{gTimeZoneAdjustTime}
 \alias{gTimeZoneFindInterval}
 \alias{gTimeZoneGetAbbreviation}
-\alias{gTimeZoneGetIdentifier}
 \alias{gTimeZoneGetOffset}
 \alias{gTimeZoneIsDst}
 \alias{gTimeZoneRef}
@@ -82,11 +74,7 @@ gDateTimeNewFromTimevalUtc(tv)
 
 gDateTimeNewFromUnixLocal(t)
 
-gDateTimeNewFromUnixLocalUsec(usecs)
-
 gDateTimeNewFromUnixUtc(t)
-
-gDateTimeNewFromUnixUtcUsec(usecs)
 
 gDateTimeNewLocal(year, month, day, hour, minute, seconds)
 
@@ -124,8 +112,6 @@ gDateTimeEqual(dt1, dt2)
 
 gDateTimeFormat(datetime, format)
 
-gDateTimeFormatIso8601(datetime)
-
 gDateTimeGetDayOfMonth(datetime)
 
 gDateTimeGetDayOfWeek(datetime)
@@ -143,8 +129,6 @@ gDateTimeGetMonth(datetime)
 gDateTimeGetSecond(datetime)
 
 gDateTimeGetSeconds(datetime)
-
-gDateTimeGetTimezone(datetime)
 
 gDateTimeGetTimezoneAbbreviation(datetime)
 
@@ -172,8 +156,6 @@ gDateTimeToTimezone(datetime, tz)
 
 gDateTimeToUnix(datetime)
 
-gDateTimeToUnixUsec(datetime)
-
 gDateTimeToUtc(datetime)
 
 gDateTimeUnref(datetime)
@@ -186,11 +168,7 @@ gTimeValFromIso8601(iso_date)
 
 gTimeZoneNew(identifier)
 
-gTimeZoneNewIdentifier(identifier)
-
 gTimeZoneNewLocal()
-
-gTimeZoneNewOffset(seconds)
 
 gTimeZoneNewUtc()
 
@@ -199,8 +177,6 @@ gTimeZoneAdjustTime(tz, type)
 gTimeZoneFindInterval(tz, type, time_)
 
 gTimeZoneGetAbbreviation(tz, interval)
-
-gTimeZoneGetIdentifier(tz)
 
 gTimeZoneGetOffset(tz, interval)
 
@@ -223,7 +199,7 @@ gTimeZoneUnref(tz)
 
 \item{minute}{gint}
 
-\item{seconds}{gint32}
+\item{seconds}{gdouble}
 
 \item{text}{utf8}
 
@@ -232,8 +208,6 @@ gTimeZoneUnref(tz)
 \item{tv}{TimeVal}
 
 \item{t}{gint64}
-
-\item{usecs}{gint64}
 
 \item{datetime}{DateTime}
 
@@ -314,17 +288,11 @@ DateTime
 
 DateTime
 
-DateTime
-
-DateTime
-
 gint
 
 TimeSpan
 
 gboolean
-
-utf8
 
 utf8
 
@@ -345,8 +313,6 @@ gint
 gint
 
 gdouble
-
-TimeZone
 
 utf8
 
@@ -374,8 +340,6 @@ DateTime
 
 gint64
 
-gint64
-
 DateTime
 
 Return value from C function
@@ -392,15 +356,9 @@ TimeZone
 
 TimeZone
 
-TimeZone
-
-TimeZone
-
 gint
 
 gint
-
-utf8
 
 utf8
 
@@ -423,11 +381,7 @@ gDateTimeNewFromTimevalUtc
 
 gDateTimeNewFromUnixLocal
 
-gDateTimeNewFromUnixLocalUsec
-
 gDateTimeNewFromUnixUtc
-
-gDateTimeNewFromUnixUtcUsec
 
 gDateTimeNewLocal
 
@@ -465,8 +419,6 @@ gDateTimeEqual
 
 gDateTimeFormat
 
-gDateTimeFormatIso8601
-
 gDateTimeGetDayOfMonth
 
 gDateTimeGetDayOfWeek
@@ -484,8 +436,6 @@ gDateTimeGetMonth
 gDateTimeGetSecond
 
 gDateTimeGetSeconds
-
-gDateTimeGetTimezone
 
 gDateTimeGetTimezoneAbbreviation
 
@@ -513,8 +463,6 @@ gDateTimeToTimezone
 
 gDateTimeToUnix
 
-gDateTimeToUnixUsec
-
 gDateTimeToUtc
 
 gDateTimeUnref
@@ -527,11 +475,7 @@ gTimeValFromIso8601
 
 gTimeZoneNew
 
-gTimeZoneNewIdentifier
-
 gTimeZoneNewLocal
-
-gTimeZoneNewOffset
 
 gTimeZoneNewUtc
 
@@ -540,8 +484,6 @@ gTimeZoneAdjustTime
 gTimeZoneFindInterval
 
 gTimeZoneGetAbbreviation
-
-gTimeZoneGetIdentifier
 
 gTimeZoneGetOffset
 

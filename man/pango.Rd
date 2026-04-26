@@ -101,9 +101,7 @@
 \alias{pangoFontDescriptionCopyStatic}
 \alias{pangoFontDescriptionEqual}
 \alias{pangoFontDescriptionFree}
-\alias{pangoFontDescriptionGetColor}
 \alias{pangoFontDescriptionGetFamily}
-\alias{pangoFontDescriptionGetFeatures}
 \alias{pangoFontDescriptionGetGravity}
 \alias{pangoFontDescriptionGetSetFields}
 \alias{pangoFontDescriptionGetSize}
@@ -117,11 +115,8 @@
 \alias{pangoFontDescriptionMerge}
 \alias{pangoFontDescriptionMergeStatic}
 \alias{pangoFontDescriptionSetAbsoluteSize}
-\alias{pangoFontDescriptionSetColor}
 \alias{pangoFontDescriptionSetFamily}
 \alias{pangoFontDescriptionSetFamilyStatic}
-\alias{pangoFontDescriptionSetFeatures}
-\alias{pangoFontDescriptionSetFeaturesStatic}
 \alias{pangoFontDescriptionSetGravity}
 \alias{pangoFontDescriptionSetSize}
 \alias{pangoFontDescriptionSetStretch}
@@ -144,7 +139,6 @@
 \alias{pangoFontFamilyIsMonospace}
 \alias{pangoFontFamilyIsVariable}
 \alias{pangoFontFamilyListFaces}
-\alias{pangoFontMapAddFontFile}
 \alias{pangoFontMapChanged}
 \alias{pangoFontMapCreateContext}
 \alias{pangoFontMapGetFamily}
@@ -152,7 +146,6 @@
 \alias{pangoFontMapListFamilies}
 \alias{pangoFontMapLoadFont}
 \alias{pangoFontMapLoadFontset}
-\alias{pangoFontMapReloadFont}
 \alias{pangoFontMetricsGetApproximateCharWidth}
 \alias{pangoFontMetricsGetApproximateDigitWidth}
 \alias{pangoFontMetricsGetAscent}
@@ -200,7 +193,6 @@
 \alias{pangoItemApplyAttrs}
 \alias{pangoItemCopy}
 \alias{pangoItemFree}
-\alias{pangoItemGetCharOffset}
 \alias{pangoItemSplit}
 \alias{pangoLanguageGetSampleString}
 \alias{pangoLanguageGetScripts}
@@ -636,11 +628,7 @@ pangoFontDescriptionEqual(desc1, desc2)
 
 pangoFontDescriptionFree(desc)
 
-pangoFontDescriptionGetColor(desc)
-
 pangoFontDescriptionGetFamily(desc)
-
-pangoFontDescriptionGetFeatures(desc)
 
 pangoFontDescriptionGetGravity(desc)
 
@@ -668,15 +656,9 @@ pangoFontDescriptionMergeStatic(desc, desc_to_merge, replace_existing)
 
 pangoFontDescriptionSetAbsoluteSize(desc, size)
 
-pangoFontDescriptionSetColor(desc, color)
-
 pangoFontDescriptionSetFamily(desc, family)
 
 pangoFontDescriptionSetFamilyStatic(desc, family)
-
-pangoFontDescriptionSetFeatures(desc, features)
-
-pangoFontDescriptionSetFeaturesStatic(desc, features)
 
 pangoFontDescriptionSetGravity(desc, gravity)
 
@@ -722,8 +704,6 @@ pangoFontFamilyIsVariable(family)
 
 pangoFontFamilyListFaces(family)
 
-pangoFontMapAddFontFile(fontmap, filename)
-
 pangoFontMapChanged(fontmap)
 
 pangoFontMapCreateContext(fontmap)
@@ -737,8 +717,6 @@ pangoFontMapListFamilies(fontmap)
 pangoFontMapLoadFont(fontmap, context, desc)
 
 pangoFontMapLoadFontset(fontmap, context, desc, language)
-
-pangoFontMapReloadFont(fontmap, font, scale, context, variations)
 
 pangoFontMetricsGetApproximateCharWidth(metrics)
 
@@ -841,8 +819,6 @@ pangoItemApplyAttrs(item, iter)
 pangoItemCopy(item)
 
 pangoItemFree(item)
-
-pangoItemGetCharOffset(item)
 
 pangoItemSplit(orig, split_index, split_offset)
 
@@ -1454,10 +1430,6 @@ pangoVersionString()
 
 \item{fontmap}{FontMap}
 
-\item{filename}{filename}
-
-\item{scale}{FontScale}
-
 \item{metrics}{FontMetrics}
 
 \item{fontset}{FontsetSimple}
@@ -1550,6 +1522,8 @@ pangoVersionString()
 
 \item{wrap}{WrapMode}
 
+\item{filename}{filename}
+
 \item{x}{gint}
 
 \item{y}{gint}
@@ -1621,6 +1595,8 @@ pangoVersionString()
 \item{attrs_len}{gint}
 
 \item{enable_fallback}{gboolean}
+
+\item{scale}{FontScale}
 
 \item{insert_hyphens}{gboolean}
 
@@ -1869,10 +1845,6 @@ gboolean
 
 Return value from C function
 
-FontColor
-
-utf8
-
 utf8
 
 Gravity
@@ -1894,12 +1866,6 @@ utf8
 Weight
 
 guint
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -1955,8 +1921,6 @@ gboolean
 
 Return value from C function
 
-gboolean
-
 Return value from C function
 
 Context
@@ -1970,8 +1934,6 @@ Return value from C function
 Font
 
 Fontset
-
-Font
 
 gint
 
@@ -2066,8 +2028,6 @@ Return value from C function
 Item
 
 Return value from C function
-
-gint
 
 Item
 
@@ -2736,11 +2696,7 @@ pangoFontDescriptionEqual
 
 pangoFontDescriptionFree
 
-pangoFontDescriptionGetColor
-
 pangoFontDescriptionGetFamily
-
-pangoFontDescriptionGetFeatures
 
 pangoFontDescriptionGetGravity
 
@@ -2768,15 +2724,9 @@ pangoFontDescriptionMergeStatic
 
 pangoFontDescriptionSetAbsoluteSize
 
-pangoFontDescriptionSetColor
-
 pangoFontDescriptionSetFamily
 
 pangoFontDescriptionSetFamilyStatic
-
-pangoFontDescriptionSetFeatures
-
-pangoFontDescriptionSetFeaturesStatic
 
 pangoFontDescriptionSetGravity
 
@@ -2822,8 +2772,6 @@ pangoFontFamilyIsVariable
 
 pangoFontFamilyListFaces
 
-pangoFontMapAddFontFile
-
 pangoFontMapChanged
 
 pangoFontMapCreateContext
@@ -2837,8 +2785,6 @@ pangoFontMapListFamilies
 pangoFontMapLoadFont
 
 pangoFontMapLoadFontset
-
-pangoFontMapReloadFont
 
 pangoFontMetricsGetApproximateCharWidth
 
@@ -2933,8 +2879,6 @@ pangoItemApplyAttrs
 pangoItemCopy
 
 pangoItemFree
-
-pangoItemGetCharOffset
 
 pangoItemSplit
 

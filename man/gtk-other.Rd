@@ -4,8 +4,6 @@
 \alias{gtkAtContextCreate}
 \alias{gtkAtContextGetAccessible}
 \alias{gtkAtContextGetAccessibleRole}
-\alias{gtkAccessibleAnnounce}
-\alias{gtkAccessibleGetAccessibleId}
 \alias{gtkAccessibleGetAccessibleParent}
 \alias{gtkAccessibleGetAccessibleRole}
 \alias{gtkAccessibleGetAtContext}
@@ -18,21 +16,12 @@
 \alias{gtkAccessibleResetState}
 \alias{gtkAccessibleSetAccessibleParent}
 \alias{gtkAccessibleUpdateNextAccessibleSibling}
-\alias{gtkAccessibleUpdatePlatformState}
 \alias{gtkAccessibleUpdatePropertyValue}
 \alias{gtkAccessibleUpdateRelationValue}
 \alias{gtkAccessibleUpdateStateValue}
-\alias{gtkAccessibleHyperlinkNew}
-\alias{gtkAccessibleHyperlinkSetPlatformState}
-\alias{gtkAccessibleListNewFromArray}
-\alias{gtkAccessibleListNewFromList}
-\alias{gtkAccessibleListGetObjects}
 \alias{gtkAccessiblePropertyInitValue}
 \alias{gtkAccessibleRelationInitValue}
 \alias{gtkAccessibleStateInitValue}
-\alias{gtkAccessibleTextUpdateCaretPosition}
-\alias{gtkAccessibleTextUpdateContents}
-\alias{gtkAccessibleTextUpdateSelectionBound}
 \alias{gtkActionBarNew}
 \alias{gtkActionBarGetCenterWidget}
 \alias{gtkActionBarGetRevealed}
@@ -241,22 +230,15 @@
 \alias{gtkCalendarNew}
 \alias{gtkCalendarClearMarks}
 \alias{gtkCalendarGetDate}
-\alias{gtkCalendarGetDay}
 \alias{gtkCalendarGetDayIsMarked}
-\alias{gtkCalendarGetMonth}
 \alias{gtkCalendarGetShowDayNames}
 \alias{gtkCalendarGetShowHeading}
 \alias{gtkCalendarGetShowWeekNumbers}
-\alias{gtkCalendarGetYear}
 \alias{gtkCalendarMarkDay}
 \alias{gtkCalendarSelectDay}
-\alias{gtkCalendarSetDate}
-\alias{gtkCalendarSetDay}
-\alias{gtkCalendarSetMonth}
 \alias{gtkCalendarSetShowDayNames}
 \alias{gtkCalendarSetShowHeading}
 \alias{gtkCalendarSetShowWeekNumbers}
-\alias{gtkCalendarSetYear}
 \alias{gtkCalendarUnmarkDay}
 \alias{gtkCellAreaActivate}
 \alias{gtkCellAreaActivateCell}
@@ -583,8 +565,6 @@
 \alias{gtkCssProviderLoadNamed}
 \alias{gtkCssProviderToString}
 \alias{gtkCssSectionNew}
-\alias{gtkCssSectionNewWithBytes}
-\alias{gtkCssSectionGetBytes}
 \alias{gtkCssSectionGetEndLocation}
 \alias{gtkCssSectionGetFile}
 \alias{gtkCssSectionGetParent}
@@ -764,10 +744,7 @@
 \alias{gtkFileDialogGetTitle}
 \alias{gtkFileDialogOpenFinish}
 \alias{gtkFileDialogOpenMultipleFinish}
-\alias{gtkFileDialogOpenMultipleTextFilesFinish}
-\alias{gtkFileDialogOpenTextFileFinish}
 \alias{gtkFileDialogSaveFinish}
-\alias{gtkFileDialogSaveTextFileFinish}
 \alias{gtkFileDialogSelectFolderFinish}
 \alias{gtkFileDialogSelectMultipleFoldersFinish}
 \alias{gtkFileDialogSetAcceptLabel}
@@ -781,12 +758,10 @@
 \alias{gtkFileLauncherNew}
 \alias{gtkFileLauncherGetAlwaysAsk}
 \alias{gtkFileLauncherGetFile}
-\alias{gtkFileLauncherGetWritable}
 \alias{gtkFileLauncherLaunchFinish}
 \alias{gtkFileLauncherOpenContainingFolderFinish}
 \alias{gtkFileLauncherSetAlwaysAsk}
 \alias{gtkFileLauncherSetFile}
-\alias{gtkFileLauncherSetWritable}
 \alias{gtkFilterChanged}
 \alias{gtkFilterGetStrictness}
 \alias{gtkFilterMatch}
@@ -795,11 +770,9 @@
 \alias{gtkFilterListModelGetIncremental}
 \alias{gtkFilterListModelGetModel}
 \alias{gtkFilterListModelGetPending}
-\alias{gtkFilterListModelGetWatchItems}
 \alias{gtkFilterListModelSetFilter}
 \alias{gtkFilterListModelSetIncremental}
 \alias{gtkFilterListModelSetModel}
-\alias{gtkFilterListModelSetWatchItems}
 \alias{gtkFixedNew}
 \alias{gtkFixedGetChildPosition}
 \alias{gtkFixedGetChildTransform}
@@ -988,26 +961,16 @@
 \alias{gtkGestureSwipeGetVelocity}
 \alias{gtkGestureZoomNew}
 \alias{gtkGestureZoomGetScaleDelta}
-\alias{gtkGraphicsOffloadNew}
-\alias{gtkGraphicsOffloadGetBlackBackground}
-\alias{gtkGraphicsOffloadGetChild}
-\alias{gtkGraphicsOffloadGetEnabled}
-\alias{gtkGraphicsOffloadSetBlackBackground}
-\alias{gtkGraphicsOffloadSetChild}
-\alias{gtkGraphicsOffloadSetEnabled}
 \alias{gtkHeaderBarNew}
 \alias{gtkHeaderBarGetDecorationLayout}
 \alias{gtkHeaderBarGetShowTitleButtons}
 \alias{gtkHeaderBarGetTitleWidget}
-\alias{gtkHeaderBarGetUseNativeControls}
 \alias{gtkHeaderBarPackEnd}
 \alias{gtkHeaderBarPackStart}
 \alias{gtkHeaderBarRemove}
 \alias{gtkHeaderBarSetDecorationLayout}
 \alias{gtkHeaderBarSetShowTitleButtons}
 \alias{gtkHeaderBarSetTitleWidget}
-\alias{gtkHeaderBarSetUseNativeControls}
-\alias{gtkImContextActivateOsk}
 \alias{gtkImContextDeleteSurrounding}
 \alias{gtkImContextFilterKey}
 \alias{gtkImContextFilterKeypress}
@@ -1108,7 +1071,6 @@
 \alias{gtkListBoxGetSelectedRows}
 \alias{gtkListBoxGetSelectionMode}
 \alias{gtkListBoxGetShowSeparators}
-\alias{gtkListBoxGetTabBehavior}
 \alias{gtkListBoxInsert}
 \alias{gtkListBoxInvalidateFilter}
 \alias{gtkListBoxInvalidateHeaders}
@@ -1123,7 +1085,6 @@
 \alias{gtkListBoxSetPlaceholder}
 \alias{gtkListBoxSetSelectionMode}
 \alias{gtkListBoxSetShowSeparators}
-\alias{gtkListBoxSetTabBehavior}
 \alias{gtkListBoxUnselectAll}
 \alias{gtkListBoxUnselectRow}
 \alias{gtkListBoxRowNew}
@@ -1476,13 +1437,11 @@
 \alias{gtkScaleButtonNew}
 \alias{gtkScaleButtonGetActive}
 \alias{gtkScaleButtonGetAdjustment}
-\alias{gtkScaleButtonGetHasFrame}
 \alias{gtkScaleButtonGetMinusButton}
 \alias{gtkScaleButtonGetPlusButton}
 \alias{gtkScaleButtonGetPopup}
 \alias{gtkScaleButtonGetValue}
 \alias{gtkScaleButtonSetAdjustment}
-\alias{gtkScaleButtonSetHasFrame}
 \alias{gtkScaleButtonSetIcons}
 \alias{gtkScaleButtonSetValue}
 \alias{gtkScrollInfoNew}
@@ -1547,13 +1506,9 @@
 \alias{gtkSearchBarSetSearchMode}
 \alias{gtkSearchBarSetShowCloseButton}
 \alias{gtkSearchEntryNew}
-\alias{gtkSearchEntryGetInputHints}
-\alias{gtkSearchEntryGetInputPurpose}
 \alias{gtkSearchEntryGetKeyCaptureWidget}
 \alias{gtkSearchEntryGetPlaceholderText}
 \alias{gtkSearchEntryGetSearchDelay}
-\alias{gtkSearchEntrySetInputHints}
-\alias{gtkSearchEntrySetInputPurpose}
 \alias{gtkSearchEntrySetKeyCaptureWidget}
 \alias{gtkSearchEntrySetPlaceholderText}
 \alias{gtkSearchEntrySetSearchDelay}
@@ -1610,9 +1565,6 @@
 \alias{gtkShortcutTriggerToLabel}
 \alias{gtkShortcutTriggerToString}
 \alias{gtkShortcutTriggerTrigger}
-\alias{gtkShortcutsGroupAddShortcut}
-\alias{gtkShortcutsSectionAddGroup}
-\alias{gtkShortcutsWindowAddSection}
 \alias{gtkSignalActionNew}
 \alias{gtkSignalActionGetSignalName}
 \alias{gtkSignalListItemFactoryNew}
@@ -1644,18 +1596,15 @@
 \alias{gtkSnapshotAppendCairo}
 \alias{gtkSnapshotAppendColor}
 \alias{gtkSnapshotAppendConicGradient}
-\alias{gtkSnapshotAppendFill}
 \alias{gtkSnapshotAppendInsetShadow}
 \alias{gtkSnapshotAppendLayout}
 \alias{gtkSnapshotAppendLinearGradient}
 \alias{gtkSnapshotAppendNode}
 \alias{gtkSnapshotAppendOutsetShadow}
-\alias{gtkSnapshotAppendPaste}
 \alias{gtkSnapshotAppendRadialGradient}
 \alias{gtkSnapshotAppendRepeatingLinearGradient}
 \alias{gtkSnapshotAppendRepeatingRadialGradient}
 \alias{gtkSnapshotAppendScaledTexture}
-\alias{gtkSnapshotAppendStroke}
 \alias{gtkSnapshotAppendTexture}
 \alias{gtkSnapshotGlShaderPopTexture}
 \alias{gtkSnapshotPerspective}
@@ -1664,19 +1613,13 @@
 \alias{gtkSnapshotPushBlur}
 \alias{gtkSnapshotPushClip}
 \alias{gtkSnapshotPushColorMatrix}
-\alias{gtkSnapshotPushComponentTransfer}
-\alias{gtkSnapshotPushComposite}
-\alias{gtkSnapshotPushCopy}
 \alias{gtkSnapshotPushCrossFade}
-\alias{gtkSnapshotPushFill}
 \alias{gtkSnapshotPushGlShader}
-\alias{gtkSnapshotPushIsolation}
 \alias{gtkSnapshotPushMask}
 \alias{gtkSnapshotPushOpacity}
 \alias{gtkSnapshotPushRepeat}
 \alias{gtkSnapshotPushRoundedClip}
 \alias{gtkSnapshotPushShadow}
-\alias{gtkSnapshotPushStroke}
 \alias{gtkSnapshotRenderBackground}
 \alias{gtkSnapshotRenderFocus}
 \alias{gtkSnapshotRenderFrame}
@@ -1710,7 +1653,6 @@
 \alias{gtkSpinButtonNew}
 \alias{gtkSpinButtonNewWithRange}
 \alias{gtkSpinButtonConfigure}
-\alias{gtkSpinButtonGetActivatesDefault}
 \alias{gtkSpinButtonGetAdjustment}
 \alias{gtkSpinButtonGetClimbRate}
 \alias{gtkSpinButtonGetDigits}
@@ -1722,7 +1664,6 @@
 \alias{gtkSpinButtonGetValue}
 \alias{gtkSpinButtonGetValueAsInt}
 \alias{gtkSpinButtonGetWrap}
-\alias{gtkSpinButtonSetActivatesDefault}
 \alias{gtkSpinButtonSetAdjustment}
 \alias{gtkSpinButtonSetClimbRate}
 \alias{gtkSpinButtonSetDigits}
@@ -1800,7 +1741,6 @@
 \alias{gtkStringFilterSetSearch}
 \alias{gtkStringListNew}
 \alias{gtkStringListAppend}
-\alias{gtkStringListFind}
 \alias{gtkStringListGetString}
 \alias{gtkStringListRemove}
 \alias{gtkStringListSplice}
@@ -1835,35 +1775,11 @@
 \alias{gtkStyleContextSetScale}
 \alias{gtkStyleContextSetState}
 \alias{gtkStyleContextToString}
-\alias{gtkSvgNew}
-\alias{gtkSvgNewFromBytes}
-\alias{gtkSvgNewFromResource}
-\alias{gtkSvgGetFeatures}
-\alias{gtkSvgGetState}
-\alias{gtkSvgGetStateNames}
-\alias{gtkSvgGetWeight}
-\alias{gtkSvgLoadFromBytes}
-\alias{gtkSvgLoadFromResource}
-\alias{gtkSvgPause}
-\alias{gtkSvgPlay}
-\alias{gtkSvgSerialize}
-\alias{gtkSvgSetFeatures}
-\alias{gtkSvgSetFrameClock}
-\alias{gtkSvgSetState}
-\alias{gtkSvgSetWeight}
-\alias{gtkSvgWriteToFile}
-\alias{gtkSvgErrorGetAttribute}
-\alias{gtkSvgErrorGetElement}
-\alias{gtkSvgErrorGetEnd}
-\alias{gtkSvgErrorGetStart}
-\alias{gtkSvgErrorQuark}
 \alias{gtkSwitchNew}
 \alias{gtkSwitchGetActive}
 \alias{gtkSwitchGetState}
 \alias{gtkSwitchSetActive}
 \alias{gtkSwitchSetState}
-\alias{gtkSymbolicPaintableSnapshotSymbolic}
-\alias{gtkSymbolicPaintableSnapshotWithWeight}
 \alias{gtkTooltipSetCustom}
 \alias{gtkTooltipSetIcon}
 \alias{gtkTooltipSetIconFromGicon}
@@ -1939,9 +1855,7 @@
 \alias{gtkTreeSortableHasDefaultSortFunc}
 \alias{gtkTreeSortableSetSortColumnId}
 \alias{gtkTreeSortableSortColumnChanged}
-\alias{gtkTryExpressionNew}
 \alias{gtkUriLauncherNew}
-\alias{gtkUriLauncherCanLaunch}
 \alias{gtkUriLauncherGetUri}
 \alias{gtkUriLauncherLaunchFinish}
 \alias{gtkUriLauncherSetUri}
@@ -1952,13 +1866,11 @@
 \alias{gtkVideoNewForResource}
 \alias{gtkVideoGetAutoplay}
 \alias{gtkVideoGetFile}
-\alias{gtkVideoGetGraphicsOffload}
 \alias{gtkVideoGetLoop}
 \alias{gtkVideoGetMediaStream}
 \alias{gtkVideoSetAutoplay}
 \alias{gtkVideoSetFile}
 \alias{gtkVideoSetFilename}
-\alias{gtkVideoSetGraphicsOffload}
 \alias{gtkVideoSetLoop}
 \alias{gtkVideoSetMediaStream}
 \alias{gtkVideoSetResource}
@@ -1970,7 +1882,6 @@
 \alias{gtkViewportSetScrollToFocus}
 \alias{gtkVolumeButtonNew}
 \alias{gtkDragCheckThreshold}
-\alias{gtkAcceleratorGetAccessibleLabel}
 \alias{gtkAcceleratorGetDefaultModMask}
 \alias{gtkAcceleratorGetLabel}
 \alias{gtkAcceleratorGetLabelWithKeycode}
@@ -1982,8 +1893,6 @@
 \alias{gtkCheckVersion}
 \alias{gtkCssParserErrorQuark}
 \alias{gtkCssParserWarningQuark}
-\alias{gtkDisablePortalInterfaces}
-\alias{gtkDisablePortals}
 \alias{gtkDisableSetlocale}
 \alias{gtkDistributeNaturalAllocation}
 \alias{gtkGetBinaryAge}
@@ -2037,10 +1946,6 @@ gtkAtContextGetAccessible(self)
 
 gtkAtContextGetAccessibleRole(self)
 
-gtkAccessibleAnnounce(self, message, priority)
-
-gtkAccessibleGetAccessibleId(self)
-
 gtkAccessibleGetAccessibleParent(self)
 
 gtkAccessibleGetAccessibleRole(self)
@@ -2065,35 +1970,17 @@ gtkAccessibleSetAccessibleParent(self, parent, next_sibling)
 
 gtkAccessibleUpdateNextAccessibleSibling(self, new_sibling)
 
-gtkAccessibleUpdatePlatformState(self, state)
-
 gtkAccessibleUpdatePropertyValue(self, n_properties, properties, values)
 
 gtkAccessibleUpdateRelationValue(self, n_relations, relations, values)
 
 gtkAccessibleUpdateStateValue(self, n_states, states, values)
 
-gtkAccessibleHyperlinkNew(parent, index, uri, bounds)
-
-gtkAccessibleHyperlinkSetPlatformState(self, state, enabled)
-
-gtkAccessibleListNewFromArray(accessibles, n_accessibles)
-
-gtkAccessibleListNewFromList(list)
-
-gtkAccessibleListGetObjects(accessible_list)
-
 gtkAccessiblePropertyInitValue(property, value)
 
 gtkAccessibleRelationInitValue(relation, value)
 
 gtkAccessibleStateInitValue(state, value)
-
-gtkAccessibleTextUpdateCaretPosition(self)
-
-gtkAccessibleTextUpdateContents(self, change, start, end)
-
-gtkAccessibleTextUpdateSelectionBound(self)
 
 gtkActionBarNew()
 
@@ -2526,11 +2413,7 @@ gtkCalendarClearMarks(calendar)
 
 gtkCalendarGetDate(self)
 
-gtkCalendarGetDay(self)
-
 gtkCalendarGetDayIsMarked(calendar, day)
-
-gtkCalendarGetMonth(self)
 
 gtkCalendarGetShowDayNames(self)
 
@@ -2538,25 +2421,15 @@ gtkCalendarGetShowHeading(self)
 
 gtkCalendarGetShowWeekNumbers(self)
 
-gtkCalendarGetYear(self)
-
 gtkCalendarMarkDay(calendar, day)
 
 gtkCalendarSelectDay(self, date)
-
-gtkCalendarSetDate(self, date)
-
-gtkCalendarSetDay(self, day)
-
-gtkCalendarSetMonth(self, month)
 
 gtkCalendarSetShowDayNames(self, value)
 
 gtkCalendarSetShowHeading(self, value)
 
 gtkCalendarSetShowWeekNumbers(self, value)
-
-gtkCalendarSetYear(self, year)
 
 gtkCalendarUnmarkDay(calendar, day)
 
@@ -3270,10 +3143,6 @@ gtkCssProviderToString(provider)
 
 gtkCssSectionNew(file, start, end)
 
-gtkCssSectionNewWithBytes(file, bytes, start, end)
-
-gtkCssSectionGetBytes(section)
-
 gtkCssSectionGetEndLocation(section)
 
 gtkCssSectionGetFile(section)
@@ -3632,13 +3501,7 @@ gtkFileDialogOpenFinish(self, result)
 
 gtkFileDialogOpenMultipleFinish(self, result)
 
-gtkFileDialogOpenMultipleTextFilesFinish(self, result)
-
-gtkFileDialogOpenTextFileFinish(self, result)
-
 gtkFileDialogSaveFinish(self, result)
-
-gtkFileDialogSaveTextFileFinish(self, result)
 
 gtkFileDialogSelectFolderFinish(self, result)
 
@@ -3666,8 +3529,6 @@ gtkFileLauncherGetAlwaysAsk(self)
 
 gtkFileLauncherGetFile(self)
 
-gtkFileLauncherGetWritable(self)
-
 gtkFileLauncherLaunchFinish(self, result)
 
 gtkFileLauncherOpenContainingFolderFinish(self, result)
@@ -3675,8 +3536,6 @@ gtkFileLauncherOpenContainingFolderFinish(self, result)
 gtkFileLauncherSetAlwaysAsk(self, always_ask)
 
 gtkFileLauncherSetFile(self, file)
-
-gtkFileLauncherSetWritable(self, writable)
 
 gtkFilterChanged(self, change)
 
@@ -3694,15 +3553,11 @@ gtkFilterListModelGetModel(self)
 
 gtkFilterListModelGetPending(self)
 
-gtkFilterListModelGetWatchItems(self)
-
 gtkFilterListModelSetFilter(self, filter)
 
 gtkFilterListModelSetIncremental(self, incremental)
 
 gtkFilterListModelSetModel(self, model)
-
-gtkFilterListModelSetWatchItems(self, watch_items)
 
 gtkFixedNew()
 
@@ -4080,20 +3935,6 @@ gtkGestureZoomNew()
 
 gtkGestureZoomGetScaleDelta(gesture)
 
-gtkGraphicsOffloadNew(child)
-
-gtkGraphicsOffloadGetBlackBackground(self)
-
-gtkGraphicsOffloadGetChild(self)
-
-gtkGraphicsOffloadGetEnabled(self)
-
-gtkGraphicsOffloadSetBlackBackground(self, value)
-
-gtkGraphicsOffloadSetChild(self, child)
-
-gtkGraphicsOffloadSetEnabled(self, enabled)
-
 gtkHeaderBarNew()
 
 gtkHeaderBarGetDecorationLayout(bar)
@@ -4101,8 +3942,6 @@ gtkHeaderBarGetDecorationLayout(bar)
 gtkHeaderBarGetShowTitleButtons(bar)
 
 gtkHeaderBarGetTitleWidget(bar)
-
-gtkHeaderBarGetUseNativeControls(bar)
 
 gtkHeaderBarPackEnd(bar, child)
 
@@ -4115,10 +3954,6 @@ gtkHeaderBarSetDecorationLayout(bar, layout)
 gtkHeaderBarSetShowTitleButtons(bar, setting)
 
 gtkHeaderBarSetTitleWidget(bar, title_widget)
-
-gtkHeaderBarSetUseNativeControls(bar, setting)
-
-gtkImContextActivateOsk(context, event)
 
 gtkImContextDeleteSurrounding(context, offset, n_chars)
 
@@ -4335,8 +4170,6 @@ gtkListBoxGetSelectionMode(box)
 
 gtkListBoxGetShowSeparators(box)
 
-gtkListBoxGetTabBehavior(box)
-
 gtkListBoxInsert(box, child, position)
 
 gtkListBoxInvalidateFilter(box)
@@ -4364,8 +4197,6 @@ gtkListBoxSetPlaceholder(box, placeholder)
 gtkListBoxSetSelectionMode(box, mode)
 
 gtkListBoxSetShowSeparators(box, show_separators)
-
-gtkListBoxSetTabBehavior(box, behavior)
 
 gtkListBoxUnselectAll(box)
 
@@ -5071,8 +4902,6 @@ gtkScaleButtonGetActive(button)
 
 gtkScaleButtonGetAdjustment(button)
 
-gtkScaleButtonGetHasFrame(button)
-
 gtkScaleButtonGetMinusButton(button)
 
 gtkScaleButtonGetPlusButton(button)
@@ -5082,8 +4911,6 @@ gtkScaleButtonGetPopup(button)
 gtkScaleButtonGetValue(button)
 
 gtkScaleButtonSetAdjustment(button, adjustment)
-
-gtkScaleButtonSetHasFrame(button, has_frame)
 
 gtkScaleButtonSetIcons(button, icons)
 
@@ -5217,19 +5044,11 @@ gtkSearchBarSetShowCloseButton(bar, visible)
 
 gtkSearchEntryNew()
 
-gtkSearchEntryGetInputHints(entry)
-
-gtkSearchEntryGetInputPurpose(entry)
-
 gtkSearchEntryGetKeyCaptureWidget(entry)
 
 gtkSearchEntryGetPlaceholderText(entry)
 
 gtkSearchEntryGetSearchDelay(entry)
-
-gtkSearchEntrySetInputHints(entry, hints)
-
-gtkSearchEntrySetInputPurpose(entry, purpose)
 
 gtkSearchEntrySetKeyCaptureWidget(entry, widget)
 
@@ -5343,12 +5162,6 @@ gtkShortcutTriggerToString(self)
 
 gtkShortcutTriggerTrigger(self, event, enable_mnemonics)
 
-gtkShortcutsGroupAddShortcut(self, shortcut)
-
-gtkShortcutsSectionAddGroup(self, group)
-
-gtkShortcutsWindowAddSection(self, section)
-
 gtkSignalActionNew(signal_name)
 
 gtkSignalActionGetSignalName(self)
@@ -5418,8 +5231,6 @@ gtkSnapshotAppendConicGradient(
   n_stops
 )
 
-gtkSnapshotAppendFill(snapshot, path, fill_rule, color)
-
 gtkSnapshotAppendInsetShadow(
   snapshot,
   outline,
@@ -5452,8 +5263,6 @@ gtkSnapshotAppendOutsetShadow(
   spread,
   blur_radius
 )
-
-gtkSnapshotAppendPaste(snapshot, bounds, nth)
 
 gtkSnapshotAppendRadialGradient(
   snapshot,
@@ -5490,8 +5299,6 @@ gtkSnapshotAppendRepeatingRadialGradient(
 
 gtkSnapshotAppendScaledTexture(snapshot, texture, filter, bounds)
 
-gtkSnapshotAppendStroke(snapshot, path, stroke, color)
-
 gtkSnapshotAppendTexture(snapshot, texture, bounds)
 
 gtkSnapshotGlShaderPopTexture(snapshot)
@@ -5508,19 +5315,9 @@ gtkSnapshotPushClip(snapshot, bounds)
 
 gtkSnapshotPushColorMatrix(snapshot, color_matrix, color_offset)
 
-gtkSnapshotPushComponentTransfer(snapshot, red, green, blue, alpha)
-
-gtkSnapshotPushComposite(snapshot, op)
-
-gtkSnapshotPushCopy(snapshot)
-
 gtkSnapshotPushCrossFade(snapshot, progress)
 
-gtkSnapshotPushFill(snapshot, path, fill_rule)
-
 gtkSnapshotPushGlShader(snapshot, shader, bounds, take_args)
-
-gtkSnapshotPushIsolation(snapshot, features)
 
 gtkSnapshotPushMask(snapshot, mask_mode)
 
@@ -5531,8 +5328,6 @@ gtkSnapshotPushRepeat(snapshot, bounds, child_bounds)
 gtkSnapshotPushRoundedClip(snapshot, bounds)
 
 gtkSnapshotPushShadow(snapshot, shadow, n_shadows)
-
-gtkSnapshotPushStroke(snapshot, path, stroke)
 
 gtkSnapshotRenderBackground(snapshot, context, x, y, width, height)
 
@@ -5608,8 +5403,6 @@ gtkSpinButtonNewWithRange(min, max, step)
 
 gtkSpinButtonConfigure(spin_button, adjustment, climb_rate, digits)
 
-gtkSpinButtonGetActivatesDefault(spin_button)
-
 gtkSpinButtonGetAdjustment(spin_button)
 
 gtkSpinButtonGetClimbRate(spin_button)
@@ -5631,8 +5424,6 @@ gtkSpinButtonGetValue(spin_button)
 gtkSpinButtonGetValueAsInt(spin_button)
 
 gtkSpinButtonGetWrap(spin_button)
-
-gtkSpinButtonSetActivatesDefault(spin_button, activates_default)
 
 gtkSpinButtonSetAdjustment(spin_button, adjustment)
 
@@ -5788,8 +5579,6 @@ gtkStringListNew(strings)
 
 gtkStringListAppend(self, string)
 
-gtkStringListFind(self, string)
-
 gtkStringListGetString(self, position)
 
 gtkStringListRemove(self, position)
@@ -5858,50 +5647,6 @@ gtkStyleContextSetState(context, flags)
 
 gtkStyleContextToString(context, flags)
 
-gtkSvgNew()
-
-gtkSvgNewFromBytes(bytes)
-
-gtkSvgNewFromResource(path)
-
-gtkSvgGetFeatures(self)
-
-gtkSvgGetState(self)
-
-gtkSvgGetStateNames(self)
-
-gtkSvgGetWeight(self)
-
-gtkSvgLoadFromBytes(self, bytes)
-
-gtkSvgLoadFromResource(self, path)
-
-gtkSvgPause(self)
-
-gtkSvgPlay(self)
-
-gtkSvgSerialize(self)
-
-gtkSvgSetFeatures(self, features)
-
-gtkSvgSetFrameClock(self, clock)
-
-gtkSvgSetState(self, state)
-
-gtkSvgSetWeight(self, weight)
-
-gtkSvgWriteToFile(self, filename)
-
-gtkSvgErrorGetAttribute(error)
-
-gtkSvgErrorGetElement(error)
-
-gtkSvgErrorGetEnd(error)
-
-gtkSvgErrorGetStart(error)
-
-gtkSvgErrorQuark()
-
 gtkSwitchNew()
 
 gtkSwitchGetActive(self)
@@ -5911,25 +5656,6 @@ gtkSwitchGetState(self)
 gtkSwitchSetActive(self, is_active)
 
 gtkSwitchSetState(self, state)
-
-gtkSymbolicPaintableSnapshotSymbolic(
-  paintable,
-  snapshot,
-  width,
-  height,
-  colors,
-  n_colors
-)
-
-gtkSymbolicPaintableSnapshotWithWeight(
-  paintable,
-  snapshot,
-  width,
-  height,
-  colors,
-  n_colors,
-  weight
-)
 
 gtkTooltipSetCustom(tooltip, custom_widget)
 
@@ -6081,11 +5807,7 @@ gtkTreeSortableSetSortColumnId(sortable, sort_column_id, order)
 
 gtkTreeSortableSortColumnChanged(sortable)
 
-gtkTryExpressionNew(n_expressions, expressions)
-
 gtkUriLauncherNew(uri)
-
-gtkUriLauncherCanLaunch(self, parent)
 
 gtkUriLauncherGetUri(self)
 
@@ -6107,8 +5829,6 @@ gtkVideoGetAutoplay(self)
 
 gtkVideoGetFile(self)
 
-gtkVideoGetGraphicsOffload(self)
-
 gtkVideoGetLoop(self)
 
 gtkVideoGetMediaStream(self)
@@ -6118,8 +5838,6 @@ gtkVideoSetAutoplay(self, autoplay)
 gtkVideoSetFile(self, file)
 
 gtkVideoSetFilename(self, filename)
-
-gtkVideoSetGraphicsOffload(self, enabled)
 
 gtkVideoSetLoop(self, loop)
 
@@ -6142,8 +5860,6 @@ gtkViewportSetScrollToFocus(viewport, scroll_to_focus)
 gtkVolumeButtonNew()
 
 gtkDragCheckThreshold(widget, start_x, start_y, current_x, current_y)
-
-gtkAcceleratorGetAccessibleLabel(accelerator_key, accelerator_mods)
 
 gtkAcceleratorGetDefaultModMask()
 
@@ -6176,10 +5892,6 @@ gtkCheckVersion(required_major, required_minor, required_micro)
 gtkCssParserErrorQuark()
 
 gtkCssParserWarningQuark()
-
-gtkDisablePortalInterfaces(portal_interfaces)
-
-gtkDisablePortals()
 
 gtkDisableSetlocale()
 
@@ -6289,10 +6001,6 @@ gtkValueTakeExpression(value, expression)
 
 \item{self}{Video}
 
-\item{message}{utf8}
-
-\item{priority}{guint}
-
 \item{state}{AccessibleState}
 
 \item{property}{AccessibleProperty}
@@ -6319,29 +6027,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{states}{AccessibleState}
 
-\item{index}{gint}
-
-\item{uri}{utf8}
-
-\item{bounds}{Gsk.RoundedRect}
-
-\item{enabled}{GraphicsOffloadEnabled}
-
-\item{accessibles}{Accessible}
-
-\item{n_accessibles}{gsize}
-
-\item{list}{GLib.List}
-
-\item{accessible_list}{AccessibleList}
-
 \item{value}{GObject.Value}
-
-\item{change}{SorterChange}
-
-\item{start}{gfloat}
-
-\item{end}{gfloat}
 
 \item{action_bar}{ActionBar}
 
@@ -6378,6 +6064,8 @@ gtkValueTakeExpression(value, expression)
 \item{button}{ScaleButton}
 
 \item{detail}{utf8}
+
+\item{message}{utf8}
 
 \item{modal}{gboolean}
 
@@ -6425,6 +6113,8 @@ gtkValueTakeExpression(value, expression)
 
 \item{type}{PadActionType}
 
+\item{start}{gfloat}
+
 \item{n_items}{guint}
 
 \item{last}{guint}
@@ -6437,7 +6127,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{other}{PaperSize}
 
-\item{nth}{gsize}
+\item{nth}{guint}
 
 \item{amount}{guint}
 
@@ -6507,10 +6197,6 @@ gtkValueTakeExpression(value, expression)
 
 \item{date}{GLib.DateTime}
 
-\item{month}{gint}
-
-\item{year}{gint}
-
 \item{area}{Gdk.Rectangle}
 
 \item{widget}{Widget}
@@ -6547,7 +6233,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{for_size}{gint}
 
-\item{snapshot}{Gdk.Snapshot}
+\item{snapshot}{Snapshot}
 
 \item{background_area}{Gdk.Rectangle}
 
@@ -6631,7 +6317,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{colors_per_line}{gint}
 
-\item{n_colors}{gsize}
+\item{n_colors}{gint}
 
 \item{colors}{Gdk.RGBA}
 
@@ -6729,7 +6415,9 @@ gtkValueTakeExpression(value, expression)
 
 \item{variant}{GLib.Variant}
 
-\item{section}{ShortcutsSection}
+\item{end}{gfloat}
+
+\item{section}{CssSection}
 
 \item{monitored}{gboolean}
 
@@ -6819,13 +6507,11 @@ gtkValueTakeExpression(value, expression)
 
 \item{always_ask}{gboolean}
 
-\item{writable}{gboolean}
+\item{change}{SorterChange}
 
 \item{item}{GObject.Object}
 
 \item{incremental}{gboolean}
-
-\item{watch_items}{gboolean}
 
 \item{transform}{Gsk.Transform}
 
@@ -6911,7 +6597,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{keycode}{guint}
 
-\item{group}{ShortcutsGroup}
+\item{group}{Gio.ActionGroup}
 
 \item{len}{gint}
 
@@ -6965,6 +6651,8 @@ gtkValueTakeExpression(value, expression)
 
 \item{inverted}{gboolean}
 
+\item{uri}{utf8}
+
 \item{link_button}{LinkButton}
 
 \item{visited}{gboolean}
@@ -6974,8 +6662,6 @@ gtkValueTakeExpression(value, expression)
 \item{placeholder}{Widget}
 
 \item{show_separators}{gboolean}
-
-\item{behavior}{ListTabBehavior}
 
 \item{header}{Widget}
 
@@ -7003,7 +6689,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{duration}{guint}
 
-\item{op}{Gsk.PorterDuff}
+\item{op}{MountOperation}
 
 \item{notebook}{Notebook}
 
@@ -7038,6 +6724,8 @@ gtkValueTakeExpression(value, expression)
 \item{measure}{gboolean}
 
 \item{pad}{Gdk.Device}
+
+\item{index}{gint}
 
 \item{entries}{PadActionEntry}
 
@@ -7129,8 +6817,6 @@ gtkValueTakeExpression(value, expression)
 
 \item{icons}{utf8}
 
-\item{has_frame}{gboolean}
-
 \item{horizontal}{gboolean}
 
 \item{vertical}{gboolean}
@@ -7142,6 +6828,8 @@ gtkValueTakeExpression(value, expression)
 \item{vadjustment}{Adjustment}
 
 \item{scrolled_window}{ScrolledWindow}
+
+\item{has_frame}{gboolean}
 
 \item{kinetic_scrolling}{gboolean}
 
@@ -7156,10 +6844,6 @@ gtkValueTakeExpression(value, expression)
 \item{propagate}{gboolean}
 
 \item{search_mode}{gboolean}
-
-\item{hints}{InputHints}
-
-\item{purpose}{InputPurpose}
 
 \item{delay}{guint}
 
@@ -7177,7 +6861,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{args}{GLib.Variant}
 
-\item{shortcut}{ShortcutsShortcut}
+\item{shortcut}{Shortcut}
 
 \item{accelerator}{utf8}
 
@@ -7203,6 +6887,8 @@ gtkValueTakeExpression(value, expression)
 
 \item{border_color}{Gdk.RGBA}
 
+\item{bounds}{Gsk.RoundedRect}
+
 \item{center}{Graphene.Point}
 
 \item{rotation}{gfloat}
@@ -7210,8 +6896,6 @@ gtkValueTakeExpression(value, expression)
 \item{stops}{Gsk.ColorStop}
 
 \item{n_stops}{gsize}
-
-\item{fill_rule}{Gsk.FillRule}
 
 \item{dx}{gfloat}
 
@@ -7231,8 +6915,6 @@ gtkValueTakeExpression(value, expression)
 
 \item{vradius}{gfloat}
 
-\item{stroke}{Gsk.Stroke}
-
 \item{depth}{gfloat}
 
 \item{blend_mode}{Gsk.BlendMode}
@@ -7243,21 +6925,11 @@ gtkValueTakeExpression(value, expression)
 
 \item{color_offset}{Graphene.Vec4}
 
-\item{red}{Gsk.ComponentTransfer}
-
-\item{green}{Gsk.ComponentTransfer}
-
-\item{blue}{Gsk.ComponentTransfer}
-
-\item{alpha}{Gsk.ComponentTransfer}
-
 \item{progress}{gdouble}
 
 \item{shader}{Gsk.GLShader}
 
 \item{take_args}{GLib.Bytes}
-
-\item{features}{SvgFeatures}
 
 \item{mask_mode}{Gsk.MaskMode}
 
@@ -7288,8 +6960,6 @@ gtkValueTakeExpression(value, expression)
 \item{climb_rate}{gdouble}
 
 \item{spin_button}{SpinButton}
-
-\item{activates_default}{gboolean}
 
 \item{numeric}{gboolean}
 
@@ -7329,13 +6999,11 @@ gtkValueTakeExpression(value, expression)
 
 \item{collation}{Collation}
 
+\item{priority}{guint}
+
 \item{class_name}{utf8}
 
 \item{color_name}{utf8}
-
-\item{clock}{Gdk.FrameClock}
-
-\item{weight}{gdouble}
 
 \item{is_active}{gboolean}
 
@@ -7387,10 +7055,6 @@ gtkValueTakeExpression(value, expression)
 
 \item{order}{SortType}
 
-\item{n_expressions}{guint}
-
-\item{expressions}{Expression}
-
 \item{autoplay}{gboolean}
 
 \item{viewport}{Viewport}
@@ -7414,8 +7078,6 @@ gtkValueTakeExpression(value, expression)
 \item{required_minor}{guint}
 
 \item{required_micro}{guint}
-
-\item{portal_interfaces}{utf8}
 
 \item{extra_space}{gint}
 
@@ -7466,10 +7128,6 @@ Accessible
 
 AccessibleRole
 
-Return value from C function
-
-utf8
-
 Accessible
 
 AccessibleRole
@@ -7493,24 +7151,6 @@ Return value from C function
 Return value from C function
 
 Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-AccessibleHyperlink
-
-Return value from C function
-
-AccessibleList
-
-AccessibleList
-
-GLib.List
 
 Return value from C function
 
@@ -7940,27 +7580,13 @@ Return value from C function
 
 GLib.DateTime
 
-gint
-
-gboolean
-
-gint
-
 gboolean
 
 gboolean
 
 gboolean
 
-gint
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
+gboolean
 
 Return value from C function
 
@@ -8624,10 +8250,6 @@ utf8
 
 CssSection
 
-CssSection
-
-GLib.Bytes
-
 CssLocation
 
 Gio.File
@@ -8986,12 +8608,6 @@ Gio.File
 
 Gio.ListModel
 
-Gio.ListModel
-
-Gio.File
-
-Gio.File
-
 Gio.File
 
 Gio.File
@@ -9024,10 +8640,6 @@ gboolean
 
 gboolean
 
-gboolean
-
-Return value from C function
-
 Return value from C function
 
 Return value from C function
@@ -9047,10 +8659,6 @@ gboolean
 Gio.ListModel
 
 guint
-
-gboolean
-
-Return value from C function
 
 Return value from C function
 
@@ -9436,28 +9044,12 @@ gdouble
 
 Widget
 
-gboolean
-
-Widget
-
-GraphicsOffloadEnabled
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Widget
-
 utf8
 
 gboolean
 
 Widget
 
-gboolean
-
 Return value from C function
 
 Return value from C function
@@ -9469,10 +9061,6 @@ Return value from C function
 Return value from C function
 
 Return value from C function
-
-Return value from C function
-
-gboolean
 
 gboolean
 
@@ -9673,10 +9261,6 @@ GLib.List
 SelectionMode
 
 gboolean
-
-ListTabBehavior
-
-Return value from C function
 
 Return value from C function
 
@@ -10410,8 +9994,6 @@ gboolean
 
 Adjustment
 
-gboolean
-
 Button
 
 Button
@@ -10419,8 +10001,6 @@ Button
 Widget
 
 gdouble
-
-Return value from C function
 
 Return value from C function
 
@@ -10552,19 +10132,11 @@ Return value from C function
 
 Widget
 
-InputHints
-
-InputPurpose
-
 Widget
 
 utf8
 
 guint
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -10677,12 +10249,6 @@ utf8
 utf8
 
 Gdk.KeyMatch
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
 
 SignalAction
 
@@ -10816,24 +10382,6 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
 Gsk.RenderNode
 
 Gdk.Paintable
@@ -10878,8 +10426,6 @@ Widget
 
 Return value from C function
 
-gboolean
-
 Adjustment
 
 gdouble
@@ -10901,8 +10447,6 @@ gdouble
 gint
 
 gboolean
-
-Return value from C function
 
 Return value from C function
 
@@ -11058,8 +10602,6 @@ StringList
 
 Return value from C function
 
-guint
-
 utf8
 
 Return value from C function
@@ -11128,59 +10670,11 @@ Return value from C function
 
 utf8
 
-Svg
-
-Svg
-
-Svg
-
-SvgFeatures
-
-guint
-
-utf8
-
-gdouble
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-GLib.Bytes
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-gboolean
-
-utf8
-
-utf8
-
-SvgLocation
-
-SvgLocation
-
-GLib.Quark
-
 Widget
 
 gboolean
 
 gboolean
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -11336,11 +10830,7 @@ Return value from C function
 
 Return value from C function
 
-TryExpression
-
 UriLauncher
-
-gboolean
 
 utf8
 
@@ -11362,8 +10852,6 @@ gboolean
 
 Gio.File
 
-GraphicsOffloadEnabled
-
 gboolean
 
 MediaStream
@@ -11380,8 +10868,6 @@ Return value from C function
 
 Return value from C function
 
-Return value from C function
-
 Widget
 
 Widget
@@ -11397,8 +10883,6 @@ Return value from C function
 Widget
 
 gboolean
-
-utf8
 
 Gdk.ModifierType
 
@@ -11421,10 +10905,6 @@ utf8
 GLib.Quark
 
 GLib.Quark
-
-Return value from C function
-
-Return value from C function
 
 Return value from C function
 
@@ -11523,10 +11003,6 @@ gtkAtContextGetAccessible
 
 gtkAtContextGetAccessibleRole
 
-gtkAccessibleAnnounce
-
-gtkAccessibleGetAccessibleId
-
 gtkAccessibleGetAccessibleParent
 
 gtkAccessibleGetAccessibleRole
@@ -11551,35 +11027,17 @@ gtkAccessibleSetAccessibleParent
 
 gtkAccessibleUpdateNextAccessibleSibling
 
-gtkAccessibleUpdatePlatformState
-
 gtkAccessibleUpdatePropertyValue
 
 gtkAccessibleUpdateRelationValue
 
 gtkAccessibleUpdateStateValue
 
-gtkAccessibleHyperlinkNew
-
-gtkAccessibleHyperlinkSetPlatformState
-
-gtkAccessibleListNewFromArray
-
-gtkAccessibleListNewFromList
-
-gtkAccessibleListGetObjects
-
 gtkAccessiblePropertyInitValue
 
 gtkAccessibleRelationInitValue
 
 gtkAccessibleStateInitValue
-
-gtkAccessibleTextUpdateCaretPosition
-
-gtkAccessibleTextUpdateContents
-
-gtkAccessibleTextUpdateSelectionBound
 
 gtkActionBarNew
 
@@ -11997,11 +11455,7 @@ gtkCalendarClearMarks
 
 gtkCalendarGetDate
 
-gtkCalendarGetDay
-
 gtkCalendarGetDayIsMarked
-
-gtkCalendarGetMonth
 
 gtkCalendarGetShowDayNames
 
@@ -12009,25 +11463,15 @@ gtkCalendarGetShowHeading
 
 gtkCalendarGetShowWeekNumbers
 
-gtkCalendarGetYear
-
 gtkCalendarMarkDay
 
 gtkCalendarSelectDay
-
-gtkCalendarSetDate
-
-gtkCalendarSetDay
-
-gtkCalendarSetMonth
 
 gtkCalendarSetShowDayNames
 
 gtkCalendarSetShowHeading
 
 gtkCalendarSetShowWeekNumbers
-
-gtkCalendarSetYear
 
 gtkCalendarUnmarkDay
 
@@ -12681,10 +12125,6 @@ gtkCssProviderToString
 
 gtkCssSectionNew
 
-gtkCssSectionNewWithBytes
-
-gtkCssSectionGetBytes
-
 gtkCssSectionGetEndLocation
 
 gtkCssSectionGetFile
@@ -13043,13 +12483,7 @@ gtkFileDialogOpenFinish
 
 gtkFileDialogOpenMultipleFinish
 
-gtkFileDialogOpenMultipleTextFilesFinish
-
-gtkFileDialogOpenTextFileFinish
-
 gtkFileDialogSaveFinish
-
-gtkFileDialogSaveTextFileFinish
 
 gtkFileDialogSelectFolderFinish
 
@@ -13077,8 +12511,6 @@ gtkFileLauncherGetAlwaysAsk
 
 gtkFileLauncherGetFile
 
-gtkFileLauncherGetWritable
-
 gtkFileLauncherLaunchFinish
 
 gtkFileLauncherOpenContainingFolderFinish
@@ -13086,8 +12518,6 @@ gtkFileLauncherOpenContainingFolderFinish
 gtkFileLauncherSetAlwaysAsk
 
 gtkFileLauncherSetFile
-
-gtkFileLauncherSetWritable
 
 gtkFilterChanged
 
@@ -13105,15 +12535,11 @@ gtkFilterListModelGetModel
 
 gtkFilterListModelGetPending
 
-gtkFilterListModelGetWatchItems
-
 gtkFilterListModelSetFilter
 
 gtkFilterListModelSetIncremental
 
 gtkFilterListModelSetModel
-
-gtkFilterListModelSetWatchItems
 
 gtkFixedNew
 
@@ -13491,20 +12917,6 @@ gtkGestureZoomNew
 
 gtkGestureZoomGetScaleDelta
 
-gtkGraphicsOffloadNew
-
-gtkGraphicsOffloadGetBlackBackground
-
-gtkGraphicsOffloadGetChild
-
-gtkGraphicsOffloadGetEnabled
-
-gtkGraphicsOffloadSetBlackBackground
-
-gtkGraphicsOffloadSetChild
-
-gtkGraphicsOffloadSetEnabled
-
 gtkHeaderBarNew
 
 gtkHeaderBarGetDecorationLayout
@@ -13512,8 +12924,6 @@ gtkHeaderBarGetDecorationLayout
 gtkHeaderBarGetShowTitleButtons
 
 gtkHeaderBarGetTitleWidget
-
-gtkHeaderBarGetUseNativeControls
 
 gtkHeaderBarPackEnd
 
@@ -13526,10 +12936,6 @@ gtkHeaderBarSetDecorationLayout
 gtkHeaderBarSetShowTitleButtons
 
 gtkHeaderBarSetTitleWidget
-
-gtkHeaderBarSetUseNativeControls
-
-gtkImContextActivateOsk
 
 gtkImContextDeleteSurrounding
 
@@ -13731,8 +13137,6 @@ gtkListBoxGetSelectionMode
 
 gtkListBoxGetShowSeparators
 
-gtkListBoxGetTabBehavior
-
 gtkListBoxInsert
 
 gtkListBoxInvalidateFilter
@@ -13760,8 +13164,6 @@ gtkListBoxSetPlaceholder
 gtkListBoxSetSelectionMode
 
 gtkListBoxSetShowSeparators
-
-gtkListBoxSetTabBehavior
 
 gtkListBoxUnselectAll
 
@@ -14467,8 +13869,6 @@ gtkScaleButtonGetActive
 
 gtkScaleButtonGetAdjustment
 
-gtkScaleButtonGetHasFrame
-
 gtkScaleButtonGetMinusButton
 
 gtkScaleButtonGetPlusButton
@@ -14478,8 +13878,6 @@ gtkScaleButtonGetPopup
 gtkScaleButtonGetValue
 
 gtkScaleButtonSetAdjustment
-
-gtkScaleButtonSetHasFrame
 
 gtkScaleButtonSetIcons
 
@@ -14609,19 +14007,11 @@ gtkSearchBarSetShowCloseButton
 
 gtkSearchEntryNew
 
-gtkSearchEntryGetInputHints
-
-gtkSearchEntryGetInputPurpose
-
 gtkSearchEntryGetKeyCaptureWidget
 
 gtkSearchEntryGetPlaceholderText
 
 gtkSearchEntryGetSearchDelay
-
-gtkSearchEntrySetInputHints
-
-gtkSearchEntrySetInputPurpose
 
 gtkSearchEntrySetKeyCaptureWidget
 
@@ -14735,12 +14125,6 @@ gtkShortcutTriggerToString
 
 gtkShortcutTriggerTrigger
 
-gtkShortcutsGroupAddShortcut
-
-gtkShortcutsSectionAddGroup
-
-gtkShortcutsWindowAddSection
-
 gtkSignalActionNew
 
 gtkSignalActionGetSignalName
@@ -14803,8 +14187,6 @@ gtkSnapshotAppendColor
 
 gtkSnapshotAppendConicGradient
 
-gtkSnapshotAppendFill
-
 gtkSnapshotAppendInsetShadow
 
 gtkSnapshotAppendLayout
@@ -14815,8 +14197,6 @@ gtkSnapshotAppendNode
 
 gtkSnapshotAppendOutsetShadow
 
-gtkSnapshotAppendPaste
-
 gtkSnapshotAppendRadialGradient
 
 gtkSnapshotAppendRepeatingLinearGradient
@@ -14824,8 +14204,6 @@ gtkSnapshotAppendRepeatingLinearGradient
 gtkSnapshotAppendRepeatingRadialGradient
 
 gtkSnapshotAppendScaledTexture
-
-gtkSnapshotAppendStroke
 
 gtkSnapshotAppendTexture
 
@@ -14843,19 +14221,9 @@ gtkSnapshotPushClip
 
 gtkSnapshotPushColorMatrix
 
-gtkSnapshotPushComponentTransfer
-
-gtkSnapshotPushComposite
-
-gtkSnapshotPushCopy
-
 gtkSnapshotPushCrossFade
 
-gtkSnapshotPushFill
-
 gtkSnapshotPushGlShader
-
-gtkSnapshotPushIsolation
 
 gtkSnapshotPushMask
 
@@ -14866,8 +14234,6 @@ gtkSnapshotPushRepeat
 gtkSnapshotPushRoundedClip
 
 gtkSnapshotPushShadow
-
-gtkSnapshotPushStroke
 
 gtkSnapshotRenderBackground
 
@@ -14935,8 +14301,6 @@ gtkSpinButtonNewWithRange
 
 gtkSpinButtonConfigure
 
-gtkSpinButtonGetActivatesDefault
-
 gtkSpinButtonGetAdjustment
 
 gtkSpinButtonGetClimbRate
@@ -14958,8 +14322,6 @@ gtkSpinButtonGetValue
 gtkSpinButtonGetValueAsInt
 
 gtkSpinButtonGetWrap
-
-gtkSpinButtonSetActivatesDefault
 
 gtkSpinButtonSetAdjustment
 
@@ -15115,8 +14477,6 @@ gtkStringListNew
 
 gtkStringListAppend
 
-gtkStringListFind
-
 gtkStringListGetString
 
 gtkStringListRemove
@@ -15185,50 +14545,6 @@ gtkStyleContextSetState
 
 gtkStyleContextToString
 
-gtkSvgNew
-
-gtkSvgNewFromBytes
-
-gtkSvgNewFromResource
-
-gtkSvgGetFeatures
-
-gtkSvgGetState
-
-gtkSvgGetStateNames
-
-gtkSvgGetWeight
-
-gtkSvgLoadFromBytes
-
-gtkSvgLoadFromResource
-
-gtkSvgPause
-
-gtkSvgPlay
-
-gtkSvgSerialize
-
-gtkSvgSetFeatures
-
-gtkSvgSetFrameClock
-
-gtkSvgSetState
-
-gtkSvgSetWeight
-
-gtkSvgWriteToFile
-
-gtkSvgErrorGetAttribute
-
-gtkSvgErrorGetElement
-
-gtkSvgErrorGetEnd
-
-gtkSvgErrorGetStart
-
-gtkSvgErrorQuark
-
 gtkSwitchNew
 
 gtkSwitchGetActive
@@ -15238,10 +14554,6 @@ gtkSwitchGetState
 gtkSwitchSetActive
 
 gtkSwitchSetState
-
-gtkSymbolicPaintableSnapshotSymbolic
-
-gtkSymbolicPaintableSnapshotWithWeight
 
 gtkTooltipSetCustom
 
@@ -15393,11 +14705,7 @@ gtkTreeSortableSetSortColumnId
 
 gtkTreeSortableSortColumnChanged
 
-gtkTryExpressionNew
-
 gtkUriLauncherNew
-
-gtkUriLauncherCanLaunch
 
 gtkUriLauncherGetUri
 
@@ -15419,8 +14727,6 @@ gtkVideoGetAutoplay
 
 gtkVideoGetFile
 
-gtkVideoGetGraphicsOffload
-
 gtkVideoGetLoop
 
 gtkVideoGetMediaStream
@@ -15430,8 +14736,6 @@ gtkVideoSetAutoplay
 gtkVideoSetFile
 
 gtkVideoSetFilename
-
-gtkVideoSetGraphicsOffload
 
 gtkVideoSetLoop
 
@@ -15455,8 +14759,6 @@ gtkVolumeButtonNew
 
 gtkDragCheckThreshold
 
-gtkAcceleratorGetAccessibleLabel
-
 gtkAcceleratorGetDefaultModMask
 
 gtkAcceleratorGetLabel
@@ -15478,10 +14780,6 @@ gtkCheckVersion
 gtkCssParserErrorQuark
 
 gtkCssParserWarningQuark
-
-gtkDisablePortalInterfaces
-
-gtkDisablePortals
 
 gtkDisableSetlocale
 

@@ -1142,17 +1142,6 @@ pangoFontDescriptionFree <- function(desc) {
 
 
 #' @rdname pango
-#' @title pangoFontDescriptionGetColor
-#'
-#' @param desc FontDescription
-#' @return FontColor
-#' @export
-pangoFontDescriptionGetColor <- function(desc) {
-  .Call("R_pango_font_description_get_color", desc)$result
-}
-
-
-#' @rdname pango
 #' @title pangoFontDescriptionGetFamily
 #'
 #' @param desc FontDescription
@@ -1160,17 +1149,6 @@ pangoFontDescriptionGetColor <- function(desc) {
 #' @export
 pangoFontDescriptionGetFamily <- function(desc) {
   .Call("R_pango_font_description_get_family", desc)$result
-}
-
-
-#' @rdname pango
-#' @title pangoFontDescriptionGetFeatures
-#'
-#' @param desc FontDescription
-#' @return utf8
-#' @export
-pangoFontDescriptionGetFeatures <- function(desc) {
-  .Call("R_pango_font_description_get_features", desc)$result
 }
 
 
@@ -1323,18 +1301,6 @@ pangoFontDescriptionSetAbsoluteSize <- function(desc, size) {
 
 
 #' @rdname pango
-#' @title pangoFontDescriptionSetColor
-#'
-#' @param desc FontDescription
-#' @param color FontColor
-#' @return Return value from C function
-#' @export
-pangoFontDescriptionSetColor <- function(desc, color) {
-  invisible(.Call("R_pango_font_description_set_color", desc, color))
-}
-
-
-#' @rdname pango
 #' @title pangoFontDescriptionSetFamily
 #'
 #' @param desc FontDescription
@@ -1355,30 +1321,6 @@ pangoFontDescriptionSetFamily <- function(desc, family) {
 #' @export
 pangoFontDescriptionSetFamilyStatic <- function(desc, family) {
   invisible(.Call("R_pango_font_description_set_family_static", desc, family))
-}
-
-
-#' @rdname pango
-#' @title pangoFontDescriptionSetFeatures
-#'
-#' @param desc FontDescription
-#' @param features utf8
-#' @return Return value from C function
-#' @export
-pangoFontDescriptionSetFeatures <- function(desc, features) {
-  invisible(.Call("R_pango_font_description_set_features", desc, features))
-}
-
-
-#' @rdname pango
-#' @title pangoFontDescriptionSetFeaturesStatic
-#'
-#' @param desc FontDescription
-#' @param features utf8
-#' @return Return value from C function
-#' @export
-pangoFontDescriptionSetFeaturesStatic <- function(desc, features) {
-  invisible(.Call("R_pango_font_description_set_features_static", desc, features))
 }
 
 
@@ -1635,18 +1577,6 @@ pangoFontFamilyListFaces <- function(family) {
 
 
 #' @rdname pango
-#' @title pangoFontMapAddFontFile
-#'
-#' @param fontmap FontMap
-#' @param filename filename
-#' @return gboolean
-#' @export
-pangoFontMapAddFontFile <- function(fontmap, filename) {
-  .Call("R_pango_font_map_add_font_file", fontmap, filename)$result
-}
-
-
-#' @rdname pango
 #' @title pangoFontMapChanged
 #'
 #' @param fontmap FontMap
@@ -1726,21 +1656,6 @@ pangoFontMapLoadFont <- function(fontmap, context, desc) {
 #' @export
 pangoFontMapLoadFontset <- function(fontmap, context, desc, language) {
   .Call("R_pango_font_map_load_fontset", fontmap, context, desc, language)$result
-}
-
-
-#' @rdname pango
-#' @title pangoFontMapReloadFont
-#'
-#' @param fontmap FontMap
-#' @param font Font
-#' @param scale gdouble
-#' @param context Context
-#' @param variations utf8
-#' @return Font
-#' @export
-pangoFontMapReloadFont <- function(fontmap, font, scale, context, variations) {
-  .Call("R_pango_font_map_reload_font", fontmap, font, scale, context, variations)$result
 }
 
 
@@ -2299,17 +2214,6 @@ pangoItemCopy <- function(item) {
 #' @export
 pangoItemFree <- function(item) {
   invisible(.Call("R_pango_item_free", item))
-}
-
-
-#' @rdname pango
-#' @title pangoItemGetCharOffset
-#'
-#' @param item Item
-#' @return gint
-#' @export
-pangoItemGetCharOffset <- function(item) {
-  .Call("R_pango_item_get_char_offset", item)$result
 }
 
 

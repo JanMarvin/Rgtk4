@@ -29,8 +29,6 @@
 \alias{gListModelItemsChanged}
 \alias{gListStoreNew}
 \alias{gListStoreAppend}
-\alias{gListStoreFind}
-\alias{gListStoreFindWithEqualFuncFull}
 \alias{gListStoreInsert}
 \alias{gListStoreRemove}
 \alias{gListStoreRemoveAll}
@@ -93,10 +91,6 @@ gListStoreNew(item_type)
 
 gListStoreAppend(store, item)
 
-gListStoreFind(store, item)
-
-gListStoreFindWithEqualFuncFull(store, item, equal_func, user_data)
-
 gListStoreInsert(store, position, item)
 
 gListStoreRemove(store, position)
@@ -127,10 +121,6 @@ gListStoreSplice(store, position, n_removals, additions, n_additions)
 \item{store}{ListStore}
 
 \item{item}{GObject.Object}
-
-\item{equal_func}{GLib.EqualFuncFull}
-
-\item{user_data}{gpointer}
 
 \item{n_removals}{guint}
 
@@ -194,10 +184,6 @@ Return value from C function
 ListStore
 
 Return value from C function
-
-gboolean
-
-gboolean
 
 Return value from C function
 
@@ -263,10 +249,6 @@ gListModelItemsChanged
 gListStoreNew
 
 gListStoreAppend
-
-gListStoreFind
-
-gListStoreFindWithEqualFuncFull
 
 gListStoreInsert
 
