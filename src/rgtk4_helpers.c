@@ -326,6 +326,40 @@ SEXP R_g_object_set_string(SEXP s1, SEXP s2, SEXP s3) {
   return R_NilValue;
 }
 
+SEXP R_g_object_set_boolean(SEXP s1, SEXP s2, SEXP s3) {
+  GObject* v1 = (GObject*)get_ptr(s1);
+  if (!v1) Rf_error("Invalid GObject pointer");
+
+  const char* property_name = (const char*)(CHAR(STRING_ELT(s2, 0)));
+
+  // LOGICAL() returns an int* where 1 is TRUE and 0 is FALSE
+  gboolean value = (gboolean)LOGICAL(s3)[0];
+
+  g_object_set(v1, property_name, value, NULL);
+
+  return R_NilValue;
+}
+
+SEXP R_g_object_set_int(SEXP s1, SEXP s2, SEXP s3) {
+  GObject* v1 = (GObject*)get_ptr(s1);
+  const char* property_name = (const char*)(CHAR(STRING_ELT(s2, 0)));
+
+  int value = INTEGER(s3)[0];
+  g_object_set(v1, property_name, value, NULL);
+
+  return R_NilValue;
+}
+
+SEXP R_g_object_set_double(SEXP s1, SEXP s2, SEXP s3) {
+  GObject* v1 = (GObject*)get_ptr(s1);
+  const char* property_name = (const char*)(CHAR(STRING_ELT(s2, 0)));
+
+  double value = REAL(s3)[0];
+  g_object_set(v1, property_name, value, NULL);
+
+  return R_NilValue;
+}
+
 
 // ============================================================================
 // GtkStringList Helper

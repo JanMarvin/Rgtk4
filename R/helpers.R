@@ -370,17 +370,40 @@ gtkMessageDialogNew <- function(parent, flags, message_type, buttons_type, messa
   return(ptr)
 }
 
-#' Set a string property on a GObject
+#' GObject Property Setters
 #'
-#' Convenience function for setting properties that accept string values
-#' like colors, fonts, CSS classes, etc.
+#' These convenience functions allow you to set properties on a GObject by
+#' explicitly defining the data type. This ensures the underlying C logic
+#' correctly casts the R values to the appropriate GTK types.
 #'
 #' @param object GObject external pointer
 #' @param property Property name (character)
-#' @param value String value to set
+#' @param value The value to set (type-specific)
+#' @name gObjectSetters
+NULL
+
+#' @rdname gObjectSetters
 #' @export
 gObjectSetString <- function(object, property, value) {
   invisible(.Call("R_g_object_set_string", object, property, value))
+}
+
+#' @rdname gObjectSetters
+#' @export
+gObjectSetBoolean <- function(object, property, value) {
+  invisible(.Call("R_g_object_set_boolean", object, property, as.logical(value)))
+}
+
+#' @rdname gObjectSetters
+#' @export
+gObjectSetInt <- function(object, property, value) {
+  invisible(.Call("R_g_object_set_int", object, property, as.integer(value)))
+}
+
+#' @rdname gObjectSetters
+#' @export
+gObjectSetDouble <- function(object, property, value) {
+  invisible(.Call("R_g_object_set_double", object, property, as.numeric(value)))
 }
 
 #' Print method for GObject external pointers
