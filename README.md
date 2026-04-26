@@ -8,10 +8,10 @@ Modern GTK4 bindings for R with comprehensive platform integration.
 ## Overview
 
 Rgtk4 provides complete, automatically-generated R bindings for GTK4,
-GLib, GObject, and Gio. (The same pattern could be used for Pango,
-GdkPixbuf, and Cairo). Unlike traditional hand-written bindings, Rgtk4
-uses GObject Introspection (GIR) to generate bindings directly from
-GTK’s metadata, ensuring complete API coverage and easy updates.
+GLib, GObject, Gio, Pango, and GdkPixbuf. (The same pattern could be
+used for Cairo). Unlike traditional hand-written bindings, Rgtk4 uses
+GObject Introspection (GIR) to generate bindings directly from GTK’s
+metadata, ensuring complete API coverage and easy updates.
 
 ## Acknowledgments
 
