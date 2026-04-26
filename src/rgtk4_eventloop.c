@@ -61,8 +61,7 @@ static void _rgtk_macos_finish_launching(void) {
 }
 
 // Drain pending AppKit / CFRunLoop sources. GLib's main context iteration on
-// macOS does not pump these, so window-server events (snap menu, dock updates,
-// activation transitions) need this to be serviced.
+// macOS does not pump these, so window-server events need this to be serviced.
 static void _rgtk_macos_pump_cfrunloop(void) {
   while (CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.0, true)
            == kCFRunLoopRunHandledSource) {
@@ -97,8 +96,6 @@ static bool _rgtk_macos_set_app_icon(const char* icon_path) {
   void (*setIconFn)(id, SEL, id) = (void (*)(id, SEL, id))objc_msgSend;
   setIconFn(app, set_icon_sel, image);
 
-  // Force the dock to actually pick up the change. Without pumping the
-  // CFRunLoop the icon update may not appear until the next event arrives.
   _rgtk_macos_pump_cfrunloop();
   return true;
 }
@@ -106,62 +103,59 @@ static bool _rgtk_macos_set_app_icon(const char* icon_path) {
 
 static inline void* get_ptr_internal(SEXP s, const char* func) {
   if (s == R_NilValue) return NULL;
-
   if (TYPEOF(s) != EXTPTRSXP) {
     Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
   }
-
   return R_ExternalPtrAddr(s);
 }
 
 #define get_ptr(s) get_ptr_internal(s, __func__)
 
 #ifndef G_OS_WIN32
-// Unix/macOS event loop implementation
 static int _rgtk_ifd = -1, _rgtk_ofd = -1;
 static InputHandler *_rgtk_handler = NULL;
 static gboolean _rgtk_running = FALSE;
+static gboolean _rgtk_thread_started = FALSE;
 static pthread_t _rgtk_thread;
 static GMainLoop *_rgtk_loop = NULL;
 
 #ifdef __APPLE__
-// Window counting for dock icon management (macOS only)
 static int _rgtk_window_count = 0;
 static pthread_mutex_t _rgtk_window_mutex = PTHREAD_MUTEX_INITIALIZER;
 #endif
 
-// GTK event handler called from R input handler
 static void _rgtk_input_cb(void *userData) {
   (void)userData;
   char buf[64];
-  if (read(_rgtk_ifd, buf, sizeof(buf)) < 0) return;
+  while (read(_rgtk_ifd, buf, sizeof(buf)) > 0) { }
 
-  // Process all pending GTK events
   GMainContext *ctx = g_main_context_default();
-  while (g_main_context_iteration(ctx, FALSE));
+  while (g_main_context_iteration(ctx, FALSE)) { }
 
 #ifdef __APPLE__
   _rgtk_macos_pump_cfrunloop();
 #endif
 }
 
-// Timer callback running in separate thread - pokes the pipe to wake R
+// Runs on the timer thread — must NOT touch the default GMainContext or any
+// GDK/AppKit state, both of which are main-thread-only on macOS. We just poke
+// the pipe; the main thread decides whether there's work via its own
+// iteration in _rgtk_input_cb.
 static gboolean _rgtk_timer_cb(gpointer data) {
   (void)data;
   if (_rgtk_ofd != -1) {
     char b = 0;
-    if (write(_rgtk_ofd, &b, 1) < 0) { }
+    ssize_t n = write(_rgtk_ofd, &b, 1);
+    (void)n;
   }
   return G_SOURCE_CONTINUE;
 }
 
-// Thread function that runs the timer
 static void *_rgtk_thread_func(void *data) {
   (void)data;
   GMainContext *ctx = g_main_context_new();
   _rgtk_loop = g_main_loop_new(ctx, FALSE);
 
-  // ~120 Hz: smooth UI without measurable idle CPU on a sleeping context
   GSource *timer = g_timeout_source_new(8);
   g_source_set_callback(timer, _rgtk_timer_cb, NULL, NULL);
   g_source_attach(timer, ctx);
@@ -171,64 +165,68 @@ static void *_rgtk_thread_func(void *data) {
   g_source_destroy(timer);
   g_source_unref(timer);
   g_main_loop_unref(_rgtk_loop);
+  _rgtk_loop = NULL;
   g_main_context_unref(ctx);
 
   return NULL;
 }
-#endif  // G_OS_WIN32
+#endif
 
-// Event loop functions - defined on all platforms
 SEXP R_gtk_start_event_loop(void) {
 #ifdef G_OS_WIN32
-  // GTK4 uses CSD by default, which omits WS_THICKFRAME on the native
-  // window and breaks aero snap. Force server-side decorations so the
-  // OS draws the titlebar. Must be set before gtk_init() to take effect;
-  // setting here is a fallback for users who haven't set it externally.
   if (!getenv("GTK_CSD")) {
     _putenv_s("GTK_CSD", "0");
   }
-#endif
-
-#ifndef G_OS_WIN32
+  // No background event-loop integration on Windows; users should
+  // drive iteration via R_gtk_main_iteration / later::later().
+  GMainContext *ctx = g_main_context_default();
+  while (g_main_context_iteration(ctx, FALSE)) { }
+  return Rf_ScalarLogical(TRUE);
+#else
   if (_rgtk_running) return Rf_ScalarLogical(TRUE);
 
   int fds[2];
   if (pipe(fds) != 0) {
     Rf_error("RGtk4: pipe() failed");
-    return Rf_ScalarLogical(FALSE);
   }
 
   _rgtk_ifd = fds[0];
   _rgtk_ofd = fds[1];
 
-  // Set non-blocking
-  fcntl(_rgtk_ifd, F_SETFL, O_NONBLOCK);
-  fcntl(_rgtk_ofd, F_SETFL, O_NONBLOCK);
+  if (fcntl(_rgtk_ifd, F_SETFL, O_NONBLOCK) != 0 ||
+      fcntl(_rgtk_ofd, F_SETFL, O_NONBLOCK) != 0) {
+    close(_rgtk_ifd);
+    close(_rgtk_ofd);
+    _rgtk_ifd = _rgtk_ofd = -1;
+    Rf_error("RGtk4: fcntl() failed");
+  }
 
-  // Register R input handler
   _rgtk_handler = addInputHandler(R_InputHandlers, _rgtk_ifd, _rgtk_input_cb, 0);
+  if (!_rgtk_handler) {
+    close(_rgtk_ifd);
+    close(_rgtk_ofd);
+    _rgtk_ifd = _rgtk_ofd = -1;
+    Rf_error("RGtk4: addInputHandler() failed");
+  }
 
-  // Start timer thread
-  pthread_create(&_rgtk_thread, NULL, _rgtk_thread_func, NULL);
-
+  int rc = pthread_create(&_rgtk_thread, NULL, _rgtk_thread_func, NULL);
+  if (rc != 0) {
+    removeInputHandler(&R_InputHandlers, _rgtk_handler);
+    _rgtk_handler = NULL;
+    close(_rgtk_ifd);
+    close(_rgtk_ofd);
+    _rgtk_ifd = _rgtk_ofd = -1;
+    Rf_error("RGtk4: pthread_create() failed: %d", rc);
+  }
+  _rgtk_thread_started = TRUE;
   _rgtk_running = TRUE;
 
 #ifdef __APPLE__
-  // Start as accessory (no dock icon until window is shown). NSApp must
-  // be finished launching before AppKit will deliver window-management
-  // events (green-button tile menu, Stage Manager, dock updates).
-  _rgtk_macos_set_policy(1);  // NSApplicationActivationPolicyAccessory
+  _rgtk_macos_set_policy(1);
   _rgtk_macos_finish_launching();
   _rgtk_macos_activate();
   _rgtk_macos_pump_cfrunloop();
 #endif
-
-  return Rf_ScalarLogical(TRUE);
-#else
-  // Windows: Process GTK events in the main context
-  // We can't use R's input handlers on Windows, so just process pending events
-  GMainContext *ctx = g_main_context_default();
-  while (g_main_context_iteration(ctx, FALSE));
 
   return Rf_ScalarLogical(TRUE);
 #endif
@@ -238,35 +236,30 @@ SEXP R_gtk_stop_event_loop(void) {
 #ifndef G_OS_WIN32
   if (!_rgtk_running) return R_NilValue;
 
-  // Stop the timer loop
   if (_rgtk_loop) {
     g_main_loop_quit(_rgtk_loop);
+  }
+  if (_rgtk_thread_started) {
     pthread_join(_rgtk_thread, NULL);
+    _rgtk_thread_started = FALSE;
   }
 
-  // Remove input handler
   if (_rgtk_handler) {
     removeInputHandler(&R_InputHandlers, _rgtk_handler);
     _rgtk_handler = NULL;
   }
 
-  // Close pipes
-  if (_rgtk_ifd != -1) {
-    if (close(_rgtk_ifd) < 0) {
-      REprintf("RGtk4: Warning - failed to close input fd\n");
-    }
+  if (_rgtk_ifd != -1 && close(_rgtk_ifd) < 0) {
+    REprintf("RGtk4: Warning - failed to close input fd\n");
   }
-  if (_rgtk_ofd != -1) {
-    if (close(_rgtk_ofd) < 0) {
-      REprintf("RGtk4: Warning - failed to close output fd\n");
-    }
+  if (_rgtk_ofd != -1 && close(_rgtk_ofd) < 0) {
+    REprintf("RGtk4: Warning - failed to close output fd\n");
   }
   _rgtk_ifd = _rgtk_ofd = -1;
 
   _rgtk_running = FALSE;
   return R_NilValue;
 #else
-  // Windows: Process any remaining events
   GMainContext *ctx = g_main_context_default();
   while (g_main_context_pending(ctx)) {
     g_main_context_iteration(ctx, FALSE);
@@ -277,8 +270,7 @@ SEXP R_gtk_stop_event_loop(void) {
 
 SEXP R_gtk_force_foreground(void) {
 #ifdef __APPLE__
-  // Switch to regular mode (show dock icon) and activate
-  _rgtk_macos_set_policy(0);  // NSApplicationActivationPolicyRegular
+  _rgtk_macos_set_policy(0);
   _rgtk_macos_activate();
   _rgtk_macos_pump_cfrunloop();
 #elif defined(G_OS_WIN32)
@@ -294,8 +286,6 @@ SEXP R_gtk_force_foreground(void) {
       if (surface) {
         HWND hwnd = (HWND)gdk_win32_surface_get_handle(surface);
         if (hwnd) {
-          // Defeat Windows' focus-stealing prevention by briefly
-          // attaching to the current foreground thread's input queue.
           HWND fg = GetForegroundWindow();
           DWORD fg_tid = fg ? GetWindowThreadProcessId(fg, NULL) : 0;
           DWORD my_tid = GetCurrentThreadId();
@@ -327,16 +317,15 @@ SEXP R_gtk_force_foreground(void) {
 
 SEXP R_gtk_hide_from_dock(void) {
 #ifdef __APPLE__
-  // Switch to accessory mode (hide dock icon)
-  _rgtk_macos_set_policy(1);  // NSApplicationActivationPolicyAccessory
+  _rgtk_macos_set_policy(1);
 #endif
   return R_NilValue;
 }
 
-static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) __attribute__((unused));
-static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) {
 #if defined(__APPLE__) && !defined(G_OS_WIN32)
-  (void)window;
+// Matches the unrealize signal signature: (GtkWidget *self, gpointer user_data)
+static void _rgtk_window_untrack_cb(GtkWidget *widget, gpointer user_data) {
+  (void)widget;
   (void)user_data;
 
   pthread_mutex_lock(&_rgtk_window_mutex);
@@ -347,21 +336,18 @@ static void _rgtk_window_untrack_cb(gpointer window, gpointer user_data) {
   if (count == 0) {
     _rgtk_macos_set_policy(1);
   }
-#else
-  (void)window;
-  (void)user_data;
-#endif
 }
+#endif
 
-void R_gtk_window_untrack(SEXP s_window) {
+SEXP R_gtk_window_untrack(SEXP s_window) {
 #if defined(__APPLE__) && !defined(G_OS_WIN32)
   GtkWindow *window = (GtkWindow*)get_ptr(s_window);
-  if (!window) return;
-
-  _rgtk_window_untrack_cb(window, NULL);
+  if (!window) return R_NilValue;
+  _rgtk_window_untrack_cb(GTK_WIDGET(window), NULL);
 #else
   (void)s_window;
 #endif
+  return R_NilValue;
 }
 
 SEXP R_gtk_window_track(SEXP s_window) {
@@ -382,23 +368,16 @@ SEXP R_gtk_window_track(SEXP s_window) {
     _rgtk_macos_pump_cfrunloop();
   }
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
   g_signal_connect(window, "unrealize",
-                   G_CALLBACK(_rgtk_window_untrack_cb),
-                   NULL);
-#pragma GCC diagnostic pop
+                   G_CALLBACK(_rgtk_window_untrack_cb), NULL);
 #else
   (void)s_window;
 #endif
   return R_NilValue;
 }
 
-// Process pending GTK events (useful on Windows)
 SEXP R_gtk_main_iteration(void) {
   GMainContext *ctx = g_main_context_default();
-
-  // Always iterate to allow GTK to process paint events, timers, etc.
   gboolean processed = g_main_context_iteration(ctx, FALSE);
 
 #ifdef __APPLE__
@@ -408,7 +387,6 @@ SEXP R_gtk_main_iteration(void) {
   return Rf_ScalarLogical(processed);
 }
 
-// Process all pending GTK events (useful on Windows)
 SEXP R_gtk_main_iteration_do(SEXP s_blocking) {
   gboolean blocking = (gboolean)Rf_asLogical(s_blocking);
   GMainContext *ctx = g_main_context_default();
@@ -416,7 +394,7 @@ SEXP R_gtk_main_iteration_do(SEXP s_blocking) {
   int count = 0;
   while (g_main_context_iteration(ctx, blocking && count == 0)) {
     count++;
-    if (!blocking && count > 100) break; // Safety limit
+    if (!blocking && count > 100) break;
   }
 
 #ifdef __APPLE__

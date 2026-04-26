@@ -27,62 +27,70 @@ typedef struct {
   guint source_id;
 } RTimeoutClosure;
 
+static void _rgtk_closure_free(RTimeoutClosure *rc) {
+  if (!rc) return;
+  if (rc->fun != R_NilValue) {
+    R_ReleaseObject(rc->fun);
+    rc->fun = R_NilValue;
+  }
+  g_free(rc);
+}
+
 static gboolean _rgtk_timeout_callback(gpointer user_data) {
   RTimeoutClosure *rc = (RTimeoutClosure *)user_data;
   if (!rc || rc->fun == R_NilValue) return G_SOURCE_REMOVE;
 
   int error_occurred = 0;
   SEXP call = PROTECT(Rf_lang1(rc->fun));
-  SEXP result = R_tryEval(call, R_GlobalEnv, &error_occurred);
+  SEXP result = PROTECT(R_tryEval(call, R_GlobalEnv, &error_occurred));
 
-  gboolean continue_running = TRUE;
-  if (!error_occurred && result != R_NilValue) {
-    continue_running = (gboolean)Rf_asLogical(result);
+  gboolean continue_running;
+  if (error_occurred) {
+    continue_running = FALSE;
+  } else if (result == R_NilValue) {
+    continue_running = TRUE;
+  } else {
+    int lv = Rf_asLogical(result);
+    continue_running = (lv == TRUE);
   }
-
-  UNPROTECT(1);
+  UNPROTECT(2);
 
   if (!continue_running) {
-    R_ReleaseObject(rc->fun);
-    g_free(rc);
+    _rgtk_closure_free(rc);
+    return G_SOURCE_REMOVE;
   }
+  return G_SOURCE_CONTINUE;
+}
 
-  return continue_running ? G_SOURCE_CONTINUE : G_SOURCE_REMOVE;
+static RTimeoutClosure *_rgtk_closure_new(SEXP s_fun) {
+  if (TYPEOF(s_fun) == PROMSXP) {
+    s_fun = Rf_eval(s_fun, R_GlobalEnv);
+  }
+  if (!Rf_isFunction(s_fun)) {
+    Rf_error("fun must be a function");
+  }
+  RTimeoutClosure *rc = g_new0(RTimeoutClosure, 1);
+  rc->fun = s_fun;
+  R_PreserveObject(rc->fun);
+  return rc;
 }
 
 SEXP R_g_timeout_add(SEXP s_interval, SEXP s_fun) {
   if (TYPEOF(s_interval) != INTSXP && TYPEOF(s_interval) != REALSXP) {
     Rf_error("interval must be numeric");
   }
-
-  if (!Rf_isFunction(s_fun)) {
-    Rf_error("fun must be a function");
+  int iv = Rf_asInteger(s_interval);
+  if (iv == NA_INTEGER || iv < 0) {
+    Rf_error("interval must be a non-negative integer");
   }
-
-  guint interval = (guint)Rf_asInteger(s_interval);
-
-  RTimeoutClosure *rc = g_new0(RTimeoutClosure, 1);
-  rc->fun = s_fun;
-
-  R_PreserveObject(s_fun);
-
-  rc->source_id = g_timeout_add(interval, _rgtk_timeout_callback, rc);
-
+  RTimeoutClosure *rc = _rgtk_closure_new(s_fun);
+  rc->source_id = g_timeout_add((guint)iv, _rgtk_timeout_callback, rc);
   return Rf_ScalarInteger((int)rc->source_id);
 }
 
 SEXP R_g_idle_add(SEXP s_fun) {
-  if (!Rf_isFunction(s_fun)) {
-    Rf_error("fun must be a function");
-  }
-
-  RTimeoutClosure *rc = g_new0(RTimeoutClosure, 1);
-  rc->fun = s_fun;
-
-  R_PreserveObject(s_fun);
-
+  RTimeoutClosure *rc = _rgtk_closure_new(s_fun);
   rc->source_id = g_idle_add(_rgtk_timeout_callback, rc);
-
   return Rf_ScalarInteger((int)rc->source_id);
 }
 
@@ -95,6 +103,7 @@ typedef struct {
 } DialogResponseData;
 
 static void _rgtk_dialog_response_cb(GtkDialog *dialog, gint response, gpointer user_data) {
+  (void)dialog;
   DialogResponseData *data = (DialogResponseData *)user_data;
   *(data->response_ptr) = response;
 }

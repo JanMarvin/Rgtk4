@@ -10,173 +10,127 @@ typedef struct { SEXP fun; } RClosure;
 
 static inline void* get_ptr_internal(SEXP s, const char* func) {
   if (s == R_NilValue) return NULL;
-
   if (TYPEOF(s) != EXTPTRSXP) {
     Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
   }
-
   void* ptr = R_ExternalPtrAddr(s);
   if (!ptr) {
     Rf_error("%s: NULL pointer", func);
   }
-
   return ptr;
 }
 
 #define get_ptr(s) get_ptr_internal(s, __func__)
 
-// GTK signal callbacks receive the widget as first parameter
-static void _rgtk_r_callback(GtkWidget *widget, gpointer user_data) {
-  RClosure *rc = (RClosure *)user_data;
+static SEXP gvalue_to_sexp(const GValue *v) {
+  GType t = G_VALUE_TYPE(v);
+  switch (G_TYPE_FUNDAMENTAL(t)) {
+  case G_TYPE_INVALID:
+  case G_TYPE_NONE:
+    return R_NilValue;
+  case G_TYPE_BOOLEAN:
+    return Rf_ScalarLogical(g_value_get_boolean(v));
+  case G_TYPE_CHAR:
+    return Rf_ScalarInteger(g_value_get_schar(v));
+  case G_TYPE_UCHAR:
+    return Rf_ScalarInteger(g_value_get_uchar(v));
+  case G_TYPE_INT:
+    return Rf_ScalarInteger(g_value_get_int(v));
+  case G_TYPE_UINT:
+    return Rf_ScalarReal((double)g_value_get_uint(v));
+  case G_TYPE_LONG:
+    return Rf_ScalarReal((double)g_value_get_long(v));
+  case G_TYPE_ULONG:
+    return Rf_ScalarReal((double)g_value_get_ulong(v));
+  case G_TYPE_INT64:
+    return Rf_ScalarReal((double)g_value_get_int64(v));
+  case G_TYPE_UINT64:
+    return Rf_ScalarReal((double)g_value_get_uint64(v));
+  case G_TYPE_FLOAT:
+    return Rf_ScalarReal((double)g_value_get_float(v));
+  case G_TYPE_DOUBLE:
+    return Rf_ScalarReal(g_value_get_double(v));
+  case G_TYPE_ENUM:
+    return Rf_ScalarInteger(g_value_get_enum(v));
+  case G_TYPE_FLAGS:
+    return Rf_ScalarReal((double)g_value_get_flags(v));
+  case G_TYPE_STRING: {
+    const char *s = g_value_get_string(v);
+    return s ? Rf_mkString(s) : R_NilValue;
+  }
+  case G_TYPE_OBJECT:
+    return R_MakeExternalPtr(g_value_get_object(v), R_NilValue, R_NilValue);
+  case G_TYPE_BOXED:
+    return R_MakeExternalPtr(g_value_get_boxed(v), R_NilValue, R_NilValue);
+  case G_TYPE_POINTER:
+    return R_MakeExternalPtr(g_value_get_pointer(v), R_NilValue, R_NilValue);
+  default:
+    return R_MakeExternalPtr(NULL, R_NilValue, R_NilValue);
+  }
+}
+
+static void _rgtk_marshal(GClosure *closure, GValue *return_value,
+                          guint n_param_values, const GValue *param_values,
+                          gpointer invocation_hint, gpointer marshal_data) {
+  (void)invocation_hint;
+  (void)marshal_data;
+
+  RClosure *rc = (RClosure *)closure->data;
   if (!rc || rc->fun == R_NilValue) return;
 
-  // Create external pointer for the widget
-  SEXP s_widget = PROTECT(R_MakeExternalPtr(widget, R_NilValue, R_NilValue));
+  SEXP args[16];
+  int nargs = (int)(n_param_values < 16 ? n_param_values : 16);
+  int nprot = 0;
 
-  // Use R_tryEval instead of Rf_eval for safety
-  int error_occurred = 0;
-  SEXP call = PROTECT(Rf_lang2(rc->fun, s_widget));
-  R_tryEval(call, R_GlobalEnv, &error_occurred);
+  for (int i = 0; i < nargs; i++) {
+    args[i] = PROTECT(gvalue_to_sexp(&param_values[i]));
+    nprot++;
+  }
 
-  if (error_occurred) {
+  SEXP call = PROTECT(Rf_allocVector(LANGSXP, nargs + 1));
+  nprot++;
+
+  SETCAR(call, rc->fun);
+  SEXP tail = CDR(call);
+  for (int i = 0; i < nargs; i++) {
+    SETCAR(tail, args[i]);
+    tail = CDR(tail);
+  }
+
+  int err = 0;
+  SEXP result = R_tryEval(call, R_GlobalEnv, &err);
+
+  if (err) {
     REprintf("Error in GTK callback function\n");
+  } else if (return_value && G_VALUE_TYPE(return_value) != G_TYPE_NONE && result != R_NilValue) {
+    switch (G_TYPE_FUNDAMENTAL(G_VALUE_TYPE(return_value))) {
+    case G_TYPE_BOOLEAN: {
+      int lv = Rf_asLogical(result);
+      g_value_set_boolean(return_value, lv == TRUE);
+      break;
+    }
+    case G_TYPE_INT:
+      g_value_set_int(return_value, Rf_asInteger(result));
+      break;
+    case G_TYPE_DOUBLE:
+      g_value_set_double(return_value, Rf_asReal(result));
+      break;
+    default:
+      break;
+    }
   }
 
-  UNPROTECT(2);
+  UNPROTECT(nprot);
 }
 
-// Signal callback with two GObject arguments (for factory setup/bind signals)
-static void _rgtk_r_callback_two_args(gpointer arg1, gpointer arg2, gpointer user_data) {
-  RClosure *rc = (RClosure *)user_data;
-  if (!rc || rc->fun == R_NilValue) return;
-
-  SEXP s_arg1 = PROTECT(R_MakeExternalPtr(arg1, R_NilValue, R_NilValue));
-  SEXP s_arg2 = PROTECT(R_MakeExternalPtr(arg2, R_NilValue, R_NilValue));
-
-  int error_occurred = 0;
-  SEXP call = PROTECT(Rf_lang3(rc->fun, s_arg1, s_arg2));
-  R_tryEval(call, R_GlobalEnv, &error_occurred);
-
-  if (error_occurred) {
-    REprintf("Error in GTK two-arg callback function\n");
-  }
-
-  UNPROTECT(3);
-}
-
-// Signal callback with three arguments
-static void _rgtk_r_callback_three_args(gpointer arg1, gpointer arg2, gpointer arg3, gpointer user_data) {
-  RClosure *rc = (RClosure *)user_data;
-  if (!rc || rc->fun == R_NilValue) return;
-
-  SEXP s_arg1 = PROTECT(R_MakeExternalPtr(arg1, R_NilValue, R_NilValue));
-  SEXP s_arg2 = PROTECT(R_MakeExternalPtr(arg2, R_NilValue, R_NilValue));
-  SEXP s_arg3 = PROTECT(R_MakeExternalPtr(arg3, R_NilValue, R_NilValue));
-
-  int error_occurred = 0;
-  SEXP call = PROTECT(Rf_lang4(rc->fun, s_arg1, s_arg2, s_arg3));
-  R_tryEval(call, R_GlobalEnv, &error_occurred);
-
-  if (error_occurred) {
-    REprintf("Error in GTK three-arg callback function\n");
-  }
-
-  UNPROTECT(4);
-}
-
-// Signal callback with four arguments
-static void _rgtk_r_callback_four_args(gpointer arg1, gpointer arg2, gpointer arg3, gpointer arg4, gpointer user_data) {
-  RClosure *rc = (RClosure *)user_data;
-  if (!rc || rc->fun == R_NilValue) return;
-
-  SEXP s_arg1 = PROTECT(R_MakeExternalPtr(arg1, R_NilValue, R_NilValue));
-  SEXP s_arg2 = PROTECT(R_MakeExternalPtr(arg2, R_NilValue, R_NilValue));
-  SEXP s_arg3 = PROTECT(R_MakeExternalPtr(arg3, R_NilValue, R_NilValue));
-  SEXP s_arg4 = PROTECT(R_MakeExternalPtr(arg4, R_NilValue, R_NilValue));
-
-  int error_occurred = 0;
-  SEXP call = PROTECT(Rf_lang5(rc->fun, s_arg1, s_arg2, s_arg3, s_arg4));
-  R_tryEval(call, R_GlobalEnv, &error_occurred);
-
-  if (error_occurred) {
-    REprintf("Error in GTK four-arg callback function\n");
-  }
-
-  UNPROTECT(5);
-}
-
-// Signal callback with five arguments
-static void _rgtk_r_callback_five_args(gpointer arg1, gpointer arg2, gpointer arg3, gpointer arg4, gpointer arg5, gpointer user_data) {
-  RClosure *rc = (RClosure *)user_data;
-  if (!rc || rc->fun == R_NilValue) return;
-
-  SEXP s_arg1 = PROTECT(R_MakeExternalPtr(arg1, R_NilValue, R_NilValue));
-  SEXP s_arg2 = PROTECT(R_MakeExternalPtr(arg2, R_NilValue, R_NilValue));
-  SEXP s_arg3 = PROTECT(R_MakeExternalPtr(arg3, R_NilValue, R_NilValue));
-  SEXP s_arg4 = PROTECT(R_MakeExternalPtr(arg4, R_NilValue, R_NilValue));
-  SEXP s_arg5 = PROTECT(R_MakeExternalPtr(arg5, R_NilValue, R_NilValue));
-
-  int error_occurred = 0;
-  SEXP call = PROTECT(Rf_lang6(rc->fun, s_arg1, s_arg2, s_arg3, s_arg4, s_arg5));
-  R_tryEval(call, R_GlobalEnv, &error_occurred);
-
-  if (error_occurred) {
-    REprintf("Error in GTK five-arg callback function\n");
-  }
-
-  UNPROTECT(6);
-}
-
-// Signal callback that returns gboolean (for close-request, etc.)
-static gboolean _rgtk_r_callback_boolean(GtkWidget *widget, gpointer user_data) {
-  RClosure *rc = (RClosure *)user_data;
-  if (!rc || rc->fun == R_NilValue) return FALSE;
-
-  // Create external pointer for the widget
-  SEXP s_widget = PROTECT(R_MakeExternalPtr(widget, R_NilValue, R_NilValue));
-
-  // Use R_tryEval instead of Rf_eval for safety
-  int error_occurred = 0;
-  SEXP call = PROTECT(Rf_lang2(rc->fun, s_widget));
-  SEXP result = R_tryEval(call, R_GlobalEnv, &error_occurred);
-
-  gboolean ret = FALSE;
-  if (!error_occurred && result != R_NilValue) {
-    // Convert R result to boolean
-    ret = (gboolean)Rf_asLogical(result);
-  }
-
-  UNPROTECT(2);
-  return ret;
-}
-
-static void _rgtk_r_closure_free(gpointer user_data) {
-  RClosure *rc = (RClosure *)user_data;
+static void _rgtk_r_closure_finalize(gpointer data, GClosure *closure) {
+  (void)closure;
+  RClosure *rc = (RClosure *)data;
   if (rc && rc->fun != R_NilValue) {
     R_ReleaseObject(rc->fun);
+    rc->fun = R_NilValue;
   }
   g_free(rc);
-}
-
-// Callback for "response" signal (dialog, response_id)
-static void _rgtk_r_callback_response(gpointer dialog, gint response_id, gpointer user_data) {
-  RClosure *rc = (RClosure *)user_data;
-  if (!rc || rc->fun == R_NilValue) return;
-
-  // Create external pointer for the dialog
-  SEXP s_dialog = PROTECT(R_MakeExternalPtr(dialog, R_NilValue, R_NilValue));
-  SEXP s_response = PROTECT(Rf_ScalarInteger(response_id));
-
-  // Call R function with 2 arguments: dialog, response_id
-  int error_occurred = 0;
-  SEXP call = PROTECT(Rf_lang3(rc->fun, s_dialog, s_response));
-  R_tryEval(call, R_GlobalEnv, &error_occurred);
-
-  if (error_occurred) {
-    REprintf("Error in GTK response callback function\n");
-  }
-
-  UNPROTECT(3);
 }
 
 SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
@@ -187,83 +141,28 @@ SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
   }
   const char *sig = CHAR(STRING_ELT(s_signal, 0));
 
+  if (TYPEOF(s_fun) == PROMSXP) s_fun = Rf_eval(s_fun, R_GlobalEnv);
   if (!Rf_isFunction(s_fun)) {
     Rf_error("fun must be a function");
   }
 
-  // Query the signal to determine argument count
   guint signal_id = g_signal_lookup(sig, G_OBJECT_TYPE(obj));
   if (signal_id == 0) {
     Rf_error("Signal '%s' not found on object", sig);
   }
 
-  GSignalQuery query;
-  g_signal_query(signal_id, &query);
-
   RClosure *rc = g_new0(RClosure, 1);
   rc->fun = s_fun;
-  R_PreserveObject(s_fun);
+  R_PreserveObject(rc->fun);
 
-  gulong id;
+  GClosure *closure = g_closure_new_simple(sizeof(GClosure), rc);
+  g_closure_set_marshal(closure, _rgtk_marshal);
+  g_closure_add_finalize_notifier(closure, rc, _rgtk_r_closure_finalize);
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-  // Dispatch based on number of parameters (excluding user_data)
-  if (strcmp(sig, "response") == 0) {
-    // Special case: dialog response has int parameter
-    id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_response),
-                               rc, (GClosureNotify)_rgtk_r_closure_free, 0);
-  } else if (strcmp(sig, "close-request") == 0) {
-    // Special case: close-request expects boolean return
-    id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_boolean),
-                               rc, (GClosureNotify)_rgtk_r_closure_free, 0);
-  } else if (query.n_params == 0) {
-    // No parameters beyond the object itself
-    id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback),
-                               rc, (GClosureNotify)_rgtk_r_closure_free, 0);
-  } else if (query.n_params == 1) {
-    // One additional parameter (e.g., factory signals: factory, list_item)
-    id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_two_args),
-                               rc, (GClosureNotify)_rgtk_r_closure_free, 0);
-  } else if (query.n_params == 2) {
-    id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_three_args),
-                               rc, (GClosureNotify)_rgtk_r_closure_free, 0);
-  } else if (query.n_params == 3) {
-    id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_four_args),
-                               rc, (GClosureNotify)_rgtk_r_closure_free, 0);
-  } else if (query.n_params == 4) {
-    id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_five_args),
-                               rc, (GClosureNotify)_rgtk_r_closure_free, 0);
-  } else {
-    // More than 5 parameters - unsupported for now
-    R_ReleaseObject(s_fun);
-    g_free(rc);
-    Rf_error("Signal '%s' has %d parameters - only up to 5 are supported", sig, query.n_params);
-  }
-#pragma GCC diagnostic pop
-
+  gulong id = g_signal_connect_closure(obj, sig, closure, FALSE);
   return Rf_ScalarReal((double)id);
 }
 
 SEXP R_g_signal_connect_r_boolean(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
-  gpointer obj = get_ptr(s_obj);
-
-  if (TYPEOF(s_signal) != STRSXP || LENGTH(s_signal) != 1) {
-    Rf_error("signal must be a single character string");
-  }
-  const char *sig = CHAR(STRING_ELT(s_signal, 0));
-
-  if (!Rf_isFunction(s_fun)) {
-    Rf_error("fun must be a function");
-  }
-
-  RClosure *rc = g_new0(RClosure, 1);
-  rc->fun = s_fun;
-
-  R_PreserveObject(s_fun);
-
-  gulong id = g_signal_connect_data(obj, sig, G_CALLBACK(_rgtk_r_callback_boolean),
-                                    rc, (GClosureNotify)_rgtk_r_closure_free, 0);
-
-  return Rf_ScalarReal((double)id);
+  return R_g_signal_connect_r(s_obj, s_signal, s_fun);
 }
