@@ -82,12 +82,12 @@ gtkSetAppIcon <- function(icon_path) {
     invisible(.Call("R_macos_set_app_icon", normalizePath(icon_path)))
   } else if (os == "Linux") {
     # On Linux, set default window icon from file
-    pixbuf <- gdkPixbufNewFromFile(icon_path)
-    gtkWindowSetDefaultIconList(list(pixbuf))
+    # pixbuf <- gdkPixbufNewFromFile(icon_path)
+    # gtkWindowSetDefaultIconList(list(pixbuf))
   } else if (os == "Windows") {
     # Windows: set default icon (GTK4 handles this via window class)
-    pixbuf <- gdkPixbufNewFromFile(icon_path)
-    gtkWindowSetDefaultIconList(list(pixbuf))
+    # pixbuf <- gdkPixbufNewFromFile(icon_path)
+    # gtkWindowSetDefaultIconList(list(pixbuf))
   } else {
     warning("gtkSetAppIcon: unsupported platform ", os)
   }
