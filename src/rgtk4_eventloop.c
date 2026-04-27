@@ -68,6 +68,55 @@ static void _rgtk_macos_pump_cfrunloop(void) {
   }
 }
 
+// CFRunLoop observer: pumps GLib's default main context. Installed in
+// kCFRunLoopCommonModes plus NSEventTrackingRunLoopMode so it fires during
+// AppKit's nested drag/resize loops — without this, GDK never sees mouse
+// events while a window is being resized, leaving the cursor in a "still
+// dragging" state after the user releases the mouse.
+static gboolean _rgtk_in_observer = FALSE;
+
+static void _rgtk_macos_runloop_observer_cb(CFRunLoopObserverRef observer,
+                                            CFRunLoopActivity activity,
+                                            void *info) {
+  (void)observer; (void)activity; (void)info;
+  if (_rgtk_in_observer) return;       // never reenter
+  _rgtk_in_observer = TRUE;
+  GMainContext *ctx = g_main_context_default();
+  // Bound iterations so a chatty source can't starve AppKit.
+  for (int i = 0; i < 32 && g_main_context_pending(ctx); i++) {
+    g_main_context_iteration(ctx, FALSE);
+  }
+  _rgtk_in_observer = FALSE;
+}
+
+static CFRunLoopObserverRef _rgtk_macos_observer = NULL;
+
+static void _rgtk_macos_install_observer(void) {
+  if (_rgtk_macos_observer) return;
+  _rgtk_macos_observer = CFRunLoopObserverCreate(
+    kCFAllocatorDefault,
+    kCFRunLoopBeforeWaiting,        // single edge
+    true, 0,
+    _rgtk_macos_runloop_observer_cb,
+    NULL);
+  CFRunLoopRef rl = CFRunLoopGetMain();
+  // CommonModes covers default + most modal modes; tracking mode must be
+  // added explicitly because it isn't in commonModes by default.
+  CFRunLoopAddObserver(rl, _rgtk_macos_observer, kCFRunLoopCommonModes);
+  CFStringRef tracking = CFSTR("NSEventTrackingRunLoopMode");
+  CFRunLoopAddObserver(rl, _rgtk_macos_observer, tracking);
+}
+
+static void _rgtk_macos_remove_observer(void) {
+  if (!_rgtk_macos_observer) return;
+  CFRunLoopRef rl = CFRunLoopGetMain();
+  CFRunLoopRemoveObserver(rl, _rgtk_macos_observer, kCFRunLoopCommonModes);
+  CFStringRef tracking = CFSTR("NSEventTrackingRunLoopMode");
+  CFRunLoopRemoveObserver(rl, _rgtk_macos_observer, tracking);
+  CFRelease(_rgtk_macos_observer);
+  _rgtk_macos_observer = NULL;
+}
+
 static bool _rgtk_macos_set_app_icon(const char* icon_path) {
   Class nsimage_class = objc_getClass("NSImage");
   Class nsapp_class = objc_getClass("NSApplication");
@@ -132,9 +181,9 @@ static void _rgtk_input_cb(void *userData) {
   GMainContext *ctx = g_main_context_default();
   while (g_main_context_iteration(ctx, FALSE)) { }
 
-#ifdef __APPLE__
-  _rgtk_macos_pump_cfrunloop();
-#endif
+  // On macOS, the CFRunLoop observer (installed in start_event_loop) drives
+  // GLib iteration in lockstep with AppKit; we don't pump CFRunLoop here to
+  // avoid double-pumping during drag/resize.
 }
 
 // Runs on the timer thread — must NOT touch the default GMainContext or any
@@ -226,6 +275,7 @@ SEXP R_gtk_start_event_loop(void) {
   _rgtk_macos_finish_launching();
   _rgtk_macos_activate();
   _rgtk_macos_pump_cfrunloop();
+  _rgtk_macos_install_observer();
 #endif
 
   return Rf_ScalarLogical(TRUE);
@@ -248,6 +298,10 @@ SEXP R_gtk_stop_event_loop(void) {
     removeInputHandler(&R_InputHandlers, _rgtk_handler);
     _rgtk_handler = NULL;
   }
+
+#ifdef __APPLE__
+  _rgtk_macos_remove_observer();
+#endif
 
   if (_rgtk_ifd != -1 && close(_rgtk_ifd) < 0) {
     REprintf("RGtk4: Warning - failed to close input fd\n");
@@ -379,11 +433,6 @@ SEXP R_gtk_window_track(SEXP s_window) {
 SEXP R_gtk_main_iteration(void) {
   GMainContext *ctx = g_main_context_default();
   gboolean processed = g_main_context_iteration(ctx, FALSE);
-
-#ifdef __APPLE__
-  _rgtk_macos_pump_cfrunloop();
-#endif
-
   return Rf_ScalarLogical(processed);
 }
 
@@ -396,11 +445,6 @@ SEXP R_gtk_main_iteration_do(SEXP s_blocking) {
     count++;
     if (!blocking && count > 100) break;
   }
-
-#ifdef __APPLE__
-  _rgtk_macos_pump_cfrunloop();
-#endif
-
   return Rf_ScalarInteger(count);
 }
 
