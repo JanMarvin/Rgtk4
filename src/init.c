@@ -3719,22 +3719,6 @@ extern SEXP R_gsk_color_matrix_node_get_color_matrix(SEXP s1);
 extern SEXP R_gsk_color_matrix_node_get_color_offset(SEXP s1);
 extern SEXP R_gsk_color_node_new(SEXP s1, SEXP s2);
 extern SEXP R_gsk_color_node_get_color(SEXP s1);
-extern SEXP R_gsk_component_transfer_new_discrete(SEXP s1, SEXP s2);
-extern SEXP R_gsk_component_transfer_new_gamma(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_component_transfer_new_identity(void);
-extern SEXP R_gsk_component_transfer_new_levels(SEXP s1);
-extern SEXP R_gsk_component_transfer_new_linear(SEXP s1, SEXP s2);
-extern SEXP R_gsk_component_transfer_new_table(SEXP s1, SEXP s2);
-extern SEXP R_gsk_component_transfer_copy(SEXP s1);
-extern SEXP R_gsk_component_transfer_free(SEXP s1);
-extern SEXP R_gsk_component_transfer_equal(SEXP s1, SEXP s2);
-extern SEXP R_gsk_component_transfer_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gsk_component_transfer_node_get_child(SEXP s1);
-extern SEXP R_gsk_component_transfer_node_get_transfer(SEXP s1, SEXP s2);
-extern SEXP R_gsk_composite_node_new(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_composite_node_get_child(SEXP s1);
-extern SEXP R_gsk_composite_node_get_mask(SEXP s1);
-extern SEXP R_gsk_composite_node_get_operator(SEXP s1);
 extern SEXP R_gsk_conic_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gsk_conic_gradient_node_get_angle(SEXP s1);
 extern SEXP R_gsk_conic_gradient_node_get_center(SEXP s1);
@@ -3744,8 +3728,6 @@ extern SEXP R_gsk_conic_gradient_node_get_rotation(SEXP s1);
 extern SEXP R_gsk_container_node_new(SEXP s1, SEXP s2);
 extern SEXP R_gsk_container_node_get_child(SEXP s1, SEXP s2);
 extern SEXP R_gsk_container_node_get_n_children(SEXP s1);
-extern SEXP R_gsk_copy_node_new(SEXP s1);
-extern SEXP R_gsk_copy_node_get_child(SEXP s1);
 extern SEXP R_gsk_cross_fade_node_new(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gsk_cross_fade_node_get_end_child(SEXP s1);
 extern SEXP R_gsk_cross_fade_node_get_progress(SEXP s1);
@@ -3789,9 +3771,6 @@ extern SEXP R_gsk_inset_shadow_node_get_dx(SEXP s1);
 extern SEXP R_gsk_inset_shadow_node_get_dy(SEXP s1);
 extern SEXP R_gsk_inset_shadow_node_get_outline(SEXP s1);
 extern SEXP R_gsk_inset_shadow_node_get_spread(SEXP s1);
-extern SEXP R_gsk_isolation_node_new(SEXP s1, SEXP s2);
-extern SEXP R_gsk_isolation_node_get_child(SEXP s1);
-extern SEXP R_gsk_isolation_node_get_isolations(SEXP s1);
 extern SEXP R_gsk_linear_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
 extern SEXP R_gsk_linear_gradient_node_get_color_stops(SEXP s1);
 extern SEXP R_gsk_linear_gradient_node_get_end(SEXP s1);
@@ -3812,75 +3791,6 @@ extern SEXP R_gsk_outset_shadow_node_get_dx(SEXP s1);
 extern SEXP R_gsk_outset_shadow_node_get_dy(SEXP s1);
 extern SEXP R_gsk_outset_shadow_node_get_outline(SEXP s1);
 extern SEXP R_gsk_outset_shadow_node_get_spread(SEXP s1);
-extern SEXP R_gsk_paste_node_new(SEXP s1, SEXP s2);
-extern SEXP R_gsk_paste_node_get_depth(SEXP s1);
-extern SEXP R_gsk_path_equal(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_foreach(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_foreach_intersection(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_get_bounds(SEXP s1);
-extern SEXP R_gsk_path_get_closest_point(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_get_end_point(SEXP s1);
-extern SEXP R_gsk_path_get_next(SEXP s1);
-extern SEXP R_gsk_path_get_previous(SEXP s1);
-extern SEXP R_gsk_path_get_start_point(SEXP s1);
-extern SEXP R_gsk_path_get_stroke_bounds(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_get_tight_bounds(SEXP s1);
-extern SEXP R_gsk_path_in_fill(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_is_closed(SEXP s1);
-extern SEXP R_gsk_path_is_empty(SEXP s1);
-extern SEXP R_gsk_path_print(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_ref(SEXP s1);
-extern SEXP R_gsk_path_to_cairo(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_to_string(SEXP s1);
-extern SEXP R_gsk_path_unref(SEXP s1);
-extern SEXP R_gsk_path_parse(SEXP s1);
-extern SEXP R_gsk_path_builder_new(void);
-extern SEXP R_gsk_path_builder_add_cairo_path(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_builder_add_circle(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_builder_add_layout(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_builder_add_path(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_builder_add_rect(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_builder_add_reverse_path(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_builder_add_rounded_rect(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_builder_add_segment(SEXP s1, SEXP s2, SEXP s3, SEXP s4);
-extern SEXP R_gsk_path_builder_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gsk_path_builder_close(SEXP s1);
-extern SEXP R_gsk_path_builder_conic_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_gsk_path_builder_cubic_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_gsk_path_builder_get_current_point(SEXP s1);
-extern SEXP R_gsk_path_builder_html_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_gsk_path_builder_line_to(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_builder_move_to(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_builder_quad_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gsk_path_builder_ref(SEXP s1);
-extern SEXP R_gsk_path_builder_rel_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gsk_path_builder_rel_conic_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_gsk_path_builder_rel_cubic_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
-extern SEXP R_gsk_path_builder_rel_html_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6);
-extern SEXP R_gsk_path_builder_rel_line_to(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_builder_rel_move_to(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_builder_rel_quad_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5);
-extern SEXP R_gsk_path_builder_rel_svg_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
-extern SEXP R_gsk_path_builder_svg_arc_to(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
-extern SEXP R_gsk_path_builder_to_path(SEXP s1);
-extern SEXP R_gsk_path_builder_unref(SEXP s1);
-extern SEXP R_gsk_path_measure_new(SEXP s1);
-extern SEXP R_gsk_path_measure_new_with_tolerance(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_measure_get_length(SEXP s1);
-extern SEXP R_gsk_path_measure_get_path(SEXP s1);
-extern SEXP R_gsk_path_measure_get_point(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_measure_get_tolerance(SEXP s1);
-extern SEXP R_gsk_path_measure_ref(SEXP s1);
-extern SEXP R_gsk_path_measure_unref(SEXP s1);
-extern SEXP R_gsk_path_point_compare(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_point_copy(SEXP s1);
-extern SEXP R_gsk_path_point_equal(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_point_free(SEXP s1);
-extern SEXP R_gsk_path_point_get_curvature(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_point_get_distance(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_point_get_position(SEXP s1, SEXP s2);
-extern SEXP R_gsk_path_point_get_rotation(SEXP s1, SEXP s2, SEXP s3);
-extern SEXP R_gsk_path_point_get_tangent(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gsk_radial_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8);
 extern SEXP R_gsk_radial_gradient_node_get_center(SEXP s1);
 extern SEXP R_gsk_radial_gradient_node_get_color_stops(SEXP s1);
@@ -3892,22 +3802,11 @@ extern SEXP R_gsk_radial_gradient_node_get_vradius(SEXP s1);
 extern SEXP R_gsk_render_node_deserialize(SEXP s1, SEXP s2);
 extern SEXP R_gsk_render_node_draw(SEXP s1, SEXP s2);
 extern SEXP R_gsk_render_node_get_bounds(SEXP s1);
-extern SEXP R_gsk_render_node_get_children(SEXP s1);
 extern SEXP R_gsk_render_node_get_node_type(SEXP s1);
-extern SEXP R_gsk_render_node_get_opaque_rect(SEXP s1);
 extern SEXP R_gsk_render_node_ref(SEXP s1);
 extern SEXP R_gsk_render_node_serialize(SEXP s1);
 extern SEXP R_gsk_render_node_unref(SEXP s1);
 extern SEXP R_gsk_render_node_write_to_file(SEXP s1, SEXP s2);
-extern SEXP R_gsk_render_replay_new(void);
-extern SEXP R_gsk_render_replay_default(SEXP s1, SEXP s2);
-extern SEXP R_gsk_render_replay_filter_font(SEXP s1, SEXP s2);
-extern SEXP R_gsk_render_replay_filter_node(SEXP s1, SEXP s2);
-extern SEXP R_gsk_render_replay_filter_texture(SEXP s1, SEXP s2);
-extern SEXP R_gsk_render_replay_free(SEXP s1);
-extern SEXP R_gsk_render_replay_set_font_filter(SEXP s1, SEXP s2);
-extern SEXP R_gsk_render_replay_set_node_filter(SEXP s1, SEXP s2);
-extern SEXP R_gsk_render_replay_set_texture_filter(SEXP s1, SEXP s2);
 extern SEXP R_gsk_renderer_new_for_surface(SEXP s1);
 extern SEXP R_gsk_renderer_get_surface(SEXP s1);
 extern SEXP R_gsk_renderer_is_realized(SEXP s1);
@@ -3989,7 +3888,6 @@ extern SEXP R_gsk_transform_equal(SEXP s1, SEXP s2);
 extern SEXP R_gsk_transform_get_category(SEXP s1);
 extern SEXP R_gsk_transform_invert(SEXP s1);
 extern SEXP R_gsk_transform_matrix(SEXP s1, SEXP s2);
-extern SEXP R_gsk_transform_matrix_2d(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7);
 extern SEXP R_gsk_transform_perspective(SEXP s1, SEXP s2);
 extern SEXP R_gsk_transform_print(SEXP s1, SEXP s2);
 extern SEXP R_gsk_transform_ref(SEXP s1);
@@ -11535,22 +11433,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gsk_color_matrix_node_get_color_offset", (DL_FUNC) &R_gsk_color_matrix_node_get_color_offset, 1},
     {"R_gsk_color_node_new", (DL_FUNC) &R_gsk_color_node_new, 2},
     {"R_gsk_color_node_get_color", (DL_FUNC) &R_gsk_color_node_get_color, 1},
-    {"R_gsk_component_transfer_new_discrete", (DL_FUNC) &R_gsk_component_transfer_new_discrete, 2},
-    {"R_gsk_component_transfer_new_gamma", (DL_FUNC) &R_gsk_component_transfer_new_gamma, 3},
-    {"R_gsk_component_transfer_new_identity", (DL_FUNC) &R_gsk_component_transfer_new_identity, 0},
-    {"R_gsk_component_transfer_new_levels", (DL_FUNC) &R_gsk_component_transfer_new_levels, 1},
-    {"R_gsk_component_transfer_new_linear", (DL_FUNC) &R_gsk_component_transfer_new_linear, 2},
-    {"R_gsk_component_transfer_new_table", (DL_FUNC) &R_gsk_component_transfer_new_table, 2},
-    {"R_gsk_component_transfer_copy", (DL_FUNC) &R_gsk_component_transfer_copy, 1},
-    {"R_gsk_component_transfer_free", (DL_FUNC) &R_gsk_component_transfer_free, 1},
-    {"R_gsk_component_transfer_equal", (DL_FUNC) &R_gsk_component_transfer_equal, 2},
-    {"R_gsk_component_transfer_node_new", (DL_FUNC) &R_gsk_component_transfer_node_new, 5},
-    {"R_gsk_component_transfer_node_get_child", (DL_FUNC) &R_gsk_component_transfer_node_get_child, 1},
-    {"R_gsk_component_transfer_node_get_transfer", (DL_FUNC) &R_gsk_component_transfer_node_get_transfer, 2},
-    {"R_gsk_composite_node_new", (DL_FUNC) &R_gsk_composite_node_new, 3},
-    {"R_gsk_composite_node_get_child", (DL_FUNC) &R_gsk_composite_node_get_child, 1},
-    {"R_gsk_composite_node_get_mask", (DL_FUNC) &R_gsk_composite_node_get_mask, 1},
-    {"R_gsk_composite_node_get_operator", (DL_FUNC) &R_gsk_composite_node_get_operator, 1},
     {"R_gsk_conic_gradient_node_new", (DL_FUNC) &R_gsk_conic_gradient_node_new, 5},
     {"R_gsk_conic_gradient_node_get_angle", (DL_FUNC) &R_gsk_conic_gradient_node_get_angle, 1},
     {"R_gsk_conic_gradient_node_get_center", (DL_FUNC) &R_gsk_conic_gradient_node_get_center, 1},
@@ -11560,8 +11442,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gsk_container_node_new", (DL_FUNC) &R_gsk_container_node_new, 2},
     {"R_gsk_container_node_get_child", (DL_FUNC) &R_gsk_container_node_get_child, 2},
     {"R_gsk_container_node_get_n_children", (DL_FUNC) &R_gsk_container_node_get_n_children, 1},
-    {"R_gsk_copy_node_new", (DL_FUNC) &R_gsk_copy_node_new, 1},
-    {"R_gsk_copy_node_get_child", (DL_FUNC) &R_gsk_copy_node_get_child, 1},
     {"R_gsk_cross_fade_node_new", (DL_FUNC) &R_gsk_cross_fade_node_new, 3},
     {"R_gsk_cross_fade_node_get_end_child", (DL_FUNC) &R_gsk_cross_fade_node_get_end_child, 1},
     {"R_gsk_cross_fade_node_get_progress", (DL_FUNC) &R_gsk_cross_fade_node_get_progress, 1},
@@ -11605,9 +11485,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gsk_inset_shadow_node_get_dy", (DL_FUNC) &R_gsk_inset_shadow_node_get_dy, 1},
     {"R_gsk_inset_shadow_node_get_outline", (DL_FUNC) &R_gsk_inset_shadow_node_get_outline, 1},
     {"R_gsk_inset_shadow_node_get_spread", (DL_FUNC) &R_gsk_inset_shadow_node_get_spread, 1},
-    {"R_gsk_isolation_node_new", (DL_FUNC) &R_gsk_isolation_node_new, 2},
-    {"R_gsk_isolation_node_get_child", (DL_FUNC) &R_gsk_isolation_node_get_child, 1},
-    {"R_gsk_isolation_node_get_isolations", (DL_FUNC) &R_gsk_isolation_node_get_isolations, 1},
     {"R_gsk_linear_gradient_node_new", (DL_FUNC) &R_gsk_linear_gradient_node_new, 5},
     {"R_gsk_linear_gradient_node_get_color_stops", (DL_FUNC) &R_gsk_linear_gradient_node_get_color_stops, 1},
     {"R_gsk_linear_gradient_node_get_end", (DL_FUNC) &R_gsk_linear_gradient_node_get_end, 1},
@@ -11628,75 +11505,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gsk_outset_shadow_node_get_dy", (DL_FUNC) &R_gsk_outset_shadow_node_get_dy, 1},
     {"R_gsk_outset_shadow_node_get_outline", (DL_FUNC) &R_gsk_outset_shadow_node_get_outline, 1},
     {"R_gsk_outset_shadow_node_get_spread", (DL_FUNC) &R_gsk_outset_shadow_node_get_spread, 1},
-    {"R_gsk_paste_node_new", (DL_FUNC) &R_gsk_paste_node_new, 2},
-    {"R_gsk_paste_node_get_depth", (DL_FUNC) &R_gsk_paste_node_get_depth, 1},
-    {"R_gsk_path_equal", (DL_FUNC) &R_gsk_path_equal, 2},
-    {"R_gsk_path_foreach", (DL_FUNC) &R_gsk_path_foreach, 3},
-    {"R_gsk_path_foreach_intersection", (DL_FUNC) &R_gsk_path_foreach_intersection, 3},
-    {"R_gsk_path_get_bounds", (DL_FUNC) &R_gsk_path_get_bounds, 1},
-    {"R_gsk_path_get_closest_point", (DL_FUNC) &R_gsk_path_get_closest_point, 3},
-    {"R_gsk_path_get_end_point", (DL_FUNC) &R_gsk_path_get_end_point, 1},
-    {"R_gsk_path_get_next", (DL_FUNC) &R_gsk_path_get_next, 1},
-    {"R_gsk_path_get_previous", (DL_FUNC) &R_gsk_path_get_previous, 1},
-    {"R_gsk_path_get_start_point", (DL_FUNC) &R_gsk_path_get_start_point, 1},
-    {"R_gsk_path_get_stroke_bounds", (DL_FUNC) &R_gsk_path_get_stroke_bounds, 2},
-    {"R_gsk_path_get_tight_bounds", (DL_FUNC) &R_gsk_path_get_tight_bounds, 1},
-    {"R_gsk_path_in_fill", (DL_FUNC) &R_gsk_path_in_fill, 3},
-    {"R_gsk_path_is_closed", (DL_FUNC) &R_gsk_path_is_closed, 1},
-    {"R_gsk_path_is_empty", (DL_FUNC) &R_gsk_path_is_empty, 1},
-    {"R_gsk_path_print", (DL_FUNC) &R_gsk_path_print, 2},
-    {"R_gsk_path_ref", (DL_FUNC) &R_gsk_path_ref, 1},
-    {"R_gsk_path_to_cairo", (DL_FUNC) &R_gsk_path_to_cairo, 2},
-    {"R_gsk_path_to_string", (DL_FUNC) &R_gsk_path_to_string, 1},
-    {"R_gsk_path_unref", (DL_FUNC) &R_gsk_path_unref, 1},
-    {"R_gsk_path_parse", (DL_FUNC) &R_gsk_path_parse, 1},
-    {"R_gsk_path_builder_new", (DL_FUNC) &R_gsk_path_builder_new, 0},
-    {"R_gsk_path_builder_add_cairo_path", (DL_FUNC) &R_gsk_path_builder_add_cairo_path, 2},
-    {"R_gsk_path_builder_add_circle", (DL_FUNC) &R_gsk_path_builder_add_circle, 3},
-    {"R_gsk_path_builder_add_layout", (DL_FUNC) &R_gsk_path_builder_add_layout, 2},
-    {"R_gsk_path_builder_add_path", (DL_FUNC) &R_gsk_path_builder_add_path, 2},
-    {"R_gsk_path_builder_add_rect", (DL_FUNC) &R_gsk_path_builder_add_rect, 2},
-    {"R_gsk_path_builder_add_reverse_path", (DL_FUNC) &R_gsk_path_builder_add_reverse_path, 2},
-    {"R_gsk_path_builder_add_rounded_rect", (DL_FUNC) &R_gsk_path_builder_add_rounded_rect, 2},
-    {"R_gsk_path_builder_add_segment", (DL_FUNC) &R_gsk_path_builder_add_segment, 4},
-    {"R_gsk_path_builder_arc_to", (DL_FUNC) &R_gsk_path_builder_arc_to, 5},
-    {"R_gsk_path_builder_close", (DL_FUNC) &R_gsk_path_builder_close, 1},
-    {"R_gsk_path_builder_conic_to", (DL_FUNC) &R_gsk_path_builder_conic_to, 6},
-    {"R_gsk_path_builder_cubic_to", (DL_FUNC) &R_gsk_path_builder_cubic_to, 7},
-    {"R_gsk_path_builder_get_current_point", (DL_FUNC) &R_gsk_path_builder_get_current_point, 1},
-    {"R_gsk_path_builder_html_arc_to", (DL_FUNC) &R_gsk_path_builder_html_arc_to, 6},
-    {"R_gsk_path_builder_line_to", (DL_FUNC) &R_gsk_path_builder_line_to, 3},
-    {"R_gsk_path_builder_move_to", (DL_FUNC) &R_gsk_path_builder_move_to, 3},
-    {"R_gsk_path_builder_quad_to", (DL_FUNC) &R_gsk_path_builder_quad_to, 5},
-    {"R_gsk_path_builder_ref", (DL_FUNC) &R_gsk_path_builder_ref, 1},
-    {"R_gsk_path_builder_rel_arc_to", (DL_FUNC) &R_gsk_path_builder_rel_arc_to, 5},
-    {"R_gsk_path_builder_rel_conic_to", (DL_FUNC) &R_gsk_path_builder_rel_conic_to, 6},
-    {"R_gsk_path_builder_rel_cubic_to", (DL_FUNC) &R_gsk_path_builder_rel_cubic_to, 7},
-    {"R_gsk_path_builder_rel_html_arc_to", (DL_FUNC) &R_gsk_path_builder_rel_html_arc_to, 6},
-    {"R_gsk_path_builder_rel_line_to", (DL_FUNC) &R_gsk_path_builder_rel_line_to, 3},
-    {"R_gsk_path_builder_rel_move_to", (DL_FUNC) &R_gsk_path_builder_rel_move_to, 3},
-    {"R_gsk_path_builder_rel_quad_to", (DL_FUNC) &R_gsk_path_builder_rel_quad_to, 5},
-    {"R_gsk_path_builder_rel_svg_arc_to", (DL_FUNC) &R_gsk_path_builder_rel_svg_arc_to, 8},
-    {"R_gsk_path_builder_svg_arc_to", (DL_FUNC) &R_gsk_path_builder_svg_arc_to, 8},
-    {"R_gsk_path_builder_to_path", (DL_FUNC) &R_gsk_path_builder_to_path, 1},
-    {"R_gsk_path_builder_unref", (DL_FUNC) &R_gsk_path_builder_unref, 1},
-    {"R_gsk_path_measure_new", (DL_FUNC) &R_gsk_path_measure_new, 1},
-    {"R_gsk_path_measure_new_with_tolerance", (DL_FUNC) &R_gsk_path_measure_new_with_tolerance, 2},
-    {"R_gsk_path_measure_get_length", (DL_FUNC) &R_gsk_path_measure_get_length, 1},
-    {"R_gsk_path_measure_get_path", (DL_FUNC) &R_gsk_path_measure_get_path, 1},
-    {"R_gsk_path_measure_get_point", (DL_FUNC) &R_gsk_path_measure_get_point, 2},
-    {"R_gsk_path_measure_get_tolerance", (DL_FUNC) &R_gsk_path_measure_get_tolerance, 1},
-    {"R_gsk_path_measure_ref", (DL_FUNC) &R_gsk_path_measure_ref, 1},
-    {"R_gsk_path_measure_unref", (DL_FUNC) &R_gsk_path_measure_unref, 1},
-    {"R_gsk_path_point_compare", (DL_FUNC) &R_gsk_path_point_compare, 2},
-    {"R_gsk_path_point_copy", (DL_FUNC) &R_gsk_path_point_copy, 1},
-    {"R_gsk_path_point_equal", (DL_FUNC) &R_gsk_path_point_equal, 2},
-    {"R_gsk_path_point_free", (DL_FUNC) &R_gsk_path_point_free, 1},
-    {"R_gsk_path_point_get_curvature", (DL_FUNC) &R_gsk_path_point_get_curvature, 3},
-    {"R_gsk_path_point_get_distance", (DL_FUNC) &R_gsk_path_point_get_distance, 2},
-    {"R_gsk_path_point_get_position", (DL_FUNC) &R_gsk_path_point_get_position, 2},
-    {"R_gsk_path_point_get_rotation", (DL_FUNC) &R_gsk_path_point_get_rotation, 3},
-    {"R_gsk_path_point_get_tangent", (DL_FUNC) &R_gsk_path_point_get_tangent, 3},
     {"R_gsk_radial_gradient_node_new", (DL_FUNC) &R_gsk_radial_gradient_node_new, 8},
     {"R_gsk_radial_gradient_node_get_center", (DL_FUNC) &R_gsk_radial_gradient_node_get_center, 1},
     {"R_gsk_radial_gradient_node_get_color_stops", (DL_FUNC) &R_gsk_radial_gradient_node_get_color_stops, 1},
@@ -11708,22 +11516,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gsk_render_node_deserialize", (DL_FUNC) &R_gsk_render_node_deserialize, 2},
     {"R_gsk_render_node_draw", (DL_FUNC) &R_gsk_render_node_draw, 2},
     {"R_gsk_render_node_get_bounds", (DL_FUNC) &R_gsk_render_node_get_bounds, 1},
-    {"R_gsk_render_node_get_children", (DL_FUNC) &R_gsk_render_node_get_children, 1},
     {"R_gsk_render_node_get_node_type", (DL_FUNC) &R_gsk_render_node_get_node_type, 1},
-    {"R_gsk_render_node_get_opaque_rect", (DL_FUNC) &R_gsk_render_node_get_opaque_rect, 1},
     {"R_gsk_render_node_ref", (DL_FUNC) &R_gsk_render_node_ref, 1},
     {"R_gsk_render_node_serialize", (DL_FUNC) &R_gsk_render_node_serialize, 1},
     {"R_gsk_render_node_unref", (DL_FUNC) &R_gsk_render_node_unref, 1},
     {"R_gsk_render_node_write_to_file", (DL_FUNC) &R_gsk_render_node_write_to_file, 2},
-    {"R_gsk_render_replay_new", (DL_FUNC) &R_gsk_render_replay_new, 0},
-    {"R_gsk_render_replay_default", (DL_FUNC) &R_gsk_render_replay_default, 2},
-    {"R_gsk_render_replay_filter_font", (DL_FUNC) &R_gsk_render_replay_filter_font, 2},
-    {"R_gsk_render_replay_filter_node", (DL_FUNC) &R_gsk_render_replay_filter_node, 2},
-    {"R_gsk_render_replay_filter_texture", (DL_FUNC) &R_gsk_render_replay_filter_texture, 2},
-    {"R_gsk_render_replay_free", (DL_FUNC) &R_gsk_render_replay_free, 1},
-    {"R_gsk_render_replay_set_font_filter", (DL_FUNC) &R_gsk_render_replay_set_font_filter, 2},
-    {"R_gsk_render_replay_set_node_filter", (DL_FUNC) &R_gsk_render_replay_set_node_filter, 2},
-    {"R_gsk_render_replay_set_texture_filter", (DL_FUNC) &R_gsk_render_replay_set_texture_filter, 2},
     {"R_gsk_renderer_new_for_surface", (DL_FUNC) &R_gsk_renderer_new_for_surface, 1},
     {"R_gsk_renderer_get_surface", (DL_FUNC) &R_gsk_renderer_get_surface, 1},
     {"R_gsk_renderer_is_realized", (DL_FUNC) &R_gsk_renderer_is_realized, 1},
@@ -11805,7 +11602,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_gsk_transform_get_category", (DL_FUNC) &R_gsk_transform_get_category, 1},
     {"R_gsk_transform_invert", (DL_FUNC) &R_gsk_transform_invert, 1},
     {"R_gsk_transform_matrix", (DL_FUNC) &R_gsk_transform_matrix, 2},
-    {"R_gsk_transform_matrix_2d", (DL_FUNC) &R_gsk_transform_matrix_2d, 7},
     {"R_gsk_transform_perspective", (DL_FUNC) &R_gsk_transform_perspective, 2},
     {"R_gsk_transform_print", (DL_FUNC) &R_gsk_transform_print, 2},
     {"R_gsk_transform_ref", (DL_FUNC) &R_gsk_transform_ref, 1},

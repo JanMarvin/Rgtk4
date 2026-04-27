@@ -4252,35 +4252,6 @@ double _rgtk4_cb_get_intrinsic_aspect_ratio(GdkPaintable* paintable) {
   UNPROTECT(2);
   return _result;
 }
-unsigned int _rgtk4_cb_get_n_links(GtkAccessibleHypertext* self) {
-  RCallbackClosure *rc = rgtk4_current_closure();
-  SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)self, R_NilValue, R_NilValue));
-  SEXP _argv[1] = { _a1 };
-  SEXP _r = PROTECT(rgtk4_eval_callback(rc, 1, _argv));
-  unsigned int _result = (unsigned int)Rf_asInteger(_r);
-  UNPROTECT(2);
-  return _result;
-}
-GtkAccessibleHyperlink* _rgtk4_cb_get_link(GtkAccessibleHypertext* self, unsigned int index) {
-  RCallbackClosure *rc = rgtk4_current_closure();
-  SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)self, R_NilValue, R_NilValue));
-  SEXP _a2 = PROTECT(Rf_ScalarInteger((int)(size_t)(index)));
-  SEXP _argv[2] = { _a1, _a2 };
-  SEXP _r = PROTECT(rgtk4_eval_callback(rc, 2, _argv));
-  GtkAccessibleHyperlink* _result = (GtkAccessibleHyperlink*)(_r == R_NilValue ? NULL : R_ExternalPtrAddr(_r));
-  UNPROTECT(3);
-  return _result;
-}
-unsigned int _rgtk4_cb_get_link_at(GtkAccessibleHypertext* self, unsigned int offset) {
-  RCallbackClosure *rc = rgtk4_current_closure();
-  SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)self, R_NilValue, R_NilValue));
-  SEXP _a2 = PROTECT(Rf_ScalarInteger((int)(size_t)(offset)));
-  SEXP _argv[2] = { _a1, _a2 };
-  SEXP _r = PROTECT(rgtk4_eval_callback(rc, 2, _argv));
-  unsigned int _result = (unsigned int)Rf_asInteger(_r);
-  UNPROTECT(3);
-  return _result;
-}
 GtkATContext* _rgtk4_cb_get_at_context(GtkAccessible* self) {
   RCallbackClosure *rc = rgtk4_current_closure();
   SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)self, R_NilValue, R_NilValue));
@@ -6128,16 +6099,6 @@ void _rgtk4_cb_redo(GtkTextBuffer* buffer) {
   (void)rgtk4_eval_callback(rc, 1, _argv);
   UNPROTECT(1);
 }
-void _rgtk4_cb_TextBufferCommitNotify(GtkTextBuffer* buffer, GtkTextBufferNotifyFlags flags, guint position, guint length, gpointer user_data) {
-  RCallbackClosure *rc = (RCallbackClosure *)user_data;
-  SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)buffer, R_NilValue, R_NilValue));
-  SEXP _a2 = PROTECT(Rf_ScalarInteger((int)(size_t)(flags)));
-  SEXP _a3 = PROTECT(Rf_ScalarInteger((int)(size_t)(position)));
-  SEXP _a4 = PROTECT(Rf_ScalarInteger((int)(size_t)(length)));
-  SEXP _argv[4] = { _a1, _a2, _a3, _a4 };
-  (void)rgtk4_eval_callback(rc, 4, _argv);
-  UNPROTECT(4);
-}
 gboolean _rgtk4_cb_TextCharPredicate(gunichar ch, gpointer user_data) {
   RCallbackClosure *rc = (RCallbackClosure *)user_data;
   SEXP _a1 = PROTECT(Rf_ScalarInteger((int)(size_t)(ch)));
@@ -7507,48 +7468,5 @@ gboolean _rgtk4_cb_PathForeachFunc(GskPathOperation op, const graphene_point_t* 
   SEXP _r = PROTECT(rgtk4_eval_callback(rc, 4, _argv));
   gboolean _result = (gboolean)(Rf_asLogical(_r) == TRUE);
   UNPROTECT(5);
-  return _result;
-}
-gboolean _rgtk4_cb_PathIntersectionFunc(GskPath* path1, const GskPathPoint* point1, GskPath* path2, const GskPathPoint* point2, GskPathIntersection kind, gpointer user_data) {
-  RCallbackClosure *rc = (RCallbackClosure *)user_data;
-  SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)path1, R_NilValue, R_NilValue));
-  SEXP _a2 = PROTECT(R_MakeExternalPtr((void*)point1, R_NilValue, R_NilValue));
-  SEXP _a3 = PROTECT(R_MakeExternalPtr((void*)path2, R_NilValue, R_NilValue));
-  SEXP _a4 = PROTECT(R_MakeExternalPtr((void*)point2, R_NilValue, R_NilValue));
-  SEXP _a5 = PROTECT(Rf_ScalarInteger((int)(size_t)(kind)));
-  SEXP _argv[5] = { _a1, _a2, _a3, _a4, _a5 };
-  SEXP _r = PROTECT(rgtk4_eval_callback(rc, 5, _argv));
-  gboolean _result = (gboolean)(Rf_asLogical(_r) == TRUE);
-  UNPROTECT(6);
-  return _result;
-}
-PangoFont* _rgtk4_cb_RenderReplayFontFilter(GskRenderReplay* replay, PangoFont* font, gpointer user_data) {
-  RCallbackClosure *rc = (RCallbackClosure *)user_data;
-  SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)replay, R_NilValue, R_NilValue));
-  SEXP _a2 = PROTECT(R_MakeExternalPtr((void*)font, R_NilValue, R_NilValue));
-  SEXP _argv[2] = { _a1, _a2 };
-  SEXP _r = PROTECT(rgtk4_eval_callback(rc, 2, _argv));
-  PangoFont* _result = (PangoFont*)(_r == R_NilValue ? NULL : R_ExternalPtrAddr(_r));
-  UNPROTECT(3);
-  return _result;
-}
-GskRenderNode* _rgtk4_cb_RenderReplayNodeFilter(GskRenderReplay* replay, GskRenderNode* node, gpointer user_data) {
-  RCallbackClosure *rc = (RCallbackClosure *)user_data;
-  SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)replay, R_NilValue, R_NilValue));
-  SEXP _a2 = PROTECT(R_MakeExternalPtr((void*)node, R_NilValue, R_NilValue));
-  SEXP _argv[2] = { _a1, _a2 };
-  SEXP _r = PROTECT(rgtk4_eval_callback(rc, 2, _argv));
-  GskRenderNode* _result = (GskRenderNode*)(_r == R_NilValue ? NULL : R_ExternalPtrAddr(_r));
-  UNPROTECT(3);
-  return _result;
-}
-GdkTexture* _rgtk4_cb_RenderReplayTextureFilter(GskRenderReplay* replay, GdkTexture* texture, gpointer user_data) {
-  RCallbackClosure *rc = (RCallbackClosure *)user_data;
-  SEXP _a1 = PROTECT(R_MakeExternalPtr((void*)replay, R_NilValue, R_NilValue));
-  SEXP _a2 = PROTECT(R_MakeExternalPtr((void*)texture, R_NilValue, R_NilValue));
-  SEXP _argv[2] = { _a1, _a2 };
-  SEXP _r = PROTECT(rgtk4_eval_callback(rc, 2, _argv));
-  GdkTexture* _result = (GdkTexture*)(_r == R_NilValue ? NULL : R_ExternalPtrAddr(_r));
-  UNPROTECT(3);
   return _result;
 }

@@ -487,9 +487,6 @@ extern GtkTreeModelFlags _rgtk4_cb_get_flags(GtkTreeModel* tree_model);
 extern int _rgtk4_cb_get_intrinsic_width(GdkPaintable* paintable);
 extern int _rgtk4_cb_get_intrinsic_height(GdkPaintable* paintable);
 extern double _rgtk4_cb_get_intrinsic_aspect_ratio(GdkPaintable* paintable);
-extern unsigned int _rgtk4_cb_get_n_links(GtkAccessibleHypertext* self);
-extern GtkAccessibleHyperlink* _rgtk4_cb_get_link(GtkAccessibleHypertext* self, unsigned int index);
-extern unsigned int _rgtk4_cb_get_link_at(GtkAccessibleHypertext* self, unsigned int offset);
 extern GtkATContext* _rgtk4_cb_get_at_context(GtkAccessible* self);
 extern gboolean _rgtk4_cb_get_platform_state(GtkAccessible* self, GtkAccessiblePlatformState state);
 extern GtkAccessible* _rgtk4_cb_get_accessible_parent(GtkAccessible* self);
@@ -696,7 +693,6 @@ extern void _rgtk4_cb_end_user_action(GtkTextBuffer* buffer);
 extern void _rgtk4_cb_paste_done(GtkTextBuffer* buffer, GdkClipboard* clipboard);
 extern void _rgtk4_cb_undo(GtkTextBuffer* buffer);
 extern void _rgtk4_cb_redo(GtkTextBuffer* buffer);
-extern void _rgtk4_cb_TextBufferCommitNotify(GtkTextBuffer* buffer, GtkTextBufferNotifyFlags flags, guint position, guint length, gpointer user_data);
 extern gboolean _rgtk4_cb_TextCharPredicate(gunichar ch, gpointer user_data);
 extern void _rgtk4_cb_TextTagTableForeach(GtkTextTag* tag, gpointer data);
 extern gboolean _rgtk4_cb_move_cursor(GtkTreeView* tree_view, GtkMovementStep step, int count, gboolean extend, gboolean modify);
@@ -848,10 +844,6 @@ extern void _rgtk4_cb_PixbufModuleUpdatedFunc(GdkPixbuf* pixbuf, int x, int y, i
 extern gboolean _rgtk4_cb_PixbufSaveFunc(const gchar* buf, gsize count, GError** error, gpointer data);
 extern void _rgtk4_cb_ParseErrorFunc(const GskParseLocation* start, const GskParseLocation* end, const GError* error, gpointer user_data);
 extern gboolean _rgtk4_cb_PathForeachFunc(GskPathOperation op, const graphene_point_t* pts, gsize n_pts, float weight, gpointer user_data);
-extern gboolean _rgtk4_cb_PathIntersectionFunc(GskPath* path1, const GskPathPoint* point1, GskPath* path2, const GskPathPoint* point2, GskPathIntersection kind, gpointer user_data);
-extern PangoFont* _rgtk4_cb_RenderReplayFontFilter(GskRenderReplay* replay, PangoFont* font, gpointer user_data);
-extern GskRenderNode* _rgtk4_cb_RenderReplayNodeFilter(GskRenderReplay* replay, GskRenderNode* node, gpointer user_data);
-extern GdkTexture* _rgtk4_cb_RenderReplayTextureFilter(GskRenderReplay* replay, GdkTexture* texture, gpointer user_data);
 
 #pragma GCC diagnostic pop
 

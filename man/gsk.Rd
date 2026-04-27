@@ -25,22 +25,6 @@
 \alias{gskColorMatrixNodeGetColorOffset}
 \alias{gskColorNodeNew}
 \alias{gskColorNodeGetColor}
-\alias{gskComponentTransferNewDiscrete}
-\alias{gskComponentTransferNewGamma}
-\alias{gskComponentTransferNewIdentity}
-\alias{gskComponentTransferNewLevels}
-\alias{gskComponentTransferNewLinear}
-\alias{gskComponentTransferNewTable}
-\alias{gskComponentTransferCopy}
-\alias{gskComponentTransferFree}
-\alias{gskComponentTransferEqual}
-\alias{gskComponentTransferNodeNew}
-\alias{gskComponentTransferNodeGetChild}
-\alias{gskComponentTransferNodeGetTransfer}
-\alias{gskCompositeNodeNew}
-\alias{gskCompositeNodeGetChild}
-\alias{gskCompositeNodeGetMask}
-\alias{gskCompositeNodeGetOperator}
 \alias{gskConicGradientNodeNew}
 \alias{gskConicGradientNodeGetAngle}
 \alias{gskConicGradientNodeGetCenter}
@@ -50,8 +34,6 @@
 \alias{gskContainerNodeNew}
 \alias{gskContainerNodeGetChild}
 \alias{gskContainerNodeGetNChildren}
-\alias{gskCopyNodeNew}
-\alias{gskCopyNodeGetChild}
 \alias{gskCrossFadeNodeNew}
 \alias{gskCrossFadeNodeGetEndChild}
 \alias{gskCrossFadeNodeGetProgress}
@@ -95,9 +77,6 @@
 \alias{gskInsetShadowNodeGetDy}
 \alias{gskInsetShadowNodeGetOutline}
 \alias{gskInsetShadowNodeGetSpread}
-\alias{gskIsolationNodeNew}
-\alias{gskIsolationNodeGetChild}
-\alias{gskIsolationNodeGetIsolations}
 \alias{gskLinearGradientNodeNew}
 \alias{gskLinearGradientNodeGetColorStops}
 \alias{gskLinearGradientNodeGetEnd}
@@ -118,75 +97,6 @@
 \alias{gskOutsetShadowNodeGetDy}
 \alias{gskOutsetShadowNodeGetOutline}
 \alias{gskOutsetShadowNodeGetSpread}
-\alias{gskPasteNodeNew}
-\alias{gskPasteNodeGetDepth}
-\alias{gskPathEqual}
-\alias{gskPathForeach}
-\alias{gskPathForeachIntersection}
-\alias{gskPathGetBounds}
-\alias{gskPathGetClosestPoint}
-\alias{gskPathGetEndPoint}
-\alias{gskPathGetNext}
-\alias{gskPathGetPrevious}
-\alias{gskPathGetStartPoint}
-\alias{gskPathGetStrokeBounds}
-\alias{gskPathGetTightBounds}
-\alias{gskPathInFill}
-\alias{gskPathIsClosed}
-\alias{gskPathIsEmpty}
-\alias{gskPathPrint}
-\alias{gskPathRef}
-\alias{gskPathToCairo}
-\alias{gskPathToString}
-\alias{gskPathUnref}
-\alias{gskPathParse}
-\alias{gskPathBuilderNew}
-\alias{gskPathBuilderAddCairoPath}
-\alias{gskPathBuilderAddCircle}
-\alias{gskPathBuilderAddLayout}
-\alias{gskPathBuilderAddPath}
-\alias{gskPathBuilderAddRect}
-\alias{gskPathBuilderAddReversePath}
-\alias{gskPathBuilderAddRoundedRect}
-\alias{gskPathBuilderAddSegment}
-\alias{gskPathBuilderArcTo}
-\alias{gskPathBuilderClose}
-\alias{gskPathBuilderConicTo}
-\alias{gskPathBuilderCubicTo}
-\alias{gskPathBuilderGetCurrentPoint}
-\alias{gskPathBuilderHtmlArcTo}
-\alias{gskPathBuilderLineTo}
-\alias{gskPathBuilderMoveTo}
-\alias{gskPathBuilderQuadTo}
-\alias{gskPathBuilderRef}
-\alias{gskPathBuilderRelArcTo}
-\alias{gskPathBuilderRelConicTo}
-\alias{gskPathBuilderRelCubicTo}
-\alias{gskPathBuilderRelHtmlArcTo}
-\alias{gskPathBuilderRelLineTo}
-\alias{gskPathBuilderRelMoveTo}
-\alias{gskPathBuilderRelQuadTo}
-\alias{gskPathBuilderRelSvgArcTo}
-\alias{gskPathBuilderSvgArcTo}
-\alias{gskPathBuilderToPath}
-\alias{gskPathBuilderUnref}
-\alias{gskPathMeasureNew}
-\alias{gskPathMeasureNewWithTolerance}
-\alias{gskPathMeasureGetLength}
-\alias{gskPathMeasureGetPath}
-\alias{gskPathMeasureGetPoint}
-\alias{gskPathMeasureGetTolerance}
-\alias{gskPathMeasureRef}
-\alias{gskPathMeasureUnref}
-\alias{gskPathPointCompare}
-\alias{gskPathPointCopy}
-\alias{gskPathPointEqual}
-\alias{gskPathPointFree}
-\alias{gskPathPointGetCurvature}
-\alias{gskPathPointGetDistance}
-\alias{gskPathPointGetPosition}
-\alias{gskPathPointGetRotation}
-\alias{gskPathPointGetTangent}
 \alias{gskRadialGradientNodeNew}
 \alias{gskRadialGradientNodeGetCenter}
 \alias{gskRadialGradientNodeGetColorStops}
@@ -198,22 +108,11 @@
 \alias{gskRenderNodeDeserialize}
 \alias{gskRenderNodeDraw}
 \alias{gskRenderNodeGetBounds}
-\alias{gskRenderNodeGetChildren}
 \alias{gskRenderNodeGetNodeType}
-\alias{gskRenderNodeGetOpaqueRect}
 \alias{gskRenderNodeRef}
 \alias{gskRenderNodeSerialize}
 \alias{gskRenderNodeUnref}
 \alias{gskRenderNodeWriteToFile}
-\alias{gskRenderReplayNew}
-\alias{gskRenderReplayDefault}
-\alias{gskRenderReplayFilterFont}
-\alias{gskRenderReplayFilterNode}
-\alias{gskRenderReplayFilterTexture}
-\alias{gskRenderReplayFree}
-\alias{gskRenderReplaySetFontFilter}
-\alias{gskRenderReplaySetNodeFilter}
-\alias{gskRenderReplaySetTextureFilter}
 \alias{gskRendererNewForSurface}
 \alias{gskRendererGetSurface}
 \alias{gskRendererIsRealized}
@@ -295,7 +194,6 @@
 \alias{gskTransformGetCategory}
 \alias{gskTransformInvert}
 \alias{gskTransformMatrix}
-\alias{gskTransformMatrix2d}
 \alias{gskTransformPerspective}
 \alias{gskTransformPrint}
 \alias{gskTransformRef}
@@ -375,38 +273,6 @@ gskColorNodeNew(rgba, bounds)
 
 gskColorNodeGetColor(node)
 
-gskComponentTransferNewDiscrete(n, values)
-
-gskComponentTransferNewGamma(amp, exp, ofs)
-
-gskComponentTransferNewIdentity()
-
-gskComponentTransferNewLevels(n)
-
-gskComponentTransferNewLinear(m, b)
-
-gskComponentTransferNewTable(n, values)
-
-gskComponentTransferCopy(other)
-
-gskComponentTransferFree(self)
-
-gskComponentTransferEqual(self, other)
-
-gskComponentTransferNodeNew(child, r, g, b, a)
-
-gskComponentTransferNodeGetChild(node)
-
-gskComponentTransferNodeGetTransfer(node, component)
-
-gskCompositeNodeNew(child, mask, op)
-
-gskCompositeNodeGetChild(node)
-
-gskCompositeNodeGetMask(node)
-
-gskCompositeNodeGetOperator(node)
-
 gskConicGradientNodeNew(bounds, center, rotation, color_stops, n_color_stops)
 
 gskConicGradientNodeGetAngle(node)
@@ -424,10 +290,6 @@ gskContainerNodeNew(children, n_children)
 gskContainerNodeGetChild(node, idx)
 
 gskContainerNodeGetNChildren(node)
-
-gskCopyNodeNew(child)
-
-gskCopyNodeGetChild(node)
 
 gskCrossFadeNodeNew(start, end, progress)
 
@@ -515,12 +377,6 @@ gskInsetShadowNodeGetOutline(node)
 
 gskInsetShadowNodeGetSpread(node)
 
-gskIsolationNodeNew(child, isolations)
-
-gskIsolationNodeGetChild(node)
-
-gskIsolationNodeGetIsolations(node)
-
 gskLinearGradientNodeNew(bounds, start, end, color_stops, n_color_stops)
 
 gskLinearGradientNodeGetColorStops(node)
@@ -561,162 +417,6 @@ gskOutsetShadowNodeGetOutline(node)
 
 gskOutsetShadowNodeGetSpread(node)
 
-gskPasteNodeNew(bounds, depth)
-
-gskPasteNodeGetDepth(node)
-
-gskPathEqual(path1, path2)
-
-gskPathForeach(self, flags, func)
-
-gskPathForeachIntersection(path1, path2, func)
-
-gskPathGetBounds(self)
-
-gskPathGetClosestPoint(self, point, threshold)
-
-gskPathGetEndPoint(self)
-
-gskPathGetNext(self)
-
-gskPathGetPrevious(self)
-
-gskPathGetStartPoint(self)
-
-gskPathGetStrokeBounds(self, stroke)
-
-gskPathGetTightBounds(self)
-
-gskPathInFill(self, point, fill_rule)
-
-gskPathIsClosed(self)
-
-gskPathIsEmpty(self)
-
-gskPathPrint(self, string)
-
-gskPathRef(self)
-
-gskPathToCairo(self, cr)
-
-gskPathToString(self)
-
-gskPathUnref(self)
-
-gskPathParse(string)
-
-gskPathBuilderNew()
-
-gskPathBuilderAddCairoPath(self, path)
-
-gskPathBuilderAddCircle(self, center, radius)
-
-gskPathBuilderAddLayout(self, layout)
-
-gskPathBuilderAddPath(self, path)
-
-gskPathBuilderAddRect(self, rect)
-
-gskPathBuilderAddReversePath(self, path)
-
-gskPathBuilderAddRoundedRect(self, rect)
-
-gskPathBuilderAddSegment(self, path, start, end)
-
-gskPathBuilderArcTo(self, x1, y1, x2, y2)
-
-gskPathBuilderClose(self)
-
-gskPathBuilderConicTo(self, x1, y1, x2, y2, weight)
-
-gskPathBuilderCubicTo(self, x1, y1, x2, y2, x3, y3)
-
-gskPathBuilderGetCurrentPoint(self)
-
-gskPathBuilderHtmlArcTo(self, x1, y1, x2, y2, radius)
-
-gskPathBuilderLineTo(self, x, y)
-
-gskPathBuilderMoveTo(self, x, y)
-
-gskPathBuilderQuadTo(self, x1, y1, x2, y2)
-
-gskPathBuilderRef(self)
-
-gskPathBuilderRelArcTo(self, x1, y1, x2, y2)
-
-gskPathBuilderRelConicTo(self, x1, y1, x2, y2, weight)
-
-gskPathBuilderRelCubicTo(self, x1, y1, x2, y2, x3, y3)
-
-gskPathBuilderRelHtmlArcTo(self, x1, y1, x2, y2, radius)
-
-gskPathBuilderRelLineTo(self, x, y)
-
-gskPathBuilderRelMoveTo(self, x, y)
-
-gskPathBuilderRelQuadTo(self, x1, y1, x2, y2)
-
-gskPathBuilderRelSvgArcTo(
-  self,
-  rx,
-  ry,
-  x_axis_rotation,
-  large_arc,
-  positive_sweep,
-  x,
-  y
-)
-
-gskPathBuilderSvgArcTo(
-  self,
-  rx,
-  ry,
-  x_axis_rotation,
-  large_arc,
-  positive_sweep,
-  x,
-  y
-)
-
-gskPathBuilderToPath(self)
-
-gskPathBuilderUnref(self)
-
-gskPathMeasureNew(path)
-
-gskPathMeasureNewWithTolerance(path, tolerance)
-
-gskPathMeasureGetLength(self)
-
-gskPathMeasureGetPath(self)
-
-gskPathMeasureGetPoint(self, distance)
-
-gskPathMeasureGetTolerance(self)
-
-gskPathMeasureRef(self)
-
-gskPathMeasureUnref(self)
-
-gskPathPointCompare(point1, point2)
-
-gskPathPointCopy(point)
-
-gskPathPointEqual(point1, point2)
-
-gskPathPointFree(point)
-
-gskPathPointGetCurvature(point, path, direction)
-
-gskPathPointGetDistance(point, measure)
-
-gskPathPointGetPosition(point, path)
-
-gskPathPointGetRotation(point, path, direction)
-
-gskPathPointGetTangent(point, path, direction)
-
 gskRadialGradientNodeNew(
   bounds,
   center,
@@ -748,11 +448,7 @@ gskRenderNodeDraw(node, cr)
 
 gskRenderNodeGetBounds(node)
 
-gskRenderNodeGetChildren(self)
-
 gskRenderNodeGetNodeType(node)
-
-gskRenderNodeGetOpaqueRect(self)
 
 gskRenderNodeRef(node)
 
@@ -761,24 +457,6 @@ gskRenderNodeSerialize(node)
 gskRenderNodeUnref(node)
 
 gskRenderNodeWriteToFile(node, filename)
-
-gskRenderReplayNew()
-
-gskRenderReplayDefault(self, node)
-
-gskRenderReplayFilterFont(self, font)
-
-gskRenderReplayFilterNode(self, node)
-
-gskRenderReplayFilterTexture(self, texture)
-
-gskRenderReplayFree(self)
-
-gskRenderReplaySetFontFilter(self, filter)
-
-gskRenderReplaySetNodeFilter(self, filter)
-
-gskRenderReplaySetTextureFilter(self, filter)
 
 gskRendererNewForSurface(surface)
 
@@ -964,8 +642,6 @@ gskTransformInvert(self)
 
 gskTransformMatrix(next_, matrix)
 
-gskTransformMatrix2d(next_, xx, yx, xy, yy, dx, dy)
-
 gskTransformPerspective(next_, depth)
 
 gskTransformPrint(self, string)
@@ -1053,36 +729,6 @@ gskValueTakeRenderNode(value, node)
 
 \item{rgba}{Gdk.RGBA}
 
-\item{n}{guint}
-
-\item{values}{gfloat}
-
-\item{amp}{gfloat}
-
-\item{exp}{gfloat}
-
-\item{ofs}{gfloat}
-
-\item{m}{gfloat}
-
-\item{b}{ComponentTransfer}
-
-\item{other}{Transform}
-
-\item{self}{Transform}
-
-\item{r}{ComponentTransfer}
-
-\item{g}{ComponentTransfer}
-
-\item{a}{ComponentTransfer}
-
-\item{component}{Gdk.ColorChannel}
-
-\item{mask}{RenderNode}
-
-\item{op}{PorterDuff}
-
 \item{center}{Graphene.Point}
 
 \item{rotation}{gfloat}
@@ -1133,77 +779,13 @@ gskValueTakeRenderNode(value, node)
 
 \item{blur_radius}{gfloat}
 
-\item{isolations}{Isolation}
-
 \item{source}{RenderNode}
+
+\item{mask}{RenderNode}
 
 \item{mask_mode}{MaskMode}
 
 \item{opacity}{gfloat}
-
-\item{depth}{gfloat}
-
-\item{path1}{Path}
-
-\item{path2}{Path}
-
-\item{flags}{PathForeachFlags}
-
-\item{func}{function — PathIntersectionFunc callback}
-
-\item{point}{Graphene.Point3D}
-
-\item{threshold}{gfloat}
-
-\item{stroke}{Stroke}
-
-\item{string}{utf8}
-
-\item{cr}{cairo.Context}
-
-\item{layout}{Pango.Layout}
-
-\item{rect}{Graphene.Rect}
-
-\item{x1}{gfloat}
-
-\item{y1}{gfloat}
-
-\item{x2}{gfloat}
-
-\item{y2}{gfloat}
-
-\item{weight}{gfloat}
-
-\item{x3}{gfloat}
-
-\item{y3}{gfloat}
-
-\item{x}{gfloat}
-
-\item{y}{gfloat}
-
-\item{rx}{gfloat}
-
-\item{ry}{gfloat}
-
-\item{x_axis_rotation}{gfloat}
-
-\item{large_arc}{gboolean}
-
-\item{positive_sweep}{gboolean}
-
-\item{tolerance}{gfloat}
-
-\item{distance}{gfloat}
-
-\item{point1}{PathPoint}
-
-\item{point2}{PathPoint}
-
-\item{direction}{PathDirection}
-
-\item{measure}{PathMeasure}
 
 \item{hradius}{gfloat}
 
@@ -1213,13 +795,9 @@ gskValueTakeRenderNode(value, node)
 
 \item{error_func}{function — ParseErrorFunc callback}
 
+\item{cr}{cairo.Context}
+
 \item{filename}{filename}
-
-\item{font}{Pango.Font}
-
-\item{texture}{Gdk.Texture}
-
-\item{filter}{ScalingFilter}
 
 \item{surface}{Gdk.Surface}
 
@@ -1232,6 +810,12 @@ gskValueTakeRenderNode(value, node)
 \item{viewport}{Graphene.Rect}
 
 \item{child_bounds}{Graphene.Rect}
+
+\item{self}{Transform}
+
+\item{point}{Graphene.Point3D}
+
+\item{rect}{Graphene.Rect}
 
 \item{top_left}{Graphene.Size}
 
@@ -1261,6 +845,8 @@ gskValueTakeRenderNode(value, node)
 
 \item{line_width}{gfloat}
 
+\item{other}{Transform}
+
 \item{dash}{gfloat}
 
 \item{n_dash}{gsize}
@@ -1277,7 +863,15 @@ gskValueTakeRenderNode(value, node)
 
 \item{stroke2}{gpointer}
 
+\item{stroke}{Stroke}
+
+\item{font}{Pango.Font}
+
 \item{glyphs}{Pango.GlyphString}
+
+\item{texture}{Gdk.Texture}
+
+\item{filter}{ScalingFilter}
 
 \item{first}{Transform}
 
@@ -1287,13 +881,9 @@ gskValueTakeRenderNode(value, node)
 
 \item{matrix}{Graphene.Matrix}
 
-\item{xx}{gfloat}
+\item{depth}{gfloat}
 
-\item{yx}{gfloat}
-
-\item{xy}{gfloat}
-
-\item{yy}{gfloat}
+\item{string}{utf8}
 
 \item{angle}{gfloat}
 
@@ -1360,38 +950,6 @@ ColorNode
 
 Gdk.RGBA
 
-ComponentTransfer
-
-ComponentTransfer
-
-ComponentTransfer
-
-ComponentTransfer
-
-ComponentTransfer
-
-ComponentTransfer
-
-ComponentTransfer
-
-Return value from C function
-
-gboolean
-
-ComponentTransferNode
-
-RenderNode
-
-ComponentTransfer
-
-CompositeNode
-
-RenderNode
-
-RenderNode
-
-PorterDuff
-
 ConicGradientNode
 
 gfloat
@@ -1409,10 +967,6 @@ ContainerNode
 RenderNode
 
 guint
-
-CopyNode
-
-RenderNode
 
 CrossFadeNode
 
@@ -1500,12 +1054,6 @@ RoundedRect
 
 gfloat
 
-IsolationNode
-
-RenderNode
-
-Isolation
-
 LinearGradientNode
 
 ColorStop
@@ -1546,144 +1094,6 @@ RoundedRect
 
 gfloat
 
-PasteNode
-
-gsize
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-gboolean
-
-Return value from C function
-
-Path
-
-Return value from C function
-
-utf8
-
-Return value from C function
-
-Path
-
-PathBuilder
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Graphene.Point
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-PathBuilder
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Path
-
-Return value from C function
-
-PathMeasure
-
-PathMeasure
-
-gfloat
-
-Path
-
-gboolean
-
-gfloat
-
-PathMeasure
-
-Return value from C function
-
-gint
-
-PathPoint
-
-gboolean
-
-Return value from C function
-
-gfloat
-
-gfloat
-
-Return value from C function
-
-gfloat
-
-Return value from C function
-
 RadialGradientNode
 
 Graphene.Point
@@ -1706,11 +1116,7 @@ Return value from C function
 
 Return value from C function
 
-RenderNode
-
 RenderNodeType
-
-gboolean
 
 RenderNode
 
@@ -1719,24 +1125,6 @@ GLib.Bytes
 Return value from C function
 
 gboolean
-
-RenderReplay
-
-RenderNode
-
-Pango.Font
-
-RenderNode
-
-Gdk.Texture
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
-
-Return value from C function
 
 Renderer
 
@@ -1902,8 +1290,6 @@ Transform
 
 Transform
 
-Transform
-
 Return value from C function
 
 Transform
@@ -2009,38 +1395,6 @@ gskColorNodeNew
 
 gskColorNodeGetColor
 
-gskComponentTransferNewDiscrete
-
-gskComponentTransferNewGamma
-
-gskComponentTransferNewIdentity
-
-gskComponentTransferNewLevels
-
-gskComponentTransferNewLinear
-
-gskComponentTransferNewTable
-
-gskComponentTransferCopy
-
-gskComponentTransferFree
-
-gskComponentTransferEqual
-
-gskComponentTransferNodeNew
-
-gskComponentTransferNodeGetChild
-
-gskComponentTransferNodeGetTransfer
-
-gskCompositeNodeNew
-
-gskCompositeNodeGetChild
-
-gskCompositeNodeGetMask
-
-gskCompositeNodeGetOperator
-
 gskConicGradientNodeNew
 
 gskConicGradientNodeGetAngle
@@ -2058,10 +1412,6 @@ gskContainerNodeNew
 gskContainerNodeGetChild
 
 gskContainerNodeGetNChildren
-
-gskCopyNodeNew
-
-gskCopyNodeGetChild
 
 gskCrossFadeNodeNew
 
@@ -2149,12 +1499,6 @@ gskInsetShadowNodeGetOutline
 
 gskInsetShadowNodeGetSpread
 
-gskIsolationNodeNew
-
-gskIsolationNodeGetChild
-
-gskIsolationNodeGetIsolations
-
 gskLinearGradientNodeNew
 
 gskLinearGradientNodeGetColorStops
@@ -2195,144 +1539,6 @@ gskOutsetShadowNodeGetOutline
 
 gskOutsetShadowNodeGetSpread
 
-gskPasteNodeNew
-
-gskPasteNodeGetDepth
-
-gskPathEqual
-
-gskPathForeach
-
-gskPathForeachIntersection
-
-gskPathGetBounds
-
-gskPathGetClosestPoint
-
-gskPathGetEndPoint
-
-gskPathGetNext
-
-gskPathGetPrevious
-
-gskPathGetStartPoint
-
-gskPathGetStrokeBounds
-
-gskPathGetTightBounds
-
-gskPathInFill
-
-gskPathIsClosed
-
-gskPathIsEmpty
-
-gskPathPrint
-
-gskPathRef
-
-gskPathToCairo
-
-gskPathToString
-
-gskPathUnref
-
-gskPathParse
-
-gskPathBuilderNew
-
-gskPathBuilderAddCairoPath
-
-gskPathBuilderAddCircle
-
-gskPathBuilderAddLayout
-
-gskPathBuilderAddPath
-
-gskPathBuilderAddRect
-
-gskPathBuilderAddReversePath
-
-gskPathBuilderAddRoundedRect
-
-gskPathBuilderAddSegment
-
-gskPathBuilderArcTo
-
-gskPathBuilderClose
-
-gskPathBuilderConicTo
-
-gskPathBuilderCubicTo
-
-gskPathBuilderGetCurrentPoint
-
-gskPathBuilderHtmlArcTo
-
-gskPathBuilderLineTo
-
-gskPathBuilderMoveTo
-
-gskPathBuilderQuadTo
-
-gskPathBuilderRef
-
-gskPathBuilderRelArcTo
-
-gskPathBuilderRelConicTo
-
-gskPathBuilderRelCubicTo
-
-gskPathBuilderRelHtmlArcTo
-
-gskPathBuilderRelLineTo
-
-gskPathBuilderRelMoveTo
-
-gskPathBuilderRelQuadTo
-
-gskPathBuilderRelSvgArcTo
-
-gskPathBuilderSvgArcTo
-
-gskPathBuilderToPath
-
-gskPathBuilderUnref
-
-gskPathMeasureNew
-
-gskPathMeasureNewWithTolerance
-
-gskPathMeasureGetLength
-
-gskPathMeasureGetPath
-
-gskPathMeasureGetPoint
-
-gskPathMeasureGetTolerance
-
-gskPathMeasureRef
-
-gskPathMeasureUnref
-
-gskPathPointCompare
-
-gskPathPointCopy
-
-gskPathPointEqual
-
-gskPathPointFree
-
-gskPathPointGetCurvature
-
-gskPathPointGetDistance
-
-gskPathPointGetPosition
-
-gskPathPointGetRotation
-
-gskPathPointGetTangent
-
 gskRadialGradientNodeNew
 
 gskRadialGradientNodeGetCenter
@@ -2355,11 +1561,7 @@ gskRenderNodeDraw
 
 gskRenderNodeGetBounds
 
-gskRenderNodeGetChildren
-
 gskRenderNodeGetNodeType
-
-gskRenderNodeGetOpaqueRect
 
 gskRenderNodeRef
 
@@ -2368,24 +1570,6 @@ gskRenderNodeSerialize
 gskRenderNodeUnref
 
 gskRenderNodeWriteToFile
-
-gskRenderReplayNew
-
-gskRenderReplayDefault
-
-gskRenderReplayFilterFont
-
-gskRenderReplayFilterNode
-
-gskRenderReplayFilterTexture
-
-gskRenderReplayFree
-
-gskRenderReplaySetFontFilter
-
-gskRenderReplaySetNodeFilter
-
-gskRenderReplaySetTextureFilter
 
 gskRendererNewForSurface
 
@@ -2548,8 +1732,6 @@ gskTransformGetCategory
 gskTransformInvert
 
 gskTransformMatrix
-
-gskTransformMatrix2d
 
 gskTransformPerspective
 

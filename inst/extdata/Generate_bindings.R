@@ -15,4 +15,3 @@ RGirGen::generate_bindings(
   ),
   out_dir = "."
 )
-
