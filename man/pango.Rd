@@ -15,6 +15,7 @@
 \alias{pangoAttrListChange}
 \alias{pangoAttrListCopy}
 \alias{pangoAttrListEqual}
+\alias{pangoAttrListFilter}
 \alias{pangoAttrListGetAttributes}
 \alias{pangoAttrListGetIterator}
 \alias{pangoAttrListInsert}
@@ -26,6 +27,7 @@
 \alias{pangoAttrListUpdate}
 \alias{pangoAttrListFromString}
 \alias{pangoAttrShapeNew}
+\alias{pangoAttrShapeNewWithData}
 \alias{pangoAttrSizeNew}
 \alias{pangoAttrSizeNewAbsolute}
 \alias{pangoAttrTypeGetName}
@@ -157,6 +159,7 @@
 \alias{pangoFontMetricsGetUnderlineThickness}
 \alias{pangoFontMetricsRef}
 \alias{pangoFontMetricsUnref}
+\alias{pangoFontsetForeach}
 \alias{pangoFontsetGetFont}
 \alias{pangoFontsetGetMetrics}
 \alias{pangoFontsetSimpleNew}
@@ -456,6 +459,8 @@ pangoAttrListCopy(list)
 
 pangoAttrListEqual(list, other_list)
 
+pangoAttrListFilter(list, func)
+
 pangoAttrListGetAttributes(list)
 
 pangoAttrListGetIterator(list)
@@ -477,6 +482,8 @@ pangoAttrListUpdate(list, pos, remove, add)
 pangoAttrListFromString(text)
 
 pangoAttrShapeNew(ink_rect, logical_rect)
+
+pangoAttrShapeNewWithData(ink_rect, logical_rect, data, copy_func)
 
 pangoAttrSizeNew(size)
 
@@ -739,6 +746,8 @@ pangoFontMetricsGetUnderlineThickness(metrics)
 pangoFontMetricsRef(metrics)
 
 pangoFontMetricsUnref(metrics)
+
+pangoFontsetForeach(fontset, func)
 
 pangoFontsetGetFont(fontset, wc)
 
@@ -1330,6 +1339,8 @@ pangoVersionString()
 
 \item{other_list}{AttrList}
 
+\item{func}{function — FontsetForeachFunc callback}
+
 \item{other}{Coverage}
 
 \item{pos}{gint}
@@ -1345,6 +1356,10 @@ pangoVersionString()
 \item{ink_rect}{Rectangle}
 
 \item{logical_rect}{Rectangle}
+
+\item{data}{gpointer}
+
+\item{copy_func}{function — AttrDataCopyFunc callback}
 
 \item{size}{gint}
 
@@ -1673,6 +1688,8 @@ AttrList
 
 gboolean
 
+AttrList
+
 GLib.SList
 
 AttrIterator
@@ -1692,6 +1709,8 @@ Return value from C function
 Return value from C function
 
 AttrList
+
+Attribute
 
 Attribute
 
@@ -1954,6 +1973,8 @@ gint
 gint
 
 FontMetrics
+
+Return value from C function
 
 Return value from C function
 
@@ -2524,6 +2545,8 @@ pangoAttrListCopy
 
 pangoAttrListEqual
 
+pangoAttrListFilter
+
 pangoAttrListGetAttributes
 
 pangoAttrListGetIterator
@@ -2545,6 +2568,8 @@ pangoAttrListUpdate
 pangoAttrListFromString
 
 pangoAttrShapeNew
+
+pangoAttrShapeNewWithData
 
 pangoAttrSizeNew
 
@@ -2807,6 +2832,8 @@ pangoFontMetricsGetUnderlineThickness
 pangoFontMetricsRef
 
 pangoFontMetricsUnref
+
+pangoFontsetForeach
 
 pangoFontsetGetFont
 

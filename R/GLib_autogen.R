@@ -103,6 +103,32 @@ gAsyncQueuePushFrontUnlocked <- function(queue, item) {
 
 
 #' @rdname glib-other
+#' @title gAsyncQueuePushSorted
+#'
+#' @param queue AsyncQueue
+#' @param data gpointer
+#' @param func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gAsyncQueuePushSorted <- function(queue, data, func) {
+  invisible(.Call("R_g_async_queue_push_sorted", queue, data, func))
+}
+
+
+#' @rdname glib-other
+#' @title gAsyncQueuePushSortedUnlocked
+#'
+#' @param queue AsyncQueue
+#' @param data gpointer
+#' @param func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gAsyncQueuePushSortedUnlocked <- function(queue, data, func) {
+  invisible(.Call("R_g_async_queue_push_sorted_unlocked", queue, data, func))
+}
+
+
+#' @rdname glib-other
 #' @title gAsyncQueuePushUnlocked
 #'
 #' @param queue AsyncQueue
@@ -157,6 +183,30 @@ gAsyncQueueRemove <- function(queue, item) {
 #' @export
 gAsyncQueueRemoveUnlocked <- function(queue, item) {
   .Call("R_g_async_queue_remove_unlocked", queue, item)$result
+}
+
+
+#' @rdname glib-other
+#' @title gAsyncQueueSort
+#'
+#' @param queue AsyncQueue
+#' @param func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gAsyncQueueSort <- function(queue, func) {
+  invisible(.Call("R_g_async_queue_sort", queue, func))
+}
+
+
+#' @rdname glib-other
+#' @title gAsyncQueueSortUnlocked
+#'
+#' @param queue AsyncQueue
+#' @param func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gAsyncQueueSortUnlocked <- function(queue, func) {
+  invisible(.Call("R_g_async_queue_sort_unlocked", queue, func))
 }
 
 
@@ -270,6 +320,17 @@ gAsyncQueueUnrefAndUnlock <- function(queue) {
 #' @export
 gAsyncQueueNew <- function() {
   .Call("R_g_async_queue_new")$result
+}
+
+
+#' @rdname glib-other
+#' @title gAsyncQueueNewFull
+#'
+#' @param item_free_func DestroyNotify
+#' @return AsyncQueue
+#' @export
+gAsyncQueueNewFull <- function(item_free_func) {
+  .Call("R_g_async_queue_new_full", item_free_func)$result
 }
 
 
@@ -913,6 +974,30 @@ gByteArraySizedNew <- function(reserved_size) {
 
 
 #' @rdname glib-bytes
+#' @title gByteArraySort
+#'
+#' @param array guint8
+#' @param compare_func function — CompareFunc callback
+#' @return Return value from C function
+#' @export
+gByteArraySort <- function(array, compare_func) {
+  invisible(.Call("R_g_byte_array_sort", as.integer(array), compare_func))
+}
+
+
+#' @rdname glib-bytes
+#' @title gByteArraySortWithData
+#'
+#' @param array guint8
+#' @param compare_func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gByteArraySortWithData <- function(array, compare_func) {
+  invisible(.Call("R_g_byte_array_sort_with_data", as.integer(array), compare_func))
+}
+
+
+#' @rdname glib-bytes
 #' @title gByteArrayUnref
 #'
 #' @param array guint8
@@ -1085,6 +1170,18 @@ gCacheInsert <- function(cache, key) {
 
 
 #' @rdname glib-other
+#' @title gCacheKeyForeach
+#'
+#' @param cache Cache
+#' @param func function — HFunc callback
+#' @return Return value from C function
+#' @export
+gCacheKeyForeach <- function(cache, func) {
+  invisible(.Call("R_g_cache_key_foreach", cache, func))
+}
+
+
+#' @rdname glib-other
 #' @title gCacheRemove
 #'
 #' @param cache Cache
@@ -1093,6 +1190,18 @@ gCacheInsert <- function(cache, key) {
 #' @export
 gCacheRemove <- function(cache, value) {
   invisible(.Call("R_g_cache_remove", cache, value))
+}
+
+
+#' @rdname glib-other
+#' @title gCacheValueForeach
+#'
+#' @param cache Cache
+#' @param func function — HFunc callback
+#' @return Return value from C function
+#' @export
+gCacheValueForeach <- function(cache, func) {
+  invisible(.Call("R_g_cache_value_foreach", cache, func))
 }
 
 
@@ -2552,6 +2661,54 @@ gHashTableDestroy <- function(hash_table) {
 
 
 #' @rdname glib-hash
+#' @title gHashTableFind
+#'
+#' @param hash_table GLib.HashTable
+#' @param predicate function — HRFunc callback
+#' @return gpointer
+#' @export
+gHashTableFind <- function(hash_table, predicate) {
+  .Call("R_g_hash_table_find", hash_table, predicate)$result
+}
+
+
+#' @rdname glib-hash
+#' @title gHashTableForeach
+#'
+#' @param hash_table GLib.HashTable
+#' @param func function — HFunc callback
+#' @return Return value from C function
+#' @export
+gHashTableForeach <- function(hash_table, func) {
+  invisible(.Call("R_g_hash_table_foreach", hash_table, func))
+}
+
+
+#' @rdname glib-hash
+#' @title gHashTableForeachRemove
+#'
+#' @param hash_table GLib.HashTable
+#' @param func function — HRFunc callback
+#' @return guint
+#' @export
+gHashTableForeachRemove <- function(hash_table, func) {
+  .Call("R_g_hash_table_foreach_remove", hash_table, func)$result
+}
+
+
+#' @rdname glib-hash
+#' @title gHashTableForeachSteal
+#'
+#' @param hash_table GLib.HashTable
+#' @param func function — HRFunc callback
+#' @return guint
+#' @export
+gHashTableForeachSteal <- function(hash_table, func) {
+  .Call("R_g_hash_table_foreach_steal", hash_table, func)$result
+}
+
+
+#' @rdname glib-hash
 #' @title gHashTableInsert
 #'
 #' @param hash_table GLib.HashTable
@@ -2892,6 +3049,19 @@ gHookInsertBefore <- function(hook_list, sibling, hook) {
 
 
 #' @rdname glib-other
+#' @title gHookInsertSorted
+#'
+#' @param hook_list HookList
+#' @param hook Hook
+#' @param func function — HookCompareFunc callback
+#' @return Return value from C function
+#' @export
+gHookInsertSorted <- function(hook_list, hook, func) {
+  invisible(.Call("R_g_hook_insert_sorted", hook_list, hook, func))
+}
+
+
+#' @rdname glib-other
 #' @title gHookPrepend
 #'
 #' @param hook_list HookList
@@ -2967,12 +3137,11 @@ gHookListInvokeCheck <- function(hook_list, may_recurse) {
 #'
 #' @param hook_list HookList
 #' @param may_recurse gboolean
-#' @param marshaller HookMarshaller
-#' @param marshal_data gpointer
+#' @param marshaller function — HookMarshaller callback
 #' @return Return value from C function
 #' @export
-gHookListMarshal <- function(hook_list, may_recurse, marshaller, marshal_data) {
-  invisible(.Call("R_g_hook_list_marshal", hook_list, may_recurse, marshaller, marshal_data))
+gHookListMarshal <- function(hook_list, may_recurse, marshaller) {
+  invisible(.Call("R_g_hook_list_marshal", hook_list, may_recurse, marshaller))
 }
 
 
@@ -2981,12 +3150,11 @@ gHookListMarshal <- function(hook_list, may_recurse, marshaller, marshal_data) {
 #'
 #' @param hook_list HookList
 #' @param may_recurse gboolean
-#' @param marshaller HookCheckMarshaller
-#' @param marshal_data gpointer
+#' @param marshaller function — HookCheckMarshaller callback
 #' @return Return value from C function
 #' @export
-gHookListMarshalCheck <- function(hook_list, may_recurse, marshaller, marshal_data) {
-  invisible(.Call("R_g_hook_list_marshal_check", hook_list, may_recurse, marshaller, marshal_data))
+gHookListMarshalCheck <- function(hook_list, may_recurse, marshaller) {
+  invisible(.Call("R_g_hook_list_marshal_check", hook_list, may_recurse, marshaller))
 }
 
 
@@ -4135,6 +4303,19 @@ gMainContextFindSourceByUserData <- function(context, user_data) {
 
 
 #' @rdname glib-mainloop
+#' @title gMainContextInvokeFull
+#'
+#' @param context MainContext
+#' @param priority gint
+#' @param function_ function — SourceFunc callback
+#' @return Return value from C function
+#' @export
+gMainContextInvokeFull <- function(context, priority, function_) {
+  invisible(.Call("R_g_main_context_invoke_full", context, as.integer(priority), function_))
+}
+
+
+#' @rdname glib-mainloop
 #' @title gMainContextIsOwner
 #'
 #' @param context MainContext
@@ -4478,6 +4659,20 @@ gMappedFileRef <- function(file) {
 #' @export
 gMappedFileUnref <- function(file) {
   invisible(.Call("R_g_mapped_file_unref", file))
+}
+
+
+#' @rdname glib-other
+#' @title gMarkupParseContextNew
+#'
+#' @param parser MarkupParser
+#' @param flags MarkupParseFlags
+#' @param user_data gpointer
+#' @param user_data_dnotify DestroyNotify
+#' @return MarkupParseContext
+#' @export
+gMarkupParseContextNew <- function(parser, flags, user_data, user_data_dnotify) {
+  .Call("R_g_markup_parse_context_new", parser, flags, user_data, user_data_dnotify)$result
 }
 
 
@@ -4944,6 +5139,19 @@ gNodeChildPosition <- function(node, child) {
 
 
 #' @rdname glib-other
+#' @title gNodeChildrenForeach
+#'
+#' @param node Node
+#' @param flags TraverseFlags
+#' @param func function — NodeForeachFunc callback
+#' @return Return value from C function
+#' @export
+gNodeChildrenForeach <- function(node, flags, func) {
+  invisible(.Call("R_g_node_children_foreach", node, flags, func))
+}
+
+
+#' @rdname glib-other
 #' @title gNodeDepth
 #'
 #' @param node Node
@@ -5019,6 +5227,21 @@ gNodeNNodes <- function(root, flags) {
 #' @export
 gNodeReverseChildren <- function(node) {
   invisible(.Call("R_g_node_reverse_children", node))
+}
+
+
+#' @rdname glib-other
+#' @title gNodeTraverse
+#'
+#' @param root Node
+#' @param order TraverseType
+#' @param flags TraverseFlags
+#' @param max_depth gint
+#' @param func function — NodeTraverseFunc callback
+#' @return Return value from C function
+#' @export
+gNodeTraverse <- function(root, order, flags, max_depth, func) {
+  invisible(.Call("R_g_node_traverse", root, order, flags, as.integer(max_depth), func))
 }
 
 
@@ -5264,6 +5487,18 @@ gOptionContextSetSummary <- function(context, summary) {
 
 
 #' @rdname glib-other
+#' @title gOptionContextSetTranslateFunc
+#'
+#' @param context OptionContext
+#' @param func function — TranslateFunc callback
+#' @return Return value from C function
+#' @export
+gOptionContextSetTranslateFunc <- function(context, func) {
+  invisible(.Call("R_g_option_context_set_translate_func", context, func))
+}
+
+
+#' @rdname glib-other
 #' @title gOptionContextSetTranslationDomain
 #'
 #' @param context OptionContext
@@ -5272,6 +5507,21 @@ gOptionContextSetSummary <- function(context, summary) {
 #' @export
 gOptionContextSetTranslationDomain <- function(context, domain) {
   invisible(.Call("R_g_option_context_set_translation_domain", context, domain))
+}
+
+
+#' @rdname glib-other
+#' @title gOptionGroupNew
+#'
+#' @param name utf8
+#' @param description utf8
+#' @param help_description utf8
+#' @param user_data gpointer
+#' @param destroy DestroyNotify
+#' @return OptionGroup
+#' @export
+gOptionGroupNew <- function(name, description, help_description, user_data, destroy) {
+  .Call("R_g_option_group_new", name, description, help_description, user_data, destroy)$result
 }
 
 
@@ -5306,6 +5556,18 @@ gOptionGroupFree <- function(group) {
 #' @export
 gOptionGroupRef <- function(group) {
   .Call("R_g_option_group_ref", group)$result
+}
+
+
+#' @rdname glib-other
+#' @title gOptionGroupSetTranslateFunc
+#'
+#' @param group OptionGroup
+#' @param func function — TranslateFunc callback
+#' @return Return value from C function
+#' @export
+gOptionGroupSetTranslateFunc <- function(group, func) {
+  invisible(.Call("R_g_option_group_set_translate_func", group, func))
 }
 
 
@@ -5413,6 +5675,18 @@ gQueueClear <- function(queue) {
 
 
 #' @rdname glib-lists
+#' @title gQueueForeach
+#'
+#' @param queue Queue
+#' @param func function — Func callback
+#' @return Return value from C function
+#' @export
+gQueueForeach <- function(queue, func) {
+  invisible(.Call("R_g_queue_foreach", queue, func))
+}
+
+
+#' @rdname glib-lists
 #' @title gQueueFree
 #'
 #' @param queue Queue
@@ -5420,6 +5694,18 @@ gQueueClear <- function(queue) {
 #' @export
 gQueueFree <- function(queue) {
   invisible(.Call("R_g_queue_free", queue))
+}
+
+
+#' @rdname glib-lists
+#' @title gQueueFreeFull
+#'
+#' @param queue Queue
+#' @param free_func DestroyNotify
+#' @return Return value from C function
+#' @export
+gQueueFreeFull <- function(queue, free_func) {
+  invisible(.Call("R_g_queue_free_full", queue, free_func))
 }
 
 
@@ -5454,6 +5740,19 @@ gQueueIndex <- function(queue, data) {
 #' @export
 gQueueInit <- function(queue) {
   invisible(.Call("R_g_queue_init", queue))
+}
+
+
+#' @rdname glib-lists
+#' @title gQueueInsertSorted
+#'
+#' @param queue Queue
+#' @param data gpointer
+#' @param func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gQueueInsertSorted <- function(queue, data, func) {
+  invisible(.Call("R_g_queue_insert_sorted", queue, data, func))
 }
 
 
@@ -5605,6 +5904,18 @@ gQueueRemoveAll <- function(queue, data) {
 #' @export
 gQueueReverse <- function(queue) {
   invisible(.Call("R_g_queue_reverse", queue))
+}
+
+
+#' @rdname glib-lists
+#' @title gQueueSort
+#'
+#' @param queue Queue
+#' @param compare_func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gQueueSort <- function(queue, compare_func) {
+  invisible(.Call("R_g_queue_sort", queue, compare_func))
 }
 
 
@@ -6065,6 +6376,22 @@ gRegexReplace <- function(regex, string, string_len, start_position, replacement
 
 
 #' @rdname glib-other
+#' @title gRegexReplaceEval
+#'
+#' @param regex Regex
+#' @param string utf8
+#' @param string_len gssize
+#' @param start_position gint
+#' @param match_options RegexMatchFlags
+#' @param eval function — RegexEvalCallback callback
+#' @return utf8
+#' @export
+gRegexReplaceEval <- function(regex, string, string_len, start_position, match_options, eval) {
+  .Call("R_g_regex_replace_eval", regex, string, string_len, as.integer(start_position), match_options, eval)$result
+}
+
+
+#' @rdname glib-other
 #' @title gRegexReplaceLiteral
 #'
 #' @param regex Regex
@@ -6391,6 +6718,19 @@ gScannerScopeAddSymbol <- function(scanner, scope_id, symbol, value) {
 
 
 #' @rdname glib-other
+#' @title gScannerScopeForeachSymbol
+#'
+#' @param scanner Scanner
+#' @param scope_id guint
+#' @param func function — HFunc callback
+#' @return Return value from C function
+#' @export
+gScannerScopeForeachSymbol <- function(scanner, scope_id, func) {
+  invisible(.Call("R_g_scanner_scope_foreach_symbol", scanner, as.integer(scope_id), func))
+}
+
+
+#' @rdname glib-other
 #' @title gScannerScopeLookupSymbol
 #'
 #' @param scanner Scanner
@@ -6469,6 +6809,18 @@ gSequenceAppend <- function(seq, data) {
 
 
 #' @rdname glib-other
+#' @title gSequenceForeach
+#'
+#' @param seq Sequence
+#' @param func function — Func callback
+#' @return Return value from C function
+#' @export
+gSequenceForeach <- function(seq, func) {
+  invisible(.Call("R_g_sequence_foreach", seq, func))
+}
+
+
+#' @rdname glib-other
 #' @title gSequenceFree
 #'
 #' @param seq Sequence
@@ -6525,6 +6877,32 @@ gSequenceGetLength <- function(seq) {
 
 
 #' @rdname glib-other
+#' @title gSequenceInsertSorted
+#'
+#' @param seq Sequence
+#' @param data gpointer
+#' @param cmp_func function — CompareDataFunc callback
+#' @return SequenceIter
+#' @export
+gSequenceInsertSorted <- function(seq, data, cmp_func) {
+  .Call("R_g_sequence_insert_sorted", seq, data, cmp_func)$result
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceInsertSortedIter
+#'
+#' @param seq Sequence
+#' @param data gpointer
+#' @param iter_cmp function — SequenceIterCompareFunc callback
+#' @return SequenceIter
+#' @export
+gSequenceInsertSortedIter <- function(seq, data, iter_cmp) {
+  .Call("R_g_sequence_insert_sorted_iter", seq, data, iter_cmp)$result
+}
+
+
+#' @rdname glib-other
 #' @title gSequenceIsEmpty
 #'
 #' @param seq Sequence
@@ -6532,6 +6910,32 @@ gSequenceGetLength <- function(seq) {
 #' @export
 gSequenceIsEmpty <- function(seq) {
   .Call("R_g_sequence_is_empty", seq)$result
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceLookup
+#'
+#' @param seq Sequence
+#' @param data gpointer
+#' @param cmp_func function — CompareDataFunc callback
+#' @return SequenceIter
+#' @export
+gSequenceLookup <- function(seq, data, cmp_func) {
+  .Call("R_g_sequence_lookup", seq, data, cmp_func)$result
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceLookupIter
+#'
+#' @param seq Sequence
+#' @param data gpointer
+#' @param iter_cmp function — SequenceIterCompareFunc callback
+#' @return SequenceIter
+#' @export
+gSequenceLookupIter <- function(seq, data, iter_cmp) {
+  .Call("R_g_sequence_lookup_iter", seq, data, iter_cmp)$result
 }
 
 
@@ -6544,6 +6948,69 @@ gSequenceIsEmpty <- function(seq) {
 #' @export
 gSequencePrepend <- function(seq, data) {
   .Call("R_g_sequence_prepend", seq, data)$result
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceSearch
+#'
+#' @param seq Sequence
+#' @param data gpointer
+#' @param cmp_func function — CompareDataFunc callback
+#' @return SequenceIter
+#' @export
+gSequenceSearch <- function(seq, data, cmp_func) {
+  .Call("R_g_sequence_search", seq, data, cmp_func)$result
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceSearchIter
+#'
+#' @param seq Sequence
+#' @param data gpointer
+#' @param iter_cmp function — SequenceIterCompareFunc callback
+#' @return SequenceIter
+#' @export
+gSequenceSearchIter <- function(seq, data, iter_cmp) {
+  .Call("R_g_sequence_search_iter", seq, data, iter_cmp)$result
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceSort
+#'
+#' @param seq Sequence
+#' @param cmp_func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gSequenceSort <- function(seq, cmp_func) {
+  invisible(.Call("R_g_sequence_sort", seq, cmp_func))
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceSortIter
+#'
+#' @param seq Sequence
+#' @param cmp_func function — SequenceIterCompareFunc callback
+#' @return Return value from C function
+#' @export
+gSequenceSortIter <- function(seq, cmp_func) {
+  invisible(.Call("R_g_sequence_sort_iter", seq, cmp_func))
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceForeachRange
+#'
+#' @param begin SequenceIter
+#' @param end SequenceIter
+#' @param func function — Func callback
+#' @return Return value from C function
+#' @export
+gSequenceForeachRange <- function(begin, end, func) {
+  invisible(.Call("R_g_sequence_foreach_range", begin, end, func))
 }
 
 
@@ -6639,6 +7106,30 @@ gSequenceRemoveRange <- function(begin, end) {
 #' @export
 gSequenceSet <- function(iter, data) {
   invisible(.Call("R_g_sequence_set", iter, data))
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceSortChanged
+#'
+#' @param iter SequenceIter
+#' @param cmp_func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gSequenceSortChanged <- function(iter, cmp_func) {
+  invisible(.Call("R_g_sequence_sort_changed", iter, cmp_func))
+}
+
+
+#' @rdname glib-other
+#' @title gSequenceSortChangedIter
+#'
+#' @param iter SequenceIter
+#' @param iter_cmp function — SequenceIterCompareFunc callback
+#' @return Return value from C function
+#' @export
+gSequenceSortChangedIter <- function(iter, iter_cmp) {
+  invisible(.Call("R_g_sequence_sort_changed_iter", iter, iter_cmp))
 }
 
 
@@ -6935,6 +7426,18 @@ gSourceRemoveChildSource <- function(source, child_source) {
 #' @export
 gSourceRemovePoll <- function(source, fd) {
   invisible(.Call("R_g_source_remove_poll", source, fd))
+}
+
+
+#' @rdname glib-mainloop
+#' @title gSourceSetCallback
+#'
+#' @param source Source
+#' @param func function — SourceFunc callback
+#' @return Return value from C function
+#' @export
+gSourceSetCallback <- function(source, func) {
+  invisible(.Call("R_g_source_set_callback", source, func))
 }
 
 
@@ -7610,6 +8113,30 @@ gTestSuiteAddSuite <- function(suite, nestedsuite) {
 
 
 #' @rdname glib-other
+#' @title gThreadNew
+#'
+#' @param name utf8
+#' @param func function — ThreadFunc callback
+#' @return Thread
+#' @export
+gThreadNew <- function(name, func) {
+  .Call("R_g_thread_new", name, func)$result
+}
+
+
+#' @rdname glib-other
+#' @title gThreadTryNew
+#'
+#' @param name utf8
+#' @param func function — ThreadFunc callback
+#' @return Thread
+#' @export
+gThreadTryNew <- function(name, func) {
+  .Call("R_g_thread_try_new", name, func)$result
+}
+
+
+#' @rdname glib-other
 #' @title gThreadJoin
 #'
 #' @param thread Thread
@@ -8088,6 +8615,18 @@ gTrashStackPush <- function(stack_p, data_p) {
 
 
 #' @rdname glib-other
+#' @title gTreeNewFull
+#'
+#' @param key_compare_func function — CompareDataFunc callback
+#' @param key_destroy_func DestroyNotify
+#' @return Tree
+#' @export
+gTreeNewFull <- function(key_compare_func, key_destroy_func) {
+  .Call("R_g_tree_new_full", key_compare_func, key_destroy_func)$result
+}
+
+
+#' @rdname glib-other
 #' @title gTreeDestroy
 #'
 #' @param tree Tree
@@ -8095,6 +8634,18 @@ gTrashStackPush <- function(stack_p, data_p) {
 #' @export
 gTreeDestroy <- function(tree) {
   invisible(.Call("R_g_tree_destroy", tree))
+}
+
+
+#' @rdname glib-other
+#' @title gTreeForeach
+#'
+#' @param tree Tree
+#' @param func function — TraverseFunc callback
+#' @return Return value from C function
+#' @export
+gTreeForeach <- function(tree, func) {
+  invisible(.Call("R_g_tree_foreach", tree, func))
 }
 
 
@@ -8194,6 +8745,18 @@ gTreeReplace <- function(tree, key, value) {
 
 
 #' @rdname glib-other
+#' @title gTreeSearch
+#'
+#' @param tree Tree
+#' @param search_func function — CompareFunc callback
+#' @return gpointer
+#' @export
+gTreeSearch <- function(tree, search_func) {
+  .Call("R_g_tree_search", tree, search_func)$result
+}
+
+
+#' @rdname glib-other
 #' @title gTreeSteal
 #'
 #' @param tree Tree
@@ -8202,6 +8765,19 @@ gTreeReplace <- function(tree, key, value) {
 #' @export
 gTreeSteal <- function(tree, key) {
   .Call("R_g_tree_steal", tree, key)$result
+}
+
+
+#' @rdname glib-other
+#' @title gTreeTraverse
+#'
+#' @param tree Tree
+#' @param traverse_func function — TraverseFunc callback
+#' @param traverse_type TraverseType
+#' @return Return value from C function
+#' @export
+gTreeTraverse <- function(tree, traverse_func, traverse_type) {
+  invisible(.Call("R_g_tree_traverse", tree, traverse_func, traverse_type))
 }
 
 
@@ -8437,6 +9013,22 @@ gVariantNewFixedArray <- function(element_type, elements, n_elements, element_si
 #' @export
 gVariantNewFromBytes <- function(type, bytes, trusted) {
   .Call("R_g_variant_new_from_bytes", type, bytes, trusted)$result
+}
+
+
+#' @rdname glib-variants
+#' @title gVariantNewFromData
+#'
+#' @param type VariantType
+#' @param data guint8
+#' @param size gsize
+#' @param trusted gboolean
+#' @param notify DestroyNotify
+#' @param user_data gpointer
+#' @return Variant
+#' @export
+gVariantNewFromData <- function(type, data, size, trusted, notify, user_data) {
+  .Call("R_g_variant_new_from_data", type, as.integer(data), as.integer(size), trusted, notify, user_data)$result
 }
 
 
@@ -10055,6 +10647,17 @@ gAssertionMessageError <- function(domain, file, line, func, expr, error, error_
 
 
 #' @rdname glib-other
+#' @title gAtexit
+#'
+#' @param func function — VoidFunc callback
+#' @return Return value from C function
+#' @export
+gAtexit <- function(func) {
+  invisible(.Call("R_g_atexit", func))
+}
+
+
+#' @rdname glib-other
 #' @title gBase64Decode
 #'
 #' @param text utf8
@@ -10251,6 +10854,19 @@ glibCheckVersion <- function(required_major, required_minor, required_micro) {
 
 
 #' @rdname glib-other
+#' @title gChildWatchAddFull
+#'
+#' @param priority gint
+#' @param pid Pid
+#' @param function_ function — ChildWatchFunc callback
+#' @return guint
+#' @export
+gChildWatchAddFull <- function(priority, pid, function_) {
+  .Call("R_g_child_watch_add_full", as.integer(priority), pid, function_)$result
+}
+
+
+#' @rdname glib-other
 #' @title gChildWatchSourceNew
 #'
 #' @param pid Pid
@@ -10427,6 +11043,18 @@ gCreat <- function(filename, mode) {
 
 
 #' @rdname glib-other
+#' @title gDatalistForeach
+#'
+#' @param datalist Data
+#' @param func function — DataForeachFunc callback
+#' @return Return value from C function
+#' @export
+gDatalistForeach <- function(datalist, func) {
+  invisible(.Call("R_g_datalist_foreach", datalist, func))
+}
+
+
+#' @rdname glib-other
 #' @title gDatalistGetData
 #'
 #' @param datalist Data
@@ -10493,6 +11121,18 @@ gDatalistUnsetFlags <- function(datalist, flags) {
 #' @export
 gDatasetDestroy <- function(dataset_location) {
   invisible(.Call("R_g_dataset_destroy", dataset_location))
+}
+
+
+#' @rdname glib-other
+#' @title gDatasetForeach
+#'
+#' @param dataset_location gpointer
+#' @param func function — DataForeachFunc callback
+#' @return Return value from C function
+#' @export
+gDatasetForeach <- function(dataset_location, func) {
+  invisible(.Call("R_g_dataset_foreach", dataset_location, func))
 }
 
 
@@ -11206,6 +11846,18 @@ gHostnameToUnicode <- function(hostname) {
 
 
 #' @rdname glib-mainloop
+#' @title gIdleAddFull
+#'
+#' @param priority gint
+#' @param function_ function — SourceFunc callback
+#' @return guint
+#' @export
+gIdleAddFull <- function(priority, function_) {
+  .Call("R_g_idle_add_full", as.integer(priority), function_)$result
+}
+
+
+#' @rdname glib-mainloop
 #' @title gIdleRemoveByData
 #'
 #' @param data gpointer
@@ -11291,6 +11943,20 @@ gInternStaticString <- function(string) {
 #' @export
 gInternString <- function(string) {
   .Call("R_g_intern_string", string)$result
+}
+
+
+#' @rdname gio-streams
+#' @title gIoAddWatchFull
+#'
+#' @param channel IOChannel
+#' @param priority gint
+#' @param condition IOCondition
+#' @param func function — IOFunc callback
+#' @return guint
+#' @export
+gIoAddWatchFull <- function(channel, priority, condition, func) {
+  .Call("R_g_io_add_watch_full", channel, as.integer(priority), condition, func)$result
 }
 
 
@@ -11386,6 +12052,30 @@ gLogSetAlwaysFatal <- function(fatal_mask) {
 #' @export
 gLogSetFatalMask <- function(log_domain, fatal_mask) {
   .Call("R_g_log_set_fatal_mask", log_domain, fatal_mask)$result
+}
+
+
+#' @rdname glib-errors
+#' @title gLogSetHandlerFull
+#'
+#' @param log_domain utf8
+#' @param log_levels LogLevelFlags
+#' @param log_func function — LogFunc callback
+#' @return guint
+#' @export
+gLogSetHandlerFull <- function(log_domain, log_levels, log_func) {
+  .Call("R_g_log_set_handler_full", log_domain, log_levels, log_func)$result
+}
+
+
+#' @rdname glib-errors
+#' @title gLogSetWriterFunc
+#'
+#' @param func function — LogWriterFunc callback
+#' @return Return value from C function
+#' @export
+gLogSetWriterFunc <- function(func) {
+  invisible(.Call("R_g_log_set_writer_func", func))
 }
 
 
@@ -11820,6 +12510,20 @@ gPropagateError <- function(src) {
 
 
 #' @rdname glib-other
+#' @title gQsortWithData
+#'
+#' @param pbase gpointer
+#' @param total_elems gint
+#' @param size gsize
+#' @param compare_func function — CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gQsortWithData <- function(pbase, total_elems, size, compare_func) {
+  invisible(.Call("R_g_qsort_with_data", pbase, as.integer(total_elems), as.integer(size), compare_func))
+}
+
+
+#' @rdname glib-other
 #' @title gQuarkFromStaticString
 #'
 #' @param string utf8
@@ -12185,6 +12889,36 @@ gSpacedPrimesClosest <- function(num) {
 
 
 #' @rdname glib-other
+#' @title gSpawnAsync
+#'
+#' @param working_directory filename
+#' @param argv filename
+#' @param envp filename
+#' @param flags SpawnFlags
+#' @param child_setup function — SpawnChildSetupFunc callback
+#' @return gboolean
+#' @export
+gSpawnAsync <- function(working_directory, argv, envp, flags, child_setup) {
+  .Call("R_g_spawn_async", working_directory, argv, envp, flags, child_setup)
+}
+
+
+#' @rdname glib-other
+#' @title gSpawnAsyncWithPipes
+#'
+#' @param working_directory filename
+#' @param argv filename
+#' @param envp filename
+#' @param flags SpawnFlags
+#' @param child_setup function — SpawnChildSetupFunc callback
+#' @return gboolean
+#' @export
+gSpawnAsyncWithPipes <- function(working_directory, argv, envp, flags, child_setup) {
+  .Call("R_g_spawn_async_with_pipes", working_directory, argv, envp, flags, child_setup)
+}
+
+
+#' @rdname glib-other
 #' @title gSpawnCheckExitStatus
 #'
 #' @param wait_status gint
@@ -12245,6 +12979,21 @@ gSpawnErrorQuark <- function() {
 #' @export
 gSpawnExitErrorQuark <- function() {
   .Call("R_g_spawn_exit_error_quark")$result
+}
+
+
+#' @rdname glib-other
+#' @title gSpawnSync
+#'
+#' @param working_directory filename
+#' @param argv filename
+#' @param envp filename
+#' @param flags SpawnFlags
+#' @param child_setup function — SpawnChildSetupFunc callback
+#' @return gboolean
+#' @export
+gSpawnSync <- function(working_directory, argv, envp, flags, child_setup) {
+  .Call("R_g_spawn_sync", working_directory, argv, envp, flags, child_setup)
 }
 
 
@@ -12746,6 +13495,44 @@ gStrvLength <- function(str_array) {
 
 
 #' @rdname glib-other
+#' @title gTestAddDataFunc
+#'
+#' @param testpath utf8
+#' @param test_data gpointer
+#' @param test_func function — TestDataFunc callback
+#' @return Return value from C function
+#' @export
+gTestAddDataFunc <- function(testpath, test_data, test_func) {
+  invisible(.Call("R_g_test_add_data_func", testpath, test_data, test_func))
+}
+
+
+#' @rdname glib-other
+#' @title gTestAddDataFuncFull
+#'
+#' @param testpath utf8
+#' @param test_data gpointer
+#' @param test_func function — TestDataFunc callback
+#' @return Return value from C function
+#' @export
+gTestAddDataFuncFull <- function(testpath, test_data, test_func) {
+  invisible(.Call("R_g_test_add_data_func_full", testpath, test_data, test_func))
+}
+
+
+#' @rdname glib-other
+#' @title gTestAddFunc
+#'
+#' @param testpath utf8
+#' @param test_func function — TestFunc callback
+#' @return Return value from C function
+#' @export
+gTestAddFunc <- function(testpath, test_func) {
+  invisible(.Call("R_g_test_add_func", testpath, test_func))
+}
+
+
+#' @rdname glib-other
 #' @title gTestAssertExpectedMessagesInternal
 #'
 #' @param domain utf8
@@ -12844,6 +13631,18 @@ gTestIncomplete <- function(msg) {
 #' @export
 gTestLogTypeName <- function(log_type) {
   .Call("R_g_test_log_type_name", log_type)$result
+}
+
+
+#' @rdname glib-other
+#' @title gTestQueueDestroy
+#'
+#' @param destroy_func DestroyNotify
+#' @param destroy_data gpointer
+#' @return Return value from C function
+#' @export
+gTestQueueDestroy <- function(destroy_func, destroy_data) {
+  invisible(.Call("R_g_test_queue_destroy", destroy_func, destroy_data))
 }
 
 
@@ -13042,6 +13841,32 @@ gTestTrapReachedTimeout <- function() {
 #' @export
 gTestTrapSubprocess <- function(test_path, usec_timeout, test_flags) {
   invisible(.Call("R_g_test_trap_subprocess", test_path, as.integer(usec_timeout), test_flags))
+}
+
+
+#' @rdname glib-mainloop
+#' @title gTimeoutAddFull
+#'
+#' @param priority gint
+#' @param interval guint
+#' @param function_ function — SourceFunc callback
+#' @return guint
+#' @export
+gTimeoutAddFull <- function(priority, interval, function_) {
+  .Call("R_g_timeout_add_full", as.integer(priority), as.integer(interval), function_)$result
+}
+
+
+#' @rdname glib-mainloop
+#' @title gTimeoutAddSecondsFull
+#'
+#' @param priority gint
+#' @param interval guint
+#' @param function_ function — SourceFunc callback
+#' @return guint
+#' @export
+gTimeoutAddSecondsFull <- function(priority, interval, function_) {
+  .Call("R_g_timeout_add_seconds_full", as.integer(priority), as.integer(interval), function_)$result
 }
 
 

@@ -89,6 +89,7 @@
 \alias{gtkEntryCompletionInsertPrefix}
 \alias{gtkEntryCompletionSetInlineCompletion}
 \alias{gtkEntryCompletionSetInlineSelection}
+\alias{gtkEntryCompletionSetMatchFunc}
 \alias{gtkEntryCompletionSetMinimumKeyLength}
 \alias{gtkEntryCompletionSetModel}
 \alias{gtkEntryCompletionSetPopupCompletion}
@@ -612,6 +613,8 @@ gtkEntryCompletionSetInlineCompletion(completion, inline_completion)
 
 gtkEntryCompletionSetInlineSelection(completion, inline_selection)
 
+gtkEntryCompletionSetMatchFunc(completion, func)
+
 gtkEntryCompletionSetMinimumKeyLength(completion, length)
 
 gtkEntryCompletionSetModel(completion, model)
@@ -957,7 +960,7 @@ gtkTextIterBackwardCursorPosition(iter)
 
 gtkTextIterBackwardCursorPositions(iter, count)
 
-gtkTextIterBackwardFindChar(iter, pred, user_data, limit)
+gtkTextIterBackwardFindChar(iter, pred, limit)
 
 gtkTextIterBackwardLine(iter)
 
@@ -1013,7 +1016,7 @@ gtkTextIterForwardCursorPosition(iter)
 
 gtkTextIterForwardCursorPositions(iter, count)
 
-gtkTextIterForwardFindChar(iter, pred, user_data, limit)
+gtkTextIterForwardFindChar(iter, pred, limit)
 
 gtkTextIterForwardLine(iter)
 
@@ -1153,7 +1156,7 @@ gtkTextTagTableNew()
 
 gtkTextTagTableAdd(table, tag)
 
-gtkTextTagTableForeach(table, func, data)
+gtkTextTagTableForeach(table, func)
 
 gtkTextTagTableGetSize(table)
 
@@ -1396,6 +1399,8 @@ gtkTextViewWindowToBufferCoords(text_view, win, window_x, window_y)
 
 \item{inline_selection}{gboolean}
 
+\item{func}{function — TextTagTableForeach callback}
+
 \item{length}{gint}
 
 \item{popup_completion}{gboolean}
@@ -1498,9 +1503,7 @@ gtkTextViewWindowToBufferCoords(text_view, win, window_x, window_y)
 
 \item{count}{gint}
 
-\item{pred}{TextCharPredicate}
-
-\item{user_data}{gpointer}
+\item{pred}{function — TextCharPredicate callback}
 
 \item{limit}{TextIter}
 
@@ -1527,10 +1530,6 @@ gtkTextViewWindowToBufferCoords(text_view, win, window_x, window_y)
 \item{size_changed}{gboolean}
 
 \item{priority}{gint}
-
-\item{func}{TextTagTableForeach}
-
-\item{data}{gpointer}
 
 \item{text_view}{TextView}
 
@@ -1748,6 +1747,8 @@ gboolean
 gboolean
 
 gint
+
+Return value from C function
 
 Return value from C function
 
@@ -2621,6 +2622,8 @@ gtkEntryCompletionInsertPrefix
 gtkEntryCompletionSetInlineCompletion
 
 gtkEntryCompletionSetInlineSelection
+
+gtkEntryCompletionSetMatchFunc
 
 gtkEntryCompletionSetMinimumKeyLength
 

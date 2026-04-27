@@ -406,41 +406,18 @@ gObjectSetDouble <- function(object, property, value) {
   invisible(.Call("R_g_object_set_double", object, property, as.numeric(value)))
 }
 
-#' Print method for GObject external pointers
-#' @param x External pointer with glib_type attribute
-#' @param ... Additional arguments (ignored)
+#' Pretty-print method for RGtk4 wrapped pointers.
+#'
+#' All extptrs returned from auto-generated bindings carry a trailing class
+#' "RGtkObject" plus the GLib type name. This method prints them as
+#'   <TypeName 0x...>
+#' instead of the default base-R "<pointer: 0x...>" with a noisy attribute
+#' dump.
+#'
 #' @export
-print.GObject <- function(x, ...) {
-  if (typeof(x) != "externalptr") {
-    NextMethod()
-    return(invisible(x))
-  }
-
-  classes <- class(x)
-  type_name <- classes[1]
-
+print.RGtkObject <- function(x, ...) {
+  type <- class(x)[1]
   addr <- .Call("R_extptr_address", x, PACKAGE = "Rgtk4")
-  if (!is.null(addr)) {
-    cat(sprintf("<%s %s>\n", type_name, addr))
-  } else {
-    cat(sprintf("<%s>\n", type_name))
-  }
+  cat(sprintf("<%s %s>\n", type, if (is.null(addr)) "?" else addr))
   invisible(x)
-}
-
-# Manual wrapper for gdk_pixbuf_new_from_data
-# The generator may skip this due to callback parameter
-gdkPixbufNewFromData <- function(data, colorspace = 0L, has_alpha = TRUE,
-                                 bits_per_sample = 8L, width, height, rowstride) {
-  # data: raw vector containing pixel data
-  # colorspace: 0 = GDK_COLORSPACE_RGB
-  # has_alpha: TRUE if data includes alpha channel
-  # bits_per_sample: typically 8
-  # width, height: image dimensions
-  # rowstride: bytes per row (typically width * channels)
-
-  # Call the C function with NULL callback (R manages data lifetime)
-  .Call("R_gdk_pixbuf_new_from_data", data, as.integer(colorspace),
-        has_alpha, as.integer(bits_per_sample), as.integer(width),
-        as.integer(height), as.integer(rowstride))
 }

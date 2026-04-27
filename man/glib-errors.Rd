@@ -9,6 +9,8 @@
 \alias{gLogRemoveHandler}
 \alias{gLogSetAlwaysFatal}
 \alias{gLogSetFatalMask}
+\alias{gLogSetHandlerFull}
+\alias{gLogSetWriterFunc}
 \alias{gLogStructuredArray}
 \alias{gLogVariant}
 \alias{gLogWriterDefault}
@@ -34,6 +36,10 @@ gLogRemoveHandler(log_domain, handler_id)
 gLogSetAlwaysFatal(fatal_mask)
 
 gLogSetFatalMask(log_domain, fatal_mask)
+
+gLogSetHandlerFull(log_domain, log_levels, log_func)
+
+gLogSetWriterFunc(func)
 
 gLogStructuredArray(log_level, fields, n_fields)
 
@@ -70,6 +76,12 @@ gLogWriterSupportsColor(output_fd)
 
 \item{fatal_mask}{LogLevelFlags}
 
+\item{log_levels}{LogLevelFlags}
+
+\item{log_func}{function — LogFunc callback}
+
+\item{func}{function — LogWriterFunc callback}
+
 \item{fields}{LogField}
 
 \item{n_fields}{gsize}
@@ -96,6 +108,10 @@ Return value from C function
 LogLevelFlags
 
 LogLevelFlags
+
+guint
+
+Return value from C function
 
 Return value from C function
 
@@ -129,6 +145,10 @@ gLogRemoveHandler
 gLogSetAlwaysFatal
 
 gLogSetFatalMask
+
+gLogSetHandlerFull
+
+gLogSetWriterFunc
 
 gLogStructuredArray
 

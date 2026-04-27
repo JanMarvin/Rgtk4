@@ -52,6 +52,7 @@
 \alias{gtkAdjustmentSetStepIncrement}
 \alias{gtkAdjustmentSetUpper}
 \alias{gtkAdjustmentSetValue}
+\alias{gtkAlertDialogChoose}
 \alias{gtkAlertDialogChooseFinish}
 \alias{gtkAlertDialogGetButtons}
 \alias{gtkAlertDialogGetCancelButton}
@@ -133,6 +134,7 @@
 \alias{gtkAssistantRemoveActionWidget}
 \alias{gtkAssistantRemovePage}
 \alias{gtkAssistantSetCurrentPage}
+\alias{gtkAssistantSetForwardPageFunc}
 \alias{gtkAssistantSetPageComplete}
 \alias{gtkAssistantSetPageTitle}
 \alias{gtkAssistantSetPageType}
@@ -221,12 +223,14 @@
 \alias{gtkBuilderValueFromString}
 \alias{gtkBuilderValueFromStringType}
 \alias{gtkBuilderCscopeNew}
+\alias{gtkBuilderCscopeAddCallbackSymbol}
 \alias{gtkBuilderErrorQuark}
 \alias{gtkBuilderListItemFactoryNewFromBytes}
 \alias{gtkBuilderListItemFactoryNewFromResource}
 \alias{gtkBuilderListItemFactoryGetBytes}
 \alias{gtkBuilderListItemFactoryGetResource}
 \alias{gtkBuilderListItemFactoryGetScope}
+\alias{gtkCclosureExpressionNew}
 \alias{gtkCalendarNew}
 \alias{gtkCalendarClearMarks}
 \alias{gtkCalendarGetDate}
@@ -240,6 +244,7 @@
 \alias{gtkCalendarSetShowHeading}
 \alias{gtkCalendarSetShowWeekNumbers}
 \alias{gtkCalendarUnmarkDay}
+\alias{gtkCallbackActionNew}
 \alias{gtkCellAreaActivate}
 \alias{gtkCellAreaActivateCell}
 \alias{gtkCellAreaAdd}
@@ -254,6 +259,8 @@
 \alias{gtkCellAreaCreateContext}
 \alias{gtkCellAreaEvent}
 \alias{gtkCellAreaFocus}
+\alias{gtkCellAreaForeach}
+\alias{gtkCellAreaForeachAlloc}
 \alias{gtkCellAreaGetCellAllocation}
 \alias{gtkCellAreaGetCellAtPosition}
 \alias{gtkCellAreaGetCurrentPathString}
@@ -306,6 +313,7 @@
 \alias{gtkCellLayoutPackEnd}
 \alias{gtkCellLayoutPackStart}
 \alias{gtkCellLayoutReorder}
+\alias{gtkCellLayoutSetCellDataFunc}
 \alias{gtkCellRendererActivate}
 \alias{gtkCellRendererGetAlignedArea}
 \alias{gtkCellRendererGetAlignment}
@@ -400,6 +408,7 @@
 \alias{gtkColorChooserDialogNew}
 \alias{gtkColorChooserWidgetNew}
 \alias{gtkColorDialogNew}
+\alias{gtkColorDialogChooseRgba}
 \alias{gtkColorDialogChooseRgbaFinish}
 \alias{gtkColorDialogGetModal}
 \alias{gtkColorDialogGetTitle}
@@ -508,6 +517,7 @@
 \alias{gtkComboBoxSetIdColumn}
 \alias{gtkComboBoxSetModel}
 \alias{gtkComboBoxSetPopupFixedWidth}
+\alias{gtkComboBoxSetRowSeparatorFunc}
 \alias{gtkComboBoxTextNew}
 \alias{gtkComboBoxTextNewWithEntry}
 \alias{gtkComboBoxTextAppend}
@@ -573,6 +583,11 @@
 \alias{gtkCssSectionRef}
 \alias{gtkCssSectionToString}
 \alias{gtkCssSectionUnref}
+\alias{gtkCustomFilterNew}
+\alias{gtkCustomFilterSetFilterFunc}
+\alias{gtkCustomLayoutNew}
+\alias{gtkCustomSorterNew}
+\alias{gtkCustomSorterSetSortFunc}
 \alias{gtkDirectoryListNew}
 \alias{gtkDirectoryListGetAttributes}
 \alias{gtkDirectoryListGetError}
@@ -602,6 +617,7 @@
 \alias{gtkDrawingAreaGetContentWidth}
 \alias{gtkDrawingAreaSetContentHeight}
 \alias{gtkDrawingAreaSetContentWidth}
+\alias{gtkDrawingAreaSetDrawFunc}
 \alias{gtkDropControllerMotionNew}
 \alias{gtkDropControllerMotionContainsPointer}
 \alias{gtkDropControllerMotionGetDrop}
@@ -729,6 +745,7 @@
 \alias{gtkExpressionIsStatic}
 \alias{gtkExpressionRef}
 \alias{gtkExpressionUnref}
+\alias{gtkExpressionWatch}
 \alias{gtkExpressionWatchEvaluate}
 \alias{gtkExpressionWatchRef}
 \alias{gtkExpressionWatchUnref}
@@ -742,10 +759,15 @@
 \alias{gtkFileDialogGetInitialName}
 \alias{gtkFileDialogGetModal}
 \alias{gtkFileDialogGetTitle}
+\alias{gtkFileDialogOpen}
 \alias{gtkFileDialogOpenFinish}
+\alias{gtkFileDialogOpenMultiple}
 \alias{gtkFileDialogOpenMultipleFinish}
+\alias{gtkFileDialogSave}
 \alias{gtkFileDialogSaveFinish}
+\alias{gtkFileDialogSelectFolder}
 \alias{gtkFileDialogSelectFolderFinish}
+\alias{gtkFileDialogSelectMultipleFolders}
 \alias{gtkFileDialogSelectMultipleFoldersFinish}
 \alias{gtkFileDialogSetAcceptLabel}
 \alias{gtkFileDialogSetDefaultFilter}
@@ -758,7 +780,9 @@
 \alias{gtkFileLauncherNew}
 \alias{gtkFileLauncherGetAlwaysAsk}
 \alias{gtkFileLauncherGetFile}
+\alias{gtkFileLauncherLaunch}
 \alias{gtkFileLauncherLaunchFinish}
+\alias{gtkFileLauncherOpenContainingFolder}
 \alias{gtkFileLauncherOpenContainingFolderFinish}
 \alias{gtkFileLauncherSetAlwaysAsk}
 \alias{gtkFileLauncherSetFile}
@@ -789,6 +813,7 @@
 \alias{gtkFlattenListModelSetModel}
 \alias{gtkFlowBoxNew}
 \alias{gtkFlowBoxAppend}
+\alias{gtkFlowBoxBindModel}
 \alias{gtkFlowBoxGetActivateOnSingleClick}
 \alias{gtkFlowBoxGetChildAtIndex}
 \alias{gtkFlowBoxGetChildAtPos}
@@ -807,14 +832,17 @@
 \alias{gtkFlowBoxRemoveAll}
 \alias{gtkFlowBoxSelectAll}
 \alias{gtkFlowBoxSelectChild}
+\alias{gtkFlowBoxSelectedForeach}
 \alias{gtkFlowBoxSetActivateOnSingleClick}
 \alias{gtkFlowBoxSetColumnSpacing}
+\alias{gtkFlowBoxSetFilterFunc}
 \alias{gtkFlowBoxSetHadjustment}
 \alias{gtkFlowBoxSetHomogeneous}
 \alias{gtkFlowBoxSetMaxChildrenPerLine}
 \alias{gtkFlowBoxSetMinChildrenPerLine}
 \alias{gtkFlowBoxSetRowSpacing}
 \alias{gtkFlowBoxSetSelectionMode}
+\alias{gtkFlowBoxSetSortFunc}
 \alias{gtkFlowBoxSetVadjustment}
 \alias{gtkFlowBoxUnselectAll}
 \alias{gtkFlowBoxUnselectChild}
@@ -845,6 +873,7 @@
 \alias{gtkFontChooserGetLevel}
 \alias{gtkFontChooserGetPreviewText}
 \alias{gtkFontChooserGetShowPreviewEntry}
+\alias{gtkFontChooserSetFilterFunc}
 \alias{gtkFontChooserSetFont}
 \alias{gtkFontChooserSetFontDesc}
 \alias{gtkFontChooserSetFontMap}
@@ -855,8 +884,12 @@
 \alias{gtkFontChooserDialogNew}
 \alias{gtkFontChooserWidgetNew}
 \alias{gtkFontDialogNew}
+\alias{gtkFontDialogChooseFace}
 \alias{gtkFontDialogChooseFaceFinish}
+\alias{gtkFontDialogChooseFamily}
 \alias{gtkFontDialogChooseFamilyFinish}
+\alias{gtkFontDialogChooseFont}
+\alias{gtkFontDialogChooseFontAndFeatures}
 \alias{gtkFontDialogChooseFontAndFeaturesFinish}
 \alias{gtkFontDialogChooseFontFinish}
 \alias{gtkFontDialogGetFilter}
@@ -1061,6 +1094,7 @@
 \alias{gtkLinkButtonSetVisited}
 \alias{gtkListBoxNew}
 \alias{gtkListBoxAppend}
+\alias{gtkListBoxBindModel}
 \alias{gtkListBoxDragHighlightRow}
 \alias{gtkListBoxDragUnhighlightRow}
 \alias{gtkListBoxGetActivateOnSingleClick}
@@ -1080,11 +1114,15 @@
 \alias{gtkListBoxRemoveAll}
 \alias{gtkListBoxSelectAll}
 \alias{gtkListBoxSelectRow}
+\alias{gtkListBoxSelectedForeach}
 \alias{gtkListBoxSetActivateOnSingleClick}
 \alias{gtkListBoxSetAdjustment}
+\alias{gtkListBoxSetFilterFunc}
+\alias{gtkListBoxSetHeaderFunc}
 \alias{gtkListBoxSetPlaceholder}
 \alias{gtkListBoxSetSelectionMode}
 \alias{gtkListBoxSetShowSeparators}
+\alias{gtkListBoxSetSortFunc}
 \alias{gtkListBoxUnselectAll}
 \alias{gtkListBoxUnselectRow}
 \alias{gtkListBoxRowNew}
@@ -1139,8 +1177,10 @@
 \alias{gtkLockButtonNew}
 \alias{gtkLockButtonGetPermission}
 \alias{gtkLockButtonSetPermission}
+\alias{gtkMapListModelNew}
 \alias{gtkMapListModelGetModel}
 \alias{gtkMapListModelHasMap}
+\alias{gtkMapListModelSetMapFunc}
 \alias{gtkMapListModelSetModel}
 \alias{gtkMediaControlsNew}
 \alias{gtkMediaControlsGetMediaStream}
@@ -1432,6 +1472,7 @@
 \alias{gtkScaleGetValuePos}
 \alias{gtkScaleSetDigits}
 \alias{gtkScaleSetDrawValue}
+\alias{gtkScaleSetFormatValueFunc}
 \alias{gtkScaleSetHasOrigin}
 \alias{gtkScaleSetValuePos}
 \alias{gtkScaleButtonNew}
@@ -1806,6 +1847,7 @@
 \alias{gtkTreeExpanderSetListRow}
 \alias{gtkTreeIterCopy}
 \alias{gtkTreeIterFree}
+\alias{gtkTreeListModelNew}
 \alias{gtkTreeListModelGetAutoexpand}
 \alias{gtkTreeListModelGetChildRow}
 \alias{gtkTreeListModelGetModel}
@@ -1853,10 +1895,13 @@
 \alias{gtkTreeRowReferenceInserted}
 \alias{gtkTreeSortableGetSortColumnId}
 \alias{gtkTreeSortableHasDefaultSortFunc}
+\alias{gtkTreeSortableSetDefaultSortFunc}
 \alias{gtkTreeSortableSetSortColumnId}
+\alias{gtkTreeSortableSetSortFunc}
 \alias{gtkTreeSortableSortColumnChanged}
 \alias{gtkUriLauncherNew}
 \alias{gtkUriLauncherGetUri}
+\alias{gtkUriLauncherLaunch}
 \alias{gtkUriLauncherLaunchFinish}
 \alias{gtkUriLauncherSetUri}
 \alias{gtkVideoNew}
@@ -1923,6 +1968,7 @@
 \alias{gtkRgbToHsv}
 \alias{gtkSetDebugFlags}
 \alias{gtkShowUri}
+\alias{gtkShowUriFull}
 \alias{gtkShowUriFullFinish}
 \alias{gtkTestAccessibleAssertionMessageRole}
 \alias{gtkTestAccessibleHasProperty}
@@ -2056,6 +2102,8 @@ gtkAdjustmentSetStepIncrement(adjustment, step_increment)
 gtkAdjustmentSetUpper(adjustment, upper)
 
 gtkAdjustmentSetValue(adjustment, value)
+
+gtkAlertDialogChoose(self, parent, cancellable, callback)
 
 gtkAlertDialogChooseFinish(self, result)
 
@@ -2218,6 +2266,8 @@ gtkAssistantRemoveActionWidget(assistant, child)
 gtkAssistantRemovePage(assistant, page_num)
 
 gtkAssistantSetCurrentPage(assistant, page_num)
+
+gtkAssistantSetForwardPageFunc(assistant, page_func)
 
 gtkAssistantSetPageComplete(assistant, page, complete)
 
@@ -2395,6 +2445,8 @@ gtkBuilderValueFromStringType(builder, type, string)
 
 gtkBuilderCscopeNew()
 
+gtkBuilderCscopeAddCallbackSymbol(self, callback_name, callback_symbol)
+
 gtkBuilderErrorQuark()
 
 gtkBuilderListItemFactoryNewFromBytes(scope, bytes)
@@ -2406,6 +2458,15 @@ gtkBuilderListItemFactoryGetBytes(self)
 gtkBuilderListItemFactoryGetResource(self)
 
 gtkBuilderListItemFactoryGetScope(self)
+
+gtkCclosureExpressionNew(
+  value_type,
+  marshal,
+  n_params,
+  params,
+  callback_func,
+  user_destroy
+)
 
 gtkCalendarNew()
 
@@ -2432,6 +2493,8 @@ gtkCalendarSetShowHeading(self, value)
 gtkCalendarSetShowWeekNumbers(self, value)
 
 gtkCalendarUnmarkDay(calendar, day)
+
+gtkCallbackActionNew(callback)
 
 gtkCellAreaActivate(area, context, widget, cell_area, flags, edit_only)
 
@@ -2460,6 +2523,17 @@ gtkCellAreaCreateContext(area)
 gtkCellAreaEvent(area, context, widget, event, cell_area, flags)
 
 gtkCellAreaFocus(area, direction)
+
+gtkCellAreaForeach(area, callback)
+
+gtkCellAreaForeachAlloc(
+  area,
+  context,
+  widget,
+  cell_area,
+  background_area,
+  callback
+)
 
 gtkCellAreaGetCellAllocation(area, context, widget, renderer, cell_area)
 
@@ -2573,6 +2647,8 @@ gtkCellLayoutPackEnd(cell_layout, cell, expand)
 gtkCellLayoutPackStart(cell_layout, cell, expand)
 
 gtkCellLayoutReorder(cell_layout, cell, position)
+
+gtkCellLayoutSetCellDataFunc(cell_layout, cell, func)
 
 gtkCellRendererActivate(
   cell,
@@ -2791,6 +2867,8 @@ gtkColorChooserWidgetNew()
 
 gtkColorDialogNew()
 
+gtkColorDialogChooseRgba(self, parent, initial_color, cancellable, callback)
+
 gtkColorDialogChooseRgbaFinish(self, result)
 
 gtkColorDialogGetModal(self)
@@ -3007,6 +3085,8 @@ gtkComboBoxSetModel(combo_box, model)
 
 gtkComboBoxSetPopupFixedWidth(combo_box, fixed)
 
+gtkComboBoxSetRowSeparatorFunc(combo_box, func)
+
 gtkComboBoxTextNew()
 
 gtkComboBoxTextNewWithEntry()
@@ -3159,6 +3239,16 @@ gtkCssSectionToString(section)
 
 gtkCssSectionUnref(section)
 
+gtkCustomFilterNew(match_func)
+
+gtkCustomFilterSetFilterFunc(self, match_func)
+
+gtkCustomLayoutNew(request_mode, measure, allocate)
+
+gtkCustomSorterNew(sort_func)
+
+gtkCustomSorterSetSortFunc(self, sort_func)
+
 gtkDirectoryListNew(attributes, file)
 
 gtkDirectoryListGetAttributes(self)
@@ -3216,6 +3306,8 @@ gtkDrawingAreaGetContentWidth(self)
 gtkDrawingAreaSetContentHeight(self, height)
 
 gtkDrawingAreaSetContentWidth(self, width)
+
+gtkDrawingAreaSetDrawFunc(self, draw_func)
 
 gtkDropControllerMotionNew()
 
@@ -3471,6 +3563,8 @@ gtkExpressionRef(self)
 
 gtkExpressionUnref(self)
 
+gtkExpressionWatch(self, this_, notify)
+
 gtkExpressionWatchEvaluate(watch, value)
 
 gtkExpressionWatchRef(watch)
@@ -3497,13 +3591,23 @@ gtkFileDialogGetModal(self)
 
 gtkFileDialogGetTitle(self)
 
+gtkFileDialogOpen(self, parent, cancellable, callback)
+
 gtkFileDialogOpenFinish(self, result)
+
+gtkFileDialogOpenMultiple(self, parent, cancellable, callback)
 
 gtkFileDialogOpenMultipleFinish(self, result)
 
+gtkFileDialogSave(self, parent, cancellable, callback)
+
 gtkFileDialogSaveFinish(self, result)
 
+gtkFileDialogSelectFolder(self, parent, cancellable, callback)
+
 gtkFileDialogSelectFolderFinish(self, result)
+
+gtkFileDialogSelectMultipleFolders(self, parent, cancellable, callback)
 
 gtkFileDialogSelectMultipleFoldersFinish(self, result)
 
@@ -3529,7 +3633,11 @@ gtkFileLauncherGetAlwaysAsk(self)
 
 gtkFileLauncherGetFile(self)
 
+gtkFileLauncherLaunch(self, parent, cancellable, callback)
+
 gtkFileLauncherLaunchFinish(self, result)
+
+gtkFileLauncherOpenContainingFolder(self, parent, cancellable, callback)
 
 gtkFileLauncherOpenContainingFolderFinish(self, result)
 
@@ -3591,6 +3699,8 @@ gtkFlowBoxNew()
 
 gtkFlowBoxAppend(self, child)
 
+gtkFlowBoxBindModel(box, model, create_widget_func)
+
 gtkFlowBoxGetActivateOnSingleClick(box)
 
 gtkFlowBoxGetChildAtIndex(box, idx)
@@ -3627,9 +3737,13 @@ gtkFlowBoxSelectAll(box)
 
 gtkFlowBoxSelectChild(box, child)
 
+gtkFlowBoxSelectedForeach(box, func)
+
 gtkFlowBoxSetActivateOnSingleClick(box, single)
 
 gtkFlowBoxSetColumnSpacing(box, spacing)
+
+gtkFlowBoxSetFilterFunc(box, filter_func)
 
 gtkFlowBoxSetHadjustment(box, adjustment)
 
@@ -3642,6 +3756,8 @@ gtkFlowBoxSetMinChildrenPerLine(box, n_children)
 gtkFlowBoxSetRowSpacing(box, spacing)
 
 gtkFlowBoxSetSelectionMode(box, mode)
+
+gtkFlowBoxSetSortFunc(box, sort_func)
 
 gtkFlowBoxSetVadjustment(box, adjustment)
 
@@ -3703,6 +3819,8 @@ gtkFontChooserGetPreviewText(fontchooser)
 
 gtkFontChooserGetShowPreviewEntry(fontchooser)
 
+gtkFontChooserSetFilterFunc(fontchooser, filter)
+
 gtkFontChooserSetFont(fontchooser, fontname)
 
 gtkFontChooserSetFontDesc(fontchooser, font_desc)
@@ -3723,9 +3841,23 @@ gtkFontChooserWidgetNew()
 
 gtkFontDialogNew()
 
+gtkFontDialogChooseFace(self, parent, initial_value, cancellable, callback)
+
 gtkFontDialogChooseFaceFinish(self, result)
 
+gtkFontDialogChooseFamily(self, parent, initial_value, cancellable, callback)
+
 gtkFontDialogChooseFamilyFinish(self, result)
+
+gtkFontDialogChooseFont(self, parent, initial_value, cancellable, callback)
+
+gtkFontDialogChooseFontAndFeatures(
+  self,
+  parent,
+  initial_value,
+  cancellable,
+  callback
+)
 
 gtkFontDialogChooseFontAndFeaturesFinish(self, result)
 
@@ -4150,6 +4282,8 @@ gtkListBoxNew()
 
 gtkListBoxAppend(box, child)
 
+gtkListBoxBindModel(box, model, create_widget_func)
+
 gtkListBoxDragHighlightRow(box, row)
 
 gtkListBoxDragUnhighlightRow(box)
@@ -4188,15 +4322,23 @@ gtkListBoxSelectAll(box)
 
 gtkListBoxSelectRow(box, row)
 
+gtkListBoxSelectedForeach(box, func)
+
 gtkListBoxSetActivateOnSingleClick(box, single)
 
 gtkListBoxSetAdjustment(box, adjustment)
+
+gtkListBoxSetFilterFunc(box, filter_func)
+
+gtkListBoxSetHeaderFunc(box, update_header)
 
 gtkListBoxSetPlaceholder(box, placeholder)
 
 gtkListBoxSetSelectionMode(box, mode)
 
 gtkListBoxSetShowSeparators(box, show_separators)
+
+gtkListBoxSetSortFunc(box, sort_func)
 
 gtkListBoxUnselectAll(box)
 
@@ -4306,9 +4448,13 @@ gtkLockButtonGetPermission(button)
 
 gtkLockButtonSetPermission(button, permission)
 
+gtkMapListModelNew(model, map_func)
+
 gtkMapListModelGetModel(self)
 
 gtkMapListModelHasMap(self)
+
+gtkMapListModelSetMapFunc(self, map_func)
 
 gtkMapListModelSetModel(self, model)
 
@@ -4891,6 +5037,8 @@ gtkScaleGetValuePos(scale)
 gtkScaleSetDigits(scale, digits)
 
 gtkScaleSetDrawValue(scale, draw_value)
+
+gtkScaleSetFormatValueFunc(scale, func)
 
 gtkScaleSetHasOrigin(scale, has_origin)
 
@@ -5709,6 +5857,8 @@ gtkTreeIterCopy(iter)
 
 gtkTreeIterFree(iter)
 
+gtkTreeListModelNew(root, passthrough, autoexpand, create_func)
+
 gtkTreeListModelGetAutoexpand(self)
 
 gtkTreeListModelGetChildRow(self, position)
@@ -5803,13 +5953,19 @@ gtkTreeSortableGetSortColumnId(sortable)
 
 gtkTreeSortableHasDefaultSortFunc(sortable)
 
+gtkTreeSortableSetDefaultSortFunc(sortable, sort_func)
+
 gtkTreeSortableSetSortColumnId(sortable, sort_column_id, order)
+
+gtkTreeSortableSetSortFunc(sortable, sort_column_id, sort_func)
 
 gtkTreeSortableSortColumnChanged(sortable)
 
 gtkUriLauncherNew(uri)
 
 gtkUriLauncherGetUri(self)
+
+gtkUriLauncherLaunch(self, parent, cancellable, callback)
 
 gtkUriLauncherLaunchFinish(self, result)
 
@@ -5953,6 +6109,8 @@ gtkSetDebugFlags(flags)
 
 gtkShowUri(parent, uri, timestamp)
 
+gtkShowUriFull(parent, uri, timestamp, cancellable, callback)
+
 gtkShowUriFullFinish(parent, result)
 
 gtkTestAccessibleAssertionMessageRole(
@@ -6057,6 +6215,10 @@ gtkValueTakeExpression(value, expression)
 
 \item{adjustment}{Adjustment}
 
+\item{cancellable}{Gio.Cancellable}
+
+\item{callback}{function — Gio.AsyncReadyCallback callback}
+
 \item{result}{Gio.AsyncResult}
 
 \item{labels}{utf8}
@@ -6106,6 +6268,8 @@ gtkValueTakeExpression(value, expression)
 \item{page_num}{gint}
 
 \item{position}{guint}
+
+\item{page_func}{function — AssistantPageFunc callback}
 
 \item{complete}{gboolean}
 
@@ -6189,7 +6353,23 @@ gtkValueTakeExpression(value, expression)
 
 \item{pspec}{GObject.ParamSpec}
 
+\item{callback_name}{utf8}
+
+\item{callback_symbol}{function — GObject.Callback callback}
+
 \item{bytes}{GLib.Bytes}
+
+\item{value_type}{GType}
+
+\item{marshal}{function — GObject.ClosureMarshal callback}
+
+\item{n_params}{guint}
+
+\item{params}{Expression}
+
+\item{callback_func}{function — GObject.Callback callback}
+
+\item{user_destroy}{function — GObject.ClosureNotify callback}
 
 \item{calendar}{Calendar}
 
@@ -6225,6 +6405,8 @@ gtkValueTakeExpression(value, expression)
 
 \item{direction}{SpinType}
 
+\item{background_area}{Gdk.Rectangle}
+
 \item{x}{gdouble}
 
 \item{y}{gdouble}
@@ -6234,8 +6416,6 @@ gtkValueTakeExpression(value, expression)
 \item{for_size}{gint}
 
 \item{snapshot}{Snapshot}
-
-\item{background_area}{Gdk.Rectangle}
 
 \item{paint_focus}{gboolean}
 
@@ -6268,6 +6448,8 @@ gtkValueTakeExpression(value, expression)
 \item{cell_layout}{CellLayout}
 
 \item{cell}{CellRenderer}
+
+\item{func}{utf8}
 
 \item{path}{TreePath}
 
@@ -6303,13 +6485,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{baseline_position}{BaselinePosition}
 
-\item{value_type}{GType}
-
 \item{closure}{GObject.Closure}
-
-\item{n_params}{guint}
-
-\item{params}{Expression}
 
 \item{rgba}{Gdk.RGBA}
 
@@ -6324,6 +6500,8 @@ gtkValueTakeExpression(value, expression)
 \item{color}{Gdk.RGBA}
 
 \item{use_alpha}{gboolean}
+
+\item{initial_color}{Gdk.RGBA}
 
 \item{with_alpha}{gboolean}
 
@@ -6419,6 +6597,16 @@ gtkValueTakeExpression(value, expression)
 
 \item{section}{CssSection}
 
+\item{match_func}{function — CustomFilterFunc callback}
+
+\item{request_mode}{function — CustomRequestModeFunc callback}
+
+\item{measure}{gboolean}
+
+\item{allocate}{function — CustomAllocateFunc callback}
+
+\item{sort_func}{function — TreeIterCompareFunc callback}
+
 \item{monitored}{gboolean}
 
 \item{drag}{Gdk.Drag}
@@ -6432,6 +6620,8 @@ gtkValueTakeExpression(value, expression)
 \item{actions}{Gdk.DragAction}
 
 \item{content}{Gdk.ContentProvider}
+
+\item{draw_func}{function — DrawingAreaDrawFunc callback}
 
 \item{strings}{utf8}
 
@@ -6495,6 +6685,8 @@ gtkValueTakeExpression(value, expression)
 
 \item{this_}{GObject.Object}
 
+\item{notify}{function — ExpressionNotify callback}
+
 \item{watch}{ExpressionWatch}
 
 \item{accept_label}{utf8}
@@ -6515,9 +6707,13 @@ gtkValueTakeExpression(value, expression)
 
 \item{transform}{Gsk.Transform}
 
+\item{create_widget_func}{function — ListBoxCreateWidgetFunc callback}
+
 \item{idx}{gint}
 
 \item{single}{gboolean}
+
+\item{filter_func}{function — ListBoxFilterFunc callback}
 
 \item{homogeneous}{gboolean}
 
@@ -6544,6 +6740,8 @@ gtkValueTakeExpression(value, expression)
 \item{level}{FontLevel}
 
 \item{show_preview_entry}{gboolean}
+
+\item{initial_value}{Pango.FontDescription}
 
 \item{font_features}{utf8}
 
@@ -6659,6 +6857,8 @@ gtkValueTakeExpression(value, expression)
 
 \item{row}{ListBoxRow}
 
+\item{update_header}{function — ListBoxUpdateHeaderFunc callback}
+
 \item{placeholder}{Widget}
 
 \item{show_separators}{gboolean}
@@ -6666,6 +6866,8 @@ gtkValueTakeExpression(value, expression)
 \item{header}{Widget}
 
 \item{permission}{Gio.Permission}
+
+\item{map_func}{function — MapListModelMapFunc callback}
 
 \item{stream}{MediaStream}
 
@@ -6720,8 +6922,6 @@ gtkValueTakeExpression(value, expression)
 \item{overlay}{Overlay}
 
 \item{clip_overlay}{gboolean}
-
-\item{measure}{gboolean}
 
 \item{pad}{Gdk.Device}
 
@@ -7033,7 +7233,13 @@ gtkValueTakeExpression(value, expression)
 
 \item{list_row}{TreeListRow}
 
+\item{root}{Gio.ListModel}
+
+\item{passthrough}{gboolean}
+
 \item{autoexpand}{gboolean}
+
+\item{create_func}{function — TreeListModelCreateModelFunc callback}
 
 \item{indices}{gint}
 
@@ -7110,8 +7316,6 @@ gtkValueTakeExpression(value, expression)
 \item{g}{gfloat}
 
 \item{line}{gint}
-
-\item{func}{utf8}
 
 \item{expr}{utf8}
 
@@ -7211,6 +7415,8 @@ gdouble
 gdouble
 
 gdouble
+
+Return value from C function
 
 Return value from C function
 
@@ -7377,6 +7583,8 @@ gint
 Return value from C function
 
 gint
+
+Return value from C function
 
 Return value from C function
 
@@ -7562,6 +7770,8 @@ gboolean
 
 BuilderCScope
 
+Return value from C function
+
 GLib.Quark
 
 ListItemFactory
@@ -7573,6 +7783,8 @@ GLib.Bytes
 utf8
 
 BuilderScope
+
+CClosureExpression
 
 Widget
 
@@ -7600,6 +7812,8 @@ Return value from C function
 
 Return value from C function
 
+CallbackAction
+
 gboolean
 
 gboolean
@@ -7627,6 +7841,10 @@ CellAreaContext
 gint
 
 gboolean
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -7725,6 +7943,8 @@ Return value from C function
 CellArea
 
 GLib.List
+
+Return value from C function
 
 Return value from C function
 
@@ -7919,6 +8139,8 @@ Widget
 Widget
 
 ColorDialog
+
+Return value from C function
 
 Gdk.RGBA
 
@@ -8136,6 +8358,8 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 Widget
 
 Widget
@@ -8266,6 +8490,16 @@ utf8
 
 Return value from C function
 
+CustomFilter
+
+Return value from C function
+
+LayoutManager
+
+CustomSorter
+
+Return value from C function
+
 DirectoryList
 
 utf8
@@ -8319,6 +8553,8 @@ Widget
 gint
 
 gint
+
+Return value from C function
 
 Return value from C function
 
@@ -8578,6 +8814,8 @@ Expression
 
 Return value from C function
 
+ExpressionWatch
+
 gboolean
 
 ExpressionWatch
@@ -8604,13 +8842,23 @@ gboolean
 
 utf8
 
+Return value from C function
+
 Gio.File
+
+Return value from C function
 
 Gio.ListModel
 
-Gio.File
+Return value from C function
 
 Gio.File
+
+Return value from C function
+
+Gio.File
+
+Return value from C function
 
 Gio.ListModel
 
@@ -8636,7 +8884,11 @@ gboolean
 
 Gio.File
 
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 gboolean
 
@@ -8698,6 +8950,8 @@ Widget
 
 Return value from C function
 
+Return value from C function
+
 gboolean
 
 FlowBoxChild
@@ -8717,6 +8971,12 @@ guint
 GLib.List
 
 SelectionMode
+
+Return value from C function
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -8824,15 +9084,25 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 Widget
 
 Widget
 
 FontDialog
 
+Return value from C function
+
 Pango.FontFace
 
+Return value from C function
+
 Pango.FontFamily
+
+Return value from C function
+
+Return value from C function
 
 gboolean
 
@@ -9246,6 +9516,8 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 gboolean
 
 Adjustment
@@ -9261,6 +9533,14 @@ GLib.List
 SelectionMode
 
 gboolean
+
+Return value from C function
+
+Return value from C function
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -9398,9 +9678,13 @@ Gio.Permission
 
 Return value from C function
 
+MapListModel
+
 Gio.ListModel
 
 gboolean
+
+Return value from C function
 
 Return value from C function
 
@@ -9979,6 +10263,8 @@ Pango.Layout
 Return value from C function
 
 PositionType
+
+Return value from C function
 
 Return value from C function
 
@@ -10732,6 +11018,8 @@ TreeIter
 
 Return value from C function
 
+TreeListModel
+
 gboolean
 
 TreeListRow
@@ -10830,9 +11118,15 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
+Return value from C function
+
 UriLauncher
 
 utf8
+
+Return value from C function
 
 gboolean
 
@@ -10935,6 +11229,8 @@ gboolean
 gboolean
 
 GObject.ParamSpec
+
+Return value from C function
 
 Return value from C function
 
@@ -11099,6 +11395,8 @@ gtkAdjustmentSetUpper
 
 gtkAdjustmentSetValue
 
+gtkAlertDialogChoose
+
 gtkAlertDialogChooseFinish
 
 gtkAlertDialogGetButtons
@@ -11260,6 +11558,8 @@ gtkAssistantRemoveActionWidget
 gtkAssistantRemovePage
 
 gtkAssistantSetCurrentPage
+
+gtkAssistantSetForwardPageFunc
 
 gtkAssistantSetPageComplete
 
@@ -11437,6 +11737,8 @@ gtkBuilderValueFromStringType
 
 gtkBuilderCscopeNew
 
+gtkBuilderCscopeAddCallbackSymbol
+
 gtkBuilderErrorQuark
 
 gtkBuilderListItemFactoryNewFromBytes
@@ -11448,6 +11750,8 @@ gtkBuilderListItemFactoryGetBytes
 gtkBuilderListItemFactoryGetResource
 
 gtkBuilderListItemFactoryGetScope
+
+gtkCclosureExpressionNew
 
 gtkCalendarNew
 
@@ -11474,6 +11778,8 @@ gtkCalendarSetShowHeading
 gtkCalendarSetShowWeekNumbers
 
 gtkCalendarUnmarkDay
+
+gtkCallbackActionNew
 
 gtkCellAreaActivate
 
@@ -11502,6 +11808,10 @@ gtkCellAreaCreateContext
 gtkCellAreaEvent
 
 gtkCellAreaFocus
+
+gtkCellAreaForeach
+
+gtkCellAreaForeachAlloc
 
 gtkCellAreaGetCellAllocation
 
@@ -11606,6 +11916,8 @@ gtkCellLayoutPackEnd
 gtkCellLayoutPackStart
 
 gtkCellLayoutReorder
+
+gtkCellLayoutSetCellDataFunc
 
 gtkCellRendererActivate
 
@@ -11794,6 +12106,8 @@ gtkColorChooserDialogNew
 gtkColorChooserWidgetNew
 
 gtkColorDialogNew
+
+gtkColorDialogChooseRgba
 
 gtkColorDialogChooseRgbaFinish
 
@@ -12011,6 +12325,8 @@ gtkComboBoxSetModel
 
 gtkComboBoxSetPopupFixedWidth
 
+gtkComboBoxSetRowSeparatorFunc
+
 gtkComboBoxTextNew
 
 gtkComboBoxTextNewWithEntry
@@ -12141,6 +12457,16 @@ gtkCssSectionToString
 
 gtkCssSectionUnref
 
+gtkCustomFilterNew
+
+gtkCustomFilterSetFilterFunc
+
+gtkCustomLayoutNew
+
+gtkCustomSorterNew
+
+gtkCustomSorterSetSortFunc
+
 gtkDirectoryListNew
 
 gtkDirectoryListGetAttributes
@@ -12198,6 +12524,8 @@ gtkDrawingAreaGetContentWidth
 gtkDrawingAreaSetContentHeight
 
 gtkDrawingAreaSetContentWidth
+
+gtkDrawingAreaSetDrawFunc
 
 gtkDropControllerMotionNew
 
@@ -12453,6 +12781,8 @@ gtkExpressionRef
 
 gtkExpressionUnref
 
+gtkExpressionWatch
+
 gtkExpressionWatchEvaluate
 
 gtkExpressionWatchRef
@@ -12479,13 +12809,23 @@ gtkFileDialogGetModal
 
 gtkFileDialogGetTitle
 
+gtkFileDialogOpen
+
 gtkFileDialogOpenFinish
+
+gtkFileDialogOpenMultiple
 
 gtkFileDialogOpenMultipleFinish
 
+gtkFileDialogSave
+
 gtkFileDialogSaveFinish
 
+gtkFileDialogSelectFolder
+
 gtkFileDialogSelectFolderFinish
+
+gtkFileDialogSelectMultipleFolders
 
 gtkFileDialogSelectMultipleFoldersFinish
 
@@ -12511,7 +12851,11 @@ gtkFileLauncherGetAlwaysAsk
 
 gtkFileLauncherGetFile
 
+gtkFileLauncherLaunch
+
 gtkFileLauncherLaunchFinish
+
+gtkFileLauncherOpenContainingFolder
 
 gtkFileLauncherOpenContainingFolderFinish
 
@@ -12573,6 +12917,8 @@ gtkFlowBoxNew
 
 gtkFlowBoxAppend
 
+gtkFlowBoxBindModel
+
 gtkFlowBoxGetActivateOnSingleClick
 
 gtkFlowBoxGetChildAtIndex
@@ -12609,9 +12955,13 @@ gtkFlowBoxSelectAll
 
 gtkFlowBoxSelectChild
 
+gtkFlowBoxSelectedForeach
+
 gtkFlowBoxSetActivateOnSingleClick
 
 gtkFlowBoxSetColumnSpacing
+
+gtkFlowBoxSetFilterFunc
 
 gtkFlowBoxSetHadjustment
 
@@ -12624,6 +12974,8 @@ gtkFlowBoxSetMinChildrenPerLine
 gtkFlowBoxSetRowSpacing
 
 gtkFlowBoxSetSelectionMode
+
+gtkFlowBoxSetSortFunc
 
 gtkFlowBoxSetVadjustment
 
@@ -12685,6 +13037,8 @@ gtkFontChooserGetPreviewText
 
 gtkFontChooserGetShowPreviewEntry
 
+gtkFontChooserSetFilterFunc
+
 gtkFontChooserSetFont
 
 gtkFontChooserSetFontDesc
@@ -12705,9 +13059,17 @@ gtkFontChooserWidgetNew
 
 gtkFontDialogNew
 
+gtkFontDialogChooseFace
+
 gtkFontDialogChooseFaceFinish
 
+gtkFontDialogChooseFamily
+
 gtkFontDialogChooseFamilyFinish
+
+gtkFontDialogChooseFont
+
+gtkFontDialogChooseFontAndFeatures
 
 gtkFontDialogChooseFontAndFeaturesFinish
 
@@ -13117,6 +13479,8 @@ gtkListBoxNew
 
 gtkListBoxAppend
 
+gtkListBoxBindModel
+
 gtkListBoxDragHighlightRow
 
 gtkListBoxDragUnhighlightRow
@@ -13155,15 +13519,23 @@ gtkListBoxSelectAll
 
 gtkListBoxSelectRow
 
+gtkListBoxSelectedForeach
+
 gtkListBoxSetActivateOnSingleClick
 
 gtkListBoxSetAdjustment
+
+gtkListBoxSetFilterFunc
+
+gtkListBoxSetHeaderFunc
 
 gtkListBoxSetPlaceholder
 
 gtkListBoxSetSelectionMode
 
 gtkListBoxSetShowSeparators
+
+gtkListBoxSetSortFunc
 
 gtkListBoxUnselectAll
 
@@ -13273,9 +13645,13 @@ gtkLockButtonGetPermission
 
 gtkLockButtonSetPermission
 
+gtkMapListModelNew
+
 gtkMapListModelGetModel
 
 gtkMapListModelHasMap
+
+gtkMapListModelSetMapFunc
 
 gtkMapListModelSetModel
 
@@ -13858,6 +14234,8 @@ gtkScaleGetValuePos
 gtkScaleSetDigits
 
 gtkScaleSetDrawValue
+
+gtkScaleSetFormatValueFunc
 
 gtkScaleSetHasOrigin
 
@@ -14607,6 +14985,8 @@ gtkTreeIterCopy
 
 gtkTreeIterFree
 
+gtkTreeListModelNew
+
 gtkTreeListModelGetAutoexpand
 
 gtkTreeListModelGetChildRow
@@ -14701,13 +15081,19 @@ gtkTreeSortableGetSortColumnId
 
 gtkTreeSortableHasDefaultSortFunc
 
+gtkTreeSortableSetDefaultSortFunc
+
 gtkTreeSortableSetSortColumnId
+
+gtkTreeSortableSetSortFunc
 
 gtkTreeSortableSortColumnChanged
 
 gtkUriLauncherNew
 
 gtkUriLauncherGetUri
+
+gtkUriLauncherLaunch
 
 gtkUriLauncherLaunchFinish
 
@@ -14840,6 +15226,8 @@ gtkRgbToHsv
 gtkSetDebugFlags
 
 gtkShowUri
+
+gtkShowUriFull
 
 gtkShowUriFullFinish
 

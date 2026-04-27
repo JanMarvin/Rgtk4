@@ -9,6 +9,7 @@
 \alias{gMainContextFindSourceByFuncsUserData}
 \alias{gMainContextFindSourceById}
 \alias{gMainContextFindSourceByUserData}
+\alias{gMainContextInvokeFull}
 \alias{gMainContextIsOwner}
 \alias{gMainContextIteration}
 \alias{gMainContextPending}
@@ -49,6 +50,7 @@
 \alias{gSourceRef}
 \alias{gSourceRemoveChildSource}
 \alias{gSourceRemovePoll}
+\alias{gSourceSetCallback}
 \alias{gSourceSetCallbackIndirect}
 \alias{gSourceSetCanRecurse}
 \alias{gSourceSetFuncs}
@@ -60,10 +62,13 @@
 \alias{gSourceRemoveByFuncsUserData}
 \alias{gSourceRemoveByUserData}
 \alias{gSourceSetNameById}
+\alias{gIdleAddFull}
 \alias{gIdleRemoveByData}
 \alias{gIdleSourceNew}
 \alias{gMainCurrentSource}
 \alias{gMainDepth}
+\alias{gTimeoutAddFull}
+\alias{gTimeoutAddSecondsFull}
 \alias{gTimeoutSourceNew}
 \alias{gTimeoutSourceNewSeconds}
 \alias{gSourceSetClosure}
@@ -85,6 +90,8 @@ gMainContextFindSourceByFuncsUserData(context, funcs, user_data)
 gMainContextFindSourceById(context, source_id)
 
 gMainContextFindSourceByUserData(context, user_data)
+
+gMainContextInvokeFull(context, priority, function_)
 
 gMainContextIsOwner(context)
 
@@ -166,6 +173,8 @@ gSourceRemoveChildSource(source, child_source)
 
 gSourceRemovePoll(source, fd)
 
+gSourceSetCallback(source, func)
+
 gSourceSetCallbackIndirect(source, callback_data, callback_funcs)
 
 gSourceSetCanRecurse(source, can_recurse)
@@ -188,6 +197,8 @@ gSourceRemoveByUserData(user_data)
 
 gSourceSetNameById(tag, name)
 
+gIdleAddFull(priority, function_)
+
 gIdleRemoveByData(data)
 
 gIdleSourceNew()
@@ -195,6 +206,10 @@ gIdleSourceNew()
 gMainCurrentSource()
 
 gMainDepth()
+
+gTimeoutAddFull(priority, interval, function_)
+
+gTimeoutAddSecondsFull(priority, interval, function_)
 
 gTimeoutSourceNew(interval)
 
@@ -223,6 +238,8 @@ gSourceSetDummyCallback(source)
 
 \item{source_id}{guint}
 
+\item{function_}{function — SourceFunc callback}
+
 \item{may_block}{gboolean}
 
 \item{cond}{Cond}
@@ -242,6 +259,8 @@ gSourceSetDummyCallback(source)
 \item{child_source}{Source}
 
 \item{timeval}{TimeVal}
+
+\item{func}{function — SourceFunc callback}
 
 \item{callback_data}{gpointer}
 
@@ -277,6 +296,8 @@ Source
 Source
 
 Source
+
+Return value from C function
 
 gboolean
 
@@ -372,6 +393,8 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 gboolean
 
 gboolean
@@ -380,6 +403,8 @@ gboolean
 
 Return value from C function
 
+guint
+
 gboolean
 
 Source
@@ -387,6 +412,10 @@ Source
 Source
 
 gint
+
+guint
+
+guint
 
 Source
 
@@ -412,6 +441,8 @@ gMainContextFindSourceByFuncsUserData
 gMainContextFindSourceById
 
 gMainContextFindSourceByUserData
+
+gMainContextInvokeFull
 
 gMainContextIsOwner
 
@@ -493,6 +524,8 @@ gSourceRemoveChildSource
 
 gSourceRemovePoll
 
+gSourceSetCallback
+
 gSourceSetCallbackIndirect
 
 gSourceSetCanRecurse
@@ -515,6 +548,8 @@ gSourceRemoveByUserData
 
 gSourceSetNameById
 
+gIdleAddFull
+
 gIdleRemoveByData
 
 gIdleSourceNew
@@ -522,6 +557,10 @@ gIdleSourceNew
 gMainCurrentSource
 
 gMainDepth
+
+gTimeoutAddFull
+
+gTimeoutAddSecondsFull
 
 gTimeoutSourceNew
 

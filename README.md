@@ -134,6 +134,12 @@ Rgtk4 uses a two-package architecture:
 - GTK4 Documentation: <https://docs.gtk.org/gtk4/>
 - GObject Introspection: <https://gi.readthedocs.io/>
 
+Note on string-returning callbacks. Callbacks that return strings
+(e.g. GtkScaleFormatValueFunc) allocate a fresh copy via g_strdup on
+every invocation. GTK frees this in most cases, but if the API
+documentation says the return is borrowed/static, the string will leak.
+Avoid these callbacks in tight loops if memory growth matters.
+
 ## Contributing
 
 Contributions welcome! The clean architecture makes it easy to add new

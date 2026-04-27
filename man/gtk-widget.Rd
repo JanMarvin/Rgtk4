@@ -10,6 +10,7 @@
 \alias{gtkWidgetAddController}
 \alias{gtkWidgetAddCssClass}
 \alias{gtkWidgetAddMnemonicLabel}
+\alias{gtkWidgetAddTickCallback}
 \alias{gtkWidgetAllocate}
 \alias{gtkWidgetChildFocus}
 \alias{gtkWidgetComputeBounds}
@@ -163,11 +164,13 @@
 \alias{gtkWidgetUnrealize}
 \alias{gtkWidgetUnsetStateFlags}
 \alias{gtkWidgetClassAddShortcut}
+\alias{gtkWidgetClassBindTemplateCallbackFull}
 \alias{gtkWidgetClassBindTemplateChildFull}
 \alias{gtkWidgetClassGetAccessibleRole}
 \alias{gtkWidgetClassGetActivateSignal}
 \alias{gtkWidgetClassGetCssName}
 \alias{gtkWidgetClassGetLayoutManagerType}
+\alias{gtkWidgetClassInstallAction}
 \alias{gtkWidgetClassInstallPropertyAction}
 \alias{gtkWidgetClassQueryAction}
 \alias{gtkWidgetClassSetAccessibleRole}
@@ -200,6 +203,8 @@ gtkWidgetAddController(widget, controller)
 gtkWidgetAddCssClass(widget, css_class)
 
 gtkWidgetAddMnemonicLabel(widget, label)
+
+gtkWidgetAddTickCallback(widget, callback)
 
 gtkWidgetAllocate(widget, width, height, baseline, transform)
 
@@ -507,6 +512,12 @@ gtkWidgetUnsetStateFlags(widget, flags)
 
 gtkWidgetClassAddShortcut(widget_class, shortcut)
 
+gtkWidgetClassBindTemplateCallbackFull(
+  widget_class,
+  callback_name,
+  callback_symbol
+)
+
 gtkWidgetClassBindTemplateChildFull(
   widget_class,
   name,
@@ -521,6 +532,13 @@ gtkWidgetClassGetActivateSignal(widget_class)
 gtkWidgetClassGetCssName(widget_class)
 
 gtkWidgetClassGetLayoutManagerType(widget_class)
+
+gtkWidgetClassInstallAction(
+  widget_class,
+  action_name,
+  parameter_type,
+  activate
+)
 
 gtkWidgetClassInstallPropertyAction(widget_class, action_name, property_name)
 
@@ -566,6 +584,8 @@ gtkWidgetPaintableSetWidget(self, widget)
 \item{css_class}{utf8}
 
 \item{label}{Widget}
+
+\item{callback}{function — TickCallback callback}
 
 \item{width}{gint}
 
@@ -673,9 +693,17 @@ gtkWidgetPaintableSetWidget(self, widget)
 
 \item{shortcut}{Shortcut}
 
+\item{callback_name}{utf8}
+
+\item{callback_symbol}{function — GObject.Callback callback}
+
 \item{internal_child}{gboolean}
 
 \item{struct_offset}{gssize}
+
+\item{parameter_type}{utf8}
+
+\item{activate}{function — WidgetActionActivateFunc callback}
 
 \item{property_name}{utf8}
 
@@ -713,6 +741,8 @@ Return value from C function
 Return value from C function
 
 Return value from C function
+
+guint
 
 Return value from C function
 
@@ -1022,6 +1052,8 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 AccessibleRole
 
 guint
@@ -1029,6 +1061,8 @@ guint
 utf8
 
 GType
+
+Return value from C function
 
 Return value from C function
 
@@ -1074,6 +1108,8 @@ gtkWidgetAddController
 gtkWidgetAddCssClass
 
 gtkWidgetAddMnemonicLabel
+
+gtkWidgetAddTickCallback
 
 gtkWidgetAllocate
 
@@ -1381,6 +1417,8 @@ gtkWidgetUnsetStateFlags
 
 gtkWidgetClassAddShortcut
 
+gtkWidgetClassBindTemplateCallbackFull
+
 gtkWidgetClassBindTemplateChildFull
 
 gtkWidgetClassGetAccessibleRole
@@ -1390,6 +1428,8 @@ gtkWidgetClassGetActivateSignal
 gtkWidgetClassGetCssName
 
 gtkWidgetClassGetLayoutManagerType
+
+gtkWidgetClassInstallAction
 
 gtkWidgetClassInstallPropertyAction
 

@@ -9,6 +9,7 @@
 \alias{gAppInfoGetFallbackForType}
 \alias{gAppInfoGetRecommendedForType}
 \alias{gAppInfoLaunchDefaultForUri}
+\alias{gAppInfoLaunchDefaultForUriAsync}
 \alias{gAppInfoLaunchDefaultForUriFinish}
 \alias{gAppInfoResetTypeAssociations}
 \alias{gAppInfoAddSupportsType}
@@ -100,6 +101,8 @@ gAppInfoGetFallbackForType(content_type)
 gAppInfoGetRecommendedForType(content_type)
 
 gAppInfoLaunchDefaultForUri(uri, context)
+
+gAppInfoLaunchDefaultForUriAsync(uri, context, cancellable, callback)
 
 gAppInfoLaunchDefaultForUriFinish(result)
 
@@ -274,6 +277,10 @@ gApplicationCommandLineSetExitStatus(cmdline, exit_status)
 
 \item{context}{AppLaunchContext}
 
+\item{cancellable}{Cancellable}
+
+\item{callback}{function — AsyncReadyCallback callback}
+
 \item{result}{AsyncResult}
 
 \item{appinfo}{AppInfo}
@@ -313,8 +320,6 @@ gApplicationCommandLineSetExitStatus(cmdline, exit_status)
 \item{n_files}{gint}
 
 \item{hint}{utf8}
-
-\item{cancellable}{Cancellable}
 
 \item{argc}{gint}
 
@@ -356,6 +361,8 @@ GLib.List
 GLib.List
 
 gboolean
+
+Return value from C function
 
 gboolean
 
@@ -521,6 +528,8 @@ gAppInfoGetFallbackForType
 gAppInfoGetRecommendedForType
 
 gAppInfoLaunchDefaultForUri
+
+gAppInfoLaunchDefaultForUriAsync
 
 gAppInfoLaunchDefaultForUriFinish
 

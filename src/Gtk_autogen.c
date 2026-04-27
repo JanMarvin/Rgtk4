@@ -5,6 +5,8 @@
 #include <glib.h>
 #include <stdint.h>
 #include <string.h>
+#include "rgtk4_callbacks.h"
+#include "rgtk4_autogen_callbacks.h"
 
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
@@ -28,18 +30,15 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
 
-/* Finalizer for heap-allocated value structs */
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
   void *p = R_ExternalPtrAddr(s);
   if (p) g_free(p);
 }
 
-/* Helpers from rgtk4_helpers.c */
 extern SEXP make_gobject_ptr(gpointer obj);
 extern SEXP make_boxed_struct(const void *src, size_t size);
 
-/* Helper to box GStrv (char**) into R character vector */
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
   if (!strv) return R_NilValue;
@@ -50,32 +49,30 @@ static SEXP _box_GStrv(char **strv) {
   return res;
 }
 
-/* Helper to add an S3 class to an external pointer for easier debugging */
 static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
-
   void *obj = R_ExternalPtrAddr(ptr);
-
-  // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
   if ((uintptr_t)obj < 0x1000) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
     return ptr;
   }
-
   if (G_IS_OBJECT(obj)) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   }
@@ -1145,13 +1142,12 @@ SEXP R_gtk_adjustment_set_value(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_alert_dialog_choose(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_alert_dialog_choose(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkAlertDialog* v1 = (GtkAlertDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_alert_dialog_choose(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_alert_dialog_choose(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -2485,12 +2481,10 @@ SEXP R_gtk_assistant_set_current_page(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_assistant_set_forward_page_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_assistant_set_forward_page_func(SEXP s1, SEXP s2) {
   GtkAssistant* v1 = (GtkAssistant*)(get_ptr(s1)); (void)v1;
-  GtkAssistantPageFunc v2 = (s2 != R_NilValue) ? (GtkAssistantPageFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_assistant_set_forward_page_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_assistant_set_forward_page_func(v1, (GtkAssistantPageFunc)(_cb_closure_2 ? _rgtk4_cb_AssistantPageFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -4066,8 +4060,11 @@ SEXP R_gtk_builder_cscope_new(void) {
 SEXP R_gtk_builder_cscope_add_callback_symbol(SEXP s1, SEXP s2, SEXP s3) {
   GtkBuilderCScope* v1 = (GtkBuilderCScope*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GCallback v3 = (GCallback)(get_ptr(s3)); (void)v3;
-  gtk_builder_cscope_add_callback_symbol(v1, v2, v3);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_3);
+  gtk_builder_cscope_add_callback_symbol(v1, v2, (GCallback)(_cb_closure_3 ? _rgtk4_cb_Callback : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_3) rgtk4_closure_free(_cb_closure_3);
   return R_NilValue;
 }
 
@@ -4378,28 +4375,6 @@ SEXP R_gtk_button_set_use_underline(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_cclosure_expression_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
-  GClosureMarshal v2 = (s2 != R_NilValue) ? (GClosureMarshal)(get_ptr(s2)) : NULL; (void)v2;
-  guint v3 = (guint)((guint)_unbox_numeric(s3)); (void)v3;
-  GtkExpression** v4 = (GtkExpression**)(get_ptr(s4)); (void)v4;
-  GCallback v5 = (GCallback)(get_ptr(s5)); (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  GClosureNotify v7 = (s7 != R_NilValue) ? (GClosureNotify)(get_ptr(s7)) : NULL; (void)v7;
-  gconstpointer _ret = (gconstpointer)gtk_cclosure_expression_new(v1, v2, v3, v4, v5, v6, v7);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("CClosureExpression"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
 SEXP R_gtk_calendar_new(void) {
 
   gconstpointer _ret = (gconstpointer)gtk_calendar_new();
@@ -4552,11 +4527,9 @@ SEXP R_gtk_calendar_unmark_day(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_callback_action_new(SEXP s1, SEXP s2, SEXP s3) {
-  GtkShortcutFunc v1 = (GtkShortcutFunc)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GDestroyNotify v3 = (GDestroyNotify)(get_ptr(s3)); (void)v3;
-  gconstpointer _ret = (gconstpointer)gtk_callback_action_new(v1, v2, v3);
+SEXP R_gtk_callback_action_new(SEXP s1) {
+  RCallbackClosure *_cb_closure_1 = (s1 == R_NilValue) ? NULL : rgtk4_closure_new(s1); (void)_cb_closure_1;
+  gconstpointer _ret = (gconstpointer)gtk_callback_action_new((GtkShortcutFunc)(_cb_closure_1 ? _rgtk4_cb_ShortcutFunc : NULL), _cb_closure_1, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -4768,24 +4741,22 @@ SEXP R_gtk_cell_area_focus(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_cell_area_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gtk_cell_area_foreach(SEXP s1, SEXP s2) {
   GtkCellArea* v1 = (GtkCellArea*)(get_ptr(s1)); (void)v1;
-  GtkCellCallback v2 = (GtkCellCallback)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gtk_cell_area_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_cell_area_foreach(v1, (GtkCellCallback)(_cb_closure_2 ? _rgtk4_cb_CellCallback : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
 
-SEXP R_gtk_cell_area_foreach_alloc(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_gtk_cell_area_foreach_alloc(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GtkCellArea* v1 = (GtkCellArea*)(get_ptr(s1)); (void)v1;
   GtkCellAreaContext* v2 = (GtkCellAreaContext*)(get_ptr(s2)); (void)v2;
   GtkWidget* v3 = (GtkWidget*)(get_ptr(s3)); (void)v3;
   const GdkRectangle* v4 = (const GdkRectangle*)(get_ptr(s4)); (void)v4;
   const GdkRectangle* v5 = (const GdkRectangle*)(get_ptr(s5)); (void)v5;
-  GtkCellAllocCallback v6 = (GtkCellAllocCallback)(get_ptr(s6)); (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  gtk_cell_area_foreach_alloc(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  gtk_cell_area_foreach_alloc(v1, v2, v3, v4, v5, (GtkCellAllocCallback)(_cb_closure_6 ? _rgtk4_cb_CellAllocCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -5581,13 +5552,11 @@ SEXP R_gtk_cell_layout_reorder(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_cell_layout_set_cell_data_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_cell_layout_set_cell_data_func(SEXP s1, SEXP s2, SEXP s3) {
   GtkCellLayout* v1 = (GtkCellLayout*)(get_ptr(s1)); (void)v1;
   GtkCellRenderer* v2 = (GtkCellRenderer*)(get_ptr(s2)); (void)v2;
-  GtkCellLayoutDataFunc v3 = (s3 != R_NilValue) ? (GtkCellLayoutDataFunc)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  gtk_cell_layout_set_cell_data_func(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gtk_cell_layout_set_cell_data_func(v1, v2, (GtkCellLayoutDataFunc)(_cb_closure_3 ? _rgtk4_cb_CellLayoutDataFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -7105,14 +7074,13 @@ SEXP R_gtk_color_dialog_new(void) {
 }
 
 
-SEXP R_gtk_color_dialog_choose_rgba(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gtk_color_dialog_choose_rgba(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkColorDialog* v1 = (GtkColorDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   const GdkRGBA* v3 = (s3 != R_NilValue) ? (const GdkRGBA*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gtk_color_dialog_choose_rgba(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gtk_color_dialog_choose_rgba(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -7124,7 +7092,14 @@ SEXP R_gtk_color_dialog_choose_rgba_finish(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)gtk_color_dialog_choose_rgba_finish(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -7244,7 +7219,14 @@ SEXP R_gtk_color_dialog_button_get_rgba(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gtk_color_dialog_button_get_rgba(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -8497,12 +8479,10 @@ SEXP R_gtk_combo_box_set_popup_fixed_width(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_combo_box_set_row_separator_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_combo_box_set_row_separator_func(SEXP s1, SEXP s2) {
   GtkComboBox* v1 = (GtkComboBox*)(get_ptr(s1)); (void)v1;
-  GtkTreeViewRowSeparatorFunc v2 = (s2 != R_NilValue) ? (GtkTreeViewRowSeparatorFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gtk_combo_box_set_row_separator_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_combo_box_set_row_separator_func(v1, (GtkTreeViewRowSeparatorFunc)(_cb_closure_2 ? _rgtk4_cb_TreeViewRowSeparatorFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -9378,11 +9358,9 @@ SEXP R_gtk_css_section_unref(SEXP s1) {
 }
 
 
-SEXP R_gtk_custom_filter_new(SEXP s1, SEXP s2, SEXP s3) {
-  GtkCustomFilterFunc v1 = (s1 != R_NilValue) ? (GtkCustomFilterFunc)(get_ptr(s1)) : NULL; (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GDestroyNotify v3 = (GDestroyNotify)(get_ptr(s3)); (void)v3;
-  gconstpointer _ret = (gconstpointer)gtk_custom_filter_new(v1, v2, v3);
+SEXP R_gtk_custom_filter_new(SEXP s1) {
+  RCallbackClosure *_cb_closure_1 = (s1 == R_NilValue) ? NULL : rgtk4_closure_new(s1); (void)_cb_closure_1;
+  gconstpointer _ret = (gconstpointer)gtk_custom_filter_new((GtkCustomFilterFunc)(_cb_closure_1 ? _rgtk4_cb_CustomFilterFunc : NULL), _cb_closure_1, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -9396,39 +9374,17 @@ SEXP R_gtk_custom_filter_new(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_custom_filter_set_filter_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_custom_filter_set_filter_func(SEXP s1, SEXP s2) {
   GtkCustomFilter* v1 = (GtkCustomFilter*)(get_ptr(s1)); (void)v1;
-  GtkCustomFilterFunc v2 = (s2 != R_NilValue) ? (GtkCustomFilterFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_custom_filter_set_filter_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_custom_filter_set_filter_func(v1, (GtkCustomFilterFunc)(_cb_closure_2 ? _rgtk4_cb_CustomFilterFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
 
-SEXP R_gtk_custom_layout_new(SEXP s1, SEXP s2, SEXP s3) {
-  GtkCustomRequestModeFunc v1 = (s1 != R_NilValue) ? (GtkCustomRequestModeFunc)(get_ptr(s1)) : NULL; (void)v1;
-  GtkCustomMeasureFunc v2 = (GtkCustomMeasureFunc)(get_ptr(s2)); (void)v2;
-  GtkCustomAllocateFunc v3 = (GtkCustomAllocateFunc)(get_ptr(s3)); (void)v3;
-  gconstpointer _ret = (gconstpointer)gtk_custom_layout_new(v1, v2, v3);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("LayoutManager"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_gtk_custom_sorter_new(SEXP s1, SEXP s2, SEXP s3) {
-  GCompareDataFunc v1 = (s1 != R_NilValue) ? (GCompareDataFunc)(get_ptr(s1)) : NULL; (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GDestroyNotify v3 = (s3 != R_NilValue) ? (GDestroyNotify)(get_ptr(s3)) : NULL; (void)v3;
-  gconstpointer _ret = (gconstpointer)gtk_custom_sorter_new(v1, v2, v3);
+SEXP R_gtk_custom_sorter_new(SEXP s1) {
+  RCallbackClosure *_cb_closure_1 = (s1 == R_NilValue) ? NULL : rgtk4_closure_new(s1); (void)_cb_closure_1;
+  gconstpointer _ret = (gconstpointer)gtk_custom_sorter_new((GCompareDataFunc)(_cb_closure_1 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_1, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -9442,12 +9398,10 @@ SEXP R_gtk_custom_sorter_new(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_custom_sorter_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_custom_sorter_set_sort_func(SEXP s1, SEXP s2) {
   GtkCustomSorter* v1 = (GtkCustomSorter*)(get_ptr(s1)); (void)v1;
-  GCompareDataFunc v2 = (s2 != R_NilValue) ? (GCompareDataFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_custom_sorter_set_sort_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_custom_sorter_set_sort_func(v1, (GCompareDataFunc)(_cb_closure_2 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -9974,12 +9928,10 @@ SEXP R_gtk_drawing_area_set_content_width(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_drawing_area_set_draw_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_drawing_area_set_draw_func(SEXP s1, SEXP s2) {
   GtkDrawingArea* v1 = (GtkDrawingArea*)(get_ptr(s1)); (void)v1;
-  GtkDrawingAreaDrawFunc v2 = (s2 != R_NilValue) ? (GtkDrawingAreaDrawFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_drawing_area_set_draw_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_drawing_area_set_draw_func(v1, (GtkDrawingAreaDrawFunc)(_cb_closure_2 ? _rgtk4_cb_DrawingAreaDrawFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -12123,12 +12075,10 @@ SEXP R_gtk_entry_completion_set_inline_selection(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_entry_completion_set_match_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_entry_completion_set_match_func(SEXP s1, SEXP s2) {
   GtkEntryCompletion* v1 = (GtkEntryCompletion*)(get_ptr(s1)); (void)v1;
-  GtkEntryCompletionMatchFunc v2 = (GtkEntryCompletionMatchFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_entry_completion_set_match_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_entry_completion_set_match_func(v1, (GtkEntryCompletionMatchFunc)(_cb_closure_2 ? _rgtk4_cb_EntryCompletionMatchFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -12186,7 +12136,14 @@ SEXP R_gtk_event_controller_get_current_event(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gtk_event_controller_get_current_event(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.Event"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Event"));
   }
@@ -12897,13 +12854,11 @@ SEXP R_gtk_expression_unref(SEXP s1) {
 }
 
 
-SEXP R_gtk_expression_watch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_expression_watch(SEXP s1, SEXP s2, SEXP s3) {
   GtkExpression* v1 = (GtkExpression*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GtkExpressionNotify v3 = (GtkExpressionNotify)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  gconstpointer _ret = (gconstpointer)gtk_expression_watch(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gconstpointer _ret = (gconstpointer)gtk_expression_watch(v1, v2, (GtkExpressionNotify)(_cb_closure_3 ? _rgtk4_cb_ExpressionNotify : NULL), _cb_closure_3, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -13541,13 +13496,12 @@ SEXP R_gtk_file_dialog_get_title(SEXP s1) {
 }
 
 
-SEXP R_gtk_file_dialog_open(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_file_dialog_open(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_dialog_open(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_file_dialog_open(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -13570,13 +13524,12 @@ SEXP R_gtk_file_dialog_open_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_file_dialog_open_multiple(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_file_dialog_open_multiple(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_dialog_open_multiple(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_file_dialog_open_multiple(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -13599,13 +13552,12 @@ SEXP R_gtk_file_dialog_open_multiple_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_file_dialog_save(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_file_dialog_save(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_dialog_save(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_file_dialog_save(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -13628,13 +13580,12 @@ SEXP R_gtk_file_dialog_save_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_file_dialog_select_folder(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_file_dialog_select_folder(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_dialog_select_folder(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_file_dialog_select_folder(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -13657,13 +13608,12 @@ SEXP R_gtk_file_dialog_select_folder_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_file_dialog_select_multiple_folders(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_file_dialog_select_multiple_folders(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFileDialog* v1 = (GtkFileDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_dialog_select_multiple_folders(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_file_dialog_select_multiple_folders(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -13917,13 +13867,12 @@ SEXP R_gtk_file_launcher_get_file(SEXP s1) {
 }
 
 
-SEXP R_gtk_file_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_file_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFileLauncher* v1 = (GtkFileLauncher*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_launcher_launch(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_file_launcher_launch(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -13946,13 +13895,12 @@ SEXP R_gtk_file_launcher_launch_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_file_launcher_open_containing_folder(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_file_launcher_open_containing_folder(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkFileLauncher* v1 = (GtkFileLauncher*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_file_launcher_open_containing_folder(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_file_launcher_open_containing_folder(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -14352,13 +14300,11 @@ SEXP R_gtk_flow_box_append(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_flow_box_bind_model(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_flow_box_bind_model(SEXP s1, SEXP s2, SEXP s3) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
   GListModel* v2 = (s2 != R_NilValue) ? (GListModel*)(get_ptr(s2)) : NULL; (void)v2;
-  GtkFlowBoxCreateWidgetFunc v3 = (GtkFlowBoxCreateWidgetFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  gtk_flow_box_bind_model(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gtk_flow_box_bind_model(v1, v2, (GtkFlowBoxCreateWidgetFunc)(_cb_closure_3 ? _rgtk4_cb_FlowBoxCreateWidgetFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -14587,11 +14533,10 @@ SEXP R_gtk_flow_box_select_child(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_flow_box_selected_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gtk_flow_box_selected_foreach(SEXP s1, SEXP s2) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  GtkFlowBoxForeachFunc v2 = (GtkFlowBoxForeachFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gtk_flow_box_selected_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_flow_box_selected_foreach(v1, (GtkFlowBoxForeachFunc)(_cb_closure_2 ? _rgtk4_cb_FlowBoxForeachFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -14612,12 +14557,10 @@ SEXP R_gtk_flow_box_set_column_spacing(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_flow_box_set_filter_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_flow_box_set_filter_func(SEXP s1, SEXP s2) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  GtkFlowBoxFilterFunc v2 = (s2 != R_NilValue) ? (GtkFlowBoxFilterFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_flow_box_set_filter_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_flow_box_set_filter_func(v1, (GtkFlowBoxFilterFunc)(_cb_closure_2 ? _rgtk4_cb_FlowBoxFilterFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -14670,12 +14613,10 @@ SEXP R_gtk_flow_box_set_selection_mode(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_flow_box_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_flow_box_set_sort_func(SEXP s1, SEXP s2) {
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
-  GtkFlowBoxSortFunc v2 = (s2 != R_NilValue) ? (GtkFlowBoxSortFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_flow_box_set_sort_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_flow_box_set_sort_func(v1, (GtkFlowBoxSortFunc)(_cb_closure_2 ? _rgtk4_cb_FlowBoxSortFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -15086,12 +15027,10 @@ SEXP R_gtk_font_chooser_get_show_preview_entry(SEXP s1) {
 }
 
 
-SEXP R_gtk_font_chooser_set_filter_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_font_chooser_set_filter_func(SEXP s1, SEXP s2) {
   GtkFontChooser* v1 = (GtkFontChooser*)(get_ptr(s1)); (void)v1;
-  GtkFontFilterFunc v2 = (s2 != R_NilValue) ? (GtkFontFilterFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_font_chooser_set_filter_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_font_chooser_set_filter_func(v1, (GtkFontFilterFunc)(_cb_closure_2 ? _rgtk4_cb_FontFilterFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -15201,14 +15140,13 @@ SEXP R_gtk_font_dialog_new(void) {
 }
 
 
-SEXP R_gtk_font_dialog_choose_face(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gtk_font_dialog_choose_face(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkFontDialog* v1 = (GtkFontDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   PangoFontFace* v3 = (s3 != R_NilValue) ? (PangoFontFace*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gtk_font_dialog_choose_face(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gtk_font_dialog_choose_face(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -15231,14 +15169,13 @@ SEXP R_gtk_font_dialog_choose_face_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_font_dialog_choose_family(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gtk_font_dialog_choose_family(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkFontDialog* v1 = (GtkFontDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   PangoFontFamily* v3 = (s3 != R_NilValue) ? (PangoFontFamily*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gtk_font_dialog_choose_family(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gtk_font_dialog_choose_family(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -15261,26 +15198,24 @@ SEXP R_gtk_font_dialog_choose_family_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_font_dialog_choose_font(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gtk_font_dialog_choose_font(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkFontDialog* v1 = (GtkFontDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   PangoFontDescription* v3 = (s3 != R_NilValue) ? (PangoFontDescription*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gtk_font_dialog_choose_font(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gtk_font_dialog_choose_font(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
 
-SEXP R_gtk_font_dialog_choose_font_and_features(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gtk_font_dialog_choose_font_and_features(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkFontDialog* v1 = (GtkFontDialog*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   PangoFontDescription* v3 = (s3 != R_NilValue) ? (PangoFontDescription*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gtk_font_dialog_choose_font_and_features(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gtk_font_dialog_choose_font_and_features(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -16088,7 +16023,14 @@ SEXP R_gtk_gesture_get_last_event(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)gtk_gesture_get_last_event(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.Event"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.Event"));
   }
@@ -18923,11 +18865,10 @@ SEXP R_gtk_icon_view_select_path(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_icon_view_selected_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gtk_icon_view_selected_foreach(SEXP s1, SEXP s2) {
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
-  GtkIconViewForeachFunc v2 = (GtkIconViewForeachFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gtk_icon_view_selected_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_icon_view_selected_foreach(v1, (GtkIconViewForeachFunc)(_cb_closure_2 ? _rgtk4_cb_IconViewForeachFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -19812,7 +19753,7 @@ SEXP R_gtk_inscription_set_text_overflow(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_inscription_set_wrap_mode(SEXP s1, SEXP s2) {
   GtkInscription* v1 = (GtkInscription*)(get_ptr(s1)); (void)v1;
-  GtkWrapMode v2 = (GtkWrapMode)((GtkWrapMode)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
+  PangoWrapMode v2 = (PangoWrapMode)((PangoWrapMode)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gtk_inscription_set_wrap_mode(v1, v2);
   return R_NilValue;
 }
@@ -20353,7 +20294,7 @@ SEXP R_gtk_label_set_attributes(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_label_set_ellipsize(SEXP s1, SEXP s2) {
   GtkLabel* v1 = (GtkLabel*)(get_ptr(s1)); (void)v1;
-  PangoEllipsizeMode v2 = (PangoEllipsizeMode)(get_ptr(s2)); (void)v2;
+  PangoEllipsizeMode v2 = (PangoEllipsizeMode)((PangoEllipsizeMode)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gtk_label_set_ellipsize(v1, v2);
   return R_NilValue;
 }
@@ -20505,7 +20446,7 @@ SEXP R_gtk_label_set_wrap(SEXP s1, SEXP s2) {
 
 SEXP R_gtk_label_set_wrap_mode(SEXP s1, SEXP s2) {
   GtkLabel* v1 = (GtkLabel*)(get_ptr(s1)); (void)v1;
-  GtkWrapMode v2 = (GtkWrapMode)((GtkWrapMode)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
+  PangoWrapMode v2 = (PangoWrapMode)((PangoWrapMode)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gtk_label_set_wrap_mode(v1, v2);
   return R_NilValue;
 }
@@ -20962,13 +20903,11 @@ SEXP R_gtk_list_box_append(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_list_box_bind_model(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_list_box_bind_model(SEXP s1, SEXP s2, SEXP s3) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
   GListModel* v2 = (s2 != R_NilValue) ? (GListModel*)(get_ptr(s2)) : NULL; (void)v2;
-  GtkListBoxCreateWidgetFunc v3 = (s3 != R_NilValue) ? (GtkListBoxCreateWidgetFunc)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  gtk_list_box_bind_model(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gtk_list_box_bind_model(v1, v2, (GtkListBoxCreateWidgetFunc)(_cb_closure_3 ? _rgtk4_cb_ListBoxCreateWidgetFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -21186,11 +21125,10 @@ SEXP R_gtk_list_box_select_row(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_list_box_selected_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gtk_list_box_selected_foreach(SEXP s1, SEXP s2) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
-  GtkListBoxForeachFunc v2 = (GtkListBoxForeachFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gtk_list_box_selected_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_list_box_selected_foreach(v1, (GtkListBoxForeachFunc)(_cb_closure_2 ? _rgtk4_cb_ListBoxForeachFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -21211,22 +21149,18 @@ SEXP R_gtk_list_box_set_adjustment(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_list_box_set_filter_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_list_box_set_filter_func(SEXP s1, SEXP s2) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
-  GtkListBoxFilterFunc v2 = (s2 != R_NilValue) ? (GtkListBoxFilterFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_list_box_set_filter_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_list_box_set_filter_func(v1, (GtkListBoxFilterFunc)(_cb_closure_2 ? _rgtk4_cb_ListBoxFilterFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
 
-SEXP R_gtk_list_box_set_header_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_list_box_set_header_func(SEXP s1, SEXP s2) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
-  GtkListBoxUpdateHeaderFunc v2 = (s2 != R_NilValue) ? (GtkListBoxUpdateHeaderFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_list_box_set_header_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_list_box_set_header_func(v1, (GtkListBoxUpdateHeaderFunc)(_cb_closure_2 ? _rgtk4_cb_ListBoxUpdateHeaderFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -21255,12 +21189,10 @@ SEXP R_gtk_list_box_set_show_separators(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_list_box_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_list_box_set_sort_func(SEXP s1, SEXP s2) {
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
-  GtkListBoxSortFunc v2 = (s2 != R_NilValue) ? (GtkListBoxSortFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_list_box_set_sort_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_list_box_set_sort_func(v1, (GtkListBoxSortFunc)(_cb_closure_2 ? _rgtk4_cb_ListBoxSortFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -22178,12 +22110,10 @@ SEXP R_gtk_lock_button_set_permission(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_map_list_model_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_map_list_model_new(SEXP s1, SEXP s2) {
   GListModel* v1 = (s1 != R_NilValue) ? (GListModel*)(get_ptr(s1)) : NULL; (void)v1;
-  GtkMapListModelMapFunc v2 = (s2 != R_NilValue) ? (GtkMapListModelMapFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gconstpointer _ret = (gconstpointer)gtk_map_list_model_new(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gconstpointer _ret = (gconstpointer)gtk_map_list_model_new(v1, (GtkMapListModelMapFunc)(_cb_closure_2 ? _rgtk4_cb_MapListModelMapFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -22229,12 +22159,10 @@ SEXP R_gtk_map_list_model_has_map(SEXP s1) {
 }
 
 
-SEXP R_gtk_map_list_model_set_map_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_map_list_model_set_map_func(SEXP s1, SEXP s2) {
   GtkMapListModel* v1 = (GtkMapListModel*)(get_ptr(s1)); (void)v1;
-  GtkMapListModelMapFunc v2 = (s2 != R_NilValue) ? (GtkMapListModelMapFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_map_list_model_set_map_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_map_list_model_set_map_func(v1, (GtkMapListModelMapFunc)(_cb_closure_2 ? _rgtk4_cb_MapListModelMapFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -23025,12 +22953,10 @@ SEXP R_gtk_menu_button_set_child(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_menu_button_set_create_popup_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_menu_button_set_create_popup_func(SEXP s1, SEXP s2) {
   GtkMenuButton* v1 = (GtkMenuButton*)(get_ptr(s1)); (void)v1;
-  GtkMenuButtonCreatePopupFunc v2 = (s2 != R_NilValue) ? (GtkMenuButtonCreatePopupFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gtk_menu_button_set_create_popup_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_menu_button_set_create_popup_func(v1, (GtkMenuButtonCreatePopupFunc)(_cb_closure_2 ? _rgtk4_cb_MenuButtonCreatePopupFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -26061,7 +25987,7 @@ SEXP R_gtk_progress_bar_pulse(SEXP s1) {
 
 SEXP R_gtk_progress_bar_set_ellipsize(SEXP s1, SEXP s2) {
   GtkProgressBar* v1 = (GtkProgressBar*)(get_ptr(s1)); (void)v1;
-  PangoEllipsizeMode v2 = (PangoEllipsizeMode)(get_ptr(s2)); (void)v2;
+  PangoEllipsizeMode v2 = (PangoEllipsizeMode)((PangoEllipsizeMode)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gtk_progress_bar_set_ellipsize(v1, v2);
   return R_NilValue;
 }
@@ -27426,12 +27352,10 @@ SEXP R_gtk_scale_set_draw_value(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_scale_set_format_value_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_scale_set_format_value_func(SEXP s1, SEXP s2) {
   GtkScale* v1 = (GtkScale*)(get_ptr(s1)); (void)v1;
-  GtkScaleFormatValueFunc v2 = (s2 != R_NilValue) ? (GtkScaleFormatValueFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gtk_scale_set_format_value_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_scale_set_format_value_func(v1, (GtkScaleFormatValueFunc)(_cb_closure_2 ? _rgtk4_cb_ScaleFormatValueFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -29708,7 +29632,7 @@ SEXP R_gtk_snapshot_append_repeating_radial_gradient(SEXP s1, SEXP s2, SEXP s3, 
 SEXP R_gtk_snapshot_append_scaled_texture(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
   GdkTexture* v2 = (GdkTexture*)(get_ptr(s2)); (void)v2;
-  GskScalingFilter v3 = (GskScalingFilter)(get_ptr(s3)); (void)v3;
+  GskScalingFilter v3 = (GskScalingFilter)((GskScalingFilter)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   const graphene_rect_t* v4 = (const graphene_rect_t*)(get_ptr(s4)); (void)v4;
   gtk_snapshot_append_scaled_texture(v1, v2, v3, v4);
   return R_NilValue;
@@ -29748,7 +29672,7 @@ SEXP R_gtk_snapshot_pop(SEXP s1) {
 
 SEXP R_gtk_snapshot_push_blend(SEXP s1, SEXP s2) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  GskBlendMode v2 = (GskBlendMode)(get_ptr(s2)); (void)v2;
+  GskBlendMode v2 = (GskBlendMode)((GskBlendMode)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gtk_snapshot_push_blend(v1, v2);
   return R_NilValue;
 }
@@ -29799,7 +29723,7 @@ SEXP R_gtk_snapshot_push_gl_shader(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 SEXP R_gtk_snapshot_push_mask(SEXP s1, SEXP s2) {
   GtkSnapshot* v1 = (GtkSnapshot*)(get_ptr(s1)); (void)v1;
-  GskMaskMode v2 = (GskMaskMode)(get_ptr(s2)); (void)v2;
+  GskMaskMode v2 = (GskMaskMode)((GskMaskMode)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gtk_snapshot_push_mask(v1, v2);
   return R_NilValue;
 }
@@ -29882,7 +29806,7 @@ SEXP R_gtk_snapshot_render_insertion_cursor(SEXP s1, SEXP s2, SEXP s3, SEXP s4, 
   gdouble v4 = (gdouble)((gdouble)_unbox_numeric(s4)); (void)v4;
   PangoLayout* v5 = (PangoLayout*)(get_ptr(s5)); (void)v5;
   gint v6 = (gint)((gint)_unbox_numeric(s6)); (void)v6;
-  PangoDirection v7 = (PangoDirection)(get_ptr(s7)); (void)v7;
+  PangoDirection v7 = (PangoDirection)((PangoDirection)(TYPEOF(s7)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s7) : INTEGER(s7)[0])); (void)v7;
   gtk_snapshot_render_insertion_cursor(v1, v2, v3, v4, v5, v6, v7);
   return R_NilValue;
 }
@@ -33350,12 +33274,11 @@ SEXP R_gtk_text_iter_backward_cursor_positions(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_text_iter_backward_find_char(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_text_iter_backward_find_char(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  GtkTextCharPredicate v2 = (GtkTextCharPredicate)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  const GtkTextIter* v4 = (s4 != R_NilValue) ? (const GtkTextIter*)(get_ptr(s4)) : NULL; (void)v4;
-  gboolean _ret = (gboolean)gtk_text_iter_backward_find_char(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  const GtkTextIter* v3 = (s3 != R_NilValue) ? (const GtkTextIter*)(get_ptr(s3)) : NULL; (void)v3;
+  gboolean _ret = (gboolean)gtk_text_iter_backward_find_char(v1, (GtkTextCharPredicate)(_cb_closure_2 ? _rgtk4_cb_TextCharPredicate : NULL), _cb_closure_2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -33654,7 +33577,14 @@ SEXP R_gtk_text_iter_copy(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gtk_text_iter_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("TextIter"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
@@ -33830,12 +33760,11 @@ SEXP R_gtk_text_iter_forward_cursor_positions(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_text_iter_forward_find_char(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_text_iter_forward_find_char(SEXP s1, SEXP s2, SEXP s3) {
   GtkTextIter* v1 = (GtkTextIter*)(get_ptr(s1)); (void)v1;
-  GtkTextCharPredicate v2 = (GtkTextCharPredicate)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  const GtkTextIter* v4 = (s4 != R_NilValue) ? (const GtkTextIter*)(get_ptr(s4)) : NULL; (void)v4;
-  gboolean _ret = (gboolean)gtk_text_iter_forward_find_char(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  const GtkTextIter* v3 = (s3 != R_NilValue) ? (const GtkTextIter*)(get_ptr(s3)) : NULL; (void)v3;
+  gboolean _ret = (gboolean)gtk_text_iter_forward_find_char(v1, (GtkTextCharPredicate)(_cb_closure_2 ? _rgtk4_cb_TextCharPredicate : NULL), _cb_closure_2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -34889,11 +34818,10 @@ SEXP R_gtk_text_tag_table_add(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_text_tag_table_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gtk_text_tag_table_foreach(SEXP s1, SEXP s2) {
   GtkTextTagTable* v1 = (GtkTextTagTable*)(get_ptr(s1)); (void)v1;
-  GtkTextTagTableForeach v2 = (GtkTextTagTableForeach)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gtk_text_tag_table_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_text_tag_table_foreach(v1, (GtkTextTagTableForeach)(_cb_closure_2 ? _rgtk4_cb_TextTagTableForeach : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -36372,14 +36300,12 @@ SEXP R_gtk_tree_iter_free(SEXP s1) {
 }
 
 
-SEXP R_gtk_tree_list_model_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gtk_tree_list_model_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GListModel* v1 = (GListModel*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
-  GtkTreeListModelCreateModelFunc v4 = (GtkTreeListModelCreateModelFunc)(get_ptr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  GDestroyNotify v6 = (GDestroyNotify)(get_ptr(s6)); (void)v6;
-  gconstpointer _ret = (gconstpointer)gtk_tree_list_model_new(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gconstpointer _ret = (gconstpointer)gtk_tree_list_model_new(v1, v2, v3, (GtkTreeListModelCreateModelFunc)(_cb_closure_4 ? _rgtk4_cb_TreeListModelCreateModelFunc : NULL), _cb_closure_4, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -36677,11 +36603,10 @@ SEXP R_gtk_tree_model_filter_new(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_tree_model_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gtk_tree_model_foreach(SEXP s1, SEXP s2) {
   GtkTreeModel* v1 = (GtkTreeModel*)(get_ptr(s1)); (void)v1;
-  GtkTreeModelForeachFunc v2 = (GtkTreeModelForeachFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gtk_tree_model_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_tree_model_foreach(v1, (GtkTreeModelForeachFunc)(_cb_closure_2 ? _rgtk4_cb_TreeModelForeachFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -37161,14 +37086,12 @@ SEXP R_gtk_tree_model_filter_refilter(SEXP s1) {
 }
 
 
-SEXP R_gtk_tree_model_filter_set_modify_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gtk_tree_model_filter_set_modify_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkTreeModelFilter* v1 = (GtkTreeModelFilter*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GType* v3 = (GType*)(get_ptr(s3)); (void)v3;
-  GtkTreeModelFilterModifyFunc v4 = (GtkTreeModelFilterModifyFunc)(get_ptr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  GDestroyNotify v6 = (s6 != R_NilValue) ? (GDestroyNotify)(get_ptr(s6)) : NULL; (void)v6;
-  gtk_tree_model_filter_set_modify_func(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_tree_model_filter_set_modify_func(v1, v2, v3, (GtkTreeModelFilterModifyFunc)(_cb_closure_4 ? _rgtk4_cb_TreeModelFilterModifyFunc : NULL), _cb_closure_4, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -37181,12 +37104,10 @@ SEXP R_gtk_tree_model_filter_set_visible_column(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_tree_model_filter_set_visible_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_tree_model_filter_set_visible_func(SEXP s1, SEXP s2) {
   GtkTreeModelFilter* v1 = (GtkTreeModelFilter*)(get_ptr(s1)); (void)v1;
-  GtkTreeModelFilterVisibleFunc v2 = (GtkTreeModelFilterVisibleFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gtk_tree_model_filter_set_visible_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_tree_model_filter_set_visible_func(v1, (GtkTreeModelFilterVisibleFunc)(_cb_closure_2 ? _rgtk4_cb_TreeModelFilterVisibleFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -37870,11 +37791,10 @@ SEXP R_gtk_tree_selection_select_range(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_tree_selection_selected_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gtk_tree_selection_selected_foreach(SEXP s1, SEXP s2) {
   GtkTreeSelection* v1 = (GtkTreeSelection*)(get_ptr(s1)); (void)v1;
-  GtkTreeSelectionForeachFunc v2 = (GtkTreeSelectionForeachFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gtk_tree_selection_selected_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_tree_selection_selected_foreach(v1, (GtkTreeSelectionForeachFunc)(_cb_closure_2 ? _rgtk4_cb_TreeSelectionForeachFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -37887,12 +37807,10 @@ SEXP R_gtk_tree_selection_set_mode(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_tree_selection_set_select_function(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_tree_selection_set_select_function(SEXP s1, SEXP s2) {
   GtkTreeSelection* v1 = (GtkTreeSelection*)(get_ptr(s1)); (void)v1;
-  GtkTreeSelectionFunc v2 = (s2 != R_NilValue) ? (GtkTreeSelectionFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gtk_tree_selection_set_select_function(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_tree_selection_set_select_function(v1, (GtkTreeSelectionFunc)(_cb_closure_2 ? _rgtk4_cb_TreeSelectionFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -37973,12 +37891,10 @@ SEXP R_gtk_tree_sortable_has_default_sort_func(SEXP s1) {
 }
 
 
-SEXP R_gtk_tree_sortable_set_default_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_tree_sortable_set_default_sort_func(SEXP s1, SEXP s2) {
   GtkTreeSortable* v1 = (GtkTreeSortable*)(get_ptr(s1)); (void)v1;
-  GtkTreeIterCompareFunc v2 = (GtkTreeIterCompareFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gtk_tree_sortable_set_default_sort_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_tree_sortable_set_default_sort_func(v1, (GtkTreeIterCompareFunc)(_cb_closure_2 ? _rgtk4_cb_TreeIterCompareFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -37992,13 +37908,11 @@ SEXP R_gtk_tree_sortable_set_sort_column_id(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_tree_sortable_set_sort_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_tree_sortable_set_sort_func(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeSortable* v1 = (GtkTreeSortable*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
-  GtkTreeIterCompareFunc v3 = (GtkTreeIterCompareFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_tree_sortable_set_sort_func(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gtk_tree_sortable_set_sort_func(v1, v2, (GtkTreeIterCompareFunc)(_cb_closure_3 ? _rgtk4_cb_TreeIterCompareFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -39183,15 +39097,13 @@ SEXP R_gtk_tree_view_insert_column(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_tree_view_insert_column_with_data_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_gtk_tree_view_insert_column_with_data_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   GtkCellRenderer* v4 = (GtkCellRenderer*)(get_ptr(s4)); (void)v4;
-  GtkTreeCellDataFunc v5 = (GtkTreeCellDataFunc)(get_ptr(s5)); (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  GDestroyNotify v7 = (GDestroyNotify)(get_ptr(s7)); (void)v7;
-  int _ret = (int)gtk_tree_view_insert_column_with_data_func(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  int _ret = (int)gtk_tree_view_insert_column_with_data_func(v1, v2, v3, v4, (GtkTreeCellDataFunc)(_cb_closure_5 ? _rgtk4_cb_TreeCellDataFunc : NULL), _cb_closure_5, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -39263,11 +39175,10 @@ SEXP R_gtk_tree_view_is_rubber_banding_active(SEXP s1) {
 }
 
 
-SEXP R_gtk_tree_view_map_expanded_rows(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gtk_tree_view_map_expanded_rows(SEXP s1, SEXP s2) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  GtkTreeViewMappingFunc v2 = (GtkTreeViewMappingFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gtk_tree_view_map_expanded_rows(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_tree_view_map_expanded_rows(v1, (GtkTreeViewMappingFunc)(_cb_closure_2 ? _rgtk4_cb_TreeViewMappingFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -39353,12 +39264,10 @@ SEXP R_gtk_tree_view_set_activate_on_single_click(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_tree_view_set_column_drag_function(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_tree_view_set_column_drag_function(SEXP s1, SEXP s2) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  GtkTreeViewColumnDropFunc v2 = (s2 != R_NilValue) ? (GtkTreeViewColumnDropFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gtk_tree_view_set_column_drag_function(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_tree_view_set_column_drag_function(v1, (GtkTreeViewColumnDropFunc)(_cb_closure_2 ? _rgtk4_cb_TreeViewColumnDropFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -39489,12 +39398,10 @@ SEXP R_gtk_tree_view_set_reorderable(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_tree_view_set_row_separator_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_tree_view_set_row_separator_func(SEXP s1, SEXP s2) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  GtkTreeViewRowSeparatorFunc v2 = (s2 != R_NilValue) ? (GtkTreeViewRowSeparatorFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gtk_tree_view_set_row_separator_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gtk_tree_view_set_row_separator_func(v1, (GtkTreeViewRowSeparatorFunc)(_cb_closure_2 ? _rgtk4_cb_TreeViewRowSeparatorFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -39523,12 +39430,13 @@ SEXP R_gtk_tree_view_set_search_entry(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_tree_view_set_search_equal_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_tree_view_set_search_equal_func(SEXP s1, SEXP s2) {
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
-  GtkTreeViewSearchEqualFunc v2 = (GtkTreeViewSearchEqualFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gtk_tree_view_set_search_equal_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_2);
+  gtk_tree_view_set_search_equal_func(v1, (GtkTreeViewSearchEqualFunc)(_cb_closure_2 ? _rgtk4_cb_TreeViewSearchEqualFunc : NULL), _cb_closure_2, rgtk4_closure_free);
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_2) rgtk4_closure_free(_cb_closure_2);
   return R_NilValue;
 }
 
@@ -40099,13 +40007,11 @@ SEXP R_gtk_tree_view_column_set_alignment(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_tree_view_column_set_cell_data_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_tree_view_column_set_cell_data_func(SEXP s1, SEXP s2, SEXP s3) {
   GtkTreeViewColumn* v1 = (GtkTreeViewColumn*)(get_ptr(s1)); (void)v1;
   GtkCellRenderer* v2 = (GtkCellRenderer*)(get_ptr(s2)); (void)v2;
-  GtkTreeCellDataFunc v3 = (s3 != R_NilValue) ? (GtkTreeCellDataFunc)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  gtk_tree_view_column_set_cell_data_func(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gtk_tree_view_column_set_cell_data_func(v1, v2, (GtkTreeCellDataFunc)(_cb_closure_3 ? _rgtk4_cb_TreeCellDataFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -40262,13 +40168,12 @@ SEXP R_gtk_uri_launcher_get_uri(SEXP s1) {
 }
 
 
-SEXP R_gtk_uri_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gtk_uri_launcher_launch(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkUriLauncher* v1 = (GtkUriLauncher*)(get_ptr(s1)); (void)v1;
   GtkWindow* v2 = (s2 != R_NilValue) ? (GtkWindow*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gtk_uri_launcher_launch(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gtk_uri_launcher_launch(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -40678,12 +40583,10 @@ SEXP R_gtk_widget_add_mnemonic_label(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gtk_widget_add_tick_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gtk_widget_add_tick_callback(SEXP s1, SEXP s2) {
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
-  GtkTickCallback v2 = (GtkTickCallback)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  guint _ret = (guint)gtk_widget_add_tick_callback(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  guint _ret = (guint)gtk_widget_add_tick_callback(v1, (GtkTickCallback)(_cb_closure_2 ? _rgtk4_cb_TickCallback : NULL), _cb_closure_2, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -40801,7 +40704,7 @@ SEXP R_gtk_widget_compute_transform(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, tag_pointer(R_MakeExternalPtr((void*)(&_out_out_transform), R_NilValue, R_NilValue), "Graphene.Matrix"));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_out_transform, sizeof(graphene_matrix_t)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Graphene.Matrix"));
   }
@@ -42767,8 +42670,11 @@ SEXP R_gtk_widget_class_add_shortcut(SEXP s1, SEXP s2) {
 SEXP R_gtk_widget_class_bind_template_callback_full(SEXP s1, SEXP s2, SEXP s3) {
   GtkWidgetClass* v1 = (GtkWidgetClass*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GCallback v3 = (GCallback)(get_ptr(s3)); (void)v3;
-  gtk_widget_class_bind_template_callback_full(v1, v2, v3);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_3);
+  gtk_widget_class_bind_template_callback_full(v1, v2, (GCallback)(_cb_closure_3 ? _rgtk4_cb_Callback : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_3) rgtk4_closure_free(_cb_closure_3);
   return R_NilValue;
 }
 
@@ -42851,8 +42757,11 @@ SEXP R_gtk_widget_class_install_action(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GtkWidgetClass* v1 = (GtkWidgetClass*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
-  GtkWidgetActionActivateFunc v4 = (GtkWidgetActionActivateFunc)(get_ptr(s4)); (void)v4;
-  gtk_widget_class_install_action(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_4);
+  gtk_widget_class_install_action(v1, v2, v3, (GtkWidgetActionActivateFunc)(_cb_closure_4 ? _rgtk4_cb_WidgetActionActivateFunc : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_4) rgtk4_closure_free(_cb_closure_4);
   return R_NilValue;
 }
 
@@ -44544,14 +44453,13 @@ SEXP R_gtk_show_uri(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_gtk_show_uri_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gtk_show_uri_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GtkWindow* v1 = (s1 != R_NilValue) ? (GtkWindow*)(get_ptr(s1)) : NULL; (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   guint32 v3 = (guint32)((guint32)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gtk_show_uri_full(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gtk_show_uri_full(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 

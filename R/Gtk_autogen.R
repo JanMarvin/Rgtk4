@@ -999,6 +999,20 @@ gtkAdjustmentSetValue <- function(adjustment, value) {
 
 
 #' @rdname gtk-other
+#' @title gtkAlertDialogChoose
+#'
+#' @param self AlertDialog
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkAlertDialogChoose <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_alert_dialog_choose", self, parent, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkAlertDialogChooseFinish
 #'
 #' @param self AlertDialog
@@ -2180,6 +2194,18 @@ gtkAssistantRemovePage <- function(assistant, page_num) {
 #' @export
 gtkAssistantSetCurrentPage <- function(assistant, page_num) {
   invisible(.Call("R_gtk_assistant_set_current_page", assistant, as.integer(page_num)))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkAssistantSetForwardPageFunc
+#'
+#' @param assistant Assistant
+#' @param page_func function — AssistantPageFunc callback
+#' @return Return value from C function
+#' @export
+gtkAssistantSetForwardPageFunc <- function(assistant, page_func) {
+  invisible(.Call("R_gtk_assistant_set_forward_page_func", assistant, page_func))
 }
 
 
@@ -3493,6 +3519,19 @@ gtkBuilderCscopeNew <- function() {
 
 
 #' @rdname gtk-other
+#' @title gtkBuilderCscopeAddCallbackSymbol
+#'
+#' @param self BuilderCScope
+#' @param callback_name utf8
+#' @param callback_symbol function — GObject.Callback callback
+#' @return Return value from C function
+#' @export
+gtkBuilderCscopeAddCallbackSymbol <- function(self, callback_name, callback_symbol) {
+  invisible(.Call("R_gtk_builder_cscope_add_callback_symbol", self, callback_name, callback_symbol))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkBuilderErrorQuark
 #'
 #' @return GLib.Quark
@@ -3741,6 +3780,22 @@ gtkButtonSetUseUnderline <- function(button, use_underline) {
 
 
 #' @rdname gtk-other
+#' @title gtkCclosureExpressionNew
+#'
+#' @param value_type GType
+#' @param marshal function — GObject.ClosureMarshal callback
+#' @param n_params guint
+#' @param params Expression
+#' @param callback_func function — GObject.Callback callback
+#' @param user_destroy function — GObject.ClosureNotify callback
+#' @return CClosureExpression
+#' @export
+gtkCclosureExpressionNew <- function(value_type, marshal, n_params, params, callback_func, user_destroy) {
+  .Call("R_gtk_cclosure_expression_new", value_type, marshal, as.integer(n_params), params, callback_func, user_destroy)$result
+}
+
+
+#' @rdname gtk-other
 #' @title gtkCalendarNew
 #'
 #' @return Widget
@@ -3886,6 +3941,17 @@ gtkCalendarSetShowWeekNumbers <- function(self, value) {
 #' @export
 gtkCalendarUnmarkDay <- function(calendar, day) {
   invisible(.Call("R_gtk_calendar_unmark_day", calendar, as.integer(day)))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkCallbackActionNew
+#'
+#' @param callback function — ShortcutFunc callback
+#' @return CallbackAction
+#' @export
+gtkCallbackActionNew <- function(callback) {
+  .Call("R_gtk_callback_action_new", callback)$result
 }
 
 
@@ -4077,6 +4143,34 @@ gtkCellAreaEvent <- function(area, context, widget, event, cell_area, flags) {
 #' @export
 gtkCellAreaFocus <- function(area, direction) {
   .Call("R_gtk_cell_area_focus", area, direction)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkCellAreaForeach
+#'
+#' @param area CellArea
+#' @param callback function — CellCallback callback
+#' @return Return value from C function
+#' @export
+gtkCellAreaForeach <- function(area, callback) {
+  invisible(.Call("R_gtk_cell_area_foreach", area, callback))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkCellAreaForeachAlloc
+#'
+#' @param area CellArea
+#' @param context CellAreaContext
+#' @param widget Widget
+#' @param cell_area Gdk.Rectangle
+#' @param background_area Gdk.Rectangle
+#' @param callback function — CellAllocCallback callback
+#' @return Return value from C function
+#' @export
+gtkCellAreaForeachAlloc <- function(area, context, widget, cell_area, background_area, callback) {
+  invisible(.Call("R_gtk_cell_area_foreach_alloc", area, context, widget, cell_area, background_area, callback))
 }
 
 
@@ -4721,6 +4815,19 @@ gtkCellLayoutPackStart <- function(cell_layout, cell, expand) {
 #' @export
 gtkCellLayoutReorder <- function(cell_layout, cell, position) {
   invisible(.Call("R_gtk_cell_layout_reorder", cell_layout, cell, as.integer(position)))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkCellLayoutSetCellDataFunc
+#'
+#' @param cell_layout CellLayout
+#' @param cell CellRenderer
+#' @param func function — CellLayoutDataFunc callback
+#' @return Return value from C function
+#' @export
+gtkCellLayoutSetCellDataFunc <- function(cell_layout, cell, func) {
+  invisible(.Call("R_gtk_cell_layout_set_cell_data_func", cell_layout, cell, func))
 }
 
 
@@ -5976,6 +6083,21 @@ gtkColorDialogNew <- function() {
 
 
 #' @rdname gtk-other
+#' @title gtkColorDialogChooseRgba
+#'
+#' @param self ColorDialog
+#' @param parent Window
+#' @param initial_color Gdk.RGBA
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkColorDialogChooseRgba <- function(self, parent, initial_color, cancellable, callback) {
+  invisible(.Call("R_gtk_color_dialog_choose_rgba", self, parent, initial_color, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkColorDialogChooseRgbaFinish
 #'
 #' @param self ColorDialog
@@ -7215,6 +7337,18 @@ gtkComboBoxSetPopupFixedWidth <- function(combo_box, fixed) {
 
 
 #' @rdname gtk-other
+#' @title gtkComboBoxSetRowSeparatorFunc
+#'
+#' @param combo_box ComboBox
+#' @param func function — TreeViewRowSeparatorFunc callback
+#' @return Return value from C function
+#' @export
+gtkComboBoxSetRowSeparatorFunc <- function(combo_box, func) {
+  invisible(.Call("R_gtk_combo_box_set_row_separator_func", combo_box, func))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkComboBoxTextNew
 #'
 #' @return Widget
@@ -7975,6 +8109,65 @@ gtkCssSectionUnref <- function(section) {
 }
 
 
+#' @rdname gtk-other
+#' @title gtkCustomFilterNew
+#'
+#' @param match_func function — CustomFilterFunc callback
+#' @return CustomFilter
+#' @export
+gtkCustomFilterNew <- function(match_func) {
+  .Call("R_gtk_custom_filter_new", match_func)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkCustomFilterSetFilterFunc
+#'
+#' @param self CustomFilter
+#' @param match_func function — CustomFilterFunc callback
+#' @return Return value from C function
+#' @export
+gtkCustomFilterSetFilterFunc <- function(self, match_func) {
+  invisible(.Call("R_gtk_custom_filter_set_filter_func", self, match_func))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkCustomLayoutNew
+#'
+#' @param request_mode function — CustomRequestModeFunc callback
+#' @param measure function — CustomMeasureFunc callback
+#' @param allocate function — CustomAllocateFunc callback
+#' @return LayoutManager
+#' @export
+gtkCustomLayoutNew <- function(request_mode, measure, allocate) {
+  .Call("R_gtk_custom_layout_new", request_mode, measure, allocate)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkCustomSorterNew
+#'
+#' @param sort_func function — GLib.CompareDataFunc callback
+#' @return CustomSorter
+#' @export
+gtkCustomSorterNew <- function(sort_func) {
+  .Call("R_gtk_custom_sorter_new", sort_func)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkCustomSorterSetSortFunc
+#'
+#' @param self CustomSorter
+#' @param sort_func function — GLib.CompareDataFunc callback
+#' @return Return value from C function
+#' @export
+gtkCustomSorterSetSortFunc <- function(self, sort_func) {
+  invisible(.Call("R_gtk_custom_sorter_set_sort_func", self, sort_func))
+}
+
+
 #' @rdname gtk-dialogs
 #' @title gtkDialogNew
 #'
@@ -8434,6 +8627,18 @@ gtkDrawingAreaSetContentHeight <- function(self, height) {
 #' @export
 gtkDrawingAreaSetContentWidth <- function(self, width) {
   invisible(.Call("R_gtk_drawing_area_set_content_width", self, as.integer(width)))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkDrawingAreaSetDrawFunc
+#'
+#' @param self DrawingArea
+#' @param draw_func function — DrawingAreaDrawFunc callback
+#' @return Return value from C function
+#' @export
+gtkDrawingAreaSetDrawFunc <- function(self, draw_func) {
+  invisible(.Call("R_gtk_drawing_area_set_draw_func", self, draw_func))
 }
 
 
@@ -10332,6 +10537,18 @@ gtkEntryCompletionSetInlineSelection <- function(completion, inline_selection) {
 
 
 #' @rdname gtk-text
+#' @title gtkEntryCompletionSetMatchFunc
+#'
+#' @param completion EntryCompletion
+#' @param func function — EntryCompletionMatchFunc callback
+#' @return Return value from C function
+#' @export
+gtkEntryCompletionSetMatchFunc <- function(completion, func) {
+  invisible(.Call("R_gtk_entry_completion_set_match_func", completion, func))
+}
+
+
+#' @rdname gtk-text
 #' @title gtkEntryCompletionSetMinimumKeyLength
 #'
 #' @param completion EntryCompletion
@@ -10990,6 +11207,19 @@ gtkExpressionUnref <- function(self) {
 
 
 #' @rdname gtk-other
+#' @title gtkExpressionWatch
+#'
+#' @param self Expression
+#' @param this_ GObject.Object
+#' @param notify function — ExpressionNotify callback
+#' @return ExpressionWatch
+#' @export
+gtkExpressionWatch <- function(self, this_, notify) {
+  .Call("R_gtk_expression_watch", self, this_, notify)$result
+}
+
+
+#' @rdname gtk-other
 #' @title gtkExpressionWatchEvaluate
 #'
 #' @param watch ExpressionWatch
@@ -11509,6 +11739,20 @@ gtkFileDialogGetTitle <- function(self) {
 
 
 #' @rdname gtk-other
+#' @title gtkFileDialogOpen
+#'
+#' @param self FileDialog
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFileDialogOpen <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_file_dialog_open", self, parent, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFileDialogOpenFinish
 #'
 #' @param self FileDialog
@@ -11517,6 +11761,20 @@ gtkFileDialogGetTitle <- function(self) {
 #' @export
 gtkFileDialogOpenFinish <- function(self, result) {
   .Call("R_gtk_file_dialog_open_finish", self, result)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkFileDialogOpenMultiple
+#'
+#' @param self FileDialog
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFileDialogOpenMultiple <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_file_dialog_open_multiple", self, parent, cancellable, callback))
 }
 
 
@@ -11533,6 +11791,20 @@ gtkFileDialogOpenMultipleFinish <- function(self, result) {
 
 
 #' @rdname gtk-other
+#' @title gtkFileDialogSave
+#'
+#' @param self FileDialog
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFileDialogSave <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_file_dialog_save", self, parent, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFileDialogSaveFinish
 #'
 #' @param self FileDialog
@@ -11545,6 +11817,20 @@ gtkFileDialogSaveFinish <- function(self, result) {
 
 
 #' @rdname gtk-other
+#' @title gtkFileDialogSelectFolder
+#'
+#' @param self FileDialog
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFileDialogSelectFolder <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_file_dialog_select_folder", self, parent, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFileDialogSelectFolderFinish
 #'
 #' @param self FileDialog
@@ -11553,6 +11839,20 @@ gtkFileDialogSaveFinish <- function(self, result) {
 #' @export
 gtkFileDialogSelectFolderFinish <- function(self, result) {
   .Call("R_gtk_file_dialog_select_folder_finish", self, result)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkFileDialogSelectMultipleFolders
+#'
+#' @param self FileDialog
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFileDialogSelectMultipleFolders <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_file_dialog_select_multiple_folders", self, parent, cancellable, callback))
 }
 
 
@@ -11811,6 +12111,20 @@ gtkFileLauncherGetFile <- function(self) {
 
 
 #' @rdname gtk-other
+#' @title gtkFileLauncherLaunch
+#'
+#' @param self FileLauncher
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFileLauncherLaunch <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_file_launcher_launch", self, parent, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFileLauncherLaunchFinish
 #'
 #' @param self FileLauncher
@@ -11819,6 +12133,20 @@ gtkFileLauncherGetFile <- function(self) {
 #' @export
 gtkFileLauncherLaunchFinish <- function(self, result) {
   .Call("R_gtk_file_launcher_launch_finish", self, result)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkFileLauncherOpenContainingFolder
+#'
+#' @param self FileLauncher
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFileLauncherOpenContainingFolder <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_file_launcher_open_containing_folder", self, parent, cancellable, callback))
 }
 
 
@@ -12174,6 +12502,19 @@ gtkFlowBoxAppend <- function(self, child) {
 
 
 #' @rdname gtk-other
+#' @title gtkFlowBoxBindModel
+#'
+#' @param box FlowBox
+#' @param model Gio.ListModel
+#' @param create_widget_func function — FlowBoxCreateWidgetFunc callback
+#' @return Return value from C function
+#' @export
+gtkFlowBoxBindModel <- function(box, model, create_widget_func) {
+  invisible(.Call("R_gtk_flow_box_bind_model", box, model, create_widget_func))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFlowBoxGetActivateOnSingleClick
 #'
 #' @param box FlowBox
@@ -12380,6 +12721,18 @@ gtkFlowBoxSelectChild <- function(box, child) {
 
 
 #' @rdname gtk-other
+#' @title gtkFlowBoxSelectedForeach
+#'
+#' @param box FlowBox
+#' @param func function — FlowBoxForeachFunc callback
+#' @return Return value from C function
+#' @export
+gtkFlowBoxSelectedForeach <- function(box, func) {
+  invisible(.Call("R_gtk_flow_box_selected_foreach", box, func))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFlowBoxSetActivateOnSingleClick
 #'
 #' @param box FlowBox
@@ -12400,6 +12753,18 @@ gtkFlowBoxSetActivateOnSingleClick <- function(box, single) {
 #' @export
 gtkFlowBoxSetColumnSpacing <- function(box, spacing) {
   invisible(.Call("R_gtk_flow_box_set_column_spacing", box, as.integer(spacing)))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkFlowBoxSetFilterFunc
+#'
+#' @param box FlowBox
+#' @param filter_func function — FlowBoxFilterFunc callback
+#' @return Return value from C function
+#' @export
+gtkFlowBoxSetFilterFunc <- function(box, filter_func) {
+  invisible(.Call("R_gtk_flow_box_set_filter_func", box, filter_func))
 }
 
 
@@ -12472,6 +12837,18 @@ gtkFlowBoxSetRowSpacing <- function(box, spacing) {
 #' @export
 gtkFlowBoxSetSelectionMode <- function(box, mode) {
   invisible(.Call("R_gtk_flow_box_set_selection_mode", box, mode))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkFlowBoxSetSortFunc
+#'
+#' @param box FlowBox
+#' @param sort_func function — FlowBoxSortFunc callback
+#' @return Return value from C function
+#' @export
+gtkFlowBoxSetSortFunc <- function(box, sort_func) {
+  invisible(.Call("R_gtk_flow_box_set_sort_func", box, sort_func))
 }
 
 
@@ -12811,6 +13188,18 @@ gtkFontChooserGetShowPreviewEntry <- function(fontchooser) {
 
 
 #' @rdname gtk-other
+#' @title gtkFontChooserSetFilterFunc
+#'
+#' @param fontchooser FontChooser
+#' @param filter function — FontFilterFunc callback
+#' @return Return value from C function
+#' @export
+gtkFontChooserSetFilterFunc <- function(fontchooser, filter) {
+  invisible(.Call("R_gtk_font_chooser_set_filter_func", fontchooser, filter))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFontChooserSetFont
 #'
 #' @param fontchooser FontChooser
@@ -12927,6 +13316,21 @@ gtkFontDialogNew <- function() {
 
 
 #' @rdname gtk-other
+#' @title gtkFontDialogChooseFace
+#'
+#' @param self FontDialog
+#' @param parent Window
+#' @param initial_value Pango.FontFace
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFontDialogChooseFace <- function(self, parent, initial_value, cancellable, callback) {
+  invisible(.Call("R_gtk_font_dialog_choose_face", self, parent, initial_value, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFontDialogChooseFaceFinish
 #'
 #' @param self FontDialog
@@ -12939,6 +13343,21 @@ gtkFontDialogChooseFaceFinish <- function(self, result) {
 
 
 #' @rdname gtk-other
+#' @title gtkFontDialogChooseFamily
+#'
+#' @param self FontDialog
+#' @param parent Window
+#' @param initial_value Pango.FontFamily
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFontDialogChooseFamily <- function(self, parent, initial_value, cancellable, callback) {
+  invisible(.Call("R_gtk_font_dialog_choose_family", self, parent, initial_value, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkFontDialogChooseFamilyFinish
 #'
 #' @param self FontDialog
@@ -12947,6 +13366,36 @@ gtkFontDialogChooseFaceFinish <- function(self, result) {
 #' @export
 gtkFontDialogChooseFamilyFinish <- function(self, result) {
   .Call("R_gtk_font_dialog_choose_family_finish", self, result)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkFontDialogChooseFont
+#'
+#' @param self FontDialog
+#' @param parent Window
+#' @param initial_value Pango.FontDescription
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFontDialogChooseFont <- function(self, parent, initial_value, cancellable, callback) {
+  invisible(.Call("R_gtk_font_dialog_choose_font", self, parent, initial_value, cancellable, callback))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkFontDialogChooseFontAndFeatures
+#'
+#' @param self FontDialog
+#' @param parent Window
+#' @param initial_value Pango.FontDescription
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkFontDialogChooseFontAndFeatures <- function(self, parent, initial_value, cancellable, callback) {
+  invisible(.Call("R_gtk_font_dialog_choose_font_and_features", self, parent, initial_value, cancellable, callback))
 }
 
 
@@ -15887,6 +16336,18 @@ gtkIconViewSelectPath <- function(icon_view, path) {
 
 
 #' @rdname gtk-images
+#' @title gtkIconViewSelectedForeach
+#'
+#' @param icon_view IconView
+#' @param func function — IconViewForeachFunc callback
+#' @return Return value from C function
+#' @export
+gtkIconViewSelectedForeach <- function(icon_view, func) {
+  invisible(.Call("R_gtk_icon_view_selected_foreach", icon_view, func))
+}
+
+
+#' @rdname gtk-images
 #' @title gtkIconViewSetActivateOnSingleClick
 #'
 #' @param icon_view IconView
@@ -17839,6 +18300,19 @@ gtkListBoxAppend <- function(box, child) {
 
 
 #' @rdname gtk-other
+#' @title gtkListBoxBindModel
+#'
+#' @param box ListBox
+#' @param model Gio.ListModel
+#' @param create_widget_func function — ListBoxCreateWidgetFunc callback
+#' @return Return value from C function
+#' @export
+gtkListBoxBindModel <- function(box, model, create_widget_func) {
+  invisible(.Call("R_gtk_list_box_bind_model", box, model, create_widget_func))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkListBoxDragHighlightRow
 #'
 #' @param box ListBox
@@ -18056,6 +18530,18 @@ gtkListBoxSelectRow <- function(box, row) {
 
 
 #' @rdname gtk-other
+#' @title gtkListBoxSelectedForeach
+#'
+#' @param box ListBox
+#' @param func function — ListBoxForeachFunc callback
+#' @return Return value from C function
+#' @export
+gtkListBoxSelectedForeach <- function(box, func) {
+  invisible(.Call("R_gtk_list_box_selected_foreach", box, func))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkListBoxSetActivateOnSingleClick
 #'
 #' @param box ListBox
@@ -18076,6 +18562,30 @@ gtkListBoxSetActivateOnSingleClick <- function(box, single) {
 #' @export
 gtkListBoxSetAdjustment <- function(box, adjustment) {
   invisible(.Call("R_gtk_list_box_set_adjustment", box, adjustment))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkListBoxSetFilterFunc
+#'
+#' @param box ListBox
+#' @param filter_func function — ListBoxFilterFunc callback
+#' @return Return value from C function
+#' @export
+gtkListBoxSetFilterFunc <- function(box, filter_func) {
+  invisible(.Call("R_gtk_list_box_set_filter_func", box, filter_func))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkListBoxSetHeaderFunc
+#'
+#' @param box ListBox
+#' @param update_header function — ListBoxUpdateHeaderFunc callback
+#' @return Return value from C function
+#' @export
+gtkListBoxSetHeaderFunc <- function(box, update_header) {
+  invisible(.Call("R_gtk_list_box_set_header_func", box, update_header))
 }
 
 
@@ -18112,6 +18622,18 @@ gtkListBoxSetSelectionMode <- function(box, mode) {
 #' @export
 gtkListBoxSetShowSeparators <- function(box, show_separators) {
   invisible(.Call("R_gtk_list_box_set_show_separators", box, show_separators))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkListBoxSetSortFunc
+#'
+#' @param box ListBox
+#' @param sort_func function — ListBoxSortFunc callback
+#' @return Return value from C function
+#' @export
+gtkListBoxSetSortFunc <- function(box, sort_func) {
+  invisible(.Call("R_gtk_list_box_set_sort_func", box, sort_func))
 }
 
 
@@ -18946,6 +19468,18 @@ gtkLockButtonSetPermission <- function(button, permission) {
 
 
 #' @rdname gtk-other
+#' @title gtkMapListModelNew
+#'
+#' @param model Gio.ListModel
+#' @param map_func function — MapListModelMapFunc callback
+#' @return MapListModel
+#' @export
+gtkMapListModelNew <- function(model, map_func) {
+  .Call("R_gtk_map_list_model_new", model, map_func)$result
+}
+
+
+#' @rdname gtk-other
 #' @title gtkMapListModelGetModel
 #'
 #' @param self MapListModel
@@ -18964,6 +19498,18 @@ gtkMapListModelGetModel <- function(self) {
 #' @export
 gtkMapListModelHasMap <- function(self) {
   .Call("R_gtk_map_list_model_has_map", self)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkMapListModelSetMapFunc
+#'
+#' @param self MapListModel
+#' @param map_func function — MapListModelMapFunc callback
+#' @return Return value from C function
+#' @export
+gtkMapListModelSetMapFunc <- function(self, map_func) {
+  invisible(.Call("R_gtk_map_list_model_set_map_func", self, map_func))
 }
 
 
@@ -19689,6 +20235,18 @@ gtkMenuButtonSetCanShrink <- function(menu_button, can_shrink) {
 #' @export
 gtkMenuButtonSetChild <- function(menu_button, child) {
   invisible(.Call("R_gtk_menu_button_set_child", menu_button, child))
+}
+
+
+#' @rdname gtk-menus
+#' @title gtkMenuButtonSetCreatePopupFunc
+#'
+#' @param menu_button MenuButton
+#' @param func function — MenuButtonCreatePopupFunc callback
+#' @return Return value from C function
+#' @export
+gtkMenuButtonSetCreatePopupFunc <- function(menu_button, func) {
+  invisible(.Call("R_gtk_menu_button_set_create_popup_func", menu_button, func))
 }
 
 
@@ -23459,6 +24017,18 @@ gtkScaleSetDigits <- function(scale, digits) {
 #' @export
 gtkScaleSetDrawValue <- function(scale, draw_value) {
   invisible(.Call("R_gtk_scale_set_draw_value", scale, draw_value))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkScaleSetFormatValueFunc
+#'
+#' @param scale Scale
+#' @param func function — ScaleFormatValueFunc callback
+#' @return Return value from C function
+#' @export
+gtkScaleSetFormatValueFunc <- function(scale, func) {
+  invisible(.Call("R_gtk_scale_set_format_value_func", scale, func))
 }
 
 
@@ -28931,13 +29501,12 @@ gtkTextIterBackwardCursorPositions <- function(iter, count) {
 #' @title gtkTextIterBackwardFindChar
 #'
 #' @param iter TextIter
-#' @param pred TextCharPredicate
-#' @param user_data gpointer
+#' @param pred function — TextCharPredicate callback
 #' @param limit TextIter
 #' @return gboolean
 #' @export
-gtkTextIterBackwardFindChar <- function(iter, pred, user_data, limit) {
-  .Call("R_gtk_text_iter_backward_find_char", iter, pred, user_data, limit)$result
+gtkTextIterBackwardFindChar <- function(iter, pred, limit) {
+  .Call("R_gtk_text_iter_backward_find_char", iter, pred, limit)$result
 }
 
 
@@ -29259,13 +29828,12 @@ gtkTextIterForwardCursorPositions <- function(iter, count) {
 #' @title gtkTextIterForwardFindChar
 #'
 #' @param iter TextIter
-#' @param pred TextCharPredicate
-#' @param user_data gpointer
+#' @param pred function — TextCharPredicate callback
 #' @param limit TextIter
 #' @return gboolean
 #' @export
-gtkTextIterForwardFindChar <- function(iter, pred, user_data, limit) {
-  .Call("R_gtk_text_iter_forward_find_char", iter, pred, user_data, limit)$result
+gtkTextIterForwardFindChar <- function(iter, pred, limit) {
+  .Call("R_gtk_text_iter_forward_find_char", iter, pred, limit)$result
 }
 
 
@@ -30063,12 +30631,11 @@ gtkTextTagTableAdd <- function(table, tag) {
 #' @title gtkTextTagTableForeach
 #'
 #' @param table TextTagTable
-#' @param func TextTagTableForeach
-#' @param data gpointer
+#' @param func function — TextTagTableForeach callback
 #' @return Return value from C function
 #' @export
-gtkTextTagTableForeach <- function(table, func, data) {
-  invisible(.Call("R_gtk_text_tag_table_foreach", table, func, data))
+gtkTextTagTableForeach <- function(table, func) {
+  invisible(.Call("R_gtk_text_tag_table_foreach", table, func))
 }
 
 
@@ -31358,6 +31925,20 @@ gtkTreeIterFree <- function(iter) {
 
 
 #' @rdname gtk-other
+#' @title gtkTreeListModelNew
+#'
+#' @param root Gio.ListModel
+#' @param passthrough gboolean
+#' @param autoexpand gboolean
+#' @param create_func function — TreeListModelCreateModelFunc callback
+#' @return TreeListModel
+#' @export
+gtkTreeListModelNew <- function(root, passthrough, autoexpand, create_func) {
+  .Call("R_gtk_tree_list_model_new", root, passthrough, autoexpand, create_func)$result
+}
+
+
+#' @rdname gtk-other
 #' @title gtkTreeListModelGetAutoexpand
 #'
 #' @param self TreeListModel
@@ -31570,6 +32151,18 @@ gtkTreeListRowSorterSetSorter <- function(self, sorter) {
 #' @export
 gtkTreeModelFilterNew <- function(child_model, root) {
   .Call("R_gtk_tree_model_filter_new", child_model, root)$result
+}
+
+
+#' @rdname gtk-trees
+#' @title gtkTreeModelForeach
+#'
+#' @param model TreeModel
+#' @param func function — TreeModelForeachFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeModelForeach <- function(model, func) {
+  invisible(.Call("R_gtk_tree_model_foreach", model, func))
 }
 
 
@@ -31936,6 +32529,20 @@ gtkTreeModelFilterRefilter <- function(filter) {
 
 
 #' @rdname gtk-trees
+#' @title gtkTreeModelFilterSetModifyFunc
+#'
+#' @param filter TreeModelFilter
+#' @param n_columns gint
+#' @param types GType
+#' @param func function — TreeModelFilterModifyFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeModelFilterSetModifyFunc <- function(filter, n_columns, types, func) {
+  invisible(.Call("R_gtk_tree_model_filter_set_modify_func", filter, as.integer(n_columns), types, func))
+}
+
+
+#' @rdname gtk-trees
 #' @title gtkTreeModelFilterSetVisibleColumn
 #'
 #' @param filter TreeModelFilter
@@ -31944,6 +32551,18 @@ gtkTreeModelFilterRefilter <- function(filter) {
 #' @export
 gtkTreeModelFilterSetVisibleColumn <- function(filter, column) {
   invisible(.Call("R_gtk_tree_model_filter_set_visible_column", filter, as.integer(column)))
+}
+
+
+#' @rdname gtk-trees
+#' @title gtkTreeModelFilterSetVisibleFunc
+#'
+#' @param filter TreeModelFilter
+#' @param func function — TreeModelFilterVisibleFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeModelFilterSetVisibleFunc <- function(filter, func) {
+  invisible(.Call("R_gtk_tree_model_filter_set_visible_func", filter, func))
 }
 
 
@@ -32485,6 +33104,18 @@ gtkTreeSelectionSelectRange <- function(selection, start_path, end_path) {
 
 
 #' @rdname gtk-trees
+#' @title gtkTreeSelectionSelectedForeach
+#'
+#' @param selection TreeSelection
+#' @param func function — TreeSelectionForeachFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeSelectionSelectedForeach <- function(selection, func) {
+  invisible(.Call("R_gtk_tree_selection_selected_foreach", selection, func))
+}
+
+
+#' @rdname gtk-trees
 #' @title gtkTreeSelectionSetMode
 #'
 #' @param selection TreeSelection
@@ -32493,6 +33124,18 @@ gtkTreeSelectionSelectRange <- function(selection, start_path, end_path) {
 #' @export
 gtkTreeSelectionSetMode <- function(selection, type) {
   invisible(.Call("R_gtk_tree_selection_set_mode", selection, type))
+}
+
+
+#' @rdname gtk-trees
+#' @title gtkTreeSelectionSetSelectFunction
+#'
+#' @param selection TreeSelection
+#' @param func function — TreeSelectionFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeSelectionSetSelectFunction <- function(selection, func) {
+  invisible(.Call("R_gtk_tree_selection_set_select_function", selection, func))
 }
 
 
@@ -32567,6 +33210,18 @@ gtkTreeSortableHasDefaultSortFunc <- function(sortable) {
 
 
 #' @rdname gtk-other
+#' @title gtkTreeSortableSetDefaultSortFunc
+#'
+#' @param sortable TreeSortable
+#' @param sort_func function — TreeIterCompareFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeSortableSetDefaultSortFunc <- function(sortable, sort_func) {
+  invisible(.Call("R_gtk_tree_sortable_set_default_sort_func", sortable, sort_func))
+}
+
+
+#' @rdname gtk-other
 #' @title gtkTreeSortableSetSortColumnId
 #'
 #' @param sortable TreeSortable
@@ -32576,6 +33231,19 @@ gtkTreeSortableHasDefaultSortFunc <- function(sortable) {
 #' @export
 gtkTreeSortableSetSortColumnId <- function(sortable, sort_column_id, order) {
   invisible(.Call("R_gtk_tree_sortable_set_sort_column_id", sortable, as.integer(sort_column_id), order))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkTreeSortableSetSortFunc
+#'
+#' @param sortable TreeSortable
+#' @param sort_column_id gint
+#' @param sort_func function — TreeIterCompareFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeSortableSetSortFunc <- function(sortable, sort_column_id, sort_func) {
+  invisible(.Call("R_gtk_tree_sortable_set_sort_func", sortable, as.integer(sort_column_id), sort_func))
 }
 
 
@@ -33409,6 +34077,21 @@ gtkTreeViewInsertColumn <- function(tree_view, column, position) {
 
 
 #' @rdname gtk-trees
+#' @title gtkTreeViewInsertColumnWithDataFunc
+#'
+#' @param tree_view TreeView
+#' @param position gint
+#' @param title utf8
+#' @param cell CellRenderer
+#' @param func function — TreeCellDataFunc callback
+#' @return gint
+#' @export
+gtkTreeViewInsertColumnWithDataFunc <- function(tree_view, position, title, cell, func) {
+  .Call("R_gtk_tree_view_insert_column_with_data_func", tree_view, as.integer(position), title, cell, func)$result
+}
+
+
+#' @rdname gtk-trees
 #' @title gtkTreeViewIsBlankAtPos
 #'
 #' @param tree_view TreeView
@@ -33429,6 +34112,18 @@ gtkTreeViewIsBlankAtPos <- function(tree_view, x, y) {
 #' @export
 gtkTreeViewIsRubberBandingActive <- function(tree_view) {
   .Call("R_gtk_tree_view_is_rubber_banding_active", tree_view)$result
+}
+
+
+#' @rdname gtk-trees
+#' @title gtkTreeViewMapExpandedRows
+#'
+#' @param tree_view TreeView
+#' @param func function — TreeViewMappingFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeViewMapExpandedRows <- function(tree_view, func) {
+  invisible(.Call("R_gtk_tree_view_map_expanded_rows", tree_view, func))
 }
 
 
@@ -33520,6 +34215,18 @@ gtkTreeViewScrollToPoint <- function(tree_view, tree_x, tree_y) {
 #' @export
 gtkTreeViewSetActivateOnSingleClick <- function(tree_view, single) {
   invisible(.Call("R_gtk_tree_view_set_activate_on_single_click", tree_view, single))
+}
+
+
+#' @rdname gtk-trees
+#' @title gtkTreeViewSetColumnDragFunction
+#'
+#' @param tree_view TreeView
+#' @param func function — TreeViewColumnDropFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeViewSetColumnDragFunction <- function(tree_view, func) {
+  invisible(.Call("R_gtk_tree_view_set_column_drag_function", tree_view, func))
 }
 
 
@@ -33710,6 +34417,18 @@ gtkTreeViewSetReorderable <- function(tree_view, reorderable) {
 
 
 #' @rdname gtk-trees
+#' @title gtkTreeViewSetRowSeparatorFunc
+#'
+#' @param tree_view TreeView
+#' @param func function — TreeViewRowSeparatorFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeViewSetRowSeparatorFunc <- function(tree_view, func) {
+  invisible(.Call("R_gtk_tree_view_set_row_separator_func", tree_view, func))
+}
+
+
+#' @rdname gtk-trees
 #' @title gtkTreeViewSetRubberBanding
 #'
 #' @param tree_view TreeView
@@ -33742,6 +34461,18 @@ gtkTreeViewSetSearchColumn <- function(tree_view, column) {
 #' @export
 gtkTreeViewSetSearchEntry <- function(tree_view, entry) {
   invisible(.Call("R_gtk_tree_view_set_search_entry", tree_view, entry))
+}
+
+
+#' @rdname gtk-trees
+#' @title gtkTreeViewSetSearchEqualFunc
+#'
+#' @param tree_view TreeView
+#' @param search_equal_func function — TreeViewSearchEqualFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeViewSetSearchEqualFunc <- function(tree_view, search_equal_func) {
+  invisible(.Call("R_gtk_tree_view_set_search_equal_func", tree_view, search_equal_func))
 }
 
 
@@ -34219,6 +34950,19 @@ gtkTreeViewColumnSetAlignment <- function(tree_column, xalign) {
 
 
 #' @rdname gtk-trees
+#' @title gtkTreeViewColumnSetCellDataFunc
+#'
+#' @param tree_column TreeViewColumn
+#' @param cell_renderer CellRenderer
+#' @param func function — TreeCellDataFunc callback
+#' @return Return value from C function
+#' @export
+gtkTreeViewColumnSetCellDataFunc <- function(tree_column, cell_renderer, func) {
+  invisible(.Call("R_gtk_tree_view_column_set_cell_data_func", tree_column, cell_renderer, func))
+}
+
+
+#' @rdname gtk-trees
 #' @title gtkTreeViewColumnSetClickable
 #'
 #' @param tree_column TreeViewColumn
@@ -34417,6 +35161,20 @@ gtkUriLauncherNew <- function(uri) {
 #' @export
 gtkUriLauncherGetUri <- function(self) {
   .Call("R_gtk_uri_launcher_get_uri", self)$result
+}
+
+
+#' @rdname gtk-other
+#' @title gtkUriLauncherLaunch
+#'
+#' @param self UriLauncher
+#' @param parent Window
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkUriLauncherLaunch <- function(self, parent, cancellable, callback) {
+  invisible(.Call("R_gtk_uri_launcher_launch", self, parent, cancellable, callback))
 }
 
 
@@ -34797,6 +35555,18 @@ gtkWidgetAddCssClass <- function(widget, css_class) {
 #' @export
 gtkWidgetAddMnemonicLabel <- function(widget, label) {
   invisible(.Call("R_gtk_widget_add_mnemonic_label", widget, label))
+}
+
+
+#' @rdname gtk-widget
+#' @title gtkWidgetAddTickCallback
+#'
+#' @param widget Widget
+#' @param callback function — TickCallback callback
+#' @return guint
+#' @export
+gtkWidgetAddTickCallback <- function(widget, callback) {
+  .Call("R_gtk_widget_add_tick_callback", widget, callback)$result
 }
 
 
@@ -36582,6 +37352,19 @@ gtkWidgetClassAddShortcut <- function(widget_class, shortcut) {
 
 
 #' @rdname gtk-widget
+#' @title gtkWidgetClassBindTemplateCallbackFull
+#'
+#' @param widget_class WidgetClass
+#' @param callback_name utf8
+#' @param callback_symbol function — GObject.Callback callback
+#' @return Return value from C function
+#' @export
+gtkWidgetClassBindTemplateCallbackFull <- function(widget_class, callback_name, callback_symbol) {
+  invisible(.Call("R_gtk_widget_class_bind_template_callback_full", widget_class, callback_name, callback_symbol))
+}
+
+
+#' @rdname gtk-widget
 #' @title gtkWidgetClassBindTemplateChildFull
 #'
 #' @param widget_class WidgetClass
@@ -36636,6 +37419,20 @@ gtkWidgetClassGetCssName <- function(widget_class) {
 #' @export
 gtkWidgetClassGetLayoutManagerType <- function(widget_class) {
   .Call("R_gtk_widget_class_get_layout_manager_type", widget_class)$result
+}
+
+
+#' @rdname gtk-widget
+#' @title gtkWidgetClassInstallAction
+#'
+#' @param widget_class WidgetClass
+#' @param action_name utf8
+#' @param parameter_type utf8
+#' @param activate function — WidgetActionActivateFunc callback
+#' @return Return value from C function
+#' @export
+gtkWidgetClassInstallAction <- function(widget_class, action_name, parameter_type, activate) {
+  invisible(.Call("R_gtk_widget_class_install_action", widget_class, action_name, parameter_type, activate))
 }
 
 
@@ -38155,6 +38952,21 @@ gtkSetDebugFlags <- function(flags) {
 #' @export
 gtkShowUri <- function(parent, uri, timestamp) {
   invisible(.Call("R_gtk_show_uri", parent, uri, timestamp))
+}
+
+
+#' @rdname gtk-other
+#' @title gtkShowUriFull
+#'
+#' @param parent Window
+#' @param uri utf8
+#' @param timestamp guint32
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gtkShowUriFull <- function(parent, uri, timestamp, cancellable, callback) {
+  invisible(.Call("R_gtk_show_uri_full", parent, uri, timestamp, cancellable, callback))
 }
 
 

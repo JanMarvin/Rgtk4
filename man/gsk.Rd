@@ -121,6 +121,8 @@
 \alias{gskPasteNodeNew}
 \alias{gskPasteNodeGetDepth}
 \alias{gskPathEqual}
+\alias{gskPathForeach}
+\alias{gskPathForeachIntersection}
 \alias{gskPathGetBounds}
 \alias{gskPathGetClosestPoint}
 \alias{gskPathGetEndPoint}
@@ -193,6 +195,7 @@
 \alias{gskRadialGradientNodeGetNColorStops}
 \alias{gskRadialGradientNodeGetStart}
 \alias{gskRadialGradientNodeGetVradius}
+\alias{gskRenderNodeDeserialize}
 \alias{gskRenderNodeDraw}
 \alias{gskRenderNodeGetBounds}
 \alias{gskRenderNodeGetChildren}
@@ -208,6 +211,9 @@
 \alias{gskRenderReplayFilterNode}
 \alias{gskRenderReplayFilterTexture}
 \alias{gskRenderReplayFree}
+\alias{gskRenderReplaySetFontFilter}
+\alias{gskRenderReplaySetNodeFilter}
+\alias{gskRenderReplaySetTextureFilter}
 \alias{gskRendererNewForSurface}
 \alias{gskRendererGetSurface}
 \alias{gskRendererIsRealized}
@@ -561,6 +567,10 @@ gskPasteNodeGetDepth(node)
 
 gskPathEqual(path1, path2)
 
+gskPathForeach(self, flags, func)
+
+gskPathForeachIntersection(path1, path2, func)
+
 gskPathGetBounds(self)
 
 gskPathGetClosestPoint(self, point, threshold)
@@ -732,6 +742,8 @@ gskRadialGradientNodeGetStart(node)
 
 gskRadialGradientNodeGetVradius(node)
 
+gskRenderNodeDeserialize(bytes, error_func)
+
 gskRenderNodeDraw(node, cr)
 
 gskRenderNodeGetBounds(node)
@@ -761,6 +773,12 @@ gskRenderReplayFilterNode(self, node)
 gskRenderReplayFilterTexture(self, texture)
 
 gskRenderReplayFree(self)
+
+gskRenderReplaySetFontFilter(self, filter)
+
+gskRenderReplaySetNodeFilter(self, filter)
+
+gskRenderReplaySetTextureFilter(self, filter)
 
 gskRendererNewForSurface(surface)
 
@@ -1129,6 +1147,10 @@ gskValueTakeRenderNode(value, node)
 
 \item{path2}{Path}
 
+\item{flags}{PathForeachFlags}
+
+\item{func}{function — PathIntersectionFunc callback}
+
 \item{point}{Graphene.Point3D}
 
 \item{threshold}{gfloat}
@@ -1187,11 +1209,17 @@ gskValueTakeRenderNode(value, node)
 
 \item{vradius}{gfloat}
 
+\item{bytes}{GLib.Bytes}
+
+\item{error_func}{function — ParseErrorFunc callback}
+
 \item{filename}{filename}
 
 \item{font}{Pango.Font}
 
 \item{texture}{Gdk.Texture}
+
+\item{filter}{ScalingFilter}
 
 \item{surface}{Gdk.Surface}
 
@@ -1250,8 +1278,6 @@ gskValueTakeRenderNode(value, node)
 \item{stroke2}{gpointer}
 
 \item{glyphs}{Pango.GlyphString}
-
-\item{filter}{ScalingFilter}
 
 \item{first}{Transform}
 
@@ -1548,6 +1574,10 @@ gboolean
 
 gboolean
 
+gboolean
+
+gboolean
+
 Return value from C function
 
 Path
@@ -1670,6 +1700,8 @@ gfloat
 
 gfloat
 
+RenderNode
+
 Return value from C function
 
 Return value from C function
@@ -1697,6 +1729,12 @@ Pango.Font
 RenderNode
 
 Gdk.Texture
+
+Return value from C function
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -2163,6 +2201,10 @@ gskPasteNodeGetDepth
 
 gskPathEqual
 
+gskPathForeach
+
+gskPathForeachIntersection
+
 gskPathGetBounds
 
 gskPathGetClosestPoint
@@ -2307,6 +2349,8 @@ gskRadialGradientNodeGetStart
 
 gskRadialGradientNodeGetVradius
 
+gskRenderNodeDeserialize
+
 gskRenderNodeDraw
 
 gskRenderNodeGetBounds
@@ -2336,6 +2380,12 @@ gskRenderReplayFilterNode
 gskRenderReplayFilterTexture
 
 gskRenderReplayFree
+
+gskRenderReplaySetFontFilter
+
+gskRenderReplaySetNodeFilter
+
+gskRenderReplaySetTextureFilter
 
 gskRendererNewForSurface
 

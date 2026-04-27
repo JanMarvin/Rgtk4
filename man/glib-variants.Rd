@@ -10,6 +10,7 @@
 \alias{gVariantNewDouble}
 \alias{gVariantNewFixedArray}
 \alias{gVariantNewFromBytes}
+\alias{gVariantNewFromData}
 \alias{gVariantNewHandle}
 \alias{gVariantNewInt16}
 \alias{gVariantNewInt32}
@@ -147,6 +148,8 @@ gVariantNewDouble(value)
 gVariantNewFixedArray(element_type, elements, n_elements, element_size)
 
 gVariantNewFromBytes(type, bytes, trusted)
+
+gVariantNewFromData(type, data, size, trusted, notify, user_data)
 
 gVariantNewHandle(value)
 
@@ -415,6 +418,14 @@ gVariantGetGtype()
 
 \item{trusted}{gboolean}
 
+\item{data}{gpointer}
+
+\item{size}{gsize}
+
+\item{notify}{DestroyNotify}
+
+\item{user_data}{gpointer}
+
 \item{child}{Variant}
 
 \item{object_path}{utf8}
@@ -436,8 +447,6 @@ gVariantGetGtype()
 \item{expected_type}{VariantType}
 
 \item{type_annotate}{gboolean}
-
-\item{data}{gpointer}
 
 \item{text}{utf8}
 
@@ -470,6 +479,8 @@ gVariantGetGtype()
 \item{supertype}{VariantType}
 }
 \value{
+Variant
+
 Variant
 
 Variant
@@ -742,6 +753,8 @@ gVariantNewDouble
 gVariantNewFixedArray
 
 gVariantNewFromBytes
+
+gVariantNewFromData
 
 gVariantNewHandle
 

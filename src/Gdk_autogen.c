@@ -5,6 +5,8 @@
 #include <glib.h>
 #include <stdint.h>
 #include <string.h>
+#include "rgtk4_callbacks.h"
+#include "rgtk4_autogen_callbacks.h"
 
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
@@ -28,18 +30,15 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
 
-/* Finalizer for heap-allocated value structs */
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
   void *p = R_ExternalPtrAddr(s);
   if (p) g_free(p);
 }
 
-/* Helpers from rgtk4_helpers.c */
 extern SEXP make_gobject_ptr(gpointer obj);
 extern SEXP make_boxed_struct(const void *src, size_t size);
 
-/* Helper to box GStrv (char**) into R character vector */
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
   if (!strv) return R_NilValue;
@@ -50,32 +49,30 @@ static SEXP _box_GStrv(char **strv) {
   return res;
 }
 
-/* Helper to add an S3 class to an external pointer for easier debugging */
 static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
-
   void *obj = R_ExternalPtrAddr(ptr);
-
-  // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
   if ((uintptr_t)obj < 0x1000) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
     return ptr;
   }
-
   if (G_IS_OBJECT(obj)) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   }
@@ -235,14 +232,13 @@ SEXP R_gdk_clipboard_is_local(SEXP s1) {
 }
 
 
-SEXP R_gdk_clipboard_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gdk_clipboard_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   const char** v2 = (const char**)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gdk_clipboard_read_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gdk_clipboard_read_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -271,12 +267,11 @@ SEXP R_gdk_clipboard_read_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gdk_clipboard_read_text_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gdk_clipboard_read_text_async(SEXP s1, SEXP s2, SEXP s3) {
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gdk_clipboard_read_text_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gdk_clipboard_read_text_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -299,12 +294,11 @@ SEXP R_gdk_clipboard_read_text_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gdk_clipboard_read_texture_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gdk_clipboard_read_texture_async(SEXP s1, SEXP s2, SEXP s3) {
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gdk_clipboard_read_texture_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gdk_clipboard_read_texture_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -327,14 +321,13 @@ SEXP R_gdk_clipboard_read_texture_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gdk_clipboard_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gdk_clipboard_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gdk_clipboard_read_value_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gdk_clipboard_read_value_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -382,13 +375,12 @@ SEXP R_gdk_clipboard_set_value(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gdk_clipboard_store_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gdk_clipboard_store_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  gdk_clipboard_store_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gdk_clipboard_store_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -1060,15 +1052,14 @@ SEXP R_gdk_content_provider_ref_storable_formats(SEXP s1) {
 }
 
 
-SEXP R_gdk_content_provider_write_mime_type_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_gdk_content_provider_write_mime_type_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GdkContentProvider* v1 = (GdkContentProvider*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GOutputStream* v3 = (GOutputStream*)(get_ptr(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  gdk_content_provider_write_mime_type_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  gdk_content_provider_write_mime_type_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -2781,14 +2772,13 @@ SEXP R_gdk_drop_get_surface(SEXP s1) {
 }
 
 
-SEXP R_gdk_drop_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gdk_drop_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   const char** v2 = (const char**)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gdk_drop_read_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gdk_drop_read_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -2817,14 +2807,13 @@ SEXP R_gdk_drop_read_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gdk_drop_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_gdk_drop_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  gdk_drop_read_value_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  gdk_drop_read_value_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -3122,7 +3111,14 @@ SEXP R_gdk_event_ref(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gdk_event_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Event"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Event"));
   }
@@ -4856,7 +4852,14 @@ SEXP R_gdk_popup_layout_get_anchor_rect(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gdk_popup_layout_get_anchor_rect(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rectangle"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rectangle"));
   }
@@ -5037,7 +5040,14 @@ SEXP R_gdk_rgba_copy(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gdk_rgba_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("RGBA"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("RGBA"));
   }
@@ -6751,15 +6761,14 @@ SEXP R_gdk_cairo_set_source_rgba(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gdk_content_deserialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_gdk_content_deserialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GType v3 = (GType)((GType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : REAL(s3)[0])); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  gdk_content_deserialize_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  gdk_content_deserialize_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -6787,37 +6796,38 @@ SEXP R_gdk_content_deserialize_finish(SEXP s1) {
 }
 
 
-SEXP R_gdk_content_register_deserializer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gdk_content_register_deserializer(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
-  GdkContentDeserializeFunc v3 = (GdkContentDeserializeFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  gdk_content_register_deserializer(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_3);
+  gdk_content_register_deserializer(v1, v2, (GdkContentDeserializeFunc)(_cb_closure_3 ? _rgtk4_cb_ContentDeserializeFunc : NULL), _cb_closure_3, rgtk4_closure_free);
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_3) rgtk4_closure_free(_cb_closure_3);
   return R_NilValue;
 }
 
 
-SEXP R_gdk_content_register_serializer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_gdk_content_register_serializer(SEXP s1, SEXP s2, SEXP s3) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GdkContentSerializeFunc v3 = (GdkContentSerializeFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  gdk_content_register_serializer(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_3);
+  gdk_content_register_serializer(v1, v2, (GdkContentSerializeFunc)(_cb_closure_3 ? _rgtk4_cb_ContentSerializeFunc : NULL), _cb_closure_3, rgtk4_closure_free);
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_3) rgtk4_closure_free(_cb_closure_3);
   return R_NilValue;
 }
 
 
-SEXP R_gdk_content_serialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_gdk_content_serialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const GValue* v3 = (const GValue*)(get_ptr(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  gdk_content_serialize_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  gdk_content_serialize_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 

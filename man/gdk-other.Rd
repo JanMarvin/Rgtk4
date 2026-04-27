@@ -12,12 +12,17 @@
 \alias{gdkClipboardGetDisplay}
 \alias{gdkClipboardGetFormats}
 \alias{gdkClipboardIsLocal}
+\alias{gdkClipboardReadAsync}
 \alias{gdkClipboardReadFinish}
+\alias{gdkClipboardReadTextAsync}
 \alias{gdkClipboardReadTextFinish}
+\alias{gdkClipboardReadTextureAsync}
 \alias{gdkClipboardReadTextureFinish}
+\alias{gdkClipboardReadValueAsync}
 \alias{gdkClipboardReadValueFinish}
 \alias{gdkClipboardSetContent}
 \alias{gdkClipboardSetValue}
+\alias{gdkClipboardStoreAsync}
 \alias{gdkClipboardStoreFinish}
 \alias{gdkContentDeserializerGetCancellable}
 \alias{gdkContentDeserializerGetGtype}
@@ -29,6 +34,7 @@
 \alias{gdkContentDeserializerGetValue}
 \alias{gdkContentDeserializerReturnError}
 \alias{gdkContentDeserializerReturnSuccess}
+\alias{gdkContentDeserializerSetTaskData}
 \alias{gdkContentFormatsNew}
 \alias{gdkContentFormatsNewForGtype}
 \alias{gdkContentFormatsContainGtype}
@@ -62,6 +68,7 @@
 \alias{gdkContentProviderGetValue}
 \alias{gdkContentProviderRefFormats}
 \alias{gdkContentProviderRefStorableFormats}
+\alias{gdkContentProviderWriteMimeTypeAsync}
 \alias{gdkContentProviderWriteMimeTypeFinish}
 \alias{gdkContentSerializerGetCancellable}
 \alias{gdkContentSerializerGetGtype}
@@ -73,6 +80,7 @@
 \alias{gdkContentSerializerGetValue}
 \alias{gdkContentSerializerReturnError}
 \alias{gdkContentSerializerReturnSuccess}
+\alias{gdkContentSerializerSetTaskData}
 \alias{gdkCrossingEventGetDetail}
 \alias{gdkCrossingEventGetFocus}
 \alias{gdkCrossingEventGetMode}
@@ -112,7 +120,9 @@
 \alias{gdkDropGetDrag}
 \alias{gdkDropGetFormats}
 \alias{gdkDropGetSurface}
+\alias{gdkDropReadAsync}
 \alias{gdkDropReadFinish}
+\alias{gdkDropReadValueAsync}
 \alias{gdkDropReadValueFinish}
 \alias{gdkDropStatus}
 \alias{gdkEventsGetAngle}
@@ -162,8 +172,10 @@
 \alias{gdkGlContextSetRequiredVersion}
 \alias{gdkGlContextSetUseEs}
 \alias{gdkGlErrorQuark}
+\alias{gdkGlTextureNew}
 \alias{gdkGlTextureRelease}
 \alias{gdkGlTextureBuilderNew}
+\alias{gdkGlTextureBuilderBuild}
 \alias{gdkGlTextureBuilderGetContext}
 \alias{gdkGlTextureBuilderGetFormat}
 \alias{gdkGlTextureBuilderGetHasMipmap}
@@ -300,7 +312,11 @@
 \alias{gdkCairoRegionCreateFromSurface}
 \alias{gdkCairoSetSourcePixbuf}
 \alias{gdkCairoSetSourceRgba}
+\alias{gdkContentDeserializeAsync}
 \alias{gdkContentDeserializeFinish}
+\alias{gdkContentRegisterDeserializer}
+\alias{gdkContentRegisterSerializer}
+\alias{gdkContentSerializeAsync}
 \alias{gdkContentSerializeFinish}
 \alias{gdkInternMimeType}
 \alias{gdkKeyvalConvertCase}
@@ -337,17 +353,33 @@ gdkClipboardGetFormats(clipboard)
 
 gdkClipboardIsLocal(clipboard)
 
+gdkClipboardReadAsync(
+  clipboard,
+  mime_types,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gdkClipboardReadFinish(clipboard, result)
+
+gdkClipboardReadTextAsync(clipboard, cancellable, callback)
 
 gdkClipboardReadTextFinish(clipboard, result)
 
+gdkClipboardReadTextureAsync(clipboard, cancellable, callback)
+
 gdkClipboardReadTextureFinish(clipboard, result)
+
+gdkClipboardReadValueAsync(clipboard, type, io_priority, cancellable, callback)
 
 gdkClipboardReadValueFinish(clipboard, result)
 
 gdkClipboardSetContent(clipboard, provider)
 
 gdkClipboardSetValue(clipboard, value)
+
+gdkClipboardStoreAsync(clipboard, io_priority, cancellable, callback)
 
 gdkClipboardStoreFinish(clipboard, result)
 
@@ -370,6 +402,8 @@ gdkContentDeserializerGetValue(deserializer)
 gdkContentDeserializerReturnError(deserializer, error)
 
 gdkContentDeserializerReturnSuccess(deserializer)
+
+gdkContentDeserializerSetTaskData(deserializer, data, notify)
 
 gdkContentFormatsNew(mime_types, n_mime_types)
 
@@ -437,6 +471,15 @@ gdkContentProviderRefFormats(provider)
 
 gdkContentProviderRefStorableFormats(provider)
 
+gdkContentProviderWriteMimeTypeAsync(
+  provider,
+  mime_type,
+  stream,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gdkContentProviderWriteMimeTypeFinish(provider, result)
 
 gdkContentSerializerGetCancellable(serializer)
@@ -458,6 +501,8 @@ gdkContentSerializerGetValue(serializer)
 gdkContentSerializerReturnError(serializer, error)
 
 gdkContentSerializerReturnSuccess(serializer)
+
+gdkContentSerializerSetTaskData(serializer, data, notify)
 
 gdkCrossingEventGetDetail(event)
 
@@ -537,7 +582,11 @@ gdkDropGetFormats(self)
 
 gdkDropGetSurface(self)
 
+gdkDropReadAsync(self, mime_types, io_priority, cancellable, callback)
+
 gdkDropReadFinish(self, result)
+
+gdkDropReadValueAsync(self, type, io_priority, cancellable, callback)
 
 gdkDropReadValueFinish(self, result)
 
@@ -637,9 +686,13 @@ gdkGlContextSetUseEs(context, use_es)
 
 gdkGlErrorQuark()
 
+gdkGlTextureNew(context, id, width, height, destroy, data)
+
 gdkGlTextureRelease(self)
 
 gdkGlTextureBuilderNew()
+
+gdkGlTextureBuilderBuild(self, destroy, data)
 
 gdkGlTextureBuilderGetContext(self)
 
@@ -929,7 +982,29 @@ gdkCairoSetSourcePixbuf(cr, pixbuf, pixbuf_x, pixbuf_y)
 
 gdkCairoSetSourceRgba(cr, rgba)
 
+gdkContentDeserializeAsync(
+  stream,
+  mime_type,
+  type,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gdkContentDeserializeFinish(result)
+
+gdkContentRegisterDeserializer(mime_type, type, deserialize)
+
+gdkContentRegisterSerializer(type, mime_type, serialize)
+
+gdkContentSerializeAsync(
+  stream,
+  mime_type,
+  value,
+  io_priority,
+  cancellable,
+  callback
+)
 
 gdkContentSerializeFinish(result)
 
@@ -972,7 +1047,17 @@ gdkUnicodeToKeyval(wc)
 
 \item{clipboard}{Clipboard}
 
+\item{mime_types}{utf8}
+
+\item{io_priority}{gint}
+
+\item{cancellable}{Gio.Cancellable}
+
+\item{callback}{function — Gio.AsyncReadyCallback callback}
+
 \item{result}{Gio.AsyncResult}
+
+\item{type}{GType}
 
 \item{provider}{ContentProvider}
 
@@ -982,11 +1067,11 @@ gdkUnicodeToKeyval(wc)
 
 \item{error}{GLib.Error}
 
-\item{mime_types}{utf8}
+\item{data}{gpointer}
+
+\item{notify}{GLib.DestroyNotify}
 
 \item{n_mime_types}{guint}
-
-\item{type}{GType}
 
 \item{formats}{ContentFormats}
 
@@ -1005,6 +1090,8 @@ gdkUnicodeToKeyval(wc)
 \item{providers}{ContentProvider}
 
 \item{n_providers}{gsize}
+
+\item{stream}{Gio.OutputStream}
 
 \item{serializer}{ContentSerializer}
 
@@ -1088,11 +1175,13 @@ gdkUnicodeToKeyval(wc)
 
 \item{use_es}{gint}
 
+\item{id}{guint}
+
+\item{destroy}{GLib.DestroyNotify}
+
 \item{format}{MemoryFormat}
 
 \item{has_mipmap}{gboolean}
-
-\item{id}{guint}
 
 \item{sync}{gpointer}
 
@@ -1218,6 +1307,10 @@ gdkUnicodeToKeyval(wc)
 
 \item{pixbuf_y}{gdouble}
 
+\item{deserialize}{function — ContentDeserializeFunc callback}
+
+\item{serialize}{function — ContentSerializeFunc callback}
+
 \item{symbol}{guint}
 
 \item{keyval_name}{utf8}
@@ -1249,15 +1342,25 @@ ContentFormats
 
 gboolean
 
+Return value from C function
+
 Gio.InputStream
+
+Return value from C function
 
 utf8
 
+Return value from C function
+
 Texture
+
+Return value from C function
 
 GObject.Value
 
 gboolean
+
+Return value from C function
 
 Return value from C function
 
@@ -1283,6 +1386,8 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 ContentFormats
 
 ContentFormats
@@ -1348,6 +1453,8 @@ gboolean
 ContentFormats
 
 ContentFormats
+
+Return value from C function
 
 gboolean
 
@@ -1366,6 +1473,8 @@ gpointer
 gpointer
 
 GObject.Value
+
+Return value from C function
 
 Return value from C function
 
@@ -1449,7 +1558,11 @@ ContentFormats
 
 Surface
 
+Return value from C function
+
 Gio.InputStream
+
+Return value from C function
 
 GObject.Value
 
@@ -1549,9 +1662,13 @@ Return value from C function
 
 GLib.Quark
 
+GLTexture
+
 Return value from C function
 
 GLTextureBuilder
+
+Texture
 
 GLContext
 
@@ -1825,7 +1942,15 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 gboolean
+
+Return value from C function
+
+Return value from C function
+
+Return value from C function
 
 gboolean
 
@@ -1874,17 +1999,27 @@ gdkClipboardGetFormats
 
 gdkClipboardIsLocal
 
+gdkClipboardReadAsync
+
 gdkClipboardReadFinish
+
+gdkClipboardReadTextAsync
 
 gdkClipboardReadTextFinish
 
+gdkClipboardReadTextureAsync
+
 gdkClipboardReadTextureFinish
+
+gdkClipboardReadValueAsync
 
 gdkClipboardReadValueFinish
 
 gdkClipboardSetContent
 
 gdkClipboardSetValue
+
+gdkClipboardStoreAsync
 
 gdkClipboardStoreFinish
 
@@ -1907,6 +2042,8 @@ gdkContentDeserializerGetValue
 gdkContentDeserializerReturnError
 
 gdkContentDeserializerReturnSuccess
+
+gdkContentDeserializerSetTaskData
 
 gdkContentFormatsNew
 
@@ -1974,6 +2111,8 @@ gdkContentProviderRefFormats
 
 gdkContentProviderRefStorableFormats
 
+gdkContentProviderWriteMimeTypeAsync
+
 gdkContentProviderWriteMimeTypeFinish
 
 gdkContentSerializerGetCancellable
@@ -1995,6 +2134,8 @@ gdkContentSerializerGetValue
 gdkContentSerializerReturnError
 
 gdkContentSerializerReturnSuccess
+
+gdkContentSerializerSetTaskData
 
 gdkCrossingEventGetDetail
 
@@ -2074,7 +2215,11 @@ gdkDropGetFormats
 
 gdkDropGetSurface
 
+gdkDropReadAsync
+
 gdkDropReadFinish
+
+gdkDropReadValueAsync
 
 gdkDropReadValueFinish
 
@@ -2174,9 +2319,13 @@ gdkGlContextSetUseEs
 
 gdkGlErrorQuark
 
+gdkGlTextureNew
+
 gdkGlTextureRelease
 
 gdkGlTextureBuilderNew
+
+gdkGlTextureBuilderBuild
 
 gdkGlTextureBuilderGetContext
 
@@ -2450,7 +2599,15 @@ gdkCairoSetSourcePixbuf
 
 gdkCairoSetSourceRgba
 
+gdkContentDeserializeAsync
+
 gdkContentDeserializeFinish
+
+gdkContentRegisterDeserializer
+
+gdkContentRegisterSerializer
+
+gdkContentSerializeAsync
 
 gdkContentSerializeFinish
 

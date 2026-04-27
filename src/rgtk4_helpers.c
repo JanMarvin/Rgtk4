@@ -32,10 +32,35 @@ static void gobject_finalizer(SEXP ext_ptr) {
   }
 }
 
+// Silent log handler — discards messages.
+static void _silent_log_handler(const gchar *log_domain, GLogLevelFlags level,
+                                const gchar *message, gpointer user_data) {
+  (void)log_domain; (void)level; (void)message; (void)user_data;
+}
+
 SEXP make_gobject_ptr(gpointer obj) {
   if (!obj) return R_NilValue;
 
-  if (G_IS_OBJECT(obj)) {
+  // G_IS_OBJECT logs a GLib-GObject CRITICAL when called on a pointer
+  // that is not a valid GTypeInstance. The result is still FALSE
+  // (correct), but the log noise is unhelpful. Suppress for the check.
+  guint h = g_log_set_handler("GLib-GObject",
+                              (GLogLevelFlags)(G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_WARNING |
+                                G_LOG_FLAG_FATAL | G_LOG_FLAG_RECURSION),
+                                _silent_log_handler, NULL);
+
+  gboolean is_obj = FALSE;
+  if ((uintptr_t)obj >= 0x10000) {
+    GTypeInstance *inst = (GTypeInstance *)obj;
+    GTypeClass *klass = inst->g_class;
+    if (klass != NULL && (uintptr_t)klass >= 0x10000) {
+      is_obj = G_IS_OBJECT(obj);
+    }
+  }
+
+  g_log_remove_handler("GLib-GObject", h);
+
+  if (is_obj) {
     if (g_object_is_floating(obj)) {
       g_object_ref_sink(obj);
     } else {
@@ -44,9 +69,10 @@ SEXP make_gobject_ptr(gpointer obj) {
     SEXP ptr = PROTECT(R_MakeExternalPtr(obj, R_NilValue, R_NilValue));
     R_RegisterCFinalizerEx(ptr, gobject_finalizer, TRUE);
 
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(2);
     return ptr;

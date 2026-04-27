@@ -20,6 +20,7 @@
 \alias{gtkMenuButtonSetAlwaysShowArrow}
 \alias{gtkMenuButtonSetCanShrink}
 \alias{gtkMenuButtonSetChild}
+\alias{gtkMenuButtonSetCreatePopupFunc}
 \alias{gtkMenuButtonSetDirection}
 \alias{gtkMenuButtonSetHasFrame}
 \alias{gtkMenuButtonSetIconName}
@@ -99,6 +100,8 @@ gtkMenuButtonSetAlwaysShowArrow(menu_button, always_show_arrow)
 gtkMenuButtonSetCanShrink(menu_button, can_shrink)
 
 gtkMenuButtonSetChild(menu_button, child)
+
+gtkMenuButtonSetCreatePopupFunc(menu_button, func)
 
 gtkMenuButtonSetDirection(menu_button, direction)
 
@@ -191,6 +194,8 @@ gtkPopoverMenuBarSetMenuModel(bar, model)
 
 \item{child}{Widget}
 
+\item{func}{function — MenuButtonCreatePopupFunc callback}
+
 \item{direction}{ArrowType}
 
 \item{has_frame}{gboolean}
@@ -259,6 +264,8 @@ Popover
 gboolean
 
 gboolean
+
+Return value from C function
 
 Return value from C function
 
@@ -390,6 +397,8 @@ gtkMenuButtonSetAlwaysShowArrow
 gtkMenuButtonSetCanShrink
 
 gtkMenuButtonSetChild
+
+gtkMenuButtonSetCreatePopupFunc
 
 gtkMenuButtonSetDirection
 

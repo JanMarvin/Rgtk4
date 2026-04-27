@@ -13,6 +13,8 @@
 \alias{gByteArrayRemoveRange}
 \alias{gByteArraySetSize}
 \alias{gByteArraySizedNew}
+\alias{gByteArraySort}
+\alias{gByteArraySortWithData}
 \alias{gByteArrayUnref}
 \alias{gBytesNew}
 \alias{gBytesNewFromBytes}
@@ -53,6 +55,10 @@ gByteArrayRemoveRange(array, index_, length)
 gByteArraySetSize(array, length)
 
 gByteArraySizedNew(reserved_size)
+
+gByteArraySort(array, compare_func)
+
+gByteArraySortWithData(array, compare_func)
 
 gByteArrayUnref(array)
 
@@ -99,6 +105,8 @@ gBytesIconGetBytes(icon)
 
 \item{reserved_size}{guint}
 
+\item{compare_func}{function — CompareDataFunc callback}
+
 \item{size}{gsize}
 
 \item{bytes}{GLib.Bytes}
@@ -135,6 +143,10 @@ guint8
 guint8
 
 guint8
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -190,6 +202,10 @@ gByteArrayRemoveRange
 gByteArraySetSize
 
 gByteArraySizedNew
+
+gByteArraySort
+
+gByteArraySortWithData
 
 gByteArrayUnref
 

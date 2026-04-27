@@ -5,6 +5,8 @@
 #include <glib.h>
 #include <stdint.h>
 #include <string.h>
+#include "rgtk4_callbacks.h"
+#include "rgtk4_autogen_callbacks.h"
 
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
@@ -28,18 +30,15 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
 
-/* Finalizer for heap-allocated value structs */
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
   void *p = R_ExternalPtrAddr(s);
   if (p) g_free(p);
 }
 
-/* Helpers from rgtk4_helpers.c */
 extern SEXP make_gobject_ptr(gpointer obj);
 extern SEXP make_boxed_struct(const void *src, size_t size);
 
-/* Helper to box GStrv (char**) into R character vector */
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
   if (!strv) return R_NilValue;
@@ -50,32 +49,30 @@ static SEXP _box_GStrv(char **strv) {
   return res;
 }
 
-/* Helper to add an S3 class to an external pointer for easier debugging */
 static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
-
   void *obj = R_ExternalPtrAddr(ptr);
-
-  // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
   if ((uintptr_t)obj < 0x1000) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
     return ptr;
   }
-
   if (G_IS_OBJECT(obj)) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   }
@@ -229,7 +226,14 @@ SEXP R_gsk_border_node_get_colors(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_border_node_get_colors(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -374,7 +378,14 @@ SEXP R_gsk_clip_node_get_clip(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_clip_node_get_clip(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Rect"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Rect"));
   }
@@ -424,7 +435,14 @@ SEXP R_gsk_color_matrix_node_get_color_matrix(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_color_matrix_node_get_color_matrix(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Matrix"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Matrix"));
   }
@@ -440,7 +458,14 @@ SEXP R_gsk_color_matrix_node_get_color_offset(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_color_matrix_node_get_color_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Vec4"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Vec4"));
   }
@@ -473,7 +498,14 @@ SEXP R_gsk_color_node_get_color(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_color_node_get_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -663,7 +695,7 @@ SEXP R_gsk_component_transfer_node_get_child(SEXP s1) {
 
 SEXP R_gsk_component_transfer_node_get_transfer(SEXP s1, SEXP s2) {
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
-  GdkColorChannel v2 = (GdkColorChannel)(get_ptr(s2)); (void)v2;
+  GdkColorChannel v2 = (GdkColorChannel)((GdkColorChannel)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_component_transfer_node_get_transfer(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
@@ -785,7 +817,14 @@ SEXP R_gsk_conic_gradient_node_get_center(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_conic_gradient_node_get_center(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Point"));
   }
@@ -1556,7 +1595,14 @@ SEXP R_gsk_inset_shadow_node_get_color(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_inset_shadow_node_get_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -1727,7 +1773,14 @@ SEXP R_gsk_linear_gradient_node_get_end(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_linear_gradient_node_get_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Point"));
   }
@@ -1759,7 +1812,14 @@ SEXP R_gsk_linear_gradient_node_get_start(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_linear_gradient_node_get_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Point"));
   }
@@ -1943,7 +2003,14 @@ SEXP R_gsk_outset_shadow_node_get_color(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_outset_shadow_node_get_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -2068,12 +2135,11 @@ SEXP R_gsk_path_equal(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_gsk_path_foreach(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gsk_path_foreach(SEXP s1, SEXP s2, SEXP s3) {
   GskPath* v1 = (GskPath*)(get_ptr(s1)); (void)v1;
   GskPathForeachFlags v2 = (GskPathForeachFlags)((GskPathForeachFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  GskPathForeachFunc v3 = (GskPathForeachFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gboolean _ret = (gboolean)gsk_path_foreach(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gboolean _ret = (gboolean)gsk_path_foreach(v1, v2, (GskPathForeachFunc)(_cb_closure_3 ? _rgtk4_cb_PathForeachFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -2087,12 +2153,11 @@ SEXP R_gsk_path_foreach(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_gsk_path_foreach_intersection(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gsk_path_foreach_intersection(SEXP s1, SEXP s2, SEXP s3) {
   GskPath* v1 = (GskPath*)(get_ptr(s1)); (void)v1;
   GskPath* v2 = (s2 != R_NilValue) ? (GskPath*)(get_ptr(s2)) : NULL; (void)v2;
-  GskPathIntersectionFunc v3 = (GskPathIntersectionFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gboolean _ret = (gboolean)gsk_path_foreach_intersection(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gboolean _ret = (gboolean)gsk_path_foreach_intersection(v1, v2, (GskPathIntersectionFunc)(_cb_closure_3 ? _rgtk4_cb_PathIntersectionFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -2543,7 +2608,14 @@ SEXP R_gsk_path_builder_get_current_point(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_path_builder_get_current_point(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Point"));
   }
@@ -3008,7 +3080,7 @@ SEXP R_gsk_path_point_get_tangent(SEXP s1, SEXP s2, SEXP s3) {
   gsk_path_point_get_tangent(v1, v2, v3, &_out_tangent);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_tangent), R_NilValue, R_NilValue), "Graphene.Vec2"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_tangent, sizeof(graphene_vec2_t)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Vec2"));
   }
@@ -3047,7 +3119,14 @@ SEXP R_gsk_radial_gradient_node_get_center(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_radial_gradient_node_get_center(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Point"));
   }
@@ -3160,11 +3239,10 @@ SEXP R_gsk_radial_gradient_node_get_vradius(SEXP s1) {
 }
 
 
-SEXP R_gsk_render_node_deserialize(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_gsk_render_node_deserialize(SEXP s1, SEXP s2) {
   GBytes* v1 = (GBytes*)(get_ptr(s1)); (void)v1;
-  GskParseErrorFunc v2 = (s2 != R_NilValue) ? (GskParseErrorFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gconstpointer _ret = (gconstpointer)gsk_render_node_deserialize(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gconstpointer _ret = (gconstpointer)gsk_render_node_deserialize(v1, (GskParseErrorFunc)(_cb_closure_2 ? _rgtk4_cb_ParseErrorFunc : NULL), _cb_closure_2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -3411,32 +3489,26 @@ SEXP R_gsk_render_replay_free(SEXP s1) {
 }
 
 
-SEXP R_gsk_render_replay_set_font_filter(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gsk_render_replay_set_font_filter(SEXP s1, SEXP s2) {
   GskRenderReplay* v1 = (GskRenderReplay*)(get_ptr(s1)); (void)v1;
-  GskRenderReplayFontFilter v2 = (s2 != R_NilValue) ? (GskRenderReplayFontFilter)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gsk_render_replay_set_font_filter(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gsk_render_replay_set_font_filter(v1, (GskRenderReplayFontFilter)(_cb_closure_2 ? _rgtk4_cb_RenderReplayFontFilter : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
 
-SEXP R_gsk_render_replay_set_node_filter(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gsk_render_replay_set_node_filter(SEXP s1, SEXP s2) {
   GskRenderReplay* v1 = (GskRenderReplay*)(get_ptr(s1)); (void)v1;
-  GskRenderReplayNodeFilter v2 = (s2 != R_NilValue) ? (GskRenderReplayNodeFilter)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gsk_render_replay_set_node_filter(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gsk_render_replay_set_node_filter(v1, (GskRenderReplayNodeFilter)(_cb_closure_2 ? _rgtk4_cb_RenderReplayNodeFilter : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
 
-SEXP R_gsk_render_replay_set_texture_filter(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_gsk_render_replay_set_texture_filter(SEXP s1, SEXP s2) {
   GskRenderReplay* v1 = (GskRenderReplay*)(get_ptr(s1)); (void)v1;
-  GskRenderReplayTextureFilter v2 = (s2 != R_NilValue) ? (GskRenderReplayTextureFilter)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gsk_render_replay_set_texture_filter(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gsk_render_replay_set_texture_filter(v1, (GskRenderReplayTextureFilter)(_cb_closure_2 ? _rgtk4_cb_RenderReplayTextureFilter : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -3598,7 +3670,14 @@ SEXP R_gsk_repeat_node_get_child_bounds(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_repeat_node_get_child_bounds(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Rect"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Rect"));
   }
@@ -3883,7 +3962,7 @@ SEXP R_gsk_serialization_error_quark(void) {
   GQuark _ret = (GQuark)gsk_serialization_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "GLib.Quark"));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -4401,7 +4480,14 @@ SEXP R_gsk_text_node_get_color(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_text_node_get_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Gdk.RGBA"));
   }
@@ -4471,7 +4557,14 @@ SEXP R_gsk_text_node_get_offset(SEXP s1) {
   gconstpointer _ret = (gconstpointer)gsk_text_node_get_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
+    SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
+    SET_STRING_ELT(_cls0, 1, Rf_mkChar("RGtkObject"));
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), R_ClassSymbol, _cls0);
+    UNPROTECT(1);
+  }
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Point"));
   }
@@ -4957,7 +5050,7 @@ SEXP R_gsk_transform_to_matrix(SEXP s1) {
   gsk_transform_to_matrix(v1, &_out_out_matrix);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(&_out_out_matrix), R_NilValue, R_NilValue), "Graphene.Matrix"));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_out_matrix, sizeof(graphene_matrix_t)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Matrix"));
   }

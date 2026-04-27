@@ -3,6 +3,7 @@
 \name{gdkPixbufNew}
 \alias{gdkPixbufNew}
 \alias{gdkPixbufNewFromBytes}
+\alias{gdkPixbufNewFromData}
 \alias{gdkPixbufNewFromFile}
 \alias{gdkPixbufNewFromFileAtScale}
 \alias{gdkPixbufNewFromFileAtSize}
@@ -15,9 +16,12 @@
 \alias{gdkPixbufNewFromXpmData}
 \alias{gdkPixbufCalculateRowstride}
 \alias{gdkPixbufGetFileInfo}
+\alias{gdkPixbufGetFileInfoAsync}
 \alias{gdkPixbufGetFileInfoFinish}
 \alias{gdkPixbufGetFormats}
 \alias{gdkPixbufInitModules}
+\alias{gdkPixbufNewFromStreamAsync}
+\alias{gdkPixbufNewFromStreamAtScaleAsync}
 \alias{gdkPixbufSaveToStreamFinish}
 \alias{gdkPixbufAddAlpha}
 \alias{gdkPixbufApplyEmbeddedOrientation}
@@ -48,7 +52,9 @@
 \alias{gdkPixbufRotateSimple}
 \alias{gdkPixbufSaturateAndPixelate}
 \alias{gdkPixbufSaveToBufferv}
+\alias{gdkPixbufSaveToCallbackv}
 \alias{gdkPixbufSaveToStreamv}
+\alias{gdkPixbufSaveToStreamvAsync}
 \alias{gdkPixbufSavev}
 \alias{gdkPixbufScale}
 \alias{gdkPixbufScaleSimple}
@@ -57,6 +63,7 @@
 \alias{gdkPixbufAnimationNewFromResource}
 \alias{gdkPixbufAnimationNewFromStream}
 \alias{gdkPixbufAnimationNewFromStreamFinish}
+\alias{gdkPixbufAnimationNewFromStreamAsync}
 \alias{gdkPixbufAnimationGetHeight}
 \alias{gdkPixbufAnimationGetIter}
 \alias{gdkPixbufAnimationGetStaticImage}
@@ -132,6 +139,18 @@ gdkPixbufNewFromBytes(
   rowstride
 )
 
+gdkPixbufNewFromData(
+  data,
+  colorspace,
+  has_alpha,
+  bits_per_sample,
+  width,
+  height,
+  rowstride,
+  destroy_fn,
+  destroy_fn_data
+)
+
 gdkPixbufNewFromFile(filename)
 
 gdkPixbufNewFromFileAtScale(filename, width, height, preserve_aspect_ratio)
@@ -173,11 +192,24 @@ gdkPixbufCalculateRowstride(
 
 gdkPixbufGetFileInfo(filename)
 
+gdkPixbufGetFileInfoAsync(filename, cancellable, callback)
+
 gdkPixbufGetFileInfoFinish(async_result)
 
 gdkPixbufGetFormats()
 
 gdkPixbufInitModules(path)
+
+gdkPixbufNewFromStreamAsync(stream, cancellable, callback)
+
+gdkPixbufNewFromStreamAtScaleAsync(
+  stream,
+  width,
+  height,
+  preserve_aspect_ratio,
+  cancellable,
+  callback
+)
 
 gdkPixbufSaveToStreamFinish(async_result)
 
@@ -288,6 +320,8 @@ gdkPixbufSaturateAndPixelate(src, dest, saturation, pixelate)
 
 gdkPixbufSaveToBufferv(pixbuf, type, option_keys, option_values)
 
+gdkPixbufSaveToCallbackv(pixbuf, save_func, type, option_keys, option_values)
+
 gdkPixbufSaveToStreamv(
   pixbuf,
   stream,
@@ -295,6 +329,16 @@ gdkPixbufSaveToStreamv(
   option_keys,
   option_values,
   cancellable
+)
+
+gdkPixbufSaveToStreamvAsync(
+  pixbuf,
+  stream,
+  type,
+  option_keys,
+  option_values,
+  cancellable,
+  callback
 )
 
 gdkPixbufSavev(pixbuf, filename, type, option_keys, option_values)
@@ -324,6 +368,8 @@ gdkPixbufAnimationNewFromResource(resource_path)
 gdkPixbufAnimationNewFromStream(stream, cancellable)
 
 gdkPixbufAnimationNewFromStreamFinish(async_result)
+
+gdkPixbufAnimationNewFromStreamAsync(stream, cancellable, callback)
 
 gdkPixbufAnimationGetHeight(animation)
 
@@ -462,6 +508,10 @@ gdkPixbufGetFromTexture(texture)
 
 \item{rowstride}{gint}
 
+\item{destroy_fn}{PixbufDestroyNotify}
+
+\item{destroy_fn_data}{gpointer}
+
 \item{filename}{filename}
 
 \item{preserve_aspect_ratio}{gboolean}
@@ -477,6 +527,8 @@ gdkPixbufGetFromTexture(texture)
 \item{cancellable}{Gio.Cancellable}
 
 \item{async_result}{Gio.AsyncResult}
+
+\item{callback}{function — Gio.AsyncReadyCallback callback}
 
 \item{path}{filename}
 
@@ -550,6 +602,8 @@ gdkPixbufGetFromTexture(texture)
 
 \item{option_values}{utf8}
 
+\item{save_func}{function — PixbufSaveFunc callback}
+
 \item{value}{utf8}
 
 \item{animation}{PixbufSimpleAnim}
@@ -619,15 +673,23 @@ Pixbuf
 
 Pixbuf
 
+Pixbuf
+
 gint
 
 PixbufFormat
+
+Return value from C function
 
 PixbufFormat
 
 GLib.SList
 
 gboolean
+
+Return value from C function
+
+Return value from C function
 
 gboolean
 
@@ -695,6 +757,10 @@ gboolean
 
 Return value from C function
 
+gboolean
+
+Return value from C function
+
 Pixbuf
 
 gboolean
@@ -706,6 +772,8 @@ PixbufAnimation
 PixbufAnimation
 
 PixbufAnimation
+
+Return value from C function
 
 gint
 
@@ -834,6 +902,8 @@ gdkPixbufNew
 
 gdkPixbufNewFromBytes
 
+gdkPixbufNewFromData
+
 gdkPixbufNewFromFile
 
 gdkPixbufNewFromFileAtScale
@@ -858,11 +928,17 @@ gdkPixbufCalculateRowstride
 
 gdkPixbufGetFileInfo
 
+gdkPixbufGetFileInfoAsync
+
 gdkPixbufGetFileInfoFinish
 
 gdkPixbufGetFormats
 
 gdkPixbufInitModules
+
+gdkPixbufNewFromStreamAsync
+
+gdkPixbufNewFromStreamAtScaleAsync
 
 gdkPixbufSaveToStreamFinish
 
@@ -924,7 +1000,11 @@ gdkPixbufSaturateAndPixelate
 
 gdkPixbufSaveToBufferv
 
+gdkPixbufSaveToCallbackv
+
 gdkPixbufSaveToStreamv
+
+gdkPixbufSaveToStreamvAsync
 
 gdkPixbufSavev
 
@@ -941,6 +1021,8 @@ gdkPixbufAnimationNewFromResource
 gdkPixbufAnimationNewFromStream
 
 gdkPixbufAnimationNewFromStreamFinish
+
+gdkPixbufAnimationNewFromStreamAsync
 
 gdkPixbufAnimationGetHeight
 

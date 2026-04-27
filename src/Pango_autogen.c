@@ -5,6 +5,8 @@
 #include <glib.h>
 #include <stdint.h>
 #include <string.h>
+#include "rgtk4_callbacks.h"
+#include "rgtk4_autogen_callbacks.h"
 
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
@@ -28,18 +30,15 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
 
-/* Finalizer for heap-allocated value structs */
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
   void *p = R_ExternalPtrAddr(s);
   if (p) g_free(p);
 }
 
-/* Helpers from rgtk4_helpers.c */
 extern SEXP make_gobject_ptr(gpointer obj);
 extern SEXP make_boxed_struct(const void *src, size_t size);
 
-/* Helper to box GStrv (char**) into R character vector */
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
   if (!strv) return R_NilValue;
@@ -50,32 +49,30 @@ static SEXP _box_GStrv(char **strv) {
   return res;
 }
 
-/* Helper to add an S3 class to an external pointer for easier debugging */
 static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
-
   void *obj = R_ExternalPtrAddr(ptr);
-
-  // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
   if ((uintptr_t)obj < 0x1000) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
     return ptr;
   }
-
   if (G_IS_OBJECT(obj)) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   }
@@ -315,11 +312,10 @@ SEXP R_pango_attr_list_equal(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_pango_attr_list_filter(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_pango_attr_list_filter(SEXP s1, SEXP s2) {
   PangoAttrList* v1 = (PangoAttrList*)(get_ptr(s1)); (void)v1;
-  PangoAttrFilterFunc v2 = (PangoAttrFilterFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gconstpointer _ret = (gconstpointer)pango_attr_list_filter(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gconstpointer _ret = (gconstpointer)pango_attr_list_filter(v1, (PangoAttrFilterFunc)(_cb_closure_2 ? _rgtk4_cb_AttrFilterFunc : NULL), _cb_closure_2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -473,13 +469,12 @@ SEXP R_pango_attr_shape_new(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_pango_attr_shape_new_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_pango_attr_shape_new_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const PangoRectangle* v1 = (const PangoRectangle*)(get_ptr(s1)); (void)v1;
   const PangoRectangle* v2 = (const PangoRectangle*)(get_ptr(s2)); (void)v2;
   gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  PangoAttrDataCopyFunc v4 = (s4 != R_NilValue) ? (PangoAttrDataCopyFunc)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
-  gconstpointer _ret = (gconstpointer)pango_attr_shape_new_with_data(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  gconstpointer _ret = (gconstpointer)pango_attr_shape_new_with_data(v1, v2, v3, (PangoAttrDataCopyFunc)(_cb_closure_4 ? _rgtk4_cb_AttrDataCopyFunc : NULL), rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -2403,11 +2398,10 @@ SEXP R_pango_font_metrics_unref(SEXP s1) {
 }
 
 
-SEXP R_pango_fontset_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_pango_fontset_foreach(SEXP s1, SEXP s2) {
   PangoFontset* v1 = (PangoFontset*)(get_ptr(s1)); (void)v1;
-  PangoFontsetForeachFunc v2 = (PangoFontsetForeachFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  pango_fontset_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  pango_fontset_foreach(v1, (PangoFontsetForeachFunc)(_cb_closure_2 ? _rgtk4_cb_FontsetForeachFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -4163,7 +4157,7 @@ SEXP R_pango_layout_deserialize_error_quark(void) {
   GQuark _ret = (GQuark)pango_layout_deserialize_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "GLib.Quark"));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -6290,7 +6284,7 @@ SEXP R_pango_markup_parser_new(SEXP s1) {
 
 
 SEXP R_pango_parse_enum(SEXP s1, SEXP s2, SEXP s3) {
-  GType v1 = (GType)((GType)_unbox_numeric(s1)); (void)v1;
+  GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   int _out_value = 0; (void)_out_value;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;

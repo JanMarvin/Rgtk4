@@ -592,6 +592,23 @@ gObjectBindProperty <- function(source, source_property, target, target_property
 
 
 #' @rdname gobject-core
+#' @title gObjectBindPropertyFull
+#'
+#' @param source Object
+#' @param source_property utf8
+#' @param target Object
+#' @param target_property utf8
+#' @param flags BindingFlags
+#' @param transform_to function — BindingTransformFunc callback
+#' @param transform_from function — BindingTransformFunc callback
+#' @return Binding
+#' @export
+gObjectBindPropertyFull <- function(source, source_property, target, target_property, flags, transform_to, transform_from) {
+  .Call("R_g_object_bind_property_full", source, source_property, target, target_property, flags, transform_to, transform_from)$result
+}
+
+
+#' @rdname gobject-core
 #' @title gObjectBindPropertyWithClosures
 #'
 #' @param source Object
@@ -2207,6 +2224,30 @@ gValueArrayRemove <- function(value_array, index_) {
 
 
 #' @rdname glib-other
+#' @title gValueArraySort
+#'
+#' @param value_array ValueArray
+#' @param compare_func function — GLib.CompareFunc callback
+#' @return ValueArray
+#' @export
+gValueArraySort <- function(value_array, compare_func) {
+  .Call("R_g_value_array_sort", value_array, compare_func)$result
+}
+
+
+#' @rdname glib-other
+#' @title gValueArraySortWithData
+#'
+#' @param value_array ValueArray
+#' @param compare_func function — GLib.CompareDataFunc callback
+#' @return ValueArray
+#' @export
+gValueArraySortWithData <- function(value_array, compare_func) {
+  .Call("R_g_value_array_sort_with_data", value_array, compare_func)$result
+}
+
+
+#' @rdname glib-other
 #' @title gBoxedCopy
 #'
 #' @param boxed_type GType
@@ -2227,6 +2268,19 @@ gBoxedCopy <- function(boxed_type, src_boxed) {
 #' @export
 gBoxedFree <- function(boxed_type, boxed) {
   invisible(.Call("R_g_boxed_free", boxed_type, boxed))
+}
+
+
+#' @rdname glib-other
+#' @title gBoxedTypeRegisterStatic
+#'
+#' @param name utf8
+#' @param boxed_copy function — BoxedCopyFunc callback
+#' @param boxed_free function — BoxedFreeFunc callback
+#' @return GType
+#' @export
+gBoxedTypeRegisterStatic <- function(name, boxed_copy, boxed_free) {
+  .Call("R_g_boxed_type_register_static", name, boxed_copy, boxed_free)$result
 }
 
 
@@ -2836,6 +2890,19 @@ gSignalAccumulatorTrueHandled <- function(ihint, return_accu, handler_return, du
 
 
 #' @rdname gobject-core
+#' @title gSignalAddEmissionHook
+#'
+#' @param signal_id guint
+#' @param detail GLib.Quark
+#' @param hook_func function — SignalEmissionHook callback
+#' @return gulong
+#' @export
+gSignalAddEmissionHook <- function(signal_id, detail, hook_func) {
+  .Call("R_g_signal_add_emission_hook", as.integer(signal_id), detail, hook_func)$result
+}
+
+
+#' @rdname gobject-core
 #' @title gSignalChainFromOverridden
 #'
 #' @param instance_and_params Value
@@ -3085,6 +3152,19 @@ gSignalName <- function(signal_id) {
 #' @export
 gSignalOverrideClassClosure <- function(signal_id, instance_type, class_closure) {
   invisible(.Call("R_g_signal_override_class_closure", as.integer(signal_id), instance_type, class_closure))
+}
+
+
+#' @rdname gobject-core
+#' @title gSignalOverrideClassHandler
+#'
+#' @param signal_name utf8
+#' @param instance_type GType
+#' @param class_handler function — Callback callback
+#' @return Return value from C function
+#' @export
+gSignalOverrideClassHandler <- function(signal_name, instance_type, class_handler) {
+  invisible(.Call("R_g_signal_override_class_handler", signal_name, instance_type, class_handler))
 }
 
 

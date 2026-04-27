@@ -61,6 +61,7 @@
 \alias{gtkIconViewScrollToPath}
 \alias{gtkIconViewSelectAll}
 \alias{gtkIconViewSelectPath}
+\alias{gtkIconViewSelectedForeach}
 \alias{gtkIconViewSetActivateOnSingleClick}
 \alias{gtkIconViewSetColumnSpacing}
 \alias{gtkIconViewSetColumns}
@@ -263,6 +264,8 @@ gtkIconViewSelectAll(icon_view)
 
 gtkIconViewSelectPath(icon_view, path)
 
+gtkIconViewSelectedForeach(icon_view, func)
+
 gtkIconViewSetActivateOnSingleClick(icon_view, single)
 
 gtkIconViewSetColumnSpacing(icon_view, column_spacing)
@@ -454,6 +457,8 @@ gtkPictureSetResource(self, resource_path)
 
 \item{col_align}{gfloat}
 
+\item{func}{function — IconViewForeachFunc callback}
+
 \item{single}{gboolean}
 
 \item{column_spacing}{gint}
@@ -620,6 +625,8 @@ gboolean
 Return value from C function
 
 gboolean
+
+Return value from C function
 
 Return value from C function
 
@@ -881,6 +888,8 @@ gtkIconViewScrollToPath
 gtkIconViewSelectAll
 
 gtkIconViewSelectPath
+
+gtkIconViewSelectedForeach
 
 gtkIconViewSetActivateOnSingleClick
 

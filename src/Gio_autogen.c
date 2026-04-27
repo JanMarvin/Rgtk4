@@ -15,6 +15,8 @@
 #include <gio/gunixfdlist.h>
 #include <gio/gunixsocketaddress.h>
 #endif /* G_OS_WIN32 */
+#include "rgtk4_callbacks.h"
+#include "rgtk4_autogen_callbacks.h"
 
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
@@ -38,18 +40,15 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
 
-/* Finalizer for heap-allocated value structs */
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
   void *p = R_ExternalPtrAddr(s);
   if (p) g_free(p);
 }
 
-/* Helpers from rgtk4_helpers.c */
 extern SEXP make_gobject_ptr(gpointer obj);
 extern SEXP make_boxed_struct(const void *src, size_t size);
 
-/* Helper to box GStrv (char**) into R character vector */
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
   if (!strv) return R_NilValue;
@@ -60,32 +59,30 @@ static SEXP _box_GStrv(char **strv) {
   return res;
 }
 
-/* Helper to add an S3 class to an external pointer for easier debugging */
 static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
-
   void *obj = R_ExternalPtrAddr(ptr);
-
-  // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
   if ((uintptr_t)obj < 0x1000) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
     return ptr;
   }
-
   if (G_IS_OBJECT(obj)) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   }
@@ -669,13 +666,12 @@ SEXP R_g_app_info_launch_default_for_uri(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_app_info_launch_default_for_uri_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_app_info_launch_default_for_uri_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GAppLaunchContext* v2 = (s2 != R_NilValue) ? (GAppLaunchContext*)(get_ptr(s2)) : NULL; (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_app_info_launch_default_for_uri_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_app_info_launch_default_for_uri_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -1790,26 +1786,24 @@ SEXP R_g_application_command_line_set_exit_status(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_async_initable_newv_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_async_initable_newv_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GParameter* v3 = (GParameter*)(get_ptr(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_async_initable_newv_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_async_initable_newv_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
 
-SEXP R_g_async_initable_init_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_async_initable_init_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GAsyncInitable* v1 = (GAsyncInitable*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_async_initable_init_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_async_initable_init_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -1968,14 +1962,13 @@ SEXP R_g_buffered_input_stream_fill(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_buffered_input_stream_fill_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_buffered_input_stream_fill_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GBufferedInputStream* v1 = (GBufferedInputStream*)(get_ptr(s1)); (void)v1;
   gssize v2 = (gssize)((gssize)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_buffered_input_stream_fill_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_buffered_input_stream_fill_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -2249,12 +2242,13 @@ SEXP R_g_cancellable_cancel(SEXP s1) {
 }
 
 
-SEXP R_g_cancellable_connect(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_cancellable_connect(SEXP s1, SEXP s2) {
   GCancellable* v1 = (s1 != R_NilValue) ? (GCancellable*)(get_ptr(s1)) : NULL; (void)v1;
-  GCallback v2 = (GCallback)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gulong _ret = (gulong)g_cancellable_connect(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_2);
+  gulong _ret = (gulong)g_cancellable_connect(v1, (GCallback)(_cb_closure_2 ? _rgtk4_cb_Callback : NULL), _cb_closure_2, rgtk4_closure_free);
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_2) rgtk4_closure_free(_cb_closure_2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -2754,13 +2748,12 @@ SEXP R_g_data_input_stream_read_line(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_data_input_stream_read_line_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_data_input_stream_read_line_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GDataInputStream* v1 = (GDataInputStream*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_data_input_stream_read_line_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_data_input_stream_read_line_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -2916,14 +2909,13 @@ SEXP R_g_data_input_stream_read_until(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_data_input_stream_read_until_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_data_input_stream_read_until_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GDataInputStream* v1 = (GDataInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_data_input_stream_read_until_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_data_input_stream_read_until_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -2978,15 +2970,14 @@ SEXP R_g_data_input_stream_read_upto(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_data_input_stream_read_upto_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_data_input_stream_read_upto_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GDataInputStream* v1 = (GDataInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_data_input_stream_read_upto_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_data_input_stream_read_upto_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -3402,13 +3393,12 @@ SEXP R_g_drive_can_stop(SEXP s1) {
 }
 
 
-SEXP R_g_drive_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_drive_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GDrive* v1 = (GDrive*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_drive_eject(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_drive_eject(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -3431,14 +3421,13 @@ SEXP R_g_drive_eject_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_drive_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_drive_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GDrive* v1 = (GDrive*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_drive_eject_with_operation(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_drive_eject_with_operation(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -3670,12 +3659,11 @@ SEXP R_g_drive_is_removable(SEXP s1) {
 }
 
 
-SEXP R_g_drive_poll_for_media(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_drive_poll_for_media(SEXP s1, SEXP s2, SEXP s3) {
   GDrive* v1 = (GDrive*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_drive_poll_for_media(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_drive_poll_for_media(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -3698,14 +3686,13 @@ SEXP R_g_drive_poll_for_media_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_drive_start(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_drive_start(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GDrive* v1 = (GDrive*)(get_ptr(s1)); (void)v1;
   GDriveStartFlags v2 = (GDriveStartFlags)((GDriveStartFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_drive_start(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_drive_start(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -3728,14 +3715,13 @@ SEXP R_g_drive_start_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_drive_stop(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_drive_stop(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GDrive* v1 = (GDrive*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_drive_stop(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_drive_stop(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -4010,14 +3996,13 @@ SEXP R_g_file_append_to(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_append_to_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_append_to_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileCreateFlags v2 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_append_to_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_append_to_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -4040,15 +4025,14 @@ SEXP R_g_file_append_to_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_copy(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_copy(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFile* v2 = (GFile*)(get_ptr(s2)); (void)v2;
   GFileCopyFlags v3 = (GFileCopyFlags)((GFileCopyFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GFileProgressCallback v5 = (s5 != R_NilValue) ? (GFileProgressCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
   GError *_err = NULL;
-  gboolean _ret = (gboolean)g_file_copy(v1, v2, v3, v4, v5, v6, &_err);
+  gboolean _ret = (gboolean)g_file_copy(v1, v2, v3, v4, (GFileProgressCallback)(_cb_closure_5 ? _rgtk4_cb_FileProgressCallback : NULL), _cb_closure_5, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -4062,17 +4046,15 @@ SEXP R_g_file_copy(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 }
 
 
-SEXP R_g_file_copy_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
+SEXP R_g_file_copy_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFile* v2 = (GFile*)(get_ptr(s2)); (void)v2;
   GFileCopyFlags v3 = (GFileCopyFlags)((GFileCopyFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GFileProgressCallback v6 = (s6 != R_NilValue) ? (GFileProgressCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  GAsyncReadyCallback v8 = (s8 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s8)) : NULL; (void)v8;
-  gpointer v9 = (s9 != R_NilValue) ? (gpointer)(get_ptr(s9)) : NULL; (void)v9;
-  g_file_copy_async(v1, v2, v3, v4, v5, v6, v7, v8, v9);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  RCallbackClosure *_cb_closure_8 = (s7 == R_NilValue) ? NULL : rgtk4_closure_new(s7); (void)_cb_closure_8;
+  g_file_copy_async(v1, v2, v3, v4, v5, (GFileProgressCallback)(_cb_closure_6 ? _rgtk4_cb_FileProgressCallback : NULL), _cb_closure_6, (GAsyncReadyCallback)(_cb_closure_8 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_8);
   return R_NilValue;
 }
 
@@ -4134,14 +4116,13 @@ SEXP R_g_file_create(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_create_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_create_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileCreateFlags v2 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_create_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_create_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -4183,14 +4164,13 @@ SEXP R_g_file_create_readwrite(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_create_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_create_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileCreateFlags v2 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_create_readwrite_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_create_readwrite_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -4231,13 +4211,12 @@ SEXP R_g_file_delete(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_delete_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_delete_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_delete_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_delete_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -4276,13 +4255,12 @@ SEXP R_g_file_dup(SEXP s1) {
 }
 
 
-SEXP R_g_file_eject_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_eject_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_eject_mountable(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_eject_mountable(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -4305,14 +4283,13 @@ SEXP R_g_file_eject_mountable_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_eject_mountable_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_eject_mountable_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_eject_mountable_with_operation(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_eject_mountable_with_operation(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -4355,15 +4332,14 @@ SEXP R_g_file_enumerate_children(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_file_enumerate_children_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_file_enumerate_children_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GFileQueryInfoFlags v3 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_file_enumerate_children_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_file_enumerate_children_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -4421,13 +4397,12 @@ SEXP R_g_file_find_enclosing_mount(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_find_enclosing_mount_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_find_enclosing_mount_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_find_enclosing_mount_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_find_enclosing_mount_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -4705,12 +4680,11 @@ SEXP R_g_file_load_bytes(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_load_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_file_load_bytes_async(SEXP s1, SEXP s2, SEXP s3) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_file_load_bytes_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_file_load_bytes_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -4775,12 +4749,11 @@ SEXP R_g_file_load_contents(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_load_contents_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_file_load_contents_async(SEXP s1, SEXP s2, SEXP s3) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_file_load_contents_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_file_load_contents_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -4875,13 +4848,12 @@ SEXP R_g_file_make_directory(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_make_directory_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_make_directory_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_make_directory_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_make_directory_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -4941,17 +4913,16 @@ SEXP R_g_file_make_symbolic_link(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_measure_disk_usage(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_measure_disk_usage(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileMeasureFlags v2 = (GFileMeasureFlags)((GFileMeasureFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GFileMeasureProgressCallback v4 = (s4 != R_NilValue) ? (GFileMeasureProgressCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
   guint64 _out_disk_usage = 0; (void)_out_disk_usage;
   guint64 _out_num_dirs = 0; (void)_out_num_dirs;
   guint64 _out_num_files = 0; (void)_out_num_files;
   GError *_err = NULL;
-  gboolean _ret = (gboolean)g_file_measure_disk_usage(v1, v2, v3, v4, v5, &_out_disk_usage, &_out_num_dirs, &_out_num_files, &_err);
+  gboolean _ret = (gboolean)g_file_measure_disk_usage(v1, v2, v3, (GFileMeasureProgressCallback)(_cb_closure_4 ? _rgtk4_cb_FileMeasureProgressCallback : NULL), _cb_closure_4, &_out_disk_usage, &_out_num_dirs, &_out_num_files, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -5073,14 +5044,13 @@ SEXP R_g_file_monitor_file(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_mount_enclosing_volume(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_mount_enclosing_volume(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GMountMountFlags v2 = (GMountMountFlags)((GMountMountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_mount_enclosing_volume(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_mount_enclosing_volume(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -5103,14 +5073,13 @@ SEXP R_g_file_mount_enclosing_volume_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_mount_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_mount_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GMountMountFlags v2 = (GMountMountFlags)((GMountMountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_mount_mountable(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_mount_mountable(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -5133,15 +5102,14 @@ SEXP R_g_file_mount_mountable_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFile* v2 = (GFile*)(get_ptr(s2)); (void)v2;
   GFileCopyFlags v3 = (GFileCopyFlags)((GFileCopyFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GFileProgressCallback v5 = (s5 != R_NilValue) ? (GFileProgressCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
   GError *_err = NULL;
-  gboolean _ret = (gboolean)g_file_move(v1, v2, v3, v4, v5, v6, &_err);
+  gboolean _ret = (gboolean)g_file_move(v1, v2, v3, v4, (GFileProgressCallback)(_cb_closure_5 ? _rgtk4_cb_FileProgressCallback : NULL), _cb_closure_5, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -5173,13 +5141,12 @@ SEXP R_g_file_open_readwrite(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_open_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_open_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_open_readwrite_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_open_readwrite_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -5218,12 +5185,11 @@ SEXP R_g_file_peek_path(SEXP s1) {
 }
 
 
-SEXP R_g_file_poll_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_file_poll_mountable(SEXP s1, SEXP s2, SEXP s3) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_file_poll_mountable(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_file_poll_mountable(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -5318,14 +5284,13 @@ SEXP R_g_file_query_filesystem_info(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_query_filesystem_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_query_filesystem_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_query_filesystem_info_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_query_filesystem_info_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -5368,15 +5333,14 @@ SEXP R_g_file_query_info(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_file_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_file_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GFileQueryInfoFlags v3 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_file_query_info_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_file_query_info_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -5453,13 +5417,12 @@ SEXP R_g_file_read(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_read_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_read_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -5503,16 +5466,15 @@ SEXP R_g_file_replace(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 }
 
 
-SEXP R_g_file_replace_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
+SEXP R_g_file_replace_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   GFileCreateFlags v4 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   GCancellable* v6 = (s6 != R_NilValue) ? (GCancellable*)(get_ptr(s6)) : NULL; (void)v6;
-  GAsyncReadyCallback v7 = (s7 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s7)) : NULL; (void)v7;
-  gpointer v8 = (s8 != R_NilValue) ? (gpointer)(get_ptr(s8)) : NULL; (void)v8;
-  g_file_replace_async(v1, v2, v3, v4, v5, v6, v7, v8);
+  RCallbackClosure *_cb_closure_7 = (s7 == R_NilValue) ? NULL : rgtk4_closure_new(s7); (void)_cb_closure_7;
+  g_file_replace_async(v1, v2, v3, v4, v5, v6, (GAsyncReadyCallback)(_cb_closure_7 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_7);
   return R_NilValue;
 }
 
@@ -5546,7 +5508,7 @@ SEXP R_g_file_replace_contents(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP
 }
 
 
-SEXP R_g_file_replace_contents_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
+SEXP R_g_file_replace_contents_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(get_ptr(s2)); (void)v2;
   gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
@@ -5554,23 +5516,21 @@ SEXP R_g_file_replace_contents_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
   gboolean v5 = (gboolean)((gboolean)LOGICAL(s5)[0]); (void)v5;
   GFileCreateFlags v6 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s6)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s6) : INTEGER(s6)[0])); (void)v6;
   GCancellable* v7 = (s7 != R_NilValue) ? (GCancellable*)(get_ptr(s7)) : NULL; (void)v7;
-  GAsyncReadyCallback v8 = (s8 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s8)) : NULL; (void)v8;
-  gpointer v9 = (s9 != R_NilValue) ? (gpointer)(get_ptr(s9)) : NULL; (void)v9;
-  g_file_replace_contents_async(v1, v2, v3, v4, v5, v6, v7, v8, v9);
+  RCallbackClosure *_cb_closure_8 = (s8 == R_NilValue) ? NULL : rgtk4_closure_new(s8); (void)_cb_closure_8;
+  g_file_replace_contents_async(v1, v2, v3, v4, v5, v6, v7, (GAsyncReadyCallback)(_cb_closure_8 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_8);
   return R_NilValue;
 }
 
 
-SEXP R_g_file_replace_contents_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
+SEXP R_g_file_replace_contents_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   const char* v3 = (s3 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s3,0))) : NULL; (void)v3;
   gboolean v4 = (gboolean)((gboolean)LOGICAL(s4)[0]); (void)v4;
   GFileCreateFlags v5 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
   GCancellable* v6 = (s6 != R_NilValue) ? (GCancellable*)(get_ptr(s6)) : NULL; (void)v6;
-  GAsyncReadyCallback v7 = (s7 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s7)) : NULL; (void)v7;
-  gpointer v8 = (s8 != R_NilValue) ? (gpointer)(get_ptr(s8)) : NULL; (void)v8;
-  g_file_replace_contents_bytes_async(v1, v2, v3, v4, v5, v6, v7, v8);
+  RCallbackClosure *_cb_closure_7 = (s7 == R_NilValue) ? NULL : rgtk4_closure_new(s7); (void)_cb_closure_7;
+  g_file_replace_contents_bytes_async(v1, v2, v3, v4, v5, v6, (GAsyncReadyCallback)(_cb_closure_7 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_7);
   return R_NilValue;
 }
 
@@ -5638,16 +5598,15 @@ SEXP R_g_file_replace_readwrite(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 }
 
 
-SEXP R_g_file_replace_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
+SEXP R_g_file_replace_readwrite_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
   GFileCreateFlags v4 = (GFileCreateFlags)((GFileCreateFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
   gint v5 = (gint)((gint)_unbox_numeric(s5)); (void)v5;
   GCancellable* v6 = (s6 != R_NilValue) ? (GCancellable*)(get_ptr(s6)) : NULL; (void)v6;
-  GAsyncReadyCallback v7 = (s7 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s7)) : NULL; (void)v7;
-  gpointer v8 = (s8 != R_NilValue) ? (gpointer)(get_ptr(s8)) : NULL; (void)v8;
-  g_file_replace_readwrite_async(v1, v2, v3, v4, v5, v6, v7, v8);
+  RCallbackClosure *_cb_closure_7 = (s7 == R_NilValue) ? NULL : rgtk4_closure_new(s7); (void)_cb_closure_7;
+  g_file_replace_readwrite_async(v1, v2, v3, v4, v5, v6, (GAsyncReadyCallback)(_cb_closure_7 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_7);
   return R_NilValue;
 }
 
@@ -5835,15 +5794,14 @@ SEXP R_g_file_set_attribute_uint64(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 }
 
 
-SEXP R_g_file_set_attributes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_file_set_attributes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GFileInfo* v2 = (GFileInfo*)(get_ptr(s2)); (void)v2;
   GFileQueryInfoFlags v3 = (GFileQueryInfoFlags)((GFileQueryInfoFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_file_set_attributes_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_file_set_attributes_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -5911,14 +5869,13 @@ SEXP R_g_file_set_display_name(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_set_display_name_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_set_display_name_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_set_display_name_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_set_display_name_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -5941,14 +5898,13 @@ SEXP R_g_file_set_display_name_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_start_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_start_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GDriveStartFlags v2 = (GDriveStartFlags)((GDriveStartFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_start_mountable(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_start_mountable(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -5971,14 +5927,13 @@ SEXP R_g_file_start_mountable_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_stop_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_stop_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_stop_mountable(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_stop_mountable(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -6035,13 +5990,12 @@ SEXP R_g_file_trash(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_trash_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_trash_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_trash_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_trash_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -6064,13 +6018,12 @@ SEXP R_g_file_trash_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_unmount_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_unmount_mountable(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_unmount_mountable(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_unmount_mountable(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -6093,14 +6046,13 @@ SEXP R_g_file_unmount_mountable_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_unmount_mountable_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_unmount_mountable_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_unmount_mountable_with_operation(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_unmount_mountable_with_operation(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -6362,13 +6314,12 @@ SEXP R_g_file_enumerator_close(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_enumerator_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_file_enumerator_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GFileEnumerator* v1 = (GFileEnumerator*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_file_enumerator_close_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_file_enumerator_close_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -6504,14 +6455,13 @@ SEXP R_g_file_enumerator_next_file(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_file_enumerator_next_files_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_enumerator_next_files_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFileEnumerator* v1 = (GFileEnumerator*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_enumerator_next_files_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_enumerator_next_files_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -6577,14 +6527,13 @@ SEXP R_g_file_io_stream_query_info(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_io_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_io_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFileIOStream* v1 = (GFileIOStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_io_stream_query_info_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_io_stream_query_info_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -7488,14 +7437,13 @@ SEXP R_g_file_input_stream_query_info(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_input_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_input_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFileInputStream* v1 = (GFileInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_input_stream_query_info_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_input_stream_query_info_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -7603,14 +7551,13 @@ SEXP R_g_file_output_stream_query_info(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_file_output_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_file_output_stream_query_info_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GFileOutputStream* v1 = (GFileOutputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_file_output_stream_query_info_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_file_output_stream_query_info_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -7927,12 +7874,10 @@ SEXP R_g_io_extension_point_register(SEXP s1) {
 }
 
 
-SEXP R_g_io_scheduler_job_send_to_mainloop(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_io_scheduler_job_send_to_mainloop(SEXP s1, SEXP s2) {
   GIOSchedulerJob* v1 = (GIOSchedulerJob*)(get_ptr(s1)); (void)v1;
-  GSourceFunc v2 = (GSourceFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  gboolean _ret = (gboolean)g_io_scheduler_job_send_to_mainloop(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gboolean _ret = (gboolean)g_io_scheduler_job_send_to_mainloop(v1, (GSourceFunc)(_cb_closure_2 ? _rgtk4_cb_SourceFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -7946,12 +7891,10 @@ SEXP R_g_io_scheduler_job_send_to_mainloop(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_io_scheduler_job_send_to_mainloop_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_io_scheduler_job_send_to_mainloop_async(SEXP s1, SEXP s2) {
   GIOSchedulerJob* v1 = (GIOSchedulerJob*)(get_ptr(s1)); (void)v1;
-  GSourceFunc v2 = (GSourceFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  g_io_scheduler_job_send_to_mainloop_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_io_scheduler_job_send_to_mainloop_async(v1, (GSourceFunc)(_cb_closure_2 ? _rgtk4_cb_SourceFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -7998,13 +7941,12 @@ SEXP R_g_io_stream_close(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_io_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_io_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GIOStream* v1 = (GIOStream*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_io_stream_close_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_io_stream_close_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -8108,15 +8050,14 @@ SEXP R_g_io_stream_set_pending(SEXP s1) {
 }
 
 
-SEXP R_g_io_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_io_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GIOStream* v1 = (GIOStream*)(get_ptr(s1)); (void)v1;
   GIOStream* v2 = (GIOStream*)(get_ptr(s2)); (void)v2;
   GIOStreamSpliceFlags v3 = (GIOStreamSpliceFlags)((GIOStreamSpliceFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_io_stream_splice_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_io_stream_splice_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -8803,13 +8744,12 @@ SEXP R_g_input_stream_close(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_input_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_input_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_input_stream_close_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_input_stream_close_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -8920,15 +8860,14 @@ SEXP R_g_input_stream_read_all(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_input_stream_read_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_input_stream_read_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gpointer _out_buffer = 0; (void)_out_buffer;
   gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_input_stream_read_all_async(v1, &_out_buffer, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_6 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_6;
+  g_input_stream_read_all_async(v1, &_out_buffer, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_buffer)));
@@ -8966,15 +8905,14 @@ SEXP R_g_input_stream_read_all_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_input_stream_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_input_stream_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gpointer _out_buffer = 0; (void)_out_buffer;
   gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_input_stream_read_async(v1, &_out_buffer, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_6 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_6;
+  g_input_stream_read_async(v1, &_out_buffer, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_buffer)));
@@ -9007,14 +8945,13 @@ SEXP R_g_input_stream_read_bytes(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_input_stream_read_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_input_stream_read_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_input_stream_read_bytes_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_input_stream_read_bytes_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -9091,14 +9028,13 @@ SEXP R_g_input_stream_skip(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_input_stream_skip_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_input_stream_skip_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_input_stream_skip_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_input_stream_skip_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -9213,12 +9149,11 @@ SEXP R_g_list_store_insert(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_list_store_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_list_store_insert_sorted(SEXP s1, SEXP s2, SEXP s3) {
   GListStore* v1 = (GListStore*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
-  GCompareDataFunc v3 = (GCompareDataFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  guint _ret = (guint)g_list_store_insert_sorted(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  guint _ret = (guint)g_list_store_insert_sorted(v1, v2, (GCompareDataFunc)(_cb_closure_3 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -9247,11 +9182,10 @@ SEXP R_g_list_store_remove_all(SEXP s1) {
 }
 
 
-SEXP R_g_list_store_sort(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_list_store_sort(SEXP s1, SEXP s2) {
   GListStore* v1 = (GListStore*)(get_ptr(s1)); (void)v1;
-  GCompareDataFunc v2 = (GCompareDataFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_list_store_sort(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_list_store_sort(v1, (GCompareDataFunc)(_cb_closure_2 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -9292,13 +9226,12 @@ SEXP R_g_loadable_icon_load(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_loadable_icon_load_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_loadable_icon_load_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GLoadableIcon* v1 = (GLoadableIcon*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_loadable_icon_load_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_loadable_icon_load_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -10105,13 +10038,12 @@ SEXP R_g_mount_can_unmount(SEXP s1) {
 }
 
 
-SEXP R_g_mount_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_mount_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMount* v1 = (GMount*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_mount_eject(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_mount_eject(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -10134,14 +10066,13 @@ SEXP R_g_mount_eject_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_mount_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_mount_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GMount* v1 = (GMount*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_mount_eject_with_operation(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_mount_eject_with_operation(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -10308,13 +10239,12 @@ SEXP R_g_mount_get_volume(SEXP s1) {
 }
 
 
-SEXP R_g_mount_guess_content_type(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_mount_guess_content_type(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMount* v1 = (GMount*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_mount_guess_content_type(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_mount_guess_content_type(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -10372,14 +10302,13 @@ SEXP R_g_mount_is_shadowed(SEXP s1) {
 }
 
 
-SEXP R_g_mount_remount(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_mount_remount(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GMount* v1 = (GMount*)(get_ptr(s1)); (void)v1;
   GMountMountFlags v2 = (GMountMountFlags)((GMountMountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_mount_remount(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_mount_remount(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -10409,13 +10338,12 @@ SEXP R_g_mount_shadow(SEXP s1) {
 }
 
 
-SEXP R_g_mount_unmount(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_mount_unmount(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GMount* v1 = (GMount*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_mount_unmount(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_mount_unmount(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -10438,14 +10366,13 @@ SEXP R_g_mount_unmount_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_mount_unmount_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_mount_unmount_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GMount* v1 = (GMount*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_mount_unmount_with_operation(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_mount_unmount_with_operation(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -10812,13 +10739,12 @@ SEXP R_g_network_monitor_can_reach(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_network_monitor_can_reach_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_network_monitor_can_reach_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GNetworkMonitor* v1 = (GNetworkMonitor*)(get_ptr(s1)); (void)v1;
   GSocketConnectable* v2 = (GSocketConnectable*)(get_ptr(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_network_monitor_can_reach_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_network_monitor_can_reach_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -11096,13 +11022,12 @@ SEXP R_g_output_stream_close(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_output_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_output_stream_close_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_output_stream_close_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_output_stream_close_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -11143,13 +11068,12 @@ SEXP R_g_output_stream_flush(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_output_stream_flush_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_output_stream_flush_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_output_stream_flush_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_output_stream_flush_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -11257,15 +11181,14 @@ SEXP R_g_output_stream_splice(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_output_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_output_stream_splice_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   GInputStream* v2 = (GInputStream*)(get_ptr(s2)); (void)v2;
   GOutputStreamSpliceFlags v3 = (GOutputStreamSpliceFlags)((GOutputStreamSpliceFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_output_stream_splice_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_output_stream_splice_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -11334,15 +11257,14 @@ SEXP R_g_output_stream_write_all(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_output_stream_write_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_output_stream_write_all_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
   gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_output_stream_write_all_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_output_stream_write_all_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -11371,15 +11293,14 @@ SEXP R_g_output_stream_write_all_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_output_stream_write_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_output_stream_write_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   void* v2 = (void*)(get_ptr(s2)); (void)v2;
   gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_output_stream_write_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_output_stream_write_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -11403,14 +11324,13 @@ SEXP R_g_output_stream_write_bytes(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_output_stream_write_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_output_stream_write_bytes_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_output_stream_write_bytes_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_output_stream_write_bytes_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -11469,12 +11389,11 @@ SEXP R_g_permission_acquire(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_permission_acquire_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_permission_acquire_async(SEXP s1, SEXP s2, SEXP s3) {
   GPermission* v1 = (GPermission*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_permission_acquire_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_permission_acquire_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -11573,12 +11492,11 @@ SEXP R_g_permission_release(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_permission_release_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_permission_release_async(SEXP s1, SEXP s2, SEXP s3) {
   GPermission* v1 = (GPermission*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_permission_release_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_permission_release_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -11798,14 +11716,13 @@ SEXP R_g_proxy_connect(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_proxy_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_proxy_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GProxy* v1 = (GProxy*)(get_ptr(s1)); (void)v1;
   GIOStream* v2 = (GIOStream*)(get_ptr(s2)); (void)v2;
   GProxyAddress* v3 = (GProxyAddress*)(get_ptr(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_proxy_connect_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_proxy_connect_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -12029,13 +11946,12 @@ SEXP R_g_proxy_resolver_lookup(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_proxy_resolver_lookup_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_proxy_resolver_lookup_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GProxyResolver* v1 = (GProxyResolver*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_proxy_resolver_lookup_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_proxy_resolver_lookup_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -12113,13 +12029,12 @@ SEXP R_g_resolver_lookup_by_address(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_resolver_lookup_by_address_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_resolver_lookup_by_address_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GResolver* v1 = (GResolver*)(get_ptr(s1)); (void)v1;
   GInetAddress* v2 = (GInetAddress*)(get_ptr(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_resolver_lookup_by_address_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_resolver_lookup_by_address_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -12161,13 +12076,12 @@ SEXP R_g_resolver_lookup_by_name(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_resolver_lookup_by_name_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_resolver_lookup_by_name_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GResolver* v1 = (GResolver*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_resolver_lookup_by_name_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_resolver_lookup_by_name_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -12210,14 +12124,13 @@ SEXP R_g_resolver_lookup_records(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_resolver_lookup_records_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_resolver_lookup_records_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GResolver* v1 = (GResolver*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GResolverRecordType v3 = (GResolverRecordType)((GResolverRecordType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_resolver_lookup_records_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_resolver_lookup_records_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -12261,15 +12174,14 @@ SEXP R_g_resolver_lookup_service(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 }
 
 
-SEXP R_g_resolver_lookup_service_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_resolver_lookup_service_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   GResolver* v1 = (GResolver*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   const char* v4 = (const char*)(CHAR(STRING_ELT(s4,0))); (void)v4;
   GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  GAsyncReadyCallback v6 = (s6 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  g_resolver_lookup_service_async(v1, v2, v3, v4, v5, v6, v7);
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
+  g_resolver_lookup_service_async(v1, v2, v3, v4, v5, (GAsyncReadyCallback)(_cb_closure_6 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_6);
   return R_NilValue;
 }
 
@@ -12901,12 +12813,11 @@ SEXP R_g_settings_get_int64(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_settings_get_mapped(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_settings_get_mapped(SEXP s1, SEXP s2, SEXP s3) {
   GSettings* v1 = (GSettings*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GSettingsGetMapping v3 = (GSettingsGetMapping)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer _ret = (gpointer)g_settings_get_mapped(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gpointer _ret = (gpointer)g_settings_get_mapped(v1, v2, (GSettingsGetMapping)(_cb_closure_3 ? _rgtk4_cb_SettingsGetMapping : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
@@ -13892,12 +13803,11 @@ SEXP R_g_simple_action_group_remove(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_simple_async_result_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_simple_async_result_new(SEXP s1, SEXP s2, SEXP s3) {
   GObject* v1 = (s1 != R_NilValue) ? (GObject*)(get_ptr(s1)) : NULL; (void)v1;
-  GAsyncReadyCallback v2 = (s2 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s2)) : NULL; (void)v2;
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
   gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)g_simple_async_result_new(v1, v2, v3, v4);
+  gconstpointer _ret = (gconstpointer)g_simple_async_result_new(v1, (GAsyncReadyCallback)(_cb_closure_2 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -13911,12 +13821,11 @@ SEXP R_g_simple_async_result_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_simple_async_result_new_from_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_simple_async_result_new_from_error(SEXP s1, SEXP s2, SEXP s3) {
   GObject* v1 = (s1 != R_NilValue) ? (GObject*)(get_ptr(s1)) : NULL; (void)v1;
-  GAsyncReadyCallback v2 = (s2 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  const GError* v4 = (const GError*)(get_ptr(s4)); (void)v4;
-  gconstpointer _ret = (gconstpointer)g_simple_async_result_new_from_error(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  const GError* v3 = (const GError*)(get_ptr(s3)); (void)v3;
+  gconstpointer _ret = (gconstpointer)g_simple_async_result_new_from_error(v1, (GAsyncReadyCallback)(_cb_closure_2 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -15196,12 +15105,11 @@ SEXP R_g_socket_address_enumerator_next(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_socket_address_enumerator_next_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_socket_address_enumerator_next_async(SEXP s1, SEXP s2, SEXP s3) {
   GSocketAddressEnumerator* v1 = (GSocketAddressEnumerator*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_socket_address_enumerator_next_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_socket_address_enumerator_next_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -15267,13 +15175,12 @@ SEXP R_g_socket_client_connect(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_socket_client_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_socket_client_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
   GSocketConnectable* v2 = (GSocketConnectable*)(get_ptr(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_socket_client_connect_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_socket_client_connect_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -15316,14 +15223,13 @@ SEXP R_g_socket_client_connect_to_host(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_socket_client_connect_to_host_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_socket_client_connect_to_host_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_socket_client_connect_to_host_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_socket_client_connect_to_host_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -15366,14 +15272,13 @@ SEXP R_g_socket_client_connect_to_service(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_socket_client_connect_to_service_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_socket_client_connect_to_service_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const char* v3 = (const char*)(CHAR(STRING_ELT(s3,0))); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_socket_client_connect_to_service_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_socket_client_connect_to_service_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -15416,14 +15321,13 @@ SEXP R_g_socket_client_connect_to_uri(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_socket_client_connect_to_uri_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_socket_client_connect_to_uri_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GSocketClient* v1 = (GSocketClient*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   guint16 v3 = (guint16)((guint16)_unbox_numeric(s3)); (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_socket_client_connect_to_uri_async(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_socket_client_connect_to_uri_async(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -15757,13 +15661,12 @@ SEXP R_g_socket_connection_connect(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_socket_connection_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_socket_connection_connect_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GSocketConnection* v1 = (GSocketConnection*)(get_ptr(s1)); (void)v1;
   GSocketAddress* v2 = (GSocketAddress*)(get_ptr(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_socket_connection_connect_async(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_socket_connection_connect_async(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -15967,12 +15870,11 @@ SEXP R_g_socket_listener_accept(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_socket_listener_accept_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_socket_listener_accept_async(SEXP s1, SEXP s2, SEXP s3) {
   GSocketListener* v1 = (GSocketListener*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_socket_listener_accept_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_socket_listener_accept_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -16025,12 +15927,11 @@ SEXP R_g_socket_listener_accept_socket(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_socket_listener_accept_socket_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_socket_listener_accept_socket_async(SEXP s1, SEXP s2, SEXP s3) {
   GSocketListener* v1 = (GSocketListener*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_socket_listener_accept_socket_async(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_socket_listener_accept_socket_async(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -16339,12 +16240,11 @@ SEXP R_g_static_resource_init(SEXP s1) {
 }
 
 
-SEXP R_g_task_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_task_new(SEXP s1, SEXP s2, SEXP s3) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)g_task_new(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gconstpointer _ret = (gconstpointer)g_task_new(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -16375,13 +16275,12 @@ SEXP R_g_task_is_valid(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_task_report_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_task_report_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gpointer v1 = (s1 != R_NilValue) ? (gpointer)(get_ptr(s1)) : NULL; (void)v1;
-  GAsyncReadyCallback v2 = (s2 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s2)) : NULL; (void)v2;
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
   gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GError* v5 = (GError*)(get_ptr(s5)); (void)v5;
-  g_task_report_error(v1, v2, v3, v4, v5);
+  GError* v4 = (GError*)(get_ptr(s4)); (void)v4;
+  g_task_report_error(v1, (GAsyncReadyCallback)(_cb_closure_2 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_2, v3, v4);
   return R_NilValue;
 }
 
@@ -16648,16 +16547,22 @@ SEXP R_g_task_return_pointer(SEXP s1, SEXP s2, SEXP s3) {
 
 SEXP R_g_task_run_in_thread(SEXP s1, SEXP s2) {
   GTask* v1 = (GTask*)(get_ptr(s1)); (void)v1;
-  GTaskThreadFunc v2 = (GTaskThreadFunc)(get_ptr(s2)); (void)v2;
-  g_task_run_in_thread(v1, v2);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_2);
+  g_task_run_in_thread(v1, (GTaskThreadFunc)(_cb_closure_2 ? _rgtk4_cb_TaskThreadFunc : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_2) rgtk4_closure_free(_cb_closure_2);
   return R_NilValue;
 }
 
 
 SEXP R_g_task_run_in_thread_sync(SEXP s1, SEXP s2) {
   GTask* v1 = (GTask*)(get_ptr(s1)); (void)v1;
-  GTaskThreadFunc v2 = (GTaskThreadFunc)(get_ptr(s2)); (void)v2;
-  g_task_run_in_thread_sync(v1, v2);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_2);
+  g_task_run_in_thread_sync(v1, (GTaskThreadFunc)(_cb_closure_2 ? _rgtk4_cb_TaskThreadFunc : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_2) rgtk4_closure_free(_cb_closure_2);
   return R_NilValue;
 }
 
@@ -17065,16 +16970,12 @@ SEXP R_g_vfs_parse_name(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_vfs_register_uri_scheme(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
+SEXP R_g_vfs_register_uri_scheme(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GVfs* v1 = (GVfs*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GVfsFileLookupFunc v3 = (s3 != R_NilValue) ? (GVfsFileLookupFunc)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
-  GVfsFileLookupFunc v6 = (s6 != R_NilValue) ? (GVfsFileLookupFunc)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  GDestroyNotify v8 = (s8 != R_NilValue) ? (GDestroyNotify)(get_ptr(s8)) : NULL; (void)v8;
-  gboolean _ret = (gboolean)g_vfs_register_uri_scheme(v1, v2, v3, v4, v5, v6, v7, v8);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  RCallbackClosure *_cb_closure_6 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_6;
+  gboolean _ret = (gboolean)g_vfs_register_uri_scheme(v1, v2, (GVfsFileLookupFunc)(_cb_closure_3 ? _rgtk4_cb_VfsFileLookupFunc : NULL), _cb_closure_3, rgtk4_closure_free, (GVfsFileLookupFunc)(_cb_closure_6 ? _rgtk4_cb_VfsFileLookupFunc : NULL), _cb_closure_6, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -17137,13 +17038,12 @@ SEXP R_g_volume_can_mount(SEXP s1) {
 }
 
 
-SEXP R_g_volume_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_volume_eject(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GVolume* v1 = (GVolume*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
-  GAsyncReadyCallback v4 = (s4 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s4)) : NULL; (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_volume_eject(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_volume_eject(v1, v2, v3, (GAsyncReadyCallback)(_cb_closure_4 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -17166,14 +17066,13 @@ SEXP R_g_volume_eject_finish(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_volume_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_volume_eject_with_operation(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GVolume* v1 = (GVolume*)(get_ptr(s1)); (void)v1;
   GMountUnmountFlags v2 = (GMountUnmountFlags)((GMountUnmountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_volume_eject_with_operation(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_volume_eject_with_operation(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -17357,14 +17256,13 @@ SEXP R_g_volume_get_uuid(SEXP s1) {
 }
 
 
-SEXP R_g_volume_mount(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_volume_mount(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GVolume* v1 = (GVolume*)(get_ptr(s1)); (void)v1;
   GMountMountFlags v2 = (GMountMountFlags)((GMountMountFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GMountOperation* v3 = (s3 != R_NilValue) ? (GMountOperation*)(get_ptr(s3)) : NULL; (void)v3;
   GCancellable* v4 = (s4 != R_NilValue) ? (GCancellable*)(get_ptr(s4)) : NULL; (void)v4;
-  GAsyncReadyCallback v5 = (s5 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_volume_mount(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_volume_mount(v1, v2, v3, v4, (GAsyncReadyCallback)(_cb_closure_5 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -17590,12 +17488,11 @@ SEXP R_g_zlib_decompressor_get_file_info(SEXP s1) {
 }
 
 
-SEXP R_g_bus_get(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_bus_get(SEXP s1, SEXP s2, SEXP s3) {
   GBusType v1 = (GBusType)((GBusType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
-  GAsyncReadyCallback v3 = (s3 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_bus_get(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_bus_get(v1, v2, (GAsyncReadyCallback)(_cb_closure_3 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -17627,51 +17524,6 @@ SEXP R_g_bus_get_sync(SEXP s1, SEXP s2) {
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("DBusConnection"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_bus_own_name(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
-  GBusType v1 = (GBusType)((GBusType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GBusNameOwnerFlags v3 = (GBusNameOwnerFlags)((GBusNameOwnerFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  GBusAcquiredCallback v4 = (s4 != R_NilValue) ? (GBusAcquiredCallback)(get_ptr(s4)) : NULL; (void)v4;
-  GBusNameAcquiredCallback v5 = (s5 != R_NilValue) ? (GBusNameAcquiredCallback)(get_ptr(s5)) : NULL; (void)v5;
-  GBusNameLostCallback v6 = (s6 != R_NilValue) ? (GBusNameLostCallback)(get_ptr(s6)) : NULL; (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
-  GDestroyNotify v8 = (s8 != R_NilValue) ? (GDestroyNotify)(get_ptr(s8)) : NULL; (void)v8;
-  guint _ret = (guint)g_bus_own_name(v1, v2, v3, v4, v5, v6, v7, v8);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_bus_own_name_on_connection(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  GDBusConnection* v1 = (GDBusConnection*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GBusNameOwnerFlags v3 = (GBusNameOwnerFlags)((GBusNameOwnerFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  GBusNameAcquiredCallback v4 = (s4 != R_NilValue) ? (GBusNameAcquiredCallback)(get_ptr(s4)) : NULL; (void)v4;
-  GBusNameLostCallback v5 = (s5 != R_NilValue) ? (GBusNameLostCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  GDestroyNotify v7 = (s7 != R_NilValue) ? (GDestroyNotify)(get_ptr(s7)) : NULL; (void)v7;
-  guint _ret = (guint)g_bus_own_name_on_connection(v1, v2, v3, v4, v5, v6, v7);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
   Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
@@ -17732,50 +17584,6 @@ SEXP R_g_bus_unwatch_name(SEXP s1) {
   guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   g_bus_unwatch_name(v1);
   return R_NilValue;
-}
-
-
-SEXP R_g_bus_watch_name(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  GBusType v1 = (GBusType)((GBusType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GBusNameWatcherFlags v3 = (GBusNameWatcherFlags)((GBusNameWatcherFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  GBusNameAppearedCallback v4 = (s4 != R_NilValue) ? (GBusNameAppearedCallback)(get_ptr(s4)) : NULL; (void)v4;
-  GBusNameVanishedCallback v5 = (s5 != R_NilValue) ? (GBusNameVanishedCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  GDestroyNotify v7 = (s7 != R_NilValue) ? (GDestroyNotify)(get_ptr(s7)) : NULL; (void)v7;
-  guint _ret = (guint)g_bus_watch_name(v1, v2, v3, v4, v5, v6, v7);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
-}
-
-
-SEXP R_g_bus_watch_name_on_connection(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
-  GDBusConnection* v1 = (GDBusConnection*)(get_ptr(s1)); (void)v1;
-  const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
-  GBusNameWatcherFlags v3 = (GBusNameWatcherFlags)((GBusNameWatcherFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  GBusNameAppearedCallback v4 = (s4 != R_NilValue) ? (GBusNameAppearedCallback)(get_ptr(s4)) : NULL; (void)v4;
-  GBusNameVanishedCallback v5 = (s5 != R_NilValue) ? (GBusNameVanishedCallback)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  GDestroyNotify v7 = (s7 != R_NilValue) ? (GDestroyNotify)(get_ptr(s7)) : NULL; (void)v7;
-  guint _ret = (guint)g_bus_watch_name_on_connection(v1, v2, v3, v4, v5, v6, v7);
-  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
-  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
-  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
-    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
-  }
-  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
-  UNPROTECT(2);
-  return _ans;
 }
 
 
@@ -18141,13 +17949,11 @@ SEXP R_g_io_scheduler_cancel_all_jobs(void) {
 }
 
 
-SEXP R_g_io_scheduler_push_job(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
-  GIOSchedulerJobFunc v1 = (GIOSchedulerJobFunc)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GDestroyNotify v3 = (s3 != R_NilValue) ? (GDestroyNotify)(get_ptr(s3)) : NULL; (void)v3;
-  gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
-  GCancellable* v5 = (s5 != R_NilValue) ? (GCancellable*)(get_ptr(s5)) : NULL; (void)v5;
-  g_io_scheduler_push_job(v1, v2, v3, v4, v5);
+SEXP R_g_io_scheduler_push_job(SEXP s1, SEXP s2, SEXP s3) {
+  RCallbackClosure *_cb_closure_1 = (s1 == R_NilValue) ? NULL : rgtk4_closure_new(s1); (void)_cb_closure_1;
+  gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
+  GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
+  g_io_scheduler_push_job((GIOSchedulerJobFunc)(_cb_closure_1 ? _rgtk4_cb_IOSchedulerJobFunc : NULL), _cb_closure_1, rgtk4_closure_free, v2, v3);
   return R_NilValue;
 }
 
@@ -18396,12 +18202,11 @@ SEXP R_g_resources_open_stream(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_simple_async_report_gerror_in_idle(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_simple_async_report_gerror_in_idle(SEXP s1, SEXP s2, SEXP s3) {
   GObject* v1 = (s1 != R_NilValue) ? (GObject*)(get_ptr(s1)) : NULL; (void)v1;
-  GAsyncReadyCallback v2 = (s2 != R_NilValue) ? (GAsyncReadyCallback)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  const GError* v4 = (const GError*)(get_ptr(s4)); (void)v4;
-  g_simple_async_report_gerror_in_idle(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  const GError* v3 = (const GError*)(get_ptr(s3)); (void)v3;
+  g_simple_async_report_gerror_in_idle(v1, (GAsyncReadyCallback)(_cb_closure_2 ? _rgtk4_cb_AsyncReadyCallback : NULL), _cb_closure_2, v3);
   return R_NilValue;
 }
 

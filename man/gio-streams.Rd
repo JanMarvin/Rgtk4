@@ -36,6 +36,7 @@
 \alias{gIoChannelWriteUnichar}
 \alias{gIoChannelErrorFromErrno}
 \alias{gIoChannelErrorQuark}
+\alias{gIoAddWatchFull}
 \alias{gIoCreateWatch}
 \alias{gIoExtensionGetName}
 \alias{gIoExtensionGetPriority}
@@ -47,44 +48,59 @@
 \alias{gIoExtensionPointImplement}
 \alias{gIoExtensionPointLookup}
 \alias{gIoExtensionPointRegister}
+\alias{gIoSchedulerJobSendToMainloop}
+\alias{gIoSchedulerJobSendToMainloopAsync}
 \alias{gIoStreamSpliceFinish}
 \alias{gIoStreamClearPending}
 \alias{gIoStreamClose}
+\alias{gIoStreamCloseAsync}
 \alias{gIoStreamCloseFinish}
 \alias{gIoStreamGetInputStream}
 \alias{gIoStreamGetOutputStream}
 \alias{gIoStreamHasPending}
 \alias{gIoStreamIsClosed}
 \alias{gIoStreamSetPending}
+\alias{gIoStreamSpliceAsync}
 \alias{gInputStreamClearPending}
 \alias{gInputStreamClose}
+\alias{gInputStreamCloseAsync}
 \alias{gInputStreamCloseFinish}
 \alias{gInputStreamHasPending}
 \alias{gInputStreamIsClosed}
 \alias{gInputStreamRead}
 \alias{gInputStreamReadAll}
+\alias{gInputStreamReadAllAsync}
 \alias{gInputStreamReadAllFinish}
+\alias{gInputStreamReadAsync}
 \alias{gInputStreamReadBytes}
+\alias{gInputStreamReadBytesAsync}
 \alias{gInputStreamReadBytesFinish}
 \alias{gInputStreamReadFinish}
 \alias{gInputStreamSetPending}
 \alias{gInputStreamSkip}
+\alias{gInputStreamSkipAsync}
 \alias{gInputStreamSkipFinish}
 \alias{gOutputStreamClearPending}
 \alias{gOutputStreamClose}
+\alias{gOutputStreamCloseAsync}
 \alias{gOutputStreamCloseFinish}
 \alias{gOutputStreamFlush}
+\alias{gOutputStreamFlushAsync}
 \alias{gOutputStreamFlushFinish}
 \alias{gOutputStreamHasPending}
 \alias{gOutputStreamIsClosed}
 \alias{gOutputStreamIsClosing}
 \alias{gOutputStreamSetPending}
 \alias{gOutputStreamSplice}
+\alias{gOutputStreamSpliceAsync}
 \alias{gOutputStreamSpliceFinish}
 \alias{gOutputStreamWrite}
 \alias{gOutputStreamWriteAll}
+\alias{gOutputStreamWriteAllAsync}
 \alias{gOutputStreamWriteAllFinish}
+\alias{gOutputStreamWriteAsync}
 \alias{gOutputStreamWriteBytes}
+\alias{gOutputStreamWriteBytesAsync}
 \alias{gOutputStreamWriteBytesFinish}
 \alias{gOutputStreamWriteFinish}
 \alias{gIoErrorFromErrno}
@@ -94,6 +110,7 @@
 \alias{gIoModulesScanAllInDirectory}
 \alias{gIoModulesScanAllInDirectoryWithScope}
 \alias{gIoSchedulerCancelAllJobs}
+\alias{gIoSchedulerPushJob}
 \title{gIoChannelNewFile}
 \usage{
 gIoChannelNewFile(filename, mode)
@@ -166,6 +183,8 @@ gIoChannelErrorFromErrno(en)
 
 gIoChannelErrorQuark()
 
+gIoAddWatchFull(channel, priority, condition, func)
+
 gIoCreateWatch(channel, condition)
 
 gIoExtensionGetName(extension)
@@ -193,11 +212,17 @@ gIoExtensionPointLookup(name)
 
 gIoExtensionPointRegister(name)
 
+gIoSchedulerJobSendToMainloop(job, func)
+
+gIoSchedulerJobSendToMainloopAsync(job, func)
+
 gIoStreamSpliceFinish(result)
 
 gIoStreamClearPending(stream)
 
 gIoStreamClose(stream, cancellable)
+
+gIoStreamCloseAsync(stream, io_priority, cancellable, callback)
 
 gIoStreamCloseFinish(stream, result)
 
@@ -211,9 +236,20 @@ gIoStreamIsClosed(stream)
 
 gIoStreamSetPending(stream)
 
+gIoStreamSpliceAsync(
+  stream1,
+  stream2,
+  flags,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gInputStreamClearPending(stream)
 
 gInputStreamClose(stream, cancellable)
+
+gInputStreamCloseAsync(stream, io_priority, cancellable, callback)
 
 gInputStreamCloseFinish(stream, result)
 
@@ -225,9 +261,15 @@ gInputStreamRead(stream, count, cancellable)
 
 gInputStreamReadAll(stream, count, cancellable)
 
+gInputStreamReadAllAsync(stream, count, io_priority, cancellable, callback)
+
 gInputStreamReadAllFinish(stream, result)
 
+gInputStreamReadAsync(stream, count, io_priority, cancellable, callback)
+
 gInputStreamReadBytes(stream, count, cancellable)
+
+gInputStreamReadBytesAsync(stream, count, io_priority, cancellable, callback)
 
 gInputStreamReadBytesFinish(stream, result)
 
@@ -237,15 +279,21 @@ gInputStreamSetPending(stream)
 
 gInputStreamSkip(stream, count, cancellable)
 
+gInputStreamSkipAsync(stream, count, io_priority, cancellable, callback)
+
 gInputStreamSkipFinish(stream, result)
 
 gOutputStreamClearPending(stream)
 
 gOutputStreamClose(stream, cancellable)
 
+gOutputStreamCloseAsync(stream, io_priority, cancellable, callback)
+
 gOutputStreamCloseFinish(stream, result)
 
 gOutputStreamFlush(stream, cancellable)
+
+gOutputStreamFlushAsync(stream, io_priority, cancellable, callback)
 
 gOutputStreamFlushFinish(stream, result)
 
@@ -259,15 +307,44 @@ gOutputStreamSetPending(stream)
 
 gOutputStreamSplice(stream, source, flags, cancellable)
 
+gOutputStreamSpliceAsync(
+  stream,
+  source,
+  flags,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gOutputStreamSpliceFinish(stream, result)
 
 gOutputStreamWrite(stream, buffer, count, cancellable)
 
 gOutputStreamWriteAll(stream, buffer, count, cancellable)
 
+gOutputStreamWriteAllAsync(
+  stream,
+  buffer,
+  count,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gOutputStreamWriteAllFinish(stream, result)
 
+gOutputStreamWriteAsync(
+  stream,
+  buffer,
+  count,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gOutputStreamWriteBytes(stream, bytes, cancellable)
+
+gOutputStreamWriteBytesAsync(stream, bytes, io_priority, cancellable, callback)
 
 gOutputStreamWriteBytesFinish(stream, result)
 
@@ -286,6 +363,8 @@ gIoModulesScanAllInDirectory(dirname)
 gIoModulesScanAllInDirectoryWithScope(dirname, scope)
 
 gIoSchedulerCancelAllJobs()
+
+gIoSchedulerPushJob(job_func, io_priority, cancellable)
 }
 \arguments{
 \item{filename}{filename}
@@ -332,7 +411,11 @@ gIoSchedulerCancelAllJobs()
 
 \item{en}{gint}
 
+\item{priority}{gint}
+
 \item{condition}{IOCondition}
+
+\item{func}{function — GLib.SourceFunc callback}
 
 \item{extension}{IOExtension}
 
@@ -344,13 +427,21 @@ gIoSchedulerCancelAllJobs()
 
 \item{extension_name}{utf8}
 
-\item{priority}{gint}
+\item{job}{IOSchedulerJob}
 
 \item{result}{AsyncResult}
 
 \item{stream}{OutputStream}
 
 \item{cancellable}{Cancellable}
+
+\item{io_priority}{gint}
+
+\item{callback}{function — AsyncReadyCallback callback}
+
+\item{stream1}{IOStream}
+
+\item{stream2}{IOStream}
 
 \item{source}{InputStream}
 
@@ -361,6 +452,8 @@ gIoSchedulerCancelAllJobs()
 \item{dirname}{filename}
 
 \item{scope}{IOModuleScope}
+
+\item{job_func}{function — IOSchedulerJobFunc callback}
 }
 \value{
 IOChannel
@@ -433,6 +526,8 @@ IOChannelError
 
 Quark
 
+guint
+
 Source
 
 utf8
@@ -461,6 +556,12 @@ Return value from C function
 
 gboolean
 
+Return value from C function
+
+gboolean
+
+Return value from C function
+
 gboolean
 
 InputStream
@@ -475,7 +576,11 @@ gboolean
 
 Return value from C function
 
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 gboolean
 
@@ -487,10 +592,16 @@ gssize
 
 gboolean
 
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 GLib.Bytes
 
+Return value from C function
+
 GLib.Bytes
 
 gssize
@@ -499,7 +610,19 @@ gboolean
 
 gssize
 
+Return value from C function
+
 gssize
+
+Return value from C function
+
+gboolean
+
+Return value from C function
+
+gboolean
+
+gboolean
 
 Return value from C function
 
@@ -513,23 +636,25 @@ gboolean
 
 gboolean
 
-gboolean
+gssize
 
-gboolean
-
-gboolean
+Return value from C function
 
 gssize
 
 gssize
 
-gssize
+gboolean
+
+Return value from C function
 
 gboolean
 
-gboolean
+Return value from C function
 
 gssize
+
+Return value from C function
 
 gssize
 
@@ -542,6 +667,8 @@ GLib.Quark
 GLib.List
 
 GLib.List
+
+Return value from C function
 
 Return value from C function
 
@@ -620,6 +747,8 @@ gIoChannelErrorFromErrno
 
 gIoChannelErrorQuark
 
+gIoAddWatchFull
+
 gIoCreateWatch
 
 gIoExtensionGetName
@@ -642,11 +771,17 @@ gIoExtensionPointLookup
 
 gIoExtensionPointRegister
 
+gIoSchedulerJobSendToMainloop
+
+gIoSchedulerJobSendToMainloopAsync
+
 gIoStreamSpliceFinish
 
 gIoStreamClearPending
 
 gIoStreamClose
+
+gIoStreamCloseAsync
 
 gIoStreamCloseFinish
 
@@ -660,9 +795,13 @@ gIoStreamIsClosed
 
 gIoStreamSetPending
 
+gIoStreamSpliceAsync
+
 gInputStreamClearPending
 
 gInputStreamClose
+
+gInputStreamCloseAsync
 
 gInputStreamCloseFinish
 
@@ -674,9 +813,15 @@ gInputStreamRead
 
 gInputStreamReadAll
 
+gInputStreamReadAllAsync
+
 gInputStreamReadAllFinish
 
+gInputStreamReadAsync
+
 gInputStreamReadBytes
+
+gInputStreamReadBytesAsync
 
 gInputStreamReadBytesFinish
 
@@ -686,15 +831,21 @@ gInputStreamSetPending
 
 gInputStreamSkip
 
+gInputStreamSkipAsync
+
 gInputStreamSkipFinish
 
 gOutputStreamClearPending
 
 gOutputStreamClose
 
+gOutputStreamCloseAsync
+
 gOutputStreamCloseFinish
 
 gOutputStreamFlush
+
+gOutputStreamFlushAsync
 
 gOutputStreamFlushFinish
 
@@ -708,15 +859,23 @@ gOutputStreamSetPending
 
 gOutputStreamSplice
 
+gOutputStreamSpliceAsync
+
 gOutputStreamSpliceFinish
 
 gOutputStreamWrite
 
 gOutputStreamWriteAll
 
+gOutputStreamWriteAllAsync
+
 gOutputStreamWriteAllFinish
 
+gOutputStreamWriteAsync
+
 gOutputStreamWriteBytes
+
+gOutputStreamWriteBytesAsync
 
 gOutputStreamWriteBytesFinish
 
@@ -735,4 +894,6 @@ gIoModulesScanAllInDirectory
 gIoModulesScanAllInDirectoryWithScope
 
 gIoSchedulerCancelAllJobs
+
+gIoSchedulerPushJob
 }

@@ -19,6 +19,7 @@
 \alias{gtkListStoreSetValuesv}
 \alias{gtkListStoreSwap}
 \alias{gtkTreeModelFilterNew}
+\alias{gtkTreeModelForeach}
 \alias{gtkTreeModelGetColumnType}
 \alias{gtkTreeModelGetFlags}
 \alias{gtkTreeModelGetIter}
@@ -49,7 +50,9 @@
 \alias{gtkTreeModelFilterConvertPathToChildPath}
 \alias{gtkTreeModelFilterGetModel}
 \alias{gtkTreeModelFilterRefilter}
+\alias{gtkTreeModelFilterSetModifyFunc}
 \alias{gtkTreeModelFilterSetVisibleColumn}
+\alias{gtkTreeModelFilterSetVisibleFunc}
 \alias{gtkTreeModelSortNewWithModel}
 \alias{gtkTreeModelSortClearCache}
 \alias{gtkTreeModelSortConvertChildIterToIter}
@@ -70,7 +73,9 @@
 \alias{gtkTreeSelectionSelectIter}
 \alias{gtkTreeSelectionSelectPath}
 \alias{gtkTreeSelectionSelectRange}
+\alias{gtkTreeSelectionSelectedForeach}
 \alias{gtkTreeSelectionSetMode}
+\alias{gtkTreeSelectionSetSelectFunction}
 \alias{gtkTreeSelectionUnselectAll}
 \alias{gtkTreeSelectionUnselectIter}
 \alias{gtkTreeSelectionUnselectPath}
@@ -143,8 +148,10 @@
 \alias{gtkTreeViewGetVisibleRange}
 \alias{gtkTreeViewGetVisibleRect}
 \alias{gtkTreeViewInsertColumn}
+\alias{gtkTreeViewInsertColumnWithDataFunc}
 \alias{gtkTreeViewIsBlankAtPos}
 \alias{gtkTreeViewIsRubberBandingActive}
+\alias{gtkTreeViewMapExpandedRows}
 \alias{gtkTreeViewMoveColumnAfter}
 \alias{gtkTreeViewRemoveColumn}
 \alias{gtkTreeViewRowActivated}
@@ -152,6 +159,7 @@
 \alias{gtkTreeViewScrollToCell}
 \alias{gtkTreeViewScrollToPoint}
 \alias{gtkTreeViewSetActivateOnSingleClick}
+\alias{gtkTreeViewSetColumnDragFunction}
 \alias{gtkTreeViewSetCursor}
 \alias{gtkTreeViewSetCursorOnCell}
 \alias{gtkTreeViewSetDragDestRow}
@@ -167,9 +175,11 @@
 \alias{gtkTreeViewSetLevelIndentation}
 \alias{gtkTreeViewSetModel}
 \alias{gtkTreeViewSetReorderable}
+\alias{gtkTreeViewSetRowSeparatorFunc}
 \alias{gtkTreeViewSetRubberBanding}
 \alias{gtkTreeViewSetSearchColumn}
 \alias{gtkTreeViewSetSearchEntry}
+\alias{gtkTreeViewSetSearchEqualFunc}
 \alias{gtkTreeViewSetShowExpanders}
 \alias{gtkTreeViewSetTooltipCell}
 \alias{gtkTreeViewSetTooltipColumn}
@@ -211,6 +221,7 @@
 \alias{gtkTreeViewColumnPackStart}
 \alias{gtkTreeViewColumnQueueResize}
 \alias{gtkTreeViewColumnSetAlignment}
+\alias{gtkTreeViewColumnSetCellDataFunc}
 \alias{gtkTreeViewColumnSetClickable}
 \alias{gtkTreeViewColumnSetExpand}
 \alias{gtkTreeViewColumnSetFixedWidth}
@@ -263,6 +274,8 @@ gtkListStoreSetValuesv(list_store, iter, columns, values, n_values)
 gtkListStoreSwap(store, a, b)
 
 gtkTreeModelFilterNew(child_model, root)
+
+gtkTreeModelForeach(model, func)
 
 gtkTreeModelGetColumnType(tree_model, index_)
 
@@ -324,7 +337,11 @@ gtkTreeModelFilterGetModel(filter)
 
 gtkTreeModelFilterRefilter(filter)
 
+gtkTreeModelFilterSetModifyFunc(filter, n_columns, types, func)
+
 gtkTreeModelFilterSetVisibleColumn(filter, column)
+
+gtkTreeModelFilterSetVisibleFunc(filter, func)
 
 gtkTreeModelSortNewWithModel(child_model)
 
@@ -366,7 +383,11 @@ gtkTreeSelectionSelectPath(selection, path)
 
 gtkTreeSelectionSelectRange(selection, start_path, end_path)
 
+gtkTreeSelectionSelectedForeach(selection, func)
+
 gtkTreeSelectionSetMode(selection, type)
+
+gtkTreeSelectionSetSelectFunction(selection, func)
 
 gtkTreeSelectionUnselectAll(selection)
 
@@ -524,9 +545,13 @@ gtkTreeViewGetVisibleRect(tree_view)
 
 gtkTreeViewInsertColumn(tree_view, column, position)
 
+gtkTreeViewInsertColumnWithDataFunc(tree_view, position, title, cell, func)
+
 gtkTreeViewIsBlankAtPos(tree_view, x, y)
 
 gtkTreeViewIsRubberBandingActive(tree_view)
+
+gtkTreeViewMapExpandedRows(tree_view, func)
 
 gtkTreeViewMoveColumnAfter(tree_view, column, base_column)
 
@@ -548,6 +573,8 @@ gtkTreeViewScrollToCell(
 gtkTreeViewScrollToPoint(tree_view, tree_x, tree_y)
 
 gtkTreeViewSetActivateOnSingleClick(tree_view, single)
+
+gtkTreeViewSetColumnDragFunction(tree_view, func)
 
 gtkTreeViewSetCursor(tree_view, path, focus_column, start_editing)
 
@@ -585,11 +612,15 @@ gtkTreeViewSetModel(tree_view, model)
 
 gtkTreeViewSetReorderable(tree_view, reorderable)
 
+gtkTreeViewSetRowSeparatorFunc(tree_view, func)
+
 gtkTreeViewSetRubberBanding(tree_view, enable)
 
 gtkTreeViewSetSearchColumn(tree_view, column)
 
 gtkTreeViewSetSearchEntry(tree_view, entry)
+
+gtkTreeViewSetSearchEqualFunc(tree_view, search_equal_func)
 
 gtkTreeViewSetShowExpanders(tree_view, enabled)
 
@@ -679,6 +710,8 @@ gtkTreeViewColumnQueueResize(tree_column)
 
 gtkTreeViewColumnSetAlignment(tree_column, xalign)
 
+gtkTreeViewColumnSetCellDataFunc(tree_column, cell_renderer, func)
+
 gtkTreeViewColumnSetClickable(tree_column, clickable)
 
 gtkTreeViewColumnSetExpand(tree_column, expand)
@@ -744,6 +777,10 @@ gtkTreeViewColumnSetWidget(tree_column, widget)
 
 \item{root}{TreePath}
 
+\item{model}{TreeModel}
+
+\item{func}{function — TreeCellDataFunc callback}
+
 \item{tree_model}{TreeModel}
 
 \item{index_}{gint}
@@ -788,8 +825,6 @@ gtkTreeViewColumnSetWidget(tree_column, widget)
 
 \item{descendant}{TreeIter}
 
-\item{model}{TreeModel}
-
 \item{tree_view}{TreeView}
 
 \item{bx}{gint}
@@ -821,6 +856,10 @@ gtkTreeViewColumnSetWidget(tree_column, widget)
 \item{y}{gint}
 
 \item{keyboard_tip}{gboolean}
+
+\item{title}{utf8}
+
+\item{cell}{CellRenderer}
 
 \item{base_column}{TreeViewColumn}
 
@@ -866,9 +905,9 @@ gtkTreeViewColumnSetWidget(tree_column, widget)
 
 \item{entry}{Editable}
 
-\item{tooltip}{Tooltip}
+\item{search_equal_func}{function — TreeViewSearchEqualFunc callback}
 
-\item{cell}{CellRenderer}
+\item{tooltip}{Tooltip}
 
 \item{area}{CellArea}
 
@@ -899,8 +938,6 @@ gtkTreeViewColumnSetWidget(tree_column, widget)
 \item{order}{SortType}
 
 \item{spacing}{gint}
-
-\item{title}{utf8}
 
 \item{visible}{gboolean}
 
@@ -942,6 +979,8 @@ Return value from C function
 Return value from C function
 
 TreeModel
+
+Return value from C function
 
 GType
 
@@ -1005,6 +1044,10 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
+Return value from C function
+
 TreeModelSort
 
 Return value from C function
@@ -1036,6 +1079,10 @@ TreeView
 gboolean
 
 gboolean
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -1191,9 +1238,13 @@ Return value from C function
 
 gint
 
+gint
+
 gboolean
 
 gboolean
+
+Return value from C function
 
 Return value from C function
 
@@ -1202,6 +1253,12 @@ gint
 Return value from C function
 
 gboolean
+
+Return value from C function
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -1356,6 +1413,8 @@ Return value from C function
 Return value from C function
 
 Return value from C function
+
+Return value from C function
 }
 \description{
 gtkListStoreNewv
@@ -1393,6 +1452,8 @@ gtkListStoreSetValuesv
 gtkListStoreSwap
 
 gtkTreeModelFilterNew
+
+gtkTreeModelForeach
 
 gtkTreeModelGetColumnType
 
@@ -1454,7 +1515,11 @@ gtkTreeModelFilterGetModel
 
 gtkTreeModelFilterRefilter
 
+gtkTreeModelFilterSetModifyFunc
+
 gtkTreeModelFilterSetVisibleColumn
+
+gtkTreeModelFilterSetVisibleFunc
 
 gtkTreeModelSortNewWithModel
 
@@ -1496,7 +1561,11 @@ gtkTreeSelectionSelectPath
 
 gtkTreeSelectionSelectRange
 
+gtkTreeSelectionSelectedForeach
+
 gtkTreeSelectionSetMode
+
+gtkTreeSelectionSetSelectFunction
 
 gtkTreeSelectionUnselectAll
 
@@ -1642,9 +1711,13 @@ gtkTreeViewGetVisibleRect
 
 gtkTreeViewInsertColumn
 
+gtkTreeViewInsertColumnWithDataFunc
+
 gtkTreeViewIsBlankAtPos
 
 gtkTreeViewIsRubberBandingActive
+
+gtkTreeViewMapExpandedRows
 
 gtkTreeViewMoveColumnAfter
 
@@ -1659,6 +1732,8 @@ gtkTreeViewScrollToCell
 gtkTreeViewScrollToPoint
 
 gtkTreeViewSetActivateOnSingleClick
+
+gtkTreeViewSetColumnDragFunction
 
 gtkTreeViewSetCursor
 
@@ -1690,11 +1765,15 @@ gtkTreeViewSetModel
 
 gtkTreeViewSetReorderable
 
+gtkTreeViewSetRowSeparatorFunc
+
 gtkTreeViewSetRubberBanding
 
 gtkTreeViewSetSearchColumn
 
 gtkTreeViewSetSearchEntry
+
+gtkTreeViewSetSearchEqualFunc
 
 gtkTreeViewSetShowExpanders
 
@@ -1777,6 +1856,8 @@ gtkTreeViewColumnPackStart
 gtkTreeViewColumnQueueResize
 
 gtkTreeViewColumnSetAlignment
+
+gtkTreeViewColumnSetCellDataFunc
 
 gtkTreeViewColumnSetClickable
 

@@ -126,6 +126,21 @@ gdkClipboardIsLocal <- function(clipboard) {
 
 
 #' @rdname gdk-other
+#' @title gdkClipboardReadAsync
+#'
+#' @param clipboard Clipboard
+#' @param mime_types utf8
+#' @param io_priority gint
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkClipboardReadAsync <- function(clipboard, mime_types, io_priority, cancellable, callback) {
+  invisible(.Call("R_gdk_clipboard_read_async", clipboard, mime_types, as.integer(io_priority), cancellable, callback))
+}
+
+
+#' @rdname gdk-other
 #' @title gdkClipboardReadFinish
 #'
 #' @param clipboard Clipboard
@@ -134,6 +149,19 @@ gdkClipboardIsLocal <- function(clipboard) {
 #' @export
 gdkClipboardReadFinish <- function(clipboard, result) {
   .Call("R_gdk_clipboard_read_finish", clipboard, result)
+}
+
+
+#' @rdname gdk-other
+#' @title gdkClipboardReadTextAsync
+#'
+#' @param clipboard Clipboard
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkClipboardReadTextAsync <- function(clipboard, cancellable, callback) {
+  invisible(.Call("R_gdk_clipboard_read_text_async", clipboard, cancellable, callback))
 }
 
 
@@ -150,6 +178,19 @@ gdkClipboardReadTextFinish <- function(clipboard, result) {
 
 
 #' @rdname gdk-other
+#' @title gdkClipboardReadTextureAsync
+#'
+#' @param clipboard Clipboard
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkClipboardReadTextureAsync <- function(clipboard, cancellable, callback) {
+  invisible(.Call("R_gdk_clipboard_read_texture_async", clipboard, cancellable, callback))
+}
+
+
+#' @rdname gdk-other
 #' @title gdkClipboardReadTextureFinish
 #'
 #' @param clipboard Clipboard
@@ -158,6 +199,21 @@ gdkClipboardReadTextFinish <- function(clipboard, result) {
 #' @export
 gdkClipboardReadTextureFinish <- function(clipboard, result) {
   .Call("R_gdk_clipboard_read_texture_finish", clipboard, result)$result
+}
+
+
+#' @rdname gdk-other
+#' @title gdkClipboardReadValueAsync
+#'
+#' @param clipboard Clipboard
+#' @param type GType
+#' @param io_priority gint
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkClipboardReadValueAsync <- function(clipboard, type, io_priority, cancellable, callback) {
+  invisible(.Call("R_gdk_clipboard_read_value_async", clipboard, type, as.integer(io_priority), cancellable, callback))
 }
 
 
@@ -194,6 +250,20 @@ gdkClipboardSetContent <- function(clipboard, provider) {
 #' @export
 gdkClipboardSetValue <- function(clipboard, value) {
   invisible(.Call("R_gdk_clipboard_set_value", clipboard, value))
+}
+
+
+#' @rdname gdk-other
+#' @title gdkClipboardStoreAsync
+#'
+#' @param clipboard Clipboard
+#' @param io_priority gint
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkClipboardStoreAsync <- function(clipboard, io_priority, cancellable, callback) {
+  invisible(.Call("R_gdk_clipboard_store_async", clipboard, as.integer(io_priority), cancellable, callback))
 }
 
 
@@ -317,6 +387,19 @@ gdkContentDeserializerReturnError <- function(deserializer, error) {
 #' @export
 gdkContentDeserializerReturnSuccess <- function(deserializer) {
   invisible(.Call("R_gdk_content_deserializer_return_success", deserializer))
+}
+
+
+#' @rdname gdk-other
+#' @title gdkContentDeserializerSetTaskData
+#'
+#' @param deserializer ContentDeserializer
+#' @param data gpointer
+#' @param notify GLib.DestroyNotify
+#' @return Return value from C function
+#' @export
+gdkContentDeserializerSetTaskData <- function(deserializer, data, notify) {
+  invisible(.Call("R_gdk_content_deserializer_set_task_data", deserializer, data, notify))
 }
 
 
@@ -696,6 +779,22 @@ gdkContentProviderRefStorableFormats <- function(provider) {
 
 
 #' @rdname gdk-other
+#' @title gdkContentProviderWriteMimeTypeAsync
+#'
+#' @param provider ContentProvider
+#' @param mime_type utf8
+#' @param stream Gio.OutputStream
+#' @param io_priority gint
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkContentProviderWriteMimeTypeAsync <- function(provider, mime_type, stream, io_priority, cancellable, callback) {
+  invisible(.Call("R_gdk_content_provider_write_mime_type_async", provider, mime_type, stream, as.integer(io_priority), cancellable, callback))
+}
+
+
+#' @rdname gdk-other
 #' @title gdkContentProviderWriteMimeTypeFinish
 #'
 #' @param provider ContentProvider
@@ -815,6 +914,19 @@ gdkContentSerializerReturnError <- function(serializer, error) {
 #' @export
 gdkContentSerializerReturnSuccess <- function(serializer) {
   invisible(.Call("R_gdk_content_serializer_return_success", serializer))
+}
+
+
+#' @rdname gdk-other
+#' @title gdkContentSerializerSetTaskData
+#'
+#' @param serializer ContentSerializer
+#' @param data gpointer
+#' @param notify GLib.DestroyNotify
+#' @return Return value from C function
+#' @export
+gdkContentSerializerSetTaskData <- function(serializer, data, notify) {
+  invisible(.Call("R_gdk_content_serializer_set_task_data", serializer, data, notify))
 }
 
 
@@ -1918,6 +2030,21 @@ gdkDropGetSurface <- function(self) {
 
 
 #' @rdname gdk-other
+#' @title gdkDropReadAsync
+#'
+#' @param self Drop
+#' @param mime_types utf8
+#' @param io_priority gint
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkDropReadAsync <- function(self, mime_types, io_priority, cancellable, callback) {
+  invisible(.Call("R_gdk_drop_read_async", self, mime_types, as.integer(io_priority), cancellable, callback))
+}
+
+
+#' @rdname gdk-other
 #' @title gdkDropReadFinish
 #'
 #' @param self Drop
@@ -1926,6 +2053,21 @@ gdkDropGetSurface <- function(self) {
 #' @export
 gdkDropReadFinish <- function(self, result) {
   .Call("R_gdk_drop_read_finish", self, result)
+}
+
+
+#' @rdname gdk-other
+#' @title gdkDropReadValueAsync
+#'
+#' @param self Drop
+#' @param type GType
+#' @param io_priority gint
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkDropReadValueAsync <- function(self, type, io_priority, cancellable, callback) {
+  invisible(.Call("R_gdk_drop_read_value_async", self, type, as.integer(io_priority), cancellable, callback))
 }
 
 
@@ -2671,6 +2813,22 @@ gdkGlErrorQuark <- function() {
 
 
 #' @rdname gdk-other
+#' @title gdkGlTextureNew
+#'
+#' @param context GLContext
+#' @param id guint
+#' @param width gint
+#' @param height gint
+#' @param destroy GLib.DestroyNotify
+#' @param data gpointer
+#' @return GLTexture
+#' @export
+gdkGlTextureNew <- function(context, id, width, height, destroy, data) {
+  .Call("R_gdk_gl_texture_new", context, as.integer(id), as.integer(width), as.integer(height), destroy, data)$result
+}
+
+
+#' @rdname gdk-other
 #' @title gdkGlTextureRelease
 #'
 #' @param self GLTexture
@@ -2688,6 +2846,19 @@ gdkGlTextureRelease <- function(self) {
 #' @export
 gdkGlTextureBuilderNew <- function() {
   .Call("R_gdk_gl_texture_builder_new")$result
+}
+
+
+#' @rdname gdk-other
+#' @title gdkGlTextureBuilderBuild
+#'
+#' @param self GLTextureBuilder
+#' @param destroy GLib.DestroyNotify
+#' @param data gpointer
+#' @return Texture
+#' @export
+gdkGlTextureBuilderBuild <- function(self, destroy, data) {
+  .Call("R_gdk_gl_texture_builder_build", self, destroy, data)$result
 }
 
 
@@ -4984,6 +5155,22 @@ gdkCairoSetSourceRgba <- function(cr, rgba) {
 
 
 #' @rdname gdk-other
+#' @title gdkContentDeserializeAsync
+#'
+#' @param stream Gio.InputStream
+#' @param mime_type utf8
+#' @param type GType
+#' @param io_priority gint
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkContentDeserializeAsync <- function(stream, mime_type, type, io_priority, cancellable, callback) {
+  invisible(.Call("R_gdk_content_deserialize_async", stream, mime_type, type, as.integer(io_priority), cancellable, callback))
+}
+
+
+#' @rdname gdk-other
 #' @title gdkContentDeserializeFinish
 #'
 #' @param result Gio.AsyncResult
@@ -4991,6 +5178,48 @@ gdkCairoSetSourceRgba <- function(cr, rgba) {
 #' @export
 gdkContentDeserializeFinish <- function(result) {
   .Call("R_gdk_content_deserialize_finish", result)
+}
+
+
+#' @rdname gdk-other
+#' @title gdkContentRegisterDeserializer
+#'
+#' @param mime_type utf8
+#' @param type GType
+#' @param deserialize function — ContentDeserializeFunc callback
+#' @return Return value from C function
+#' @export
+gdkContentRegisterDeserializer <- function(mime_type, type, deserialize) {
+  invisible(.Call("R_gdk_content_register_deserializer", mime_type, type, deserialize))
+}
+
+
+#' @rdname gdk-other
+#' @title gdkContentRegisterSerializer
+#'
+#' @param type GType
+#' @param mime_type utf8
+#' @param serialize function — ContentSerializeFunc callback
+#' @return Return value from C function
+#' @export
+gdkContentRegisterSerializer <- function(type, mime_type, serialize) {
+  invisible(.Call("R_gdk_content_register_serializer", type, mime_type, serialize))
+}
+
+
+#' @rdname gdk-other
+#' @title gdkContentSerializeAsync
+#'
+#' @param stream Gio.OutputStream
+#' @param mime_type utf8
+#' @param value GObject.Value
+#' @param io_priority gint
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkContentSerializeAsync <- function(stream, mime_type, value, io_priority, cancellable, callback) {
+  invisible(.Call("R_gdk_content_serialize_async", stream, mime_type, value, as.integer(io_priority), cancellable, callback))
 }
 
 

@@ -128,7 +128,7 @@ gSettingsGetInt(settings, key)
 
 gSettingsGetInt64(settings, key)
 
-gSettingsGetMapped(settings, key, mapping, user_data)
+gSettingsGetMapped(settings, key, mapping)
 
 gSettingsGetRange(settings, key)
 
@@ -263,9 +263,7 @@ gSettingsSchemaSourceGetDefault()
 
 \item{name}{utf8}
 
-\item{mapping}{SettingsGetMapping}
-
-\item{user_data}{gpointer}
+\item{mapping}{function — SettingsGetMapping callback}
 
 \item{value}{GLib.Variant}
 

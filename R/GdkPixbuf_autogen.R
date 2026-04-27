@@ -33,6 +33,25 @@ gdkPixbufNewFromBytes <- function(data, colorspace, has_alpha, bits_per_sample, 
 
 
 #' @rdname gdk-graphics
+#' @title gdkPixbufNewFromData
+#'
+#' @param data guint8
+#' @param colorspace Colorspace
+#' @param has_alpha gboolean
+#' @param bits_per_sample gint
+#' @param width gint
+#' @param height gint
+#' @param rowstride gint
+#' @param destroy_fn PixbufDestroyNotify
+#' @param destroy_fn_data gpointer
+#' @return Pixbuf
+#' @export
+gdkPixbufNewFromData <- function(data, colorspace, has_alpha, bits_per_sample, width, height, rowstride, destroy_fn, destroy_fn_data) {
+  .Call("R_gdk_pixbuf_new_from_data", as.integer(data), colorspace, has_alpha, as.integer(bits_per_sample), as.integer(width), as.integer(height), as.integer(rowstride), destroy_fn, destroy_fn_data)$result
+}
+
+
+#' @rdname gdk-graphics
 #' @title gdkPixbufNewFromFile
 #'
 #' @param filename filename
@@ -184,6 +203,19 @@ gdkPixbufGetFileInfo <- function(filename) {
 
 
 #' @rdname gdk-graphics
+#' @title gdkPixbufGetFileInfoAsync
+#'
+#' @param filename filename
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkPixbufGetFileInfoAsync <- function(filename, cancellable, callback) {
+  invisible(.Call("R_gdk_pixbuf_get_file_info_async", filename, cancellable, callback))
+}
+
+
+#' @rdname gdk-graphics
 #' @title gdkPixbufGetFileInfoFinish
 #'
 #' @param async_result Gio.AsyncResult
@@ -212,6 +244,35 @@ gdkPixbufGetFormats <- function() {
 #' @export
 gdkPixbufInitModules <- function(path) {
   .Call("R_gdk_pixbuf_init_modules", path)$result
+}
+
+
+#' @rdname gdk-graphics
+#' @title gdkPixbufNewFromStreamAsync
+#'
+#' @param stream Gio.InputStream
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkPixbufNewFromStreamAsync <- function(stream, cancellable, callback) {
+  invisible(.Call("R_gdk_pixbuf_new_from_stream_async", stream, cancellable, callback))
+}
+
+
+#' @rdname gdk-graphics
+#' @title gdkPixbufNewFromStreamAtScaleAsync
+#'
+#' @param stream Gio.InputStream
+#' @param width gint
+#' @param height gint
+#' @param preserve_aspect_ratio gboolean
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkPixbufNewFromStreamAtScaleAsync <- function(stream, width, height, preserve_aspect_ratio, cancellable, callback) {
+  invisible(.Call("R_gdk_pixbuf_new_from_stream_at_scale_async", stream, as.integer(width), as.integer(height), preserve_aspect_ratio, cancellable, callback))
 }
 
 
@@ -607,6 +668,21 @@ gdkPixbufSaveToBufferv <- function(pixbuf, type, option_keys, option_values) {
 
 
 #' @rdname gdk-graphics
+#' @title gdkPixbufSaveToCallbackv
+#'
+#' @param pixbuf Pixbuf
+#' @param save_func function — PixbufSaveFunc callback
+#' @param type utf8
+#' @param option_keys utf8
+#' @param option_values utf8
+#' @return gboolean
+#' @export
+gdkPixbufSaveToCallbackv <- function(pixbuf, save_func, type, option_keys, option_values) {
+  .Call("R_gdk_pixbuf_save_to_callbackv", pixbuf, save_func, type, option_keys, option_values)$result
+}
+
+
+#' @rdname gdk-graphics
 #' @title gdkPixbufSaveToStreamv
 #'
 #' @param pixbuf Pixbuf
@@ -619,6 +695,23 @@ gdkPixbufSaveToBufferv <- function(pixbuf, type, option_keys, option_values) {
 #' @export
 gdkPixbufSaveToStreamv <- function(pixbuf, stream, type, option_keys, option_values, cancellable) {
   .Call("R_gdk_pixbuf_save_to_streamv", pixbuf, stream, type, option_keys, option_values, cancellable)$result
+}
+
+
+#' @rdname gdk-graphics
+#' @title gdkPixbufSaveToStreamvAsync
+#'
+#' @param pixbuf Pixbuf
+#' @param stream Gio.OutputStream
+#' @param type utf8
+#' @param option_keys utf8
+#' @param option_values utf8
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkPixbufSaveToStreamvAsync <- function(pixbuf, stream, type, option_keys, option_values, cancellable, callback) {
+  invisible(.Call("R_gdk_pixbuf_save_to_streamv_async", pixbuf, stream, type, option_keys, option_values, cancellable, callback))
 }
 
 
@@ -727,6 +820,19 @@ gdkPixbufAnimationNewFromStream <- function(stream, cancellable) {
 #' @export
 gdkPixbufAnimationNewFromStreamFinish <- function(async_result) {
   .Call("R_gdk_pixbuf_animation_new_from_stream_finish", async_result)$result
+}
+
+
+#' @rdname gdk-graphics
+#' @title gdkPixbufAnimationNewFromStreamAsync
+#'
+#' @param stream Gio.InputStream
+#' @param cancellable Gio.Cancellable
+#' @param callback function — Gio.AsyncReadyCallback callback
+#' @return Return value from C function
+#' @export
+gdkPixbufAnimationNewFromStreamAsync <- function(stream, cancellable, callback) {
+  invisible(.Call("R_gdk_pixbuf_animation_new_from_stream_async", stream, cancellable, callback))
 }
 
 

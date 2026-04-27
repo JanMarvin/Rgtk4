@@ -1397,6 +1397,32 @@ gskPathEqual <- function(path1, path2) {
 
 
 #' @rdname gsk
+#' @title gskPathForeach
+#'
+#' @param self Path
+#' @param flags PathForeachFlags
+#' @param func function — PathForeachFunc callback
+#' @return gboolean
+#' @export
+gskPathForeach <- function(self, flags, func) {
+  .Call("R_gsk_path_foreach", self, flags, func)$result
+}
+
+
+#' @rdname gsk
+#' @title gskPathForeachIntersection
+#'
+#' @param path1 Path
+#' @param path2 Path
+#' @param func function — PathIntersectionFunc callback
+#' @return gboolean
+#' @export
+gskPathForeachIntersection <- function(path1, path2, func) {
+  .Call("R_gsk_path_foreach_intersection", path1, path2, func)$result
+}
+
+
+#' @rdname gsk
 #' @title gskPathGetBounds
 #'
 #' @param self Path
@@ -2295,6 +2321,18 @@ gskRadialGradientNodeGetVradius <- function(node) {
 
 
 #' @rdname gsk
+#' @title gskRenderNodeDeserialize
+#'
+#' @param bytes GLib.Bytes
+#' @param error_func function — ParseErrorFunc callback
+#' @return RenderNode
+#' @export
+gskRenderNodeDeserialize <- function(bytes, error_func) {
+  .Call("R_gsk_render_node_deserialize", bytes, error_func)$result
+}
+
+
+#' @rdname gsk
 #' @title gskRenderNodeDraw
 #'
 #' @param node RenderNode
@@ -2461,6 +2499,42 @@ gskRenderReplayFilterTexture <- function(self, texture) {
 #' @export
 gskRenderReplayFree <- function(self) {
   invisible(.Call("R_gsk_render_replay_free", self))
+}
+
+
+#' @rdname gsk
+#' @title gskRenderReplaySetFontFilter
+#'
+#' @param self RenderReplay
+#' @param filter function — RenderReplayFontFilter callback
+#' @return Return value from C function
+#' @export
+gskRenderReplaySetFontFilter <- function(self, filter) {
+  invisible(.Call("R_gsk_render_replay_set_font_filter", self, filter))
+}
+
+
+#' @rdname gsk
+#' @title gskRenderReplaySetNodeFilter
+#'
+#' @param self RenderReplay
+#' @param filter function — RenderReplayNodeFilter callback
+#' @return Return value from C function
+#' @export
+gskRenderReplaySetNodeFilter <- function(self, filter) {
+  invisible(.Call("R_gsk_render_replay_set_node_filter", self, filter))
+}
+
+
+#' @rdname gsk
+#' @title gskRenderReplaySetTextureFilter
+#'
+#' @param self RenderReplay
+#' @param filter function — RenderReplayTextureFilter callback
+#' @return Return value from C function
+#' @export
+gskRenderReplaySetTextureFilter <- function(self, filter) {
+  invisible(.Call("R_gsk_render_replay_set_texture_filter", self, filter))
 }
 
 

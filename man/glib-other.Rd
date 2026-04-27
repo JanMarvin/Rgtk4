@@ -11,11 +11,15 @@
 \alias{gAsyncQueuePush}
 \alias{gAsyncQueuePushFront}
 \alias{gAsyncQueuePushFrontUnlocked}
+\alias{gAsyncQueuePushSorted}
+\alias{gAsyncQueuePushSortedUnlocked}
 \alias{gAsyncQueuePushUnlocked}
 \alias{gAsyncQueueRef}
 \alias{gAsyncQueueRefUnlocked}
 \alias{gAsyncQueueRemove}
 \alias{gAsyncQueueRemoveUnlocked}
+\alias{gAsyncQueueSort}
+\alias{gAsyncQueueSortUnlocked}
 \alias{gAsyncQueueTimedPop}
 \alias{gAsyncQueueTimedPopUnlocked}
 \alias{gAsyncQueueTimeoutPop}
@@ -26,6 +30,7 @@
 \alias{gAsyncQueueUnref}
 \alias{gAsyncQueueUnrefAndUnlock}
 \alias{gAsyncQueueNew}
+\alias{gAsyncQueueNewFull}
 \alias{gBookmarkFileNew}
 \alias{gBookmarkFileAddApplication}
 \alias{gBookmarkFileAddGroup}
@@ -68,7 +73,9 @@
 \alias{gBookmarkFileErrorQuark}
 \alias{gCacheDestroy}
 \alias{gCacheInsert}
+\alias{gCacheKeyForeach}
 \alias{gCacheRemove}
+\alias{gCacheValueForeach}
 \alias{gChecksumNew}
 \alias{gChecksumCopy}
 \alias{gChecksumFree}
@@ -151,6 +158,7 @@
 \alias{gHookDestroyLink}
 \alias{gHookFree}
 \alias{gHookInsertBefore}
+\alias{gHookInsertSorted}
 \alias{gHookPrepend}
 \alias{gHookUnref}
 \alias{gHookListClear}
@@ -214,6 +222,7 @@
 \alias{gMappedFileGetLength}
 \alias{gMappedFileRef}
 \alias{gMappedFileUnref}
+\alias{gMarkupParseContextNew}
 \alias{gMarkupParseContextEndParse}
 \alias{gMarkupParseContextFree}
 \alias{gMarkupParseContextGetElement}
@@ -255,6 +264,7 @@
 \alias{gMutexUnlock}
 \alias{gNodeChildIndex}
 \alias{gNodeChildPosition}
+\alias{gNodeChildrenForeach}
 \alias{gNodeDepth}
 \alias{gNodeDestroy}
 \alias{gNodeIsAncestor}
@@ -262,6 +272,7 @@
 \alias{gNodeNChildren}
 \alias{gNodeNNodes}
 \alias{gNodeReverseChildren}
+\alias{gNodeTraverse}
 \alias{gNodeUnlink}
 \alias{gNodePopAllocator}
 \alias{gNodePushAllocator}
@@ -283,10 +294,13 @@
 \alias{gOptionContextSetMainGroup}
 \alias{gOptionContextSetStrictPosix}
 \alias{gOptionContextSetSummary}
+\alias{gOptionContextSetTranslateFunc}
 \alias{gOptionContextSetTranslationDomain}
+\alias{gOptionGroupNew}
 \alias{gOptionGroupAddEntries}
 \alias{gOptionGroupFree}
 \alias{gOptionGroupRef}
+\alias{gOptionGroupSetTranslateFunc}
 \alias{gOptionGroupSetTranslationDomain}
 \alias{gOptionGroupUnref}
 \alias{gPatternSpecNew}
@@ -334,6 +348,7 @@
 \alias{gRegexMatchFull}
 \alias{gRegexRef}
 \alias{gRegexReplace}
+\alias{gRegexReplaceEval}
 \alias{gRegexReplaceLiteral}
 \alias{gRegexSplit}
 \alias{gRegexSplitFull}
@@ -359,19 +374,30 @@
 \alias{gScannerLookupSymbol}
 \alias{gScannerPeekNextToken}
 \alias{gScannerScopeAddSymbol}
+\alias{gScannerScopeForeachSymbol}
 \alias{gScannerScopeLookupSymbol}
 \alias{gScannerScopeRemoveSymbol}
 \alias{gScannerSetScope}
 \alias{gScannerSyncFileOffset}
 \alias{gScannerUnexpToken}
 \alias{gSequenceAppend}
+\alias{gSequenceForeach}
 \alias{gSequenceFree}
 \alias{gSequenceGetBeginIter}
 \alias{gSequenceGetEndIter}
 \alias{gSequenceGetIterAtPos}
 \alias{gSequenceGetLength}
+\alias{gSequenceInsertSorted}
+\alias{gSequenceInsertSortedIter}
 \alias{gSequenceIsEmpty}
+\alias{gSequenceLookup}
+\alias{gSequenceLookupIter}
 \alias{gSequencePrepend}
+\alias{gSequenceSearch}
+\alias{gSequenceSearchIter}
+\alias{gSequenceSort}
+\alias{gSequenceSortIter}
+\alias{gSequenceForeachRange}
 \alias{gSequenceGet}
 \alias{gSequenceInsertBefore}
 \alias{gSequenceMove}
@@ -380,6 +406,8 @@
 \alias{gSequenceRemove}
 \alias{gSequenceRemoveRange}
 \alias{gSequenceSet}
+\alias{gSequenceSortChanged}
+\alias{gSequenceSortChangedIter}
 \alias{gSequenceSwap}
 \alias{gSequenceIterCompare}
 \alias{gSequenceIterGetPosition}
@@ -395,6 +423,8 @@
 \alias{gTestLogMsgFree}
 \alias{gTestSuiteAdd}
 \alias{gTestSuiteAddSuite}
+\alias{gThreadNew}
+\alias{gThreadTryNew}
 \alias{gThreadJoin}
 \alias{gThreadRef}
 \alias{gThreadUnref}
@@ -425,7 +455,9 @@
 \alias{gTrashStackPeek}
 \alias{gTrashStackPop}
 \alias{gTrashStackPush}
+\alias{gTreeNewFull}
 \alias{gTreeDestroy}
+\alias{gTreeForeach}
 \alias{gTreeHeight}
 \alias{gTreeInsert}
 \alias{gTreeLookup}
@@ -434,7 +466,9 @@
 \alias{gTreeRef}
 \alias{gTreeRemove}
 \alias{gTreeReplace}
+\alias{gTreeSearch}
 \alias{gTreeSteal}
+\alias{gTreeTraverse}
 \alias{gTreeUnref}
 \alias{gTuplesDestroy}
 \alias{gTuplesIndex}
@@ -468,6 +502,7 @@
 \alias{gAssertionMessageCmpstr}
 \alias{gAssertionMessageCmpstrv}
 \alias{gAssertionMessageError}
+\alias{gAtexit}
 \alias{gBase64Decode}
 \alias{gBase64DecodeInplace}
 \alias{gBase64Encode}
@@ -484,6 +519,7 @@
 \alias{gBuildFilenamev}
 \alias{gBuildPathv}
 \alias{gChdir}
+\alias{gChildWatchAddFull}
 \alias{gChildWatchSourceNew}
 \alias{gChmod}
 \alias{gClearError}
@@ -498,12 +534,14 @@
 \alias{gConvertErrorQuark}
 \alias{gConvertWithFallback}
 \alias{gCreat}
+\alias{gDatalistForeach}
 \alias{gDatalistGetData}
 \alias{gDatalistGetFlags}
 \alias{gDatalistIdGetData}
 \alias{gDatalistSetFlags}
 \alias{gDatalistUnsetFlags}
 \alias{gDatasetDestroy}
+\alias{gDatasetForeach}
 \alias{gDatasetIdGetData}
 \alias{gDcgettext}
 \alias{gDgettext}
@@ -597,6 +635,7 @@
 \alias{gPatternMatchSimple}
 \alias{gPoll}
 \alias{gPropagateError}
+\alias{gQsortWithData}
 \alias{gQuarkFromStaticString}
 \alias{gQuarkFromString}
 \alias{gQuarkToString}
@@ -629,12 +668,15 @@
 \alias{gSliceGetConfigState}
 \alias{gSliceSetConfig}
 \alias{gSpacedPrimesClosest}
+\alias{gSpawnAsync}
+\alias{gSpawnAsyncWithPipes}
 \alias{gSpawnCheckExitStatus}
 \alias{gSpawnClosePid}
 \alias{gSpawnCommandLineAsync}
 \alias{gSpawnCommandLineSync}
 \alias{gSpawnErrorQuark}
 \alias{gSpawnExitErrorQuark}
+\alias{gSpawnSync}
 \alias{gStat}
 \alias{gStpcpy}
 \alias{gStrcanon}
@@ -662,6 +704,9 @@
 \alias{gStrsplit}
 \alias{gStrtod}
 \alias{gStrup}
+\alias{gTestAddDataFunc}
+\alias{gTestAddDataFuncFull}
+\alias{gTestAddFunc}
 \alias{gTestAssertExpectedMessagesInternal}
 \alias{gTestBug}
 \alias{gTestBugBase}
@@ -671,6 +716,7 @@
 \alias{gTestGetDir}
 \alias{gTestIncomplete}
 \alias{gTestLogTypeName}
+\alias{gTestQueueDestroy}
 \alias{gTestQueueFree}
 \alias{gTestRandDouble}
 \alias{gTestRandDoubleRange}
@@ -910,8 +956,11 @@
 \alias{gValueArrayInsert}
 \alias{gValueArrayPrepend}
 \alias{gValueArrayRemove}
+\alias{gValueArraySort}
+\alias{gValueArraySortWithData}
 \alias{gBoxedCopy}
 \alias{gBoxedFree}
+\alias{gBoxedTypeRegisterStatic}
 \alias{gEnumCompleteTypeInfo}
 \alias{gEnumGetValue}
 \alias{gEnumGetValueByName}
@@ -1030,6 +1079,8 @@
 \alias{gAppLaunchContextLaunchFailed}
 \alias{gAppLaunchContextSetenv}
 \alias{gAppLaunchContextUnsetenv}
+\alias{gAsyncInitableNewvAsync}
+\alias{gAsyncInitableInitAsync}
 \alias{gAsyncInitableInitFinish}
 \alias{gAsyncInitableNewFinish}
 \alias{gAsyncResultGetSourceObject}
@@ -1039,6 +1090,7 @@
 \alias{gBufferedInputStreamNew}
 \alias{gBufferedInputStreamNewSized}
 \alias{gBufferedInputStreamFill}
+\alias{gBufferedInputStreamFillAsync}
 \alias{gBufferedInputStreamFillFinish}
 \alias{gBufferedInputStreamGetAvailable}
 \alias{gBufferedInputStreamGetBufferSize}
@@ -1055,6 +1107,7 @@
 \alias{gCancellableNew}
 \alias{gCancellableGetCurrent}
 \alias{gCancellableCancel}
+\alias{gCancellableConnect}
 \alias{gCancellableDisconnect}
 \alias{gCancellableGetFd}
 \alias{gCancellableIsCancelled}
@@ -1087,6 +1140,7 @@
 \alias{gDataInputStreamReadInt32}
 \alias{gDataInputStreamReadInt64}
 \alias{gDataInputStreamReadLine}
+\alias{gDataInputStreamReadLineAsync}
 \alias{gDataInputStreamReadLineFinish}
 \alias{gDataInputStreamReadLineFinishUtf8}
 \alias{gDataInputStreamReadLineUtf8}
@@ -1094,8 +1148,10 @@
 \alias{gDataInputStreamReadUint32}
 \alias{gDataInputStreamReadUint64}
 \alias{gDataInputStreamReadUntil}
+\alias{gDataInputStreamReadUntilAsync}
 \alias{gDataInputStreamReadUntilFinish}
 \alias{gDataInputStreamReadUpto}
+\alias{gDataInputStreamReadUptoAsync}
 \alias{gDataInputStreamReadUptoFinish}
 \alias{gDataInputStreamSetByteOrder}
 \alias{gDataInputStreamSetNewlineType}
@@ -1120,7 +1176,9 @@
 \alias{gDriveCanStart}
 \alias{gDriveCanStartDegraded}
 \alias{gDriveCanStop}
+\alias{gDriveEject}
 \alias{gDriveEjectFinish}
+\alias{gDriveEjectWithOperation}
 \alias{gDriveEjectWithOperationFinish}
 \alias{gDriveEnumerateIdentifiers}
 \alias{gDriveGetIcon}
@@ -1135,8 +1193,11 @@
 \alias{gDriveIsMediaCheckAutomatic}
 \alias{gDriveIsMediaRemovable}
 \alias{gDriveIsRemovable}
+\alias{gDrivePollForMedia}
 \alias{gDrivePollForMediaFinish}
+\alias{gDriveStart}
 \alias{gDriveStartFinish}
+\alias{gDriveStop}
 \alias{gDriveStopFinish}
 \alias{gEmblemNew}
 \alias{gEmblemNewWithOrigin}
@@ -1198,10 +1259,13 @@
 \alias{gInitableNewv}
 \alias{gInitableInit}
 \alias{gLoadableIconLoad}
+\alias{gLoadableIconLoadAsync}
 \alias{gLoadableIconLoadFinish}
 \alias{gMemoryInputStreamNew}
 \alias{gMemoryInputStreamNewFromBytes}
+\alias{gMemoryInputStreamNewFromData}
 \alias{gMemoryInputStreamAddBytes}
+\alias{gMemoryInputStreamAddData}
 \alias{gMemoryOutputStreamNewResizable}
 \alias{gMemoryOutputStreamGetData}
 \alias{gMemoryOutputStreamGetDataSize}
@@ -1255,7 +1319,9 @@
 \alias{gMenuModelIterateItemLinks}
 \alias{gMountCanEject}
 \alias{gMountCanUnmount}
+\alias{gMountEject}
 \alias{gMountEjectFinish}
+\alias{gMountEjectWithOperation}
 \alias{gMountEjectWithOperationFinish}
 \alias{gMountGetDefaultLocation}
 \alias{gMountGetDrive}
@@ -1266,12 +1332,16 @@
 \alias{gMountGetSymbolicIcon}
 \alias{gMountGetUuid}
 \alias{gMountGetVolume}
+\alias{gMountGuessContentType}
 \alias{gMountGuessContentTypeFinish}
 \alias{gMountGuessContentTypeSync}
 \alias{gMountIsShadowed}
+\alias{gMountRemount}
 \alias{gMountRemountFinish}
 \alias{gMountShadow}
+\alias{gMountUnmount}
 \alias{gMountUnmountFinish}
+\alias{gMountUnmountWithOperation}
 \alias{gMountUnmountWithOperationFinish}
 \alias{gMountUnshadow}
 \alias{gMountOperationNew}
@@ -1298,6 +1368,7 @@
 \alias{gNetworkAddressGetScheme}
 \alias{gNetworkMonitorGetDefault}
 \alias{gNetworkMonitorCanReach}
+\alias{gNetworkMonitorCanReachAsync}
 \alias{gNetworkMonitorCanReachFinish}
 \alias{gNetworkMonitorGetConnectivity}
 \alias{gNetworkMonitorGetNetworkAvailable}
@@ -1319,12 +1390,14 @@
 \alias{gNotificationSetTitle}
 \alias{gNotificationSetUrgent}
 \alias{gPermissionAcquire}
+\alias{gPermissionAcquireAsync}
 \alias{gPermissionAcquireFinish}
 \alias{gPermissionGetAllowed}
 \alias{gPermissionGetCanAcquire}
 \alias{gPermissionGetCanRelease}
 \alias{gPermissionImplUpdate}
 \alias{gPermissionRelease}
+\alias{gPermissionReleaseAsync}
 \alias{gPermissionReleaseFinish}
 \alias{gPollableInputStreamCanPoll}
 \alias{gPollableInputStreamCreateSource}
@@ -1337,6 +1410,7 @@
 \alias{gPropertyActionNew}
 \alias{gProxyGetDefaultForProtocol}
 \alias{gProxyConnect}
+\alias{gProxyConnectAsync}
 \alias{gProxyConnectFinish}
 \alias{gProxySupportsHostname}
 \alias{gProxyAddressNew}
@@ -1350,17 +1424,22 @@
 \alias{gProxyResolverGetDefault}
 \alias{gProxyResolverIsSupported}
 \alias{gProxyResolverLookup}
+\alias{gProxyResolverLookupAsync}
 \alias{gProxyResolverLookupFinish}
 \alias{gRemoteActionGroupActivateActionFull}
 \alias{gRemoteActionGroupChangeActionStateFull}
 \alias{gResolverGetDefault}
 \alias{gResolverLookupByAddress}
+\alias{gResolverLookupByAddressAsync}
 \alias{gResolverLookupByAddressFinish}
 \alias{gResolverLookupByName}
+\alias{gResolverLookupByNameAsync}
 \alias{gResolverLookupByNameFinish}
 \alias{gResolverLookupRecords}
+\alias{gResolverLookupRecordsAsync}
 \alias{gResolverLookupRecordsFinish}
 \alias{gResolverLookupService}
+\alias{gResolverLookupServiceAsync}
 \alias{gResolverLookupServiceFinish}
 \alias{gResolverSetDefault}
 \alias{gResolverErrorQuark}
@@ -1390,6 +1469,8 @@
 \alias{gSimpleActionGroupInsert}
 \alias{gSimpleActionGroupLookup}
 \alias{gSimpleActionGroupRemove}
+\alias{gSimpleAsyncResultNew}
+\alias{gSimpleAsyncResultNewFromError}
 \alias{gSimpleAsyncResultIsValid}
 \alias{gSimpleAsyncResultComplete}
 \alias{gSimpleAsyncResultCompleteInIdle}
@@ -1468,16 +1549,21 @@
 \alias{gSocketAddressGetNativeSize}
 \alias{gSocketAddressToNative}
 \alias{gSocketAddressEnumeratorNext}
+\alias{gSocketAddressEnumeratorNextAsync}
 \alias{gSocketAddressEnumeratorNextFinish}
 \alias{gSocketClientNew}
 \alias{gSocketClientAddApplicationProxy}
 \alias{gSocketClientConnect}
+\alias{gSocketClientConnectAsync}
 \alias{gSocketClientConnectFinish}
 \alias{gSocketClientConnectToHost}
+\alias{gSocketClientConnectToHostAsync}
 \alias{gSocketClientConnectToHostFinish}
 \alias{gSocketClientConnectToService}
+\alias{gSocketClientConnectToServiceAsync}
 \alias{gSocketClientConnectToServiceFinish}
 \alias{gSocketClientConnectToUri}
+\alias{gSocketClientConnectToUriAsync}
 \alias{gSocketClientConnectToUriFinish}
 \alias{gSocketClientGetEnableProxy}
 \alias{gSocketClientGetFamily}
@@ -1503,6 +1589,7 @@
 \alias{gSocketConnectionFactoryLookupType}
 \alias{gSocketConnectionFactoryRegisterType}
 \alias{gSocketConnectionConnect}
+\alias{gSocketConnectionConnectAsync}
 \alias{gSocketConnectionConnectFinish}
 \alias{gSocketConnectionGetLocalAddress}
 \alias{gSocketConnectionGetRemoteAddress}
@@ -1515,8 +1602,10 @@
 \alias{gSocketControlMessageSerialize}
 \alias{gSocketListenerNew}
 \alias{gSocketListenerAccept}
+\alias{gSocketListenerAcceptAsync}
 \alias{gSocketListenerAcceptFinish}
 \alias{gSocketListenerAcceptSocket}
+\alias{gSocketListenerAcceptSocketAsync}
 \alias{gSocketListenerAcceptSocketFinish}
 \alias{gSocketListenerAddAddress}
 \alias{gSocketListenerAddAnyInetPort}
@@ -1538,7 +1627,9 @@
 \alias{gStaticResourceFini}
 \alias{gStaticResourceGetResource}
 \alias{gStaticResourceInit}
+\alias{gTaskNew}
 \alias{gTaskIsValid}
+\alias{gTaskReportError}
 \alias{gTaskGetCancellable}
 \alias{gTaskGetCheckCancellable}
 \alias{gTaskGetCompleted}
@@ -1556,10 +1647,14 @@
 \alias{gTaskReturnError}
 \alias{gTaskReturnErrorIfCancelled}
 \alias{gTaskReturnInt}
+\alias{gTaskReturnPointer}
+\alias{gTaskRunInThread}
+\alias{gTaskRunInThreadSync}
 \alias{gTaskSetCheckCancellable}
 \alias{gTaskSetPriority}
 \alias{gTaskSetReturnOnCancel}
 \alias{gTaskSetSourceTag}
+\alias{gTaskSetTaskData}
 \alias{gTcpConnectionGetGracefulDisconnect}
 \alias{gTcpConnectionSetGracefulDisconnect}
 \alias{gTcpWrapperConnectionNew}
@@ -1586,10 +1681,13 @@
 \alias{gVfsGetSupportedUriSchemes}
 \alias{gVfsIsActive}
 \alias{gVfsParseName}
+\alias{gVfsRegisterUriScheme}
 \alias{gVfsUnregisterUriScheme}
 \alias{gVolumeCanEject}
 \alias{gVolumeCanMount}
+\alias{gVolumeEject}
 \alias{gVolumeEjectFinish}
+\alias{gVolumeEjectWithOperation}
 \alias{gVolumeEjectWithOperationFinish}
 \alias{gVolumeEnumerateIdentifiers}
 \alias{gVolumeGetActivationRoot}
@@ -1601,6 +1699,7 @@
 \alias{gVolumeGetSortKey}
 \alias{gVolumeGetSymbolicIcon}
 \alias{gVolumeGetUuid}
+\alias{gVolumeMount}
 \alias{gVolumeMountFinish}
 \alias{gVolumeShouldAutomount}
 \alias{gVolumeMonitorAdoptOrphanMount}
@@ -1615,6 +1714,7 @@
 \alias{gZlibCompressorSetFileInfo}
 \alias{gZlibDecompressorNew}
 \alias{gZlibDecompressorGetFileInfo}
+\alias{gBusGet}
 \alias{gBusGetFinish}
 \alias{gBusGetSync}
 \alias{gBusOwnNameOnConnectionWithClosures}
@@ -1650,6 +1750,7 @@
 \alias{gResourcesGetInfo}
 \alias{gResourcesLookupData}
 \alias{gResourcesOpenStream}
+\alias{gSimpleAsyncReportGerrorInIdle}
 \title{gAllocatorFree}
 \usage{
 gAllocatorFree(allocator)
@@ -1670,6 +1771,10 @@ gAsyncQueuePushFront(queue, item)
 
 gAsyncQueuePushFrontUnlocked(queue, item)
 
+gAsyncQueuePushSorted(queue, data, func)
+
+gAsyncQueuePushSortedUnlocked(queue, data, func)
+
 gAsyncQueuePushUnlocked(queue, data)
 
 gAsyncQueueRef(queue)
@@ -1679,6 +1784,10 @@ gAsyncQueueRefUnlocked(queue)
 gAsyncQueueRemove(queue, item)
 
 gAsyncQueueRemoveUnlocked(queue, item)
+
+gAsyncQueueSort(queue, func)
+
+gAsyncQueueSortUnlocked(queue, func)
 
 gAsyncQueueTimedPop(queue, end_time)
 
@@ -1699,6 +1808,8 @@ gAsyncQueueUnref(queue)
 gAsyncQueueUnrefAndUnlock(queue)
 
 gAsyncQueueNew()
+
+gAsyncQueueNewFull(item_free_func)
 
 gBookmarkFileNew()
 
@@ -1784,7 +1895,11 @@ gCacheDestroy(cache)
 
 gCacheInsert(cache, key)
 
+gCacheKeyForeach(cache, func)
+
 gCacheRemove(cache, value)
+
+gCacheValueForeach(cache, func)
 
 gChecksumNew(checksum_type)
 
@@ -1950,6 +2065,8 @@ gHookFree(hook_list, hook)
 
 gHookInsertBefore(hook_list, sibling, hook)
 
+gHookInsertSorted(hook_list, hook, func)
+
 gHookPrepend(hook_list, hook)
 
 gHookUnref(hook_list, hook)
@@ -1962,9 +2079,9 @@ gHookListInvoke(hook_list, may_recurse)
 
 gHookListInvokeCheck(hook_list, may_recurse)
 
-gHookListMarshal(hook_list, may_recurse, marshaller, marshal_data)
+gHookListMarshal(hook_list, may_recurse, marshaller)
 
-gHookListMarshalCheck(hook_list, may_recurse, marshaller, marshal_data)
+gHookListMarshalCheck(hook_list, may_recurse, marshaller)
 
 gKeyFileNew()
 
@@ -2076,6 +2193,8 @@ gMappedFileRef(file)
 
 gMappedFileUnref(file)
 
+gMarkupParseContextNew(parser, flags, user_data, user_data_dnotify)
+
 gMarkupParseContextEndParse(context)
 
 gMarkupParseContextFree(context)
@@ -2158,6 +2277,8 @@ gNodeChildIndex(node, data)
 
 gNodeChildPosition(node, child)
 
+gNodeChildrenForeach(node, flags, func)
+
 gNodeDepth(node)
 
 gNodeDestroy(root)
@@ -2171,6 +2292,8 @@ gNodeNChildren(node)
 gNodeNNodes(root, flags)
 
 gNodeReverseChildren(node)
+
+gNodeTraverse(root, order, flags, max_depth, func)
 
 gNodeUnlink(node)
 
@@ -2214,13 +2337,19 @@ gOptionContextSetStrictPosix(context, strict_posix)
 
 gOptionContextSetSummary(context, summary)
 
+gOptionContextSetTranslateFunc(context, func)
+
 gOptionContextSetTranslationDomain(context, domain)
+
+gOptionGroupNew(name, description, help_description, user_data, destroy)
 
 gOptionGroupAddEntries(group, entries)
 
 gOptionGroupFree(group)
 
 gOptionGroupRef(group)
+
+gOptionGroupSetTranslateFunc(group, func)
 
 gOptionGroupSetTranslationDomain(group, domain)
 
@@ -2323,6 +2452,15 @@ gRegexReplace(
   match_options
 )
 
+gRegexReplaceEval(
+  regex,
+  string,
+  string_len,
+  start_position,
+  match_options,
+  eval
+)
+
 gRegexReplaceLiteral(
   regex,
   string,
@@ -2387,6 +2525,8 @@ gScannerPeekNextToken(scanner)
 
 gScannerScopeAddSymbol(scanner, scope_id, symbol, value)
 
+gScannerScopeForeachSymbol(scanner, scope_id, func)
+
 gScannerScopeLookupSymbol(scanner, scope_id, symbol)
 
 gScannerScopeRemoveSymbol(scanner, scope_id, symbol)
@@ -2407,6 +2547,8 @@ gScannerUnexpToken(
 
 gSequenceAppend(seq, data)
 
+gSequenceForeach(seq, func)
+
 gSequenceFree(seq)
 
 gSequenceGetBeginIter(seq)
@@ -2417,9 +2559,27 @@ gSequenceGetIterAtPos(seq, pos)
 
 gSequenceGetLength(seq)
 
+gSequenceInsertSorted(seq, data, cmp_func)
+
+gSequenceInsertSortedIter(seq, data, iter_cmp)
+
 gSequenceIsEmpty(seq)
 
+gSequenceLookup(seq, data, cmp_func)
+
+gSequenceLookupIter(seq, data, iter_cmp)
+
 gSequencePrepend(seq, data)
+
+gSequenceSearch(seq, data, cmp_func)
+
+gSequenceSearchIter(seq, data, iter_cmp)
+
+gSequenceSort(seq, cmp_func)
+
+gSequenceSortIter(seq, cmp_func)
+
+gSequenceForeachRange(begin, end, func)
 
 gSequenceGet(iter)
 
@@ -2436,6 +2596,10 @@ gSequenceRemove(iter)
 gSequenceRemoveRange(begin, end)
 
 gSequenceSet(iter, data)
+
+gSequenceSortChanged(iter, cmp_func)
+
+gSequenceSortChangedIter(iter, iter_cmp)
 
 gSequenceSwap(a, b)
 
@@ -2466,6 +2630,10 @@ gTestLogMsgFree(tmsg)
 gTestSuiteAdd(suite, test_case)
 
 gTestSuiteAddSuite(suite, nestedsuite)
+
+gThreadNew(name, func)
+
+gThreadTryNew(name, func)
 
 gThreadJoin(thread)
 
@@ -2527,7 +2695,11 @@ gTrashStackPop(stack_p)
 
 gTrashStackPush(stack_p, data_p)
 
+gTreeNewFull(key_compare_func, key_destroy_func)
+
 gTreeDestroy(tree)
+
+gTreeForeach(tree, func)
 
 gTreeHeight(tree)
 
@@ -2545,7 +2717,11 @@ gTreeRemove(tree, key)
 
 gTreeReplace(tree, key, value)
 
+gTreeSearch(tree, search_func)
+
 gTreeSteal(tree, key)
+
+gTreeTraverse(tree, traverse_func, traverse_type)
 
 gTreeUnref(tree)
 
@@ -2641,6 +2817,8 @@ gAssertionMessageError(
   error_code
 )
 
+gAtexit(func)
+
 gBase64Decode(text)
 
 gBase64DecodeInplace()
@@ -2673,6 +2851,8 @@ gBuildPathv(separator, args)
 
 gChdir(path)
 
+gChildWatchAddFull(priority, pid, function_)
+
 gChildWatchSourceNew(pid)
 
 gChmod(filename, mode)
@@ -2701,6 +2881,8 @@ gConvertWithFallback(str, len, to_codeset, from_codeset, fallback)
 
 gCreat(filename, mode)
 
+gDatalistForeach(datalist, func)
+
 gDatalistGetData(datalist, key)
 
 gDatalistGetFlags(datalist)
@@ -2712,6 +2894,8 @@ gDatalistSetFlags(datalist, flags)
 gDatalistUnsetFlags(datalist, flags)
 
 gDatasetDestroy(dataset_location)
+
+gDatasetForeach(dataset_location, func)
 
 gDatasetIdGetData(dataset_location, key_id)
 
@@ -2899,6 +3083,8 @@ gPoll(fds, nfds, timeout)
 
 gPropagateError(src)
 
+gQsortWithData(pbase, total_elems, size, compare_func)
+
 gQuarkFromStaticString(string)
 
 gQuarkFromString(string)
@@ -2963,6 +3149,10 @@ gSliceSetConfig(ckey, value)
 
 gSpacedPrimesClosest(num)
 
+gSpawnAsync(working_directory, argv, envp, flags, child_setup)
+
+gSpawnAsyncWithPipes(working_directory, argv, envp, flags, child_setup)
+
 gSpawnCheckExitStatus(wait_status)
 
 gSpawnClosePid(pid)
@@ -2974,6 +3164,8 @@ gSpawnCommandLineSync(command_line)
 gSpawnErrorQuark()
 
 gSpawnExitErrorQuark()
+
+gSpawnSync(working_directory, argv, envp, flags, child_setup)
 
 gStat(filename, buf)
 
@@ -3029,6 +3221,12 @@ gStrtod(nptr)
 
 gStrup(string)
 
+gTestAddDataFunc(testpath, test_data, test_func)
+
+gTestAddDataFuncFull(testpath, test_data, test_func)
+
+gTestAddFunc(testpath, test_func)
+
 gTestAssertExpectedMessagesInternal(domain, file, line, func)
 
 gTestBug(bug_uri_snippet)
@@ -3046,6 +3244,8 @@ gTestGetDir(file_type)
 gTestIncomplete(msg)
 
 gTestLogTypeName(log_type)
+
+gTestQueueDestroy(destroy_func, destroy_data)
 
 gTestQueueFree(gfree_pointer)
 
@@ -3686,9 +3886,15 @@ gValueArrayPrepend(value_array, value)
 
 gValueArrayRemove(value_array, index_)
 
+gValueArraySort(value_array, compare_func)
+
+gValueArraySortWithData(value_array, compare_func)
+
 gBoxedCopy(boxed_type, src_boxed)
 
 gBoxedFree(boxed_type, boxed)
+
+gBoxedTypeRegisterStatic(name, boxed_copy, boxed_free)
 
 gEnumCompleteTypeInfo(g_enum_type, const_values)
 
@@ -3926,6 +4132,17 @@ gAppLaunchContextSetenv(context, variable, value)
 
 gAppLaunchContextUnsetenv(context, variable)
 
+gAsyncInitableNewvAsync(
+  object_type,
+  n_parameters,
+  parameters,
+  io_priority,
+  cancellable,
+  callback
+)
+
+gAsyncInitableInitAsync(initable, io_priority, cancellable, callback)
+
 gAsyncInitableInitFinish(initable, res)
 
 gAsyncInitableNewFinish(initable, res)
@@ -3943,6 +4160,14 @@ gBufferedInputStreamNew(base_stream)
 gBufferedInputStreamNewSized(base_stream, size)
 
 gBufferedInputStreamFill(stream, count, cancellable)
+
+gBufferedInputStreamFillAsync(
+  stream,
+  count,
+  io_priority,
+  cancellable,
+  callback
+)
 
 gBufferedInputStreamFillFinish(stream, result)
 
@@ -3975,6 +4200,8 @@ gCancellableNew()
 gCancellableGetCurrent()
 
 gCancellableCancel(cancellable)
+
+gCancellableConnect(cancellable, callback)
 
 gCancellableDisconnect(cancellable, handler_id)
 
@@ -4040,6 +4267,8 @@ gDataInputStreamReadInt64(stream, cancellable)
 
 gDataInputStreamReadLine(stream, cancellable)
 
+gDataInputStreamReadLineAsync(stream, io_priority, cancellable, callback)
+
 gDataInputStreamReadLineFinish(stream, result)
 
 gDataInputStreamReadLineFinishUtf8(stream, result)
@@ -4054,9 +4283,26 @@ gDataInputStreamReadUint64(stream, cancellable)
 
 gDataInputStreamReadUntil(stream, stop_chars, cancellable)
 
+gDataInputStreamReadUntilAsync(
+  stream,
+  stop_chars,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gDataInputStreamReadUntilFinish(stream, result)
 
 gDataInputStreamReadUpto(stream, stop_chars, stop_chars_len, cancellable)
+
+gDataInputStreamReadUptoAsync(
+  stream,
+  stop_chars,
+  stop_chars_len,
+  io_priority,
+  cancellable,
+  callback
+)
 
 gDataInputStreamReadUptoFinish(stream, result)
 
@@ -4120,7 +4366,11 @@ gDriveCanStartDegraded(drive)
 
 gDriveCanStop(drive)
 
+gDriveEject(drive, flags, cancellable, callback)
+
 gDriveEjectFinish(drive, result)
+
+gDriveEjectWithOperation(drive, flags, mount_operation, cancellable, callback)
 
 gDriveEjectWithOperationFinish(drive, result)
 
@@ -4150,9 +4400,15 @@ gDriveIsMediaRemovable(drive)
 
 gDriveIsRemovable(drive)
 
+gDrivePollForMedia(drive, cancellable, callback)
+
 gDrivePollForMediaFinish(drive, result)
 
+gDriveStart(drive, flags, mount_operation, cancellable, callback)
+
 gDriveStartFinish(drive, result)
+
+gDriveStop(drive, flags, mount_operation, cancellable, callback)
 
 gDriveStopFinish(drive, result)
 
@@ -4276,13 +4532,19 @@ gInitableInit(initable, cancellable)
 
 gLoadableIconLoad(icon, size, cancellable)
 
+gLoadableIconLoadAsync(icon, size, cancellable, callback)
+
 gLoadableIconLoadFinish(icon, res)
 
 gMemoryInputStreamNew()
 
 gMemoryInputStreamNewFromBytes(bytes)
 
+gMemoryInputStreamNewFromData(data, len, destroy)
+
 gMemoryInputStreamAddBytes(stream, bytes)
+
+gMemoryInputStreamAddData(stream, data, len, destroy)
 
 gMemoryOutputStreamNewResizable()
 
@@ -4390,7 +4652,11 @@ gMountCanEject(mount)
 
 gMountCanUnmount(mount)
 
+gMountEject(mount, flags, cancellable, callback)
+
 gMountEjectFinish(mount, result)
+
+gMountEjectWithOperation(mount, flags, mount_operation, cancellable, callback)
 
 gMountEjectWithOperationFinish(mount, result)
 
@@ -4412,17 +4678,31 @@ gMountGetUuid(mount)
 
 gMountGetVolume(mount)
 
+gMountGuessContentType(mount, force_rescan, cancellable, callback)
+
 gMountGuessContentTypeFinish(mount, result)
 
 gMountGuessContentTypeSync(mount, force_rescan, cancellable)
 
 gMountIsShadowed(mount)
 
+gMountRemount(mount, flags, mount_operation, cancellable, callback)
+
 gMountRemountFinish(mount, result)
 
 gMountShadow(mount)
 
+gMountUnmount(mount, flags, cancellable, callback)
+
 gMountUnmountFinish(mount, result)
+
+gMountUnmountWithOperation(
+  mount,
+  flags,
+  mount_operation,
+  cancellable,
+  callback
+)
 
 gMountUnmountWithOperationFinish(mount, result)
 
@@ -4476,6 +4756,8 @@ gNetworkMonitorGetDefault()
 
 gNetworkMonitorCanReach(monitor, connectable, cancellable)
 
+gNetworkMonitorCanReachAsync(monitor, connectable, cancellable, callback)
+
 gNetworkMonitorCanReachFinish(monitor, result)
 
 gNetworkMonitorGetConnectivity(monitor)
@@ -4518,6 +4800,8 @@ gNotificationSetUrgent(notification, urgent)
 
 gPermissionAcquire(permission, cancellable)
 
+gPermissionAcquireAsync(permission, cancellable, callback)
+
 gPermissionAcquireFinish(permission, result)
 
 gPermissionGetAllowed(permission)
@@ -4529,6 +4813,8 @@ gPermissionGetCanRelease(permission)
 gPermissionImplUpdate(permission, allowed, can_acquire, can_release)
 
 gPermissionRelease(permission, cancellable)
+
+gPermissionReleaseAsync(permission, cancellable, callback)
 
 gPermissionReleaseFinish(permission, result)
 
@@ -4553,6 +4839,8 @@ gPropertyActionNew(name, object, property_name)
 gProxyGetDefaultForProtocol(protocol)
 
 gProxyConnect(proxy, connection, proxy_address, cancellable)
+
+gProxyConnectAsync(proxy, connection, proxy_address, cancellable, callback)
 
 gProxyConnectFinish(proxy, result)
 
@@ -4588,6 +4876,8 @@ gProxyResolverIsSupported(resolver)
 
 gProxyResolverLookup(resolver, uri, cancellable)
 
+gProxyResolverLookupAsync(resolver, uri, cancellable, callback)
+
 gProxyResolverLookupFinish(resolver, result)
 
 gRemoteActionGroupActivateActionFull(
@@ -4608,17 +4898,38 @@ gResolverGetDefault()
 
 gResolverLookupByAddress(resolver, address, cancellable)
 
+gResolverLookupByAddressAsync(resolver, address, cancellable, callback)
+
 gResolverLookupByAddressFinish(resolver, result)
 
 gResolverLookupByName(resolver, hostname, cancellable)
+
+gResolverLookupByNameAsync(resolver, hostname, cancellable, callback)
 
 gResolverLookupByNameFinish(resolver, result)
 
 gResolverLookupRecords(resolver, rrname, record_type, cancellable)
 
+gResolverLookupRecordsAsync(
+  resolver,
+  rrname,
+  record_type,
+  cancellable,
+  callback
+)
+
 gResolverLookupRecordsFinish(resolver, result)
 
 gResolverLookupService(resolver, service, protocol, domain, cancellable)
+
+gResolverLookupServiceAsync(
+  resolver,
+  service,
+  protocol,
+  domain,
+  cancellable,
+  callback
+)
 
 gResolverLookupServiceFinish(resolver, result)
 
@@ -4677,6 +4988,10 @@ gSimpleActionGroupInsert(simple, action)
 gSimpleActionGroupLookup(simple, action_name)
 
 gSimpleActionGroupRemove(simple, action_name)
+
+gSimpleAsyncResultNew(source_object, callback, source_tag)
+
+gSimpleAsyncResultNewFromError(source_object, callback, error)
 
 gSimpleAsyncResultIsValid(result, source, source_tag)
 
@@ -4843,6 +5158,8 @@ gSocketAddressToNative(address, dest, destlen)
 
 gSocketAddressEnumeratorNext(enumerator, cancellable)
 
+gSocketAddressEnumeratorNextAsync(enumerator, cancellable, callback)
+
 gSocketAddressEnumeratorNextFinish(enumerator, result)
 
 gSocketClientNew()
@@ -4851,17 +5168,43 @@ gSocketClientAddApplicationProxy(client, protocol)
 
 gSocketClientConnect(client, connectable, cancellable)
 
+gSocketClientConnectAsync(client, connectable, cancellable, callback)
+
 gSocketClientConnectFinish(client, result)
 
 gSocketClientConnectToHost(client, host_and_port, default_port, cancellable)
+
+gSocketClientConnectToHostAsync(
+  client,
+  host_and_port,
+  default_port,
+  cancellable,
+  callback
+)
 
 gSocketClientConnectToHostFinish(client, result)
 
 gSocketClientConnectToService(client, domain, service, cancellable)
 
+gSocketClientConnectToServiceAsync(
+  client,
+  domain,
+  service,
+  cancellable,
+  callback
+)
+
 gSocketClientConnectToServiceFinish(client, result)
 
 gSocketClientConnectToUri(client, uri, default_port, cancellable)
+
+gSocketClientConnectToUriAsync(
+  client,
+  uri,
+  default_port,
+  cancellable,
+  callback
+)
 
 gSocketClientConnectToUriFinish(client, result)
 
@@ -4913,6 +5256,8 @@ gSocketConnectionFactoryRegisterType(g_type, family, type, protocol)
 
 gSocketConnectionConnect(connection, address, cancellable)
 
+gSocketConnectionConnectAsync(connection, address, cancellable, callback)
+
 gSocketConnectionConnectFinish(connection, result)
 
 gSocketConnectionGetLocalAddress(connection)
@@ -4937,9 +5282,13 @@ gSocketListenerNew()
 
 gSocketListenerAccept(listener, cancellable)
 
+gSocketListenerAcceptAsync(listener, cancellable, callback)
+
 gSocketListenerAcceptFinish(listener, result)
 
 gSocketListenerAcceptSocket(listener, cancellable)
+
+gSocketListenerAcceptSocketAsync(listener, cancellable, callback)
 
 gSocketListenerAcceptSocketFinish(listener, result)
 
@@ -4983,7 +5332,11 @@ gStaticResourceGetResource(static_resource)
 
 gStaticResourceInit(static_resource)
 
+gTaskNew(source_object, cancellable, callback)
+
 gTaskIsValid(result, source_object)
+
+gTaskReportError(source_object, callback, source_tag, error)
 
 gTaskGetCancellable(task)
 
@@ -5019,6 +5372,12 @@ gTaskReturnErrorIfCancelled(task)
 
 gTaskReturnInt(task, result)
 
+gTaskReturnPointer(task, result, result_destroy)
+
+gTaskRunInThread(task, task_func)
+
+gTaskRunInThreadSync(task, task_func)
+
 gTaskSetCheckCancellable(task, check_cancellable)
 
 gTaskSetPriority(task, priority)
@@ -5026,6 +5385,8 @@ gTaskSetPriority(task, priority)
 gTaskSetReturnOnCancel(task, return_on_cancel)
 
 gTaskSetSourceTag(task, source_tag)
+
+gTaskSetTaskData(task, task_data, task_data_destroy)
 
 gTcpConnectionGetGracefulDisconnect(connection)
 
@@ -5079,13 +5440,25 @@ gVfsIsActive(vfs)
 
 gVfsParseName(vfs, parse_name)
 
+gVfsRegisterUriScheme(vfs, scheme, uri_func, parse_name_func)
+
 gVfsUnregisterUriScheme(vfs, scheme)
 
 gVolumeCanEject(volume)
 
 gVolumeCanMount(volume)
 
+gVolumeEject(volume, flags, cancellable, callback)
+
 gVolumeEjectFinish(volume, result)
+
+gVolumeEjectWithOperation(
+  volume,
+  flags,
+  mount_operation,
+  cancellable,
+  callback
+)
 
 gVolumeEjectWithOperationFinish(volume, result)
 
@@ -5108,6 +5481,8 @@ gVolumeGetSortKey(volume)
 gVolumeGetSymbolicIcon(volume)
 
 gVolumeGetUuid(volume)
+
+gVolumeMount(volume, flags, mount_operation, cancellable, callback)
 
 gVolumeMountFinish(volume, result)
 
@@ -5136,6 +5511,8 @@ gZlibCompressorSetFileInfo(compressor, file_info)
 gZlibDecompressorNew(format)
 
 gZlibDecompressorGetFileInfo(decompressor)
+
+gBusGet(bus_type, cancellable, callback)
 
 gBusGetFinish(res)
 
@@ -5231,6 +5608,8 @@ gResourcesGetInfo(path, lookup_flags)
 gResourcesLookupData(path, lookup_flags)
 
 gResourcesOpenStream(path, lookup_flags)
+
+gSimpleAsyncReportGerrorInIdle(object, callback, error)
 }
 \arguments{
 \item{allocator}{Allocator}
@@ -5241,9 +5620,13 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{item}{MenuItem}
 
+\item{func}{utf8}
+
 \item{end_time}{gint64}
 
 \item{timeout}{guint}
+
+\item{item_free_func}{DestroyNotify}
 
 \item{bookmark}{BookmarkFile}
 
@@ -5389,9 +5772,7 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{may_recurse}{gboolean}
 
-\item{marshaller}{HookCheckMarshaller}
-
-\item{marshal_data}{gpointer}
+\item{marshaller}{function — HookCheckMarshaller callback}
 
 \item{key_file}{KeyFile}
 
@@ -5415,15 +5796,17 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{fd}{gint}
 
+\item{parser}{MarkupParser}
+
+\item{user_data}{gpointer}
+
+\item{user_data_dnotify}{DestroyNotify}
+
 \item{context}{AppLaunchContext}
 
 \item{text}{utf8}
 
 \item{text_len}{guint}
-
-\item{parser}{MarkupParser}
-
-\item{user_data}{gpointer}
 
 \item{match_info}{MatchInfo}
 
@@ -5443,6 +5826,10 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{descendant}{Node}
 
+\item{order}{DataStreamByteOrder}
+
+\item{max_depth}{gint}
+
 \item{entries}{ActionEntry}
 
 \item{translation_domain}{utf8}
@@ -5458,6 +5845,10 @@ gResourcesOpenStream(path, lookup_flags)
 \item{summary}{utf8}
 
 \item{domain}{utf8}
+
+\item{help_description}{utf8}
+
+\item{destroy}{GLib.DestroyNotify}
 
 \item{pattern}{utf8}
 
@@ -5493,6 +5884,8 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{replacement}{utf8}
 
+\item{eval}{function — RegexEvalCallback callback}
+
 \item{max_tokens}{gint}
 
 \item{relation}{Relation}
@@ -5522,6 +5915,10 @@ gResourcesOpenStream(path, lookup_flags)
 \item{seq}{Sequence}
 
 \item{pos}{utf8}
+
+\item{cmp_func}{function — CompareDataFunc callback}
+
+\item{iter_cmp}{function — SequenceIterCompareFunc callback}
 
 \item{iter}{MenuLinkIter}
 
@@ -5569,9 +5966,19 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{data_p}{gpointer}
 
+\item{key_compare_func}{function — CompareDataFunc callback}
+
+\item{key_destroy_func}{DestroyNotify}
+
 \item{tree}{Tree}
 
 \item{lookup_key}{gpointer}
+
+\item{search_func}{function — CompareFunc callback}
+
+\item{traverse_func}{function — TraverseFunc callback}
+
+\item{traverse_type}{TraverseType}
 
 \item{tuples}{Tuples}
 
@@ -5627,8 +6034,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{expression}{utf8}
 
-\item{func}{utf8}
-
 \item{expr}{utf8}
 
 \item{arg1}{utf8}
@@ -5663,7 +6068,11 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{args}{filename}
 
+\item{priority}{gint}
+
 \item{pid}{Pid}
+
+\item{function_}{function — ChildWatchFunc callback}
 
 \item{to_codeset}{utf8}
 
@@ -5739,6 +6148,12 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{nfds}{guint}
 
+\item{pbase}{gpointer}
+
+\item{total_elems}{gint}
+
+\item{compare_func}{function — GLib.CompareDataFunc callback}
+
 \item{quark}{GLib.Quark}
 
 \item{oldfilename}{filename}
@@ -5770,6 +6185,12 @@ gResourcesOpenStream(path, lookup_flags)
 \item{n_values}{guint}
 
 \item{num}{guint}
+
+\item{working_directory}{filename}
+
+\item{argv}{filename}
+
+\item{child_setup}{function — SpawnChildSetupFunc callback}
 
 \item{wait_status}{gint}
 
@@ -5805,6 +6226,12 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{delimiter}{utf8}
 
+\item{testpath}{utf8}
+
+\item{test_data}{gpointer}
+
+\item{test_func}{function — TestFunc callback}
+
 \item{bug_uri_snippet}{utf8}
 
 \item{uri_pattern}{utf8}
@@ -5816,6 +6243,10 @@ gResourcesOpenStream(path, lookup_flags)
 \item{msg}{utf8}
 
 \item{log_type}{TestLogType}
+
+\item{destroy_func}{DestroyNotify}
+
+\item{destroy_data}{gpointer}
 
 \item{gfree_pointer}{gpointer}
 
@@ -5864,6 +6295,8 @@ gResourcesOpenStream(path, lookup_flags)
 \item{param_values}{Value}
 
 \item{invocation_hint}{gpointer}
+
+\item{marshal_data}{gpointer}
 
 \item{return_gvalue}{Value}
 
@@ -5981,6 +6414,10 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{boxed}{gpointer}
 
+\item{boxed_copy}{function — BoxedCopyFunc callback}
+
+\item{boxed_free}{function — BoxedFreeFunc callback}
+
 \item{g_enum_type}{GType}
 
 \item{const_values}{FlagsValue}
@@ -6057,6 +6494,16 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{startup_notify_id}{utf8}
 
+\item{n_parameters}{guint}
+
+\item{parameters}{GObject.Parameter}
+
+\item{io_priority}{gint}
+
+\item{cancellable}{Cancellable}
+
+\item{callback}{function — AsyncReadyCallback callback}
+
 \item{initable}{Initable}
 
 \item{res}{AsyncResult}
@@ -6064,8 +6511,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{source_tag}{gpointer}
 
 \item{base_stream}{OutputStream}
-
-\item{cancellable}{Cancellable}
 
 \item{auto_grow}{gboolean}
 
@@ -6103,8 +6548,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{stop_chars_len}{gssize}
 
-\item{order}{DataStreamByteOrder}
-
 \item{datagram_based}{DatagramBased}
 
 \item{condition}{GLib.IOCondition}
@@ -6114,6 +6557,8 @@ gResourcesOpenStream(path, lookup_flags)
 \item{num_messages}{guint}
 
 \item{drive}{Drive}
+
+\item{mount_operation}{MountOperation}
 
 \item{kind}{utf8}
 
@@ -6148,10 +6593,6 @@ gResourcesOpenStream(path, lookup_flags)
 \item{mask2}{InetAddressMask}
 
 \item{port}{guint16}
-
-\item{n_parameters}{guint}
-
-\item{parameters}{GObject.Parameter}
 
 \item{ostream}{MemoryOutputStream}
 
@@ -6219,8 +6660,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{body}{utf8}
 
-\item{priority}{gint}
-
 \item{urgent}{gboolean}
 
 \item{permission}{Permission}
@@ -6266,6 +6705,8 @@ gResourcesOpenStream(path, lookup_flags)
 \item{simple}{SimpleAsyncResult}
 
 \item{state_hint}{GLib.Variant}
+
+\item{source_object}{GObject.Object}
 
 \item{check_cancellable}{gboolean}
 
@@ -6333,8 +6774,6 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{listener}{SocketListener}
 
-\item{source_object}{GObject.Object}
-
 \item{listen_backlog}{gint}
 
 \item{weight}{guint16}
@@ -6343,7 +6782,15 @@ gResourcesOpenStream(path, lookup_flags)
 
 \item{task}{Task}
 
+\item{result_destroy}{GLib.DestroyNotify}
+
+\item{task_func}{function — TaskThreadFunc callback}
+
 \item{return_on_cancel}{gboolean}
+
+\item{task_data}{gpointer}
+
+\item{task_data_destroy}{GLib.DestroyNotify}
 
 \item{graceful_disconnect}{gboolean}
 
@@ -6360,6 +6807,10 @@ gResourcesOpenStream(path, lookup_flags)
 \item{vfs}{Vfs}
 
 \item{parse_name}{utf8}
+
+\item{uri_func}{function — VfsFileLookupFunc callback}
+
+\item{parse_name_func}{function — VfsFileLookupFunc callback}
 
 \item{volume}{Volume}
 
@@ -6426,6 +6877,10 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
+Return value from C function
+
 AsyncQueue
 
 Return value from C function
@@ -6434,6 +6889,10 @@ gboolean
 
 gboolean
 
+Return value from C function
+
+Return value from C function
+
 gpointer
 
 gpointer
@@ -6451,6 +6910,8 @@ Return value from C function
 Return value from C function
 
 Return value from C function
+
+AsyncQueue
 
 AsyncQueue
 
@@ -6537,6 +6998,10 @@ Quark
 Return value from C function
 
 gpointer
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -6720,6 +7185,8 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 KeyFile
 
 gboolean
@@ -6830,6 +7297,8 @@ MappedFile
 
 Return value from C function
 
+MarkupParseContext
+
 gboolean
 
 Return value from C function
@@ -6912,6 +7381,8 @@ gint
 
 gint
 
+Return value from C function
+
 guint
 
 Return value from C function
@@ -6923,6 +7394,8 @@ guint
 guint
 
 guint
+
+Return value from C function
 
 Return value from C function
 
@@ -6972,9 +7445,15 @@ Return value from C function
 
 Return value from C function
 
+OptionGroup
+
+Return value from C function
+
 Return value from C function
 
 OptionGroup
+
+Return value from C function
 
 Return value from C function
 
@@ -7076,6 +7555,8 @@ utf8
 
 utf8
 
+utf8
+
 Return value from C function
 
 gboolean
@@ -7120,6 +7601,8 @@ TokenType
 
 Return value from C function
 
+Return value from C function
+
 gpointer
 
 Return value from C function
@@ -7134,6 +7617,8 @@ SequenceIter
 
 Return value from C function
 
+Return value from C function
+
 SequenceIter
 
 SequenceIter
@@ -7142,9 +7627,27 @@ SequenceIter
 
 gint
 
+SequenceIter
+
+SequenceIter
+
 gboolean
 
 SequenceIter
+
+SequenceIter
+
+SequenceIter
+
+SequenceIter
+
+SequenceIter
+
+Return value from C function
+
+Return value from C function
+
+Return value from C function
 
 gpointer
 
@@ -7155,6 +7658,10 @@ Return value from C function
 Return value from C function
 
 SequenceIter
+
+Return value from C function
+
+Return value from C function
 
 Return value from C function
 
@@ -7191,6 +7698,10 @@ Return value from C function
 Return value from C function
 
 Return value from C function
+
+Thread
+
+Thread
 
 gpointer
 
@@ -7252,6 +7763,10 @@ gpointer
 
 Return value from C function
 
+Tree
+
+Return value from C function
+
 Return value from C function
 
 gint
@@ -7270,7 +7785,11 @@ gboolean
 
 Return value from C function
 
+gpointer
+
 gboolean
+
+Return value from C function
 
 Return value from C function
 
@@ -7338,6 +7857,8 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
 guint8
 
 guint8
@@ -7369,6 +7890,8 @@ filename
 filename
 
 gint
+
+guint
 
 Source
 
@@ -7398,11 +7921,15 @@ guint8
 
 gint
 
+Return value from C function
+
 gpointer
 
 guint
 
 gpointer
+
+Return value from C function
 
 Return value from C function
 
@@ -7593,6 +8120,8 @@ filename
 gboolean
 
 gint
+
+Return value from C function
 
 Return value from C function
 
@@ -7662,6 +8191,10 @@ guint
 
 gboolean
 
+gboolean
+
+gboolean
+
 Return value from C function
 
 gboolean
@@ -7671,6 +8204,8 @@ gboolean
 Quark
 
 Quark
+
+gboolean
 
 gint
 
@@ -7736,6 +8271,12 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
+Return value from C function
+
+Return value from C function
+
 gboolean
 
 filename
@@ -7743,6 +8284,8 @@ filename
 Return value from C function
 
 utf8
+
+Return value from C function
 
 Return value from C function
 
@@ -8222,9 +8765,15 @@ ValueArray
 
 ValueArray
 
+ValueArray
+
+ValueArray
+
 gpointer
 
 Return value from C function
+
+GType
 
 Return value from C function
 
@@ -8462,6 +9011,10 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
+Return value from C function
+
 gboolean
 
 GObject.Object
@@ -8479,6 +9032,8 @@ InputStream
 InputStream
 
 gssize
+
+Return value from C function
 
 gssize
 
@@ -8511,6 +9066,8 @@ Cancellable
 Cancellable
 
 Return value from C function
+
+gulong
 
 Return value from C function
 
@@ -8576,6 +9133,8 @@ gint64
 
 guint8
 
+Return value from C function
+
 guint8
 
 utf8
@@ -8590,9 +9149,13 @@ guint64
 
 utf8
 
+Return value from C function
+
 utf8
 
 utf8
+
+Return value from C function
 
 utf8
 
@@ -8642,7 +9205,11 @@ gboolean
 
 gboolean
 
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 gboolean
 
@@ -8672,9 +9239,15 @@ gboolean
 
 gboolean
 
-gboolean
+Return value from C function
 
 gboolean
+
+Return value from C function
+
+gboolean
+
+Return value from C function
 
 gboolean
 
@@ -8798,11 +9371,17 @@ gboolean
 
 InputStream
 
+Return value from C function
+
+InputStream
+
 InputStream
 
 InputStream
 
 InputStream
+
+Return value from C function
 
 Return value from C function
 
@@ -8912,7 +9491,11 @@ gboolean
 
 gboolean
 
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 gboolean
 
@@ -8934,17 +9517,25 @@ utf8
 
 Volume
 
-utf8
+Return value from C function
 
 utf8
 
-gboolean
+utf8
 
 gboolean
 
 Return value from C function
 
 gboolean
+
+Return value from C function
+
+Return value from C function
+
+gboolean
+
+Return value from C function
 
 gboolean
 
@@ -8998,6 +9589,8 @@ NetworkMonitor
 
 gboolean
 
+Return value from C function
+
 gboolean
 
 NetworkConnectivity
@@ -9040,6 +9633,8 @@ Return value from C function
 
 gboolean
 
+Return value from C function
+
 gboolean
 
 gboolean
@@ -9051,6 +9646,8 @@ gboolean
 Return value from C function
 
 gboolean
+
+Return value from C function
 
 gboolean
 
@@ -9075,6 +9672,8 @@ PropertyAction
 Proxy
 
 IOStream
+
+Return value from C function
 
 IOStream
 
@@ -9102,6 +9701,8 @@ gboolean
 
 utf8
 
+Return value from C function
+
 utf8
 
 Return value from C function
@@ -9112,17 +9713,25 @@ Resolver
 
 utf8
 
+Return value from C function
+
 utf8
 
 GLib.List
 
-GLib.List
+Return value from C function
 
 GLib.List
 
 GLib.List
 
+Return value from C function
+
 GLib.List
+
+GLib.List
+
+Return value from C function
 
 GLib.List
 
@@ -9181,6 +9790,10 @@ Return value from C function
 Action
 
 Return value from C function
+
+SimpleAsyncResult
+
+SimpleAsyncResult
 
 gboolean
 
@@ -9338,6 +9951,8 @@ gboolean
 
 SocketAddress
 
+Return value from C function
+
 SocketAddress
 
 SocketClient
@@ -9346,17 +9961,25 @@ Return value from C function
 
 SocketConnection
 
-SocketConnection
+Return value from C function
 
 SocketConnection
 
 SocketConnection
 
-SocketConnection
+Return value from C function
 
 SocketConnection
 
 SocketConnection
+
+Return value from C function
+
+SocketConnection
+
+SocketConnection
+
+Return value from C function
 
 SocketConnection
 
@@ -9408,6 +10031,8 @@ Return value from C function
 
 gboolean
 
+Return value from C function
+
 gboolean
 
 SocketAddress
@@ -9432,9 +10057,13 @@ SocketListener
 
 SocketConnection
 
+Return value from C function
+
 SocketConnection
 
 Socket
+
+Return value from C function
 
 Socket
 
@@ -9478,7 +10107,11 @@ Resource
 
 Return value from C function
 
+Task
+
 gboolean
+
+Return value from C function
 
 Cancellable
 
@@ -9518,7 +10151,15 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
+Return value from C function
+
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 Return value from C function
 
@@ -9582,6 +10223,12 @@ gboolean
 
 gboolean
 
+Return value from C function
+
+gboolean
+
+Return value from C function
+
 gboolean
 
 utf8
@@ -9603,6 +10250,8 @@ utf8
 Icon
 
 utf8
+
+Return value from C function
 
 gboolean
 
@@ -9631,6 +10280,8 @@ Return value from C function
 ZlibDecompressor
 
 FileInfo
+
+Return value from C function
 
 DBusConnection
 
@@ -9701,6 +10352,8 @@ gboolean
 GLib.Bytes
 
 InputStream
+
+Return value from C function
 }
 \description{
 gAllocatorFree
@@ -9721,6 +10374,10 @@ gAsyncQueuePushFront
 
 gAsyncQueuePushFrontUnlocked
 
+gAsyncQueuePushSorted
+
+gAsyncQueuePushSortedUnlocked
+
 gAsyncQueuePushUnlocked
 
 gAsyncQueueRef
@@ -9730,6 +10387,10 @@ gAsyncQueueRefUnlocked
 gAsyncQueueRemove
 
 gAsyncQueueRemoveUnlocked
+
+gAsyncQueueSort
+
+gAsyncQueueSortUnlocked
 
 gAsyncQueueTimedPop
 
@@ -9750,6 +10411,8 @@ gAsyncQueueUnref
 gAsyncQueueUnrefAndUnlock
 
 gAsyncQueueNew
+
+gAsyncQueueNewFull
 
 gBookmarkFileNew
 
@@ -9835,7 +10498,11 @@ gCacheDestroy
 
 gCacheInsert
 
+gCacheKeyForeach
+
 gCacheRemove
+
+gCacheValueForeach
 
 gChecksumNew
 
@@ -10001,6 +10668,8 @@ gHookFree
 
 gHookInsertBefore
 
+gHookInsertSorted
+
 gHookPrepend
 
 gHookUnref
@@ -10127,6 +10796,8 @@ gMappedFileRef
 
 gMappedFileUnref
 
+gMarkupParseContextNew
+
 gMarkupParseContextEndParse
 
 gMarkupParseContextFree
@@ -10209,6 +10880,8 @@ gNodeChildIndex
 
 gNodeChildPosition
 
+gNodeChildrenForeach
+
 gNodeDepth
 
 gNodeDestroy
@@ -10222,6 +10895,8 @@ gNodeNChildren
 gNodeNNodes
 
 gNodeReverseChildren
+
+gNodeTraverse
 
 gNodeUnlink
 
@@ -10265,13 +10940,19 @@ gOptionContextSetStrictPosix
 
 gOptionContextSetSummary
 
+gOptionContextSetTranslateFunc
+
 gOptionContextSetTranslationDomain
+
+gOptionGroupNew
 
 gOptionGroupAddEntries
 
 gOptionGroupFree
 
 gOptionGroupRef
+
+gOptionGroupSetTranslateFunc
 
 gOptionGroupSetTranslationDomain
 
@@ -10367,6 +11048,8 @@ gRegexRef
 
 gRegexReplace
 
+gRegexReplaceEval
+
 gRegexReplaceLiteral
 
 gRegexSplit
@@ -10417,6 +11100,8 @@ gScannerPeekNextToken
 
 gScannerScopeAddSymbol
 
+gScannerScopeForeachSymbol
+
 gScannerScopeLookupSymbol
 
 gScannerScopeRemoveSymbol
@@ -10429,6 +11114,8 @@ gScannerUnexpToken
 
 gSequenceAppend
 
+gSequenceForeach
+
 gSequenceFree
 
 gSequenceGetBeginIter
@@ -10439,9 +11126,27 @@ gSequenceGetIterAtPos
 
 gSequenceGetLength
 
+gSequenceInsertSorted
+
+gSequenceInsertSortedIter
+
 gSequenceIsEmpty
 
+gSequenceLookup
+
+gSequenceLookupIter
+
 gSequencePrepend
+
+gSequenceSearch
+
+gSequenceSearchIter
+
+gSequenceSort
+
+gSequenceSortIter
+
+gSequenceForeachRange
 
 gSequenceGet
 
@@ -10458,6 +11163,10 @@ gSequenceRemove
 gSequenceRemoveRange
 
 gSequenceSet
+
+gSequenceSortChanged
+
+gSequenceSortChangedIter
 
 gSequenceSwap
 
@@ -10488,6 +11197,10 @@ gTestLogMsgFree
 gTestSuiteAdd
 
 gTestSuiteAddSuite
+
+gThreadNew
+
+gThreadTryNew
 
 gThreadJoin
 
@@ -10549,7 +11262,11 @@ gTrashStackPop
 
 gTrashStackPush
 
+gTreeNewFull
+
 gTreeDestroy
+
+gTreeForeach
 
 gTreeHeight
 
@@ -10567,7 +11284,11 @@ gTreeRemove
 
 gTreeReplace
 
+gTreeSearch
+
 gTreeSteal
+
+gTreeTraverse
 
 gTreeUnref
 
@@ -10635,6 +11356,8 @@ gAssertionMessageCmpstrv
 
 gAssertionMessageError
 
+gAtexit
+
 gBase64Decode
 
 gBase64DecodeInplace
@@ -10667,6 +11390,8 @@ gBuildPathv
 
 gChdir
 
+gChildWatchAddFull
+
 gChildWatchSourceNew
 
 gChmod
@@ -10695,6 +11420,8 @@ gConvertWithFallback
 
 gCreat
 
+gDatalistForeach
+
 gDatalistGetData
 
 gDatalistGetFlags
@@ -10706,6 +11433,8 @@ gDatalistSetFlags
 gDatalistUnsetFlags
 
 gDatasetDestroy
+
+gDatasetForeach
 
 gDatasetIdGetData
 
@@ -10893,6 +11622,8 @@ gPoll
 
 gPropagateError
 
+gQsortWithData
+
 gQuarkFromStaticString
 
 gQuarkFromString
@@ -10957,6 +11688,10 @@ gSliceSetConfig
 
 gSpacedPrimesClosest
 
+gSpawnAsync
+
+gSpawnAsyncWithPipes
+
 gSpawnCheckExitStatus
 
 gSpawnClosePid
@@ -10968,6 +11703,8 @@ gSpawnCommandLineSync
 gSpawnErrorQuark
 
 gSpawnExitErrorQuark
+
+gSpawnSync
 
 gStat
 
@@ -11023,6 +11760,12 @@ gStrtod
 
 gStrup
 
+gTestAddDataFunc
+
+gTestAddDataFuncFull
+
+gTestAddFunc
+
 gTestAssertExpectedMessagesInternal
 
 gTestBug
@@ -11040,6 +11783,8 @@ gTestGetDir
 gTestIncomplete
 
 gTestLogTypeName
+
+gTestQueueDestroy
 
 gTestQueueFree
 
@@ -11519,9 +12264,15 @@ gValueArrayPrepend
 
 gValueArrayRemove
 
+gValueArraySort
+
+gValueArraySortWithData
+
 gBoxedCopy
 
 gBoxedFree
+
+gBoxedTypeRegisterStatic
 
 gEnumCompleteTypeInfo
 
@@ -11759,6 +12510,10 @@ gAppLaunchContextSetenv
 
 gAppLaunchContextUnsetenv
 
+gAsyncInitableNewvAsync
+
+gAsyncInitableInitAsync
+
 gAsyncInitableInitFinish
 
 gAsyncInitableNewFinish
@@ -11776,6 +12531,8 @@ gBufferedInputStreamNew
 gBufferedInputStreamNewSized
 
 gBufferedInputStreamFill
+
+gBufferedInputStreamFillAsync
 
 gBufferedInputStreamFillFinish
 
@@ -11808,6 +12565,8 @@ gCancellableNew
 gCancellableGetCurrent
 
 gCancellableCancel
+
+gCancellableConnect
 
 gCancellableDisconnect
 
@@ -11873,6 +12632,8 @@ gDataInputStreamReadInt64
 
 gDataInputStreamReadLine
 
+gDataInputStreamReadLineAsync
+
 gDataInputStreamReadLineFinish
 
 gDataInputStreamReadLineFinishUtf8
@@ -11887,9 +12648,13 @@ gDataInputStreamReadUint64
 
 gDataInputStreamReadUntil
 
+gDataInputStreamReadUntilAsync
+
 gDataInputStreamReadUntilFinish
 
 gDataInputStreamReadUpto
+
+gDataInputStreamReadUptoAsync
 
 gDataInputStreamReadUptoFinish
 
@@ -11939,7 +12704,11 @@ gDriveCanStartDegraded
 
 gDriveCanStop
 
+gDriveEject
+
 gDriveEjectFinish
+
+gDriveEjectWithOperation
 
 gDriveEjectWithOperationFinish
 
@@ -11969,9 +12738,15 @@ gDriveIsMediaRemovable
 
 gDriveIsRemovable
 
+gDrivePollForMedia
+
 gDrivePollForMediaFinish
 
+gDriveStart
+
 gDriveStartFinish
+
+gDriveStop
 
 gDriveStopFinish
 
@@ -12095,13 +12870,19 @@ gInitableInit
 
 gLoadableIconLoad
 
+gLoadableIconLoadAsync
+
 gLoadableIconLoadFinish
 
 gMemoryInputStreamNew
 
 gMemoryInputStreamNewFromBytes
 
+gMemoryInputStreamNewFromData
+
 gMemoryInputStreamAddBytes
+
+gMemoryInputStreamAddData
 
 gMemoryOutputStreamNewResizable
 
@@ -12209,7 +12990,11 @@ gMountCanEject
 
 gMountCanUnmount
 
+gMountEject
+
 gMountEjectFinish
+
+gMountEjectWithOperation
 
 gMountEjectWithOperationFinish
 
@@ -12231,17 +13016,25 @@ gMountGetUuid
 
 gMountGetVolume
 
+gMountGuessContentType
+
 gMountGuessContentTypeFinish
 
 gMountGuessContentTypeSync
 
 gMountIsShadowed
 
+gMountRemount
+
 gMountRemountFinish
 
 gMountShadow
 
+gMountUnmount
+
 gMountUnmountFinish
+
+gMountUnmountWithOperation
 
 gMountUnmountWithOperationFinish
 
@@ -12295,6 +13088,8 @@ gNetworkMonitorGetDefault
 
 gNetworkMonitorCanReach
 
+gNetworkMonitorCanReachAsync
+
 gNetworkMonitorCanReachFinish
 
 gNetworkMonitorGetConnectivity
@@ -12337,6 +13132,8 @@ gNotificationSetUrgent
 
 gPermissionAcquire
 
+gPermissionAcquireAsync
+
 gPermissionAcquireFinish
 
 gPermissionGetAllowed
@@ -12348,6 +13145,8 @@ gPermissionGetCanRelease
 gPermissionImplUpdate
 
 gPermissionRelease
+
+gPermissionReleaseAsync
 
 gPermissionReleaseFinish
 
@@ -12372,6 +13171,8 @@ gPropertyActionNew
 gProxyGetDefaultForProtocol
 
 gProxyConnect
+
+gProxyConnectAsync
 
 gProxyConnectFinish
 
@@ -12399,6 +13200,8 @@ gProxyResolverIsSupported
 
 gProxyResolverLookup
 
+gProxyResolverLookupAsync
+
 gProxyResolverLookupFinish
 
 gRemoteActionGroupActivateActionFull
@@ -12409,17 +13212,25 @@ gResolverGetDefault
 
 gResolverLookupByAddress
 
+gResolverLookupByAddressAsync
+
 gResolverLookupByAddressFinish
 
 gResolverLookupByName
+
+gResolverLookupByNameAsync
 
 gResolverLookupByNameFinish
 
 gResolverLookupRecords
 
+gResolverLookupRecordsAsync
+
 gResolverLookupRecordsFinish
 
 gResolverLookupService
+
+gResolverLookupServiceAsync
 
 gResolverLookupServiceFinish
 
@@ -12478,6 +13289,10 @@ gSimpleActionGroupInsert
 gSimpleActionGroupLookup
 
 gSimpleActionGroupRemove
+
+gSimpleAsyncResultNew
+
+gSimpleAsyncResultNewFromError
 
 gSimpleAsyncResultIsValid
 
@@ -12635,6 +13450,8 @@ gSocketAddressToNative
 
 gSocketAddressEnumeratorNext
 
+gSocketAddressEnumeratorNextAsync
+
 gSocketAddressEnumeratorNextFinish
 
 gSocketClientNew
@@ -12643,17 +13460,25 @@ gSocketClientAddApplicationProxy
 
 gSocketClientConnect
 
+gSocketClientConnectAsync
+
 gSocketClientConnectFinish
 
 gSocketClientConnectToHost
+
+gSocketClientConnectToHostAsync
 
 gSocketClientConnectToHostFinish
 
 gSocketClientConnectToService
 
+gSocketClientConnectToServiceAsync
+
 gSocketClientConnectToServiceFinish
 
 gSocketClientConnectToUri
+
+gSocketClientConnectToUriAsync
 
 gSocketClientConnectToUriFinish
 
@@ -12705,6 +13530,8 @@ gSocketConnectionFactoryRegisterType
 
 gSocketConnectionConnect
 
+gSocketConnectionConnectAsync
+
 gSocketConnectionConnectFinish
 
 gSocketConnectionGetLocalAddress
@@ -12729,9 +13556,13 @@ gSocketListenerNew
 
 gSocketListenerAccept
 
+gSocketListenerAcceptAsync
+
 gSocketListenerAcceptFinish
 
 gSocketListenerAcceptSocket
+
+gSocketListenerAcceptSocketAsync
 
 gSocketListenerAcceptSocketFinish
 
@@ -12775,7 +13606,11 @@ gStaticResourceGetResource
 
 gStaticResourceInit
 
+gTaskNew
+
 gTaskIsValid
+
+gTaskReportError
 
 gTaskGetCancellable
 
@@ -12811,6 +13646,12 @@ gTaskReturnErrorIfCancelled
 
 gTaskReturnInt
 
+gTaskReturnPointer
+
+gTaskRunInThread
+
+gTaskRunInThreadSync
+
 gTaskSetCheckCancellable
 
 gTaskSetPriority
@@ -12818,6 +13659,8 @@ gTaskSetPriority
 gTaskSetReturnOnCancel
 
 gTaskSetSourceTag
+
+gTaskSetTaskData
 
 gTcpConnectionGetGracefulDisconnect
 
@@ -12871,13 +13714,19 @@ gVfsIsActive
 
 gVfsParseName
 
+gVfsRegisterUriScheme
+
 gVfsUnregisterUriScheme
 
 gVolumeCanEject
 
 gVolumeCanMount
 
+gVolumeEject
+
 gVolumeEjectFinish
+
+gVolumeEjectWithOperation
 
 gVolumeEjectWithOperationFinish
 
@@ -12900,6 +13749,8 @@ gVolumeGetSortKey
 gVolumeGetSymbolicIcon
 
 gVolumeGetUuid
+
+gVolumeMount
 
 gVolumeMountFinish
 
@@ -12928,6 +13779,8 @@ gZlibCompressorSetFileInfo
 gZlibDecompressorNew
 
 gZlibDecompressorGetFileInfo
+
+gBusGet
 
 gBusGetFinish
 
@@ -12998,4 +13851,6 @@ gResourcesGetInfo
 gResourcesLookupData
 
 gResourcesOpenStream
+
+gSimpleAsyncReportGerrorInIdle
 }

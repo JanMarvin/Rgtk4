@@ -7,6 +7,7 @@
 \alias{gObjectInterfaceInstallProperty}
 \alias{gObjectInterfaceListProperties}
 \alias{gObjectBindProperty}
+\alias{gObjectBindPropertyFull}
 \alias{gObjectBindPropertyWithClosures}
 \alias{gObjectForceFloating}
 \alias{gObjectFreezeNotify}
@@ -34,6 +35,7 @@
 \alias{gObjectClassOverrideProperty}
 \alias{gSignalAccumulatorFirstWins}
 \alias{gSignalAccumulatorTrueHandled}
+\alias{gSignalAddEmissionHook}
 \alias{gSignalChainFromOverridden}
 \alias{gSignalConnectClosure}
 \alias{gSignalConnectClosureById}
@@ -53,6 +55,7 @@
 \alias{gSignalLookup}
 \alias{gSignalName}
 \alias{gSignalOverrideClassClosure}
+\alias{gSignalOverrideClassHandler}
 \alias{gSignalParseName}
 \alias{gSignalQuery}
 \alias{gSignalRemoveEmissionHook}
@@ -72,6 +75,16 @@ gObjectInterfaceInstallProperty(g_iface, pspec)
 gObjectInterfaceListProperties(g_iface)
 
 gObjectBindProperty(source, source_property, target, target_property, flags)
+
+gObjectBindPropertyFull(
+  source,
+  source_property,
+  target,
+  target_property,
+  flags,
+  transform_to,
+  transform_from
+)
 
 gObjectBindPropertyWithClosures(
   source,
@@ -135,6 +148,8 @@ gSignalAccumulatorFirstWins(ihint, return_accu, handler_return, dummy)
 
 gSignalAccumulatorTrueHandled(ihint, return_accu, handler_return, dummy)
 
+gSignalAddEmissionHook(signal_id, detail, hook_func)
+
 gSignalChainFromOverridden(instance_and_params, return_value)
 
 gSignalConnectClosure(instance, detailed_signal, closure, after)
@@ -196,6 +211,8 @@ gSignalLookup(name, itype)
 gSignalName(signal_id)
 
 gSignalOverrideClassClosure(signal_id, instance_type, class_closure)
+
+gSignalOverrideClassHandler(signal_name, instance_type, class_handler)
 
 gSignalParseName(detailed_signal, itype, force_detail_quark)
 
@@ -274,6 +291,12 @@ gSignalTypeCclosureNew(itype, struct_offset)
 
 \item{dummy}{gpointer}
 
+\item{signal_id}{guint}
+
+\item{detail}{GLib.Quark}
+
+\item{hook_func}{function — SignalEmissionHook callback}
+
 \item{instance_and_params}{Value}
 
 \item{return_value}{Value}
@@ -283,10 +306,6 @@ gSignalTypeCclosureNew(itype, struct_offset)
 \item{detailed_signal}{utf8}
 
 \item{after}{gboolean}
-
-\item{signal_id}{guint}
-
-\item{detail}{GLib.Quark}
 
 \item{handler_id}{gulong}
 
@@ -301,6 +320,10 @@ gSignalTypeCclosureNew(itype, struct_offset)
 \item{instance_type}{GType}
 
 \item{class_closure}{Closure}
+
+\item{signal_name}{utf8}
+
+\item{class_handler}{function — Callback callback}
 
 \item{force_detail_quark}{gboolean}
 
@@ -323,6 +346,8 @@ Binding
 
 Binding
 
+Binding
+
 Return value from C function
 
 Return value from C function
@@ -374,6 +399,8 @@ Return value from C function
 gboolean
 
 gboolean
+
+gulong
 
 Return value from C function
 
@@ -413,6 +440,8 @@ utf8
 
 Return value from C function
 
+Return value from C function
+
 gboolean
 
 Return value from C function
@@ -437,6 +466,8 @@ gObjectInterfaceInstallProperty
 gObjectInterfaceListProperties
 
 gObjectBindProperty
+
+gObjectBindPropertyFull
 
 gObjectBindPropertyWithClosures
 
@@ -492,6 +523,8 @@ gSignalAccumulatorFirstWins
 
 gSignalAccumulatorTrueHandled
 
+gSignalAddEmissionHook
+
 gSignalChainFromOverridden
 
 gSignalConnectClosure
@@ -529,6 +562,8 @@ gSignalLookup
 gSignalName
 
 gSignalOverrideClassClosure
+
+gSignalOverrideClassHandler
 
 gSignalParseName
 

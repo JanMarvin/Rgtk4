@@ -4,10 +4,13 @@
 \alias{gListPopAllocator}
 \alias{gListPushAllocator}
 \alias{gQueueClear}
+\alias{gQueueForeach}
 \alias{gQueueFree}
+\alias{gQueueFreeFull}
 \alias{gQueueGetLength}
 \alias{gQueueIndex}
 \alias{gQueueInit}
+\alias{gQueueInsertSorted}
 \alias{gQueueIsEmpty}
 \alias{gQueuePeekHead}
 \alias{gQueuePeekNth}
@@ -21,6 +24,7 @@
 \alias{gQueueRemove}
 \alias{gQueueRemoveAll}
 \alias{gQueueReverse}
+\alias{gQueueSort}
 \alias{gSlistPopAllocator}
 \alias{gSlistPushAllocator}
 \alias{gListModelGetItemType}
@@ -30,8 +34,10 @@
 \alias{gListStoreNew}
 \alias{gListStoreAppend}
 \alias{gListStoreInsert}
+\alias{gListStoreInsertSorted}
 \alias{gListStoreRemove}
 \alias{gListStoreRemoveAll}
+\alias{gListStoreSort}
 \alias{gListStoreSplice}
 \title{gListPopAllocator}
 \usage{
@@ -41,13 +47,19 @@ gListPushAllocator(allocator)
 
 gQueueClear(queue)
 
+gQueueForeach(queue, func)
+
 gQueueFree(queue)
+
+gQueueFreeFull(queue, free_func)
 
 gQueueGetLength(queue)
 
 gQueueIndex(queue, data)
 
 gQueueInit(queue)
+
+gQueueInsertSorted(queue, data, func)
 
 gQueueIsEmpty(queue)
 
@@ -75,6 +87,8 @@ gQueueRemoveAll(queue, data)
 
 gQueueReverse(queue)
 
+gQueueSort(queue, compare_func)
+
 gSlistPopAllocator()
 
 gSlistPushAllocator(allocator)
@@ -93,9 +107,13 @@ gListStoreAppend(store, item)
 
 gListStoreInsert(store, position, item)
 
+gListStoreInsertSorted(store, item, compare_func)
+
 gListStoreRemove(store, position)
 
 gListStoreRemoveAll(store)
+
+gListStoreSort(store, compare_func)
 
 gListStoreSplice(store, position, n_removals, additions, n_additions)
 }
@@ -104,9 +122,15 @@ gListStoreSplice(store, position, n_removals, additions, n_additions)
 
 \item{queue}{Queue}
 
+\item{func}{function — CompareDataFunc callback}
+
+\item{free_func}{DestroyNotify}
+
 \item{data}{gpointer}
 
 \item{n}{gint}
+
+\item{compare_func}{function — GLib.CompareDataFunc callback}
 
 \item{list}{ListModel}
 
@@ -137,12 +161,18 @@ Return value from C function
 
 Return value from C function
 
+Return value from C function
+
+Return value from C function
+
 guint
 
 gint
 
 Return value from C function
 
+Return value from C function
+
 gboolean
 
 gpointer
@@ -166,6 +196,8 @@ Return value from C function
 gboolean
 
 guint
+
+Return value from C function
 
 Return value from C function
 
@@ -187,6 +219,10 @@ Return value from C function
 
 Return value from C function
 
+guint
+
+Return value from C function
+
 Return value from C function
 
 Return value from C function
@@ -200,13 +236,19 @@ gListPushAllocator
 
 gQueueClear
 
+gQueueForeach
+
 gQueueFree
+
+gQueueFreeFull
 
 gQueueGetLength
 
 gQueueIndex
 
 gQueueInit
+
+gQueueInsertSorted
 
 gQueueIsEmpty
 
@@ -234,6 +276,8 @@ gQueueRemoveAll
 
 gQueueReverse
 
+gQueueSort
+
 gSlistPopAllocator
 
 gSlistPushAllocator
@@ -252,9 +296,13 @@ gListStoreAppend
 
 gListStoreInsert
 
+gListStoreInsertSorted
+
 gListStoreRemove
 
 gListStoreRemoveAll
+
+gListStoreSort
 
 gListStoreSplice
 }

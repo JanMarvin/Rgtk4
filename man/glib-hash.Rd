@@ -4,6 +4,10 @@
 \alias{gHashTableAdd}
 \alias{gHashTableContains}
 \alias{gHashTableDestroy}
+\alias{gHashTableFind}
+\alias{gHashTableForeach}
+\alias{gHashTableForeachRemove}
+\alias{gHashTableForeachSteal}
 \alias{gHashTableInsert}
 \alias{gHashTableLookup}
 \alias{gHashTableLookupExtended}
@@ -28,6 +32,14 @@ gHashTableAdd(hash_table, key)
 gHashTableContains(hash_table, key)
 
 gHashTableDestroy(hash_table)
+
+gHashTableFind(hash_table, predicate)
+
+gHashTableForeach(hash_table, func)
+
+gHashTableForeachRemove(hash_table, func)
+
+gHashTableForeachSteal(hash_table, func)
 
 gHashTableInsert(hash_table, key, value)
 
@@ -68,6 +80,10 @@ gHashTableIterSteal(iter)
 
 \item{key}{gpointer}
 
+\item{predicate}{function — HRFunc callback}
+
+\item{func}{function — HRFunc callback}
+
 \item{value}{gpointer}
 
 \item{lookup_key}{gpointer}
@@ -80,6 +96,14 @@ gboolean
 gboolean
 
 Return value from C function
+
+gpointer
+
+Return value from C function
+
+guint
+
+guint
 
 gboolean
 
@@ -121,6 +145,14 @@ gHashTableAdd
 gHashTableContains
 
 gHashTableDestroy
+
+gHashTableFind
+
+gHashTableForeach
+
+gHashTableForeachRemove
+
+gHashTableForeachSteal
 
 gHashTableInsert
 

@@ -15,22 +15,32 @@
 \alias{gFileNewTmp}
 \alias{gFileParseName}
 \alias{gFileAppendTo}
+\alias{gFileAppendToAsync}
 \alias{gFileAppendToFinish}
+\alias{gFileCopy}
+\alias{gFileCopyAsync}
 \alias{gFileCopyAttributes}
 \alias{gFileCopyFinish}
 \alias{gFileCreate}
+\alias{gFileCreateAsync}
 \alias{gFileCreateFinish}
 \alias{gFileCreateReadwrite}
+\alias{gFileCreateReadwriteAsync}
 \alias{gFileCreateReadwriteFinish}
 \alias{gFileDelete}
+\alias{gFileDeleteAsync}
 \alias{gFileDeleteFinish}
 \alias{gFileDup}
+\alias{gFileEjectMountable}
 \alias{gFileEjectMountableFinish}
+\alias{gFileEjectMountableWithOperation}
 \alias{gFileEjectMountableWithOperationFinish}
 \alias{gFileEnumerateChildren}
+\alias{gFileEnumerateChildrenAsync}
 \alias{gFileEnumerateChildrenFinish}
 \alias{gFileEqual}
 \alias{gFileFindEnclosingMount}
+\alias{gFileFindEnclosingMountAsync}
 \alias{gFileFindEnclosingMountFinish}
 \alias{gFileGetBasename}
 \alias{gFileGetChild}
@@ -47,40 +57,56 @@
 \alias{gFileHash}
 \alias{gFileIsNative}
 \alias{gFileLoadBytes}
+\alias{gFileLoadBytesAsync}
 \alias{gFileLoadBytesFinish}
 \alias{gFileLoadContents}
+\alias{gFileLoadContentsAsync}
 \alias{gFileLoadContentsFinish}
 \alias{gFileLoadPartialContentsFinish}
 \alias{gFileMakeDirectory}
+\alias{gFileMakeDirectoryAsync}
 \alias{gFileMakeDirectoryFinish}
 \alias{gFileMakeDirectoryWithParents}
 \alias{gFileMakeSymbolicLink}
+\alias{gFileMeasureDiskUsage}
 \alias{gFileMeasureDiskUsageFinish}
 \alias{gFileMonitor}
 \alias{gFileMonitorDirectory}
 \alias{gFileMonitorFile}
+\alias{gFileMountEnclosingVolume}
 \alias{gFileMountEnclosingVolumeFinish}
+\alias{gFileMountMountable}
 \alias{gFileMountMountableFinish}
+\alias{gFileMove}
 \alias{gFileOpenReadwrite}
+\alias{gFileOpenReadwriteAsync}
 \alias{gFileOpenReadwriteFinish}
 \alias{gFilePeekPath}
+\alias{gFilePollMountable}
 \alias{gFilePollMountableFinish}
 \alias{gFileQueryDefaultHandler}
 \alias{gFileQueryExists}
 \alias{gFileQueryFileType}
 \alias{gFileQueryFilesystemInfo}
+\alias{gFileQueryFilesystemInfoAsync}
 \alias{gFileQueryFilesystemInfoFinish}
 \alias{gFileQueryInfo}
+\alias{gFileQueryInfoAsync}
 \alias{gFileQueryInfoFinish}
 \alias{gFileQuerySettableAttributes}
 \alias{gFileQueryWritableNamespaces}
 \alias{gFileRead}
+\alias{gFileReadAsync}
 \alias{gFileReadFinish}
 \alias{gFileReplace}
+\alias{gFileReplaceAsync}
 \alias{gFileReplaceContents}
+\alias{gFileReplaceContentsAsync}
+\alias{gFileReplaceContentsBytesAsync}
 \alias{gFileReplaceContentsFinish}
 \alias{gFileReplaceFinish}
 \alias{gFileReplaceReadwrite}
+\alias{gFileReplaceReadwriteAsync}
 \alias{gFileReplaceReadwriteFinish}
 \alias{gFileResolveRelativePath}
 \alias{gFileSetAttribute}
@@ -90,16 +116,23 @@
 \alias{gFileSetAttributeString}
 \alias{gFileSetAttributeUint32}
 \alias{gFileSetAttributeUint64}
+\alias{gFileSetAttributesAsync}
 \alias{gFileSetAttributesFinish}
 \alias{gFileSetAttributesFromInfo}
 \alias{gFileSetDisplayName}
+\alias{gFileSetDisplayNameAsync}
 \alias{gFileSetDisplayNameFinish}
+\alias{gFileStartMountable}
 \alias{gFileStartMountableFinish}
+\alias{gFileStopMountable}
 \alias{gFileStopMountableFinish}
 \alias{gFileSupportsThreadContexts}
 \alias{gFileTrash}
+\alias{gFileTrashAsync}
 \alias{gFileTrashFinish}
+\alias{gFileUnmountMountable}
 \alias{gFileUnmountMountableFinish}
+\alias{gFileUnmountMountableWithOperation}
 \alias{gFileUnmountMountableWithOperationFinish}
 \alias{gFileAttributeInfoListNew}
 \alias{gFileAttributeInfoListAdd}
@@ -117,6 +150,7 @@
 \alias{gFileAttributeMatcherToString}
 \alias{gFileAttributeMatcherUnref}
 \alias{gFileEnumeratorClose}
+\alias{gFileEnumeratorCloseAsync}
 \alias{gFileEnumeratorCloseFinish}
 \alias{gFileEnumeratorGetChild}
 \alias{gFileEnumeratorGetContainer}
@@ -124,10 +158,12 @@
 \alias{gFileEnumeratorIsClosed}
 \alias{gFileEnumeratorIterate}
 \alias{gFileEnumeratorNextFile}
+\alias{gFileEnumeratorNextFilesAsync}
 \alias{gFileEnumeratorNextFilesFinish}
 \alias{gFileEnumeratorSetPending}
 \alias{gFileIoStreamGetEtag}
 \alias{gFileIoStreamQueryInfo}
+\alias{gFileIoStreamQueryInfoAsync}
 \alias{gFileIoStreamQueryInfoFinish}
 \alias{gFileIconNew}
 \alias{gFileIconGetFile}
@@ -195,6 +231,7 @@
 \alias{gFileInfoSetSymlinkTarget}
 \alias{gFileInfoUnsetAttributeMask}
 \alias{gFileInputStreamQueryInfo}
+\alias{gFileInputStreamQueryInfoAsync}
 \alias{gFileInputStreamQueryInfoFinish}
 \alias{gFileMonitorCancel}
 \alias{gFileMonitorEmitEvent}
@@ -202,6 +239,7 @@
 \alias{gFileMonitorSetRateLimit}
 \alias{gFileOutputStreamGetEtag}
 \alias{gFileOutputStreamQueryInfo}
+\alias{gFileOutputStreamQueryInfoAsync}
 \alias{gFileOutputStreamQueryInfoFinish}
 \title{gFileErrorFromErrno}
 \usage{
@@ -233,7 +271,21 @@ gFileParseName(parse_name)
 
 gFileAppendTo(file, flags, cancellable)
 
+gFileAppendToAsync(file, flags, io_priority, cancellable, callback)
+
 gFileAppendToFinish(file, res)
+
+gFileCopy(source, destination, flags, cancellable, progress_callback)
+
+gFileCopyAsync(
+  source,
+  destination,
+  flags,
+  io_priority,
+  cancellable,
+  progress_callback,
+  callback
+)
 
 gFileCopyAttributes(source, destination, flags, cancellable)
 
@@ -241,29 +293,56 @@ gFileCopyFinish(file, res)
 
 gFileCreate(file, flags, cancellable)
 
+gFileCreateAsync(file, flags, io_priority, cancellable, callback)
+
 gFileCreateFinish(file, res)
 
 gFileCreateReadwrite(file, flags, cancellable)
+
+gFileCreateReadwriteAsync(file, flags, io_priority, cancellable, callback)
 
 gFileCreateReadwriteFinish(file, res)
 
 gFileDelete(file, cancellable)
 
+gFileDeleteAsync(file, io_priority, cancellable, callback)
+
 gFileDeleteFinish(file, result)
 
 gFileDup(file)
 
+gFileEjectMountable(file, flags, cancellable, callback)
+
 gFileEjectMountableFinish(file, result)
+
+gFileEjectMountableWithOperation(
+  file,
+  flags,
+  mount_operation,
+  cancellable,
+  callback
+)
 
 gFileEjectMountableWithOperationFinish(file, result)
 
 gFileEnumerateChildren(file, attributes, flags, cancellable)
+
+gFileEnumerateChildrenAsync(
+  file,
+  attributes,
+  flags,
+  io_priority,
+  cancellable,
+  callback
+)
 
 gFileEnumerateChildrenFinish(file, res)
 
 gFileEqual(file1, file2)
 
 gFileFindEnclosingMount(file, cancellable)
+
+gFileFindEnclosingMountAsync(file, io_priority, cancellable, callback)
 
 gFileFindEnclosingMountFinish(file, res)
 
@@ -297,9 +376,13 @@ gFileIsNative(file)
 
 gFileLoadBytes(file, cancellable)
 
+gFileLoadBytesAsync(file, cancellable, callback)
+
 gFileLoadBytesFinish(file, result)
 
 gFileLoadContents(file, cancellable)
+
+gFileLoadContentsAsync(file, cancellable, callback)
 
 gFileLoadContentsFinish(file, res)
 
@@ -307,11 +390,15 @@ gFileLoadPartialContentsFinish(file, res)
 
 gFileMakeDirectory(file, cancellable)
 
+gFileMakeDirectoryAsync(file, io_priority, cancellable, callback)
+
 gFileMakeDirectoryFinish(file, result)
 
 gFileMakeDirectoryWithParents(file, cancellable)
 
 gFileMakeSymbolicLink(file, symlink_value, cancellable)
+
+gFileMeasureDiskUsage(file, flags, cancellable, progress_callback)
 
 gFileMeasureDiskUsageFinish(file, result)
 
@@ -321,15 +408,31 @@ gFileMonitorDirectory(file, flags, cancellable)
 
 gFileMonitorFile(file, flags, cancellable)
 
+gFileMountEnclosingVolume(
+  location,
+  flags,
+  mount_operation,
+  cancellable,
+  callback
+)
+
 gFileMountEnclosingVolumeFinish(location, result)
+
+gFileMountMountable(file, flags, mount_operation, cancellable, callback)
 
 gFileMountMountableFinish(file, result)
 
+gFileMove(source, destination, flags, cancellable, progress_callback)
+
 gFileOpenReadwrite(file, cancellable)
+
+gFileOpenReadwriteAsync(file, io_priority, cancellable, callback)
 
 gFileOpenReadwriteFinish(file, res)
 
 gFilePeekPath(file)
+
+gFilePollMountable(file, cancellable, callback)
 
 gFilePollMountableFinish(file, result)
 
@@ -341,9 +444,26 @@ gFileQueryFileType(file, flags, cancellable)
 
 gFileQueryFilesystemInfo(file, attributes, cancellable)
 
+gFileQueryFilesystemInfoAsync(
+  file,
+  attributes,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gFileQueryFilesystemInfoFinish(file, res)
 
 gFileQueryInfo(file, attributes, flags, cancellable)
+
+gFileQueryInfoAsync(
+  file,
+  attributes,
+  flags,
+  io_priority,
+  cancellable,
+  callback
+)
 
 gFileQueryInfoFinish(file, res)
 
@@ -353,9 +473,21 @@ gFileQueryWritableNamespaces(file, cancellable)
 
 gFileRead(file, cancellable)
 
+gFileReadAsync(file, io_priority, cancellable, callback)
+
 gFileReadFinish(file, res)
 
 gFileReplace(file, etag, make_backup, flags, cancellable)
+
+gFileReplaceAsync(
+  file,
+  etag,
+  make_backup,
+  flags,
+  io_priority,
+  cancellable,
+  callback
+)
 
 gFileReplaceContents(
   file,
@@ -367,11 +499,42 @@ gFileReplaceContents(
   cancellable
 )
 
+gFileReplaceContentsAsync(
+  file,
+  contents,
+  length,
+  etag,
+  make_backup,
+  flags,
+  cancellable,
+  callback
+)
+
+gFileReplaceContentsBytesAsync(
+  file,
+  contents,
+  etag,
+  make_backup,
+  flags,
+  cancellable,
+  callback
+)
+
 gFileReplaceContentsFinish(file, res)
 
 gFileReplaceFinish(file, res)
 
 gFileReplaceReadwrite(file, etag, make_backup, flags, cancellable)
+
+gFileReplaceReadwriteAsync(
+  file,
+  etag,
+  make_backup,
+  flags,
+  io_priority,
+  cancellable,
+  callback
+)
 
 gFileReplaceReadwriteFinish(file, res)
 
@@ -391,15 +554,29 @@ gFileSetAttributeUint32(file, attribute, value, flags, cancellable)
 
 gFileSetAttributeUint64(file, attribute, value, flags, cancellable)
 
+gFileSetAttributesAsync(file, info, flags, io_priority, cancellable, callback)
+
 gFileSetAttributesFinish(file, result)
 
 gFileSetAttributesFromInfo(file, info, flags, cancellable)
 
 gFileSetDisplayName(file, display_name, cancellable)
 
+gFileSetDisplayNameAsync(
+  file,
+  display_name,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gFileSetDisplayNameFinish(file, res)
 
+gFileStartMountable(file, flags, start_operation, cancellable, callback)
+
 gFileStartMountableFinish(file, result)
+
+gFileStopMountable(file, flags, mount_operation, cancellable, callback)
 
 gFileStopMountableFinish(file, result)
 
@@ -407,9 +584,21 @@ gFileSupportsThreadContexts(file)
 
 gFileTrash(file, cancellable)
 
+gFileTrashAsync(file, io_priority, cancellable, callback)
+
 gFileTrashFinish(file, result)
 
+gFileUnmountMountable(file, flags, cancellable, callback)
+
 gFileUnmountMountableFinish(file, result)
+
+gFileUnmountMountableWithOperation(
+  file,
+  flags,
+  mount_operation,
+  cancellable,
+  callback
+)
 
 gFileUnmountMountableWithOperationFinish(file, result)
 
@@ -445,6 +634,8 @@ gFileAttributeMatcherUnref(matcher)
 
 gFileEnumeratorClose(enumerator, cancellable)
 
+gFileEnumeratorCloseAsync(enumerator, io_priority, cancellable, callback)
+
 gFileEnumeratorCloseFinish(enumerator, result)
 
 gFileEnumeratorGetChild(enumerator, info)
@@ -459,6 +650,14 @@ gFileEnumeratorIterate(direnum, cancellable)
 
 gFileEnumeratorNextFile(enumerator, cancellable)
 
+gFileEnumeratorNextFilesAsync(
+  enumerator,
+  num_files,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gFileEnumeratorNextFilesFinish(enumerator, result)
 
 gFileEnumeratorSetPending(enumerator, pending)
@@ -466,6 +665,14 @@ gFileEnumeratorSetPending(enumerator, pending)
 gFileIoStreamGetEtag(stream)
 
 gFileIoStreamQueryInfo(stream, attributes, cancellable)
+
+gFileIoStreamQueryInfoAsync(
+  stream,
+  attributes,
+  io_priority,
+  cancellable,
+  callback
+)
 
 gFileIoStreamQueryInfoFinish(stream, result)
 
@@ -601,6 +808,14 @@ gFileInfoUnsetAttributeMask(info)
 
 gFileInputStreamQueryInfo(stream, attributes, cancellable)
 
+gFileInputStreamQueryInfoAsync(
+  stream,
+  attributes,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gFileInputStreamQueryInfoFinish(stream, result)
 
 gFileMonitorCancel(monitor)
@@ -615,6 +830,14 @@ gFileOutputStreamGetEtag(stream)
 
 gFileOutputStreamQueryInfo(stream, attributes, cancellable)
 
+gFileOutputStreamQueryInfoAsync(
+  stream,
+  attributes,
+  io_priority,
+  cancellable,
+  callback
+)
+
 gFileOutputStreamQueryInfoFinish(stream, result)
 }
 \arguments{
@@ -624,7 +847,7 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{tmpl}{filename}
 
-\item{contents}{guint8}
+\item{contents}{GLib.Bytes}
 
 \item{length}{gsize}
 
@@ -646,13 +869,21 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{cancellable}{Cancellable}
 
+\item{io_priority}{gint}
+
+\item{callback}{function — AsyncReadyCallback callback}
+
 \item{res}{AsyncResult}
 
 \item{source}{File}
 
 \item{destination}{File}
 
+\item{progress_callback}{function — FileProgressCallback callback}
+
 \item{result}{AsyncResult}
+
+\item{mount_operation}{MountOperation}
 
 \item{attributes}{utf8}
 
@@ -692,6 +923,8 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{info}{FileInfo}
 
+\item{start_operation}{MountOperation}
+
 \item{list}{FileAttributeInfoList}
 
 \item{matcher}{FileAttributeMatcher}
@@ -703,6 +936,8 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 \item{enumerator}{FileEnumerator}
 
 \item{direnum}{FileEnumerator}
+
+\item{num_files}{gint}
 
 \item{pending}{gboolean}
 
@@ -779,37 +1014,57 @@ File
 
 FileOutputStream
 
+Return value from C function
+
 FileOutputStream
+
+gboolean
+
+Return value from C function
 
 gboolean
 
 gboolean
 
 FileOutputStream
+
+Return value from C function
 
 FileOutputStream
 
 FileIOStream
 
+Return value from C function
+
 FileIOStream
 
 gboolean
+
+Return value from C function
 
 gboolean
 
 File
 
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 gboolean
 
 FileEnumerator
+
+Return value from C function
 
 FileEnumerator
 
 gboolean
 
 Mount
+
+Return value from C function
 
 Mount
 
@@ -843,13 +1098,21 @@ gboolean
 
 GLib.Bytes
 
+Return value from C function
+
 GLib.Bytes
 
 gboolean
 
+Return value from C function
+
 gboolean
 
 gboolean
+
+gboolean
+
+Return value from C function
 
 gboolean
 
@@ -867,15 +1130,25 @@ FileMonitor
 
 FileMonitor
 
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 File
 
+gboolean
+
 FileIOStream
+
+Return value from C function
 
 FileIOStream
 
 filename
+
+Return value from C function
 
 gboolean
 
@@ -887,9 +1160,13 @@ FileType
 
 FileInfo
 
+Return value from C function
+
 FileInfo
 
 FileInfo
+
+Return value from C function
 
 FileInfo
 
@@ -899,11 +1176,19 @@ FileAttributeInfoList
 
 FileInputStream
 
+Return value from C function
+
 FileInputStream
 
 FileOutputStream
 
+Return value from C function
+
 gboolean
+
+Return value from C function
+
+Return value from C function
 
 gboolean
 
@@ -911,6 +1196,8 @@ FileOutputStream
 
 FileIOStream
 
+Return value from C function
+
 FileIOStream
 
 File
@@ -929,15 +1216,23 @@ gboolean
 
 gboolean
 
+Return value from C function
+
 gboolean
 
 gboolean
 
 File
 
+Return value from C function
+
 File
 
+Return value from C function
+
 gboolean
+
+Return value from C function
 
 gboolean
 
@@ -945,9 +1240,15 @@ gboolean
 
 gboolean
 
-gboolean
+Return value from C function
 
 gboolean
+
+Return value from C function
+
+gboolean
+
+Return value from C function
 
 gboolean
 
@@ -983,6 +1284,8 @@ Return value from C function
 
 gboolean
 
+Return value from C function
+
 gboolean
 
 File
@@ -996,6 +1299,8 @@ gboolean
 gboolean
 
 FileInfo
+
+Return value from C function
 
 GLib.List
 
@@ -1004,6 +1309,8 @@ Return value from C function
 utf8
 
 FileInfo
+
+Return value from C function
 
 FileInfo
 
@@ -1139,6 +1446,8 @@ Return value from C function
 
 FileInfo
 
+Return value from C function
+
 FileInfo
 
 gboolean
@@ -1152,6 +1461,8 @@ Return value from C function
 utf8
 
 FileInfo
+
+Return value from C function
 
 FileInfo
 }
@@ -1184,7 +1495,13 @@ gFileParseName
 
 gFileAppendTo
 
+gFileAppendToAsync
+
 gFileAppendToFinish
+
+gFileCopy
+
+gFileCopyAsync
 
 gFileCopyAttributes
 
@@ -1192,29 +1509,43 @@ gFileCopyFinish
 
 gFileCreate
 
+gFileCreateAsync
+
 gFileCreateFinish
 
 gFileCreateReadwrite
+
+gFileCreateReadwriteAsync
 
 gFileCreateReadwriteFinish
 
 gFileDelete
 
+gFileDeleteAsync
+
 gFileDeleteFinish
 
 gFileDup
 
+gFileEjectMountable
+
 gFileEjectMountableFinish
+
+gFileEjectMountableWithOperation
 
 gFileEjectMountableWithOperationFinish
 
 gFileEnumerateChildren
+
+gFileEnumerateChildrenAsync
 
 gFileEnumerateChildrenFinish
 
 gFileEqual
 
 gFileFindEnclosingMount
+
+gFileFindEnclosingMountAsync
 
 gFileFindEnclosingMountFinish
 
@@ -1248,9 +1579,13 @@ gFileIsNative
 
 gFileLoadBytes
 
+gFileLoadBytesAsync
+
 gFileLoadBytesFinish
 
 gFileLoadContents
+
+gFileLoadContentsAsync
 
 gFileLoadContentsFinish
 
@@ -1258,11 +1593,15 @@ gFileLoadPartialContentsFinish
 
 gFileMakeDirectory
 
+gFileMakeDirectoryAsync
+
 gFileMakeDirectoryFinish
 
 gFileMakeDirectoryWithParents
 
 gFileMakeSymbolicLink
+
+gFileMeasureDiskUsage
 
 gFileMeasureDiskUsageFinish
 
@@ -1272,15 +1611,25 @@ gFileMonitorDirectory
 
 gFileMonitorFile
 
+gFileMountEnclosingVolume
+
 gFileMountEnclosingVolumeFinish
+
+gFileMountMountable
 
 gFileMountMountableFinish
 
+gFileMove
+
 gFileOpenReadwrite
+
+gFileOpenReadwriteAsync
 
 gFileOpenReadwriteFinish
 
 gFilePeekPath
+
+gFilePollMountable
 
 gFilePollMountableFinish
 
@@ -1292,9 +1641,13 @@ gFileQueryFileType
 
 gFileQueryFilesystemInfo
 
+gFileQueryFilesystemInfoAsync
+
 gFileQueryFilesystemInfoFinish
 
 gFileQueryInfo
+
+gFileQueryInfoAsync
 
 gFileQueryInfoFinish
 
@@ -1304,17 +1657,27 @@ gFileQueryWritableNamespaces
 
 gFileRead
 
+gFileReadAsync
+
 gFileReadFinish
 
 gFileReplace
 
+gFileReplaceAsync
+
 gFileReplaceContents
+
+gFileReplaceContentsAsync
+
+gFileReplaceContentsBytesAsync
 
 gFileReplaceContentsFinish
 
 gFileReplaceFinish
 
 gFileReplaceReadwrite
+
+gFileReplaceReadwriteAsync
 
 gFileReplaceReadwriteFinish
 
@@ -1334,15 +1697,23 @@ gFileSetAttributeUint32
 
 gFileSetAttributeUint64
 
+gFileSetAttributesAsync
+
 gFileSetAttributesFinish
 
 gFileSetAttributesFromInfo
 
 gFileSetDisplayName
 
+gFileSetDisplayNameAsync
+
 gFileSetDisplayNameFinish
 
+gFileStartMountable
+
 gFileStartMountableFinish
+
+gFileStopMountable
 
 gFileStopMountableFinish
 
@@ -1350,9 +1721,15 @@ gFileSupportsThreadContexts
 
 gFileTrash
 
+gFileTrashAsync
+
 gFileTrashFinish
 
+gFileUnmountMountable
+
 gFileUnmountMountableFinish
+
+gFileUnmountMountableWithOperation
 
 gFileUnmountMountableWithOperationFinish
 
@@ -1388,6 +1765,8 @@ gFileAttributeMatcherUnref
 
 gFileEnumeratorClose
 
+gFileEnumeratorCloseAsync
+
 gFileEnumeratorCloseFinish
 
 gFileEnumeratorGetChild
@@ -1402,6 +1781,8 @@ gFileEnumeratorIterate
 
 gFileEnumeratorNextFile
 
+gFileEnumeratorNextFilesAsync
+
 gFileEnumeratorNextFilesFinish
 
 gFileEnumeratorSetPending
@@ -1409,6 +1790,8 @@ gFileEnumeratorSetPending
 gFileIoStreamGetEtag
 
 gFileIoStreamQueryInfo
+
+gFileIoStreamQueryInfoAsync
 
 gFileIoStreamQueryInfoFinish
 
@@ -1544,6 +1927,8 @@ gFileInfoUnsetAttributeMask
 
 gFileInputStreamQueryInfo
 
+gFileInputStreamQueryInfoAsync
+
 gFileInputStreamQueryInfoFinish
 
 gFileMonitorCancel
@@ -1557,6 +1942,8 @@ gFileMonitorSetRateLimit
 gFileOutputStreamGetEtag
 
 gFileOutputStreamQueryInfo
+
+gFileOutputStreamQueryInfoAsync
 
 gFileOutputStreamQueryInfoFinish
 }

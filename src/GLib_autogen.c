@@ -13,6 +13,8 @@
 #include <utime.h>
 #include <time.h>
 #include <glib-object.h>
+#include "rgtk4_callbacks.h"
+#include "rgtk4_autogen_callbacks.h"
 
 /* Suppress pedantic warnings in auto-generated GTK glue code */
 #pragma GCC diagnostic ignored "-Wpedantic"
@@ -36,18 +38,15 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
 
-/* Finalizer for heap-allocated value structs */
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
   void *p = R_ExternalPtrAddr(s);
   if (p) g_free(p);
 }
 
-/* Helpers from rgtk4_helpers.c */
 extern SEXP make_gobject_ptr(gpointer obj);
 extern SEXP make_boxed_struct(const void *src, size_t size);
 
-/* Helper to box GStrv (char**) into R character vector */
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
   if (!strv) return R_NilValue;
@@ -58,32 +57,30 @@ static SEXP _box_GStrv(char **strv) {
   return res;
 }
 
-/* Helper to add an S3 class to an external pointer for easier debugging */
 static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
-
   void *obj = R_ExternalPtrAddr(ptr);
-
-  // Safety check: skip G_IS_OBJECT if the address is clearly invalid (< 4096)
   if ((uintptr_t)obj < 0x1000) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
     return ptr;
   }
-
   if (G_IS_OBJECT(obj)) {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
-    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 2));
+    SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
+    SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   }
@@ -201,22 +198,20 @@ SEXP R_g_async_queue_push_front_unlocked(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_async_queue_push_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_async_queue_push_sorted(SEXP s1, SEXP s2, SEXP s3) {
   GAsyncQueue* v1 = (GAsyncQueue*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
-  GCompareDataFunc v3 = (GCompareDataFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_async_queue_push_sorted(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_async_queue_push_sorted(v1, v2, (GCompareDataFunc)(_cb_closure_3 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
 
-SEXP R_g_async_queue_push_sorted_unlocked(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_async_queue_push_sorted_unlocked(SEXP s1, SEXP s2, SEXP s3) {
   GAsyncQueue* v1 = (GAsyncQueue*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (gpointer)(get_ptr(s2)); (void)v2;
-  GCompareDataFunc v3 = (GCompareDataFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_async_queue_push_sorted_unlocked(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_async_queue_push_sorted_unlocked(v1, v2, (GCompareDataFunc)(_cb_closure_3 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -286,20 +281,18 @@ SEXP R_g_async_queue_remove_unlocked(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_async_queue_sort(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_async_queue_sort(SEXP s1, SEXP s2) {
   GAsyncQueue* v1 = (GAsyncQueue*)(get_ptr(s1)); (void)v1;
-  GCompareDataFunc v2 = (GCompareDataFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_async_queue_sort(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_async_queue_sort(v1, (GCompareDataFunc)(_cb_closure_2 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
 
-SEXP R_g_async_queue_sort_unlocked(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_async_queue_sort_unlocked(SEXP s1, SEXP s2) {
   GAsyncQueue* v1 = (GAsyncQueue*)(get_ptr(s1)); (void)v1;
-  GCompareDataFunc v2 = (GCompareDataFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_async_queue_sort_unlocked(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_async_queue_sort_unlocked(v1, (GCompareDataFunc)(_cb_closure_2 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -1336,17 +1329,19 @@ SEXP R_g_byte_array_sized_new(SEXP s1) {
 
 SEXP R_g_byte_array_sort(SEXP s1, SEXP s2) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
-  GCompareFunc v2 = (GCompareFunc)(get_ptr(s2)); (void)v2;
-  g_byte_array_sort(v1, v2);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_2);
+  g_byte_array_sort(v1, (GCompareFunc)(_cb_closure_2 ? _rgtk4_cb_CompareFunc : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_2) rgtk4_closure_free(_cb_closure_2);
   return R_NilValue;
 }
 
 
-SEXP R_g_byte_array_sort_with_data(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_byte_array_sort_with_data(SEXP s1, SEXP s2) {
   GByteArray* v1 = (GByteArray*)(get_ptr(s1)); (void)v1;
-  GCompareDataFunc v2 = (GCompareDataFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_byte_array_sort_with_data(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_byte_array_sort_with_data(v1, (GCompareDataFunc)(_cb_closure_2 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -1583,11 +1578,10 @@ SEXP R_g_cache_insert(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_cache_key_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_cache_key_foreach(SEXP s1, SEXP s2) {
   GCache* v1 = (GCache*)(get_ptr(s1)); (void)v1;
-  GHFunc v2 = (GHFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_cache_key_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_cache_key_foreach(v1, (GHFunc)(_cb_closure_2 ? _rgtk4_cb_HFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -1600,11 +1594,10 @@ SEXP R_g_cache_remove(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_cache_value_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_cache_value_foreach(SEXP s1, SEXP s2) {
   GCache* v1 = (GCache*)(get_ptr(s1)); (void)v1;
-  GHFunc v2 = (GHFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_cache_value_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_cache_value_foreach(v1, (GHFunc)(_cb_closure_2 ? _rgtk4_cb_HFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -3392,11 +3385,10 @@ SEXP R_g_hash_table_destroy(SEXP s1) {
 }
 
 
-SEXP R_g_hash_table_find(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_hash_table_find(SEXP s1, SEXP s2) {
   GHashTable* v1 = (GHashTable*)(get_ptr(s1)); (void)v1;
-  GHRFunc v2 = (GHRFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer _ret = (gpointer)g_hash_table_find(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gpointer _ret = (gpointer)g_hash_table_find(v1, (GHRFunc)(_cb_closure_2 ? _rgtk4_cb_HRFunc : NULL), _cb_closure_2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
@@ -3410,20 +3402,18 @@ SEXP R_g_hash_table_find(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_hash_table_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_hash_table_foreach(SEXP s1, SEXP s2) {
   GHashTable* v1 = (GHashTable*)(get_ptr(s1)); (void)v1;
-  GHFunc v2 = (GHFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_hash_table_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_hash_table_foreach(v1, (GHFunc)(_cb_closure_2 ? _rgtk4_cb_HFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
 
-SEXP R_g_hash_table_foreach_remove(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_hash_table_foreach_remove(SEXP s1, SEXP s2) {
   GHashTable* v1 = (GHashTable*)(get_ptr(s1)); (void)v1;
-  GHRFunc v2 = (GHRFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  guint _ret = (guint)g_hash_table_foreach_remove(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  guint _ret = (guint)g_hash_table_foreach_remove(v1, (GHRFunc)(_cb_closure_2 ? _rgtk4_cb_HRFunc : NULL), _cb_closure_2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -3437,11 +3427,10 @@ SEXP R_g_hash_table_foreach_remove(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_hash_table_foreach_steal(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_hash_table_foreach_steal(SEXP s1, SEXP s2) {
   GHashTable* v1 = (GHashTable*)(get_ptr(s1)); (void)v1;
-  GHRFunc v2 = (GHRFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  guint _ret = (guint)g_hash_table_foreach_steal(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  guint _ret = (guint)g_hash_table_foreach_steal(v1, (GHRFunc)(_cb_closure_2 ? _rgtk4_cb_HRFunc : NULL), _cb_closure_2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -3860,8 +3849,11 @@ SEXP R_g_hook_insert_before(SEXP s1, SEXP s2, SEXP s3) {
 SEXP R_g_hook_insert_sorted(SEXP s1, SEXP s2, SEXP s3) {
   GHookList* v1 = (GHookList*)(get_ptr(s1)); (void)v1;
   GHook* v2 = (GHook*)(get_ptr(s2)); (void)v2;
-  GHookCompareFunc v3 = (GHookCompareFunc)(get_ptr(s3)); (void)v3;
-  g_hook_insert_sorted(v1, v2, v3);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_3);
+  g_hook_insert_sorted(v1, v2, (GHookCompareFunc)(_cb_closure_3 ? _rgtk4_cb_HookCompareFunc : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_3) rgtk4_closure_free(_cb_closure_3);
   return R_NilValue;
 }
 
@@ -3913,22 +3905,26 @@ SEXP R_g_hook_list_invoke_check(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_hook_list_marshal(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_hook_list_marshal(SEXP s1, SEXP s2, SEXP s3) {
   GHookList* v1 = (GHookList*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  GHookMarshaller v3 = (GHookMarshaller)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_hook_list_marshal(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_3);
+  g_hook_list_marshal(v1, v2, (GHookMarshaller)(_cb_closure_3 ? _rgtk4_cb_HookMarshaller : NULL), _cb_closure_3);
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_3) rgtk4_closure_free(_cb_closure_3);
   return R_NilValue;
 }
 
 
-SEXP R_g_hook_list_marshal_check(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_hook_list_marshal_check(SEXP s1, SEXP s2, SEXP s3) {
   GHookList* v1 = (GHookList*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
-  GHookCheckMarshaller v3 = (GHookCheckMarshaller)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_hook_list_marshal_check(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_3);
+  g_hook_list_marshal_check(v1, v2, (GHookCheckMarshaller)(_cb_closure_3 ? _rgtk4_cb_HookCheckMarshaller : NULL), _cb_closure_3);
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_3) rgtk4_closure_free(_cb_closure_3);
   return R_NilValue;
 }
 
@@ -5467,13 +5463,11 @@ SEXP R_g_main_context_find_source_by_user_data(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_main_context_invoke_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_main_context_invoke_full(SEXP s1, SEXP s2, SEXP s3) {
   GMainContext* v1 = (s1 != R_NilValue) ? (GMainContext*)(get_ptr(s1)) : NULL; (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
-  GSourceFunc v3 = (GSourceFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
-  g_main_context_invoke_full(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_main_context_invoke_full(v1, v2, (GSourceFunc)(_cb_closure_3 ? _rgtk4_cb_SourceFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -6491,12 +6485,11 @@ SEXP R_g_node_child_position(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_node_children_foreach(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_node_children_foreach(SEXP s1, SEXP s2, SEXP s3) {
   GNode* v1 = (GNode*)(get_ptr(s1)); (void)v1;
   GTraverseFlags v2 = (GTraverseFlags)((GTraverseFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  GNodeForeachFunc v3 = (GNodeForeachFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_node_children_foreach(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_node_children_foreach(v1, v2, (GNodeForeachFunc)(_cb_closure_3 ? _rgtk4_cb_NodeForeachFunc : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -6597,14 +6590,13 @@ SEXP R_g_node_reverse_children(SEXP s1) {
 }
 
 
-SEXP R_g_node_traverse(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_node_traverse(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   GNode* v1 = (GNode*)(get_ptr(s1)); (void)v1;
   GTraverseType v2 = (GTraverseType)((GTraverseType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GTraverseFlags v3 = (GTraverseFlags)((GTraverseFlags)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
-  GNodeTraverseFunc v5 = (GNodeTraverseFunc)(get_ptr(s5)); (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
-  g_node_traverse(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
+  g_node_traverse(v1, v2, v3, v4, (GNodeTraverseFunc)(_cb_closure_5 ? _rgtk4_cb_NodeTraverseFunc : NULL), _cb_closure_5);
   return R_NilValue;
 }
 
@@ -6868,12 +6860,10 @@ SEXP R_g_option_context_set_summary(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_option_context_set_translate_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_option_context_set_translate_func(SEXP s1, SEXP s2) {
   GOptionContext* v1 = (GOptionContext*)(get_ptr(s1)); (void)v1;
-  GTranslateFunc v2 = (s2 != R_NilValue) ? (GTranslateFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  g_option_context_set_translate_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_option_context_set_translate_func(v1, (GTranslateFunc)(_cb_closure_2 ? _rgtk4_cb_TranslateFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -6937,12 +6927,10 @@ SEXP R_g_option_group_ref(SEXP s1) {
 }
 
 
-SEXP R_g_option_group_set_translate_func(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_option_group_set_translate_func(SEXP s1, SEXP s2) {
   GOptionGroup* v1 = (GOptionGroup*)(get_ptr(s1)); (void)v1;
-  GTranslateFunc v2 = (s2 != R_NilValue) ? (GTranslateFunc)(get_ptr(s2)) : NULL; (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  g_option_group_set_translate_func(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_option_group_set_translate_func(v1, (GTranslateFunc)(_cb_closure_2 ? _rgtk4_cb_TranslateFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -7041,11 +7029,10 @@ SEXP R_g_queue_clear(SEXP s1) {
 }
 
 
-SEXP R_g_queue_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_queue_foreach(SEXP s1, SEXP s2) {
   GQueue* v1 = (GQueue*)(get_ptr(s1)); (void)v1;
-  GFunc v2 = (GFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_queue_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_queue_foreach(v1, (GFunc)(_cb_closure_2 ? _rgtk4_cb_Func : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -7105,12 +7092,11 @@ SEXP R_g_queue_init(SEXP s1) {
 }
 
 
-SEXP R_g_queue_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_queue_insert_sorted(SEXP s1, SEXP s2, SEXP s3) {
   GQueue* v1 = (GQueue*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GCompareDataFunc v3 = (GCompareDataFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_queue_insert_sorted(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_queue_insert_sorted(v1, v2, (GCompareDataFunc)(_cb_closure_3 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -7295,11 +7281,10 @@ SEXP R_g_queue_reverse(SEXP s1) {
 }
 
 
-SEXP R_g_queue_sort(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_queue_sort(SEXP s1, SEXP s2) {
   GQueue* v1 = (GQueue*)(get_ptr(s1)); (void)v1;
-  GCompareDataFunc v2 = (GCompareDataFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_queue_sort(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_queue_sort(v1, (GCompareDataFunc)(_cb_closure_2 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -7867,16 +7852,15 @@ SEXP R_g_regex_replace(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 }
 
 
-SEXP R_g_regex_replace_eval(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+SEXP R_g_regex_replace_eval(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   const GRegex* v1 = (const GRegex*)(get_ptr(s1)); (void)v1;
   const gchar* v2 = (const gchar*)(get_ptr(s2)); (void)v2;
   gssize v3 = (gssize)((gssize)_unbox_numeric(s3)); (void)v3;
   gint v4 = (gint)((gint)_unbox_numeric(s4)); (void)v4;
   GRegexMatchFlags v5 = (GRegexMatchFlags)((GRegexMatchFlags)(TYPEOF(s5)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s5) : INTEGER(s5)[0])); (void)v5;
-  GRegexEvalCallback v6 = (GRegexEvalCallback)(get_ptr(s6)); (void)v6;
-  gpointer v7 = (s7 != R_NilValue) ? (gpointer)(get_ptr(s7)) : NULL; (void)v7;
+  RCallbackClosure *_cb_closure_6 = (s6 == R_NilValue) ? NULL : rgtk4_closure_new(s6); (void)_cb_closure_6;
   GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_regex_replace_eval(v1, v2, v3, v4, v5, v6, v7, &_err);
+  gconstpointer _ret = (gconstpointer)g_regex_replace_eval(v1, v2, v3, v4, v5, (GRegexEvalCallback)(_cb_closure_6 ? _rgtk4_cb_RegexEvalCallback : NULL), _cb_closure_6, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : Rf_mkString(_ret ? (const char*)_ret : ""));
@@ -8281,12 +8265,11 @@ SEXP R_g_scanner_scope_add_symbol(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_scanner_scope_foreach_symbol(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_scanner_scope_foreach_symbol(SEXP s1, SEXP s2, SEXP s3) {
   GScanner* v1 = (GScanner*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
-  GHFunc v3 = (GHFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_scanner_scope_foreach_symbol(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_scanner_scope_foreach_symbol(v1, v2, (GHFunc)(_cb_closure_3 ? _rgtk4_cb_HFunc : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -8372,11 +8355,10 @@ SEXP R_g_sequence_append(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_sequence_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_sequence_foreach(SEXP s1, SEXP s2) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
-  GFunc v2 = (GFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_sequence_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_sequence_foreach(v1, (GFunc)(_cb_closure_2 ? _rgtk4_cb_Func : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -8453,12 +8435,11 @@ SEXP R_g_sequence_get_length(SEXP s1) {
 }
 
 
-SEXP R_g_sequence_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_sequence_insert_sorted(SEXP s1, SEXP s2, SEXP s3) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GCompareDataFunc v3 = (GCompareDataFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)g_sequence_insert_sorted(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gconstpointer _ret = (gconstpointer)g_sequence_insert_sorted(v1, v2, (GCompareDataFunc)(_cb_closure_3 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -8472,12 +8453,11 @@ SEXP R_g_sequence_insert_sorted(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_sequence_insert_sorted_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_sequence_insert_sorted_iter(SEXP s1, SEXP s2, SEXP s3) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GSequenceIterCompareFunc v3 = (GSequenceIterCompareFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)g_sequence_insert_sorted_iter(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gconstpointer _ret = (gconstpointer)g_sequence_insert_sorted_iter(v1, v2, (GSequenceIterCompareFunc)(_cb_closure_3 ? _rgtk4_cb_SequenceIterCompareFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -8507,12 +8487,11 @@ SEXP R_g_sequence_is_empty(SEXP s1) {
 }
 
 
-SEXP R_g_sequence_lookup(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_sequence_lookup(SEXP s1, SEXP s2, SEXP s3) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GCompareDataFunc v3 = (GCompareDataFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)g_sequence_lookup(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gconstpointer _ret = (gconstpointer)g_sequence_lookup(v1, v2, (GCompareDataFunc)(_cb_closure_3 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -8526,12 +8505,11 @@ SEXP R_g_sequence_lookup(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_sequence_lookup_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_sequence_lookup_iter(SEXP s1, SEXP s2, SEXP s3) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GSequenceIterCompareFunc v3 = (GSequenceIterCompareFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)g_sequence_lookup_iter(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gconstpointer _ret = (gconstpointer)g_sequence_lookup_iter(v1, v2, (GSequenceIterCompareFunc)(_cb_closure_3 ? _rgtk4_cb_SequenceIterCompareFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -8562,12 +8540,11 @@ SEXP R_g_sequence_prepend(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_sequence_search(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_sequence_search(SEXP s1, SEXP s2, SEXP s3) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GCompareDataFunc v3 = (GCompareDataFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)g_sequence_search(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gconstpointer _ret = (gconstpointer)g_sequence_search(v1, v2, (GCompareDataFunc)(_cb_closure_3 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -8581,12 +8558,11 @@ SEXP R_g_sequence_search(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_sequence_search_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_sequence_search_iter(SEXP s1, SEXP s2, SEXP s3) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GSequenceIterCompareFunc v3 = (GSequenceIterCompareFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  gconstpointer _ret = (gconstpointer)g_sequence_search_iter(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  gconstpointer _ret = (gconstpointer)g_sequence_search_iter(v1, v2, (GSequenceIterCompareFunc)(_cb_closure_3 ? _rgtk4_cb_SequenceIterCompareFunc : NULL), _cb_closure_3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -8600,30 +8576,27 @@ SEXP R_g_sequence_search_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 }
 
 
-SEXP R_g_sequence_sort(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_sequence_sort(SEXP s1, SEXP s2) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
-  GCompareDataFunc v2 = (GCompareDataFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_sequence_sort(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_sequence_sort(v1, (GCompareDataFunc)(_cb_closure_2 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
 
-SEXP R_g_sequence_sort_iter(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_sequence_sort_iter(SEXP s1, SEXP s2) {
   GSequence* v1 = (GSequence*)(get_ptr(s1)); (void)v1;
-  GSequenceIterCompareFunc v2 = (GSequenceIterCompareFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_sequence_sort_iter(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_sequence_sort_iter(v1, (GSequenceIterCompareFunc)(_cb_closure_2 ? _rgtk4_cb_SequenceIterCompareFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
 
-SEXP R_g_sequence_foreach_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_sequence_foreach_range(SEXP s1, SEXP s2, SEXP s3) {
   GSequenceIter* v1 = (GSequenceIter*)(get_ptr(s1)); (void)v1;
   GSequenceIter* v2 = (GSequenceIter*)(get_ptr(s2)); (void)v2;
-  GFunc v3 = (GFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_sequence_foreach_range(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_sequence_foreach_range(v1, v2, (GFunc)(_cb_closure_3 ? _rgtk4_cb_Func : NULL), _cb_closure_3);
   return R_NilValue;
 }
 
@@ -8718,20 +8691,18 @@ SEXP R_g_sequence_set(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_sequence_sort_changed(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_sequence_sort_changed(SEXP s1, SEXP s2) {
   GSequenceIter* v1 = (GSequenceIter*)(get_ptr(s1)); (void)v1;
-  GCompareDataFunc v2 = (GCompareDataFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_sequence_sort_changed(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_sequence_sort_changed(v1, (GCompareDataFunc)(_cb_closure_2 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
 
-SEXP R_g_sequence_sort_changed_iter(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_sequence_sort_changed_iter(SEXP s1, SEXP s2) {
   GSequenceIter* v1 = (GSequenceIter*)(get_ptr(s1)); (void)v1;
-  GSequenceIterCompareFunc v2 = (GSequenceIterCompareFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_sequence_sort_changed_iter(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_sequence_sort_changed_iter(v1, (GSequenceIterCompareFunc)(_cb_closure_2 ? _rgtk4_cb_SequenceIterCompareFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -9099,12 +9070,10 @@ SEXP R_g_source_remove_poll(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_source_set_callback(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_source_set_callback(SEXP s1, SEXP s2) {
   GSource* v1 = (GSource*)(get_ptr(s1)); (void)v1;
-  GSourceFunc v2 = (GSourceFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  g_source_set_callback(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_source_set_callback(v1, (GSourceFunc)(_cb_closure_2 ? _rgtk4_cb_SourceFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -9898,11 +9867,10 @@ SEXP R_g_test_suite_add_suite(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_thread_new(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_thread_new(SEXP s1, SEXP s2) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  GThreadFunc v2 = (GThreadFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gconstpointer _ret = (gconstpointer)g_thread_new(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  gconstpointer _ret = (gconstpointer)g_thread_new(v1, (GThreadFunc)(_cb_closure_2 ? _rgtk4_cb_ThreadFunc : NULL), _cb_closure_2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -9916,12 +9884,11 @@ SEXP R_g_thread_new(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_thread_try_new(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_thread_try_new(SEXP s1, SEXP s2) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
-  GThreadFunc v2 = (GThreadFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
   GError *_err = NULL;
-  gconstpointer _ret = (gconstpointer)g_thread_try_new(v1, v2, v3, &_err);
+  gconstpointer _ret = (gconstpointer)g_thread_try_new(v1, (GThreadFunc)(_cb_closure_2 ? _rgtk4_cb_ThreadFunc : NULL), _cb_closure_2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -10516,12 +10483,10 @@ SEXP R_g_trash_stack_push(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_tree_new_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
-  GCompareDataFunc v1 = (GCompareDataFunc)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GDestroyNotify v3 = (GDestroyNotify)(get_ptr(s3)); (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  gconstpointer _ret = (gconstpointer)g_tree_new_full(v1, v2, v3, v4);
+SEXP R_g_tree_new_full(SEXP s1, SEXP s2) {
+  RCallbackClosure *_cb_closure_1 = (s1 == R_NilValue) ? NULL : rgtk4_closure_new(s1); (void)_cb_closure_1;
+  GDestroyNotify v2 = (GDestroyNotify)(get_ptr(s2)); (void)v2;
+  gconstpointer _ret = (gconstpointer)g_tree_new_full((GCompareDataFunc)(_cb_closure_1 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_1, v2, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
@@ -10542,11 +10507,10 @@ SEXP R_g_tree_destroy(SEXP s1) {
 }
 
 
-SEXP R_g_tree_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_tree_foreach(SEXP s1, SEXP s2) {
   GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  GTraverseFunc v2 = (GTraverseFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_tree_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_tree_foreach(v1, (GTraverseFunc)(_cb_closure_2 ? _rgtk4_cb_TraverseFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -10680,11 +10644,13 @@ SEXP R_g_tree_replace(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_tree_search(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_tree_search(SEXP s1, SEXP s2) {
   GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  GCompareFunc v2 = (GCompareFunc)(get_ptr(s2)); (void)v2;
-  gconstpointer v3 = (s3 != R_NilValue) ? (gconstpointer)(get_ptr(s3)) : NULL; (void)v3;
-  gpointer _ret = (gpointer)g_tree_search(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_2);
+  gpointer _ret = (gpointer)g_tree_search(v1, (GCompareFunc)(_cb_closure_2 ? _rgtk4_cb_CompareFunc : NULL), _cb_closure_2);
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_2) rgtk4_closure_free(_cb_closure_2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, tag_pointer(R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue), "gpointer"));
@@ -10715,12 +10681,11 @@ SEXP R_g_tree_steal(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_tree_traverse(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_tree_traverse(SEXP s1, SEXP s2, SEXP s3) {
   GTree* v1 = (GTree*)(get_ptr(s1)); (void)v1;
-  GTraverseFunc v2 = (GTraverseFunc)(get_ptr(s2)); (void)v2;
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
   GTraverseType v3 = (GTraverseType)((GTraverseType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  g_tree_traverse(v1, v2, v3, v4);
+  g_tree_traverse(v1, (GTraverseFunc)(_cb_closure_2 ? _rgtk4_cb_TraverseFunc : NULL), v3, _cb_closure_2);
   return R_NilValue;
 }
 
@@ -13316,8 +13281,11 @@ SEXP R_g_assertion_message_error(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
 
 
 SEXP R_g_atexit(SEXP s1) {
-  GVoidFunc v1 = (GVoidFunc)(get_ptr(s1)); (void)v1;
-  g_atexit(v1);
+  RCallbackClosure *_cb_closure_1 = (s1 == R_NilValue) ? NULL : rgtk4_closure_new(s1); (void)_cb_closure_1;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_1);
+  g_atexit((GVoidFunc)(_cb_closure_1 ? _rgtk4_cb_VoidFunc : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_1) rgtk4_closure_free(_cb_closure_1);
   return R_NilValue;
 }
 
@@ -13631,13 +13599,11 @@ SEXP R_glib_check_version(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_child_watch_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_child_watch_add_full(SEXP s1, SEXP s2, SEXP s3) {
   gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   GPid v2 = (GPid)((GPid)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  GChildWatchFunc v3 = (GChildWatchFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
-  guint _ret = (guint)g_child_watch_add_full(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  guint _ret = (guint)g_child_watch_add_full(v1, v2, (GChildWatchFunc)(_cb_closure_3 ? _rgtk4_cb_ChildWatchFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -13917,11 +13883,10 @@ SEXP R_g_creat(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_datalist_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_datalist_foreach(SEXP s1, SEXP s2) {
   GData** v1 = (GData**)(get_ptr(s1)); (void)v1;
-  GDataForeachFunc v2 = (GDataForeachFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_datalist_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_datalist_foreach(v1, (GDataForeachFunc)(_cb_closure_2 ? _rgtk4_cb_DataForeachFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -13999,11 +13964,10 @@ SEXP R_g_dataset_destroy(SEXP s1) {
 }
 
 
-SEXP R_g_dataset_foreach(SEXP s1, SEXP s2, SEXP s3) {
+SEXP R_g_dataset_foreach(SEXP s1, SEXP s2) {
   gconstpointer v1 = (gconstpointer)(get_ptr(s1)); (void)v1;
-  GDataForeachFunc v2 = (GDataForeachFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  g_dataset_foreach(v1, v2, v3);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  g_dataset_foreach(v1, (GDataForeachFunc)(_cb_closure_2 ? _rgtk4_cb_DataForeachFunc : NULL), _cb_closure_2);
   return R_NilValue;
 }
 
@@ -15108,12 +15072,10 @@ SEXP R_g_hostname_to_unicode(SEXP s1) {
 }
 
 
-SEXP R_g_idle_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_idle_add_full(SEXP s1, SEXP s2) {
   gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
-  GSourceFunc v2 = (GSourceFunc)(get_ptr(s2)); (void)v2;
-  gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
-  GDestroyNotify v4 = (s4 != R_NilValue) ? (GDestroyNotify)(get_ptr(s4)) : NULL; (void)v4;
-  guint _ret = (guint)g_idle_add_full(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  guint _ret = (guint)g_idle_add_full(v1, (GSourceFunc)(_cb_closure_2 ? _rgtk4_cb_SourceFunc : NULL), _cb_closure_2, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -15257,14 +15219,12 @@ SEXP R_g_intern_string(SEXP s1) {
 }
 
 
-SEXP R_g_io_add_watch_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_io_add_watch_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   GIOChannel* v1 = (GIOChannel*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GIOCondition v3 = (GIOCondition)((GIOCondition)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
-  GIOFunc v4 = (GIOFunc)(get_ptr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  GDestroyNotify v6 = (GDestroyNotify)(get_ptr(s6)); (void)v6;
-  guint _ret = (guint)g_io_add_watch_full(v1, v2, v3, v4, v5, v6);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  guint _ret = (guint)g_io_add_watch_full(v1, v2, v3, (GIOFunc)(_cb_closure_4 ? _rgtk4_cb_IOFunc : NULL), _cb_closure_4, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -15422,13 +15382,11 @@ SEXP R_g_log_set_fatal_mask(SEXP s1, SEXP s2) {
 }
 
 
-SEXP R_g_log_set_handler_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_log_set_handler_full(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   GLogLevelFlags v2 = (GLogLevelFlags)((GLogLevelFlags)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
-  GLogFunc v3 = (GLogFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (GDestroyNotify)(get_ptr(s5)); (void)v5;
-  guint _ret = (guint)g_log_set_handler_full(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  guint _ret = (guint)g_log_set_handler_full(v1, v2, (GLogFunc)(_cb_closure_3 ? _rgtk4_cb_LogFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -15442,11 +15400,9 @@ SEXP R_g_log_set_handler_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 }
 
 
-SEXP R_g_log_set_writer_func(SEXP s1, SEXP s2, SEXP s3) {
-  GLogWriterFunc v1 = (GLogWriterFunc)(get_ptr(s1)); (void)v1;
-  gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GDestroyNotify v3 = (GDestroyNotify)(get_ptr(s3)); (void)v3;
-  g_log_set_writer_func(v1, v2, v3);
+SEXP R_g_log_set_writer_func(SEXP s1) {
+  RCallbackClosure *_cb_closure_1 = (s1 == R_NilValue) ? NULL : rgtk4_closure_new(s1); (void)_cb_closure_1;
+  g_log_set_writer_func((GLogWriterFunc)(_cb_closure_1 ? _rgtk4_cb_LogWriterFunc : NULL), _cb_closure_1, rgtk4_closure_free);
   return R_NilValue;
 }
 
@@ -16011,13 +15967,12 @@ SEXP R_g_propagate_error(SEXP s1) {
 }
 
 
-SEXP R_g_qsort_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_qsort_with_data(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer v1 = (gconstpointer)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
-  GCompareDataFunc v4 = (GCompareDataFunc)(get_ptr(s4)); (void)v4;
-  gpointer v5 = (s5 != R_NilValue) ? (gpointer)(get_ptr(s5)) : NULL; (void)v5;
-  g_qsort_with_data(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_4 = (s4 == R_NilValue) ? NULL : rgtk4_closure_new(s4); (void)_cb_closure_4;
+  g_qsort_with_data(v1, v2, v3, (GCompareDataFunc)(_cb_closure_4 ? _rgtk4_cb_CompareDataFunc : NULL), _cb_closure_4);
   return R_NilValue;
 }
 
@@ -16503,16 +16458,15 @@ SEXP R_g_spaced_primes_closest(SEXP s1) {
 }
 
 
-SEXP R_g_spawn_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_spawn_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   gchar** v2 = (gchar**)(get_ptr(s2)); (void)v2;
   gchar** v3 = (s3 != R_NilValue) ? (gchar**)(get_ptr(s3)) : NULL; (void)v3;
   GSpawnFlags v4 = (GSpawnFlags)((GSpawnFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GSpawnChildSetupFunc v5 = (s5 != R_NilValue) ? (GSpawnChildSetupFunc)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
   GPid _out_child_pid = {0}; (void)_out_child_pid;
   GError *_err = NULL;
-  gboolean _ret = (gboolean)g_spawn_async(v1, v2, v3, v4, v5, v6, &_out_child_pid, &_err);
+  gboolean _ret = (gboolean)g_spawn_async(v1, v2, v3, v4, (GSpawnChildSetupFunc)(_cb_closure_5 ? _rgtk4_cb_SpawnChildSetupFunc : NULL), _cb_closure_5, &_out_child_pid, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -16531,19 +16485,18 @@ SEXP R_g_spawn_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 }
 
 
-SEXP R_g_spawn_async_with_pipes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_spawn_async_with_pipes(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   gchar** v2 = (gchar**)(get_ptr(s2)); (void)v2;
   gchar** v3 = (s3 != R_NilValue) ? (gchar**)(get_ptr(s3)) : NULL; (void)v3;
   GSpawnFlags v4 = (GSpawnFlags)((GSpawnFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GSpawnChildSetupFunc v5 = (s5 != R_NilValue) ? (GSpawnChildSetupFunc)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
   GPid _out_child_pid = {0}; (void)_out_child_pid;
   gint _out_standard_input = 0; (void)_out_standard_input;
   gint _out_standard_output = 0; (void)_out_standard_output;
   gint _out_standard_error = 0; (void)_out_standard_error;
   GError *_err = NULL;
-  gboolean _ret = (gboolean)g_spawn_async_with_pipes(v1, v2, v3, v4, v5, v6, &_out_child_pid, &_out_standard_input, &_out_standard_output, &_out_standard_error, &_err);
+  gboolean _ret = (gboolean)g_spawn_async_with_pipes(v1, v2, v3, v4, (GSpawnChildSetupFunc)(_cb_closure_5 ? _rgtk4_cb_SpawnChildSetupFunc : NULL), _cb_closure_5, &_out_child_pid, &_out_standard_input, &_out_standard_output, &_out_standard_error, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 5));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 5));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -16685,18 +16638,17 @@ SEXP R_g_spawn_exit_error_quark(void) {
 }
 
 
-SEXP R_g_spawn_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+SEXP R_g_spawn_sync(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   gchar** v2 = (gchar**)(get_ptr(s2)); (void)v2;
   gchar** v3 = (s3 != R_NilValue) ? (gchar**)(get_ptr(s3)) : NULL; (void)v3;
   GSpawnFlags v4 = (GSpawnFlags)((GSpawnFlags)(TYPEOF(s4)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s4) : INTEGER(s4)[0])); (void)v4;
-  GSpawnChildSetupFunc v5 = (s5 != R_NilValue) ? (GSpawnChildSetupFunc)(get_ptr(s5)) : NULL; (void)v5;
-  gpointer v6 = (s6 != R_NilValue) ? (gpointer)(get_ptr(s6)) : NULL; (void)v6;
+  RCallbackClosure *_cb_closure_5 = (s5 == R_NilValue) ? NULL : rgtk4_closure_new(s5); (void)_cb_closure_5;
   gchar* _out_standard_output = 0; (void)_out_standard_output;
   gchar* _out_standard_error = 0; (void)_out_standard_error;
   gint _out_wait_status = 0; (void)_out_wait_status;
   GError *_err = NULL;
-  gboolean _ret = (gboolean)g_spawn_sync(v1, v2, v3, v4, v5, v6, &_out_standard_output, &_out_standard_error, &_out_wait_status, &_err);
+  gboolean _ret = (gboolean)g_spawn_sync(v1, v2, v3, v4, (GSpawnChildSetupFunc)(_cb_closure_5 ? _rgtk4_cb_SpawnChildSetupFunc : NULL), _cb_closure_5, &_out_standard_output, &_out_standard_error, &_out_wait_status, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -17439,26 +17391,28 @@ SEXP R_g_strv_length(SEXP s1) {
 SEXP R_g_test_add_data_func(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GTestDataFunc v3 = (GTestDataFunc)(get_ptr(s3)); (void)v3;
-  g_test_add_data_func(v1, v2, v3);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_test_add_data_func(v1, v2, (GTestDataFunc)(_cb_closure_3 ? _rgtk4_cb_TestDataFunc : NULL));
   return R_NilValue;
 }
 
 
-SEXP R_g_test_add_data_func_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+SEXP R_g_test_add_data_func_full(SEXP s1, SEXP s2, SEXP s3) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
-  GTestDataFunc v3 = (GTestDataFunc)(get_ptr(s3)); (void)v3;
-  GDestroyNotify v4 = (GDestroyNotify)(get_ptr(s4)); (void)v4;
-  g_test_add_data_func_full(v1, v2, v3, v4);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  g_test_add_data_func_full(v1, v2, (GTestDataFunc)(_cb_closure_3 ? _rgtk4_cb_TestDataFunc : NULL), rgtk4_closure_free);
   return R_NilValue;
 }
 
 
 SEXP R_g_test_add_func(SEXP s1, SEXP s2) {
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
-  GTestFunc v2 = (GTestFunc)(get_ptr(s2)); (void)v2;
-  g_test_add_func(v1, v2);
+  RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
+  RCallbackClosure *_prev_closure = rgtk4_set_current_closure(_cb_closure_2);
+  g_test_add_func(v1, (GTestFunc)(_cb_closure_2 ? _rgtk4_cb_TestFunc : NULL));
+  rgtk4_set_current_closure(_prev_closure);
+  if (_cb_closure_2) rgtk4_closure_free(_cb_closure_2);
   return R_NilValue;
 }
 
@@ -17810,13 +17764,11 @@ SEXP R_g_test_trap_subprocess(SEXP s1, SEXP s2, SEXP s3) {
 }
 
 
-SEXP R_g_timeout_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_timeout_add_full(SEXP s1, SEXP s2, SEXP s3) {
   gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
-  GSourceFunc v3 = (GSourceFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
-  guint _ret = (guint)g_timeout_add_full(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  guint _ret = (guint)g_timeout_add_full(v1, v2, (GSourceFunc)(_cb_closure_3 ? _rgtk4_cb_SourceFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
@@ -17830,13 +17782,11 @@ SEXP R_g_timeout_add_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 }
 
 
-SEXP R_g_timeout_add_seconds_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+SEXP R_g_timeout_add_seconds_full(SEXP s1, SEXP s2, SEXP s3) {
   gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
-  GSourceFunc v3 = (GSourceFunc)(get_ptr(s3)); (void)v3;
-  gpointer v4 = (s4 != R_NilValue) ? (gpointer)(get_ptr(s4)) : NULL; (void)v4;
-  GDestroyNotify v5 = (s5 != R_NilValue) ? (GDestroyNotify)(get_ptr(s5)) : NULL; (void)v5;
-  guint _ret = (guint)g_timeout_add_seconds_full(v1, v2, v3, v4, v5);
+  RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
+  guint _ret = (guint)g_timeout_add_seconds_full(v1, v2, (GSourceFunc)(_cb_closure_3 ? _rgtk4_cb_SourceFunc : NULL), _cb_closure_3, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
   SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
