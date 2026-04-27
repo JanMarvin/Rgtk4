@@ -421,3 +421,17 @@ print.RGtkObject <- function(x, ...) {
   cat(sprintf("<%s %s>\n", type, if (is.null(addr)) "?" else addr))
   invisible(x)
 }
+
+#' Wrap a raw vector as an external pointer to its bytes.
+#'
+#' Useful when calling C functions that take a `gpointer`/`gconstpointer`
+#' data buffer (e.g. `gBytesNew`, `gdkPixbufNewFromData`). The raw vector
+#' is anchored to the returned pointer so it won't be GC'd prematurely.
+#'
+#' @param x A raw vector.
+#' @return An external pointer suitable for passing to GTK functions.
+#' @export
+rawToExtptr <- function(x) {
+  if (!is.raw(x)) stop("expected raw vector")
+  .Call("R_raw_to_extptr", x, PACKAGE = "Rgtk4")
+}

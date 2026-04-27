@@ -47,7 +47,7 @@ gdkPixbufNewFromBytes <- function(data, colorspace, has_alpha, bits_per_sample, 
 #' @return Pixbuf
 #' @export
 gdkPixbufNewFromData <- function(data, colorspace, has_alpha, bits_per_sample, width, height, rowstride, destroy_fn, destroy_fn_data) {
-  .Call("R_gdk_pixbuf_new_from_data", as.integer(data), colorspace, has_alpha, as.integer(bits_per_sample), as.integer(width), as.integer(height), as.integer(rowstride), destroy_fn, destroy_fn_data)$result
+  .Call("R_gdk_pixbuf_new_from_data", data, colorspace, has_alpha, as.integer(bits_per_sample), as.integer(width), as.integer(height), as.integer(rowstride), destroy_fn, destroy_fn_data)$result
 }
 
 
@@ -98,7 +98,7 @@ gdkPixbufNewFromFileAtSize <- function(filename, width, height) {
 #' @return Pixbuf
 #' @export
 gdkPixbufNewFromInline <- function(data_length, data, copy_pixels) {
-  .Call("R_gdk_pixbuf_new_from_inline", as.integer(data_length), as.integer(data), copy_pixels)$result
+  .Call("R_gdk_pixbuf_new_from_inline", as.integer(data_length), data, copy_pixels)$result
 }
 
 
@@ -1179,7 +1179,7 @@ gdkPixbufLoaderSetSize <- function(loader, width, height) {
 #' @return gboolean
 #' @export
 gdkPixbufLoaderWrite <- function(loader, buf, count) {
-  .Call("R_gdk_pixbuf_loader_write", loader, as.integer(buf), as.integer(count))$result
+  .Call("R_gdk_pixbuf_loader_write", loader, buf, as.integer(count))$result
 }
 
 

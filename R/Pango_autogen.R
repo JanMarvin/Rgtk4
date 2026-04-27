@@ -864,7 +864,7 @@ pangoCoverageNew <- function() {
 #' @return Coverage
 #' @export
 pangoCoverageFromBytes <- function(bytes, n_bytes) {
-  .Call("R_pango_coverage_from_bytes", as.integer(bytes), as.integer(n_bytes))$result
+  .Call("R_pango_coverage_from_bytes", bytes, as.integer(n_bytes))$result
 }
 
 

@@ -1166,7 +1166,7 @@ gTypeClassUnref <- function(g_class) {
 #' @return Return value from C function
 #' @export
 gTypeClassAdjustPrivateOffset <- function(g_class, private_size_or_offset) {
-  invisible(.Call("R_g_type_class_adjust_private_offset", g_class, as.integer(private_size_or_offset)))
+  invisible(.Call("R_g_type_class_adjust_private_offset", g_class, private_size_or_offset))
 }
 
 

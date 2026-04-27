@@ -584,7 +584,7 @@ gBookmarkFileHasItem <- function(bookmark, uri) {
 #' @return gboolean
 #' @export
 gBookmarkFileLoadFromData <- function(bookmark, data, length) {
-  .Call("R_g_bookmark_file_load_from_data", bookmark, as.integer(data), as.integer(length))$result
+  .Call("R_g_bookmark_file_load_from_data", bookmark, data, as.integer(length))$result
 }
 
 
@@ -840,7 +840,7 @@ gBookmarkFileErrorQuark <- function() {
 #' @return guint8
 #' @export
 gByteArrayAppend <- function(array, data, len) {
-  .Call("R_g_byte_array_append", as.integer(array), as.integer(data), as.integer(len))$result
+  .Call("R_g_byte_array_append", array, data, as.integer(len))$result
 }
 
 
@@ -852,7 +852,7 @@ gByteArrayAppend <- function(array, data, len) {
 #' @return guint8
 #' @export
 gByteArrayFree <- function(array, free_segment) {
-  .Call("R_g_byte_array_free", as.integer(array), free_segment)$result
+  .Call("R_g_byte_array_free", array, free_segment)$result
 }
 
 
@@ -863,7 +863,7 @@ gByteArrayFree <- function(array, free_segment) {
 #' @return Bytes
 #' @export
 gByteArrayFreeToBytes <- function(array) {
-  .Call("R_g_byte_array_free_to_bytes", as.integer(array))$result
+  .Call("R_g_byte_array_free_to_bytes", array)$result
 }
 
 
@@ -885,7 +885,7 @@ gByteArrayNew <- function() {
 #' @return guint8
 #' @export
 gByteArrayNewTake <- function(data, len) {
-  .Call("R_g_byte_array_new_take", as.integer(data), as.integer(len))$result
+  .Call("R_g_byte_array_new_take", data, as.integer(len))$result
 }
 
 
@@ -898,7 +898,7 @@ gByteArrayNewTake <- function(data, len) {
 #' @return guint8
 #' @export
 gByteArrayPrepend <- function(array, data, len) {
-  .Call("R_g_byte_array_prepend", as.integer(array), as.integer(data), as.integer(len))$result
+  .Call("R_g_byte_array_prepend", array, data, as.integer(len))$result
 }
 
 
@@ -909,7 +909,7 @@ gByteArrayPrepend <- function(array, data, len) {
 #' @return guint8
 #' @export
 gByteArrayRef <- function(array) {
-  .Call("R_g_byte_array_ref", as.integer(array))$result
+  .Call("R_g_byte_array_ref", array)$result
 }
 
 
@@ -921,7 +921,7 @@ gByteArrayRef <- function(array) {
 #' @return guint8
 #' @export
 gByteArrayRemoveIndex <- function(array, index_) {
-  .Call("R_g_byte_array_remove_index", as.integer(array), as.integer(index_))$result
+  .Call("R_g_byte_array_remove_index", array, as.integer(index_))$result
 }
 
 
@@ -933,7 +933,7 @@ gByteArrayRemoveIndex <- function(array, index_) {
 #' @return guint8
 #' @export
 gByteArrayRemoveIndexFast <- function(array, index_) {
-  .Call("R_g_byte_array_remove_index_fast", as.integer(array), as.integer(index_))$result
+  .Call("R_g_byte_array_remove_index_fast", array, as.integer(index_))$result
 }
 
 
@@ -946,7 +946,7 @@ gByteArrayRemoveIndexFast <- function(array, index_) {
 #' @return guint8
 #' @export
 gByteArrayRemoveRange <- function(array, index_, length) {
-  .Call("R_g_byte_array_remove_range", as.integer(array), as.integer(index_), as.integer(length))$result
+  .Call("R_g_byte_array_remove_range", array, as.integer(index_), as.integer(length))$result
 }
 
 
@@ -958,7 +958,7 @@ gByteArrayRemoveRange <- function(array, index_, length) {
 #' @return guint8
 #' @export
 gByteArraySetSize <- function(array, length) {
-  .Call("R_g_byte_array_set_size", as.integer(array), as.integer(length))$result
+  .Call("R_g_byte_array_set_size", array, as.integer(length))$result
 }
 
 
@@ -981,7 +981,7 @@ gByteArraySizedNew <- function(reserved_size) {
 #' @return Return value from C function
 #' @export
 gByteArraySort <- function(array, compare_func) {
-  invisible(.Call("R_g_byte_array_sort", as.integer(array), compare_func))
+  invisible(.Call("R_g_byte_array_sort", array, compare_func))
 }
 
 
@@ -993,7 +993,7 @@ gByteArraySort <- function(array, compare_func) {
 #' @return Return value from C function
 #' @export
 gByteArraySortWithData <- function(array, compare_func) {
-  invisible(.Call("R_g_byte_array_sort_with_data", as.integer(array), compare_func))
+  invisible(.Call("R_g_byte_array_sort_with_data", array, compare_func))
 }
 
 
@@ -1004,7 +1004,7 @@ gByteArraySortWithData <- function(array, compare_func) {
 #' @return Return value from C function
 #' @export
 gByteArrayUnref <- function(array) {
-  invisible(.Call("R_g_byte_array_unref", as.integer(array)))
+  invisible(.Call("R_g_byte_array_unref", array))
 }
 
 
@@ -1016,7 +1016,7 @@ gByteArrayUnref <- function(array) {
 #' @return Bytes
 #' @export
 gBytesNew <- function(data, size) {
-  .Call("R_g_bytes_new", as.integer(data), as.integer(size))$result
+  .Call("R_g_bytes_new", data, as.integer(size))$result
 }
 
 
@@ -1041,7 +1041,7 @@ gBytesNewFromBytes <- function(bytes, offset, length) {
 #' @return Bytes
 #' @export
 gBytesNewTake <- function(data, size) {
-  .Call("R_g_bytes_new_take", as.integer(data), as.integer(size))$result
+  .Call("R_g_bytes_new_take", data, as.integer(size))$result
 }
 
 
@@ -1269,7 +1269,7 @@ gChecksumReset <- function(checksum) {
 #' @return Return value from C function
 #' @export
 gChecksumUpdate <- function(checksum, data, length) {
-  invisible(.Call("R_g_checksum_update", checksum, as.integer(data), length))
+  invisible(.Call("R_g_checksum_update", checksum, data, length))
 }
 
 
@@ -2914,7 +2914,7 @@ gHashTableIterSteal <- function(iter) {
 #' @return Hmac
 #' @export
 gHmacNew <- function(digest_type, key, key_len) {
-  .Call("R_g_hmac_new", digest_type, as.integer(key), as.integer(key_len))$result
+  .Call("R_g_hmac_new", digest_type, key, as.integer(key_len))$result
 }
 
 
@@ -2937,7 +2937,7 @@ gHmacCopy <- function(hmac) {
 #' @return Return value from C function
 #' @export
 gHmacGetDigest <- function(hmac, buffer) {
-  .Call("R_g_hmac_get_digest", hmac, as.integer(buffer))$digest_len
+  .Call("R_g_hmac_get_digest", hmac, buffer)$digest_len
 }
 
 
@@ -2983,7 +2983,7 @@ gHmacUnref <- function(hmac) {
 #' @return Return value from C function
 #' @export
 gHmacUpdate <- function(hmac, data, length) {
-  invisible(.Call("R_g_hmac_update", hmac, as.integer(data), length))
+  invisible(.Call("R_g_hmac_update", hmac, data, length))
 }
 
 
@@ -3301,7 +3301,7 @@ gIoChannelInit <- function(channel) {
 #' @return IOError
 #' @export
 gIoChannelRead <- function(channel, buf, count, bytes_read) {
-  .Call("R_g_io_channel_read", channel, buf, as.integer(count), as.integer(bytes_read))$result
+  .Call("R_g_io_channel_read", channel, buf, as.integer(count), bytes_read)$result
 }
 
 
@@ -3337,7 +3337,7 @@ gIoChannelReadLine <- function(channel) {
 #' @return IOStatus
 #' @export
 gIoChannelReadLineString <- function(channel, buffer, terminator_pos) {
-  .Call("R_g_io_channel_read_line_string", channel, buffer, as.integer(terminator_pos))$result
+  .Call("R_g_io_channel_read_line_string", channel, buffer, terminator_pos)$result
 }
 
 
@@ -3517,7 +3517,7 @@ gIoChannelUnref <- function(channel) {
 #' @return IOError
 #' @export
 gIoChannelWrite <- function(channel, buf, count, bytes_written) {
-  .Call("R_g_io_channel_write", channel, buf, as.integer(count), as.integer(bytes_written))$result
+  .Call("R_g_io_channel_write", channel, buf, as.integer(count), bytes_written)$result
 }
 
 
@@ -3530,7 +3530,7 @@ gIoChannelWrite <- function(channel, buf, count, bytes_written) {
 #' @return IOStatus
 #' @export
 gIoChannelWriteChars <- function(channel, buf, count) {
-  .Call("R_g_io_channel_write_chars", channel, as.integer(buf), count)
+  .Call("R_g_io_channel_write_chars", channel, buf, count)
 }
 
 
@@ -4049,7 +4049,7 @@ gKeyFileSetInteger <- function(key_file, group_name, key, value) {
 #' @return Return value from C function
 #' @export
 gKeyFileSetIntegerList <- function(key_file, group_name, key, list, length) {
-  invisible(.Call("R_g_key_file_set_integer_list", key_file, group_name, key, as.integer(list), as.integer(length)))
+  invisible(.Call("R_g_key_file_set_integer_list", key_file, group_name, key, list, as.integer(length)))
 }
 
 
@@ -8073,7 +8073,7 @@ gTestLogBufferFree <- function(tbuffer) {
 #' @return Return value from C function
 #' @export
 gTestLogBufferPush <- function(tbuffer, n_bytes, bytes) {
-  invisible(.Call("R_g_test_log_buffer_push", tbuffer, as.integer(n_bytes), as.integer(bytes)))
+  invisible(.Call("R_g_test_log_buffer_push", tbuffer, as.integer(n_bytes), bytes))
 }
 
 
@@ -8532,7 +8532,7 @@ gTimerDestroy <- function(timer) {
 #' @return gdouble
 #' @export
 gTimerElapsed <- function(timer, microseconds) {
-  .Call("R_g_timer_elapsed", timer, as.integer(microseconds))$result
+  .Call("R_g_timer_elapsed", timer, microseconds)$result
 }
 
 
@@ -8950,7 +8950,7 @@ gVariantNewByte <- function(value) {
 #' @return Variant
 #' @export
 gVariantNewBytestring <- function(string) {
-  .Call("R_g_variant_new_bytestring", as.integer(string))$result
+  .Call("R_g_variant_new_bytestring", string)$result
 }
 
 
@@ -9028,7 +9028,7 @@ gVariantNewFromBytes <- function(type, bytes, trusted) {
 #' @return Variant
 #' @export
 gVariantNewFromData <- function(type, data, size, trusted, notify, user_data) {
-  .Call("R_g_variant_new_from_data", type, as.integer(data), as.integer(size), trusted, notify, user_data)$result
+  .Call("R_g_variant_new_from_data", type, data, as.integer(size), trusted, notify, user_data)$result
 }
 
 
@@ -10686,7 +10686,7 @@ gBase64DecodeInplace <- function() {
 #' @return utf8
 #' @export
 gBase64Encode <- function(data, len) {
-  .Call("R_g_base64_encode", as.integer(data), as.integer(len))$result
+  .Call("R_g_base64_encode", data, as.integer(len))$result
 }
 
 
@@ -10710,7 +10710,7 @@ gBase64EncodeClose <- function(break_lines) {
 #' @return gsize
 #' @export
 gBase64EncodeStep <- function(in_, len, break_lines) {
-  .Call("R_g_base64_encode_step", as.integer(in_), as.integer(len), break_lines)
+  .Call("R_g_base64_encode_step", in_, as.integer(len), break_lines)
 }
 
 
@@ -10931,7 +10931,7 @@ gComputeChecksumForBytes <- function(checksum_type, data) {
 #' @return utf8
 #' @export
 gComputeChecksumForData <- function(checksum_type, data, length) {
-  .Call("R_g_compute_checksum_for_data", checksum_type, as.integer(data), as.integer(length))$result
+  .Call("R_g_compute_checksum_for_data", checksum_type, data, as.integer(length))$result
 }
 
 
@@ -10972,7 +10972,7 @@ gComputeHmacForBytes <- function(digest_type, key, data) {
 #' @return utf8
 #' @export
 gComputeHmacForData <- function(digest_type, key, key_len, data, length) {
-  .Call("R_g_compute_hmac_for_data", digest_type, as.integer(key), as.integer(key_len), as.integer(data), as.integer(length))$result
+  .Call("R_g_compute_hmac_for_data", digest_type, key, as.integer(key_len), data, as.integer(length))$result
 }
 
 
@@ -10987,7 +10987,7 @@ gComputeHmacForData <- function(digest_type, key, key_len, data, length) {
 #' @return utf8
 #' @export
 gComputeHmacForString <- function(digest_type, key, key_len, str, length) {
-  .Call("R_g_compute_hmac_for_string", digest_type, as.integer(key), as.integer(key_len), str, length)$result
+  .Call("R_g_compute_hmac_for_string", digest_type, key, as.integer(key_len), str, length)$result
 }
 
 
@@ -11001,7 +11001,7 @@ gComputeHmacForString <- function(digest_type, key, key_len, str, length) {
 #' @return guint8
 #' @export
 gConvert <- function(str, len, to_codeset, from_codeset) {
-  .Call("R_g_convert", as.integer(str), len, to_codeset, from_codeset)
+  .Call("R_g_convert", str, len, to_codeset, from_codeset)
 }
 
 
@@ -11026,7 +11026,7 @@ gConvertErrorQuark <- function() {
 #' @return guint8
 #' @export
 gConvertWithFallback <- function(str, len, to_codeset, from_codeset, fallback) {
-  .Call("R_g_convert_with_fallback", as.integer(str), len, to_codeset, from_codeset, fallback)
+  .Call("R_g_convert_with_fallback", str, len, to_codeset, from_codeset, fallback)
 }
 
 
@@ -11360,7 +11360,7 @@ gFileReadLink <- function(filename) {
 #' @return gboolean
 #' @export
 gFileSetContents <- function(filename, contents, length) {
-  .Call("R_g_file_set_contents", filename, as.integer(contents), length)$result
+  .Call("R_g_file_set_contents", filename, contents, length)$result
 }
 
 
@@ -12002,7 +12002,7 @@ gLocaleFromUtf8 <- function(utf8string, len) {
 #' @return utf8
 #' @export
 gLocaleToUtf8 <- function(opsysstring, len) {
-  .Call("R_g_locale_to_utf8", as.integer(opsysstring), len)
+  .Call("R_g_locale_to_utf8", opsysstring, len)
 }
 
 
@@ -12861,7 +12861,7 @@ gSliceGetConfig <- function(ckey) {
 #' @return gint64
 #' @export
 gSliceGetConfigState <- function(ckey, address, n_values) {
-  .Call("R_g_slice_get_config_state", ckey, address, as.integer(n_values))$result
+  .Call("R_g_slice_get_config_state", ckey, address, n_values)$result
 }
 
 
@@ -13422,7 +13422,7 @@ gStrsplit <- function(string, delimiter, max_tokens) {
 #' @return utf8
 #' @export
 gStrsplitSet <- function(string, delimiters, max_tokens) {
-  .Call("R_g_strsplit_set", string, as.integer(delimiters), as.integer(max_tokens))$result
+  .Call("R_g_strsplit_set", string, delimiters, as.integer(max_tokens))$result
 }
 
 
@@ -14350,7 +14350,7 @@ gUnicharXdigitValue <- function(c) {
 #' @return gunichar
 #' @export
 gUnicodeCanonicalDecomposition <- function(ch, result_len) {
-  .Call("R_g_unicode_canonical_decomposition", ch, as.integer(result_len))$result
+  .Call("R_g_unicode_canonical_decomposition", ch, result_len)$result
 }
 
 
@@ -14407,7 +14407,7 @@ gUsleep <- function(microseconds) {
 #' @return gunichar
 #' @export
 gUtf16ToUcs4 <- function(str, len) {
-  .Call("R_g_utf16_to_ucs4", as.integer(str), len)
+  .Call("R_g_utf16_to_ucs4", str, len)
 }
 
 
@@ -14419,7 +14419,7 @@ gUtf16ToUcs4 <- function(str, len) {
 #' @return utf8
 #' @export
 gUtf16ToUtf8 <- function(str, len) {
-  .Call("R_g_utf16_to_utf8", as.integer(str), len)
+  .Call("R_g_utf16_to_utf8", str, len)
 }
 
 
@@ -14722,7 +14722,7 @@ gUtf8ToUtf16 <- function(str, len) {
 #' @return gboolean
 #' @export
 gUtf8Validate <- function(str, max_len) {
-  .Call("R_g_utf8_validate", as.integer(str), max_len)
+  .Call("R_g_utf8_validate", str, max_len)
 }
 
 

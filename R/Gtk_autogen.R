@@ -19114,7 +19114,7 @@ gtkListStoreInsertBefore <- function(list_store, sibling) {
 #' @return Return value from C function
 #' @export
 gtkListStoreInsertWithValuesv <- function(list_store, position, columns, values, n_values) {
-  .Call("R_gtk_list_store_insert_with_valuesv", list_store, as.integer(position), as.integer(columns), values, as.integer(n_values))$iter
+  .Call("R_gtk_list_store_insert_with_valuesv", list_store, as.integer(position), columns, values, as.integer(n_values))$iter
 }
 
 
@@ -19187,7 +19187,7 @@ gtkListStoreRemove <- function(list_store, iter) {
 #' @return Return value from C function
 #' @export
 gtkListStoreReorder <- function(store, new_order) {
-  invisible(.Call("R_gtk_list_store_reorder", store, as.integer(new_order)))
+  invisible(.Call("R_gtk_list_store_reorder", store, new_order))
 }
 
 
@@ -19229,7 +19229,7 @@ gtkListStoreSetValue <- function(list_store, iter, column, value) {
 #' @return Return value from C function
 #' @export
 gtkListStoreSetValuesv <- function(list_store, iter, columns, values, n_values) {
-  invisible(.Call("R_gtk_list_store_set_valuesv", list_store, iter, as.integer(columns), values, as.integer(n_values)))
+  invisible(.Call("R_gtk_list_store_set_valuesv", list_store, iter, columns, values, as.integer(n_values)))
 }
 
 
@@ -32431,7 +32431,7 @@ gtkTreeModelRowInserted <- function(tree_model, path, iter) {
 #' @return Return value from C function
 #' @export
 gtkTreeModelRowsReorderedWithLength <- function(tree_model, path, iter, new_order, length) {
-  invisible(.Call("R_gtk_tree_model_rows_reordered_with_length", tree_model, path, iter, as.integer(new_order), as.integer(length)))
+  invisible(.Call("R_gtk_tree_model_rows_reordered_with_length", tree_model, path, iter, new_order, as.integer(length)))
 }
 
 
@@ -32698,7 +32698,7 @@ gtkTreePathNewFirst <- function() {
 #' @return TreePath
 #' @export
 gtkTreePathNewFromIndicesv <- function(indices, length) {
-  .Call("R_gtk_tree_path_new_from_indicesv", as.integer(indices), as.integer(length))$result
+  .Call("R_gtk_tree_path_new_from_indicesv", indices, as.integer(length))$result
 }
 
 
@@ -33344,7 +33344,7 @@ gtkTreeStoreInsertBefore <- function(tree_store, parent, sibling) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreInsertWithValuesv <- function(tree_store, parent, position, columns, values, n_values) {
-  .Call("R_gtk_tree_store_insert_with_valuesv", tree_store, parent, as.integer(position), as.integer(columns), values, as.integer(n_values))$iter
+  .Call("R_gtk_tree_store_insert_with_valuesv", tree_store, parent, as.integer(position), columns, values, as.integer(n_values))$iter
 }
 
 
@@ -33473,7 +33473,7 @@ gtkTreeStoreSetValue <- function(tree_store, iter, column, value) {
 #' @return Return value from C function
 #' @export
 gtkTreeStoreSetValuesv <- function(tree_store, iter, columns, values, n_values) {
-  invisible(.Call("R_gtk_tree_store_set_valuesv", tree_store, iter, as.integer(columns), values, as.integer(n_values)))
+  invisible(.Call("R_gtk_tree_store_set_valuesv", tree_store, iter, columns, values, as.integer(n_values)))
 }
 
 

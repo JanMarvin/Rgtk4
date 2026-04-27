@@ -1583,7 +1583,7 @@ gBufferedInputStreamGetBufferSize <- function(stream) {
 #' @return gsize
 #' @export
 gBufferedInputStreamPeek <- function(stream, buffer, offset, count) {
-  .Call("R_g_buffered_input_stream_peek", stream, as.integer(buffer), as.integer(offset), as.integer(count))$result
+  .Call("R_g_buffered_input_stream_peek", stream, buffer, as.integer(offset), as.integer(count))$result
 }
 
 
@@ -1926,7 +1926,7 @@ gCharsetConverterSetUseFallback <- function(converter, use_fallback) {
 #' @return ConverterResult
 #' @export
 gConverterConvert <- function(converter, inbuf, inbuf_size, outbuf, outbuf_size, flags) {
-  .Call("R_g_converter_convert", converter, as.integer(inbuf), as.integer(inbuf_size), as.integer(outbuf), as.integer(outbuf_size), flags)
+  .Call("R_g_converter_convert", converter, inbuf, as.integer(inbuf_size), outbuf, as.integer(outbuf_size), flags)
 }
 
 
@@ -4142,7 +4142,7 @@ gFileReplaceAsync <- function(file, etag, make_backup, flags, io_priority, cance
 #' @return gboolean
 #' @export
 gFileReplaceContents <- function(file, contents, length, etag, make_backup, flags, cancellable) {
-  .Call("R_g_file_replace_contents", file, as.integer(contents), as.integer(length), etag, make_backup, flags, cancellable)
+  .Call("R_g_file_replace_contents", file, contents, as.integer(length), etag, make_backup, flags, cancellable)
 }
 
 
@@ -4160,7 +4160,7 @@ gFileReplaceContents <- function(file, contents, length, etag, make_backup, flag
 #' @return Return value from C function
 #' @export
 gFileReplaceContentsAsync <- function(file, contents, length, etag, make_backup, flags, cancellable, callback) {
-  invisible(.Call("R_g_file_replace_contents_async", file, as.integer(contents), as.integer(length), etag, make_backup, flags, cancellable, callback))
+  invisible(.Call("R_g_file_replace_contents_async", file, contents, as.integer(length), etag, make_backup, flags, cancellable, callback))
 }
 
 
@@ -6352,7 +6352,7 @@ gInetAddressNewAny <- function(family) {
 #' @return InetAddress
 #' @export
 gInetAddressNewFromBytes <- function(bytes, family) {
-  .Call("R_g_inet_address_new_from_bytes", as.integer(bytes), family)$result
+  .Call("R_g_inet_address_new_from_bytes", bytes, family)$result
 }
 
 
@@ -7176,7 +7176,7 @@ gMemoryInputStreamNewFromBytes <- function(bytes) {
 #' @return InputStream
 #' @export
 gMemoryInputStreamNewFromData <- function(data, len, destroy) {
-  .Call("R_g_memory_input_stream_new_from_data", as.integer(data), len, destroy)$result
+  .Call("R_g_memory_input_stream_new_from_data", data, len, destroy)$result
 }
 
 
@@ -7202,7 +7202,7 @@ gMemoryInputStreamAddBytes <- function(stream, bytes) {
 #' @return Return value from C function
 #' @export
 gMemoryInputStreamAddData <- function(stream, data, len, destroy) {
-  invisible(.Call("R_g_memory_input_stream_add_data", stream, as.integer(data), len, destroy))
+  invisible(.Call("R_g_memory_input_stream_add_data", stream, data, len, destroy))
 }
 
 
@@ -8854,7 +8854,7 @@ gOutputStreamSpliceFinish <- function(stream, result) {
 #' @return gssize
 #' @export
 gOutputStreamWrite <- function(stream, buffer, count, cancellable) {
-  .Call("R_g_output_stream_write", stream, as.integer(buffer), as.integer(count), cancellable)$result
+  .Call("R_g_output_stream_write", stream, buffer, as.integer(count), cancellable)$result
 }
 
 
@@ -8868,7 +8868,7 @@ gOutputStreamWrite <- function(stream, buffer, count, cancellable) {
 #' @return gboolean
 #' @export
 gOutputStreamWriteAll <- function(stream, buffer, count, cancellable) {
-  .Call("R_g_output_stream_write_all", stream, as.integer(buffer), as.integer(count), cancellable)
+  .Call("R_g_output_stream_write_all", stream, buffer, as.integer(count), cancellable)
 }
 
 
@@ -8884,7 +8884,7 @@ gOutputStreamWriteAll <- function(stream, buffer, count, cancellable) {
 #' @return Return value from C function
 #' @export
 gOutputStreamWriteAllAsync <- function(stream, buffer, count, io_priority, cancellable, callback) {
-  invisible(.Call("R_g_output_stream_write_all_async", stream, as.integer(buffer), as.integer(count), as.integer(io_priority), cancellable, callback))
+  invisible(.Call("R_g_output_stream_write_all_async", stream, buffer, as.integer(count), as.integer(io_priority), cancellable, callback))
 }
 
 
@@ -8912,7 +8912,7 @@ gOutputStreamWriteAllFinish <- function(stream, result) {
 #' @return Return value from C function
 #' @export
 gOutputStreamWriteAsync <- function(stream, buffer, count, io_priority, cancellable, callback) {
-  invisible(.Call("R_g_output_stream_write_async", stream, as.integer(buffer), as.integer(count), as.integer(io_priority), cancellable, callback))
+  invisible(.Call("R_g_output_stream_write_async", stream, buffer, as.integer(count), as.integer(io_priority), cancellable, callback))
 }
 
 
@@ -9180,7 +9180,7 @@ gPollableOutputStreamIsWritable <- function(stream) {
 #' @return gssize
 #' @export
 gPollableOutputStreamWriteNonblocking <- function(stream, buffer, count, cancellable) {
-  .Call("R_g_pollable_output_stream_write_nonblocking", stream, as.integer(buffer), as.integer(count), cancellable)$result
+  .Call("R_g_pollable_output_stream_write_nonblocking", stream, buffer, as.integer(count), cancellable)$result
 }
 
 
@@ -11603,7 +11603,7 @@ gSocketReceiveWithBlocking <- function(socket, size, blocking, cancellable) {
 #' @return gssize
 #' @export
 gSocketSend <- function(socket, buffer, size, cancellable) {
-  .Call("R_g_socket_send", socket, as.integer(buffer), as.integer(size), cancellable)$result
+  .Call("R_g_socket_send", socket, buffer, as.integer(size), cancellable)$result
 }
 
 
@@ -11651,7 +11651,7 @@ gSocketSendMessages <- function(socket, messages, num_messages, flags, cancellab
 #' @return gssize
 #' @export
 gSocketSendTo <- function(socket, address, buffer, size, cancellable) {
-  .Call("R_g_socket_send_to", socket, address, as.integer(buffer), as.integer(size), cancellable)$result
+  .Call("R_g_socket_send_to", socket, address, buffer, as.integer(size), cancellable)$result
 }
 
 
@@ -11666,7 +11666,7 @@ gSocketSendTo <- function(socket, address, buffer, size, cancellable) {
 #' @return gssize
 #' @export
 gSocketSendWithBlocking <- function(socket, buffer, size, blocking, cancellable) {
-  .Call("R_g_socket_send_with_blocking", socket, as.integer(buffer), as.integer(size), blocking, cancellable)$result
+  .Call("R_g_socket_send_with_blocking", socket, buffer, as.integer(size), blocking, cancellable)$result
 }
 
 
@@ -12432,7 +12432,7 @@ gSocketConnectionIsConnected <- function(connection) {
 #' @return SocketControlMessage
 #' @export
 gSocketControlMessageDeserialize <- function(level, type, size, data) {
-  .Call("R_g_socket_control_message_deserialize", as.integer(level), as.integer(type), as.integer(size), as.integer(data))$result
+  .Call("R_g_socket_control_message_deserialize", as.integer(level), as.integer(type), as.integer(size), data)$result
 }
 
 
@@ -14018,7 +14018,7 @@ gContentTypeGetSymbolicIcon <- function(type) {
 #' @return utf8
 #' @export
 gContentTypeGuess <- function(filename, data, data_size) {
-  .Call("R_g_content_type_guess", filename, as.integer(data), as.integer(data_size))
+  .Call("R_g_content_type_guess", filename, data, as.integer(data_size))
 }
 
 
@@ -14246,7 +14246,7 @@ gPollableSourceNewFull <- function(pollable_stream, child_source, cancellable) {
 #' @return gssize
 #' @export
 gPollableStreamRead <- function(stream, buffer, count, blocking, cancellable) {
-  .Call("R_g_pollable_stream_read", stream, as.integer(buffer), as.integer(count), blocking, cancellable)$result
+  .Call("R_g_pollable_stream_read", stream, buffer, as.integer(count), blocking, cancellable)$result
 }
 
 
@@ -14261,7 +14261,7 @@ gPollableStreamRead <- function(stream, buffer, count, blocking, cancellable) {
 #' @return gssize
 #' @export
 gPollableStreamWrite <- function(stream, buffer, count, blocking, cancellable) {
-  .Call("R_g_pollable_stream_write", stream, as.integer(buffer), as.integer(count), blocking, cancellable)$result
+  .Call("R_g_pollable_stream_write", stream, buffer, as.integer(count), blocking, cancellable)$result
 }
 
 
@@ -14276,7 +14276,7 @@ gPollableStreamWrite <- function(stream, buffer, count, blocking, cancellable) {
 #' @return gboolean
 #' @export
 gPollableStreamWriteAll <- function(stream, buffer, count, blocking, cancellable) {
-  .Call("R_g_pollable_stream_write_all", stream, as.integer(buffer), as.integer(count), blocking, cancellable)
+  .Call("R_g_pollable_stream_write_all", stream, buffer, as.integer(count), blocking, cancellable)
 }
 
 

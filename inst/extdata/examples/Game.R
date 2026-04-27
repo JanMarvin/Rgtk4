@@ -7,11 +7,14 @@ frink_orig <- magick::image_read("https://jeroen.github.io/images/frink.png")
 
 make_pixbuf <- function(size) {
   scaled <- magick::image_scale(frink_orig, sprintf("%dx%d", size, size))
-  tmp <- tempfile(fileext = ".png")
-  magick::image_write(scaled, tmp)
-  pb <- gdkPixbufNewFromFile(tmp)
-  unlink(tmp)
-  pb
+  info <- magick::image_info(scaled)
+  w <- info$width; h <- info$height
+  bytes <- as.raw(magick::image_data(scaled, channels = "rgba"))
+  data_ptr <- rawToExtptr(bytes)
+  gb <- gBytesNew(data_ptr, length(bytes))
+  gdkPixbufNewFromBytes(gb, 0L, TRUE, 8L,
+                        as.integer(w), as.integer(h),
+                        as.integer(w * 4L))
 }
 
 HIGHSCORE_FILE <- "~/.whack_a_frink_scores"
@@ -33,6 +36,7 @@ add_score <- function(name, score) {
 }
 
 game <- new.env()
+game$pixbuf_keepalive <- list()
 window <- gtkWindowNew()
 gtkWindowSetTitle(window, "Whack-a-Frink!")
 gtkWindowSetDefaultSize(window, 600, 500)

@@ -4382,7 +4382,7 @@ gdkTextureNewFromResource <- function(resource_path) {
 #' @return Return value from C function
 #' @export
 gdkTextureDownload <- function(texture, data, stride) {
-  invisible(.Call("R_gdk_texture_download", texture, as.integer(data), as.integer(stride)))
+  invisible(.Call("R_gdk_texture_download", texture, data, as.integer(stride)))
 }
 
 
@@ -4507,7 +4507,7 @@ gdkTextureDownloaderDownloadBytes <- function(self) {
 #' @return Return value from C function
 #' @export
 gdkTextureDownloaderDownloadInto <- function(self, data, stride) {
-  invisible(.Call("R_gdk_texture_downloader_download_into", self, as.integer(data), as.integer(stride)))
+  invisible(.Call("R_gdk_texture_downloader_download_into", self, data, as.integer(stride)))
 }
 
 

@@ -359,3 +359,8 @@ SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type, SEXP 
 #pragma GCC diagnostic pop
   return make_gobject_ptr(dialog);
 }
+
+SEXP R_raw_to_extptr(SEXP s) {
+  if (TYPEOF(s) != RAWSXP) Rf_error("expected raw vector");
+  return R_MakeExternalPtr(RAW(s), s, R_NilValue);
+}
