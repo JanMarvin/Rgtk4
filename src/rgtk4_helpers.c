@@ -24,12 +24,31 @@ static const char *string_or_null(SEXP s) {
   return CHAR(elt);
 }
 
+// Forward decl — used by both gobject_finalizer (R-side GC) and as the
+// weak-notify target (GLib-side finalize).
+static void gobject_weak_notify(gpointer data, GObject *where_the_obj_was);
+
+// Finalizer for R-managed GObject extptrs. Runs when R GCs the SEXP.
+// Detaches our weak-ref (so it doesn't fire on already-dead R memory)
+// and drops our refcount on the GObject.
 static void gobject_finalizer(SEXP ext_ptr) {
   GObject *obj = R_ExternalPtrAddr(ext_ptr);
   if (obj && G_IS_OBJECT(obj)) {
+    g_object_weak_unref(obj, gobject_weak_notify, ext_ptr);
     g_object_unref(obj);
-    R_ClearExternalPtr(ext_ptr);
   }
+  R_ClearExternalPtr(ext_ptr);
+}
+
+// Weak-ref notify: GLib invokes this when the GObject is finalized
+// before R's finalizer runs. Clears the extptr address so subsequent
+// access via RGTK4_GET_PTR fails with "may have been destroyed" instead
+// of dereferencing freed memory.
+static void gobject_weak_notify(gpointer data, GObject *where_the_obj_was) {
+  (void)where_the_obj_was;
+  SEXP ext_ptr = (SEXP)data;
+  R_SetExternalPtrAddr(ext_ptr, NULL);
+  R_ReleaseObject(ext_ptr);
 }
 
 // Silent log handler — discards messages.
@@ -68,6 +87,12 @@ SEXP make_gobject_ptr(gpointer obj) {
     }
     SEXP ptr = PROTECT(R_MakeExternalPtr(obj, R_NilValue, R_NilValue));
     R_RegisterCFinalizerEx(ptr, gobject_finalizer, TRUE);
+
+    // Weak-notify clears the extptr address when GLib finalizes the
+    // GObject. R_PreserveObject keeps the SEXP alive until the notify
+    // (or our finalizer) calls R_ReleaseObject.
+    R_PreserveObject(ptr);
+    g_object_weak_ref(obj, gobject_weak_notify, ptr);
 
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
