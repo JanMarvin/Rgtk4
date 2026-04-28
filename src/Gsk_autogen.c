@@ -19,6 +19,63 @@ static inline double _unbox_numeric(SEXP s) {
   return 0.0;
 }
 
+/* Bounded numeric extraction. NA and out-of-range values throw. */
+static inline gint64 _unbox_int_range(SEXP s, gint64 lo, gint64 hi, const char *func) __attribute__((unused));
+static inline gint64 _unbox_int_range(SEXP s, gint64 lo, gint64 hi, const char *func) {
+  double v;
+  if (TYPEOF(s) == INTSXP) {
+    int iv = INTEGER(s)[0];
+    if (iv == NA_INTEGER) Rf_error("%s: NA not allowed for integer argument", func);
+    v = (double)iv;
+  } else if (TYPEOF(s) == REALSXP) {
+    v = REAL(s)[0];
+    if (!R_finite(v)) Rf_error("%s: NA/Inf not allowed for integer argument", func);
+  } else if (TYPEOF(s) == LGLSXP) {
+    int lv = LOGICAL(s)[0];
+    if (lv == NA_LOGICAL) Rf_error("%s: NA not allowed for integer argument", func);
+    v = (double)lv;
+  } else {
+    Rf_error("%s: expected numeric scalar, got %s", func, Rf_type2char(TYPEOF(s)));
+  }
+  if (v < (double)lo || v > (double)hi) {
+    Rf_error("%s: value %.0f out of range [%lld, %lld]", func, v, (long long)lo, (long long)hi);
+  }
+  return (gint64)v;
+}
+
+static inline double _unbox_real(SEXP s, const char *func) __attribute__((unused));
+static inline double _unbox_real(SEXP s, const char *func) {
+  if (TYPEOF(s) == REALSXP) {
+    double v = REAL(s)[0];
+    if (ISNA(v)) Rf_error("%s: NA not allowed for numeric argument", func);
+    return v;
+  }
+  if (TYPEOF(s) == INTSXP) {
+    int iv = INTEGER(s)[0];
+    if (iv == NA_INTEGER) Rf_error("%s: NA not allowed for numeric argument", func);
+    return (double)iv;
+  }
+  if (TYPEOF(s) == LGLSXP) {
+    int lv = LOGICAL(s)[0];
+    if (lv == NA_LOGICAL) Rf_error("%s: NA not allowed for numeric argument", func);
+    return (double)lv;
+  }
+  Rf_error("%s: expected numeric scalar, got %s", func, Rf_type2char(TYPEOF(s)));
+  return 0.0;  /* unreachable */
+}
+
+#define _UNBOX_GINT(s)   ((gint)  _unbox_int_range((s), G_MININT,    G_MAXINT,    __func__))
+#define _UNBOX_GUINT(s)  ((guint) _unbox_int_range((s), 0,           G_MAXUINT,   __func__))
+#define _UNBOX_GINT8(s)  ((gint8) _unbox_int_range((s), G_MININT8,   G_MAXINT8,   __func__))
+#define _UNBOX_GUINT8(s) ((guint8)_unbox_int_range((s), 0,           G_MAXUINT8,  __func__))
+#define _UNBOX_GINT16(s) ((gint16)_unbox_int_range((s), G_MININT16,  G_MAXINT16,  __func__))
+#define _UNBOX_GUINT16(s)((guint16)_unbox_int_range((s),0,           G_MAXUINT16, __func__))
+#define _UNBOX_GINT32(s) ((gint32)_unbox_int_range((s), G_MININT32,  G_MAXINT32,  __func__))
+#define _UNBOX_GUINT32(s)((guint32)_unbox_int_range((s),0,           G_MAXUINT32, __func__))
+#define _UNBOX_GINT64(s) ((gint64)_unbox_int_range((s), G_MININT64,  G_MAXINT64,  __func__))
+#define _UNBOX_GSIZE(s)  ((gsize) _unbox_int_range((s), 0,           G_MAXINT64,  __func__))
+#define _UNBOX_GBOOL(s)  ((gboolean)(Rf_asLogical(s) == TRUE))
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -26,9 +83,22 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
   if (TYPEOF(s) != EXTPTRSXP) {
     Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
   }
-  return R_ExternalPtrAddr(s);
+  void *addr = R_ExternalPtrAddr(s);
+  if (!addr) {
+    Rf_error("%s: external pointer is NULL (object may have been destroyed)", func);
+  }
+  return addr;
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
+
+/* GTK init guard. Bindings that touch GTK/GDK call
+   RGTK4_REQUIRE_INIT at entry to surface a clean error rather than
+   crash on uninitialized state. Uses gtk_is_initialized() directly. */
+#define RGTK4_REQUIRE_INIT() do { \
+  if (!gtk_is_initialized()) { \
+    Rf_error("%s: gtkInit() has not been called — call gtkInit() first", __func__); \
+  } \
+} while (0)
 
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
@@ -37,7 +107,7 @@ static void _finalizer_g_free(SEXP s) {
 }
 
 extern SEXP make_gobject_ptr(gpointer obj);
-extern SEXP make_boxed_struct(const void *src, size_t size);
+extern SEXP make_boxed_struct(const void *src, size_t size, const char *type_name);
 
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
@@ -53,6 +123,7 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
   void *obj = R_ExternalPtrAddr(ptr);
   if ((uintptr_t)obj < 0x1000) {
+    R_SetExternalPtrTag(ptr, Rf_mkChar(fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
@@ -62,13 +133,16 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
     return ptr;
   }
   if (G_IS_OBJECT(obj)) {
+    const char *tn = G_OBJECT_TYPE_NAME(obj);
+    R_SetExternalPtrTag(ptr, Rf_mkChar(tn ? tn : fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
-    SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
+    SET_STRING_ELT(classes, 0, Rf_mkChar(tn ? tn : fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
     SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
+    R_SetExternalPtrTag(ptr, Rf_mkChar(fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
@@ -89,6 +163,7 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
 
 
 SEXP R_gsk_blend_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskRenderNode* v2 = (GskRenderNode*)(get_ptr(s2)); (void)v2;
   GskBlendMode v3 = (GskBlendMode)((GskBlendMode)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -107,6 +182,7 @@ SEXP R_gsk_blend_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_blend_node_get_blend_mode(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskBlendMode _ret = (GskBlendMode)gsk_blend_node_get_blend_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -123,6 +199,7 @@ SEXP R_gsk_blend_node_get_blend_mode(SEXP s1) {
 
 
 SEXP R_gsk_blend_node_get_bottom_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_blend_node_get_bottom_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -139,6 +216,7 @@ SEXP R_gsk_blend_node_get_bottom_child(SEXP s1) {
 
 
 SEXP R_gsk_blend_node_get_top_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_blend_node_get_top_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -155,6 +233,7 @@ SEXP R_gsk_blend_node_get_top_child(SEXP s1) {
 
 
 SEXP R_gsk_blur_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_blur_node_new(v1, v2);
@@ -172,6 +251,7 @@ SEXP R_gsk_blur_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_blur_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_blur_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -188,6 +268,7 @@ SEXP R_gsk_blur_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_blur_node_get_radius(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_blur_node_get_radius(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -204,6 +285,7 @@ SEXP R_gsk_blur_node_get_radius(SEXP s1) {
 
 
 SEXP R_gsk_border_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   const GskRoundedRect* v1 = (const GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const float* v2 = (const float*)(get_ptr(s2)); (void)v2;
   const GdkRGBA* v3 = (const GdkRGBA*)(get_ptr(s3)); (void)v3;
@@ -222,11 +304,12 @@ SEXP R_gsk_border_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_border_node_get_colors(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_border_node_get_colors(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("GdkRGBA"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
@@ -245,6 +328,7 @@ SEXP R_gsk_border_node_get_colors(SEXP s1) {
 
 
 SEXP R_gsk_border_node_get_outline(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_border_node_get_outline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -261,6 +345,7 @@ SEXP R_gsk_border_node_get_outline(SEXP s1) {
 
 
 SEXP R_gsk_border_node_get_widths(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_border_node_get_widths(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -277,6 +362,7 @@ SEXP R_gsk_border_node_get_widths(SEXP s1) {
 
 
 SEXP R_gsk_cairo_node_new(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const graphene_rect_t* v1 = (const graphene_rect_t*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_cairo_node_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -293,6 +379,7 @@ SEXP R_gsk_cairo_node_new(SEXP s1) {
 
 
 SEXP R_gsk_cairo_node_get_draw_context(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_cairo_node_get_draw_context(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -309,6 +396,7 @@ SEXP R_gsk_cairo_node_get_draw_context(SEXP s1) {
 
 
 SEXP R_gsk_cairo_node_get_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_cairo_node_get_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -325,6 +413,7 @@ SEXP R_gsk_cairo_node_get_surface(SEXP s1) {
 
 
 SEXP R_gsk_cairo_renderer_new(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gsk_cairo_renderer_new();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -341,6 +430,7 @@ SEXP R_gsk_cairo_renderer_new(void) {
 
 
 SEXP R_gsk_clip_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_clip_node_new(v1, v2);
@@ -358,6 +448,7 @@ SEXP R_gsk_clip_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_clip_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_clip_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -374,11 +465,12 @@ SEXP R_gsk_clip_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_clip_node_get_clip(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_clip_node_get_clip(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Rect"));
@@ -397,6 +489,7 @@ SEXP R_gsk_clip_node_get_clip(SEXP s1) {
 
 
 SEXP R_gsk_color_matrix_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   const graphene_matrix_t* v2 = (const graphene_matrix_t*)(get_ptr(s2)); (void)v2;
   const graphene_vec4_t* v3 = (const graphene_vec4_t*)(get_ptr(s3)); (void)v3;
@@ -415,6 +508,7 @@ SEXP R_gsk_color_matrix_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_color_matrix_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_color_matrix_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -431,11 +525,12 @@ SEXP R_gsk_color_matrix_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_color_matrix_node_get_color_matrix(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_color_matrix_node_get_color_matrix(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Matrix"));
@@ -454,11 +549,12 @@ SEXP R_gsk_color_matrix_node_get_color_matrix(SEXP s1) {
 
 
 SEXP R_gsk_color_matrix_node_get_color_offset(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_color_matrix_node_get_color_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Vec4"));
@@ -477,6 +573,7 @@ SEXP R_gsk_color_matrix_node_get_color_offset(SEXP s1) {
 
 
 SEXP R_gsk_color_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkRGBA* v1 = (const GdkRGBA*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_color_node_new(v1, v2);
@@ -494,11 +591,12 @@ SEXP R_gsk_color_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_color_node_get_color(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_color_node_get_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("GdkRGBA"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
@@ -517,6 +615,7 @@ SEXP R_gsk_color_node_get_color(SEXP s1) {
 
 
 SEXP R_gsk_conic_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   const graphene_rect_t* v1 = (const graphene_rect_t*)(get_ptr(s1)); (void)v1;
   const graphene_point_t* v2 = (const graphene_point_t*)(get_ptr(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -537,6 +636,7 @@ SEXP R_gsk_conic_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 
 
 SEXP R_gsk_conic_gradient_node_get_angle(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_conic_gradient_node_get_angle(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -553,11 +653,12 @@ SEXP R_gsk_conic_gradient_node_get_angle(SEXP s1) {
 
 
 SEXP R_gsk_conic_gradient_node_get_center(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_conic_gradient_node_get_center(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
@@ -576,6 +677,7 @@ SEXP R_gsk_conic_gradient_node_get_center(SEXP s1) {
 
 
 SEXP R_gsk_conic_gradient_node_get_color_stops(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsize _out_n_stops = 0; (void)_out_n_stops;
   gconstpointer _ret = (gconstpointer)gsk_conic_gradient_node_get_color_stops(v1, &_out_n_stops);
@@ -598,6 +700,7 @@ SEXP R_gsk_conic_gradient_node_get_color_stops(SEXP s1) {
 
 
 SEXP R_gsk_conic_gradient_node_get_n_color_stops(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsize _ret = (gsize)gsk_conic_gradient_node_get_n_color_stops(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -614,6 +717,7 @@ SEXP R_gsk_conic_gradient_node_get_n_color_stops(SEXP s1) {
 
 
 SEXP R_gsk_conic_gradient_node_get_rotation(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_conic_gradient_node_get_rotation(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -630,6 +734,7 @@ SEXP R_gsk_conic_gradient_node_get_rotation(SEXP s1) {
 
 
 SEXP R_gsk_container_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode** v1 = (GskRenderNode**)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_container_node_new(v1, v2);
@@ -647,6 +752,7 @@ SEXP R_gsk_container_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_container_node_get_child(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_container_node_get_child(v1, v2);
@@ -664,6 +770,7 @@ SEXP R_gsk_container_node_get_child(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_container_node_get_n_children(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gsk_container_node_get_n_children(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -680,6 +787,7 @@ SEXP R_gsk_container_node_get_n_children(SEXP s1) {
 
 
 SEXP R_gsk_cross_fade_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskRenderNode* v2 = (GskRenderNode*)(get_ptr(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -698,6 +806,7 @@ SEXP R_gsk_cross_fade_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_cross_fade_node_get_end_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_cross_fade_node_get_end_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -714,6 +823,7 @@ SEXP R_gsk_cross_fade_node_get_end_child(SEXP s1) {
 
 
 SEXP R_gsk_cross_fade_node_get_progress(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_cross_fade_node_get_progress(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -730,6 +840,7 @@ SEXP R_gsk_cross_fade_node_get_progress(SEXP s1) {
 
 
 SEXP R_gsk_cross_fade_node_get_start_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_cross_fade_node_get_start_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -746,6 +857,7 @@ SEXP R_gsk_cross_fade_node_get_start_child(SEXP s1) {
 
 
 SEXP R_gsk_debug_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   char* v2 = (char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_debug_node_new(v1, v2);
@@ -763,6 +875,7 @@ SEXP R_gsk_debug_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_debug_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_debug_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -779,6 +892,7 @@ SEXP R_gsk_debug_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_debug_node_get_message(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_debug_node_get_message(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -795,6 +909,7 @@ SEXP R_gsk_debug_node_get_message(SEXP s1) {
 
 
 SEXP R_gsk_fill_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskPath* v2 = (GskPath*)(get_ptr(s2)); (void)v2;
   GskFillRule v3 = (GskFillRule)((GskFillRule)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -813,6 +928,7 @@ SEXP R_gsk_fill_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_fill_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_fill_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -829,6 +945,7 @@ SEXP R_gsk_fill_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_fill_node_get_fill_rule(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskFillRule _ret = (GskFillRule)gsk_fill_node_get_fill_rule(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -845,6 +962,7 @@ SEXP R_gsk_fill_node_get_fill_rule(SEXP s1) {
 
 
 SEXP R_gsk_fill_node_get_path(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_fill_node_get_path(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -861,6 +979,7 @@ SEXP R_gsk_fill_node_get_path(SEXP s1) {
 
 
 SEXP R_gsk_gl_renderer_new(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gsk_gl_renderer_new();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -877,6 +996,7 @@ SEXP R_gsk_gl_renderer_new(void) {
 
 
 SEXP R_gsk_gl_shader_new_from_bytes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GBytes* v1 = (GBytes*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_gl_shader_new_from_bytes(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -893,6 +1013,7 @@ SEXP R_gsk_gl_shader_new_from_bytes(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_new_from_resource(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_gl_shader_new_from_resource(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -909,6 +1030,7 @@ SEXP R_gsk_gl_shader_new_from_resource(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_compile(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GskRenderer* v2 = (GskRenderer*)(get_ptr(s2)); (void)v2;
   GError *_err = NULL;
@@ -927,6 +1049,7 @@ SEXP R_gsk_gl_shader_compile(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_gl_shader_find_uniform_by_name(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   int _ret = (int)gsk_gl_shader_find_uniform_by_name(v1, v2);
@@ -944,6 +1067,7 @@ SEXP R_gsk_gl_shader_find_uniform_by_name(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_gl_shader_get_arg_bool(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -962,6 +1086,7 @@ SEXP R_gsk_gl_shader_get_arg_bool(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_gl_shader_get_arg_float(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -980,6 +1105,7 @@ SEXP R_gsk_gl_shader_get_arg_float(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_gl_shader_get_arg_int(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -998,6 +1124,7 @@ SEXP R_gsk_gl_shader_get_arg_int(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_gl_shader_get_arg_uint(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -1016,6 +1143,7 @@ SEXP R_gsk_gl_shader_get_arg_uint(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_gl_shader_get_arg_vec2(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -1026,6 +1154,7 @@ SEXP R_gsk_gl_shader_get_arg_vec2(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gsk_gl_shader_get_arg_vec3(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -1036,6 +1165,7 @@ SEXP R_gsk_gl_shader_get_arg_vec3(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gsk_gl_shader_get_arg_vec4(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -1046,6 +1176,7 @@ SEXP R_gsk_gl_shader_get_arg_vec4(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gsk_gl_shader_get_args_size(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   gsize _ret = (gsize)gsk_gl_shader_get_args_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1062,6 +1193,7 @@ SEXP R_gsk_gl_shader_get_args_size(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_get_n_textures(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gsk_gl_shader_get_n_textures(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1078,6 +1210,7 @@ SEXP R_gsk_gl_shader_get_n_textures(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_get_n_uniforms(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gsk_gl_shader_get_n_uniforms(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1094,6 +1227,7 @@ SEXP R_gsk_gl_shader_get_n_uniforms(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_get_resource(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_gl_shader_get_resource(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1110,6 +1244,7 @@ SEXP R_gsk_gl_shader_get_resource(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_get_source(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_gl_shader_get_source(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1126,6 +1261,7 @@ SEXP R_gsk_gl_shader_get_source(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_get_uniform_name(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_gl_shader_get_uniform_name(v1, v2);
@@ -1143,6 +1279,7 @@ SEXP R_gsk_gl_shader_get_uniform_name(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_gl_shader_get_uniform_offset(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _ret = (int)gsk_gl_shader_get_uniform_offset(v1, v2);
@@ -1160,6 +1297,7 @@ SEXP R_gsk_gl_shader_get_uniform_offset(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_gl_shader_get_uniform_type(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GskGLUniformType _ret = (GskGLUniformType)gsk_gl_shader_get_uniform_type(v1, v2);
@@ -1177,6 +1315,7 @@ SEXP R_gsk_gl_shader_get_uniform_type(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_gl_shader_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   GBytes* v3 = (GBytes*)(get_ptr(s3)); (void)v3;
@@ -1197,6 +1336,7 @@ SEXP R_gsk_gl_shader_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_gsk_gl_shader_node_get_args(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_gl_shader_node_get_args(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1213,6 +1353,7 @@ SEXP R_gsk_gl_shader_node_get_args(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_node_get_child(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_gl_shader_node_get_child(v1, v2);
@@ -1230,6 +1371,7 @@ SEXP R_gsk_gl_shader_node_get_child(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_gl_shader_node_get_n_children(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gsk_gl_shader_node_get_n_children(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1246,6 +1388,7 @@ SEXP R_gsk_gl_shader_node_get_n_children(SEXP s1) {
 
 
 SEXP R_gsk_gl_shader_node_get_shader(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_gl_shader_node_get_shader(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1262,6 +1405,7 @@ SEXP R_gsk_gl_shader_node_get_shader(SEXP s1) {
 
 
 SEXP R_gsk_inset_shadow_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   const GskRoundedRect* v1 = (const GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const GdkRGBA* v2 = (const GdkRGBA*)(get_ptr(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -1283,6 +1427,7 @@ SEXP R_gsk_inset_shadow_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
 
 
 SEXP R_gsk_inset_shadow_node_get_blur_radius(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_inset_shadow_node_get_blur_radius(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1299,11 +1444,12 @@ SEXP R_gsk_inset_shadow_node_get_blur_radius(SEXP s1) {
 
 
 SEXP R_gsk_inset_shadow_node_get_color(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_inset_shadow_node_get_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("GdkRGBA"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
@@ -1322,6 +1468,7 @@ SEXP R_gsk_inset_shadow_node_get_color(SEXP s1) {
 
 
 SEXP R_gsk_inset_shadow_node_get_dx(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_inset_shadow_node_get_dx(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1338,6 +1485,7 @@ SEXP R_gsk_inset_shadow_node_get_dx(SEXP s1) {
 
 
 SEXP R_gsk_inset_shadow_node_get_dy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_inset_shadow_node_get_dy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1354,6 +1502,7 @@ SEXP R_gsk_inset_shadow_node_get_dy(SEXP s1) {
 
 
 SEXP R_gsk_inset_shadow_node_get_outline(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_inset_shadow_node_get_outline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1370,6 +1519,7 @@ SEXP R_gsk_inset_shadow_node_get_outline(SEXP s1) {
 
 
 SEXP R_gsk_inset_shadow_node_get_spread(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_inset_shadow_node_get_spread(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1386,6 +1536,7 @@ SEXP R_gsk_inset_shadow_node_get_spread(SEXP s1) {
 
 
 SEXP R_gsk_linear_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   const graphene_rect_t* v1 = (const graphene_rect_t*)(get_ptr(s1)); (void)v1;
   const graphene_point_t* v2 = (const graphene_point_t*)(get_ptr(s2)); (void)v2;
   const graphene_point_t* v3 = (const graphene_point_t*)(get_ptr(s3)); (void)v3;
@@ -1406,6 +1557,7 @@ SEXP R_gsk_linear_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5)
 
 
 SEXP R_gsk_linear_gradient_node_get_color_stops(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsize _out_n_stops = 0; (void)_out_n_stops;
   gconstpointer _ret = (gconstpointer)gsk_linear_gradient_node_get_color_stops(v1, &_out_n_stops);
@@ -1428,11 +1580,12 @@ SEXP R_gsk_linear_gradient_node_get_color_stops(SEXP s1) {
 
 
 SEXP R_gsk_linear_gradient_node_get_end(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_linear_gradient_node_get_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
@@ -1451,6 +1604,7 @@ SEXP R_gsk_linear_gradient_node_get_end(SEXP s1) {
 
 
 SEXP R_gsk_linear_gradient_node_get_n_color_stops(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsize _ret = (gsize)gsk_linear_gradient_node_get_n_color_stops(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1467,11 +1621,12 @@ SEXP R_gsk_linear_gradient_node_get_n_color_stops(SEXP s1) {
 
 
 SEXP R_gsk_linear_gradient_node_get_start(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_linear_gradient_node_get_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
@@ -1490,6 +1645,7 @@ SEXP R_gsk_linear_gradient_node_get_start(SEXP s1) {
 
 
 SEXP R_gsk_mask_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskRenderNode* v2 = (GskRenderNode*)(get_ptr(s2)); (void)v2;
   GskMaskMode v3 = (GskMaskMode)((GskMaskMode)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -1508,6 +1664,7 @@ SEXP R_gsk_mask_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_mask_node_get_mask(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_mask_node_get_mask(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1524,6 +1681,7 @@ SEXP R_gsk_mask_node_get_mask(SEXP s1) {
 
 
 SEXP R_gsk_mask_node_get_mask_mode(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskMaskMode _ret = (GskMaskMode)gsk_mask_node_get_mask_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1540,6 +1698,7 @@ SEXP R_gsk_mask_node_get_mask_mode(SEXP s1) {
 
 
 SEXP R_gsk_mask_node_get_source(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_mask_node_get_source(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1556,6 +1715,7 @@ SEXP R_gsk_mask_node_get_source(SEXP s1) {
 
 
 SEXP R_gsk_ngl_renderer_new(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gsk_ngl_renderer_new();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1572,6 +1732,7 @@ SEXP R_gsk_ngl_renderer_new(void) {
 
 
 SEXP R_gsk_opacity_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_opacity_node_new(v1, v2);
@@ -1589,6 +1750,7 @@ SEXP R_gsk_opacity_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_opacity_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_opacity_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1605,6 +1767,7 @@ SEXP R_gsk_opacity_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_opacity_node_get_opacity(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_opacity_node_get_opacity(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1621,6 +1784,7 @@ SEXP R_gsk_opacity_node_get_opacity(SEXP s1) {
 
 
 SEXP R_gsk_outset_shadow_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   const GskRoundedRect* v1 = (const GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const GdkRGBA* v2 = (const GdkRGBA*)(get_ptr(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -1642,6 +1806,7 @@ SEXP R_gsk_outset_shadow_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
 
 
 SEXP R_gsk_outset_shadow_node_get_blur_radius(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_outset_shadow_node_get_blur_radius(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1658,11 +1823,12 @@ SEXP R_gsk_outset_shadow_node_get_blur_radius(SEXP s1) {
 
 
 SEXP R_gsk_outset_shadow_node_get_color(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_outset_shadow_node_get_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("GdkRGBA"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
@@ -1681,6 +1847,7 @@ SEXP R_gsk_outset_shadow_node_get_color(SEXP s1) {
 
 
 SEXP R_gsk_outset_shadow_node_get_dx(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_outset_shadow_node_get_dx(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1697,6 +1864,7 @@ SEXP R_gsk_outset_shadow_node_get_dx(SEXP s1) {
 
 
 SEXP R_gsk_outset_shadow_node_get_dy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_outset_shadow_node_get_dy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1713,6 +1881,7 @@ SEXP R_gsk_outset_shadow_node_get_dy(SEXP s1) {
 
 
 SEXP R_gsk_outset_shadow_node_get_outline(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_outset_shadow_node_get_outline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1729,6 +1898,7 @@ SEXP R_gsk_outset_shadow_node_get_outline(SEXP s1) {
 
 
 SEXP R_gsk_outset_shadow_node_get_spread(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_outset_shadow_node_get_spread(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1745,6 +1915,7 @@ SEXP R_gsk_outset_shadow_node_get_spread(SEXP s1) {
 
 
 SEXP R_gsk_radial_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
+  RGTK4_REQUIRE_INIT();
   const graphene_rect_t* v1 = (const graphene_rect_t*)(get_ptr(s1)); (void)v1;
   const graphene_point_t* v2 = (const graphene_point_t*)(get_ptr(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -1768,11 +1939,12 @@ SEXP R_gsk_radial_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
 
 
 SEXP R_gsk_radial_gradient_node_get_center(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_radial_gradient_node_get_center(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
@@ -1791,6 +1963,7 @@ SEXP R_gsk_radial_gradient_node_get_center(SEXP s1) {
 
 
 SEXP R_gsk_radial_gradient_node_get_color_stops(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsize _out_n_stops = 0; (void)_out_n_stops;
   gconstpointer _ret = (gconstpointer)gsk_radial_gradient_node_get_color_stops(v1, &_out_n_stops);
@@ -1813,6 +1986,7 @@ SEXP R_gsk_radial_gradient_node_get_color_stops(SEXP s1) {
 
 
 SEXP R_gsk_radial_gradient_node_get_end(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_radial_gradient_node_get_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1829,6 +2003,7 @@ SEXP R_gsk_radial_gradient_node_get_end(SEXP s1) {
 
 
 SEXP R_gsk_radial_gradient_node_get_hradius(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_radial_gradient_node_get_hradius(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1845,6 +2020,7 @@ SEXP R_gsk_radial_gradient_node_get_hradius(SEXP s1) {
 
 
 SEXP R_gsk_radial_gradient_node_get_n_color_stops(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsize _ret = (gsize)gsk_radial_gradient_node_get_n_color_stops(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1861,6 +2037,7 @@ SEXP R_gsk_radial_gradient_node_get_n_color_stops(SEXP s1) {
 
 
 SEXP R_gsk_radial_gradient_node_get_start(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_radial_gradient_node_get_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1877,6 +2054,7 @@ SEXP R_gsk_radial_gradient_node_get_start(SEXP s1) {
 
 
 SEXP R_gsk_radial_gradient_node_get_vradius(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_radial_gradient_node_get_vradius(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1893,6 +2071,7 @@ SEXP R_gsk_radial_gradient_node_get_vradius(SEXP s1) {
 
 
 SEXP R_gsk_render_node_deserialize(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GBytes* v1 = (GBytes*)(get_ptr(s1)); (void)v1;
   RCallbackClosure *_cb_closure_2 = (s2 == R_NilValue) ? NULL : rgtk4_closure_new(s2); (void)_cb_closure_2;
   gconstpointer _ret = (gconstpointer)gsk_render_node_deserialize(v1, (GskParseErrorFunc)(_cb_closure_2 ? _rgtk4_cb_ParseErrorFunc : NULL), _cb_closure_2);
@@ -1910,6 +2089,7 @@ SEXP R_gsk_render_node_deserialize(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_render_node_draw(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
   gsk_render_node_draw(v1, v2);
@@ -1918,12 +2098,13 @@ SEXP R_gsk_render_node_draw(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_render_node_get_bounds(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   graphene_rect_t _out_bounds = {0}; (void)_out_bounds;
   gsk_render_node_get_bounds(v1, &_out_bounds);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_bounds, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_bounds, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Rect"));
   }
@@ -1935,6 +2116,7 @@ SEXP R_gsk_render_node_get_bounds(SEXP s1) {
 
 
 SEXP R_gsk_render_node_get_node_type(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskRenderNodeType _ret = (GskRenderNodeType)gsk_render_node_get_node_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1951,6 +2133,7 @@ SEXP R_gsk_render_node_get_node_type(SEXP s1) {
 
 
 SEXP R_gsk_render_node_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_render_node_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1967,6 +2150,7 @@ SEXP R_gsk_render_node_ref(SEXP s1) {
 
 
 SEXP R_gsk_render_node_serialize(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_render_node_serialize(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1983,6 +2167,7 @@ SEXP R_gsk_render_node_serialize(SEXP s1) {
 
 
 SEXP R_gsk_render_node_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsk_render_node_unref(v1);
   return R_NilValue;
@@ -1990,6 +2175,7 @@ SEXP R_gsk_render_node_unref(SEXP s1) {
 
 
 SEXP R_gsk_render_node_write_to_file(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GError *_err = NULL;
@@ -2008,6 +2194,7 @@ SEXP R_gsk_render_node_write_to_file(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_renderer_new_for_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_renderer_new_for_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2024,6 +2211,7 @@ SEXP R_gsk_renderer_new_for_surface(SEXP s1) {
 
 
 SEXP R_gsk_renderer_get_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderer* v1 = (GskRenderer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_renderer_get_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2040,6 +2228,7 @@ SEXP R_gsk_renderer_get_surface(SEXP s1) {
 
 
 SEXP R_gsk_renderer_is_realized(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderer* v1 = (GskRenderer*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gsk_renderer_is_realized(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2056,6 +2245,7 @@ SEXP R_gsk_renderer_is_realized(SEXP s1) {
 
 
 SEXP R_gsk_renderer_realize(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderer* v1 = (GskRenderer*)(get_ptr(s1)); (void)v1;
   GdkSurface* v2 = (s2 != R_NilValue) ? (GdkSurface*)(get_ptr(s2)) : NULL; (void)v2;
   GError *_err = NULL;
@@ -2074,6 +2264,7 @@ SEXP R_gsk_renderer_realize(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_renderer_realize_for_display(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderer* v1 = (GskRenderer*)(get_ptr(s1)); (void)v1;
   GdkDisplay* v2 = (GdkDisplay*)(get_ptr(s2)); (void)v2;
   GError *_err = NULL;
@@ -2092,6 +2283,7 @@ SEXP R_gsk_renderer_realize_for_display(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_renderer_render(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderer* v1 = (GskRenderer*)(get_ptr(s1)); (void)v1;
   GskRenderNode* v2 = (GskRenderNode*)(get_ptr(s2)); (void)v2;
   const cairo_region_t* v3 = (s3 != R_NilValue) ? (const cairo_region_t*)(get_ptr(s3)) : NULL; (void)v3;
@@ -2101,6 +2293,7 @@ SEXP R_gsk_renderer_render(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_renderer_render_texture(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderer* v1 = (GskRenderer*)(get_ptr(s1)); (void)v1;
   GskRenderNode* v2 = (GskRenderNode*)(get_ptr(s2)); (void)v2;
   const graphene_rect_t* v3 = (s3 != R_NilValue) ? (const graphene_rect_t*)(get_ptr(s3)) : NULL; (void)v3;
@@ -2119,6 +2312,7 @@ SEXP R_gsk_renderer_render_texture(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_renderer_unrealize(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRenderer* v1 = (GskRenderer*)(get_ptr(s1)); (void)v1;
   gsk_renderer_unrealize(v1);
   return R_NilValue;
@@ -2126,6 +2320,7 @@ SEXP R_gsk_renderer_unrealize(SEXP s1) {
 
 
 SEXP R_gsk_repeat_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   const graphene_rect_t* v1 = (const graphene_rect_t*)(get_ptr(s1)); (void)v1;
   GskRenderNode* v2 = (GskRenderNode*)(get_ptr(s2)); (void)v2;
   const graphene_rect_t* v3 = (s3 != R_NilValue) ? (const graphene_rect_t*)(get_ptr(s3)) : NULL; (void)v3;
@@ -2144,6 +2339,7 @@ SEXP R_gsk_repeat_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_repeat_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_repeat_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2160,11 +2356,12 @@ SEXP R_gsk_repeat_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_repeat_node_get_child_bounds(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_repeat_node_get_child_bounds(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Rect"));
@@ -2183,6 +2380,7 @@ SEXP R_gsk_repeat_node_get_child_bounds(SEXP s1) {
 
 
 SEXP R_gsk_repeating_linear_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   const graphene_rect_t* v1 = (const graphene_rect_t*)(get_ptr(s1)); (void)v1;
   const graphene_point_t* v2 = (const graphene_point_t*)(get_ptr(s2)); (void)v2;
   const graphene_point_t* v3 = (const graphene_point_t*)(get_ptr(s3)); (void)v3;
@@ -2203,6 +2401,7 @@ SEXP R_gsk_repeating_linear_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4
 
 
 SEXP R_gsk_repeating_radial_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8) {
+  RGTK4_REQUIRE_INIT();
   const graphene_rect_t* v1 = (const graphene_rect_t*)(get_ptr(s1)); (void)v1;
   const graphene_point_t* v2 = (const graphene_point_t*)(get_ptr(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -2226,6 +2425,7 @@ SEXP R_gsk_repeating_radial_gradient_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4
 
 
 SEXP R_gsk_rounded_clip_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   const GskRoundedRect* v2 = (const GskRoundedRect*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_rounded_clip_node_new(v1, v2);
@@ -2243,6 +2443,7 @@ SEXP R_gsk_rounded_clip_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_rounded_clip_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_rounded_clip_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2259,6 +2460,7 @@ SEXP R_gsk_rounded_clip_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_rounded_clip_node_get_clip(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_rounded_clip_node_get_clip(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2275,6 +2477,7 @@ SEXP R_gsk_rounded_clip_node_get_clip(SEXP s1) {
 
 
 SEXP R_gsk_rounded_rect_contains_point(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GskRoundedRect* v1 = (const GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const graphene_point_t* v2 = (const graphene_point_t*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gsk_rounded_rect_contains_point(v1, v2);
@@ -2292,6 +2495,7 @@ SEXP R_gsk_rounded_rect_contains_point(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_rounded_rect_contains_rect(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GskRoundedRect* v1 = (const GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gsk_rounded_rect_contains_rect(v1, v2);
@@ -2309,6 +2513,7 @@ SEXP R_gsk_rounded_rect_contains_rect(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_rounded_rect_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   GskRoundedRect* v1 = (GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   const graphene_size_t* v3 = (const graphene_size_t*)(get_ptr(s3)); (void)v3;
@@ -2330,6 +2535,7 @@ SEXP R_gsk_rounded_rect_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s
 
 
 SEXP R_gsk_rounded_rect_init_copy(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRoundedRect* v1 = (GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const GskRoundedRect* v2 = (const GskRoundedRect*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_rounded_rect_init_copy(v1, v2);
@@ -2347,6 +2553,7 @@ SEXP R_gsk_rounded_rect_init_copy(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_rounded_rect_init_from_rect(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRoundedRect* v1 = (GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -2365,6 +2572,7 @@ SEXP R_gsk_rounded_rect_init_from_rect(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_rounded_rect_intersects_rect(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GskRoundedRect* v1 = (const GskRoundedRect*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gsk_rounded_rect_intersects_rect(v1, v2);
@@ -2382,6 +2590,7 @@ SEXP R_gsk_rounded_rect_intersects_rect(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_rounded_rect_is_rectilinear(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRoundedRect* v1 = (const GskRoundedRect*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gsk_rounded_rect_is_rectilinear(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2398,6 +2607,7 @@ SEXP R_gsk_rounded_rect_is_rectilinear(SEXP s1) {
 
 
 SEXP R_gsk_rounded_rect_normalize(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskRoundedRect* v1 = (GskRoundedRect*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_rounded_rect_normalize(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2414,6 +2624,7 @@ SEXP R_gsk_rounded_rect_normalize(SEXP s1) {
 
 
 SEXP R_gsk_rounded_rect_offset(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRoundedRect* v1 = (GskRoundedRect*)(get_ptr(s1)); (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -2432,6 +2643,7 @@ SEXP R_gsk_rounded_rect_offset(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_rounded_rect_shrink(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GskRoundedRect* v1 = (GskRoundedRect*)(get_ptr(s1)); (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -2452,6 +2664,7 @@ SEXP R_gsk_rounded_rect_shrink(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_gsk_serialization_error_quark(void) {
+  RGTK4_REQUIRE_INIT();
 
   GQuark _ret = (GQuark)gsk_serialization_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2468,6 +2681,7 @@ SEXP R_gsk_serialization_error_quark(void) {
 
 
 SEXP R_gsk_shader_args_builder_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskGLShader* v1 = (GskGLShader*)(get_ptr(s1)); (void)v1;
   GBytes* v2 = (s2 != R_NilValue) ? (GBytes*)(get_ptr(s2)) : NULL; (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_shader_args_builder_new(v1, v2);
@@ -2485,6 +2699,7 @@ SEXP R_gsk_shader_args_builder_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_shader_args_builder_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_shader_args_builder_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2501,6 +2716,7 @@ SEXP R_gsk_shader_args_builder_ref(SEXP s1) {
 
 
 SEXP R_gsk_shader_args_builder_set_bool(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gboolean v3 = (gboolean)((gboolean)LOGICAL(s3)[0]); (void)v3;
@@ -2510,6 +2726,7 @@ SEXP R_gsk_shader_args_builder_set_bool(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_shader_args_builder_set_float(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -2519,6 +2736,7 @@ SEXP R_gsk_shader_args_builder_set_float(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_shader_args_builder_set_int(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint32 v3 = (gint32)((gint32)_unbox_numeric(s3)); (void)v3;
@@ -2528,6 +2746,7 @@ SEXP R_gsk_shader_args_builder_set_int(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_shader_args_builder_set_uint(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   guint32 v3 = (guint32)((guint32)_unbox_numeric(s3)); (void)v3;
@@ -2537,6 +2756,7 @@ SEXP R_gsk_shader_args_builder_set_uint(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_shader_args_builder_set_vec2(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const graphene_vec2_t* v3 = (const graphene_vec2_t*)(get_ptr(s3)); (void)v3;
@@ -2546,6 +2766,7 @@ SEXP R_gsk_shader_args_builder_set_vec2(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_shader_args_builder_set_vec3(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const graphene_vec3_t* v3 = (const graphene_vec3_t*)(get_ptr(s3)); (void)v3;
@@ -2555,6 +2776,7 @@ SEXP R_gsk_shader_args_builder_set_vec3(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_shader_args_builder_set_vec4(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   const graphene_vec4_t* v3 = (const graphene_vec4_t*)(get_ptr(s3)); (void)v3;
@@ -2564,6 +2786,7 @@ SEXP R_gsk_shader_args_builder_set_vec4(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_shader_args_builder_to_args(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_shader_args_builder_to_args(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2580,6 +2803,7 @@ SEXP R_gsk_shader_args_builder_to_args(SEXP s1) {
 
 
 SEXP R_gsk_shader_args_builder_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskShaderArgsBuilder* v1 = (GskShaderArgsBuilder*)(get_ptr(s1)); (void)v1;
   gsk_shader_args_builder_unref(v1);
   return R_NilValue;
@@ -2587,6 +2811,7 @@ SEXP R_gsk_shader_args_builder_unref(SEXP s1) {
 
 
 SEXP R_gsk_shadow_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   const GskShadow* v2 = (const GskShadow*)(get_ptr(s2)); (void)v2;
   gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
@@ -2605,6 +2830,7 @@ SEXP R_gsk_shadow_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_shadow_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_shadow_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2621,6 +2847,7 @@ SEXP R_gsk_shadow_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_shadow_node_get_n_shadows(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsize _ret = (gsize)gsk_shadow_node_get_n_shadows(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2637,6 +2864,7 @@ SEXP R_gsk_shadow_node_get_n_shadows(SEXP s1) {
 
 
 SEXP R_gsk_shadow_node_get_shadow(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_shadow_node_get_shadow(v1, v2);
@@ -2654,6 +2882,7 @@ SEXP R_gsk_shadow_node_get_shadow(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_stroke_new(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   gfloat v1 = (gfloat)((gfloat)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_stroke_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2670,6 +2899,7 @@ SEXP R_gsk_stroke_new(SEXP s1) {
 
 
 SEXP R_gsk_stroke_copy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskStroke* v1 = (const GskStroke*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_stroke_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2686,6 +2916,7 @@ SEXP R_gsk_stroke_copy(SEXP s1) {
 
 
 SEXP R_gsk_stroke_free(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskStroke* v1 = (GskStroke*)(get_ptr(s1)); (void)v1;
   gsk_stroke_free(v1);
   return R_NilValue;
@@ -2693,6 +2924,7 @@ SEXP R_gsk_stroke_free(SEXP s1) {
 
 
 SEXP R_gsk_stroke_get_dash(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskStroke* v1 = (const GskStroke*)(get_ptr(s1)); (void)v1;
   gsize _out_n_dash = 0; (void)_out_n_dash;
   gconstpointer _ret = (gconstpointer)gsk_stroke_get_dash(v1, &_out_n_dash);
@@ -2715,6 +2947,7 @@ SEXP R_gsk_stroke_get_dash(SEXP s1) {
 
 
 SEXP R_gsk_stroke_get_dash_offset(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskStroke* v1 = (const GskStroke*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_stroke_get_dash_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2731,6 +2964,7 @@ SEXP R_gsk_stroke_get_dash_offset(SEXP s1) {
 
 
 SEXP R_gsk_stroke_get_line_cap(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskStroke* v1 = (const GskStroke*)(get_ptr(s1)); (void)v1;
   GskLineCap _ret = (GskLineCap)gsk_stroke_get_line_cap(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2747,6 +2981,7 @@ SEXP R_gsk_stroke_get_line_cap(SEXP s1) {
 
 
 SEXP R_gsk_stroke_get_line_join(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskStroke* v1 = (const GskStroke*)(get_ptr(s1)); (void)v1;
   GskLineJoin _ret = (GskLineJoin)gsk_stroke_get_line_join(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2763,6 +2998,7 @@ SEXP R_gsk_stroke_get_line_join(SEXP s1) {
 
 
 SEXP R_gsk_stroke_get_line_width(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskStroke* v1 = (const GskStroke*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_stroke_get_line_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2779,6 +3015,7 @@ SEXP R_gsk_stroke_get_line_width(SEXP s1) {
 
 
 SEXP R_gsk_stroke_get_miter_limit(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskStroke* v1 = (const GskStroke*)(get_ptr(s1)); (void)v1;
   float _ret = (float)gsk_stroke_get_miter_limit(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2795,6 +3032,7 @@ SEXP R_gsk_stroke_get_miter_limit(SEXP s1) {
 
 
 SEXP R_gsk_stroke_set_dash(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskStroke* v1 = (GskStroke*)(get_ptr(s1)); (void)v1;
   const float* v2 = (s2 != R_NilValue) ? (const float*)(get_ptr(s2)) : NULL; (void)v2;
   gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
@@ -2804,6 +3042,7 @@ SEXP R_gsk_stroke_set_dash(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_stroke_set_dash_offset(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskStroke* v1 = (GskStroke*)(get_ptr(s1)); (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gsk_stroke_set_dash_offset(v1, v2);
@@ -2812,6 +3051,7 @@ SEXP R_gsk_stroke_set_dash_offset(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_stroke_set_line_cap(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskStroke* v1 = (GskStroke*)(get_ptr(s1)); (void)v1;
   GskLineCap v2 = (GskLineCap)((GskLineCap)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gsk_stroke_set_line_cap(v1, v2);
@@ -2820,6 +3060,7 @@ SEXP R_gsk_stroke_set_line_cap(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_stroke_set_line_join(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskStroke* v1 = (GskStroke*)(get_ptr(s1)); (void)v1;
   GskLineJoin v2 = (GskLineJoin)((GskLineJoin)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gsk_stroke_set_line_join(v1, v2);
@@ -2828,6 +3069,7 @@ SEXP R_gsk_stroke_set_line_join(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_stroke_set_line_width(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskStroke* v1 = (GskStroke*)(get_ptr(s1)); (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gsk_stroke_set_line_width(v1, v2);
@@ -2836,6 +3078,7 @@ SEXP R_gsk_stroke_set_line_width(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_stroke_set_miter_limit(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskStroke* v1 = (GskStroke*)(get_ptr(s1)); (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gsk_stroke_set_miter_limit(v1, v2);
@@ -2844,6 +3087,7 @@ SEXP R_gsk_stroke_set_miter_limit(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_stroke_to_cairo(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GskStroke* v1 = (const GskStroke*)(get_ptr(s1)); (void)v1;
   cairo_t* v2 = (cairo_t*)(get_ptr(s2)); (void)v2;
   gsk_stroke_to_cairo(v1, v2);
@@ -2852,6 +3096,7 @@ SEXP R_gsk_stroke_to_cairo(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_stroke_equal(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   gconstpointer v1 = (s1 != R_NilValue) ? (gconstpointer)(get_ptr(s1)) : NULL; (void)v1;
   gconstpointer v2 = (s2 != R_NilValue) ? (gconstpointer)(get_ptr(s2)) : NULL; (void)v2;
   gboolean _ret = (gboolean)gsk_stroke_equal(v1, v2);
@@ -2869,6 +3114,7 @@ SEXP R_gsk_stroke_equal(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_stroke_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskPath* v2 = (GskPath*)(get_ptr(s2)); (void)v2;
   const GskStroke* v3 = (const GskStroke*)(get_ptr(s3)); (void)v3;
@@ -2887,6 +3133,7 @@ SEXP R_gsk_stroke_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_stroke_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_stroke_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2903,6 +3150,7 @@ SEXP R_gsk_stroke_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_stroke_node_get_path(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_stroke_node_get_path(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2919,6 +3167,7 @@ SEXP R_gsk_stroke_node_get_path(SEXP s1) {
 
 
 SEXP R_gsk_stroke_node_get_stroke(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_stroke_node_get_stroke(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2935,6 +3184,7 @@ SEXP R_gsk_stroke_node_get_stroke(SEXP s1) {
 
 
 SEXP R_gsk_subsurface_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_subsurface_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2951,6 +3201,7 @@ SEXP R_gsk_subsurface_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_text_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   PangoFont* v1 = (PangoFont*)(get_ptr(s1)); (void)v1;
   PangoGlyphString* v2 = (PangoGlyphString*)(get_ptr(s2)); (void)v2;
   const GdkRGBA* v3 = (const GdkRGBA*)(get_ptr(s3)); (void)v3;
@@ -2970,11 +3221,12 @@ SEXP R_gsk_text_node_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gsk_text_node_get_color(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_text_node_get_color(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("GdkRGBA"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Gdk.RGBA"));
@@ -2993,6 +3245,7 @@ SEXP R_gsk_text_node_get_color(SEXP s1) {
 
 
 SEXP R_gsk_text_node_get_font(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_text_node_get_font(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3009,6 +3262,7 @@ SEXP R_gsk_text_node_get_font(SEXP s1) {
 
 
 SEXP R_gsk_text_node_get_glyphs(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   guint _out_n_glyphs = 0; (void)_out_n_glyphs;
   gconstpointer _ret = (gconstpointer)gsk_text_node_get_glyphs(v1, &_out_n_glyphs);
@@ -3031,6 +3285,7 @@ SEXP R_gsk_text_node_get_glyphs(SEXP s1) {
 
 
 SEXP R_gsk_text_node_get_num_glyphs(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gsk_text_node_get_num_glyphs(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3047,11 +3302,12 @@ SEXP R_gsk_text_node_get_num_glyphs(SEXP s1) {
 
 
 SEXP R_gsk_text_node_get_offset(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_text_node_get_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Graphene.Point"));
@@ -3070,6 +3326,7 @@ SEXP R_gsk_text_node_get_offset(SEXP s1) {
 
 
 SEXP R_gsk_text_node_has_color_glyphs(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gsk_text_node_has_color_glyphs(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3086,6 +3343,7 @@ SEXP R_gsk_text_node_has_color_glyphs(SEXP s1) {
 
 
 SEXP R_gsk_texture_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_texture_node_new(v1, v2);
@@ -3103,6 +3361,7 @@ SEXP R_gsk_texture_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_texture_node_get_texture(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_texture_node_get_texture(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3119,6 +3378,7 @@ SEXP R_gsk_texture_node_get_texture(SEXP s1) {
 
 
 SEXP R_gsk_texture_scale_node_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   GskScalingFilter v3 = (GskScalingFilter)((GskScalingFilter)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -3137,6 +3397,7 @@ SEXP R_gsk_texture_scale_node_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_texture_scale_node_get_filter(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskScalingFilter _ret = (GskScalingFilter)gsk_texture_scale_node_get_filter(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3153,6 +3414,7 @@ SEXP R_gsk_texture_scale_node_get_filter(SEXP s1) {
 
 
 SEXP R_gsk_texture_scale_node_get_texture(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_texture_scale_node_get_texture(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3169,6 +3431,7 @@ SEXP R_gsk_texture_scale_node_get_texture(SEXP s1) {
 
 
 SEXP R_gsk_transform_new(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gsk_transform_new();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3185,6 +3448,7 @@ SEXP R_gsk_transform_new(void) {
 
 
 SEXP R_gsk_transform_equal(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   GskTransform* v2 = (s2 != R_NilValue) ? (GskTransform*)(get_ptr(s2)) : NULL; (void)v2;
   gboolean _ret = (gboolean)gsk_transform_equal(v1, v2);
@@ -3202,6 +3466,7 @@ SEXP R_gsk_transform_equal(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_get_category(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   GskTransformCategory _ret = (GskTransformCategory)gsk_transform_get_category(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3218,6 +3483,7 @@ SEXP R_gsk_transform_get_category(SEXP s1) {
 
 
 SEXP R_gsk_transform_invert(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_transform_invert(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3234,6 +3500,7 @@ SEXP R_gsk_transform_invert(SEXP s1) {
 
 
 SEXP R_gsk_transform_matrix(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   const graphene_matrix_t* v2 = (const graphene_matrix_t*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_transform_matrix(v1, v2);
@@ -3251,6 +3518,7 @@ SEXP R_gsk_transform_matrix(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_perspective(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_transform_perspective(v1, v2);
@@ -3268,6 +3536,7 @@ SEXP R_gsk_transform_perspective(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_print(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   GString* v2 = (GString*)(get_ptr(s2)); (void)v2;
   gsk_transform_print(v1, v2);
@@ -3276,6 +3545,7 @@ SEXP R_gsk_transform_print(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_transform_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3292,6 +3562,7 @@ SEXP R_gsk_transform_ref(SEXP s1) {
 
 
 SEXP R_gsk_transform_rotate(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_transform_rotate(v1, v2);
@@ -3309,6 +3580,7 @@ SEXP R_gsk_transform_rotate(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_rotate_3d(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   const graphene_vec3_t* v3 = (const graphene_vec3_t*)(get_ptr(s3)); (void)v3;
@@ -3327,6 +3599,7 @@ SEXP R_gsk_transform_rotate_3d(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_transform_scale(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -3345,6 +3618,7 @@ SEXP R_gsk_transform_scale(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_transform_scale_3d(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -3364,6 +3638,7 @@ SEXP R_gsk_transform_scale_3d(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gsk_transform_skew(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gfloat v2 = (gfloat)((gfloat)_unbox_numeric(s2)); (void)v2;
   gfloat v3 = (gfloat)((gfloat)_unbox_numeric(s3)); (void)v3;
@@ -3382,6 +3657,7 @@ SEXP R_gsk_transform_skew(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gsk_transform_to_2d(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (GskTransform*)(get_ptr(s1)); (void)v1;
   float _out_out_xx = 0; (void)_out_out_xx;
   float _out_out_yx = 0; (void)_out_out_yx;
@@ -3429,6 +3705,7 @@ SEXP R_gsk_transform_to_2d(SEXP s1) {
 
 
 SEXP R_gsk_transform_to_2d_components(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (GskTransform*)(get_ptr(s1)); (void)v1;
   float _out_out_skew_x = 0; (void)_out_out_skew_x;
   float _out_out_skew_y = 0; (void)_out_out_skew_y;
@@ -3482,6 +3759,7 @@ SEXP R_gsk_transform_to_2d_components(SEXP s1) {
 
 
 SEXP R_gsk_transform_to_affine(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (GskTransform*)(get_ptr(s1)); (void)v1;
   float _out_out_scale_x = 0; (void)_out_out_scale_x;
   float _out_out_scale_y = 0; (void)_out_out_scale_y;
@@ -3517,12 +3795,13 @@ SEXP R_gsk_transform_to_affine(SEXP s1) {
 
 
 SEXP R_gsk_transform_to_matrix(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   graphene_matrix_t _out_out_matrix = {0}; (void)_out_out_matrix;
   gsk_transform_to_matrix(v1, &_out_out_matrix);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_out_matrix, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_out_matrix, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Matrix"));
   }
@@ -3534,6 +3813,7 @@ SEXP R_gsk_transform_to_matrix(SEXP s1) {
 
 
 SEXP R_gsk_transform_to_string(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_transform_to_string(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3550,6 +3830,7 @@ SEXP R_gsk_transform_to_string(SEXP s1) {
 
 
 SEXP R_gsk_transform_to_translate(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (GskTransform*)(get_ptr(s1)); (void)v1;
   float _out_out_dx = 0; (void)_out_out_dx;
   float _out_out_dy = 0; (void)_out_out_dy;
@@ -3573,6 +3854,7 @@ SEXP R_gsk_transform_to_translate(SEXP s1) {
 
 
 SEXP R_gsk_transform_transform(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   GskTransform* v2 = (s2 != R_NilValue) ? (GskTransform*)(get_ptr(s2)) : NULL; (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_transform_transform(v1, v2);
@@ -3590,13 +3872,14 @@ SEXP R_gsk_transform_transform(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_transform_bounds(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (GskTransform*)(get_ptr(s1)); (void)v1;
   const graphene_rect_t* v2 = (const graphene_rect_t*)(get_ptr(s2)); (void)v2;
   graphene_rect_t _out_out_rect = {0}; (void)_out_out_rect;
   gsk_transform_transform_bounds(v1, v2, &_out_out_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_out_rect, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_out_rect, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Rect"));
   }
@@ -3608,13 +3891,14 @@ SEXP R_gsk_transform_transform_bounds(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_transform_point(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (GskTransform*)(get_ptr(s1)); (void)v1;
   const graphene_point_t* v2 = (const graphene_point_t*)(get_ptr(s2)); (void)v2;
   graphene_point_t _out_out_point = {0}; (void)_out_out_point;
   gsk_transform_transform_point(v1, v2, &_out_out_point);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_out_point, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_out_point, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Graphene.Point"));
   }
@@ -3626,6 +3910,7 @@ SEXP R_gsk_transform_transform_point(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_translate(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   const graphene_point_t* v2 = (const graphene_point_t*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_transform_translate(v1, v2);
@@ -3643,6 +3928,7 @@ SEXP R_gsk_transform_translate(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_translate_3d(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   const graphene_point3d_t* v2 = (const graphene_point3d_t*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_transform_translate_3d(v1, v2);
@@ -3660,6 +3946,7 @@ SEXP R_gsk_transform_translate_3d(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GskTransform* v1 = (s1 != R_NilValue) ? (GskTransform*)(get_ptr(s1)) : NULL; (void)v1;
   gsk_transform_unref(v1);
   return R_NilValue;
@@ -3667,6 +3954,7 @@ SEXP R_gsk_transform_unref(SEXP s1) {
 
 
 SEXP R_gsk_transform_parse(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GskTransform* _out_out_transform = 0; (void)_out_out_transform;
   gboolean _ret = (gboolean)gsk_transform_parse(v1, &_out_out_transform);
@@ -3689,6 +3977,7 @@ SEXP R_gsk_transform_parse(SEXP s1) {
 
 
 SEXP R_gsk_transform_node_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GskRenderNode* v1 = (GskRenderNode*)(get_ptr(s1)); (void)v1;
   GskTransform* v2 = (s2 != R_NilValue) ? (GskTransform*)(get_ptr(s2)) : NULL; (void)v2;
   gconstpointer _ret = (gconstpointer)gsk_transform_node_new(v1, v2);
@@ -3706,6 +3995,7 @@ SEXP R_gsk_transform_node_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_transform_node_get_child(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_transform_node_get_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3722,6 +4012,7 @@ SEXP R_gsk_transform_node_get_child(SEXP s1) {
 
 
 SEXP R_gsk_transform_node_get_transform(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GskRenderNode* v1 = (const GskRenderNode*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_transform_node_get_transform(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3738,6 +4029,7 @@ SEXP R_gsk_transform_node_get_transform(SEXP s1) {
 
 
 SEXP R_gsk_vulkan_renderer_new(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gsk_vulkan_renderer_new();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3754,6 +4046,7 @@ SEXP R_gsk_vulkan_renderer_new(void) {
 
 
 SEXP R_gsk_value_dup_render_node(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_value_dup_render_node(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3770,6 +4063,7 @@ SEXP R_gsk_value_dup_render_node(SEXP s1) {
 
 
 SEXP R_gsk_value_get_render_node(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gsk_value_get_render_node(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3786,6 +4080,7 @@ SEXP R_gsk_value_get_render_node(SEXP s1) {
 
 
 SEXP R_gsk_value_set_render_node(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   GskRenderNode* v2 = (GskRenderNode*)(get_ptr(s2)); (void)v2;
   gsk_value_set_render_node(v1, v2);
@@ -3794,6 +4089,7 @@ SEXP R_gsk_value_set_render_node(SEXP s1, SEXP s2) {
 
 
 SEXP R_gsk_value_take_render_node(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GValue* v1 = (GValue*)(get_ptr(s1)); (void)v1;
   GskRenderNode* v2 = (s2 != R_NilValue) ? (GskRenderNode*)(get_ptr(s2)) : NULL; (void)v2;
   gsk_value_take_render_node(v1, v2);

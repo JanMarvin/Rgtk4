@@ -19,6 +19,63 @@ static inline double _unbox_numeric(SEXP s) {
   return 0.0;
 }
 
+/* Bounded numeric extraction. NA and out-of-range values throw. */
+static inline gint64 _unbox_int_range(SEXP s, gint64 lo, gint64 hi, const char *func) __attribute__((unused));
+static inline gint64 _unbox_int_range(SEXP s, gint64 lo, gint64 hi, const char *func) {
+  double v;
+  if (TYPEOF(s) == INTSXP) {
+    int iv = INTEGER(s)[0];
+    if (iv == NA_INTEGER) Rf_error("%s: NA not allowed for integer argument", func);
+    v = (double)iv;
+  } else if (TYPEOF(s) == REALSXP) {
+    v = REAL(s)[0];
+    if (!R_finite(v)) Rf_error("%s: NA/Inf not allowed for integer argument", func);
+  } else if (TYPEOF(s) == LGLSXP) {
+    int lv = LOGICAL(s)[0];
+    if (lv == NA_LOGICAL) Rf_error("%s: NA not allowed for integer argument", func);
+    v = (double)lv;
+  } else {
+    Rf_error("%s: expected numeric scalar, got %s", func, Rf_type2char(TYPEOF(s)));
+  }
+  if (v < (double)lo || v > (double)hi) {
+    Rf_error("%s: value %.0f out of range [%lld, %lld]", func, v, (long long)lo, (long long)hi);
+  }
+  return (gint64)v;
+}
+
+static inline double _unbox_real(SEXP s, const char *func) __attribute__((unused));
+static inline double _unbox_real(SEXP s, const char *func) {
+  if (TYPEOF(s) == REALSXP) {
+    double v = REAL(s)[0];
+    if (ISNA(v)) Rf_error("%s: NA not allowed for numeric argument", func);
+    return v;
+  }
+  if (TYPEOF(s) == INTSXP) {
+    int iv = INTEGER(s)[0];
+    if (iv == NA_INTEGER) Rf_error("%s: NA not allowed for numeric argument", func);
+    return (double)iv;
+  }
+  if (TYPEOF(s) == LGLSXP) {
+    int lv = LOGICAL(s)[0];
+    if (lv == NA_LOGICAL) Rf_error("%s: NA not allowed for numeric argument", func);
+    return (double)lv;
+  }
+  Rf_error("%s: expected numeric scalar, got %s", func, Rf_type2char(TYPEOF(s)));
+  return 0.0;  /* unreachable */
+}
+
+#define _UNBOX_GINT(s)   ((gint)  _unbox_int_range((s), G_MININT,    G_MAXINT,    __func__))
+#define _UNBOX_GUINT(s)  ((guint) _unbox_int_range((s), 0,           G_MAXUINT,   __func__))
+#define _UNBOX_GINT8(s)  ((gint8) _unbox_int_range((s), G_MININT8,   G_MAXINT8,   __func__))
+#define _UNBOX_GUINT8(s) ((guint8)_unbox_int_range((s), 0,           G_MAXUINT8,  __func__))
+#define _UNBOX_GINT16(s) ((gint16)_unbox_int_range((s), G_MININT16,  G_MAXINT16,  __func__))
+#define _UNBOX_GUINT16(s)((guint16)_unbox_int_range((s),0,           G_MAXUINT16, __func__))
+#define _UNBOX_GINT32(s) ((gint32)_unbox_int_range((s), G_MININT32,  G_MAXINT32,  __func__))
+#define _UNBOX_GUINT32(s)((guint32)_unbox_int_range((s),0,           G_MAXUINT32, __func__))
+#define _UNBOX_GINT64(s) ((gint64)_unbox_int_range((s), G_MININT64,  G_MAXINT64,  __func__))
+#define _UNBOX_GSIZE(s)  ((gsize) _unbox_int_range((s), 0,           G_MAXINT64,  __func__))
+#define _UNBOX_GBOOL(s)  ((gboolean)(Rf_asLogical(s) == TRUE))
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -26,9 +83,22 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
   if (TYPEOF(s) != EXTPTRSXP) {
     Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
   }
-  return R_ExternalPtrAddr(s);
+  void *addr = R_ExternalPtrAddr(s);
+  if (!addr) {
+    Rf_error("%s: external pointer is NULL (object may have been destroyed)", func);
+  }
+  return addr;
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
+
+/* GTK init guard. Bindings that touch GTK/GDK call
+   RGTK4_REQUIRE_INIT at entry to surface a clean error rather than
+   crash on uninitialized state. Uses gtk_is_initialized() directly. */
+#define RGTK4_REQUIRE_INIT() do { \
+  if (!gtk_is_initialized()) { \
+    Rf_error("%s: gtkInit() has not been called — call gtkInit() first", __func__); \
+  } \
+} while (0)
 
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
@@ -37,7 +107,7 @@ static void _finalizer_g_free(SEXP s) {
 }
 
 extern SEXP make_gobject_ptr(gpointer obj);
-extern SEXP make_boxed_struct(const void *src, size_t size);
+extern SEXP make_boxed_struct(const void *src, size_t size, const char *type_name);
 
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
@@ -53,6 +123,7 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
   void *obj = R_ExternalPtrAddr(ptr);
   if ((uintptr_t)obj < 0x1000) {
+    R_SetExternalPtrTag(ptr, Rf_mkChar(fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
@@ -62,13 +133,16 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
     return ptr;
   }
   if (G_IS_OBJECT(obj)) {
+    const char *tn = G_OBJECT_TYPE_NAME(obj);
+    R_SetExternalPtrTag(ptr, Rf_mkChar(tn ? tn : fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
-    SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
+    SET_STRING_ELT(classes, 0, Rf_mkChar(tn ? tn : fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
     SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
+    R_SetExternalPtrTag(ptr, Rf_mkChar(fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
@@ -93,7 +167,7 @@ SEXP R_graphene_box_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_box_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -169,7 +243,7 @@ SEXP R_graphene_box_expand(SEXP s1, SEXP s2) {
   graphene_box_expand(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t), "graphene_box_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Box"));
   }
@@ -187,7 +261,7 @@ SEXP R_graphene_box_expand_scalar(SEXP s1, SEXP s2) {
   graphene_box_expand_scalar(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t), "graphene_box_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Box"));
   }
@@ -205,7 +279,7 @@ SEXP R_graphene_box_expand_vec3(SEXP s1, SEXP s2) {
   graphene_box_expand_vec3(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t), "graphene_box_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Box"));
   }
@@ -229,7 +303,7 @@ SEXP R_graphene_box_get_bounding_sphere(SEXP s1) {
   graphene_box_get_bounding_sphere(v1, &_out_sphere);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_sphere, sizeof(graphene_sphere_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_sphere, sizeof(graphene_sphere_t), "graphene_sphere_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Sphere"));
   }
@@ -246,7 +320,7 @@ SEXP R_graphene_box_get_center(SEXP s1) {
   graphene_box_get_center(v1, &_out_center);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_center, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_center, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -295,7 +369,7 @@ SEXP R_graphene_box_get_max(SEXP s1) {
   graphene_box_get_max(v1, &_out_max);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_max, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_max, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -312,7 +386,7 @@ SEXP R_graphene_box_get_min(SEXP s1) {
   graphene_box_get_min(v1, &_out_min);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_min, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_min, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -329,7 +403,7 @@ SEXP R_graphene_box_get_size(SEXP s1) {
   graphene_box_get_size(v1, &_out_size);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_size, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_size, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -346,7 +420,7 @@ SEXP R_graphene_box_get_vertices(SEXP s1) {
   graphene_box_get_vertices(v1, &_out_vertices);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_vertices, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_vertices, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -380,7 +454,7 @@ SEXP R_graphene_box_init(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_box_init(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -404,7 +478,7 @@ SEXP R_graphene_box_init_from_box(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_box_init_from_box(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -429,7 +503,7 @@ SEXP R_graphene_box_init_from_points(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_box_init_from_points(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -454,7 +528,7 @@ SEXP R_graphene_box_init_from_vec3(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_box_init_from_vec3(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -479,7 +553,7 @@ SEXP R_graphene_box_init_from_vectors(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_box_init_from_vectors(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -509,7 +583,7 @@ SEXP R_graphene_box_intersection(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_box_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_box_t), "graphene_box_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Box"));
   }
@@ -527,7 +601,7 @@ SEXP R_graphene_box_union(SEXP s1, SEXP s2) {
   graphene_box_union(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t), "graphene_box_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Box"));
   }
@@ -543,7 +617,7 @@ SEXP R_graphene_box_empty(void) {
   gconstpointer _ret = (gconstpointer)graphene_box_empty();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -566,7 +640,7 @@ SEXP R_graphene_box_infinite(void) {
   gconstpointer _ret = (gconstpointer)graphene_box_infinite();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -589,7 +663,7 @@ SEXP R_graphene_box_minus_one(void) {
   gconstpointer _ret = (gconstpointer)graphene_box_minus_one();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -612,7 +686,7 @@ SEXP R_graphene_box_one(void) {
   gconstpointer _ret = (gconstpointer)graphene_box_one();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -635,7 +709,7 @@ SEXP R_graphene_box_one_minus_one(void) {
   gconstpointer _ret = (gconstpointer)graphene_box_one_minus_one();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -658,7 +732,7 @@ SEXP R_graphene_box_zero(void) {
   gconstpointer _ret = (gconstpointer)graphene_box_zero();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_box_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Box"));
@@ -681,7 +755,7 @@ SEXP R_graphene_euler_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_euler_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_euler_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Euler"));
@@ -843,7 +917,7 @@ SEXP R_graphene_euler_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_euler_init(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_euler_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Euler"));
@@ -867,7 +941,7 @@ SEXP R_graphene_euler_init_from_euler(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_euler_init_from_euler(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_euler_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Euler"));
@@ -892,7 +966,7 @@ SEXP R_graphene_euler_init_from_matrix(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_euler_init_from_matrix(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_euler_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Euler"));
@@ -917,7 +991,7 @@ SEXP R_graphene_euler_init_from_quaternion(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_euler_init_from_quaternion(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_euler_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Euler"));
@@ -944,7 +1018,7 @@ SEXP R_graphene_euler_init_from_radians(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP
   gconstpointer _ret = (gconstpointer)graphene_euler_init_from_radians(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_euler_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Euler"));
@@ -969,7 +1043,7 @@ SEXP R_graphene_euler_init_from_vec3(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_euler_init_from_vec3(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_euler_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Euler"));
@@ -996,7 +1070,7 @@ SEXP R_graphene_euler_init_with_order(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
   gconstpointer _ret = (gconstpointer)graphene_euler_init_with_order(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_euler_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Euler"));
@@ -1021,7 +1095,7 @@ SEXP R_graphene_euler_reorder(SEXP s1, SEXP s2) {
   graphene_euler_reorder(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_euler_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_euler_t), "graphene_euler_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Euler"));
   }
@@ -1038,7 +1112,7 @@ SEXP R_graphene_euler_to_matrix(SEXP s1) {
   graphene_euler_to_matrix(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Matrix"));
   }
@@ -1055,7 +1129,7 @@ SEXP R_graphene_euler_to_quaternion(SEXP s1) {
   graphene_euler_to_quaternion(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t), "graphene_quaternion_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quaternion"));
   }
@@ -1072,7 +1146,7 @@ SEXP R_graphene_euler_to_vec3(SEXP s1) {
   graphene_euler_to_vec3(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -1088,7 +1162,7 @@ SEXP R_graphene_frustum_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_frustum_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_frustum_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Frustum"));
@@ -1153,7 +1227,7 @@ SEXP R_graphene_frustum_get_planes(SEXP s1) {
   graphene_frustum_get_planes(v1, &_out_planes);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_planes, sizeof(graphene_plane_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_planes, sizeof(graphene_plane_t), "graphene_plane_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Plane"));
   }
@@ -1175,7 +1249,7 @@ SEXP R_graphene_frustum_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s
   gconstpointer _ret = (gconstpointer)graphene_frustum_init(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_frustum_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Frustum"));
@@ -1199,7 +1273,7 @@ SEXP R_graphene_frustum_init_from_frustum(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_frustum_init_from_frustum(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_frustum_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Frustum"));
@@ -1223,7 +1297,7 @@ SEXP R_graphene_frustum_init_from_matrix(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_frustum_init_from_matrix(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_frustum_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Frustum"));
@@ -1280,7 +1354,7 @@ SEXP R_graphene_matrix_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1313,27 +1387,27 @@ SEXP R_graphene_matrix_decompose(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_translate, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_translate, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("translate"));
-  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_scale, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_scale, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("scale"));
-  SET_VECTOR_ELT(_ans, 3, make_boxed_struct(&_out_rotate, sizeof(graphene_quaternion_t)));
+  SET_VECTOR_ELT(_ans, 3, make_boxed_struct(&_out_rotate, sizeof(graphene_quaternion_t), "graphene_quaternion_t"));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("Quaternion"));
   }
   SET_STRING_ELT(_ans_names, 3, Rf_mkChar("rotate"));
-  SET_VECTOR_ELT(_ans, 4, make_boxed_struct(&_out_shear, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 4, make_boxed_struct(&_out_shear, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 4) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 4), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
   SET_STRING_ELT(_ans_names, 4, Rf_mkChar("shear"));
-  SET_VECTOR_ELT(_ans, 5, make_boxed_struct(&_out_perspective, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 5, make_boxed_struct(&_out_perspective, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 5) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 5), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -1408,7 +1482,7 @@ SEXP R_graphene_matrix_get_row(SEXP s1, SEXP s2) {
   graphene_matrix_get_row(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -1544,7 +1618,7 @@ SEXP R_graphene_matrix_init_from_2d(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_from_2d(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1568,7 +1642,7 @@ SEXP R_graphene_matrix_init_from_float(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_from_float(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1592,7 +1666,7 @@ SEXP R_graphene_matrix_init_from_matrix(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_from_matrix(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1619,7 +1693,7 @@ SEXP R_graphene_matrix_init_from_vec4(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_from_vec4(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1648,7 +1722,7 @@ SEXP R_graphene_matrix_init_frustum(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_frustum(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1671,7 +1745,7 @@ SEXP R_graphene_matrix_init_identity(SEXP s1) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_identity(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1697,7 +1771,7 @@ SEXP R_graphene_matrix_init_look_at(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_look_at(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1726,7 +1800,7 @@ SEXP R_graphene_matrix_init_ortho(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_ortho(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1753,7 +1827,7 @@ SEXP R_graphene_matrix_init_perspective(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_perspective(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1778,7 +1852,7 @@ SEXP R_graphene_matrix_init_rotate(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_rotate(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1804,7 +1878,7 @@ SEXP R_graphene_matrix_init_scale(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_scale(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1829,7 +1903,7 @@ SEXP R_graphene_matrix_init_skew(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_skew(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1853,7 +1927,7 @@ SEXP R_graphene_matrix_init_translate(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_matrix_init_translate(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_matrix_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Matrix"));
@@ -1879,7 +1953,7 @@ SEXP R_graphene_matrix_interpolate(SEXP s1, SEXP s2, SEXP s3) {
   graphene_matrix_interpolate(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Matrix"));
   }
@@ -1901,7 +1975,7 @@ SEXP R_graphene_matrix_inverse(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Matrix"));
   }
@@ -1983,7 +2057,7 @@ SEXP R_graphene_matrix_multiply(SEXP s1, SEXP s2) {
   graphene_matrix_multiply(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Matrix"));
   }
@@ -2018,7 +2092,7 @@ SEXP R_graphene_matrix_normalize(SEXP s1) {
   graphene_matrix_normalize(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Matrix"));
   }
@@ -2036,7 +2110,7 @@ SEXP R_graphene_matrix_perspective(SEXP s1, SEXP s2) {
   graphene_matrix_perspective(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Matrix"));
   }
@@ -2061,7 +2135,7 @@ SEXP R_graphene_matrix_project_point(SEXP s1, SEXP s2) {
   graphene_matrix_project_point(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -2097,7 +2171,7 @@ SEXP R_graphene_matrix_project_rect_bounds(SEXP s1, SEXP s2) {
   graphene_matrix_project_rect_bounds(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -2267,7 +2341,7 @@ SEXP R_graphene_matrix_transform_bounds(SEXP s1, SEXP s2) {
   graphene_matrix_transform_bounds(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -2285,7 +2359,7 @@ SEXP R_graphene_matrix_transform_box(SEXP s1, SEXP s2) {
   graphene_matrix_transform_box(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t), "graphene_box_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Box"));
   }
@@ -2303,7 +2377,7 @@ SEXP R_graphene_matrix_transform_point(SEXP s1, SEXP s2) {
   graphene_matrix_transform_point(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -2321,7 +2395,7 @@ SEXP R_graphene_matrix_transform_point3d(SEXP s1, SEXP s2) {
   graphene_matrix_transform_point3d(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -2339,7 +2413,7 @@ SEXP R_graphene_matrix_transform_ray(SEXP s1, SEXP s2) {
   graphene_matrix_transform_ray(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_ray_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_ray_t), "graphene_ray_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Ray"));
   }
@@ -2375,7 +2449,7 @@ SEXP R_graphene_matrix_transform_sphere(SEXP s1, SEXP s2) {
   graphene_matrix_transform_sphere(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_sphere_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_sphere_t), "graphene_sphere_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Sphere"));
   }
@@ -2393,7 +2467,7 @@ SEXP R_graphene_matrix_transform_vec3(SEXP s1, SEXP s2) {
   graphene_matrix_transform_vec3(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -2411,7 +2485,7 @@ SEXP R_graphene_matrix_transform_vec4(SEXP s1, SEXP s2) {
   graphene_matrix_transform_vec4(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -2436,7 +2510,7 @@ SEXP R_graphene_matrix_transpose(SEXP s1) {
   graphene_matrix_transpose(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Matrix"));
   }
@@ -2455,7 +2529,7 @@ SEXP R_graphene_matrix_unproject_point3d(SEXP s1, SEXP s2, SEXP s3) {
   graphene_matrix_unproject_point3d(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -2474,7 +2548,7 @@ SEXP R_graphene_matrix_untransform_bounds(SEXP s1, SEXP s2, SEXP s3) {
   graphene_matrix_untransform_bounds(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -2498,7 +2572,7 @@ SEXP R_graphene_matrix_untransform_point(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -2514,7 +2588,7 @@ SEXP R_graphene_plane_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_plane_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_plane_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Plane"));
@@ -2595,7 +2669,7 @@ SEXP R_graphene_plane_get_normal(SEXP s1) {
   graphene_plane_get_normal(v1, &_out_normal);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_normal, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_normal, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -2613,7 +2687,7 @@ SEXP R_graphene_plane_init(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_plane_init(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_plane_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Plane"));
@@ -2637,7 +2711,7 @@ SEXP R_graphene_plane_init_from_plane(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_plane_init_from_plane(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_plane_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Plane"));
@@ -2662,7 +2736,7 @@ SEXP R_graphene_plane_init_from_point(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_plane_init_from_point(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_plane_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Plane"));
@@ -2688,7 +2762,7 @@ SEXP R_graphene_plane_init_from_points(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_plane_init_from_points(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_plane_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Plane"));
@@ -2712,7 +2786,7 @@ SEXP R_graphene_plane_init_from_vec4(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_plane_init_from_vec4(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_plane_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Plane"));
@@ -2736,7 +2810,7 @@ SEXP R_graphene_plane_negate(SEXP s1) {
   graphene_plane_negate(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_plane_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_plane_t), "graphene_plane_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Plane"));
   }
@@ -2753,7 +2827,7 @@ SEXP R_graphene_plane_normalize(SEXP s1) {
   graphene_plane_normalize(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_plane_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_plane_t), "graphene_plane_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Plane"));
   }
@@ -2772,7 +2846,7 @@ SEXP R_graphene_plane_transform(SEXP s1, SEXP s2, SEXP s3) {
   graphene_plane_transform(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_plane_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_plane_t), "graphene_plane_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Plane"));
   }
@@ -2788,7 +2862,7 @@ SEXP R_graphene_point_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_point_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point"));
@@ -2866,7 +2940,7 @@ SEXP R_graphene_point_init(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_point_init(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point"));
@@ -2890,7 +2964,7 @@ SEXP R_graphene_point_init_from_point(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_point_init_from_point(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point"));
@@ -2914,7 +2988,7 @@ SEXP R_graphene_point_init_from_vec2(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_point_init_from_vec2(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point"));
@@ -2940,7 +3014,7 @@ SEXP R_graphene_point_interpolate(SEXP s1, SEXP s2, SEXP s3) {
   graphene_point_interpolate(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -2975,7 +3049,7 @@ SEXP R_graphene_point_to_vec2(SEXP s1) {
   graphene_point_to_vec2(v1, &_out_v);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_v, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_v, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -2991,7 +3065,7 @@ SEXP R_graphene_point_zero(void) {
   gconstpointer _ret = (gconstpointer)graphene_point_zero();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point"));
@@ -3014,7 +3088,7 @@ SEXP R_graphene_point3d_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_point3d_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point3d_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point3D"));
@@ -3039,7 +3113,7 @@ SEXP R_graphene_point3d_cross(SEXP s1, SEXP s2) {
   graphene_point3d_cross(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -3062,7 +3136,7 @@ SEXP R_graphene_point3d_distance(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_delta, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_delta, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -3122,7 +3196,7 @@ SEXP R_graphene_point3d_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_point3d_init(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point3d_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point3D"));
@@ -3146,7 +3220,7 @@ SEXP R_graphene_point3d_init_from_point(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_point3d_init_from_point(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point3d_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point3D"));
@@ -3170,7 +3244,7 @@ SEXP R_graphene_point3d_init_from_vec3(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_point3d_init_from_vec3(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point3d_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point3D"));
@@ -3196,7 +3270,7 @@ SEXP R_graphene_point3d_interpolate(SEXP s1, SEXP s2, SEXP s3) {
   graphene_point3d_interpolate(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -3247,7 +3321,7 @@ SEXP R_graphene_point3d_normalize(SEXP s1) {
   graphene_point3d_normalize(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -3267,7 +3341,7 @@ SEXP R_graphene_point3d_normalize_viewport(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   graphene_point3d_normalize_viewport(v1, v2, v3, v4, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -3285,7 +3359,7 @@ SEXP R_graphene_point3d_scale(SEXP s1, SEXP s2) {
   graphene_point3d_scale(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -3302,7 +3376,7 @@ SEXP R_graphene_point3d_to_vec3(SEXP s1) {
   graphene_point3d_to_vec3(v1, &_out_v);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_v, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_v, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -3318,7 +3392,7 @@ SEXP R_graphene_point3d_zero(void) {
   gconstpointer _ret = (gconstpointer)graphene_point3d_zero();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point3d_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point3D"));
@@ -3358,7 +3432,7 @@ SEXP R_graphene_quad_bounds(SEXP s1) {
   graphene_quad_bounds(v1, &_out_r);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_r, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_r, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -3399,7 +3473,7 @@ SEXP R_graphene_quad_get_point(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_quad_get_point(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_point_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Point"));
@@ -3476,7 +3550,7 @@ SEXP R_graphene_quaternion_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_quaternion_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3501,7 +3575,7 @@ SEXP R_graphene_quaternion_add(SEXP s1, SEXP s2) {
   graphene_quaternion_add(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t), "graphene_quaternion_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quaternion"));
   }
@@ -3562,7 +3636,7 @@ SEXP R_graphene_quaternion_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3587,7 +3661,7 @@ SEXP R_graphene_quaternion_init_from_angle_vec3(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init_from_angle_vec3(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3613,7 +3687,7 @@ SEXP R_graphene_quaternion_init_from_angles(SEXP s1, SEXP s2, SEXP s3, SEXP s4) 
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init_from_angles(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3637,7 +3711,7 @@ SEXP R_graphene_quaternion_init_from_euler(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init_from_euler(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3661,7 +3735,7 @@ SEXP R_graphene_quaternion_init_from_matrix(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init_from_matrix(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3685,7 +3759,7 @@ SEXP R_graphene_quaternion_init_from_quaternion(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init_from_quaternion(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3711,7 +3785,7 @@ SEXP R_graphene_quaternion_init_from_radians(SEXP s1, SEXP s2, SEXP s3, SEXP s4)
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init_from_radians(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3735,7 +3809,7 @@ SEXP R_graphene_quaternion_init_from_vec4(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init_from_vec4(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3758,7 +3832,7 @@ SEXP R_graphene_quaternion_init_identity(SEXP s1) {
   gconstpointer _ret = (gconstpointer)graphene_quaternion_init_identity(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_quaternion_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Quaternion"));
@@ -3782,7 +3856,7 @@ SEXP R_graphene_quaternion_invert(SEXP s1) {
   graphene_quaternion_invert(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t), "graphene_quaternion_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quaternion"));
   }
@@ -3800,7 +3874,7 @@ SEXP R_graphene_quaternion_multiply(SEXP s1, SEXP s2) {
   graphene_quaternion_multiply(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t), "graphene_quaternion_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quaternion"));
   }
@@ -3817,7 +3891,7 @@ SEXP R_graphene_quaternion_normalize(SEXP s1) {
   graphene_quaternion_normalize(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t), "graphene_quaternion_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quaternion"));
   }
@@ -3835,7 +3909,7 @@ SEXP R_graphene_quaternion_scale(SEXP s1, SEXP s2) {
   graphene_quaternion_scale(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t), "graphene_quaternion_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quaternion"));
   }
@@ -3854,7 +3928,7 @@ SEXP R_graphene_quaternion_slerp(SEXP s1, SEXP s2, SEXP s3) {
   graphene_quaternion_slerp(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_quaternion_t), "graphene_quaternion_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Quaternion"));
   }
@@ -3877,7 +3951,7 @@ SEXP R_graphene_quaternion_to_angle_vec3(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("angle"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_axis, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_axis, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -3923,7 +3997,7 @@ SEXP R_graphene_quaternion_to_matrix(SEXP s1) {
   graphene_quaternion_to_matrix(v1, &_out_m);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_m, sizeof(graphene_matrix_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_m, sizeof(graphene_matrix_t), "graphene_matrix_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Matrix"));
   }
@@ -3969,7 +4043,7 @@ SEXP R_graphene_quaternion_to_vec4(SEXP s1) {
   graphene_quaternion_to_vec4(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -3985,7 +4059,7 @@ SEXP R_graphene_ray_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_ray_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_ray_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Ray"));
@@ -4034,7 +4108,7 @@ SEXP R_graphene_ray_get_closest_point_to_point(SEXP s1, SEXP s2) {
   graphene_ray_get_closest_point_to_point(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -4051,7 +4125,7 @@ SEXP R_graphene_ray_get_direction(SEXP s1) {
   graphene_ray_get_direction(v1, &_out_direction);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_direction, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_direction, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -4102,7 +4176,7 @@ SEXP R_graphene_ray_get_origin(SEXP s1) {
   graphene_ray_get_origin(v1, &_out_origin);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_origin, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_origin, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -4120,7 +4194,7 @@ SEXP R_graphene_ray_get_position_at(SEXP s1, SEXP s2) {
   graphene_ray_get_position_at(v1, v2, &_out_position);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_position, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_position, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -4138,7 +4212,7 @@ SEXP R_graphene_ray_init(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_ray_init(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_ray_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Ray"));
@@ -4162,7 +4236,7 @@ SEXP R_graphene_ray_init_from_ray(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_ray_init_from_ray(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_ray_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Ray"));
@@ -4187,7 +4261,7 @@ SEXP R_graphene_ray_init_from_vec3(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_ray_init_from_vec3(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_ray_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Ray"));
@@ -4383,7 +4457,7 @@ SEXP R_graphene_rect_expand(SEXP s1, SEXP s2) {
   graphene_rect_expand(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4423,7 +4497,7 @@ SEXP R_graphene_rect_get_bottom_left(SEXP s1) {
   graphene_rect_get_bottom_left(v1, &_out_p);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -4440,7 +4514,7 @@ SEXP R_graphene_rect_get_bottom_right(SEXP s1) {
   graphene_rect_get_bottom_right(v1, &_out_p);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -4457,7 +4531,7 @@ SEXP R_graphene_rect_get_center(SEXP s1) {
   graphene_rect_get_center(v1, &_out_p);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -4490,7 +4564,7 @@ SEXP R_graphene_rect_get_top_left(SEXP s1) {
   graphene_rect_get_top_left(v1, &_out_p);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -4507,7 +4581,7 @@ SEXP R_graphene_rect_get_top_right(SEXP s1) {
   graphene_rect_get_top_right(v1, &_out_p);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_p, sizeof(graphene_point_t), "graphene_point_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point"));
   }
@@ -4524,7 +4598,7 @@ SEXP R_graphene_rect_get_vertices(SEXP s1) {
   graphene_rect_get_vertices(v1, &_out_vertices);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_vertices, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_vertices, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -4592,7 +4666,7 @@ SEXP R_graphene_rect_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   gconstpointer _ret = (gconstpointer)graphene_rect_init(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rect"));
@@ -4616,7 +4690,7 @@ SEXP R_graphene_rect_init_from_rect(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_rect_init_from_rect(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rect"));
@@ -4641,7 +4715,7 @@ SEXP R_graphene_rect_inset(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_rect_inset(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rect"));
@@ -4667,7 +4741,7 @@ SEXP R_graphene_rect_inset_r(SEXP s1, SEXP s2, SEXP s3) {
   graphene_rect_inset_r(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4686,7 +4760,7 @@ SEXP R_graphene_rect_interpolate(SEXP s1, SEXP s2, SEXP s3) {
   graphene_rect_interpolate(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4709,7 +4783,7 @@ SEXP R_graphene_rect_intersection(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4725,7 +4799,7 @@ SEXP R_graphene_rect_normalize(SEXP s1) {
   gconstpointer _ret = (gconstpointer)graphene_rect_normalize(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rect"));
@@ -4749,7 +4823,7 @@ SEXP R_graphene_rect_normalize_r(SEXP s1) {
   graphene_rect_normalize_r(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4767,7 +4841,7 @@ SEXP R_graphene_rect_offset(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_rect_offset(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rect"));
@@ -4793,7 +4867,7 @@ SEXP R_graphene_rect_offset_r(SEXP s1, SEXP s2, SEXP s3) {
   graphene_rect_offset_r(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4810,7 +4884,7 @@ SEXP R_graphene_rect_round(SEXP s1) {
   graphene_rect_round(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4827,7 +4901,7 @@ SEXP R_graphene_rect_round_extents(SEXP s1) {
   graphene_rect_round_extents(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4843,7 +4917,7 @@ SEXP R_graphene_rect_round_to_pixel(SEXP s1) {
   gconstpointer _ret = (gconstpointer)graphene_rect_round_to_pixel(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rect"));
@@ -4869,7 +4943,7 @@ SEXP R_graphene_rect_scale(SEXP s1, SEXP s2, SEXP s3) {
   graphene_rect_scale(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4887,7 +4961,7 @@ SEXP R_graphene_rect_union(SEXP s1, SEXP s2) {
   graphene_rect_union(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_rect_t), "graphene_rect_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rect"));
   }
@@ -4903,7 +4977,7 @@ SEXP R_graphene_rect_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_rect_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rect"));
@@ -4926,7 +5000,7 @@ SEXP R_graphene_rect_zero(void) {
   gconstpointer _ret = (gconstpointer)graphene_rect_zero();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_rect_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rect"));
@@ -4949,7 +5023,7 @@ SEXP R_graphene_size_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_size_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_size_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Size"));
@@ -4998,7 +5072,7 @@ SEXP R_graphene_size_init(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_size_init(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_size_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Size"));
@@ -5022,7 +5096,7 @@ SEXP R_graphene_size_init_from_size(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_size_init_from_size(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_size_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Size"));
@@ -5048,7 +5122,7 @@ SEXP R_graphene_size_interpolate(SEXP s1, SEXP s2, SEXP s3) {
   graphene_size_interpolate(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_size_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_size_t), "graphene_size_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Size"));
   }
@@ -5066,7 +5140,7 @@ SEXP R_graphene_size_scale(SEXP s1, SEXP s2) {
   graphene_size_scale(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_size_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_size_t), "graphene_size_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Size"));
   }
@@ -5082,7 +5156,7 @@ SEXP R_graphene_size_zero(void) {
   gconstpointer _ret = (gconstpointer)graphene_size_zero();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_size_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Size"));
@@ -5105,7 +5179,7 @@ SEXP R_graphene_sphere_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_sphere_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_sphere_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Sphere"));
@@ -5187,7 +5261,7 @@ SEXP R_graphene_sphere_get_bounding_box(SEXP s1) {
   graphene_sphere_get_bounding_box(v1, &_out_box);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_box, sizeof(graphene_box_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_box, sizeof(graphene_box_t), "graphene_box_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Box"));
   }
@@ -5204,7 +5278,7 @@ SEXP R_graphene_sphere_get_center(SEXP s1) {
   graphene_sphere_get_center(v1, &_out_center);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_center, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_center, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -5238,7 +5312,7 @@ SEXP R_graphene_sphere_init(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_sphere_init(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_sphere_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Sphere"));
@@ -5264,7 +5338,7 @@ SEXP R_graphene_sphere_init_from_points(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_sphere_init_from_points(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_sphere_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Sphere"));
@@ -5290,7 +5364,7 @@ SEXP R_graphene_sphere_init_from_vectors(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_sphere_init_from_vectors(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_sphere_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Sphere"));
@@ -5331,7 +5405,7 @@ SEXP R_graphene_sphere_translate(SEXP s1, SEXP s2) {
   graphene_sphere_translate(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_sphere_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_sphere_t), "graphene_sphere_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Sphere"));
   }
@@ -5347,7 +5421,7 @@ SEXP R_graphene_triangle_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_triangle_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_triangle_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Triangle"));
@@ -5434,7 +5508,7 @@ SEXP R_graphene_triangle_get_barycoords(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -5451,7 +5525,7 @@ SEXP R_graphene_triangle_get_bounding_box(SEXP s1) {
   graphene_triangle_get_bounding_box(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_box_t), "graphene_box_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Box"));
   }
@@ -5468,7 +5542,7 @@ SEXP R_graphene_triangle_get_midpoint(SEXP s1) {
   graphene_triangle_get_midpoint(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -5485,7 +5559,7 @@ SEXP R_graphene_triangle_get_normal(SEXP s1) {
   graphene_triangle_get_normal(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -5502,7 +5576,7 @@ SEXP R_graphene_triangle_get_plane(SEXP s1) {
   graphene_triangle_get_plane(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_plane_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_plane_t), "graphene_plane_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Plane"));
   }
@@ -5521,17 +5595,17 @@ SEXP R_graphene_triangle_get_points(SEXP s1) {
   graphene_triangle_get_points(v1, &_out_a, &_out_b, &_out_c);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_a, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_a, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("a"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_b, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_b, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("b"));
-  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_c, sizeof(graphene_point3d_t)));
+  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_c, sizeof(graphene_point3d_t), "graphene_point3d_t"));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("Point3D"));
   }
@@ -5557,7 +5631,7 @@ SEXP R_graphene_triangle_get_uv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -5576,17 +5650,17 @@ SEXP R_graphene_triangle_get_vertices(SEXP s1) {
   graphene_triangle_get_vertices(v1, &_out_a, &_out_b, &_out_c);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_a, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_a, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("a"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_b, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_b, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("b"));
-  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_c, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_c, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -5605,7 +5679,7 @@ SEXP R_graphene_triangle_init_from_float(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_triangle_init_from_float(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_triangle_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Triangle"));
@@ -5631,7 +5705,7 @@ SEXP R_graphene_triangle_init_from_point3d(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_triangle_init_from_point3d(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_triangle_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Triangle"));
@@ -5657,7 +5731,7 @@ SEXP R_graphene_triangle_init_from_vec3(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_triangle_init_from_vec3(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_triangle_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Triangle"));
@@ -5680,7 +5754,7 @@ SEXP R_graphene_vec2_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec2_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec2_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec2"));
@@ -5705,7 +5779,7 @@ SEXP R_graphene_vec2_add(SEXP s1, SEXP s2) {
   graphene_vec2_add(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -5723,7 +5797,7 @@ SEXP R_graphene_vec2_divide(SEXP s1, SEXP s2) {
   graphene_vec2_divide(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -5814,7 +5888,7 @@ SEXP R_graphene_vec2_init(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_vec2_init(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec2_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec2"));
@@ -5838,7 +5912,7 @@ SEXP R_graphene_vec2_init_from_float(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_vec2_init_from_float(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec2_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec2"));
@@ -5862,7 +5936,7 @@ SEXP R_graphene_vec2_init_from_vec2(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_vec2_init_from_vec2(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec2_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec2"));
@@ -5888,7 +5962,7 @@ SEXP R_graphene_vec2_interpolate(SEXP s1, SEXP s2, SEXP s3) {
   graphene_vec2_interpolate(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -5922,7 +5996,7 @@ SEXP R_graphene_vec2_max(SEXP s1, SEXP s2) {
   graphene_vec2_max(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -5940,7 +6014,7 @@ SEXP R_graphene_vec2_min(SEXP s1, SEXP s2) {
   graphene_vec2_min(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -5958,7 +6032,7 @@ SEXP R_graphene_vec2_multiply(SEXP s1, SEXP s2) {
   graphene_vec2_multiply(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -5993,7 +6067,7 @@ SEXP R_graphene_vec2_negate(SEXP s1) {
   graphene_vec2_negate(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -6010,7 +6084,7 @@ SEXP R_graphene_vec2_normalize(SEXP s1) {
   graphene_vec2_normalize(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -6028,7 +6102,7 @@ SEXP R_graphene_vec2_scale(SEXP s1, SEXP s2) {
   graphene_vec2_scale(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -6046,7 +6120,7 @@ SEXP R_graphene_vec2_subtract(SEXP s1, SEXP s2) {
   graphene_vec2_subtract(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -6079,7 +6153,7 @@ SEXP R_graphene_vec2_one(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec2_one();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec2_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec2"));
@@ -6102,7 +6176,7 @@ SEXP R_graphene_vec2_x_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec2_x_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec2_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec2"));
@@ -6125,7 +6199,7 @@ SEXP R_graphene_vec2_y_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec2_y_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec2_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec2"));
@@ -6148,7 +6222,7 @@ SEXP R_graphene_vec2_zero(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec2_zero();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec2_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec2"));
@@ -6171,7 +6245,7 @@ SEXP R_graphene_vec3_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6196,7 +6270,7 @@ SEXP R_graphene_vec3_add(SEXP s1, SEXP s2) {
   graphene_vec3_add(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6214,7 +6288,7 @@ SEXP R_graphene_vec3_cross(SEXP s1, SEXP s2) {
   graphene_vec3_cross(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6232,7 +6306,7 @@ SEXP R_graphene_vec3_divide(SEXP s1, SEXP s2) {
   graphene_vec3_divide(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6306,7 +6380,7 @@ SEXP R_graphene_vec3_get_xy(SEXP s1) {
   graphene_vec3_get_xy(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -6323,7 +6397,7 @@ SEXP R_graphene_vec3_get_xy0(SEXP s1) {
   graphene_vec3_get_xy0(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6340,7 +6414,7 @@ SEXP R_graphene_vec3_get_xyz0(SEXP s1) {
   graphene_vec3_get_xyz0(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -6357,7 +6431,7 @@ SEXP R_graphene_vec3_get_xyz1(SEXP s1) {
   graphene_vec3_get_xyz1(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -6375,7 +6449,7 @@ SEXP R_graphene_vec3_get_xyzw(SEXP s1, SEXP s2) {
   graphene_vec3_get_xyzw(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -6426,7 +6500,7 @@ SEXP R_graphene_vec3_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_init(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6450,7 +6524,7 @@ SEXP R_graphene_vec3_init_from_float(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_init_from_float(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6474,7 +6548,7 @@ SEXP R_graphene_vec3_init_from_vec3(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_init_from_vec3(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6500,7 +6574,7 @@ SEXP R_graphene_vec3_interpolate(SEXP s1, SEXP s2, SEXP s3) {
   graphene_vec3_interpolate(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6534,7 +6608,7 @@ SEXP R_graphene_vec3_max(SEXP s1, SEXP s2) {
   graphene_vec3_max(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6552,7 +6626,7 @@ SEXP R_graphene_vec3_min(SEXP s1, SEXP s2) {
   graphene_vec3_min(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6570,7 +6644,7 @@ SEXP R_graphene_vec3_multiply(SEXP s1, SEXP s2) {
   graphene_vec3_multiply(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6605,7 +6679,7 @@ SEXP R_graphene_vec3_negate(SEXP s1) {
   graphene_vec3_negate(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6622,7 +6696,7 @@ SEXP R_graphene_vec3_normalize(SEXP s1) {
   graphene_vec3_normalize(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6640,7 +6714,7 @@ SEXP R_graphene_vec3_scale(SEXP s1, SEXP s2) {
   graphene_vec3_scale(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6658,7 +6732,7 @@ SEXP R_graphene_vec3_subtract(SEXP s1, SEXP s2) {
   graphene_vec3_subtract(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -6691,7 +6765,7 @@ SEXP R_graphene_vec3_one(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_one();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6714,7 +6788,7 @@ SEXP R_graphene_vec3_x_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_x_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6737,7 +6811,7 @@ SEXP R_graphene_vec3_y_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_y_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6760,7 +6834,7 @@ SEXP R_graphene_vec3_z_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_z_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6783,7 +6857,7 @@ SEXP R_graphene_vec3_zero(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec3_zero();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec3_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec3"));
@@ -6806,7 +6880,7 @@ SEXP R_graphene_vec4_alloc(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_alloc();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -6831,7 +6905,7 @@ SEXP R_graphene_vec4_add(SEXP s1, SEXP s2) {
   graphene_vec4_add(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -6849,7 +6923,7 @@ SEXP R_graphene_vec4_divide(SEXP s1, SEXP s2) {
   graphene_vec4_divide(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -6939,7 +7013,7 @@ SEXP R_graphene_vec4_get_xy(SEXP s1) {
   graphene_vec4_get_xy(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec2_t), "graphene_vec2_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec2"));
   }
@@ -6956,7 +7030,7 @@ SEXP R_graphene_vec4_get_xyz(SEXP s1) {
   graphene_vec4_get_xyz(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec3_t), "graphene_vec3_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec3"));
   }
@@ -7008,7 +7082,7 @@ SEXP R_graphene_vec4_init(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_init(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7032,7 +7106,7 @@ SEXP R_graphene_vec4_init_from_float(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_init_from_float(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7058,7 +7132,7 @@ SEXP R_graphene_vec4_init_from_vec2(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_init_from_vec2(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7083,7 +7157,7 @@ SEXP R_graphene_vec4_init_from_vec3(SEXP s1, SEXP s2, SEXP s3) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_init_from_vec3(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7107,7 +7181,7 @@ SEXP R_graphene_vec4_init_from_vec4(SEXP s1, SEXP s2) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_init_from_vec4(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7133,7 +7207,7 @@ SEXP R_graphene_vec4_interpolate(SEXP s1, SEXP s2, SEXP s3) {
   graphene_vec4_interpolate(v1, v2, v3, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -7167,7 +7241,7 @@ SEXP R_graphene_vec4_max(SEXP s1, SEXP s2) {
   graphene_vec4_max(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -7185,7 +7259,7 @@ SEXP R_graphene_vec4_min(SEXP s1, SEXP s2) {
   graphene_vec4_min(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -7203,7 +7277,7 @@ SEXP R_graphene_vec4_multiply(SEXP s1, SEXP s2) {
   graphene_vec4_multiply(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -7238,7 +7312,7 @@ SEXP R_graphene_vec4_negate(SEXP s1) {
   graphene_vec4_negate(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -7255,7 +7329,7 @@ SEXP R_graphene_vec4_normalize(SEXP s1) {
   graphene_vec4_normalize(v1, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -7273,7 +7347,7 @@ SEXP R_graphene_vec4_scale(SEXP s1, SEXP s2) {
   graphene_vec4_scale(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -7291,7 +7365,7 @@ SEXP R_graphene_vec4_subtract(SEXP s1, SEXP s2) {
   graphene_vec4_subtract(v1, v2, &_out_res);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_res, sizeof(graphene_vec4_t), "graphene_vec4_t"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Vec4"));
   }
@@ -7324,7 +7398,7 @@ SEXP R_graphene_vec4_one(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_one();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7347,7 +7421,7 @@ SEXP R_graphene_vec4_w_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_w_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7370,7 +7444,7 @@ SEXP R_graphene_vec4_x_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_x_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7393,7 +7467,7 @@ SEXP R_graphene_vec4_y_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_y_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7416,7 +7490,7 @@ SEXP R_graphene_vec4_z_axis(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_z_axis();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));
@@ -7439,7 +7513,7 @@ SEXP R_graphene_vec4_zero(void) {
   gconstpointer _ret = (gconstpointer)graphene_vec4_zero();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("graphene_vec4_t"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Vec4"));

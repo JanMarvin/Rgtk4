@@ -27,6 +27,63 @@ static inline double _unbox_numeric(SEXP s) {
   return 0.0;
 }
 
+/* Bounded numeric extraction. NA and out-of-range values throw. */
+static inline gint64 _unbox_int_range(SEXP s, gint64 lo, gint64 hi, const char *func) __attribute__((unused));
+static inline gint64 _unbox_int_range(SEXP s, gint64 lo, gint64 hi, const char *func) {
+  double v;
+  if (TYPEOF(s) == INTSXP) {
+    int iv = INTEGER(s)[0];
+    if (iv == NA_INTEGER) Rf_error("%s: NA not allowed for integer argument", func);
+    v = (double)iv;
+  } else if (TYPEOF(s) == REALSXP) {
+    v = REAL(s)[0];
+    if (!R_finite(v)) Rf_error("%s: NA/Inf not allowed for integer argument", func);
+  } else if (TYPEOF(s) == LGLSXP) {
+    int lv = LOGICAL(s)[0];
+    if (lv == NA_LOGICAL) Rf_error("%s: NA not allowed for integer argument", func);
+    v = (double)lv;
+  } else {
+    Rf_error("%s: expected numeric scalar, got %s", func, Rf_type2char(TYPEOF(s)));
+  }
+  if (v < (double)lo || v > (double)hi) {
+    Rf_error("%s: value %.0f out of range [%lld, %lld]", func, v, (long long)lo, (long long)hi);
+  }
+  return (gint64)v;
+}
+
+static inline double _unbox_real(SEXP s, const char *func) __attribute__((unused));
+static inline double _unbox_real(SEXP s, const char *func) {
+  if (TYPEOF(s) == REALSXP) {
+    double v = REAL(s)[0];
+    if (ISNA(v)) Rf_error("%s: NA not allowed for numeric argument", func);
+    return v;
+  }
+  if (TYPEOF(s) == INTSXP) {
+    int iv = INTEGER(s)[0];
+    if (iv == NA_INTEGER) Rf_error("%s: NA not allowed for numeric argument", func);
+    return (double)iv;
+  }
+  if (TYPEOF(s) == LGLSXP) {
+    int lv = LOGICAL(s)[0];
+    if (lv == NA_LOGICAL) Rf_error("%s: NA not allowed for numeric argument", func);
+    return (double)lv;
+  }
+  Rf_error("%s: expected numeric scalar, got %s", func, Rf_type2char(TYPEOF(s)));
+  return 0.0;  /* unreachable */
+}
+
+#define _UNBOX_GINT(s)   ((gint)  _unbox_int_range((s), G_MININT,    G_MAXINT,    __func__))
+#define _UNBOX_GUINT(s)  ((guint) _unbox_int_range((s), 0,           G_MAXUINT,   __func__))
+#define _UNBOX_GINT8(s)  ((gint8) _unbox_int_range((s), G_MININT8,   G_MAXINT8,   __func__))
+#define _UNBOX_GUINT8(s) ((guint8)_unbox_int_range((s), 0,           G_MAXUINT8,  __func__))
+#define _UNBOX_GINT16(s) ((gint16)_unbox_int_range((s), G_MININT16,  G_MAXINT16,  __func__))
+#define _UNBOX_GUINT16(s)((guint16)_unbox_int_range((s),0,           G_MAXUINT16, __func__))
+#define _UNBOX_GINT32(s) ((gint32)_unbox_int_range((s), G_MININT32,  G_MAXINT32,  __func__))
+#define _UNBOX_GUINT32(s)((guint32)_unbox_int_range((s),0,           G_MAXUINT32, __func__))
+#define _UNBOX_GINT64(s) ((gint64)_unbox_int_range((s), G_MININT64,  G_MAXINT64,  __func__))
+#define _UNBOX_GSIZE(s)  ((gsize) _unbox_int_range((s), 0,           G_MAXINT64,  __func__))
+#define _UNBOX_GBOOL(s)  ((gboolean)(Rf_asLogical(s) == TRUE))
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -34,9 +91,22 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
   if (TYPEOF(s) != EXTPTRSXP) {
     Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
   }
-  return R_ExternalPtrAddr(s);
+  void *addr = R_ExternalPtrAddr(s);
+  if (!addr) {
+    Rf_error("%s: external pointer is NULL (object may have been destroyed)", func);
+  }
+  return addr;
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
+
+/* GTK init guard. Bindings that touch GTK/GDK call
+   RGTK4_REQUIRE_INIT at entry to surface a clean error rather than
+   crash on uninitialized state. Uses gtk_is_initialized() directly. */
+#define RGTK4_REQUIRE_INIT() do { \
+  if (!gtk_is_initialized()) { \
+    Rf_error("%s: gtkInit() has not been called — call gtkInit() first", __func__); \
+  } \
+} while (0)
 
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
@@ -45,7 +115,7 @@ static void _finalizer_g_free(SEXP s) {
 }
 
 extern SEXP make_gobject_ptr(gpointer obj);
-extern SEXP make_boxed_struct(const void *src, size_t size);
+extern SEXP make_boxed_struct(const void *src, size_t size, const char *type_name);
 
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
@@ -61,6 +131,7 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
   void *obj = R_ExternalPtrAddr(ptr);
   if ((uintptr_t)obj < 0x1000) {
+    R_SetExternalPtrTag(ptr, Rf_mkChar(fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
@@ -70,13 +141,16 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
     return ptr;
   }
   if (G_IS_OBJECT(obj)) {
+    const char *tn = G_OBJECT_TYPE_NAME(obj);
+    R_SetExternalPtrTag(ptr, Rf_mkChar(tn ? tn : fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
-    SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
+    SET_STRING_ELT(classes, 0, Rf_mkChar(tn ? tn : fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
     SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
+    R_SetExternalPtrTag(ptr, Rf_mkChar(fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
@@ -5576,7 +5650,7 @@ SEXP R_g_main_context_query(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("timeout_"));
-  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_fds, sizeof(GPollFD)));
+  SET_VECTOR_ELT(_ans, 2, make_boxed_struct(&_out_fds, sizeof(GPollFD), "GPollFD"));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("PollFD"));
   }
@@ -10201,7 +10275,7 @@ SEXP R_g_time_val_from_iso8601(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_time_, sizeof(GTimeVal)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_time_, sizeof(GTimeVal), "GTimeVal"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TimeVal"));
   }

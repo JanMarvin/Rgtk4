@@ -19,6 +19,63 @@ static inline double _unbox_numeric(SEXP s) {
   return 0.0;
 }
 
+/* Bounded numeric extraction. NA and out-of-range values throw. */
+static inline gint64 _unbox_int_range(SEXP s, gint64 lo, gint64 hi, const char *func) __attribute__((unused));
+static inline gint64 _unbox_int_range(SEXP s, gint64 lo, gint64 hi, const char *func) {
+  double v;
+  if (TYPEOF(s) == INTSXP) {
+    int iv = INTEGER(s)[0];
+    if (iv == NA_INTEGER) Rf_error("%s: NA not allowed for integer argument", func);
+    v = (double)iv;
+  } else if (TYPEOF(s) == REALSXP) {
+    v = REAL(s)[0];
+    if (!R_finite(v)) Rf_error("%s: NA/Inf not allowed for integer argument", func);
+  } else if (TYPEOF(s) == LGLSXP) {
+    int lv = LOGICAL(s)[0];
+    if (lv == NA_LOGICAL) Rf_error("%s: NA not allowed for integer argument", func);
+    v = (double)lv;
+  } else {
+    Rf_error("%s: expected numeric scalar, got %s", func, Rf_type2char(TYPEOF(s)));
+  }
+  if (v < (double)lo || v > (double)hi) {
+    Rf_error("%s: value %.0f out of range [%lld, %lld]", func, v, (long long)lo, (long long)hi);
+  }
+  return (gint64)v;
+}
+
+static inline double _unbox_real(SEXP s, const char *func) __attribute__((unused));
+static inline double _unbox_real(SEXP s, const char *func) {
+  if (TYPEOF(s) == REALSXP) {
+    double v = REAL(s)[0];
+    if (ISNA(v)) Rf_error("%s: NA not allowed for numeric argument", func);
+    return v;
+  }
+  if (TYPEOF(s) == INTSXP) {
+    int iv = INTEGER(s)[0];
+    if (iv == NA_INTEGER) Rf_error("%s: NA not allowed for numeric argument", func);
+    return (double)iv;
+  }
+  if (TYPEOF(s) == LGLSXP) {
+    int lv = LOGICAL(s)[0];
+    if (lv == NA_LOGICAL) Rf_error("%s: NA not allowed for numeric argument", func);
+    return (double)lv;
+  }
+  Rf_error("%s: expected numeric scalar, got %s", func, Rf_type2char(TYPEOF(s)));
+  return 0.0;  /* unreachable */
+}
+
+#define _UNBOX_GINT(s)   ((gint)  _unbox_int_range((s), G_MININT,    G_MAXINT,    __func__))
+#define _UNBOX_GUINT(s)  ((guint) _unbox_int_range((s), 0,           G_MAXUINT,   __func__))
+#define _UNBOX_GINT8(s)  ((gint8) _unbox_int_range((s), G_MININT8,   G_MAXINT8,   __func__))
+#define _UNBOX_GUINT8(s) ((guint8)_unbox_int_range((s), 0,           G_MAXUINT8,  __func__))
+#define _UNBOX_GINT16(s) ((gint16)_unbox_int_range((s), G_MININT16,  G_MAXINT16,  __func__))
+#define _UNBOX_GUINT16(s)((guint16)_unbox_int_range((s),0,           G_MAXUINT16, __func__))
+#define _UNBOX_GINT32(s) ((gint32)_unbox_int_range((s), G_MININT32,  G_MAXINT32,  __func__))
+#define _UNBOX_GUINT32(s)((guint32)_unbox_int_range((s),0,           G_MAXUINT32, __func__))
+#define _UNBOX_GINT64(s) ((gint64)_unbox_int_range((s), G_MININT64,  G_MAXINT64,  __func__))
+#define _UNBOX_GSIZE(s)  ((gsize) _unbox_int_range((s), 0,           G_MAXINT64,  __func__))
+#define _UNBOX_GBOOL(s)  ((gboolean)(Rf_asLogical(s) == TRUE))
+
 /* Safe pointer extraction with validation */
 static inline void* get_ptr_internal(SEXP s, const char* func) __attribute__((unused));
 static inline void* get_ptr_internal(SEXP s, const char* func) {
@@ -26,9 +83,22 @@ static inline void* get_ptr_internal(SEXP s, const char* func) {
   if (TYPEOF(s) != EXTPTRSXP) {
     Rf_error("%s: expected external pointer, got %s", func, Rf_type2char(TYPEOF(s)));
   }
-  return R_ExternalPtrAddr(s);
+  void *addr = R_ExternalPtrAddr(s);
+  if (!addr) {
+    Rf_error("%s: external pointer is NULL (object may have been destroyed)", func);
+  }
+  return addr;
 }
 #define get_ptr(s) get_ptr_internal(s, __func__)
+
+/* GTK init guard. Bindings that touch GTK/GDK call
+   RGTK4_REQUIRE_INIT at entry to surface a clean error rather than
+   crash on uninitialized state. Uses gtk_is_initialized() directly. */
+#define RGTK4_REQUIRE_INIT() do { \
+  if (!gtk_is_initialized()) { \
+    Rf_error("%s: gtkInit() has not been called — call gtkInit() first", __func__); \
+  } \
+} while (0)
 
 static void _finalizer_g_free(SEXP s) __attribute__((unused));
 static void _finalizer_g_free(SEXP s) {
@@ -37,7 +107,7 @@ static void _finalizer_g_free(SEXP s) {
 }
 
 extern SEXP make_gobject_ptr(gpointer obj);
-extern SEXP make_boxed_struct(const void *src, size_t size);
+extern SEXP make_boxed_struct(const void *src, size_t size, const char *type_name);
 
 static SEXP _box_GStrv(char **strv) __attribute__((unused));
 static SEXP _box_GStrv(char **strv) {
@@ -53,6 +123,7 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
   if (ptr == R_NilValue || TYPEOF(ptr) != EXTPTRSXP) return ptr;
   void *obj = R_ExternalPtrAddr(ptr);
   if ((uintptr_t)obj < 0x1000) {
+    R_SetExternalPtrTag(ptr, Rf_mkChar(fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
@@ -62,13 +133,16 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
     return ptr;
   }
   if (G_IS_OBJECT(obj)) {
+    const char *tn = G_OBJECT_TYPE_NAME(obj);
+    R_SetExternalPtrTag(ptr, Rf_mkChar(tn ? tn : fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
-    SET_STRING_ELT(classes, 0, Rf_mkChar(G_OBJECT_TYPE_NAME(obj)));
+    SET_STRING_ELT(classes, 0, Rf_mkChar(tn ? tn : fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
     SET_STRING_ELT(classes, 2, Rf_mkChar("RGtkObject"));
     Rf_setAttrib(ptr, R_ClassSymbol, classes);
     UNPROTECT(1);
   } else {
+    R_SetExternalPtrTag(ptr, Rf_mkChar(fallback_name));
     SEXP classes = PROTECT(Rf_allocVector(STRSXP, 3));
     SET_STRING_ELT(classes, 0, Rf_mkChar(fallback_name));
     SET_STRING_ELT(classes, 1, Rf_mkChar("GObject"));
@@ -89,6 +163,7 @@ static SEXP tag_pointer(SEXP ptr, const char* fallback_name) {
 
 
 SEXP R_gdk_app_launch_context_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkAppLaunchContext* v1 = (GdkAppLaunchContext*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_app_launch_context_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -105,6 +180,7 @@ SEXP R_gdk_app_launch_context_get_display(SEXP s1) {
 
 
 SEXP R_gdk_app_launch_context_set_desktop(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkAppLaunchContext* v1 = (GdkAppLaunchContext*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gdk_app_launch_context_set_desktop(v1, v2);
@@ -113,6 +189,7 @@ SEXP R_gdk_app_launch_context_set_desktop(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_app_launch_context_set_icon(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkAppLaunchContext* v1 = (GdkAppLaunchContext*)(get_ptr(s1)); (void)v1;
   GIcon* v2 = (s2 != R_NilValue) ? (GIcon*)(get_ptr(s2)) : NULL; (void)v2;
   gdk_app_launch_context_set_icon(v1, v2);
@@ -121,6 +198,7 @@ SEXP R_gdk_app_launch_context_set_icon(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_app_launch_context_set_icon_name(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkAppLaunchContext* v1 = (GdkAppLaunchContext*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gdk_app_launch_context_set_icon_name(v1, v2);
@@ -129,6 +207,7 @@ SEXP R_gdk_app_launch_context_set_icon_name(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_app_launch_context_set_timestamp(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkAppLaunchContext* v1 = (GdkAppLaunchContext*)(get_ptr(s1)); (void)v1;
   guint32 v2 = (guint32)((guint32)_unbox_numeric(s2)); (void)v2;
   gdk_app_launch_context_set_timestamp(v1, v2);
@@ -137,6 +216,7 @@ SEXP R_gdk_app_launch_context_set_timestamp(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_button_event_get_button(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_button_event_get_button(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -153,6 +233,7 @@ SEXP R_gdk_button_event_get_button(SEXP s1) {
 
 
 SEXP R_gdk_cairo_context_cairo_create(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkCairoContext* v1 = (GdkCairoContext*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_cairo_context_cairo_create(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -169,6 +250,7 @@ SEXP R_gdk_cairo_context_cairo_create(SEXP s1) {
 
 
 SEXP R_gdk_clipboard_get_content(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_clipboard_get_content(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -185,6 +267,7 @@ SEXP R_gdk_clipboard_get_content(SEXP s1) {
 
 
 SEXP R_gdk_clipboard_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_clipboard_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -201,6 +284,7 @@ SEXP R_gdk_clipboard_get_display(SEXP s1) {
 
 
 SEXP R_gdk_clipboard_get_formats(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_clipboard_get_formats(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -217,6 +301,7 @@ SEXP R_gdk_clipboard_get_formats(SEXP s1) {
 
 
 SEXP R_gdk_clipboard_is_local(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_clipboard_is_local(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -233,6 +318,7 @@ SEXP R_gdk_clipboard_is_local(SEXP s1) {
 
 
 SEXP R_gdk_clipboard_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   const char** v2 = (const char**)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -244,6 +330,7 @@ SEXP R_gdk_clipboard_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_gdk_clipboard_read_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
   const char* _out_out_mime_type = 0; (void)_out_out_mime_type;
@@ -268,6 +355,7 @@ SEXP R_gdk_clipboard_read_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_clipboard_read_text_async(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
   RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
@@ -277,6 +365,7 @@ SEXP R_gdk_clipboard_read_text_async(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_clipboard_read_text_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
   GError *_err = NULL;
@@ -295,6 +384,7 @@ SEXP R_gdk_clipboard_read_text_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_clipboard_read_texture_async(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GCancellable* v2 = (s2 != R_NilValue) ? (GCancellable*)(get_ptr(s2)) : NULL; (void)v2;
   RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
@@ -304,6 +394,7 @@ SEXP R_gdk_clipboard_read_texture_async(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_clipboard_read_texture_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
   GError *_err = NULL;
@@ -322,6 +413,7 @@ SEXP R_gdk_clipboard_read_texture_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_clipboard_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -333,6 +425,7 @@ SEXP R_gdk_clipboard_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
 
 
 SEXP R_gdk_clipboard_read_value_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
   GError *_err = NULL;
@@ -351,6 +444,7 @@ SEXP R_gdk_clipboard_read_value_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_clipboard_set_content(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GdkContentProvider* v2 = (s2 != R_NilValue) ? (GdkContentProvider*)(get_ptr(s2)) : NULL; (void)v2;
   gboolean _ret = (gboolean)gdk_clipboard_set_content(v1, v2);
@@ -368,6 +462,7 @@ SEXP R_gdk_clipboard_set_content(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_clipboard_set_value(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   const GValue* v2 = (const GValue*)(get_ptr(s2)); (void)v2;
   gdk_clipboard_set_value(v1, v2);
@@ -376,6 +471,7 @@ SEXP R_gdk_clipboard_set_value(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_clipboard_store_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GCancellable* v3 = (s3 != R_NilValue) ? (GCancellable*)(get_ptr(s3)) : NULL; (void)v3;
@@ -386,6 +482,7 @@ SEXP R_gdk_clipboard_store_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gdk_clipboard_store_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkClipboard* v1 = (GdkClipboard*)(get_ptr(s1)); (void)v1;
   GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
   GError *_err = NULL;
@@ -404,6 +501,7 @@ SEXP R_gdk_clipboard_store_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_deserializer_get_cancellable(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_deserializer_get_cancellable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -420,6 +518,7 @@ SEXP R_gdk_content_deserializer_get_cancellable(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_get_gtype(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   GType _ret = (GType)gdk_content_deserializer_get_gtype(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -436,6 +535,7 @@ SEXP R_gdk_content_deserializer_get_gtype(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_get_input_stream(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_deserializer_get_input_stream(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -452,6 +552,7 @@ SEXP R_gdk_content_deserializer_get_input_stream(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_get_mime_type(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_deserializer_get_mime_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -468,6 +569,7 @@ SEXP R_gdk_content_deserializer_get_mime_type(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_get_priority(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_content_deserializer_get_priority(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -484,6 +586,7 @@ SEXP R_gdk_content_deserializer_get_priority(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_get_task_data(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)gdk_content_deserializer_get_task_data(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -500,6 +603,7 @@ SEXP R_gdk_content_deserializer_get_task_data(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_get_user_data(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)gdk_content_deserializer_get_user_data(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -516,6 +620,7 @@ SEXP R_gdk_content_deserializer_get_user_data(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_get_value(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_deserializer_get_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -532,6 +637,7 @@ SEXP R_gdk_content_deserializer_get_value(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_return_error(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   GError* v2 = (GError*)(get_ptr(s2)); (void)v2;
   gdk_content_deserializer_return_error(v1, v2);
@@ -540,6 +646,7 @@ SEXP R_gdk_content_deserializer_return_error(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_deserializer_return_success(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gdk_content_deserializer_return_success(v1);
   return R_NilValue;
@@ -547,6 +654,7 @@ SEXP R_gdk_content_deserializer_return_success(SEXP s1) {
 
 
 SEXP R_gdk_content_deserializer_set_task_data(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkContentDeserializer* v1 = (GdkContentDeserializer*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   GDestroyNotify v3 = (GDestroyNotify)(get_ptr(s3)); (void)v3;
@@ -556,6 +664,7 @@ SEXP R_gdk_content_deserializer_set_task_data(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_content_formats_new(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const char** v1 = (s1 != R_NilValue) ? (const char**)(get_ptr(s1)) : NULL; (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_new(v1, v2);
@@ -573,6 +682,7 @@ SEXP R_gdk_content_formats_new(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_new_for_gtype(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_new_for_gtype(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -589,6 +699,7 @@ SEXP R_gdk_content_formats_new_for_gtype(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_contain_gtype(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkContentFormats* v1 = (const GdkContentFormats*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gboolean _ret = (gboolean)gdk_content_formats_contain_gtype(v1, v2);
@@ -606,6 +717,7 @@ SEXP R_gdk_content_formats_contain_gtype(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_contain_mime_type(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkContentFormats* v1 = (const GdkContentFormats*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gboolean _ret = (gboolean)gdk_content_formats_contain_mime_type(v1, v2);
@@ -623,6 +735,7 @@ SEXP R_gdk_content_formats_contain_mime_type(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_get_gtypes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkContentFormats* v1 = (const GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gsize _out_n_gtypes = 0; (void)_out_n_gtypes;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_get_gtypes(v1, &_out_n_gtypes);
@@ -645,6 +758,7 @@ SEXP R_gdk_content_formats_get_gtypes(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_get_mime_types(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkContentFormats* v1 = (const GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gsize _out_n_mime_types = 0; (void)_out_n_mime_types;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_get_mime_types(v1, &_out_n_mime_types);
@@ -667,6 +781,7 @@ SEXP R_gdk_content_formats_get_mime_types(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_match(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkContentFormats* v1 = (const GdkContentFormats*)(get_ptr(s1)); (void)v1;
   const GdkContentFormats* v2 = (const GdkContentFormats*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gdk_content_formats_match(v1, v2);
@@ -684,6 +799,7 @@ SEXP R_gdk_content_formats_match(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_match_gtype(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkContentFormats* v1 = (const GdkContentFormats*)(get_ptr(s1)); (void)v1;
   const GdkContentFormats* v2 = (const GdkContentFormats*)(get_ptr(s2)); (void)v2;
   GType _ret = (GType)gdk_content_formats_match_gtype(v1, v2);
@@ -701,6 +817,7 @@ SEXP R_gdk_content_formats_match_gtype(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_match_mime_type(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkContentFormats* v1 = (const GdkContentFormats*)(get_ptr(s1)); (void)v1;
   const GdkContentFormats* v2 = (const GdkContentFormats*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_match_mime_type(v1, v2);
@@ -718,6 +835,7 @@ SEXP R_gdk_content_formats_match_mime_type(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_print(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   GString* v2 = (GString*)(get_ptr(s2)); (void)v2;
   gdk_content_formats_print(v1, v2);
@@ -726,6 +844,7 @@ SEXP R_gdk_content_formats_print(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -742,6 +861,7 @@ SEXP R_gdk_content_formats_ref(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_to_string(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_to_string(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -758,6 +878,7 @@ SEXP R_gdk_content_formats_to_string(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_union(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   const GdkContentFormats* v2 = (const GdkContentFormats*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_union(v1, v2);
@@ -775,6 +896,7 @@ SEXP R_gdk_content_formats_union(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_union_deserialize_gtypes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_union_deserialize_gtypes(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -791,6 +913,7 @@ SEXP R_gdk_content_formats_union_deserialize_gtypes(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_union_deserialize_mime_types(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_union_deserialize_mime_types(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -807,6 +930,7 @@ SEXP R_gdk_content_formats_union_deserialize_mime_types(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_union_serialize_gtypes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_union_serialize_gtypes(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -823,6 +947,7 @@ SEXP R_gdk_content_formats_union_serialize_gtypes(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_union_serialize_mime_types(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_union_serialize_mime_types(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -839,6 +964,7 @@ SEXP R_gdk_content_formats_union_serialize_mime_types(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormats* v1 = (GdkContentFormats*)(get_ptr(s1)); (void)v1;
   gdk_content_formats_unref(v1);
   return R_NilValue;
@@ -846,6 +972,7 @@ SEXP R_gdk_content_formats_unref(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_parse(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_parse(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -862,6 +989,7 @@ SEXP R_gdk_content_formats_parse(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_builder_new(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gdk_content_formats_builder_new();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -878,6 +1006,7 @@ SEXP R_gdk_content_formats_builder_new(void) {
 
 
 SEXP R_gdk_content_formats_builder_add_formats(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormatsBuilder* v1 = (GdkContentFormatsBuilder*)(get_ptr(s1)); (void)v1;
   const GdkContentFormats* v2 = (const GdkContentFormats*)(get_ptr(s2)); (void)v2;
   gdk_content_formats_builder_add_formats(v1, v2);
@@ -886,6 +1015,7 @@ SEXP R_gdk_content_formats_builder_add_formats(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_builder_add_gtype(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormatsBuilder* v1 = (GdkContentFormatsBuilder*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gdk_content_formats_builder_add_gtype(v1, v2);
@@ -894,6 +1024,7 @@ SEXP R_gdk_content_formats_builder_add_gtype(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_builder_add_mime_type(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormatsBuilder* v1 = (GdkContentFormatsBuilder*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gdk_content_formats_builder_add_mime_type(v1, v2);
@@ -902,6 +1033,7 @@ SEXP R_gdk_content_formats_builder_add_mime_type(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_formats_builder_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormatsBuilder* v1 = (GdkContentFormatsBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_builder_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -918,6 +1050,7 @@ SEXP R_gdk_content_formats_builder_ref(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_builder_to_formats(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormatsBuilder* v1 = (GdkContentFormatsBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_formats_builder_to_formats(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -934,6 +1067,7 @@ SEXP R_gdk_content_formats_builder_to_formats(SEXP s1) {
 
 
 SEXP R_gdk_content_formats_builder_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentFormatsBuilder* v1 = (GdkContentFormatsBuilder*)(get_ptr(s1)); (void)v1;
   gdk_content_formats_builder_unref(v1);
   return R_NilValue;
@@ -941,6 +1075,7 @@ SEXP R_gdk_content_formats_builder_unref(SEXP s1) {
 
 
 SEXP R_gdk_content_provider_new_for_bytes(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GBytes* v2 = (GBytes*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_content_provider_new_for_bytes(v1, v2);
@@ -958,6 +1093,7 @@ SEXP R_gdk_content_provider_new_for_bytes(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_provider_new_for_value(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GValue* v1 = (const GValue*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_provider_new_for_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -974,6 +1110,7 @@ SEXP R_gdk_content_provider_new_for_value(SEXP s1) {
 
 
 SEXP R_gdk_content_provider_new_union(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentProvider** v1 = (s1 != R_NilValue) ? (GdkContentProvider**)(get_ptr(s1)) : NULL; (void)v1;
   gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_content_provider_new_union(v1, v2);
@@ -991,6 +1128,7 @@ SEXP R_gdk_content_provider_new_union(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_provider_content_changed(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentProvider* v1 = (GdkContentProvider*)(get_ptr(s1)); (void)v1;
   gdk_content_provider_content_changed(v1);
   return R_NilValue;
@@ -998,6 +1136,7 @@ SEXP R_gdk_content_provider_content_changed(SEXP s1) {
 
 
 SEXP R_gdk_content_provider_get_value(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentProvider* v1 = (GdkContentProvider*)(get_ptr(s1)); (void)v1;
   GValue _out_value = {0}; (void)_out_value;
   GError *_err = NULL;
@@ -1021,6 +1160,7 @@ SEXP R_gdk_content_provider_get_value(SEXP s1) {
 
 
 SEXP R_gdk_content_provider_ref_formats(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentProvider* v1 = (GdkContentProvider*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_provider_ref_formats(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1037,6 +1177,7 @@ SEXP R_gdk_content_provider_ref_formats(SEXP s1) {
 
 
 SEXP R_gdk_content_provider_ref_storable_formats(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentProvider* v1 = (GdkContentProvider*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_provider_ref_storable_formats(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1053,6 +1194,7 @@ SEXP R_gdk_content_provider_ref_storable_formats(SEXP s1) {
 
 
 SEXP R_gdk_content_provider_write_mime_type_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   GdkContentProvider* v1 = (GdkContentProvider*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GOutputStream* v3 = (GOutputStream*)(get_ptr(s3)); (void)v3;
@@ -1065,6 +1207,7 @@ SEXP R_gdk_content_provider_write_mime_type_async(SEXP s1, SEXP s2, SEXP s3, SEX
 
 
 SEXP R_gdk_content_provider_write_mime_type_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentProvider* v1 = (GdkContentProvider*)(get_ptr(s1)); (void)v1;
   GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
   GError *_err = NULL;
@@ -1083,6 +1226,7 @@ SEXP R_gdk_content_provider_write_mime_type_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_serializer_get_cancellable(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_serializer_get_cancellable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1099,6 +1243,7 @@ SEXP R_gdk_content_serializer_get_cancellable(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_get_gtype(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   GType _ret = (GType)gdk_content_serializer_get_gtype(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1115,6 +1260,7 @@ SEXP R_gdk_content_serializer_get_gtype(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_get_mime_type(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_serializer_get_mime_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1131,6 +1277,7 @@ SEXP R_gdk_content_serializer_get_mime_type(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_get_output_stream(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_serializer_get_output_stream(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1147,6 +1294,7 @@ SEXP R_gdk_content_serializer_get_output_stream(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_get_priority(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_content_serializer_get_priority(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1163,6 +1311,7 @@ SEXP R_gdk_content_serializer_get_priority(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_get_task_data(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)gdk_content_serializer_get_task_data(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1179,6 +1328,7 @@ SEXP R_gdk_content_serializer_get_task_data(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_get_user_data(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)gdk_content_serializer_get_user_data(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1195,6 +1345,7 @@ SEXP R_gdk_content_serializer_get_user_data(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_get_value(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_content_serializer_get_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1211,6 +1362,7 @@ SEXP R_gdk_content_serializer_get_value(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_return_error(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   GError* v2 = (GError*)(get_ptr(s2)); (void)v2;
   gdk_content_serializer_return_error(v1, v2);
@@ -1219,6 +1371,7 @@ SEXP R_gdk_content_serializer_return_error(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_serializer_return_success(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   gdk_content_serializer_return_success(v1);
   return R_NilValue;
@@ -1226,6 +1379,7 @@ SEXP R_gdk_content_serializer_return_success(SEXP s1) {
 
 
 SEXP R_gdk_content_serializer_set_task_data(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkContentSerializer* v1 = (GdkContentSerializer*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   GDestroyNotify v3 = (GDestroyNotify)(get_ptr(s3)); (void)v3;
@@ -1235,6 +1389,7 @@ SEXP R_gdk_content_serializer_set_task_data(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_crossing_event_get_detail(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkNotifyType _ret = (GdkNotifyType)gdk_crossing_event_get_detail(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1251,6 +1406,7 @@ SEXP R_gdk_crossing_event_get_detail(SEXP s1) {
 
 
 SEXP R_gdk_crossing_event_get_focus(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_crossing_event_get_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1267,6 +1423,7 @@ SEXP R_gdk_crossing_event_get_focus(SEXP s1) {
 
 
 SEXP R_gdk_crossing_event_get_mode(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkCrossingMode _ret = (GdkCrossingMode)gdk_crossing_event_get_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1283,6 +1440,7 @@ SEXP R_gdk_crossing_event_get_mode(SEXP s1) {
 
 
 SEXP R_gdk_cursor_new_from_name(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GdkCursor* v2 = (s2 != R_NilValue) ? (GdkCursor*)(get_ptr(s2)) : NULL; (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_cursor_new_from_name(v1, v2);
@@ -1300,6 +1458,7 @@ SEXP R_gdk_cursor_new_from_name(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_cursor_new_from_texture(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -1319,6 +1478,7 @@ SEXP R_gdk_cursor_new_from_texture(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gdk_cursor_get_fallback(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkCursor* v1 = (GdkCursor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_cursor_get_fallback(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1335,6 +1495,7 @@ SEXP R_gdk_cursor_get_fallback(SEXP s1) {
 
 
 SEXP R_gdk_cursor_get_hotspot_x(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkCursor* v1 = (GdkCursor*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_cursor_get_hotspot_x(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1351,6 +1512,7 @@ SEXP R_gdk_cursor_get_hotspot_x(SEXP s1) {
 
 
 SEXP R_gdk_cursor_get_hotspot_y(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkCursor* v1 = (GdkCursor*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_cursor_get_hotspot_y(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1367,6 +1529,7 @@ SEXP R_gdk_cursor_get_hotspot_y(SEXP s1) {
 
 
 SEXP R_gdk_cursor_get_name(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkCursor* v1 = (GdkCursor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_cursor_get_name(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1383,6 +1546,7 @@ SEXP R_gdk_cursor_get_name(SEXP s1) {
 
 
 SEXP R_gdk_cursor_get_texture(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkCursor* v1 = (GdkCursor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_cursor_get_texture(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1399,6 +1563,7 @@ SEXP R_gdk_cursor_get_texture(SEXP s1) {
 
 
 SEXP R_gdk_dnd_event_get_drop(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_dnd_event_get_drop(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1415,6 +1580,7 @@ SEXP R_gdk_dnd_event_get_drop(SEXP s1) {
 
 
 SEXP R_gdk_device_get_caps_lock_state(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_device_get_caps_lock_state(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1431,6 +1597,7 @@ SEXP R_gdk_device_get_caps_lock_state(SEXP s1) {
 
 
 SEXP R_gdk_device_get_device_tool(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_device_get_device_tool(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1447,6 +1614,7 @@ SEXP R_gdk_device_get_device_tool(SEXP s1) {
 
 
 SEXP R_gdk_device_get_direction(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   PangoDirection _ret = (PangoDirection)gdk_device_get_direction(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1463,6 +1631,7 @@ SEXP R_gdk_device_get_direction(SEXP s1) {
 
 
 SEXP R_gdk_device_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_device_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1479,6 +1648,7 @@ SEXP R_gdk_device_get_display(SEXP s1) {
 
 
 SEXP R_gdk_device_get_has_cursor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_device_get_has_cursor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1495,6 +1665,7 @@ SEXP R_gdk_device_get_has_cursor(SEXP s1) {
 
 
 SEXP R_gdk_device_get_modifier_state(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   GdkModifierType _ret = (GdkModifierType)gdk_device_get_modifier_state(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1511,6 +1682,7 @@ SEXP R_gdk_device_get_modifier_state(SEXP s1) {
 
 
 SEXP R_gdk_device_get_name(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_device_get_name(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1527,6 +1699,7 @@ SEXP R_gdk_device_get_name(SEXP s1) {
 
 
 SEXP R_gdk_device_get_num_lock_state(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_device_get_num_lock_state(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1543,6 +1716,7 @@ SEXP R_gdk_device_get_num_lock_state(SEXP s1) {
 
 
 SEXP R_gdk_device_get_num_touches(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_device_get_num_touches(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1559,6 +1733,7 @@ SEXP R_gdk_device_get_num_touches(SEXP s1) {
 
 
 SEXP R_gdk_device_get_product_id(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_device_get_product_id(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1575,6 +1750,7 @@ SEXP R_gdk_device_get_product_id(SEXP s1) {
 
 
 SEXP R_gdk_device_get_scroll_lock_state(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_device_get_scroll_lock_state(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1591,6 +1767,7 @@ SEXP R_gdk_device_get_scroll_lock_state(SEXP s1) {
 
 
 SEXP R_gdk_device_get_seat(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_device_get_seat(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1607,6 +1784,7 @@ SEXP R_gdk_device_get_seat(SEXP s1) {
 
 
 SEXP R_gdk_device_get_source(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   GdkInputSource _ret = (GdkInputSource)gdk_device_get_source(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1623,6 +1801,7 @@ SEXP R_gdk_device_get_source(SEXP s1) {
 
 
 SEXP R_gdk_device_get_surface_at_position(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   double _out_win_x = 0; (void)_out_win_x;
   double _out_win_y = 0; (void)_out_win_y;
@@ -1651,6 +1830,7 @@ SEXP R_gdk_device_get_surface_at_position(SEXP s1) {
 
 
 SEXP R_gdk_device_get_timestamp(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   guint32 _ret = (guint32)gdk_device_get_timestamp(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1667,6 +1847,7 @@ SEXP R_gdk_device_get_timestamp(SEXP s1) {
 
 
 SEXP R_gdk_device_get_vendor_id(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_device_get_vendor_id(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1683,6 +1864,7 @@ SEXP R_gdk_device_get_vendor_id(SEXP s1) {
 
 
 SEXP R_gdk_device_has_bidi_layouts(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevice* v1 = (GdkDevice*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_device_has_bidi_layouts(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1699,6 +1881,7 @@ SEXP R_gdk_device_has_bidi_layouts(SEXP s1) {
 
 
 SEXP R_gdk_device_pad_get_feature_group(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkDevicePad* v1 = (GdkDevicePad*)(get_ptr(s1)); (void)v1;
   GdkDevicePadFeature v2 = (GdkDevicePadFeature)((GdkDevicePadFeature)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -1717,6 +1900,7 @@ SEXP R_gdk_device_pad_get_feature_group(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_device_pad_get_group_n_modes(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDevicePad* v1 = (GdkDevicePad*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   int _ret = (int)gdk_device_pad_get_group_n_modes(v1, v2);
@@ -1734,6 +1918,7 @@ SEXP R_gdk_device_pad_get_group_n_modes(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_device_pad_get_n_features(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDevicePad* v1 = (GdkDevicePad*)(get_ptr(s1)); (void)v1;
   GdkDevicePadFeature v2 = (GdkDevicePadFeature)((GdkDevicePadFeature)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   int _ret = (int)gdk_device_pad_get_n_features(v1, v2);
@@ -1751,6 +1936,7 @@ SEXP R_gdk_device_pad_get_n_features(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_device_pad_get_n_groups(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDevicePad* v1 = (GdkDevicePad*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_device_pad_get_n_groups(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1767,6 +1953,7 @@ SEXP R_gdk_device_pad_get_n_groups(SEXP s1) {
 
 
 SEXP R_gdk_device_tool_get_axes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDeviceTool* v1 = (GdkDeviceTool*)(get_ptr(s1)); (void)v1;
   GdkAxisFlags _ret = (GdkAxisFlags)gdk_device_tool_get_axes(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1783,6 +1970,7 @@ SEXP R_gdk_device_tool_get_axes(SEXP s1) {
 
 
 SEXP R_gdk_device_tool_get_hardware_id(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDeviceTool* v1 = (GdkDeviceTool*)(get_ptr(s1)); (void)v1;
   guint64 _ret = (guint64)gdk_device_tool_get_hardware_id(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1799,6 +1987,7 @@ SEXP R_gdk_device_tool_get_hardware_id(SEXP s1) {
 
 
 SEXP R_gdk_device_tool_get_serial(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDeviceTool* v1 = (GdkDeviceTool*)(get_ptr(s1)); (void)v1;
   guint64 _ret = (guint64)gdk_device_tool_get_serial(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1815,6 +2004,7 @@ SEXP R_gdk_device_tool_get_serial(SEXP s1) {
 
 
 SEXP R_gdk_device_tool_get_tool_type(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDeviceTool* v1 = (GdkDeviceTool*)(get_ptr(s1)); (void)v1;
   GdkDeviceToolType _ret = (GdkDeviceToolType)gdk_device_tool_get_tool_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1831,6 +2021,7 @@ SEXP R_gdk_device_tool_get_tool_type(SEXP s1) {
 
 
 SEXP R_gdk_display_get_default(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gdk_display_get_default();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1847,6 +2038,7 @@ SEXP R_gdk_display_get_default(void) {
 
 
 SEXP R_gdk_display_open(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (s1 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s1,0))) : NULL; (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_open(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1863,6 +2055,7 @@ SEXP R_gdk_display_open(SEXP s1) {
 
 
 SEXP R_gdk_display_beep(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gdk_display_beep(v1);
   return R_NilValue;
@@ -1870,6 +2063,7 @@ SEXP R_gdk_display_beep(SEXP s1) {
 
 
 SEXP R_gdk_display_close(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gdk_display_close(v1);
   return R_NilValue;
@@ -1877,6 +2071,7 @@ SEXP R_gdk_display_close(SEXP s1) {
 
 
 SEXP R_gdk_display_create_gl_context(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_display_create_gl_context(v1, &_err);
@@ -1894,6 +2089,7 @@ SEXP R_gdk_display_create_gl_context(SEXP s1) {
 
 
 SEXP R_gdk_display_device_is_grabbed(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   GdkDevice* v2 = (GdkDevice*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gdk_display_device_is_grabbed(v1, v2);
@@ -1911,6 +2107,7 @@ SEXP R_gdk_display_device_is_grabbed(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_display_flush(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gdk_display_flush(v1);
   return R_NilValue;
@@ -1918,6 +2115,7 @@ SEXP R_gdk_display_flush(SEXP s1) {
 
 
 SEXP R_gdk_display_get_app_launch_context(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_get_app_launch_context(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1934,6 +2132,7 @@ SEXP R_gdk_display_get_app_launch_context(SEXP s1) {
 
 
 SEXP R_gdk_display_get_clipboard(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_get_clipboard(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1950,6 +2149,7 @@ SEXP R_gdk_display_get_clipboard(SEXP s1) {
 
 
 SEXP R_gdk_display_get_default_seat(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_get_default_seat(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1966,6 +2166,7 @@ SEXP R_gdk_display_get_default_seat(SEXP s1) {
 
 
 SEXP R_gdk_display_get_monitor_at_surface(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   GdkSurface* v2 = (GdkSurface*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_display_get_monitor_at_surface(v1, v2);
@@ -1983,6 +2184,7 @@ SEXP R_gdk_display_get_monitor_at_surface(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_display_get_monitors(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_get_monitors(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -1999,6 +2201,7 @@ SEXP R_gdk_display_get_monitors(SEXP s1) {
 
 
 SEXP R_gdk_display_get_name(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_get_name(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2015,6 +2218,7 @@ SEXP R_gdk_display_get_name(SEXP s1) {
 
 
 SEXP R_gdk_display_get_primary_clipboard(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_get_primary_clipboard(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2031,6 +2235,7 @@ SEXP R_gdk_display_get_primary_clipboard(SEXP s1) {
 
 
 SEXP R_gdk_display_get_setting(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GValue* v3 = (GValue*)(get_ptr(s3)); (void)v3;
@@ -2049,6 +2254,7 @@ SEXP R_gdk_display_get_setting(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_display_get_startup_notification_id(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_get_startup_notification_id(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2065,6 +2271,7 @@ SEXP R_gdk_display_get_startup_notification_id(SEXP s1) {
 
 
 SEXP R_gdk_display_is_closed(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_display_is_closed(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2081,6 +2288,7 @@ SEXP R_gdk_display_is_closed(SEXP s1) {
 
 
 SEXP R_gdk_display_is_composited(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_display_is_composited(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2097,6 +2305,7 @@ SEXP R_gdk_display_is_composited(SEXP s1) {
 
 
 SEXP R_gdk_display_is_rgba(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_display_is_rgba(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2113,6 +2322,7 @@ SEXP R_gdk_display_is_rgba(SEXP s1) {
 
 
 SEXP R_gdk_display_list_seats(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_list_seats(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2129,6 +2339,7 @@ SEXP R_gdk_display_list_seats(SEXP s1) {
 
 
 SEXP R_gdk_display_map_keycode(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GdkKeymapKey* _out_keys = 0; (void)_out_keys;
@@ -2164,6 +2375,7 @@ SEXP R_gdk_display_map_keycode(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_display_map_keyval(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GdkKeymapKey* _out_keys = 0; (void)_out_keys;
@@ -2193,6 +2405,7 @@ SEXP R_gdk_display_map_keyval(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_display_notify_startup_complete(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gdk_display_notify_startup_complete(v1, v2);
@@ -2201,6 +2414,7 @@ SEXP R_gdk_display_notify_startup_complete(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_display_prepare_gl(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   GError *_err = NULL;
   gboolean _ret = (gboolean)gdk_display_prepare_gl(v1, &_err);
@@ -2218,6 +2432,7 @@ SEXP R_gdk_display_prepare_gl(SEXP s1) {
 
 
 SEXP R_gdk_display_put_event(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   GdkEvent* v2 = (GdkEvent*)(get_ptr(s2)); (void)v2;
   gdk_display_put_event(v1, v2);
@@ -2226,6 +2441,7 @@ SEXP R_gdk_display_put_event(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_display_supports_input_shapes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_display_supports_input_shapes(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2242,6 +2458,7 @@ SEXP R_gdk_display_supports_input_shapes(SEXP s1) {
 
 
 SEXP R_gdk_display_sync(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gdk_display_sync(v1);
   return R_NilValue;
@@ -2249,6 +2466,7 @@ SEXP R_gdk_display_sync(SEXP s1) {
 
 
 SEXP R_gdk_display_translate_key(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GdkModifierType v3 = (GdkModifierType)((GdkModifierType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -2292,6 +2510,7 @@ SEXP R_gdk_display_translate_key(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gdk_display_manager_get(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gdk_display_manager_get();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2308,6 +2527,7 @@ SEXP R_gdk_display_manager_get(void) {
 
 
 SEXP R_gdk_display_manager_get_default_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplayManager* v1 = (GdkDisplayManager*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_manager_get_default_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2324,6 +2544,7 @@ SEXP R_gdk_display_manager_get_default_display(SEXP s1) {
 
 
 SEXP R_gdk_display_manager_list_displays(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplayManager* v1 = (GdkDisplayManager*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_display_manager_list_displays(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2340,6 +2561,7 @@ SEXP R_gdk_display_manager_list_displays(SEXP s1) {
 
 
 SEXP R_gdk_display_manager_open_display(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplayManager* v1 = (GdkDisplayManager*)(get_ptr(s1)); (void)v1;
   const char* v2 = (s2 != R_NilValue) ? (const char*)(CHAR(STRING_ELT(s2,0))) : NULL; (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_display_manager_open_display(v1, v2);
@@ -2357,6 +2579,7 @@ SEXP R_gdk_display_manager_open_display(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_display_manager_set_default_display(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplayManager* v1 = (GdkDisplayManager*)(get_ptr(s1)); (void)v1;
   GdkDisplay* v2 = (GdkDisplay*)(get_ptr(s2)); (void)v2;
   gdk_display_manager_set_default_display(v1, v2);
@@ -2365,6 +2588,7 @@ SEXP R_gdk_display_manager_set_default_display(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_dmabuf_error_quark(void) {
+  RGTK4_REQUIRE_INIT();
 
   GQuark _ret = (GQuark)gdk_dmabuf_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2381,6 +2605,7 @@ SEXP R_gdk_dmabuf_error_quark(void) {
 
 
 SEXP R_gdk_drag_begin(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   GdkDevice* v2 = (GdkDevice*)(get_ptr(s2)); (void)v2;
   GdkContentProvider* v3 = (GdkContentProvider*)(get_ptr(s3)); (void)v3;
@@ -2402,6 +2627,7 @@ SEXP R_gdk_drag_begin(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
 
 
 SEXP R_gdk_drag_drop_done(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_drag_drop_done(v1, v2);
@@ -2410,6 +2636,7 @@ SEXP R_gdk_drag_drop_done(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_drag_get_actions(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   GdkDragAction _ret = (GdkDragAction)gdk_drag_get_actions(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2426,6 +2653,7 @@ SEXP R_gdk_drag_get_actions(SEXP s1) {
 
 
 SEXP R_gdk_drag_get_content(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drag_get_content(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2442,6 +2670,7 @@ SEXP R_gdk_drag_get_content(SEXP s1) {
 
 
 SEXP R_gdk_drag_get_device(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drag_get_device(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2458,6 +2687,7 @@ SEXP R_gdk_drag_get_device(SEXP s1) {
 
 
 SEXP R_gdk_drag_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drag_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2474,6 +2704,7 @@ SEXP R_gdk_drag_get_display(SEXP s1) {
 
 
 SEXP R_gdk_drag_get_drag_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drag_get_drag_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2490,6 +2721,7 @@ SEXP R_gdk_drag_get_drag_surface(SEXP s1) {
 
 
 SEXP R_gdk_drag_get_formats(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drag_get_formats(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2506,6 +2738,7 @@ SEXP R_gdk_drag_get_formats(SEXP s1) {
 
 
 SEXP R_gdk_drag_get_selected_action(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   GdkDragAction _ret = (GdkDragAction)gdk_drag_get_selected_action(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2522,6 +2755,7 @@ SEXP R_gdk_drag_get_selected_action(SEXP s1) {
 
 
 SEXP R_gdk_drag_get_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drag_get_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2538,6 +2772,7 @@ SEXP R_gdk_drag_get_surface(SEXP s1) {
 
 
 SEXP R_gdk_drag_set_hotspot(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkDrag* v1 = (GdkDrag*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -2547,6 +2782,7 @@ SEXP R_gdk_drag_set_hotspot(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_drag_action_is_unique(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDragAction v1 = (GdkDragAction)((GdkDragAction)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : INTEGER(s1)[0])); (void)v1;
   gboolean _ret = (gboolean)gdk_drag_action_is_unique(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2563,6 +2799,7 @@ SEXP R_gdk_drag_action_is_unique(SEXP s1) {
 
 
 SEXP R_gdk_drag_surface_present(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkDragSurface* v1 = (GdkDragSurface*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -2581,6 +2818,7 @@ SEXP R_gdk_drag_surface_present(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_drag_surface_size_set_size(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkDragSurfaceSize* v1 = (GdkDragSurfaceSize*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -2590,6 +2828,7 @@ SEXP R_gdk_drag_surface_size_set_size(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_draw_context_begin_frame(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDrawContext* v1 = (GdkDrawContext*)(get_ptr(s1)); (void)v1;
   const cairo_region_t* v2 = (const cairo_region_t*)(get_ptr(s2)); (void)v2;
   gdk_draw_context_begin_frame(v1, v2);
@@ -2598,6 +2837,7 @@ SEXP R_gdk_draw_context_begin_frame(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_draw_context_end_frame(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrawContext* v1 = (GdkDrawContext*)(get_ptr(s1)); (void)v1;
   gdk_draw_context_end_frame(v1);
   return R_NilValue;
@@ -2605,6 +2845,7 @@ SEXP R_gdk_draw_context_end_frame(SEXP s1) {
 
 
 SEXP R_gdk_draw_context_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrawContext* v1 = (GdkDrawContext*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_draw_context_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2621,6 +2862,7 @@ SEXP R_gdk_draw_context_get_display(SEXP s1) {
 
 
 SEXP R_gdk_draw_context_get_frame_region(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrawContext* v1 = (GdkDrawContext*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_draw_context_get_frame_region(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2637,6 +2879,7 @@ SEXP R_gdk_draw_context_get_frame_region(SEXP s1) {
 
 
 SEXP R_gdk_draw_context_get_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrawContext* v1 = (GdkDrawContext*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_draw_context_get_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2653,6 +2896,7 @@ SEXP R_gdk_draw_context_get_surface(SEXP s1) {
 
 
 SEXP R_gdk_draw_context_is_in_frame(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrawContext* v1 = (GdkDrawContext*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_draw_context_is_in_frame(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2669,6 +2913,7 @@ SEXP R_gdk_draw_context_is_in_frame(SEXP s1) {
 
 
 SEXP R_gdk_drop_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   GdkDragAction v2 = (GdkDragAction)((GdkDragAction)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gdk_drop_finish(v1, v2);
@@ -2677,6 +2922,7 @@ SEXP R_gdk_drop_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_drop_get_actions(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   GdkDragAction _ret = (GdkDragAction)gdk_drop_get_actions(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2693,6 +2939,7 @@ SEXP R_gdk_drop_get_actions(SEXP s1) {
 
 
 SEXP R_gdk_drop_get_device(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drop_get_device(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2709,6 +2956,7 @@ SEXP R_gdk_drop_get_device(SEXP s1) {
 
 
 SEXP R_gdk_drop_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drop_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2725,6 +2973,7 @@ SEXP R_gdk_drop_get_display(SEXP s1) {
 
 
 SEXP R_gdk_drop_get_drag(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drop_get_drag(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2741,6 +2990,7 @@ SEXP R_gdk_drop_get_drag(SEXP s1) {
 
 
 SEXP R_gdk_drop_get_formats(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drop_get_formats(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2757,6 +3007,7 @@ SEXP R_gdk_drop_get_formats(SEXP s1) {
 
 
 SEXP R_gdk_drop_get_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_drop_get_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2773,6 +3024,7 @@ SEXP R_gdk_drop_get_surface(SEXP s1) {
 
 
 SEXP R_gdk_drop_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   const char** v2 = (const char**)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -2784,6 +3036,7 @@ SEXP R_gdk_drop_read_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_gdk_drop_read_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
   const char* _out_out_mime_type = 0; (void)_out_out_mime_type;
@@ -2808,6 +3061,7 @@ SEXP R_gdk_drop_read_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_drop_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -2819,6 +3073,7 @@ SEXP R_gdk_drop_read_value_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_gdk_drop_read_value_finish(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   GAsyncResult* v2 = (GAsyncResult*)(get_ptr(s2)); (void)v2;
   GError *_err = NULL;
@@ -2837,6 +3092,7 @@ SEXP R_gdk_drop_read_value_finish(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_drop_status(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkDrop* v1 = (GdkDrop*)(get_ptr(s1)); (void)v1;
   GdkDragAction v2 = (GdkDragAction)((GdkDragAction)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GdkDragAction v3 = (GdkDragAction)((GdkDragAction)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -2846,6 +3102,7 @@ SEXP R_gdk_drop_status(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_event_get_axes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   double* _out_axes = 0; (void)_out_axes;
   guint _out_n_axes = 0; (void)_out_n_axes;
@@ -2874,6 +3131,7 @@ SEXP R_gdk_event_get_axes(SEXP s1) {
 
 
 SEXP R_gdk_event_get_axis(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkAxisUse v2 = (GdkAxisUse)((GdkAxisUse)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   double _out_value = 0; (void)_out_value;
@@ -2897,6 +3155,7 @@ SEXP R_gdk_event_get_axis(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_event_get_device(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_event_get_device(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2913,6 +3172,7 @@ SEXP R_gdk_event_get_device(SEXP s1) {
 
 
 SEXP R_gdk_event_get_device_tool(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_event_get_device_tool(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2929,6 +3189,7 @@ SEXP R_gdk_event_get_device_tool(SEXP s1) {
 
 
 SEXP R_gdk_event_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_event_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2945,6 +3206,7 @@ SEXP R_gdk_event_get_display(SEXP s1) {
 
 
 SEXP R_gdk_event_get_event_sequence(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_event_get_event_sequence(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2961,6 +3223,7 @@ SEXP R_gdk_event_get_event_sequence(SEXP s1) {
 
 
 SEXP R_gdk_event_get_event_type(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkEventType _ret = (GdkEventType)gdk_event_get_event_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -2977,6 +3240,7 @@ SEXP R_gdk_event_get_event_type(SEXP s1) {
 
 
 SEXP R_gdk_event_get_history(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _out_out_n_coords = 0; (void)_out_out_n_coords;
   gconstpointer _ret = (gconstpointer)gdk_event_get_history(v1, &_out_out_n_coords);
@@ -2999,6 +3263,7 @@ SEXP R_gdk_event_get_history(SEXP s1) {
 
 
 SEXP R_gdk_event_get_modifier_state(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkModifierType _ret = (GdkModifierType)gdk_event_get_modifier_state(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3015,6 +3280,7 @@ SEXP R_gdk_event_get_modifier_state(SEXP s1) {
 
 
 SEXP R_gdk_event_get_pointer_emulated(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_event_get_pointer_emulated(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3031,6 +3297,7 @@ SEXP R_gdk_event_get_pointer_emulated(SEXP s1) {
 
 
 SEXP R_gdk_event_get_position(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   double _out_x = 0; (void)_out_x;
   double _out_y = 0; (void)_out_y;
@@ -3059,6 +3326,7 @@ SEXP R_gdk_event_get_position(SEXP s1) {
 
 
 SEXP R_gdk_event_get_seat(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_event_get_seat(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3075,6 +3343,7 @@ SEXP R_gdk_event_get_seat(SEXP s1) {
 
 
 SEXP R_gdk_event_get_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_event_get_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3091,6 +3360,7 @@ SEXP R_gdk_event_get_surface(SEXP s1) {
 
 
 SEXP R_gdk_event_get_time(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint32 _ret = (guint32)gdk_event_get_time(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3107,11 +3377,12 @@ SEXP R_gdk_event_get_time(SEXP s1) {
 
 
 SEXP R_gdk_event_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_event_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("GdkEvent"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Event"));
@@ -3130,6 +3401,7 @@ SEXP R_gdk_event_ref(SEXP s1) {
 
 
 SEXP R_gdk_event_triggers_context_menu(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_event_triggers_context_menu(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3146,6 +3418,7 @@ SEXP R_gdk_event_triggers_context_menu(SEXP s1) {
 
 
 SEXP R_gdk_event_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gdk_event_unref(v1);
   return R_NilValue;
@@ -3153,6 +3426,7 @@ SEXP R_gdk_event_unref(SEXP s1) {
 
 
 SEXP R_gdk_file_list_new_from_array(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GFile** v1 = (GFile**)(get_ptr(s1)); (void)v1;
   gsize v2 = (gsize)((gsize)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_file_list_new_from_array(v1, v2);
@@ -3170,6 +3444,7 @@ SEXP R_gdk_file_list_new_from_array(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_file_list_new_from_list(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GSList* v1 = (GSList*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_file_list_new_from_list(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3186,6 +3461,7 @@ SEXP R_gdk_file_list_new_from_list(SEXP s1) {
 
 
 SEXP R_gdk_file_list_get_files(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFileList* v1 = (GdkFileList*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_file_list_get_files(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3202,6 +3478,7 @@ SEXP R_gdk_file_list_get_files(SEXP s1) {
 
 
 SEXP R_gdk_focus_event_get_in(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_focus_event_get_in(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3218,6 +3495,7 @@ SEXP R_gdk_focus_event_get_in(SEXP s1) {
 
 
 SEXP R_gdk_frame_clock_begin_updating(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   gdk_frame_clock_begin_updating(v1);
   return R_NilValue;
@@ -3225,6 +3503,7 @@ SEXP R_gdk_frame_clock_begin_updating(SEXP s1) {
 
 
 SEXP R_gdk_frame_clock_end_updating(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   gdk_frame_clock_end_updating(v1);
   return R_NilValue;
@@ -3232,6 +3511,7 @@ SEXP R_gdk_frame_clock_end_updating(SEXP s1) {
 
 
 SEXP R_gdk_frame_clock_get_current_timings(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_frame_clock_get_current_timings(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3248,6 +3528,7 @@ SEXP R_gdk_frame_clock_get_current_timings(SEXP s1) {
 
 
 SEXP R_gdk_frame_clock_get_fps(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   double _ret = (double)gdk_frame_clock_get_fps(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3264,6 +3545,7 @@ SEXP R_gdk_frame_clock_get_fps(SEXP s1) {
 
 
 SEXP R_gdk_frame_clock_get_frame_counter(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)gdk_frame_clock_get_frame_counter(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3280,6 +3562,7 @@ SEXP R_gdk_frame_clock_get_frame_counter(SEXP s1) {
 
 
 SEXP R_gdk_frame_clock_get_frame_time(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)gdk_frame_clock_get_frame_time(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3296,6 +3579,7 @@ SEXP R_gdk_frame_clock_get_frame_time(SEXP s1) {
 
 
 SEXP R_gdk_frame_clock_get_history_start(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)gdk_frame_clock_get_history_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3312,6 +3596,7 @@ SEXP R_gdk_frame_clock_get_history_start(SEXP s1) {
 
 
 SEXP R_gdk_frame_clock_get_refresh_info(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   gint64 _out_refresh_interval_return = 0; (void)_out_refresh_interval_return;
@@ -3336,6 +3621,7 @@ SEXP R_gdk_frame_clock_get_refresh_info(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_frame_clock_get_timings(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   gint64 v2 = (gint64)((gint64)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_frame_clock_get_timings(v1, v2);
@@ -3353,6 +3639,7 @@ SEXP R_gdk_frame_clock_get_timings(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_frame_clock_request_phase(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameClock* v1 = (GdkFrameClock*)(get_ptr(s1)); (void)v1;
   GdkFrameClockPhase v2 = (GdkFrameClockPhase)((GdkFrameClockPhase)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gdk_frame_clock_request_phase(v1, v2);
@@ -3361,6 +3648,7 @@ SEXP R_gdk_frame_clock_request_phase(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_frame_timings_get_complete(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameTimings* v1 = (GdkFrameTimings*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_frame_timings_get_complete(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3377,6 +3665,7 @@ SEXP R_gdk_frame_timings_get_complete(SEXP s1) {
 
 
 SEXP R_gdk_frame_timings_get_frame_counter(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameTimings* v1 = (GdkFrameTimings*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)gdk_frame_timings_get_frame_counter(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3393,6 +3682,7 @@ SEXP R_gdk_frame_timings_get_frame_counter(SEXP s1) {
 
 
 SEXP R_gdk_frame_timings_get_frame_time(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameTimings* v1 = (GdkFrameTimings*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)gdk_frame_timings_get_frame_time(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3409,6 +3699,7 @@ SEXP R_gdk_frame_timings_get_frame_time(SEXP s1) {
 
 
 SEXP R_gdk_frame_timings_get_predicted_presentation_time(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameTimings* v1 = (GdkFrameTimings*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)gdk_frame_timings_get_predicted_presentation_time(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3425,6 +3716,7 @@ SEXP R_gdk_frame_timings_get_predicted_presentation_time(SEXP s1) {
 
 
 SEXP R_gdk_frame_timings_get_presentation_time(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameTimings* v1 = (GdkFrameTimings*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)gdk_frame_timings_get_presentation_time(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3441,6 +3733,7 @@ SEXP R_gdk_frame_timings_get_presentation_time(SEXP s1) {
 
 
 SEXP R_gdk_frame_timings_get_refresh_interval(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameTimings* v1 = (GdkFrameTimings*)(get_ptr(s1)); (void)v1;
   gint64 _ret = (gint64)gdk_frame_timings_get_refresh_interval(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3457,6 +3750,7 @@ SEXP R_gdk_frame_timings_get_refresh_interval(SEXP s1) {
 
 
 SEXP R_gdk_frame_timings_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameTimings* v1 = (GdkFrameTimings*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_frame_timings_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3473,6 +3767,7 @@ SEXP R_gdk_frame_timings_ref(SEXP s1) {
 
 
 SEXP R_gdk_frame_timings_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkFrameTimings* v1 = (GdkFrameTimings*)(get_ptr(s1)); (void)v1;
   gdk_frame_timings_unref(v1);
   return R_NilValue;
@@ -3480,6 +3775,7 @@ SEXP R_gdk_frame_timings_unref(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_clear_current(void) {
+  RGTK4_REQUIRE_INIT();
 
   gdk_gl_context_clear_current();
   return R_NilValue;
@@ -3487,6 +3783,7 @@ SEXP R_gdk_gl_context_clear_current(void) {
 
 
 SEXP R_gdk_gl_context_get_current(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gdk_gl_context_get_current();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3503,6 +3800,7 @@ SEXP R_gdk_gl_context_get_current(void) {
 
 
 SEXP R_gdk_gl_context_get_allowed_apis(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   GdkGLAPI _ret = (GdkGLAPI)gdk_gl_context_get_allowed_apis(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3519,6 +3817,7 @@ SEXP R_gdk_gl_context_get_allowed_apis(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_api(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   GdkGLAPI _ret = (GdkGLAPI)gdk_gl_context_get_api(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3535,6 +3834,7 @@ SEXP R_gdk_gl_context_get_api(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_debug_enabled(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_gl_context_get_debug_enabled(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3551,6 +3851,7 @@ SEXP R_gdk_gl_context_get_debug_enabled(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_gl_context_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3567,6 +3868,7 @@ SEXP R_gdk_gl_context_get_display(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_forward_compatible(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_gl_context_get_forward_compatible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3583,6 +3885,7 @@ SEXP R_gdk_gl_context_get_forward_compatible(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_required_version(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   int _out_major = 0; (void)_out_major;
   int _out_minor = 0; (void)_out_minor;
@@ -3606,6 +3909,7 @@ SEXP R_gdk_gl_context_get_required_version(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_shared_context(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_gl_context_get_shared_context(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3622,6 +3926,7 @@ SEXP R_gdk_gl_context_get_shared_context(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_gl_context_get_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3638,6 +3943,7 @@ SEXP R_gdk_gl_context_get_surface(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_use_es(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_gl_context_get_use_es(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3654,6 +3960,7 @@ SEXP R_gdk_gl_context_get_use_es(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_get_version(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   int _out_major = 0; (void)_out_major;
   int _out_minor = 0; (void)_out_minor;
@@ -3677,6 +3984,7 @@ SEXP R_gdk_gl_context_get_version(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_is_legacy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_gl_context_is_legacy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3693,6 +4001,7 @@ SEXP R_gdk_gl_context_is_legacy(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_is_shared(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   GdkGLContext* v2 = (GdkGLContext*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gdk_gl_context_is_shared(v1, v2);
@@ -3710,6 +4019,7 @@ SEXP R_gdk_gl_context_is_shared(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_context_make_current(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gdk_gl_context_make_current(v1);
   return R_NilValue;
@@ -3717,6 +4027,7 @@ SEXP R_gdk_gl_context_make_current(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_realize(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   GError *_err = NULL;
   gboolean _ret = (gboolean)gdk_gl_context_realize(v1, &_err);
@@ -3734,6 +4045,7 @@ SEXP R_gdk_gl_context_realize(SEXP s1) {
 
 
 SEXP R_gdk_gl_context_set_allowed_apis(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   GdkGLAPI v2 = (GdkGLAPI)((GdkGLAPI)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gdk_gl_context_set_allowed_apis(v1, v2);
@@ -3742,6 +4054,7 @@ SEXP R_gdk_gl_context_set_allowed_apis(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_context_set_debug_enabled(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_gl_context_set_debug_enabled(v1, v2);
@@ -3750,6 +4063,7 @@ SEXP R_gdk_gl_context_set_debug_enabled(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_context_set_forward_compatible(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_gl_context_set_forward_compatible(v1, v2);
@@ -3758,6 +4072,7 @@ SEXP R_gdk_gl_context_set_forward_compatible(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_context_set_required_version(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -3767,6 +4082,7 @@ SEXP R_gdk_gl_context_set_required_version(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_gl_context_set_use_es(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gdk_gl_context_set_use_es(v1, v2);
@@ -3775,6 +4091,7 @@ SEXP R_gdk_gl_context_set_use_es(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_error_quark(void) {
+  RGTK4_REQUIRE_INIT();
 
   GQuark _ret = (GQuark)gdk_gl_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3791,6 +4108,7 @@ SEXP R_gdk_gl_error_quark(void) {
 
 
 SEXP R_gdk_gl_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   GdkGLContext* v1 = (GdkGLContext*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -3812,6 +4130,7 @@ SEXP R_gdk_gl_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) 
 
 
 SEXP R_gdk_gl_texture_release(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTexture* v1 = (GdkGLTexture*)(get_ptr(s1)); (void)v1;
   gdk_gl_texture_release(v1);
   return R_NilValue;
@@ -3819,6 +4138,7 @@ SEXP R_gdk_gl_texture_release(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_new(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gdk_gl_texture_builder_new();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3835,6 +4155,7 @@ SEXP R_gdk_gl_texture_builder_new(void) {
 
 
 SEXP R_gdk_gl_texture_builder_build(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   GDestroyNotify v2 = (s2 != R_NilValue) ? (GDestroyNotify)(get_ptr(s2)) : NULL; (void)v2;
   gpointer v3 = (s3 != R_NilValue) ? (gpointer)(get_ptr(s3)) : NULL; (void)v3;
@@ -3853,6 +4174,7 @@ SEXP R_gdk_gl_texture_builder_build(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_gl_texture_builder_get_context(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_gl_texture_builder_get_context(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3869,6 +4191,7 @@ SEXP R_gdk_gl_texture_builder_get_context(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_get_format(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   GdkMemoryFormat _ret = (GdkMemoryFormat)gdk_gl_texture_builder_get_format(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3885,6 +4208,7 @@ SEXP R_gdk_gl_texture_builder_get_format(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_get_has_mipmap(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_gl_texture_builder_get_has_mipmap(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3901,6 +4225,7 @@ SEXP R_gdk_gl_texture_builder_get_has_mipmap(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_get_height(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_gl_texture_builder_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3917,6 +4242,7 @@ SEXP R_gdk_gl_texture_builder_get_height(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_get_id(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_gl_texture_builder_get_id(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3933,6 +4259,7 @@ SEXP R_gdk_gl_texture_builder_get_id(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_get_sync(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gpointer _ret = (gpointer)gdk_gl_texture_builder_get_sync(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3949,6 +4276,7 @@ SEXP R_gdk_gl_texture_builder_get_sync(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_get_update_region(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_gl_texture_builder_get_update_region(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3965,6 +4293,7 @@ SEXP R_gdk_gl_texture_builder_get_update_region(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_get_update_texture(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_gl_texture_builder_get_update_texture(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3981,6 +4310,7 @@ SEXP R_gdk_gl_texture_builder_get_update_texture(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_get_width(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_gl_texture_builder_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -3997,6 +4327,7 @@ SEXP R_gdk_gl_texture_builder_get_width(SEXP s1) {
 
 
 SEXP R_gdk_gl_texture_builder_set_context(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   GdkGLContext* v2 = (s2 != R_NilValue) ? (GdkGLContext*)(get_ptr(s2)) : NULL; (void)v2;
   gdk_gl_texture_builder_set_context(v1, v2);
@@ -4005,6 +4336,7 @@ SEXP R_gdk_gl_texture_builder_set_context(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_texture_builder_set_format(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   GdkMemoryFormat v2 = (GdkMemoryFormat)((GdkMemoryFormat)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gdk_gl_texture_builder_set_format(v1, v2);
@@ -4013,6 +4345,7 @@ SEXP R_gdk_gl_texture_builder_set_format(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_texture_builder_set_has_mipmap(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_gl_texture_builder_set_has_mipmap(v1, v2);
@@ -4021,6 +4354,7 @@ SEXP R_gdk_gl_texture_builder_set_has_mipmap(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_texture_builder_set_height(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gdk_gl_texture_builder_set_height(v1, v2);
@@ -4029,6 +4363,7 @@ SEXP R_gdk_gl_texture_builder_set_height(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_texture_builder_set_id(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   gdk_gl_texture_builder_set_id(v1, v2);
@@ -4037,6 +4372,7 @@ SEXP R_gdk_gl_texture_builder_set_id(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_texture_builder_set_sync(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gpointer v2 = (s2 != R_NilValue) ? (gpointer)(get_ptr(s2)) : NULL; (void)v2;
   gdk_gl_texture_builder_set_sync(v1, v2);
@@ -4045,6 +4381,7 @@ SEXP R_gdk_gl_texture_builder_set_sync(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_texture_builder_set_update_region(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   cairo_region_t* v2 = (s2 != R_NilValue) ? (cairo_region_t*)(get_ptr(s2)) : NULL; (void)v2;
   gdk_gl_texture_builder_set_update_region(v1, v2);
@@ -4053,6 +4390,7 @@ SEXP R_gdk_gl_texture_builder_set_update_region(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_texture_builder_set_update_texture(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   GdkTexture* v2 = (s2 != R_NilValue) ? (GdkTexture*)(get_ptr(s2)) : NULL; (void)v2;
   gdk_gl_texture_builder_set_update_texture(v1, v2);
@@ -4061,6 +4399,7 @@ SEXP R_gdk_gl_texture_builder_set_update_texture(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_gl_texture_builder_set_width(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkGLTextureBuilder* v1 = (GdkGLTextureBuilder*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gdk_gl_texture_builder_set_width(v1, v2);
@@ -4069,6 +4408,7 @@ SEXP R_gdk_gl_texture_builder_set_width(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_grab_broken_event_get_grab_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_grab_broken_event_get_grab_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4085,6 +4425,7 @@ SEXP R_gdk_grab_broken_event_get_grab_surface(SEXP s1) {
 
 
 SEXP R_gdk_grab_broken_event_get_implicit(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_grab_broken_event_get_implicit(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4101,6 +4442,7 @@ SEXP R_gdk_grab_broken_event_get_implicit(SEXP s1) {
 
 
 SEXP R_gdk_key_event_get_consumed_modifiers(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkModifierType _ret = (GdkModifierType)gdk_key_event_get_consumed_modifiers(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4117,6 +4459,7 @@ SEXP R_gdk_key_event_get_consumed_modifiers(SEXP s1) {
 
 
 SEXP R_gdk_key_event_get_keycode(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_key_event_get_keycode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4133,6 +4476,7 @@ SEXP R_gdk_key_event_get_keycode(SEXP s1) {
 
 
 SEXP R_gdk_key_event_get_keyval(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_key_event_get_keyval(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4149,6 +4493,7 @@ SEXP R_gdk_key_event_get_keyval(SEXP s1) {
 
 
 SEXP R_gdk_key_event_get_layout(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_key_event_get_layout(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4165,6 +4510,7 @@ SEXP R_gdk_key_event_get_layout(SEXP s1) {
 
 
 SEXP R_gdk_key_event_get_level(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_key_event_get_level(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4181,6 +4527,7 @@ SEXP R_gdk_key_event_get_level(SEXP s1) {
 
 
 SEXP R_gdk_key_event_get_match(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _out_keyval = 0; (void)_out_keyval;
   GdkModifierType _out_modifiers = {0}; (void)_out_modifiers;
@@ -4209,6 +4556,7 @@ SEXP R_gdk_key_event_get_match(SEXP s1) {
 
 
 SEXP R_gdk_key_event_is_modifier(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_key_event_is_modifier(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4225,6 +4573,7 @@ SEXP R_gdk_key_event_is_modifier(SEXP s1) {
 
 
 SEXP R_gdk_key_event_matches(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint v2 = (guint)((guint)_unbox_numeric(s2)); (void)v2;
   GdkModifierType v3 = (GdkModifierType)((GdkModifierType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -4243,6 +4592,7 @@ SEXP R_gdk_key_event_matches(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_memory_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   GdkMemoryFormat v3 = (GdkMemoryFormat)((GdkMemoryFormat)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -4263,6 +4613,7 @@ SEXP R_gdk_memory_texture_new(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
 
 
 SEXP R_gdk_monitor_get_connector(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_monitor_get_connector(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4279,6 +4630,7 @@ SEXP R_gdk_monitor_get_connector(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_description(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_monitor_get_description(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4295,6 +4647,7 @@ SEXP R_gdk_monitor_get_description(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_monitor_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4311,12 +4664,13 @@ SEXP R_gdk_monitor_get_display(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_geometry(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   GdkRectangle _out_geometry = {0}; (void)_out_geometry;
   gdk_monitor_get_geometry(v1, &_out_geometry);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_geometry, sizeof(GdkRectangle)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_geometry, sizeof(GdkRectangle), "GdkRectangle"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rectangle"));
   }
@@ -4328,6 +4682,7 @@ SEXP R_gdk_monitor_get_geometry(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_height_mm(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_monitor_get_height_mm(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4344,6 +4699,7 @@ SEXP R_gdk_monitor_get_height_mm(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_manufacturer(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_monitor_get_manufacturer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4360,6 +4716,7 @@ SEXP R_gdk_monitor_get_manufacturer(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_model(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_monitor_get_model(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4376,6 +4733,7 @@ SEXP R_gdk_monitor_get_model(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_refresh_rate(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_monitor_get_refresh_rate(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4392,6 +4750,7 @@ SEXP R_gdk_monitor_get_refresh_rate(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_scale_factor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_monitor_get_scale_factor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4408,6 +4767,7 @@ SEXP R_gdk_monitor_get_scale_factor(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_subpixel_layout(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   GdkSubpixelLayout _ret = (GdkSubpixelLayout)gdk_monitor_get_subpixel_layout(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4424,6 +4784,7 @@ SEXP R_gdk_monitor_get_subpixel_layout(SEXP s1) {
 
 
 SEXP R_gdk_monitor_get_width_mm(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_monitor_get_width_mm(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4440,6 +4801,7 @@ SEXP R_gdk_monitor_get_width_mm(SEXP s1) {
 
 
 SEXP R_gdk_monitor_is_valid(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkMonitor* v1 = (GdkMonitor*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_monitor_is_valid(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4456,6 +4818,7 @@ SEXP R_gdk_monitor_is_valid(SEXP s1) {
 
 
 SEXP R_gdk_pad_event_get_axis_value(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _out_index = 0; (void)_out_index;
   double _out_value = 0; (void)_out_value;
@@ -4479,6 +4842,7 @@ SEXP R_gdk_pad_event_get_axis_value(SEXP s1) {
 
 
 SEXP R_gdk_pad_event_get_button(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_pad_event_get_button(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4495,6 +4859,7 @@ SEXP R_gdk_pad_event_get_button(SEXP s1) {
 
 
 SEXP R_gdk_pad_event_get_group_mode(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _out_group = 0; (void)_out_group;
   guint _out_mode = 0; (void)_out_mode;
@@ -4518,6 +4883,7 @@ SEXP R_gdk_pad_event_get_group_mode(SEXP s1) {
 
 
 SEXP R_gdk_paintable_new_empty(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   gint v1 = (gint)((gint)_unbox_numeric(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_paintable_new_empty(v1, v2);
@@ -4535,6 +4901,7 @@ SEXP R_gdk_paintable_new_empty(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_paintable_compute_concrete_size(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   gdouble v2 = (gdouble)((gdouble)_unbox_numeric(s2)); (void)v2;
   gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
@@ -4562,6 +4929,7 @@ SEXP R_gdk_paintable_compute_concrete_size(SEXP s1, SEXP s2, SEXP s3, SEXP s4, S
 
 
 SEXP R_gdk_paintable_get_current_image(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_paintable_get_current_image(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4578,6 +4946,7 @@ SEXP R_gdk_paintable_get_current_image(SEXP s1) {
 
 
 SEXP R_gdk_paintable_get_flags(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   GdkPaintableFlags _ret = (GdkPaintableFlags)gdk_paintable_get_flags(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4594,6 +4963,7 @@ SEXP R_gdk_paintable_get_flags(SEXP s1) {
 
 
 SEXP R_gdk_paintable_get_intrinsic_aspect_ratio(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   double _ret = (double)gdk_paintable_get_intrinsic_aspect_ratio(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4610,6 +4980,7 @@ SEXP R_gdk_paintable_get_intrinsic_aspect_ratio(SEXP s1) {
 
 
 SEXP R_gdk_paintable_get_intrinsic_height(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_paintable_get_intrinsic_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4626,6 +4997,7 @@ SEXP R_gdk_paintable_get_intrinsic_height(SEXP s1) {
 
 
 SEXP R_gdk_paintable_get_intrinsic_width(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_paintable_get_intrinsic_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4642,6 +5014,7 @@ SEXP R_gdk_paintable_get_intrinsic_width(SEXP s1) {
 
 
 SEXP R_gdk_paintable_invalidate_contents(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   gdk_paintable_invalidate_contents(v1);
   return R_NilValue;
@@ -4649,6 +5022,7 @@ SEXP R_gdk_paintable_invalidate_contents(SEXP s1) {
 
 
 SEXP R_gdk_paintable_invalidate_size(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   gdk_paintable_invalidate_size(v1);
   return R_NilValue;
@@ -4656,6 +5030,7 @@ SEXP R_gdk_paintable_invalidate_size(SEXP s1) {
 
 
 SEXP R_gdk_paintable_snapshot(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GdkPaintable* v1 = (GdkPaintable*)(get_ptr(s1)); (void)v1;
   GdkSnapshot* v2 = (GdkSnapshot*)(get_ptr(s2)); (void)v2;
   gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
@@ -4666,6 +5041,7 @@ SEXP R_gdk_paintable_snapshot(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gdk_popup_get_autohide(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopup* v1 = (GdkPopup*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_popup_get_autohide(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4682,6 +5058,7 @@ SEXP R_gdk_popup_get_autohide(SEXP s1) {
 
 
 SEXP R_gdk_popup_get_parent(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopup* v1 = (GdkPopup*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_popup_get_parent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4698,6 +5075,7 @@ SEXP R_gdk_popup_get_parent(SEXP s1) {
 
 
 SEXP R_gdk_popup_get_position_x(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopup* v1 = (GdkPopup*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_popup_get_position_x(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4714,6 +5092,7 @@ SEXP R_gdk_popup_get_position_x(SEXP s1) {
 
 
 SEXP R_gdk_popup_get_position_y(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopup* v1 = (GdkPopup*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_popup_get_position_y(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4730,6 +5109,7 @@ SEXP R_gdk_popup_get_position_y(SEXP s1) {
 
 
 SEXP R_gdk_popup_get_rect_anchor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopup* v1 = (GdkPopup*)(get_ptr(s1)); (void)v1;
   GdkGravity _ret = (GdkGravity)gdk_popup_get_rect_anchor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4746,6 +5126,7 @@ SEXP R_gdk_popup_get_rect_anchor(SEXP s1) {
 
 
 SEXP R_gdk_popup_get_surface_anchor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopup* v1 = (GdkPopup*)(get_ptr(s1)); (void)v1;
   GdkGravity _ret = (GdkGravity)gdk_popup_get_surface_anchor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4762,6 +5143,7 @@ SEXP R_gdk_popup_get_surface_anchor(SEXP s1) {
 
 
 SEXP R_gdk_popup_present(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GdkPopup* v1 = (GdkPopup*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -4781,6 +5163,7 @@ SEXP R_gdk_popup_present(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gdk_popup_layout_new(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   const GdkRectangle* v1 = (const GdkRectangle*)(get_ptr(s1)); (void)v1;
   GdkGravity v2 = (GdkGravity)((GdkGravity)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GdkGravity v3 = (GdkGravity)((GdkGravity)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : INTEGER(s3)[0])); (void)v3;
@@ -4799,6 +5182,7 @@ SEXP R_gdk_popup_layout_new(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_popup_layout_copy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_popup_layout_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4815,6 +5199,7 @@ SEXP R_gdk_popup_layout_copy(SEXP s1) {
 
 
 SEXP R_gdk_popup_layout_equal(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   GdkPopupLayout* v2 = (GdkPopupLayout*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gdk_popup_layout_equal(v1, v2);
@@ -4832,6 +5217,7 @@ SEXP R_gdk_popup_layout_equal(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_popup_layout_get_anchor_hints(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   GdkAnchorHints _ret = (GdkAnchorHints)gdk_popup_layout_get_anchor_hints(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4848,11 +5234,12 @@ SEXP R_gdk_popup_layout_get_anchor_hints(SEXP s1) {
 
 
 SEXP R_gdk_popup_layout_get_anchor_rect(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_popup_layout_get_anchor_rect(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("GdkRectangle"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("Rectangle"));
@@ -4871,6 +5258,7 @@ SEXP R_gdk_popup_layout_get_anchor_rect(SEXP s1) {
 
 
 SEXP R_gdk_popup_layout_get_offset(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   int _out_dx = 0; (void)_out_dx;
   int _out_dy = 0; (void)_out_dy;
@@ -4894,6 +5282,7 @@ SEXP R_gdk_popup_layout_get_offset(SEXP s1) {
 
 
 SEXP R_gdk_popup_layout_get_rect_anchor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   GdkGravity _ret = (GdkGravity)gdk_popup_layout_get_rect_anchor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4910,6 +5299,7 @@ SEXP R_gdk_popup_layout_get_rect_anchor(SEXP s1) {
 
 
 SEXP R_gdk_popup_layout_get_shadow_width(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   int _out_left = 0; (void)_out_left;
   int _out_right = 0; (void)_out_right;
@@ -4945,6 +5335,7 @@ SEXP R_gdk_popup_layout_get_shadow_width(SEXP s1) {
 
 
 SEXP R_gdk_popup_layout_get_surface_anchor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   GdkGravity _ret = (GdkGravity)gdk_popup_layout_get_surface_anchor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4961,6 +5352,7 @@ SEXP R_gdk_popup_layout_get_surface_anchor(SEXP s1) {
 
 
 SEXP R_gdk_popup_layout_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_popup_layout_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -4977,6 +5369,7 @@ SEXP R_gdk_popup_layout_ref(SEXP s1) {
 
 
 SEXP R_gdk_popup_layout_set_anchor_hints(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   GdkAnchorHints v2 = (GdkAnchorHints)((GdkAnchorHints)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gdk_popup_layout_set_anchor_hints(v1, v2);
@@ -4985,6 +5378,7 @@ SEXP R_gdk_popup_layout_set_anchor_hints(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_popup_layout_set_anchor_rect(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   const GdkRectangle* v2 = (const GdkRectangle*)(get_ptr(s2)); (void)v2;
   gdk_popup_layout_set_anchor_rect(v1, v2);
@@ -4993,6 +5387,7 @@ SEXP R_gdk_popup_layout_set_anchor_rect(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_popup_layout_set_offset(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -5002,6 +5397,7 @@ SEXP R_gdk_popup_layout_set_offset(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_popup_layout_set_rect_anchor(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   GdkGravity v2 = (GdkGravity)((GdkGravity)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gdk_popup_layout_set_rect_anchor(v1, v2);
@@ -5010,6 +5406,7 @@ SEXP R_gdk_popup_layout_set_rect_anchor(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_popup_layout_set_shadow_width(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -5021,6 +5418,7 @@ SEXP R_gdk_popup_layout_set_shadow_width(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
 
 
 SEXP R_gdk_popup_layout_set_surface_anchor(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   GdkGravity v2 = (GdkGravity)((GdkGravity)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gdk_popup_layout_set_surface_anchor(v1, v2);
@@ -5029,6 +5427,7 @@ SEXP R_gdk_popup_layout_set_surface_anchor(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_popup_layout_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPopupLayout* v1 = (GdkPopupLayout*)(get_ptr(s1)); (void)v1;
   gdk_popup_layout_unref(v1);
   return R_NilValue;
@@ -5036,11 +5435,12 @@ SEXP R_gdk_popup_layout_unref(SEXP s1) {
 
 
 SEXP R_gdk_rgba_copy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkRGBA* v1 = (const GdkRGBA*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_rgba_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : R_MakeExternalPtr((void*)_ret, Rf_mkChar("GdkRGBA"), R_NilValue));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     SEXP _cls0 = PROTECT(Rf_allocVector(STRSXP, 2));
     SET_STRING_ELT(_cls0, 0, Rf_mkChar("RGBA"));
@@ -5059,6 +5459,7 @@ SEXP R_gdk_rgba_copy(SEXP s1) {
 
 
 SEXP R_gdk_rgba_equal(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   gconstpointer v1 = (gconstpointer)(get_ptr(s1)); (void)v1;
   gconstpointer v2 = (gconstpointer)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gdk_rgba_equal(v1, v2);
@@ -5076,6 +5477,7 @@ SEXP R_gdk_rgba_equal(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_rgba_free(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkRGBA* v1 = (GdkRGBA*)(get_ptr(s1)); (void)v1;
   gdk_rgba_free(v1);
   return R_NilValue;
@@ -5083,6 +5485,7 @@ SEXP R_gdk_rgba_free(SEXP s1) {
 
 
 SEXP R_gdk_rgba_hash(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   gconstpointer v1 = (gconstpointer)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_rgba_hash(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5099,6 +5502,7 @@ SEXP R_gdk_rgba_hash(SEXP s1) {
 
 
 SEXP R_gdk_rgba_is_clear(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkRGBA* v1 = (const GdkRGBA*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_rgba_is_clear(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5115,6 +5519,7 @@ SEXP R_gdk_rgba_is_clear(SEXP s1) {
 
 
 SEXP R_gdk_rgba_is_opaque(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkRGBA* v1 = (const GdkRGBA*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_rgba_is_opaque(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5131,6 +5536,7 @@ SEXP R_gdk_rgba_is_opaque(SEXP s1) {
 
 
 SEXP R_gdk_rgba_parse(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkRGBA* v1 = (GdkRGBA*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gboolean _ret = (gboolean)gdk_rgba_parse(v1, v2);
@@ -5148,6 +5554,7 @@ SEXP R_gdk_rgba_parse(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_rgba_to_string(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkRGBA* v1 = (const GdkRGBA*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_rgba_to_string(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5164,6 +5571,7 @@ SEXP R_gdk_rgba_to_string(SEXP s1) {
 
 
 SEXP R_gdk_rectangle_contains_point(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   const GdkRectangle* v1 = (const GdkRectangle*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -5182,6 +5590,7 @@ SEXP R_gdk_rectangle_contains_point(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_rectangle_equal(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkRectangle* v1 = (const GdkRectangle*)(get_ptr(s1)); (void)v1;
   const GdkRectangle* v2 = (const GdkRectangle*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gdk_rectangle_equal(v1, v2);
@@ -5199,6 +5608,7 @@ SEXP R_gdk_rectangle_equal(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_rectangle_intersect(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkRectangle* v1 = (const GdkRectangle*)(get_ptr(s1)); (void)v1;
   const GdkRectangle* v2 = (const GdkRectangle*)(get_ptr(s2)); (void)v2;
   GdkRectangle _out_dest = {0}; (void)_out_dest;
@@ -5210,7 +5620,7 @@ SEXP R_gdk_rectangle_intersect(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_dest, sizeof(GdkRectangle)));
+  SET_VECTOR_ELT(_ans, 1, make_boxed_struct(&_out_dest, sizeof(GdkRectangle), "GdkRectangle"));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Rectangle"));
   }
@@ -5222,13 +5632,14 @@ SEXP R_gdk_rectangle_intersect(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_rectangle_union(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   const GdkRectangle* v1 = (const GdkRectangle*)(get_ptr(s1)); (void)v1;
   const GdkRectangle* v2 = (const GdkRectangle*)(get_ptr(s2)); (void)v2;
   GdkRectangle _out_dest = {0}; (void)_out_dest;
   gdk_rectangle_union(v1, v2, &_out_dest);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_dest, sizeof(GdkRectangle)));
+  SET_VECTOR_ELT(_ans, 0, make_boxed_struct(&_out_dest, sizeof(GdkRectangle), "GdkRectangle"));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Rectangle"));
   }
@@ -5240,6 +5651,7 @@ SEXP R_gdk_rectangle_union(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_scroll_event_get_deltas(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   double _out_delta_x = 0; (void)_out_delta_x;
   double _out_delta_y = 0; (void)_out_delta_y;
@@ -5263,6 +5675,7 @@ SEXP R_gdk_scroll_event_get_deltas(SEXP s1) {
 
 
 SEXP R_gdk_scroll_event_get_direction(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkScrollDirection _ret = (GdkScrollDirection)gdk_scroll_event_get_direction(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5279,6 +5692,7 @@ SEXP R_gdk_scroll_event_get_direction(SEXP s1) {
 
 
 SEXP R_gdk_scroll_event_get_unit(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkScrollUnit _ret = (GdkScrollUnit)gdk_scroll_event_get_unit(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5295,6 +5709,7 @@ SEXP R_gdk_scroll_event_get_unit(SEXP s1) {
 
 
 SEXP R_gdk_scroll_event_is_stop(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_scroll_event_is_stop(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5311,6 +5726,7 @@ SEXP R_gdk_scroll_event_is_stop(SEXP s1) {
 
 
 SEXP R_gdk_seat_get_capabilities(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSeat* v1 = (GdkSeat*)(get_ptr(s1)); (void)v1;
   GdkSeatCapabilities _ret = (GdkSeatCapabilities)gdk_seat_get_capabilities(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5327,6 +5743,7 @@ SEXP R_gdk_seat_get_capabilities(SEXP s1) {
 
 
 SEXP R_gdk_seat_get_devices(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkSeat* v1 = (GdkSeat*)(get_ptr(s1)); (void)v1;
   GdkSeatCapabilities v2 = (GdkSeatCapabilities)((GdkSeatCapabilities)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_seat_get_devices(v1, v2);
@@ -5344,6 +5761,7 @@ SEXP R_gdk_seat_get_devices(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_seat_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSeat* v1 = (GdkSeat*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_seat_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5360,6 +5778,7 @@ SEXP R_gdk_seat_get_display(SEXP s1) {
 
 
 SEXP R_gdk_seat_get_keyboard(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSeat* v1 = (GdkSeat*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_seat_get_keyboard(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5376,6 +5795,7 @@ SEXP R_gdk_seat_get_keyboard(SEXP s1) {
 
 
 SEXP R_gdk_seat_get_pointer(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSeat* v1 = (GdkSeat*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_seat_get_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5392,6 +5812,7 @@ SEXP R_gdk_seat_get_pointer(SEXP s1) {
 
 
 SEXP R_gdk_seat_get_tools(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSeat* v1 = (GdkSeat*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_seat_get_tools(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5408,6 +5829,7 @@ SEXP R_gdk_seat_get_tools(SEXP s1) {
 
 
 SEXP R_gdk_surface_new_popup(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_surface_new_popup(v1, v2);
@@ -5425,6 +5847,7 @@ SEXP R_gdk_surface_new_popup(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_surface_new_toplevel(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkDisplay* v1 = (GdkDisplay*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_surface_new_toplevel(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5441,6 +5864,7 @@ SEXP R_gdk_surface_new_toplevel(SEXP s1) {
 
 
 SEXP R_gdk_surface_beep(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gdk_surface_beep(v1);
   return R_NilValue;
@@ -5448,6 +5872,7 @@ SEXP R_gdk_surface_beep(SEXP s1) {
 
 
 SEXP R_gdk_surface_create_cairo_context(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_surface_create_cairo_context(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5464,6 +5889,7 @@ SEXP R_gdk_surface_create_cairo_context(SEXP s1) {
 
 
 SEXP R_gdk_surface_create_gl_context(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_surface_create_gl_context(v1, &_err);
@@ -5481,6 +5907,7 @@ SEXP R_gdk_surface_create_gl_context(SEXP s1) {
 
 
 SEXP R_gdk_surface_create_similar_surface(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   cairo_content_t v2 = (cairo_content_t)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -5500,6 +5927,7 @@ SEXP R_gdk_surface_create_similar_surface(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gdk_surface_create_vulkan_context(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_surface_create_vulkan_context(v1, &_err);
@@ -5517,6 +5945,7 @@ SEXP R_gdk_surface_create_vulkan_context(SEXP s1) {
 
 
 SEXP R_gdk_surface_destroy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gdk_surface_destroy(v1);
   return R_NilValue;
@@ -5524,6 +5953,7 @@ SEXP R_gdk_surface_destroy(SEXP s1) {
 
 
 SEXP R_gdk_surface_get_cursor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_surface_get_cursor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5540,6 +5970,7 @@ SEXP R_gdk_surface_get_cursor(SEXP s1) {
 
 
 SEXP R_gdk_surface_get_device_cursor(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   GdkDevice* v2 = (GdkDevice*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gdk_surface_get_device_cursor(v1, v2);
@@ -5557,6 +5988,7 @@ SEXP R_gdk_surface_get_device_cursor(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_surface_get_device_position(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   GdkDevice* v2 = (GdkDevice*)(get_ptr(s2)); (void)v2;
   double _out_x = 0; (void)_out_x;
@@ -5592,6 +6024,7 @@ SEXP R_gdk_surface_get_device_position(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_surface_get_display(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_surface_get_display(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5608,6 +6041,7 @@ SEXP R_gdk_surface_get_display(SEXP s1) {
 
 
 SEXP R_gdk_surface_get_frame_clock(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_surface_get_frame_clock(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5624,6 +6058,7 @@ SEXP R_gdk_surface_get_frame_clock(SEXP s1) {
 
 
 SEXP R_gdk_surface_get_height(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_surface_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5640,6 +6075,7 @@ SEXP R_gdk_surface_get_height(SEXP s1) {
 
 
 SEXP R_gdk_surface_get_mapped(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_surface_get_mapped(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5656,6 +6092,7 @@ SEXP R_gdk_surface_get_mapped(SEXP s1) {
 
 
 SEXP R_gdk_surface_get_scale(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   double _ret = (double)gdk_surface_get_scale(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5672,6 +6109,7 @@ SEXP R_gdk_surface_get_scale(SEXP s1) {
 
 
 SEXP R_gdk_surface_get_scale_factor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_surface_get_scale_factor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5688,6 +6126,7 @@ SEXP R_gdk_surface_get_scale_factor(SEXP s1) {
 
 
 SEXP R_gdk_surface_get_width(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_surface_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5704,6 +6143,7 @@ SEXP R_gdk_surface_get_width(SEXP s1) {
 
 
 SEXP R_gdk_surface_hide(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gdk_surface_hide(v1);
   return R_NilValue;
@@ -5711,6 +6151,7 @@ SEXP R_gdk_surface_hide(SEXP s1) {
 
 
 SEXP R_gdk_surface_is_destroyed(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_surface_is_destroyed(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5727,6 +6168,7 @@ SEXP R_gdk_surface_is_destroyed(SEXP s1) {
 
 
 SEXP R_gdk_surface_queue_render(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gdk_surface_queue_render(v1);
   return R_NilValue;
@@ -5734,6 +6176,7 @@ SEXP R_gdk_surface_queue_render(SEXP s1) {
 
 
 SEXP R_gdk_surface_request_layout(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   gdk_surface_request_layout(v1);
   return R_NilValue;
@@ -5741,6 +6184,7 @@ SEXP R_gdk_surface_request_layout(SEXP s1) {
 
 
 SEXP R_gdk_surface_set_cursor(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   GdkCursor* v2 = (s2 != R_NilValue) ? (GdkCursor*)(get_ptr(s2)) : NULL; (void)v2;
   gdk_surface_set_cursor(v1, v2);
@@ -5749,6 +6193,7 @@ SEXP R_gdk_surface_set_cursor(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_surface_set_device_cursor(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   GdkDevice* v2 = (GdkDevice*)(get_ptr(s2)); (void)v2;
   GdkCursor* v3 = (GdkCursor*)(get_ptr(s3)); (void)v3;
@@ -5758,6 +6203,7 @@ SEXP R_gdk_surface_set_device_cursor(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_surface_set_input_region(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   cairo_region_t* v2 = (s2 != R_NilValue) ? (cairo_region_t*)(get_ptr(s2)) : NULL; (void)v2;
   gdk_surface_set_input_region(v1, v2);
@@ -5766,6 +6212,7 @@ SEXP R_gdk_surface_set_input_region(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_surface_set_opaque_region(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   cairo_region_t* v2 = (s2 != R_NilValue) ? (cairo_region_t*)(get_ptr(s2)) : NULL; (void)v2;
   gdk_surface_set_opaque_region(v1, v2);
@@ -5774,6 +6221,7 @@ SEXP R_gdk_surface_set_opaque_region(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_surface_translate_coordinates(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkSurface* v1 = (GdkSurface*)(get_ptr(s1)); (void)v1;
   GdkSurface* v2 = (GdkSurface*)(get_ptr(s2)); (void)v2;
   double _out_x = 0; (void)_out_x;
@@ -5803,6 +6251,7 @@ SEXP R_gdk_surface_translate_coordinates(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_texture_new_for_pixbuf(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkPixbuf* v1 = (GdkPixbuf*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_texture_new_for_pixbuf(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5819,6 +6268,7 @@ SEXP R_gdk_texture_new_for_pixbuf(SEXP s1) {
 
 
 SEXP R_gdk_texture_new_from_bytes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GBytes* v1 = (GBytes*)(get_ptr(s1)); (void)v1;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_texture_new_from_bytes(v1, &_err);
@@ -5836,6 +6286,7 @@ SEXP R_gdk_texture_new_from_bytes(SEXP s1) {
 
 
 SEXP R_gdk_texture_new_from_file(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GFile* v1 = (GFile*)(get_ptr(s1)); (void)v1;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_texture_new_from_file(v1, &_err);
@@ -5853,6 +6304,7 @@ SEXP R_gdk_texture_new_from_file(SEXP s1) {
 
 
 SEXP R_gdk_texture_new_from_filename(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gdk_texture_new_from_filename(v1, &_err);
@@ -5870,6 +6322,7 @@ SEXP R_gdk_texture_new_from_filename(SEXP s1) {
 
 
 SEXP R_gdk_texture_new_from_resource(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_texture_new_from_resource(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5886,6 +6339,7 @@ SEXP R_gdk_texture_new_from_resource(SEXP s1) {
 
 
 SEXP R_gdk_texture_download(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   guchar* v2 = (guchar*)(get_ptr(s2)); (void)v2;
   gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
@@ -5895,6 +6349,7 @@ SEXP R_gdk_texture_download(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_texture_get_format(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   GdkMemoryFormat _ret = (GdkMemoryFormat)gdk_texture_get_format(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5911,6 +6366,7 @@ SEXP R_gdk_texture_get_format(SEXP s1) {
 
 
 SEXP R_gdk_texture_get_height(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_texture_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5927,6 +6383,7 @@ SEXP R_gdk_texture_get_height(SEXP s1) {
 
 
 SEXP R_gdk_texture_get_width(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   int _ret = (int)gdk_texture_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5943,6 +6400,7 @@ SEXP R_gdk_texture_get_width(SEXP s1) {
 
 
 SEXP R_gdk_texture_save_to_png(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gboolean _ret = (gboolean)gdk_texture_save_to_png(v1, v2);
@@ -5960,6 +6418,7 @@ SEXP R_gdk_texture_save_to_png(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_texture_save_to_png_bytes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_texture_save_to_png_bytes(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -5976,6 +6435,7 @@ SEXP R_gdk_texture_save_to_png_bytes(SEXP s1) {
 
 
 SEXP R_gdk_texture_save_to_tiff(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gboolean _ret = (gboolean)gdk_texture_save_to_tiff(v1, v2);
@@ -5993,6 +6453,7 @@ SEXP R_gdk_texture_save_to_tiff(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_texture_save_to_tiff_bytes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_texture_save_to_tiff_bytes(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6009,6 +6470,7 @@ SEXP R_gdk_texture_save_to_tiff_bytes(SEXP s1) {
 
 
 SEXP R_gdk_texture_downloader_new(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_texture_downloader_new(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6025,6 +6487,7 @@ SEXP R_gdk_texture_downloader_new(SEXP s1) {
 
 
 SEXP R_gdk_texture_downloader_copy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkTextureDownloader* v1 = (const GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_texture_downloader_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6041,6 +6504,7 @@ SEXP R_gdk_texture_downloader_copy(SEXP s1) {
 
 
 SEXP R_gdk_texture_downloader_download_bytes(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkTextureDownloader* v1 = (const GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   gsize _out_out_stride = 0; (void)_out_out_stride;
   gconstpointer _ret = (gconstpointer)gdk_texture_downloader_download_bytes(v1, &_out_out_stride);
@@ -6063,6 +6527,7 @@ SEXP R_gdk_texture_downloader_download_bytes(SEXP s1) {
 
 
 SEXP R_gdk_texture_downloader_download_into(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   const GdkTextureDownloader* v1 = (const GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   guchar* v2 = (guchar*)(get_ptr(s2)); (void)v2;
   gsize v3 = (gsize)((gsize)_unbox_numeric(s3)); (void)v3;
@@ -6072,6 +6537,7 @@ SEXP R_gdk_texture_downloader_download_into(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_texture_downloader_free(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkTextureDownloader* v1 = (GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   gdk_texture_downloader_free(v1);
   return R_NilValue;
@@ -6079,6 +6545,7 @@ SEXP R_gdk_texture_downloader_free(SEXP s1) {
 
 
 SEXP R_gdk_texture_downloader_get_format(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkTextureDownloader* v1 = (const GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   GdkMemoryFormat _ret = (GdkMemoryFormat)gdk_texture_downloader_get_format(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6095,6 +6562,7 @@ SEXP R_gdk_texture_downloader_get_format(SEXP s1) {
 
 
 SEXP R_gdk_texture_downloader_get_texture(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const GdkTextureDownloader* v1 = (const GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_texture_downloader_get_texture(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6111,6 +6579,7 @@ SEXP R_gdk_texture_downloader_get_texture(SEXP s1) {
 
 
 SEXP R_gdk_texture_downloader_set_format(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkTextureDownloader* v1 = (GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   GdkMemoryFormat v2 = (GdkMemoryFormat)((GdkMemoryFormat)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gdk_texture_downloader_set_format(v1, v2);
@@ -6119,6 +6588,7 @@ SEXP R_gdk_texture_downloader_set_format(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_texture_downloader_set_texture(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkTextureDownloader* v1 = (GdkTextureDownloader*)(get_ptr(s1)); (void)v1;
   GdkTexture* v2 = (GdkTexture*)(get_ptr(s2)); (void)v2;
   gdk_texture_downloader_set_texture(v1, v2);
@@ -6127,6 +6597,7 @@ SEXP R_gdk_texture_downloader_set_texture(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_texture_error_quark(void) {
+  RGTK4_REQUIRE_INIT();
 
   GQuark _ret = (GQuark)gdk_texture_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6143,6 +6614,7 @@ SEXP R_gdk_texture_error_quark(void) {
 
 
 SEXP R_gdk_toplevel_begin_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GdkDevice* v2 = (GdkDevice*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -6155,6 +6627,7 @@ SEXP R_gdk_toplevel_begin_move(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP
 
 
 SEXP R_gdk_toplevel_begin_resize(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GdkSurfaceEdge v2 = (GdkSurfaceEdge)((GdkSurfaceEdge)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   GdkDevice* v3 = (s3 != R_NilValue) ? (GdkDevice*)(get_ptr(s3)) : NULL; (void)v3;
@@ -6168,6 +6641,7 @@ SEXP R_gdk_toplevel_begin_resize(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
 
 
 SEXP R_gdk_toplevel_focus(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   guint32 v2 = (guint32)((guint32)_unbox_numeric(s2)); (void)v2;
   gdk_toplevel_focus(v1, v2);
@@ -6176,6 +6650,7 @@ SEXP R_gdk_toplevel_focus(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_get_state(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GdkToplevelState _ret = (GdkToplevelState)gdk_toplevel_get_state(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6192,6 +6667,7 @@ SEXP R_gdk_toplevel_get_state(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_inhibit_system_shortcuts(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GdkEvent* v2 = (s2 != R_NilValue) ? (GdkEvent*)(get_ptr(s2)) : NULL; (void)v2;
   gdk_toplevel_inhibit_system_shortcuts(v1, v2);
@@ -6200,6 +6676,7 @@ SEXP R_gdk_toplevel_inhibit_system_shortcuts(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_lower(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_toplevel_lower(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6216,6 +6693,7 @@ SEXP R_gdk_toplevel_lower(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_minimize(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_toplevel_minimize(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6232,6 +6710,7 @@ SEXP R_gdk_toplevel_minimize(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_present(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GdkToplevelLayout* v2 = (GdkToplevelLayout*)(get_ptr(s2)); (void)v2;
   gdk_toplevel_present(v1, v2);
@@ -6240,6 +6719,7 @@ SEXP R_gdk_toplevel_present(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_restore_system_shortcuts(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   gdk_toplevel_restore_system_shortcuts(v1);
   return R_NilValue;
@@ -6247,6 +6727,7 @@ SEXP R_gdk_toplevel_restore_system_shortcuts(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_set_decorated(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_toplevel_set_decorated(v1, v2);
@@ -6255,6 +6736,7 @@ SEXP R_gdk_toplevel_set_decorated(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_set_deletable(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_toplevel_set_deletable(v1, v2);
@@ -6263,6 +6745,7 @@ SEXP R_gdk_toplevel_set_deletable(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_set_icon_list(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GList* v2 = (GList*)(get_ptr(s2)); (void)v2;
   gdk_toplevel_set_icon_list(v1, v2);
@@ -6271,6 +6754,7 @@ SEXP R_gdk_toplevel_set_icon_list(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_set_modal(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_toplevel_set_modal(v1, v2);
@@ -6279,6 +6763,7 @@ SEXP R_gdk_toplevel_set_modal(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_set_startup_id(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gdk_toplevel_set_startup_id(v1, v2);
@@ -6287,6 +6772,7 @@ SEXP R_gdk_toplevel_set_startup_id(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_set_title(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   gdk_toplevel_set_title(v1, v2);
@@ -6295,6 +6781,7 @@ SEXP R_gdk_toplevel_set_title(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_set_transient_for(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GdkSurface* v2 = (GdkSurface*)(get_ptr(s2)); (void)v2;
   gdk_toplevel_set_transient_for(v1, v2);
@@ -6303,6 +6790,7 @@ SEXP R_gdk_toplevel_set_transient_for(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_show_window_menu(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GdkEvent* v2 = (GdkEvent*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gdk_toplevel_show_window_menu(v1, v2);
@@ -6320,6 +6808,7 @@ SEXP R_gdk_toplevel_show_window_menu(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_supports_edge_constraints(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_toplevel_supports_edge_constraints(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6336,6 +6825,7 @@ SEXP R_gdk_toplevel_supports_edge_constraints(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_titlebar_gesture(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevel* v1 = (GdkToplevel*)(get_ptr(s1)); (void)v1;
   GdkTitlebarGesture v2 = (GdkTitlebarGesture)((GdkTitlebarGesture)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : INTEGER(s2)[0])); (void)v2;
   gboolean _ret = (gboolean)gdk_toplevel_titlebar_gesture(v1, v2);
@@ -6353,6 +6843,7 @@ SEXP R_gdk_toplevel_titlebar_gesture(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_layout_new(void) {
+  RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gdk_toplevel_layout_new();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6369,6 +6860,7 @@ SEXP R_gdk_toplevel_layout_new(void) {
 
 
 SEXP R_gdk_toplevel_layout_copy(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_toplevel_layout_copy(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6385,6 +6877,7 @@ SEXP R_gdk_toplevel_layout_copy(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_layout_equal(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   GdkToplevelLayout* v2 = (GdkToplevelLayout*)(get_ptr(s2)); (void)v2;
   gboolean _ret = (gboolean)gdk_toplevel_layout_equal(v1, v2);
@@ -6402,6 +6895,7 @@ SEXP R_gdk_toplevel_layout_equal(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_layout_get_fullscreen(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gboolean _out_fullscreen = 0; (void)_out_fullscreen;
   gboolean _ret = (gboolean)gdk_toplevel_layout_get_fullscreen(v1, &_out_fullscreen);
@@ -6424,6 +6918,7 @@ SEXP R_gdk_toplevel_layout_get_fullscreen(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_layout_get_fullscreen_monitor(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_toplevel_layout_get_fullscreen_monitor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6440,6 +6935,7 @@ SEXP R_gdk_toplevel_layout_get_fullscreen_monitor(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_layout_get_maximized(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gboolean _out_maximized = 0; (void)_out_maximized;
   gboolean _ret = (gboolean)gdk_toplevel_layout_get_maximized(v1, &_out_maximized);
@@ -6462,6 +6958,7 @@ SEXP R_gdk_toplevel_layout_get_maximized(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_layout_get_resizable(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_toplevel_layout_get_resizable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6478,6 +6975,7 @@ SEXP R_gdk_toplevel_layout_get_resizable(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_layout_ref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_toplevel_layout_ref(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6494,6 +6992,7 @@ SEXP R_gdk_toplevel_layout_ref(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_layout_set_fullscreen(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   GdkMonitor* v3 = (s3 != R_NilValue) ? (GdkMonitor*)(get_ptr(s3)) : NULL; (void)v3;
@@ -6503,6 +7002,7 @@ SEXP R_gdk_toplevel_layout_set_fullscreen(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_toplevel_layout_set_maximized(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_toplevel_layout_set_maximized(v1, v2);
@@ -6511,6 +7011,7 @@ SEXP R_gdk_toplevel_layout_set_maximized(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_layout_set_resizable(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gdk_toplevel_layout_set_resizable(v1, v2);
@@ -6519,6 +7020,7 @@ SEXP R_gdk_toplevel_layout_set_resizable(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_toplevel_layout_unref(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelLayout* v1 = (GdkToplevelLayout*)(get_ptr(s1)); (void)v1;
   gdk_toplevel_layout_unref(v1);
   return R_NilValue;
@@ -6526,6 +7028,7 @@ SEXP R_gdk_toplevel_layout_unref(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_size_get_bounds(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelSize* v1 = (GdkToplevelSize*)(get_ptr(s1)); (void)v1;
   int _out_bounds_width = 0; (void)_out_bounds_width;
   int _out_bounds_height = 0; (void)_out_bounds_height;
@@ -6549,6 +7052,7 @@ SEXP R_gdk_toplevel_size_get_bounds(SEXP s1) {
 
 
 SEXP R_gdk_toplevel_size_set_min_size(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelSize* v1 = (GdkToplevelSize*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -6558,6 +7062,7 @@ SEXP R_gdk_toplevel_size_set_min_size(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_toplevel_size_set_shadow_width(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelSize* v1 = (GdkToplevelSize*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -6569,6 +7074,7 @@ SEXP R_gdk_toplevel_size_set_shadow_width(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
 
 
 SEXP R_gdk_toplevel_size_set_size(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GdkToplevelSize* v1 = (GdkToplevelSize*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -6578,6 +7084,7 @@ SEXP R_gdk_toplevel_size_set_size(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_touch_event_get_emulating_pointer(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_touch_event_get_emulating_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6594,6 +7101,7 @@ SEXP R_gdk_touch_event_get_emulating_pointer(SEXP s1) {
 
 
 SEXP R_gdk_touchpad_event_get_deltas(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   double _out_dx = 0; (void)_out_dx;
   double _out_dy = 0; (void)_out_dy;
@@ -6617,6 +7125,7 @@ SEXP R_gdk_touchpad_event_get_deltas(SEXP s1) {
 
 
 SEXP R_gdk_touchpad_event_get_gesture_phase(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   GdkTouchpadGesturePhase _ret = (GdkTouchpadGesturePhase)gdk_touchpad_event_get_gesture_phase(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6633,6 +7142,7 @@ SEXP R_gdk_touchpad_event_get_gesture_phase(SEXP s1) {
 
 
 SEXP R_gdk_touchpad_event_get_n_fingers(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   guint _ret = (guint)gdk_touchpad_event_get_n_fingers(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6649,6 +7159,7 @@ SEXP R_gdk_touchpad_event_get_n_fingers(SEXP s1) {
 
 
 SEXP R_gdk_touchpad_event_get_pinch_angle_delta(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   double _ret = (double)gdk_touchpad_event_get_pinch_angle_delta(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6665,6 +7176,7 @@ SEXP R_gdk_touchpad_event_get_pinch_angle_delta(SEXP s1) {
 
 
 SEXP R_gdk_touchpad_event_get_pinch_scale(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkEvent* v1 = (GdkEvent*)(get_ptr(s1)); (void)v1;
   double _ret = (double)gdk_touchpad_event_get_pinch_scale(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6681,6 +7193,7 @@ SEXP R_gdk_touchpad_event_get_pinch_scale(SEXP s1) {
 
 
 SEXP R_gdk_vulkan_error_quark(void) {
+  RGTK4_REQUIRE_INIT();
 
   GQuark _ret = (GQuark)gdk_vulkan_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6697,6 +7210,7 @@ SEXP R_gdk_vulkan_error_quark(void) {
 
 
 SEXP R_gdk_cairo_draw_from_gl(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6, SEXP s7, SEXP s8, SEXP s9) {
+  RGTK4_REQUIRE_INIT();
   cairo_t* v1 = (cairo_t*)(get_ptr(s1)); (void)v1;
   GdkSurface* v2 = (GdkSurface*)(get_ptr(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -6712,6 +7226,7 @@ SEXP R_gdk_cairo_draw_from_gl(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP 
 
 
 SEXP R_gdk_cairo_rectangle(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   cairo_t* v1 = (cairo_t*)(get_ptr(s1)); (void)v1;
   const GdkRectangle* v2 = (const GdkRectangle*)(get_ptr(s2)); (void)v2;
   gdk_cairo_rectangle(v1, v2);
@@ -6720,6 +7235,7 @@ SEXP R_gdk_cairo_rectangle(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_cairo_region(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   cairo_t* v1 = (cairo_t*)(get_ptr(s1)); (void)v1;
   const cairo_region_t* v2 = (const cairo_region_t*)(get_ptr(s2)); (void)v2;
   gdk_cairo_region(v1, v2);
@@ -6728,6 +7244,7 @@ SEXP R_gdk_cairo_region(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_cairo_region_create_from_surface(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   cairo_surface_t* v1 = (cairo_surface_t*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_cairo_region_create_from_surface(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6744,6 +7261,7 @@ SEXP R_gdk_cairo_region_create_from_surface(SEXP s1) {
 
 
 SEXP R_gdk_cairo_set_source_pixbuf(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
+  RGTK4_REQUIRE_INIT();
   cairo_t* v1 = (cairo_t*)(get_ptr(s1)); (void)v1;
   const GdkPixbuf* v2 = (const GdkPixbuf*)(get_ptr(s2)); (void)v2;
   gdouble v3 = (gdouble)((gdouble)_unbox_numeric(s3)); (void)v3;
@@ -6754,6 +7272,7 @@ SEXP R_gdk_cairo_set_source_pixbuf(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
 
 
 SEXP R_gdk_cairo_set_source_rgba(SEXP s1, SEXP s2) {
+  RGTK4_REQUIRE_INIT();
   cairo_t* v1 = (cairo_t*)(get_ptr(s1)); (void)v1;
   const GdkRGBA* v2 = (const GdkRGBA*)(get_ptr(s2)); (void)v2;
   gdk_cairo_set_source_rgba(v1, v2);
@@ -6762,6 +7281,7 @@ SEXP R_gdk_cairo_set_source_rgba(SEXP s1, SEXP s2) {
 
 
 SEXP R_gdk_content_deserialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   GInputStream* v1 = (GInputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   GType v3 = (GType)((GType)(TYPEOF(s3)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s3) : REAL(s3)[0])); (void)v3;
@@ -6774,6 +7294,7 @@ SEXP R_gdk_content_deserialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
 
 
 SEXP R_gdk_content_deserialize_finish(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GAsyncResult* v1 = (GAsyncResult*)(get_ptr(s1)); (void)v1;
   GValue _out_value = {0}; (void)_out_value;
   GError *_err = NULL;
@@ -6797,6 +7318,7 @@ SEXP R_gdk_content_deserialize_finish(SEXP s1) {
 
 
 SEXP R_gdk_content_register_deserializer(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   GType v2 = (GType)((GType)(TYPEOF(s2)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s2) : REAL(s2)[0])); (void)v2;
   RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
@@ -6809,6 +7331,7 @@ SEXP R_gdk_content_register_deserializer(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_content_register_serializer(SEXP s1, SEXP s2, SEXP s3) {
+  RGTK4_REQUIRE_INIT();
   GType v1 = (GType)((GType)(TYPEOF(s1)==EXTPTRSXP ? (size_t)R_ExternalPtrAddr(s1) : REAL(s1)[0])); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   RCallbackClosure *_cb_closure_3 = (s3 == R_NilValue) ? NULL : rgtk4_closure_new(s3); (void)_cb_closure_3;
@@ -6821,6 +7344,7 @@ SEXP R_gdk_content_register_serializer(SEXP s1, SEXP s2, SEXP s3) {
 
 
 SEXP R_gdk_content_serialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
+  RGTK4_REQUIRE_INIT();
   GOutputStream* v1 = (GOutputStream*)(get_ptr(s1)); (void)v1;
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   const GValue* v3 = (const GValue*)(get_ptr(s3)); (void)v3;
@@ -6833,6 +7357,7 @@ SEXP R_gdk_content_serialize_async(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
 
 
 SEXP R_gdk_content_serialize_finish(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GAsyncResult* v1 = (GAsyncResult*)(get_ptr(s1)); (void)v1;
   GError *_err = NULL;
   gboolean _ret = (gboolean)gdk_content_serialize_finish(v1, &_err);
@@ -6850,6 +7375,7 @@ SEXP R_gdk_content_serialize_finish(SEXP s1) {
 
 
 SEXP R_gdk_intern_mime_type(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_intern_mime_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6866,6 +7392,7 @@ SEXP R_gdk_intern_mime_type(SEXP s1) {
 
 
 SEXP R_gdk_keyval_convert_case(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   guint _out_lower = 0; (void)_out_lower;
   guint _out_upper = 0; (void)_out_upper;
@@ -6889,6 +7416,7 @@ SEXP R_gdk_keyval_convert_case(SEXP s1) {
 
 
 SEXP R_gdk_keyval_from_name(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   guint _ret = (guint)gdk_keyval_from_name(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6905,6 +7433,7 @@ SEXP R_gdk_keyval_from_name(SEXP s1) {
 
 
 SEXP R_gdk_keyval_is_lower(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_keyval_is_lower(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6921,6 +7450,7 @@ SEXP R_gdk_keyval_is_lower(SEXP s1) {
 
 
 SEXP R_gdk_keyval_is_upper(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   gboolean _ret = (gboolean)gdk_keyval_is_upper(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6937,6 +7467,7 @@ SEXP R_gdk_keyval_is_upper(SEXP s1) {
 
 
 SEXP R_gdk_keyval_name(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_keyval_name(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6953,6 +7484,7 @@ SEXP R_gdk_keyval_name(SEXP s1) {
 
 
 SEXP R_gdk_keyval_to_lower(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   guint _ret = (guint)gdk_keyval_to_lower(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6969,6 +7501,7 @@ SEXP R_gdk_keyval_to_lower(SEXP s1) {
 
 
 SEXP R_gdk_keyval_to_unicode(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   guint32 _ret = (guint32)gdk_keyval_to_unicode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -6985,6 +7518,7 @@ SEXP R_gdk_keyval_to_unicode(SEXP s1) {
 
 
 SEXP R_gdk_keyval_to_upper(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   guint v1 = (guint)((guint)_unbox_numeric(s1)); (void)v1;
   guint _ret = (guint)gdk_keyval_to_upper(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -7001,6 +7535,7 @@ SEXP R_gdk_keyval_to_upper(SEXP s1) {
 
 
 SEXP R_gdk_pixbuf_get_from_surface(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
+  RGTK4_REQUIRE_INIT();
   cairo_surface_t* v1 = (cairo_surface_t*)(get_ptr(s1)); (void)v1;
   gint v2 = (gint)((gint)_unbox_numeric(s2)); (void)v2;
   gint v3 = (gint)((gint)_unbox_numeric(s3)); (void)v3;
@@ -7021,6 +7556,7 @@ SEXP R_gdk_pixbuf_get_from_surface(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) 
 
 
 SEXP R_gdk_pixbuf_get_from_texture(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   GdkTexture* v1 = (GdkTexture*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_get_from_texture(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
@@ -7037,6 +7573,7 @@ SEXP R_gdk_pixbuf_get_from_texture(SEXP s1) {
 
 
 SEXP R_gdk_set_allowed_backends(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   const char* v1 = (const char*)(CHAR(STRING_ELT(s1,0))); (void)v1;
   gdk_set_allowed_backends(v1);
   return R_NilValue;
@@ -7044,6 +7581,7 @@ SEXP R_gdk_set_allowed_backends(SEXP s1) {
 
 
 SEXP R_gdk_unicode_to_keyval(SEXP s1) {
+  RGTK4_REQUIRE_INIT();
   guint32 v1 = (guint32)((guint32)_unbox_numeric(s1)); (void)v1;
   guint _ret = (guint)gdk_unicode_to_keyval(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
