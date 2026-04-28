@@ -36,6 +36,7 @@ RCallbackClosure *rgtk4_closure_new(SEXP fun) {
     Rf_error("callback argument must be a function");
   }
   RCallbackClosure *rc = g_new0(RCallbackClosure, 1);
+  rc->magic = RGTK4_CB_MAGIC;
   rc->fun = fun;
   R_PreserveObject(rc->fun);
   return rc;
@@ -44,11 +45,28 @@ RCallbackClosure *rgtk4_closure_new(SEXP fun) {
 void rgtk4_closure_free(gpointer data) {
   RCallbackClosure *rc = (RCallbackClosure *)data;
   if (!rc) return;
+  if (rc->magic != RGTK4_CB_MAGIC) {
+    g_critical("rgtk4_closure_free: bad magic 0x%08x — refusing to free",
+               (unsigned)rc->magic);
+    return;
+  }
   if (rc->fun != R_NilValue) {
     R_ReleaseObject(rc->fun);
     rc->fun = R_NilValue;
   }
+  rc->magic = 0;  // make any subsequent dispatch fail the magic check
   g_free(rc);
+}
+
+RCallbackClosure *rgtk4_closure_check(gconstpointer data) {
+  RCallbackClosure *rc = (RCallbackClosure *)data;
+  if (!rc) return NULL;
+  if (rc->magic != RGTK4_CB_MAGIC) {
+    g_critical("rgtk4 callback dispatch: bad magic 0x%08x — stale or "
+                 "corrupted user_data, callback skipped", (unsigned)rc->magic);
+    return NULL;
+  }
+  return rc;
 }
 
 SEXP rgtk4_eval_callback(RCallbackClosure *rc, int nargs, SEXP *args) {
