@@ -1,33 +1,48 @@
 library(Rgtk4)
 
-gSetPrgname("My Custom App")
-app <- gtkApplicationNew("com.example.menubar", 0L)
+# 1. Setup the background loop so R stays interactive
+gtkInit()
+gtkStartEventLoop()
+gtkForceForeground()
 
-# 1. The Startup Signal: This is where the Menu is born
-gSignalConnectR(app, "startup", function(a) {
-  menubar <- gMenuNew()
-  file_menu <- gMenuNew()
+# 2. Create the Application Object
+# We need this object to "own" the global menu, but we won't call gApplicationRun()
+app <- gtkApplicationNew("com.example.globalmenu", 0L)
+gApplicationRegister(app, NULL)
 
-  # Add items
-  gMenuAppend(file_menu, "New Project", "app.new")
-  gMenuAppend(file_menu, "Quit", "app.quit")
-  gMenuAppendSubmenu(menubar, "File", file_menu)
+# 3. Create the Menu Model
+menubar_model <- gMenuNew()
+file_menu <- gMenuNew()
 
-  # Now it's safe to set the menubar
-  gtkApplicationSetMenubar(a, menubar)
-})
+gMenuAppend(file_menu, "New Project", "app.new")
+gMenuAppend(file_menu, "Quit", "app.quit")
+gMenuAppendSubmenu(menubar_model, "File", file_menu)
 
-# 2. The Activate Signal: This is where the Window is born
-gSignalConnectR(app, "activate", function(a) {
-  window <- gtkApplicationWindowNew(a)
-  gtkWindowSetTitle(window, "Mac Global Menu")
-  gtkWindowSetDefaultSize(window, 400L, 300L)
+# 4. Attach the menu to the Application
+# This is what moves it to the top of your screen
+gtkApplicationSetMenubar(app, menubar_model)
 
-  label <- gtkLabelNew("Look at the top of your screen!")
-  gtkWindowSetChild(window, label)
+# 5. Define Actions
+# Since the menu items use "app.new", we attach actions to the 'app' object
+act_new <- gSimpleActionNew("new", NULL)
+gSignalConnectR(act_new, "activate", function(a, p) message("New Project clicked!"))
+gActionMapAddAction(app, act_new)
 
-  gtkWindowPresent(window)
-})
+act_quit <- gSimpleActionNew("quit", NULL)
+gSignalConnectR(act_quit, "activate", function(a, p) gtkWindowClose(win))
+gActionMapAddAction(app, act_quit)
 
-# 3. Start the app
-gApplicationRun(app, 0L, NULL)
+# 6. Create the Window
+# Use gtkApplicationWindowNew so it's linked to the app that owns the menu
+win <- gtkApplicationWindowNew(app)
+gtkWindowSetTitle(win, "Native Menu Demo")
+gtkWindowSetDefaultSize(win, 400L, 300L)
+
+label <- gtkLabelNew("Check the very top of your screen!")
+gtkWindowSetChild(win, label)
+
+gtkWindowPresent(win)
+
+cat("=== Global Menu Active ===\n")
+cat("The menu is now in the OS system bar.\n")
+cat("R console is still yours to use.\n")
