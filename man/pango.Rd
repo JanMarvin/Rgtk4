@@ -1339,7 +1339,7 @@ pangoVersionString()
 
 \item{other_list}{AttrList}
 
-\item{func}{function — FontsetForeachFunc function(fontset, font)}
+\item{func}{function — FontsetForeachFunc callback}
 
 \item{other}{Coverage}
 
@@ -1359,7 +1359,7 @@ pangoVersionString()
 
 \item{data}{gpointer}
 
-\item{copy_func}{function — AttrDataCopyFunc function()}
+\item{copy_func}{function — AttrDataCopyFunc callback}
 
 \item{size}{gint}
 

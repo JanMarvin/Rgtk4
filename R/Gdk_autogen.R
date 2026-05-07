@@ -132,7 +132,7 @@ gdkClipboardIsLocal <- function(clipboard) {
 #' @param mime_types utf8
 #' @param io_priority gint
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkClipboardReadAsync <- function(clipboard, mime_types, io_priority, cancellable, callback) {
@@ -157,7 +157,7 @@ gdkClipboardReadFinish <- function(clipboard, result) {
 #'
 #' @param clipboard Clipboard
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkClipboardReadTextAsync <- function(clipboard, cancellable, callback) {
@@ -182,7 +182,7 @@ gdkClipboardReadTextFinish <- function(clipboard, result) {
 #'
 #' @param clipboard Clipboard
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkClipboardReadTextureAsync <- function(clipboard, cancellable, callback) {
@@ -209,7 +209,7 @@ gdkClipboardReadTextureFinish <- function(clipboard, result) {
 #' @param type GType
 #' @param io_priority gint
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkClipboardReadValueAsync <- function(clipboard, type, io_priority, cancellable, callback) {
@@ -259,7 +259,7 @@ gdkClipboardSetValue <- function(clipboard, value) {
 #' @param clipboard Clipboard
 #' @param io_priority gint
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkClipboardStoreAsync <- function(clipboard, io_priority, cancellable, callback) {
@@ -786,7 +786,7 @@ gdkContentProviderRefStorableFormats <- function(provider) {
 #' @param stream Gio.OutputStream
 #' @param io_priority gint
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkContentProviderWriteMimeTypeAsync <- function(provider, mime_type, stream, io_priority, cancellable, callback) {
@@ -2036,7 +2036,7 @@ gdkDropGetSurface <- function(self) {
 #' @param mime_types utf8
 #' @param io_priority gint
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkDropReadAsync <- function(self, mime_types, io_priority, cancellable, callback) {
@@ -2063,7 +2063,7 @@ gdkDropReadFinish <- function(self, result) {
 #' @param type GType
 #' @param io_priority gint
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkDropReadValueAsync <- function(self, type, io_priority, cancellable, callback) {
@@ -5162,7 +5162,7 @@ gdkCairoSetSourceRgba <- function(cr, rgba) {
 #' @param type GType
 #' @param io_priority gint
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkContentDeserializeAsync <- function(stream, mime_type, type, io_priority, cancellable, callback) {
@@ -5186,7 +5186,7 @@ gdkContentDeserializeFinish <- function(result) {
 #'
 #' @param mime_type utf8
 #' @param type GType
-#' @param deserialize function — ContentDeserializeFunc function(deserializer)
+#' @param deserialize function — ContentDeserializeFunc callback
 #' @return Return value from C function
 #' @export
 gdkContentRegisterDeserializer <- function(mime_type, type, deserialize) {
@@ -5199,7 +5199,7 @@ gdkContentRegisterDeserializer <- function(mime_type, type, deserialize) {
 #'
 #' @param type GType
 #' @param mime_type utf8
-#' @param serialize function — ContentSerializeFunc function(serializer)
+#' @param serialize function — ContentSerializeFunc callback
 #' @return Return value from C function
 #' @export
 gdkContentRegisterSerializer <- function(type, mime_type, serialize) {
@@ -5215,7 +5215,7 @@ gdkContentRegisterSerializer <- function(type, mime_type, serialize) {
 #' @param value GObject.Value
 #' @param io_priority gint
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkContentSerializeAsync <- function(stream, mime_type, value, io_priority, cancellable, callback) {

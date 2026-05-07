@@ -161,7 +161,7 @@ pangoAttrListEqual <- function(list, other_list) {
 #' @title pangoAttrListFilter
 #'
 #' @param list AttrList
-#' @param func function — AttrFilterFunc function(attribute)
+#' @param func function — AttrFilterFunc callback
 #' @return AttrList
 #' @export
 pangoAttrListFilter <- function(list, func) {
@@ -305,7 +305,7 @@ pangoAttrShapeNew <- function(ink_rect, logical_rect) {
 #' @param ink_rect Rectangle
 #' @param logical_rect Rectangle
 #' @param data gpointer
-#' @param copy_func function — AttrDataCopyFunc function()
+#' @param copy_func function — AttrDataCopyFunc callback
 #' @return Attribute
 #' @export
 pangoAttrShapeNewWithData <- function(ink_rect, logical_rect, data, copy_func) {
@@ -1810,7 +1810,7 @@ pangoFontMetricsUnref <- function(metrics) {
 #' @title pangoFontsetForeach
 #'
 #' @param fontset Fontset
-#' @param func function — FontsetForeachFunc function(fontset, font)
+#' @param func function — FontsetForeachFunc callback
 #' @return Return value from C function
 #' @export
 pangoFontsetForeach <- function(fontset, func) {

@@ -528,7 +528,7 @@ gdkPixbufGetFromTexture(texture)
 
 \item{async_result}{Gio.AsyncResult}
 
-\item{callback}{function — Gio.AsyncReadyCallback function(source_object, res)}
+\item{callback}{function — Gio.AsyncReadyCallback callback}
 
 \item{path}{filename}
 
@@ -602,7 +602,7 @@ gdkPixbufGetFromTexture(texture)
 
 \item{option_values}{utf8}
 
-\item{save_func}{function — PixbufSaveFunc function(buf, count, error)}
+\item{save_func}{function — PixbufSaveFunc callback}
 
 \item{value}{utf8}
 

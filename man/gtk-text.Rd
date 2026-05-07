@@ -1399,7 +1399,7 @@ gtkTextViewWindowToBufferCoords(text_view, win, window_x, window_y)
 
 \item{inline_selection}{gboolean}
 
-\item{func}{function — TextTagTableForeach function(tag)}
+\item{func}{function — TextTagTableForeach callback}
 
 \item{length}{gint}
 
@@ -1503,7 +1503,7 @@ gtkTextViewWindowToBufferCoords(text_view, win, window_x, window_y)
 
 \item{count}{gint}
 
-\item{pred}{function — TextCharPredicate function(ch)}
+\item{pred}{function — TextCharPredicate callback}
 
 \item{limit}{TextIter}
 

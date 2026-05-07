@@ -435,7 +435,7 @@ SEXP R_gdk_pixbuf_calculate_rowstride(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
   gint _ret = (gint)gdk_pixbuf_calculate_rowstride(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -459,12 +459,12 @@ SEXP R_gdk_pixbuf_get_file_info(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("PixbufFormat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -499,12 +499,12 @@ SEXP R_gdk_pixbuf_get_file_info_finish(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("PixbufFormat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -519,17 +519,16 @@ SEXP R_gdk_pixbuf_get_formats(void) {
   RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gdk_pixbuf_get_formats();
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_slist_free((GSList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -540,7 +539,7 @@ SEXP R_gdk_pixbuf_init_modules(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_init_modules(v1, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -581,7 +580,7 @@ SEXP R_gdk_pixbuf_save_to_stream_finish(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_save_to_stream_finish(v1, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -736,7 +735,7 @@ SEXP R_gdk_pixbuf_copy_options(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gdk_pixbuf_copy_options(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -780,7 +779,7 @@ SEXP R_gdk_pixbuf_get_bits_per_sample(SEXP s1) {
   int _ret = (int)gdk_pixbuf_get_bits_per_sample(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -797,7 +796,7 @@ SEXP R_gdk_pixbuf_get_byte_length(SEXP s1) {
   gsize _ret = (gsize)gdk_pixbuf_get_byte_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
   }
@@ -831,7 +830,7 @@ SEXP R_gdk_pixbuf_get_has_alpha(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_get_has_alpha(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -848,7 +847,7 @@ SEXP R_gdk_pixbuf_get_height(SEXP s1) {
   int _ret = (int)gdk_pixbuf_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -865,7 +864,7 @@ SEXP R_gdk_pixbuf_get_n_channels(SEXP s1) {
   int _ret = (int)gdk_pixbuf_get_n_channels(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -940,7 +939,7 @@ SEXP R_gdk_pixbuf_get_pixels_with_length(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_length)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_length)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -957,7 +956,7 @@ SEXP R_gdk_pixbuf_get_rowstride(SEXP s1) {
   int _ret = (int)gdk_pixbuf_get_rowstride(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -974,7 +973,7 @@ SEXP R_gdk_pixbuf_get_width(SEXP s1) {
   int _ret = (int)gdk_pixbuf_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1047,7 +1046,7 @@ SEXP R_gdk_pixbuf_remove_option(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gdk_pixbuf_remove_option(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1099,7 +1098,7 @@ SEXP R_gdk_pixbuf_save_to_bufferv(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gdk_pixbuf_save_to_bufferv(v1, &_out_buffer, &_out_buffer_size, v2, v3, v4, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1109,7 +1108,7 @@ SEXP R_gdk_pixbuf_save_to_bufferv(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint8"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("buffer"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_buffer_size)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_buffer_size)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gsize"));
   }
@@ -1131,7 +1130,7 @@ SEXP R_gdk_pixbuf_save_to_callbackv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5)
   gboolean _ret = (gboolean)gdk_pixbuf_save_to_callbackv(v1, (GdkPixbufSaveFunc)(_cb_closure_2 ? _rgtk4_cb_PixbufSaveFunc : NULL), _cb_closure_2, v3, v4, v5, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1154,7 +1153,7 @@ SEXP R_gdk_pixbuf_save_to_streamv(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
   gboolean _ret = (gboolean)gdk_pixbuf_save_to_streamv(v1, v2, v3, v4, v5, v6, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1190,7 +1189,7 @@ SEXP R_gdk_pixbuf_savev(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   gboolean _ret = (gboolean)gdk_pixbuf_savev(v1, v2, v3, v4, v5, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1247,7 +1246,7 @@ SEXP R_gdk_pixbuf_set_option(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gdk_pixbuf_set_option(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1347,7 +1346,7 @@ SEXP R_gdk_pixbuf_animation_get_height(SEXP s1) {
   int _ret = (int)gdk_pixbuf_animation_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1399,7 +1398,7 @@ SEXP R_gdk_pixbuf_animation_get_width(SEXP s1) {
   int _ret = (int)gdk_pixbuf_animation_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1416,7 +1415,7 @@ SEXP R_gdk_pixbuf_animation_is_static_image(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_animation_is_static_image(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1434,7 +1433,7 @@ SEXP R_gdk_pixbuf_animation_iter_advance(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gdk_pixbuf_animation_iter_advance(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1451,7 +1450,7 @@ SEXP R_gdk_pixbuf_animation_iter_get_delay_time(SEXP s1) {
   int _ret = (int)gdk_pixbuf_animation_iter_get_delay_time(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1485,7 +1484,7 @@ SEXP R_gdk_pixbuf_animation_iter_on_currently_loading_frame(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_animation_iter_on_currently_loading_frame(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1502,7 +1501,7 @@ SEXP R_gdk_pixbuf_error_quark(void) {
   GQuark _ret = (GQuark)gdk_pixbuf_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -1629,7 +1628,7 @@ SEXP R_gdk_pixbuf_format_is_disabled(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_format_is_disabled(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1647,7 +1646,7 @@ SEXP R_gdk_pixbuf_format_is_save_option_supported(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gdk_pixbuf_format_is_save_option_supported(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1664,7 +1663,7 @@ SEXP R_gdk_pixbuf_format_is_scalable(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_format_is_scalable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1681,7 +1680,7 @@ SEXP R_gdk_pixbuf_format_is_writable(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_format_is_writable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1761,7 +1760,7 @@ SEXP R_gdk_pixbuf_loader_close(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_loader_close(v1, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1842,7 +1841,7 @@ SEXP R_gdk_pixbuf_loader_write(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gdk_pixbuf_loader_write(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1861,7 +1860,7 @@ SEXP R_gdk_pixbuf_loader_write_bytes(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gdk_pixbuf_loader_write_bytes(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1906,7 +1905,7 @@ SEXP R_gdk_pixbuf_simple_anim_get_loop(SEXP s1) {
   gboolean _ret = (gboolean)gdk_pixbuf_simple_anim_get_loop(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }

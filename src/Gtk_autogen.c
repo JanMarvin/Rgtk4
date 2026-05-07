@@ -503,7 +503,7 @@ SEXP R_gtk_about_dialog_get_wrap_license(SEXP s1) {
   gboolean _ret = (gboolean)gtk_about_dialog_get_wrap_license(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -719,27 +719,27 @@ SEXP R_gtk_accessible_get_bounds(SEXP s1) {
   gboolean _ret = (gboolean)gtk_accessible_get_bounds(v1, &_out_x, &_out_y, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 5));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 5));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("y"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 3, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 4) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 4), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -791,7 +791,7 @@ SEXP R_gtk_accessible_get_platform_state(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_accessible_get_platform_state(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -948,7 +948,7 @@ SEXP R_gtk_action_bar_get_revealed(SEXP s1) {
   gboolean _ret = (gboolean)gtk_action_bar_get_revealed(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1134,7 +1134,7 @@ SEXP R_gtk_adjustment_get_lower(SEXP s1) {
   double _ret = (double)gtk_adjustment_get_lower(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -1151,7 +1151,7 @@ SEXP R_gtk_adjustment_get_minimum_increment(SEXP s1) {
   double _ret = (double)gtk_adjustment_get_minimum_increment(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -1168,7 +1168,7 @@ SEXP R_gtk_adjustment_get_page_increment(SEXP s1) {
   double _ret = (double)gtk_adjustment_get_page_increment(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -1185,7 +1185,7 @@ SEXP R_gtk_adjustment_get_page_size(SEXP s1) {
   double _ret = (double)gtk_adjustment_get_page_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -1202,7 +1202,7 @@ SEXP R_gtk_adjustment_get_step_increment(SEXP s1) {
   double _ret = (double)gtk_adjustment_get_step_increment(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -1219,7 +1219,7 @@ SEXP R_gtk_adjustment_get_upper(SEXP s1) {
   double _ret = (double)gtk_adjustment_get_upper(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -1236,7 +1236,7 @@ SEXP R_gtk_adjustment_get_value(SEXP s1) {
   double _ret = (double)gtk_adjustment_get_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -1320,7 +1320,7 @@ SEXP R_gtk_alert_dialog_choose_finish(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_alert_dialog_choose_finish(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1354,7 +1354,7 @@ SEXP R_gtk_alert_dialog_get_cancel_button(SEXP s1) {
   int _ret = (int)gtk_alert_dialog_get_cancel_button(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1371,7 +1371,7 @@ SEXP R_gtk_alert_dialog_get_default_button(SEXP s1) {
   int _ret = (int)gtk_alert_dialog_get_default_button(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1422,7 +1422,7 @@ SEXP R_gtk_alert_dialog_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_alert_dialog_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1666,7 +1666,7 @@ SEXP R_gtk_app_chooser_button_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_app_chooser_button_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1683,7 +1683,7 @@ SEXP R_gtk_app_chooser_button_get_show_default_item(SEXP s1) {
   gboolean _ret = (gboolean)gtk_app_chooser_button_get_show_default_item(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1700,7 +1700,7 @@ SEXP R_gtk_app_chooser_button_get_show_dialog_item(SEXP s1) {
   gboolean _ret = (gboolean)gtk_app_chooser_button_get_show_dialog_item(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1877,7 +1877,7 @@ SEXP R_gtk_app_chooser_widget_get_show_all(SEXP s1) {
   gboolean _ret = (gboolean)gtk_app_chooser_widget_get_show_all(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1894,7 +1894,7 @@ SEXP R_gtk_app_chooser_widget_get_show_default(SEXP s1) {
   gboolean _ret = (gboolean)gtk_app_chooser_widget_get_show_default(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1911,7 +1911,7 @@ SEXP R_gtk_app_chooser_widget_get_show_fallback(SEXP s1) {
   gboolean _ret = (gboolean)gtk_app_chooser_widget_get_show_fallback(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1928,7 +1928,7 @@ SEXP R_gtk_app_chooser_widget_get_show_other(SEXP s1) {
   gboolean _ret = (gboolean)gtk_app_chooser_widget_get_show_other(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1945,7 +1945,7 @@ SEXP R_gtk_app_chooser_widget_get_show_recommended(SEXP s1) {
   gboolean _ret = (gboolean)gtk_app_chooser_widget_get_show_recommended(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2147,16 +2147,16 @@ SEXP R_gtk_application_get_windows(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkApplication* v1 = (GtkApplication*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_application_get_windows(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -2169,7 +2169,7 @@ SEXP R_gtk_application_inhibit(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   guint _ret = (guint)gtk_application_inhibit(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -2274,7 +2274,7 @@ SEXP R_gtk_application_window_get_id(SEXP s1) {
   guint _ret = (guint)gtk_application_window_get_id(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -2291,7 +2291,7 @@ SEXP R_gtk_application_window_get_show_menubar(SEXP s1) {
   gboolean _ret = (gboolean)gtk_application_window_get_show_menubar(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2363,7 +2363,7 @@ SEXP R_gtk_aspect_frame_get_obey_child(SEXP s1) {
   gboolean _ret = (gboolean)gtk_aspect_frame_get_obey_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2380,7 +2380,7 @@ SEXP R_gtk_aspect_frame_get_ratio(SEXP s1) {
   float _ret = (float)gtk_aspect_frame_get_ratio(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -2397,7 +2397,7 @@ SEXP R_gtk_aspect_frame_get_xalign(SEXP s1) {
   float _ret = (float)gtk_aspect_frame_get_xalign(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -2414,7 +2414,7 @@ SEXP R_gtk_aspect_frame_get_yalign(SEXP s1) {
   float _ret = (float)gtk_aspect_frame_get_yalign(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -2503,7 +2503,7 @@ SEXP R_gtk_assistant_append_page(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_assistant_append_page(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2528,7 +2528,7 @@ SEXP R_gtk_assistant_get_current_page(SEXP s1) {
   int _ret = (int)gtk_assistant_get_current_page(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2545,7 +2545,7 @@ SEXP R_gtk_assistant_get_n_pages(SEXP s1) {
   int _ret = (int)gtk_assistant_get_n_pages(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2599,7 +2599,7 @@ SEXP R_gtk_assistant_get_page_complete(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_assistant_get_page_complete(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2671,7 +2671,7 @@ SEXP R_gtk_assistant_insert_page(SEXP s1, SEXP s2, SEXP s3) {
   int _ret = (int)gtk_assistant_insert_page(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2697,7 +2697,7 @@ SEXP R_gtk_assistant_prepend_page(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_assistant_prepend_page(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2866,7 +2866,7 @@ SEXP R_gtk_bitset_add(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_bitset_add(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2916,7 +2916,7 @@ SEXP R_gtk_bitset_contains(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_bitset_contains(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2960,7 +2960,7 @@ SEXP R_gtk_bitset_equals(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_bitset_equals(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2977,7 +2977,7 @@ SEXP R_gtk_bitset_get_maximum(SEXP s1) {
   guint _ret = (guint)gtk_bitset_get_maximum(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -2994,7 +2994,7 @@ SEXP R_gtk_bitset_get_minimum(SEXP s1) {
   guint _ret = (guint)gtk_bitset_get_minimum(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3012,7 +3012,7 @@ SEXP R_gtk_bitset_get_nth(SEXP s1, SEXP s2) {
   guint _ret = (guint)gtk_bitset_get_nth(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3029,7 +3029,7 @@ SEXP R_gtk_bitset_get_size(SEXP s1) {
   guint64 _ret = (guint64)gtk_bitset_get_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint64"));
   }
@@ -3048,7 +3048,7 @@ SEXP R_gtk_bitset_get_size_in_range(SEXP s1, SEXP s2, SEXP s3) {
   guint64 _ret = (guint64)gtk_bitset_get_size_in_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint64"));
   }
@@ -3074,7 +3074,7 @@ SEXP R_gtk_bitset_is_empty(SEXP s1) {
   gboolean _ret = (gboolean)gtk_bitset_is_empty(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3109,7 +3109,7 @@ SEXP R_gtk_bitset_remove(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_bitset_remove(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3221,7 +3221,7 @@ SEXP R_gtk_bitset_iter_get_value(SEXP s1) {
   guint _ret = (guint)gtk_bitset_iter_get_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3238,7 +3238,7 @@ SEXP R_gtk_bitset_iter_is_valid(SEXP s1) {
   gboolean _ret = (gboolean)gtk_bitset_iter_is_valid(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3256,12 +3256,12 @@ SEXP R_gtk_bitset_iter_next(SEXP s1) {
   gboolean _ret = (gboolean)gtk_bitset_iter_next(v1, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_value)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_value)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3279,12 +3279,12 @@ SEXP R_gtk_bitset_iter_previous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_bitset_iter_previous(v1, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_value)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_value)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3304,7 +3304,7 @@ SEXP R_gtk_bitset_iter_init_at(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_bitset_iter_init_at(&_out_iter, v1, v2, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3314,7 +3314,7 @@ SEXP R_gtk_bitset_iter_init_at(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("BitsetIter"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("iter"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_value)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_value)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3333,7 +3333,7 @@ SEXP R_gtk_bitset_iter_init_first(SEXP s1) {
   gboolean _ret = (gboolean)gtk_bitset_iter_init_first(&_out_iter, v1, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3343,7 +3343,7 @@ SEXP R_gtk_bitset_iter_init_first(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("BitsetIter"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("iter"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_value)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_value)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3362,7 +3362,7 @@ SEXP R_gtk_bitset_iter_init_last(SEXP s1) {
   gboolean _ret = (gboolean)gtk_bitset_iter_init_last(&_out_iter, v1, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3372,7 +3372,7 @@ SEXP R_gtk_bitset_iter_init_last(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("BitsetIter"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("iter"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_value)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_value)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3441,7 +3441,7 @@ SEXP R_gtk_bookmark_list_get_io_priority(SEXP s1) {
   int _ret = (int)gtk_bookmark_list_get_io_priority(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3458,7 +3458,7 @@ SEXP R_gtk_bookmark_list_is_loading(SEXP s1) {
   gboolean _ret = (gboolean)gtk_bookmark_list_is_loading(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3527,7 +3527,7 @@ SEXP R_gtk_bool_filter_get_invert(SEXP s1) {
   gboolean _ret = (gboolean)gtk_bool_filter_get_invert(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3631,7 +3631,7 @@ SEXP R_gtk_box_get_baseline_child(SEXP s1) {
   int _ret = (int)gtk_box_get_baseline_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3665,7 +3665,7 @@ SEXP R_gtk_box_get_homogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_box_get_homogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3682,7 +3682,7 @@ SEXP R_gtk_box_get_spacing(SEXP s1) {
   int _ret = (int)gtk_box_get_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3790,7 +3790,7 @@ SEXP R_gtk_box_layout_get_baseline_child(SEXP s1) {
   int _ret = (int)gtk_box_layout_get_baseline_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3824,7 +3824,7 @@ SEXP R_gtk_box_layout_get_homogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_box_layout_get_homogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3841,7 +3841,7 @@ SEXP R_gtk_box_layout_get_spacing(SEXP s1) {
   guint _ret = (guint)gtk_box_layout_get_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3947,12 +3947,12 @@ SEXP R_gtk_buildable_parse_context_get_position(SEXP s1) {
   gtk_buildable_parse_context_get_position(v1, &_out_line_number, &_out_char_number);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_line_number)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_line_number)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("line_number"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_char_number)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_char_number)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4067,7 +4067,7 @@ SEXP R_gtk_builder_add_from_file(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_builder_add_from_file(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4086,7 +4086,7 @@ SEXP R_gtk_builder_add_from_resource(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_builder_add_from_resource(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4106,7 +4106,7 @@ SEXP R_gtk_builder_add_from_string(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_builder_add_from_string(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4126,7 +4126,7 @@ SEXP R_gtk_builder_add_objects_from_file(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_builder_add_objects_from_file(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4146,7 +4146,7 @@ SEXP R_gtk_builder_add_objects_from_resource(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_builder_add_objects_from_resource(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4167,7 +4167,7 @@ SEXP R_gtk_builder_add_objects_from_string(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_builder_add_objects_from_string(v1, v2, v3, v4, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4220,7 +4220,7 @@ SEXP R_gtk_builder_extend_with_template(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP
   gboolean _ret = (gboolean)gtk_builder_extend_with_template(v1, v2, v3, v4, v5, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4270,17 +4270,16 @@ SEXP R_gtk_builder_get_objects(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkBuilder* v1 = (GtkBuilder*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_builder_get_objects(v1);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_slist_free((GSList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -4325,7 +4324,7 @@ SEXP R_gtk_builder_get_type_from_name(SEXP s1, SEXP s2) {
   GType _ret = (GType)gtk_builder_get_type_from_name(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GType"));
   }
@@ -4373,7 +4372,7 @@ SEXP R_gtk_builder_value_from_string(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_builder_value_from_string(v1, v2, v3, &_out_value, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4399,7 +4398,7 @@ SEXP R_gtk_builder_value_from_string_type(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_builder_value_from_string_type(v1, v2, v3, &_out_value, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4451,7 +4450,7 @@ SEXP R_gtk_builder_error_quark(void) {
   GQuark _ret = (GQuark)gtk_builder_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -4623,7 +4622,7 @@ SEXP R_gtk_button_get_can_shrink(SEXP s1) {
   gboolean _ret = (gboolean)gtk_button_get_can_shrink(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4657,7 +4656,7 @@ SEXP R_gtk_button_get_has_frame(SEXP s1) {
   gboolean _ret = (gboolean)gtk_button_get_has_frame(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4708,7 +4707,7 @@ SEXP R_gtk_button_get_use_underline(SEXP s1) {
   gboolean _ret = (gboolean)gtk_button_get_use_underline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4822,7 +4821,7 @@ SEXP R_gtk_calendar_get_day_is_marked(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_calendar_get_day_is_marked(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4839,7 +4838,7 @@ SEXP R_gtk_calendar_get_show_day_names(SEXP s1) {
   gboolean _ret = (gboolean)gtk_calendar_get_show_day_names(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4856,7 +4855,7 @@ SEXP R_gtk_calendar_get_show_heading(SEXP s1) {
   gboolean _ret = (gboolean)gtk_calendar_get_show_heading(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4873,7 +4872,7 @@ SEXP R_gtk_calendar_get_show_week_numbers(SEXP s1) {
   gboolean _ret = (gboolean)gtk_calendar_get_show_week_numbers(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4966,7 +4965,7 @@ SEXP R_gtk_cell_area_activate(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP 
   gboolean _ret = (gboolean)gtk_cell_area_activate(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4988,7 +4987,7 @@ SEXP R_gtk_cell_area_activate_cell(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
   gboolean _ret = (gboolean)gtk_cell_area_activate_cell(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -5059,7 +5058,7 @@ SEXP R_gtk_cell_area_attribute_get_column(SEXP s1, SEXP s2, SEXP s3) {
   int _ret = (int)gtk_cell_area_attribute_get_column(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5138,7 +5137,7 @@ SEXP R_gtk_cell_area_event(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6)
   int _ret = (int)gtk_cell_area_event(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5156,7 +5155,7 @@ SEXP R_gtk_cell_area_focus(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_cell_area_focus(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -5330,16 +5329,16 @@ SEXP R_gtk_cell_area_get_focus_siblings(SEXP s1, SEXP s2) {
   GtkCellArea* v1 = (GtkCellArea*)(get_ptr(s1)); (void)v1;
   GtkCellRenderer* v2 = (GtkCellRenderer*)(get_ptr(s2)); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_cell_area_get_focus_siblings(v1, v2);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -5353,12 +5352,12 @@ SEXP R_gtk_cell_area_get_preferred_height(SEXP s1, SEXP s2, SEXP s3) {
   gtk_cell_area_get_preferred_height(v1, v2, v3, &_out_minimum_height, &_out_natural_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_height)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_height)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_height"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5380,12 +5379,12 @@ SEXP R_gtk_cell_area_get_preferred_height_for_width(SEXP s1, SEXP s2, SEXP s3, S
   gtk_cell_area_get_preferred_height_for_width(v1, v2, v3, v4, &_out_minimum_height, &_out_natural_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_height)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_height)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_height"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5406,12 +5405,12 @@ SEXP R_gtk_cell_area_get_preferred_width(SEXP s1, SEXP s2, SEXP s3) {
   gtk_cell_area_get_preferred_width(v1, v2, v3, &_out_minimum_width, &_out_natural_width);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_width)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_width)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5433,12 +5432,12 @@ SEXP R_gtk_cell_area_get_preferred_width_for_height(SEXP s1, SEXP s2, SEXP s3, S
   gtk_cell_area_get_preferred_width_for_height(v1, v2, v3, v4, &_out_minimum_width, &_out_natural_width);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_width)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_width)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5473,7 +5472,7 @@ SEXP R_gtk_cell_area_has_renderer(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_cell_area_has_renderer(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -5510,7 +5509,7 @@ SEXP R_gtk_cell_area_is_activatable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_area_is_activatable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -5529,7 +5528,7 @@ SEXP R_gtk_cell_area_is_focus_sibling(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_cell_area_is_focus_sibling(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -5571,12 +5570,12 @@ SEXP R_gtk_cell_area_request_renderer(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s
   gtk_cell_area_request_renderer(v1, v2, v3, v4, v5, &_out_minimum_size, &_out_natural_size);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_size)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_size)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_size"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_size)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_size)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5643,7 +5642,7 @@ SEXP R_gtk_cell_area_box_get_spacing(SEXP s1) {
   int _ret = (int)gtk_cell_area_box_get_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5727,7 +5726,7 @@ SEXP R_gtk_cell_area_class_list_cell_properties(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GObject.ParamSpec"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_properties)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_properties)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -5756,12 +5755,12 @@ SEXP R_gtk_cell_area_context_get_allocation(SEXP s1) {
   gtk_cell_area_context_get_allocation(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5797,12 +5796,12 @@ SEXP R_gtk_cell_area_context_get_preferred_height(SEXP s1) {
   gtk_cell_area_context_get_preferred_height(v1, &_out_minimum_height, &_out_natural_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_height)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_height)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_height"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5822,12 +5821,12 @@ SEXP R_gtk_cell_area_context_get_preferred_height_for_width(SEXP s1, SEXP s2) {
   gtk_cell_area_context_get_preferred_height_for_width(v1, v2, &_out_minimum_height, &_out_natural_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_height)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_height)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_height"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5846,12 +5845,12 @@ SEXP R_gtk_cell_area_context_get_preferred_width(SEXP s1) {
   gtk_cell_area_context_get_preferred_width(v1, &_out_minimum_width, &_out_natural_width);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_width)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_width)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5871,12 +5870,12 @@ SEXP R_gtk_cell_area_context_get_preferred_width_for_height(SEXP s1, SEXP s2) {
   gtk_cell_area_context_get_preferred_width_for_height(v1, v2, &_out_minimum_width, &_out_natural_width);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_width)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_width)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5989,17 +5988,16 @@ SEXP R_gtk_cell_layout_get_cells(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkCellLayout* v1 = (GtkCellLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_cell_layout_get_cells(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -6055,7 +6053,7 @@ SEXP R_gtk_cell_renderer_activate(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, S
   gboolean _ret = (gboolean)gtk_cell_renderer_activate(v1, v2, v3, v4, v5, v6, v7);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6095,12 +6093,12 @@ SEXP R_gtk_cell_renderer_get_alignment(SEXP s1) {
   gtk_cell_renderer_get_alignment(v1, &_out_xalign, &_out_yalign);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_xalign)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_xalign)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("xalign"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_yalign)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_yalign)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6119,12 +6117,12 @@ SEXP R_gtk_cell_renderer_get_fixed_size(SEXP s1) {
   gtk_cell_renderer_get_fixed_size(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6141,7 +6139,7 @@ SEXP R_gtk_cell_renderer_get_is_expanded(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_renderer_get_is_expanded(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6158,7 +6156,7 @@ SEXP R_gtk_cell_renderer_get_is_expander(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_renderer_get_is_expander(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6177,12 +6175,12 @@ SEXP R_gtk_cell_renderer_get_padding(SEXP s1) {
   gtk_cell_renderer_get_padding(v1, &_out_xpad, &_out_ypad);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_xpad)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_xpad)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("xpad"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_ypad)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_ypad)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6202,12 +6200,12 @@ SEXP R_gtk_cell_renderer_get_preferred_height(SEXP s1, SEXP s2) {
   gtk_cell_renderer_get_preferred_height(v1, v2, &_out_minimum_size, &_out_natural_size);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_size)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_size)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_size"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_size)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_size)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6228,12 +6226,12 @@ SEXP R_gtk_cell_renderer_get_preferred_height_for_width(SEXP s1, SEXP s2, SEXP s
   gtk_cell_renderer_get_preferred_height_for_width(v1, v2, v3, &_out_minimum_height, &_out_natural_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_height)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_height)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_height"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6278,12 +6276,12 @@ SEXP R_gtk_cell_renderer_get_preferred_width(SEXP s1, SEXP s2) {
   gtk_cell_renderer_get_preferred_width(v1, v2, &_out_minimum_size, &_out_natural_size);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_size)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_size)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_size"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_size)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_size)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6304,12 +6302,12 @@ SEXP R_gtk_cell_renderer_get_preferred_width_for_height(SEXP s1, SEXP s2, SEXP s
   gtk_cell_renderer_get_preferred_width_for_height(v1, v2, v3, &_out_minimum_width, &_out_natural_width);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum_width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural_width)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural_width)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6343,7 +6341,7 @@ SEXP R_gtk_cell_renderer_get_sensitive(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_renderer_get_sensitive(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6379,7 +6377,7 @@ SEXP R_gtk_cell_renderer_get_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_renderer_get_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6396,7 +6394,7 @@ SEXP R_gtk_cell_renderer_is_activatable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_renderer_is_activatable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6669,7 +6667,7 @@ SEXP R_gtk_cell_renderer_toggle_get_activatable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_renderer_toggle_get_activatable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6686,7 +6684,7 @@ SEXP R_gtk_cell_renderer_toggle_get_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_renderer_toggle_get_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6703,7 +6701,7 @@ SEXP R_gtk_cell_renderer_toggle_get_radio(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_renderer_toggle_get_radio(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6850,7 +6848,7 @@ SEXP R_gtk_cell_view_get_draw_sensitive(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_view_get_draw_sensitive(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6867,7 +6865,7 @@ SEXP R_gtk_cell_view_get_fit_model(SEXP s1) {
   gboolean _ret = (gboolean)gtk_cell_view_get_fit_model(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7005,7 +7003,7 @@ SEXP R_gtk_center_box_get_shrink_center_last(SEXP s1) {
   gboolean _ret = (gboolean)gtk_center_box_get_shrink_center_last(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7169,7 +7167,7 @@ SEXP R_gtk_center_layout_get_shrink_center_last(SEXP s1) {
   gboolean _ret = (gboolean)gtk_center_layout_get_shrink_center_last(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7308,7 +7306,7 @@ SEXP R_gtk_check_button_get_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_check_button_get_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7342,7 +7340,7 @@ SEXP R_gtk_check_button_get_inconsistent(SEXP s1) {
   gboolean _ret = (gboolean)gtk_check_button_get_inconsistent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7376,7 +7374,7 @@ SEXP R_gtk_check_button_get_use_underline(SEXP s1) {
   gboolean _ret = (gboolean)gtk_check_button_get_use_underline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7501,7 +7499,7 @@ SEXP R_gtk_color_button_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_color_button_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7583,7 +7581,7 @@ SEXP R_gtk_color_chooser_get_use_alpha(SEXP s1) {
   gboolean _ret = (gboolean)gtk_color_chooser_get_use_alpha(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7708,7 +7706,7 @@ SEXP R_gtk_color_dialog_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_color_dialog_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7742,7 +7740,7 @@ SEXP R_gtk_color_dialog_get_with_alpha(SEXP s1) {
   gboolean _ret = (gboolean)gtk_color_dialog_get_with_alpha(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7905,7 +7903,7 @@ SEXP R_gtk_column_view_get_enable_rubberband(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_get_enable_rubberband(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7956,7 +7954,7 @@ SEXP R_gtk_column_view_get_reorderable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_get_reorderable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -7990,7 +7988,7 @@ SEXP R_gtk_column_view_get_show_column_separators(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_get_show_column_separators(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8007,7 +8005,7 @@ SEXP R_gtk_column_view_get_show_row_separators(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_get_show_row_separators(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8024,7 +8022,7 @@ SEXP R_gtk_column_view_get_single_click_activate(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_get_single_click_activate(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8214,7 +8212,7 @@ SEXP R_gtk_column_view_cell_get_focusable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_cell_get_focusable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8248,7 +8246,7 @@ SEXP R_gtk_column_view_cell_get_position(SEXP s1) {
   guint _ret = (guint)gtk_column_view_cell_get_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -8265,7 +8263,7 @@ SEXP R_gtk_column_view_cell_get_selected(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_cell_get_selected(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8335,7 +8333,7 @@ SEXP R_gtk_column_view_column_get_expand(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_column_get_expand(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8369,7 +8367,7 @@ SEXP R_gtk_column_view_column_get_fixed_width(SEXP s1) {
   int _ret = (int)gtk_column_view_column_get_fixed_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -8420,7 +8418,7 @@ SEXP R_gtk_column_view_column_get_resizable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_column_get_resizable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8471,7 +8469,7 @@ SEXP R_gtk_column_view_column_get_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_column_get_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8603,7 +8601,7 @@ SEXP R_gtk_column_view_row_get_activatable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_row_get_activatable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8620,7 +8618,7 @@ SEXP R_gtk_column_view_row_get_focusable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_row_get_focusable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8654,7 +8652,7 @@ SEXP R_gtk_column_view_row_get_position(SEXP s1) {
   guint _ret = (guint)gtk_column_view_row_get_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -8671,7 +8669,7 @@ SEXP R_gtk_column_view_row_get_selectable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_row_get_selectable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8688,7 +8686,7 @@ SEXP R_gtk_column_view_row_get_selected(SEXP s1) {
   gboolean _ret = (gboolean)gtk_column_view_row_get_selected(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8750,7 +8748,7 @@ SEXP R_gtk_column_view_sorter_get_n_sort_columns(SEXP s1) {
   guint _ret = (guint)gtk_column_view_sorter_get_n_sort_columns(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -8893,7 +8891,7 @@ SEXP R_gtk_combo_box_get_active(SEXP s1) {
   int _ret = (int)gtk_combo_box_get_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -8928,7 +8926,7 @@ SEXP R_gtk_combo_box_get_active_iter(SEXP s1) {
   gboolean _ret = (gboolean)gtk_combo_box_get_active_iter(v1, &_out_iter);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -8984,7 +8982,7 @@ SEXP R_gtk_combo_box_get_entry_text_column(SEXP s1) {
   int _ret = (int)gtk_combo_box_get_entry_text_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -9001,7 +8999,7 @@ SEXP R_gtk_combo_box_get_has_entry(SEXP s1) {
   gboolean _ret = (gboolean)gtk_combo_box_get_has_entry(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -9018,7 +9016,7 @@ SEXP R_gtk_combo_box_get_id_column(SEXP s1) {
   int _ret = (int)gtk_combo_box_get_id_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -9052,7 +9050,7 @@ SEXP R_gtk_combo_box_get_popup_fixed_width(SEXP s1) {
   gboolean _ret = (gboolean)gtk_combo_box_get_popup_fixed_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -9104,7 +9102,7 @@ SEXP R_gtk_combo_box_set_active_id(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_combo_box_set_active_id(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -9399,7 +9397,7 @@ SEXP R_gtk_constraint_get_constant(SEXP s1) {
   double _ret = (double)gtk_constraint_get_constant(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -9416,7 +9414,7 @@ SEXP R_gtk_constraint_get_multiplier(SEXP s1) {
   double _ret = (double)gtk_constraint_get_multiplier(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -9484,7 +9482,7 @@ SEXP R_gtk_constraint_get_strength(SEXP s1) {
   int _ret = (int)gtk_constraint_get_strength(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -9535,7 +9533,7 @@ SEXP R_gtk_constraint_is_attached(SEXP s1) {
   gboolean _ret = (gboolean)gtk_constraint_is_attached(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -9552,7 +9550,7 @@ SEXP R_gtk_constraint_is_constant(SEXP s1) {
   gboolean _ret = (gboolean)gtk_constraint_is_constant(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -9569,7 +9567,7 @@ SEXP R_gtk_constraint_is_required(SEXP s1) {
   gboolean _ret = (gboolean)gtk_constraint_is_required(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -9605,12 +9603,12 @@ SEXP R_gtk_constraint_guide_get_max_size(SEXP s1) {
   gtk_constraint_guide_get_max_size(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -9629,12 +9627,12 @@ SEXP R_gtk_constraint_guide_get_min_size(SEXP s1) {
   gtk_constraint_guide_get_min_size(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -9670,12 +9668,12 @@ SEXP R_gtk_constraint_guide_get_nat_size(SEXP s1) {
   gtk_constraint_guide_get_nat_size(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -9787,17 +9785,16 @@ SEXP R_gtk_constraint_layout_add_constraints_from_descriptionv(SEXP s1, SEXP s2,
   GHashTable* v6 = (GHashTable*)(get_ptr(s6)); (void)v6;
   GError *_err = NULL;
   gconstpointer _ret = (gconstpointer)gtk_constraint_layout_add_constraints_from_descriptionv(v1, v2, v3, v4, v5, v6, &_err);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -9876,7 +9873,7 @@ SEXP R_gtk_constraint_vfl_parser_error_quark(void) {
   GQuark _ret = (GQuark)gtk_constraint_vfl_parser_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -10263,7 +10260,7 @@ SEXP R_gtk_dialog_get_response_for_widget(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_dialog_get_response_for_widget(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -10326,7 +10323,7 @@ SEXP R_gtk_dialog_error_quark(void) {
   GQuark _ret = (GQuark)gtk_dialog_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -10412,7 +10409,7 @@ SEXP R_gtk_directory_list_get_io_priority(SEXP s1) {
   int _ret = (int)gtk_directory_list_get_io_priority(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -10429,7 +10426,7 @@ SEXP R_gtk_directory_list_get_monitored(SEXP s1) {
   gboolean _ret = (gboolean)gtk_directory_list_get_monitored(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -10446,7 +10443,7 @@ SEXP R_gtk_directory_list_is_loading(SEXP s1) {
   gboolean _ret = (gboolean)gtk_directory_list_is_loading(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -10692,7 +10689,7 @@ SEXP R_gtk_drawing_area_get_content_height(SEXP s1) {
   int _ret = (int)gtk_drawing_area_get_content_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -10709,7 +10706,7 @@ SEXP R_gtk_drawing_area_get_content_width(SEXP s1) {
   int _ret = (int)gtk_drawing_area_get_content_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -10770,7 +10767,7 @@ SEXP R_gtk_drop_controller_motion_contains_pointer(SEXP s1) {
   gboolean _ret = (gboolean)gtk_drop_controller_motion_contains_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -10804,7 +10801,7 @@ SEXP R_gtk_drop_controller_motion_is_pointer(SEXP s1) {
   gboolean _ret = (gboolean)gtk_drop_controller_motion_is_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -10856,7 +10853,7 @@ SEXP R_gtk_drop_down_get_enable_search(SEXP s1) {
   gboolean _ret = (gboolean)gtk_drop_down_get_enable_search(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -10975,7 +10972,7 @@ SEXP R_gtk_drop_down_get_selected(SEXP s1) {
   guint _ret = (guint)gtk_drop_down_get_selected(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -11009,7 +11006,7 @@ SEXP R_gtk_drop_down_get_show_arrow(SEXP s1) {
   gboolean _ret = (gboolean)gtk_drop_down_get_show_arrow(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11199,7 +11196,7 @@ SEXP R_gtk_drop_target_get_gtypes(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GType"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_n_types)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_types)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gsize"));
   }
@@ -11216,7 +11213,7 @@ SEXP R_gtk_drop_target_get_preload(SEXP s1) {
   gboolean _ret = (gboolean)gtk_drop_target_get_preload(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11368,7 +11365,7 @@ SEXP R_gtk_editable_delegate_get_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_editable_delegate_get_property(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11388,7 +11385,7 @@ SEXP R_gtk_editable_delegate_set_property(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_editable_delegate_set_property(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11406,7 +11403,7 @@ SEXP R_gtk_editable_install_properties(SEXP s1, SEXP s2) {
   guint _ret = (guint)gtk_editable_install_properties(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -11424,7 +11421,7 @@ SEXP R_gtk_editable_delegate_get_accessible_platform_state(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_editable_delegate_get_accessible_platform_state(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11467,7 +11464,7 @@ SEXP R_gtk_editable_get_alignment(SEXP s1) {
   float _ret = (float)gtk_editable_get_alignment(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -11520,7 +11517,7 @@ SEXP R_gtk_editable_get_editable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_editable_get_editable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11537,7 +11534,7 @@ SEXP R_gtk_editable_get_enable_undo(SEXP s1) {
   gboolean _ret = (gboolean)gtk_editable_get_enable_undo(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11554,7 +11551,7 @@ SEXP R_gtk_editable_get_max_width_chars(SEXP s1) {
   int _ret = (int)gtk_editable_get_max_width_chars(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -11571,7 +11568,7 @@ SEXP R_gtk_editable_get_position(SEXP s1) {
   int _ret = (int)gtk_editable_get_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -11590,17 +11587,17 @@ SEXP R_gtk_editable_get_selection_bounds(SEXP s1) {
   gboolean _ret = (gboolean)gtk_editable_get_selection_bounds(v1, &_out_start_pos, &_out_end_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_start_pos)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_start_pos)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("start_pos"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_end_pos)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_end_pos)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -11634,7 +11631,7 @@ SEXP R_gtk_editable_get_width_chars(SEXP s1) {
   int _ret = (int)gtk_editable_get_width_chars(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -11662,7 +11659,7 @@ SEXP R_gtk_editable_insert_text(SEXP s1, SEXP s2, SEXP s3) {
   gtk_editable_insert_text(v1, v2, v3, &_out_position);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_position)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_position)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -11769,7 +11766,7 @@ SEXP R_gtk_editable_label_get_editing(SEXP s1) {
   gboolean _ret = (gboolean)gtk_editable_label_get_editing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11854,7 +11851,7 @@ SEXP R_gtk_entry_get_activates_default(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_get_activates_default(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11871,7 +11868,7 @@ SEXP R_gtk_entry_get_alignment(SEXP s1) {
   float _ret = (float)gtk_entry_get_alignment(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -11939,7 +11936,7 @@ SEXP R_gtk_entry_get_current_icon_drag_source(SEXP s1) {
   int _ret = (int)gtk_entry_get_current_icon_drag_source(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -11973,7 +11970,7 @@ SEXP R_gtk_entry_get_has_frame(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_get_has_frame(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -11991,7 +11988,7 @@ SEXP R_gtk_entry_get_icon_activatable(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_entry_get_icon_activatable(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12029,7 +12026,7 @@ SEXP R_gtk_entry_get_icon_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   int _ret = (int)gtk_entry_get_icon_at_pos(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -12101,7 +12098,7 @@ SEXP R_gtk_entry_get_icon_sensitive(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_entry_get_icon_sensitive(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12206,7 +12203,7 @@ SEXP R_gtk_entry_get_invisible_char(SEXP s1) {
   gunichar _ret = (gunichar)gtk_entry_get_invisible_char(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gunichar"));
   }
@@ -12223,7 +12220,7 @@ SEXP R_gtk_entry_get_max_length(SEXP s1) {
   int _ret = (int)gtk_entry_get_max_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -12240,7 +12237,7 @@ SEXP R_gtk_entry_get_overwrite_mode(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_get_overwrite_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12274,7 +12271,7 @@ SEXP R_gtk_entry_get_progress_fraction(SEXP s1) {
   double _ret = (double)gtk_entry_get_progress_fraction(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -12291,7 +12288,7 @@ SEXP R_gtk_entry_get_progress_pulse_step(SEXP s1) {
   double _ret = (double)gtk_entry_get_progress_pulse_step(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -12342,7 +12339,7 @@ SEXP R_gtk_entry_get_visibility(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_get_visibility(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12359,7 +12356,7 @@ SEXP R_gtk_entry_grab_focus_without_selecting(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_grab_focus_without_selecting(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12654,7 +12651,7 @@ SEXP R_gtk_entry_buffer_delete_text(SEXP s1, SEXP s2, SEXP s3) {
   guint _ret = (guint)gtk_entry_buffer_delete_text(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -12692,7 +12689,7 @@ SEXP R_gtk_entry_buffer_get_bytes(SEXP s1) {
   gsize _ret = (gsize)gtk_entry_buffer_get_bytes(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gsize"));
   }
@@ -12709,7 +12706,7 @@ SEXP R_gtk_entry_buffer_get_length(SEXP s1) {
   guint _ret = (guint)gtk_entry_buffer_get_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -12726,7 +12723,7 @@ SEXP R_gtk_entry_buffer_get_max_length(SEXP s1) {
   int _ret = (int)gtk_entry_buffer_get_max_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -12763,7 +12760,7 @@ SEXP R_gtk_entry_buffer_insert_text(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   guint _ret = (guint)gtk_entry_buffer_insert_text(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -12893,7 +12890,7 @@ SEXP R_gtk_entry_completion_get_inline_completion(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_completion_get_inline_completion(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12910,7 +12907,7 @@ SEXP R_gtk_entry_completion_get_inline_selection(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_completion_get_inline_selection(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12927,7 +12924,7 @@ SEXP R_gtk_entry_completion_get_minimum_key_length(SEXP s1) {
   int _ret = (int)gtk_entry_completion_get_minimum_key_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -12961,7 +12958,7 @@ SEXP R_gtk_entry_completion_get_popup_completion(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_completion_get_popup_completion(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12978,7 +12975,7 @@ SEXP R_gtk_entry_completion_get_popup_set_width(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_completion_get_popup_set_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -12995,7 +12992,7 @@ SEXP R_gtk_entry_completion_get_popup_single_match(SEXP s1) {
   gboolean _ret = (gboolean)gtk_entry_completion_get_popup_single_match(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13012,7 +13009,7 @@ SEXP R_gtk_entry_completion_get_text_column(SEXP s1) {
   int _ret = (int)gtk_entry_completion_get_text_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -13176,7 +13173,7 @@ SEXP R_gtk_event_controller_get_current_event_time(SEXP s1) {
   guint32 _ret = (guint32)gtk_event_controller_get_current_event_time(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint32"));
   }
@@ -13322,7 +13319,7 @@ SEXP R_gtk_event_controller_focus_contains_focus(SEXP s1) {
   gboolean _ret = (gboolean)gtk_event_controller_focus_contains_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13339,7 +13336,7 @@ SEXP R_gtk_event_controller_focus_is_focus(SEXP s1) {
   gboolean _ret = (gboolean)gtk_event_controller_focus_is_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13374,7 +13371,7 @@ SEXP R_gtk_event_controller_key_forward(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_event_controller_key_forward(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13391,7 +13388,7 @@ SEXP R_gtk_event_controller_key_get_group(SEXP s1) {
   guint _ret = (guint)gtk_event_controller_key_get_group(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -13468,7 +13465,7 @@ SEXP R_gtk_event_controller_motion_contains_pointer(SEXP s1) {
   gboolean _ret = (gboolean)gtk_event_controller_motion_contains_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13485,7 +13482,7 @@ SEXP R_gtk_event_controller_motion_is_pointer(SEXP s1) {
   gboolean _ret = (gboolean)gtk_event_controller_motion_is_pointer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13630,7 +13627,7 @@ SEXP R_gtk_expander_get_expanded(SEXP s1) {
   gboolean _ret = (gboolean)gtk_expander_get_expanded(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13681,7 +13678,7 @@ SEXP R_gtk_expander_get_resize_toplevel(SEXP s1) {
   gboolean _ret = (gboolean)gtk_expander_get_resize_toplevel(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13698,7 +13695,7 @@ SEXP R_gtk_expander_get_use_markup(SEXP s1) {
   gboolean _ret = (gboolean)gtk_expander_get_use_markup(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13715,7 +13712,7 @@ SEXP R_gtk_expander_get_use_underline(SEXP s1) {
   gboolean _ret = (gboolean)gtk_expander_get_use_underline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13817,7 +13814,7 @@ SEXP R_gtk_expression_evaluate(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_expression_evaluate(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13834,7 +13831,7 @@ SEXP R_gtk_expression_get_value_type(SEXP s1) {
   GType _ret = (GType)gtk_expression_get_value_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GType"));
   }
@@ -13851,7 +13848,7 @@ SEXP R_gtk_expression_is_static(SEXP s1) {
   gboolean _ret = (gboolean)gtk_expression_is_static(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13913,7 +13910,7 @@ SEXP R_gtk_expression_watch_evaluate(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_expression_watch_evaluate(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -13986,7 +13983,7 @@ SEXP R_gtk_file_chooser_add_shortcut_folder(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_file_chooser_add_shortcut_folder(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -14038,7 +14035,7 @@ SEXP R_gtk_file_chooser_get_create_folders(SEXP s1) {
   gboolean _ret = (gboolean)gtk_file_chooser_get_create_folders(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -14157,7 +14154,7 @@ SEXP R_gtk_file_chooser_get_select_multiple(SEXP s1) {
   gboolean _ret = (gboolean)gtk_file_chooser_get_select_multiple(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -14211,7 +14208,7 @@ SEXP R_gtk_file_chooser_remove_shortcut_folder(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_file_chooser_remove_shortcut_folder(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -14258,7 +14255,7 @@ SEXP R_gtk_file_chooser_set_current_folder(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_file_chooser_set_current_folder(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -14286,7 +14283,7 @@ SEXP R_gtk_file_chooser_set_file(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_file_chooser_set_file(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -14321,7 +14318,7 @@ SEXP R_gtk_file_chooser_error_quark(void) {
   GQuark _ret = (GQuark)gtk_file_chooser_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -14547,7 +14544,7 @@ SEXP R_gtk_file_dialog_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_file_dialog_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -14949,7 +14946,7 @@ SEXP R_gtk_file_launcher_get_always_ask(SEXP s1) {
   gboolean _ret = (gboolean)gtk_file_launcher_get_always_ask(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -14996,7 +14993,7 @@ SEXP R_gtk_file_launcher_launch_finish(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_file_launcher_launch_finish(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15026,7 +15023,7 @@ SEXP R_gtk_file_launcher_open_containing_folder_finish(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_file_launcher_open_containing_folder_finish(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15088,7 +15085,7 @@ SEXP R_gtk_filter_match(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_filter_match(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15140,7 +15137,7 @@ SEXP R_gtk_filter_list_model_get_incremental(SEXP s1) {
   gboolean _ret = (gboolean)gtk_filter_list_model_get_incremental(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15174,7 +15171,7 @@ SEXP R_gtk_filter_list_model_get_pending(SEXP s1) {
   guint _ret = (guint)gtk_filter_list_model_get_pending(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -15238,12 +15235,12 @@ SEXP R_gtk_fixed_get_child_position(SEXP s1, SEXP s2) {
   gtk_fixed_get_child_position(v1, v2, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -15459,7 +15456,7 @@ SEXP R_gtk_flow_box_get_activate_on_single_click(SEXP s1) {
   gboolean _ret = (gboolean)gtk_flow_box_get_activate_on_single_click(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15513,7 +15510,7 @@ SEXP R_gtk_flow_box_get_column_spacing(SEXP s1) {
   guint _ret = (guint)gtk_flow_box_get_column_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -15530,7 +15527,7 @@ SEXP R_gtk_flow_box_get_homogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_flow_box_get_homogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15547,7 +15544,7 @@ SEXP R_gtk_flow_box_get_max_children_per_line(SEXP s1) {
   guint _ret = (guint)gtk_flow_box_get_max_children_per_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -15564,7 +15561,7 @@ SEXP R_gtk_flow_box_get_min_children_per_line(SEXP s1) {
   guint _ret = (guint)gtk_flow_box_get_min_children_per_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -15581,7 +15578,7 @@ SEXP R_gtk_flow_box_get_row_spacing(SEXP s1) {
   guint _ret = (guint)gtk_flow_box_get_row_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -15596,17 +15593,16 @@ SEXP R_gtk_flow_box_get_selected_children(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkFlowBox* v1 = (GtkFlowBox*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_flow_box_get_selected_children(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -15869,7 +15865,7 @@ SEXP R_gtk_flow_box_child_get_index(SEXP s1) {
   int _ret = (int)gtk_flow_box_child_get_index(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -15886,7 +15882,7 @@ SEXP R_gtk_flow_box_child_is_selected(SEXP s1) {
   gboolean _ret = (gboolean)gtk_flow_box_child_is_selected(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15946,7 +15942,7 @@ SEXP R_gtk_font_button_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_font_button_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15980,7 +15976,7 @@ SEXP R_gtk_font_button_get_use_font(SEXP s1) {
   gboolean _ret = (gboolean)gtk_font_button_get_use_font(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -15997,7 +15993,7 @@ SEXP R_gtk_font_button_get_use_size(SEXP s1) {
   gboolean _ret = (gboolean)gtk_font_button_get_use_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -16152,7 +16148,7 @@ SEXP R_gtk_font_chooser_get_font_size(SEXP s1) {
   int _ret = (int)gtk_font_chooser_get_font_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -16220,7 +16216,7 @@ SEXP R_gtk_font_chooser_get_show_preview_entry(SEXP s1) {
   gboolean _ret = (gboolean)gtk_font_chooser_get_show_preview_entry(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -16452,7 +16448,7 @@ SEXP R_gtk_font_dialog_choose_font_and_features_finish(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_font_dialog_choose_font_and_features_finish(v1, v2, &_out_font_desc, &_out_font_features, &_out_language, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -16554,7 +16550,7 @@ SEXP R_gtk_font_dialog_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_font_dialog_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -16735,7 +16731,7 @@ SEXP R_gtk_font_dialog_button_get_use_font(SEXP s1) {
   gboolean _ret = (gboolean)gtk_font_dialog_button_get_use_font(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -16752,7 +16748,7 @@ SEXP R_gtk_font_dialog_button_get_use_size(SEXP s1) {
   gboolean _ret = (gboolean)gtk_font_dialog_button_get_use_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -16883,7 +16879,7 @@ SEXP R_gtk_frame_get_label_align(SEXP s1) {
   float _ret = (float)gtk_frame_get_label_align(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -17012,7 +17008,7 @@ SEXP R_gtk_gl_area_get_auto_render(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gl_area_get_auto_render(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17063,7 +17059,7 @@ SEXP R_gtk_gl_area_get_has_depth_buffer(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gl_area_get_has_depth_buffer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17080,7 +17076,7 @@ SEXP R_gtk_gl_area_get_has_stencil_buffer(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gl_area_get_has_stencil_buffer(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17099,12 +17095,12 @@ SEXP R_gtk_gl_area_get_required_version(SEXP s1) {
   gtk_gl_area_get_required_version(v1, &_out_major, &_out_minor);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_major)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_major)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("major"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_minor)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_minor)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -17121,7 +17117,7 @@ SEXP R_gtk_gl_area_get_use_es(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gl_area_get_use_es(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17219,7 +17215,7 @@ SEXP R_gtk_gesture_get_bounding_box(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_get_bounding_box(v1, &_out_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17243,17 +17239,17 @@ SEXP R_gtk_gesture_get_bounding_box_center(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_get_bounding_box_center(v1, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -17285,17 +17281,16 @@ SEXP R_gtk_gesture_get_group(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkGesture* v1 = (GtkGesture*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_gesture_get_group(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -17350,17 +17345,17 @@ SEXP R_gtk_gesture_get_point(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_gesture_get_point(v1, v2, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -17393,17 +17388,16 @@ SEXP R_gtk_gesture_get_sequences(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkGesture* v1 = (GtkGesture*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_gesture_get_sequences(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -17423,7 +17417,7 @@ SEXP R_gtk_gesture_handles_sequence(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_gesture_handles_sequence(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17440,7 +17434,7 @@ SEXP R_gtk_gesture_is_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_is_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17458,7 +17452,7 @@ SEXP R_gtk_gesture_is_grouped_with(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_gesture_is_grouped_with(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17475,7 +17469,7 @@ SEXP R_gtk_gesture_is_recognized(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_is_recognized(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17494,7 +17488,7 @@ SEXP R_gtk_gesture_set_sequence_state(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_gesture_set_sequence_state(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17512,7 +17506,7 @@ SEXP R_gtk_gesture_set_state(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_gesture_set_state(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17573,17 +17567,17 @@ SEXP R_gtk_gesture_drag_get_offset(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_drag_get_offset(v1, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -17602,17 +17596,17 @@ SEXP R_gtk_gesture_drag_get_start_point(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_drag_get_start_point(v1, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -17646,7 +17640,7 @@ SEXP R_gtk_gesture_long_press_get_delay_factor(SEXP s1) {
   double _ret = (double)gtk_gesture_long_press_get_delay_factor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -17732,7 +17726,7 @@ SEXP R_gtk_gesture_rotate_get_angle_delta(SEXP s1) {
   double _ret = (double)gtk_gesture_rotate_get_angle_delta(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -17749,7 +17743,7 @@ SEXP R_gtk_gesture_single_get_button(SEXP s1) {
   guint _ret = (guint)gtk_gesture_single_get_button(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -17766,7 +17760,7 @@ SEXP R_gtk_gesture_single_get_current_button(SEXP s1) {
   guint _ret = (guint)gtk_gesture_single_get_current_button(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -17800,7 +17794,7 @@ SEXP R_gtk_gesture_single_get_exclusive(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_single_get_exclusive(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17817,7 +17811,7 @@ SEXP R_gtk_gesture_single_get_touch_only(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_single_get_touch_only(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17880,7 +17874,7 @@ SEXP R_gtk_gesture_stylus_get_axes(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_gesture_stylus_get_axes(v1, v2, &_out_values);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17904,12 +17898,12 @@ SEXP R_gtk_gesture_stylus_get_axis(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_gesture_stylus_get_axis(v1, v2, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_value)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_value)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -17928,7 +17922,7 @@ SEXP R_gtk_gesture_stylus_get_backlog(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_stylus_get_backlog(v1, &_out_backlog, &_out_n_elems);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -17938,7 +17932,7 @@ SEXP R_gtk_gesture_stylus_get_backlog(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Gdk.TimeCoord"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("backlog"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_n_elems)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_n_elems)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -17972,7 +17966,7 @@ SEXP R_gtk_gesture_stylus_get_stylus_only(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_stylus_get_stylus_only(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -18017,17 +18011,17 @@ SEXP R_gtk_gesture_swipe_get_velocity(SEXP s1) {
   gboolean _ret = (gboolean)gtk_gesture_swipe_get_velocity(v1, &_out_velocity_x, &_out_velocity_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_velocity_x)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_velocity_x)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("velocity_x"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_velocity_y)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_velocity_y)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -18061,7 +18055,7 @@ SEXP R_gtk_gesture_zoom_get_scale_delta(SEXP s1) {
   double _ret = (double)gtk_gesture_zoom_get_scale_delta(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -18121,7 +18115,7 @@ SEXP R_gtk_grid_get_baseline_row(SEXP s1) {
   int _ret = (int)gtk_grid_get_baseline_row(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -18157,7 +18151,7 @@ SEXP R_gtk_grid_get_column_homogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_grid_get_column_homogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -18174,7 +18168,7 @@ SEXP R_gtk_grid_get_column_spacing(SEXP s1) {
   guint _ret = (guint)gtk_grid_get_column_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -18209,7 +18203,7 @@ SEXP R_gtk_grid_get_row_homogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_grid_get_row_homogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -18226,7 +18220,7 @@ SEXP R_gtk_grid_get_row_spacing(SEXP s1) {
   guint _ret = (guint)gtk_grid_get_row_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -18276,22 +18270,22 @@ SEXP R_gtk_grid_query_child(SEXP s1, SEXP s2) {
   gtk_grid_query_child(v1, v2, &_out_column, &_out_row, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_column)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_column)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("column"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_row)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_row)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("row"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -18407,7 +18401,7 @@ SEXP R_gtk_grid_layout_get_baseline_row(SEXP s1) {
   int _ret = (int)gtk_grid_layout_get_baseline_row(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -18424,7 +18418,7 @@ SEXP R_gtk_grid_layout_get_column_homogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_grid_layout_get_column_homogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -18441,7 +18435,7 @@ SEXP R_gtk_grid_layout_get_column_spacing(SEXP s1) {
   guint _ret = (guint)gtk_grid_layout_get_column_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -18476,7 +18470,7 @@ SEXP R_gtk_grid_layout_get_row_homogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_grid_layout_get_row_homogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -18493,7 +18487,7 @@ SEXP R_gtk_grid_layout_get_row_spacing(SEXP s1) {
   guint _ret = (guint)gtk_grid_layout_get_row_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -18565,7 +18559,7 @@ SEXP R_gtk_grid_layout_child_get_column(SEXP s1) {
   int _ret = (int)gtk_grid_layout_child_get_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -18582,7 +18576,7 @@ SEXP R_gtk_grid_layout_child_get_column_span(SEXP s1) {
   int _ret = (int)gtk_grid_layout_child_get_column_span(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -18599,7 +18593,7 @@ SEXP R_gtk_grid_layout_child_get_row(SEXP s1) {
   int _ret = (int)gtk_grid_layout_child_get_row(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -18616,7 +18610,7 @@ SEXP R_gtk_grid_layout_child_get_row_span(SEXP s1) {
   int _ret = (int)gtk_grid_layout_child_get_row_span(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -18687,7 +18681,7 @@ SEXP R_gtk_grid_view_get_enable_rubberband(SEXP s1) {
   gboolean _ret = (gboolean)gtk_grid_view_get_enable_rubberband(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -18721,7 +18715,7 @@ SEXP R_gtk_grid_view_get_max_columns(SEXP s1) {
   guint _ret = (guint)gtk_grid_view_get_max_columns(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -18738,7 +18732,7 @@ SEXP R_gtk_grid_view_get_min_columns(SEXP s1) {
   guint _ret = (guint)gtk_grid_view_get_min_columns(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -18772,7 +18766,7 @@ SEXP R_gtk_grid_view_get_single_click_activate(SEXP s1) {
   gboolean _ret = (gboolean)gtk_grid_view_get_single_click_activate(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -18914,7 +18908,7 @@ SEXP R_gtk_header_bar_get_show_title_buttons(SEXP s1) {
   gboolean _ret = (gboolean)gtk_header_bar_get_show_title_buttons(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19004,7 +18998,7 @@ SEXP R_gtk_im_context_delete_surrounding(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_im_context_delete_surrounding(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19028,7 +19022,7 @@ SEXP R_gtk_im_context_filter_key(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SE
   gboolean _ret = (gboolean)gtk_im_context_filter_key(v1, v2, v3, v4, v5, v6, v7, v8);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19046,7 +19040,7 @@ SEXP R_gtk_im_context_filter_keypress(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_im_context_filter_keypress(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19092,7 +19086,7 @@ SEXP R_gtk_im_context_get_preedit_string(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("Pango.AttrList"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("attrs"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_cursor_pos)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_cursor_pos)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -19111,7 +19105,7 @@ SEXP R_gtk_im_context_get_surrounding(SEXP s1) {
   gboolean _ret = (gboolean)gtk_im_context_get_surrounding(v1, &_out_text, &_out_cursor_index);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19121,7 +19115,7 @@ SEXP R_gtk_im_context_get_surrounding(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("text"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_cursor_index)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_cursor_index)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -19141,7 +19135,7 @@ SEXP R_gtk_im_context_get_surrounding_with_selection(SEXP s1) {
   gboolean _ret = (gboolean)gtk_im_context_get_surrounding_with_selection(v1, &_out_text, &_out_cursor_index, &_out_anchor_index);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19151,12 +19145,12 @@ SEXP R_gtk_im_context_get_surrounding_with_selection(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("text"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_cursor_index)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_cursor_index)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("cursor_index"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_anchor_index)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_anchor_index)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -19353,7 +19347,7 @@ SEXP R_gtk_icon_paintable_is_symbolic(SEXP s1) {
   gboolean _ret = (gboolean)gtk_icon_paintable_is_symbolic(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19526,7 +19520,7 @@ SEXP R_gtk_icon_theme_has_gicon(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_icon_theme_has_gicon(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19544,7 +19538,7 @@ SEXP R_gtk_icon_theme_has_icon(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_icon_theme_has_icon(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19633,7 +19627,7 @@ SEXP R_gtk_icon_theme_error_quark(void) {
   GQuark _ret = (GQuark)gtk_icon_theme_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -19740,7 +19734,7 @@ SEXP R_gtk_icon_view_get_activate_on_single_click(SEXP s1) {
   gboolean _ret = (gboolean)gtk_icon_view_get_activate_on_single_click(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19760,7 +19754,7 @@ SEXP R_gtk_icon_view_get_cell_rect(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_icon_view_get_cell_rect(v1, v2, v3, &_out_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19782,7 +19776,7 @@ SEXP R_gtk_icon_view_get_column_spacing(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_column_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -19799,7 +19793,7 @@ SEXP R_gtk_icon_view_get_columns(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_columns(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -19818,7 +19812,7 @@ SEXP R_gtk_icon_view_get_cursor(SEXP s1) {
   gboolean _ret = (gboolean)gtk_icon_view_get_cursor(v1, &_out_path, &_out_cell);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19849,7 +19843,7 @@ SEXP R_gtk_icon_view_get_dest_item_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_icon_view_get_dest_item_at_pos(v1, v2, v3, &_out_path, &_out_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19904,7 +19898,7 @@ SEXP R_gtk_icon_view_get_item_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_icon_view_get_item_at_pos(v1, v2, v3, &_out_path, &_out_cell);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -19932,7 +19926,7 @@ SEXP R_gtk_icon_view_get_item_column(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_icon_view_get_item_column(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -19966,7 +19960,7 @@ SEXP R_gtk_icon_view_get_item_padding(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_item_padding(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -19984,7 +19978,7 @@ SEXP R_gtk_icon_view_get_item_row(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_icon_view_get_item_row(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20001,7 +19995,7 @@ SEXP R_gtk_icon_view_get_item_width(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_item_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20018,7 +20012,7 @@ SEXP R_gtk_icon_view_get_margin(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_margin(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20035,7 +20029,7 @@ SEXP R_gtk_icon_view_get_markup_column(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_markup_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20088,7 +20082,7 @@ SEXP R_gtk_icon_view_get_pixbuf_column(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_pixbuf_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20105,7 +20099,7 @@ SEXP R_gtk_icon_view_get_reorderable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_icon_view_get_reorderable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -20122,7 +20116,7 @@ SEXP R_gtk_icon_view_get_row_spacing(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_row_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20137,17 +20131,16 @@ SEXP R_gtk_icon_view_get_selected_items(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkIconView* v1 = (GtkIconView*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_icon_view_get_selected_items(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -20174,7 +20167,7 @@ SEXP R_gtk_icon_view_get_spacing(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20191,7 +20184,7 @@ SEXP R_gtk_icon_view_get_text_column(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_text_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20208,7 +20201,7 @@ SEXP R_gtk_icon_view_get_tooltip_column(SEXP s1) {
   int _ret = (int)gtk_icon_view_get_tooltip_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20231,7 +20224,7 @@ SEXP R_gtk_icon_view_get_tooltip_context(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_icon_view_get_tooltip_context(v1, v2, v3, v4, &_out_model, &_out_path, &_out_iter);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -20265,7 +20258,7 @@ SEXP R_gtk_icon_view_get_visible_range(SEXP s1) {
   gboolean _ret = (gboolean)gtk_icon_view_get_visible_range(v1, &_out_start_path, &_out_end_path);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -20302,7 +20295,7 @@ SEXP R_gtk_icon_view_path_is_selected(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_icon_view_path_is_selected(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -20771,7 +20764,7 @@ SEXP R_gtk_image_get_pixel_size(SEXP s1) {
   int _ret = (int)gtk_image_get_pixel_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -20949,7 +20942,7 @@ SEXP R_gtk_info_bar_get_revealed(SEXP s1) {
   gboolean _ret = (gboolean)gtk_info_bar_get_revealed(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -20966,7 +20959,7 @@ SEXP R_gtk_info_bar_get_show_close_button(SEXP s1) {
   gboolean _ret = (gboolean)gtk_info_bar_get_show_close_button(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -21090,7 +21083,7 @@ SEXP R_gtk_inscription_get_min_chars(SEXP s1) {
   guint _ret = (guint)gtk_inscription_get_min_chars(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -21107,7 +21100,7 @@ SEXP R_gtk_inscription_get_min_lines(SEXP s1) {
   guint _ret = (guint)gtk_inscription_get_min_lines(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -21124,7 +21117,7 @@ SEXP R_gtk_inscription_get_nat_chars(SEXP s1) {
   guint _ret = (guint)gtk_inscription_get_nat_chars(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -21141,7 +21134,7 @@ SEXP R_gtk_inscription_get_nat_lines(SEXP s1) {
   guint _ret = (guint)gtk_inscription_get_nat_lines(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -21209,7 +21202,7 @@ SEXP R_gtk_inscription_get_xalign(SEXP s1) {
   float _ret = (float)gtk_inscription_get_xalign(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -21226,7 +21219,7 @@ SEXP R_gtk_inscription_get_yalign(SEXP s1) {
   float _ret = (float)gtk_inscription_get_yalign(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -21360,7 +21353,7 @@ SEXP R_gtk_keyval_trigger_get_keyval(SEXP s1) {
   guint _ret = (guint)gtk_keyval_trigger_get_keyval(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -21549,12 +21542,12 @@ SEXP R_gtk_label_get_layout_offsets(SEXP s1) {
   gtk_label_get_layout_offsets(v1, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -21571,7 +21564,7 @@ SEXP R_gtk_label_get_lines(SEXP s1) {
   int _ret = (int)gtk_label_get_lines(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -21588,7 +21581,7 @@ SEXP R_gtk_label_get_max_width_chars(SEXP s1) {
   int _ret = (int)gtk_label_get_max_width_chars(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -21605,7 +21598,7 @@ SEXP R_gtk_label_get_mnemonic_keyval(SEXP s1) {
   guint _ret = (guint)gtk_label_get_mnemonic_keyval(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -21656,7 +21649,7 @@ SEXP R_gtk_label_get_selectable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_label_get_selectable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -21675,17 +21668,17 @@ SEXP R_gtk_label_get_selection_bounds(SEXP s1) {
   gboolean _ret = (gboolean)gtk_label_get_selection_bounds(v1, &_out_start, &_out_end);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_start)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_start)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("start"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_end)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_end)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -21702,7 +21695,7 @@ SEXP R_gtk_label_get_single_line_mode(SEXP s1) {
   gboolean _ret = (gboolean)gtk_label_get_single_line_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -21753,7 +21746,7 @@ SEXP R_gtk_label_get_use_markup(SEXP s1) {
   gboolean _ret = (gboolean)gtk_label_get_use_markup(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -21770,7 +21763,7 @@ SEXP R_gtk_label_get_use_underline(SEXP s1) {
   gboolean _ret = (gboolean)gtk_label_get_use_underline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -21787,7 +21780,7 @@ SEXP R_gtk_label_get_width_chars(SEXP s1) {
   int _ret = (int)gtk_label_get_width_chars(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -21804,7 +21797,7 @@ SEXP R_gtk_label_get_wrap(SEXP s1) {
   gboolean _ret = (gboolean)gtk_label_get_wrap(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -21838,7 +21831,7 @@ SEXP R_gtk_label_get_xalign(SEXP s1) {
   float _ret = (float)gtk_label_get_xalign(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -21855,7 +21848,7 @@ SEXP R_gtk_label_get_yalign(SEXP s1) {
   float _ret = (float)gtk_label_get_yalign(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -22202,22 +22195,22 @@ SEXP R_gtk_layout_manager_measure(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gtk_layout_manager_measure(v1, v2, v3, v4, &_out_minimum, &_out_natural, &_out_minimum_baseline, &_out_natural_baseline);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("natural"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_minimum_baseline)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_minimum_baseline)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("minimum_baseline"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_natural_baseline)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_natural_baseline)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -22279,7 +22272,7 @@ SEXP R_gtk_level_bar_get_inverted(SEXP s1) {
   gboolean _ret = (gboolean)gtk_level_bar_get_inverted(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -22296,7 +22289,7 @@ SEXP R_gtk_level_bar_get_max_value(SEXP s1) {
   double _ret = (double)gtk_level_bar_get_max_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -22313,7 +22306,7 @@ SEXP R_gtk_level_bar_get_min_value(SEXP s1) {
   double _ret = (double)gtk_level_bar_get_min_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -22349,12 +22342,12 @@ SEXP R_gtk_level_bar_get_offset_value(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_level_bar_get_offset_value(v1, v2, &_out_value);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_value)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_value)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -22371,7 +22364,7 @@ SEXP R_gtk_level_bar_get_value(SEXP s1) {
   double _ret = (double)gtk_level_bar_get_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -22494,7 +22487,7 @@ SEXP R_gtk_link_button_get_visited(SEXP s1) {
   gboolean _ret = (gboolean)gtk_link_button_get_visited(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -22582,7 +22575,7 @@ SEXP R_gtk_list_box_get_activate_on_single_click(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_box_get_activate_on_single_click(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -22667,17 +22660,16 @@ SEXP R_gtk_list_box_get_selected_rows(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkListBox* v1 = (GtkListBox*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_list_box_get_selected_rows(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -22704,7 +22696,7 @@ SEXP R_gtk_list_box_get_show_separators(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_box_get_show_separators(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -22921,7 +22913,7 @@ SEXP R_gtk_list_box_row_get_activatable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_box_row_get_activatable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -22972,7 +22964,7 @@ SEXP R_gtk_list_box_row_get_index(SEXP s1) {
   int _ret = (int)gtk_list_box_row_get_index(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -22989,7 +22981,7 @@ SEXP R_gtk_list_box_row_get_selectable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_box_row_get_selectable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23006,7 +22998,7 @@ SEXP R_gtk_list_box_row_is_selected(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_box_row_is_selected(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23076,7 +23068,7 @@ SEXP R_gtk_list_header_get_end(SEXP s1) {
   guint _ret = (guint)gtk_list_header_get_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -23110,7 +23102,7 @@ SEXP R_gtk_list_header_get_n_items(SEXP s1) {
   guint _ret = (guint)gtk_list_header_get_n_items(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -23127,7 +23119,7 @@ SEXP R_gtk_list_header_get_start(SEXP s1) {
   guint _ret = (guint)gtk_list_header_get_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -23187,7 +23179,7 @@ SEXP R_gtk_list_item_get_activatable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_item_get_activatable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23221,7 +23213,7 @@ SEXP R_gtk_list_item_get_focusable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_item_get_focusable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23255,7 +23247,7 @@ SEXP R_gtk_list_item_get_position(SEXP s1) {
   guint _ret = (guint)gtk_list_item_get_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -23272,7 +23264,7 @@ SEXP R_gtk_list_item_get_selectable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_item_get_selectable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23289,7 +23281,7 @@ SEXP R_gtk_list_item_get_selected(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_item_get_selected(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23484,7 +23476,7 @@ SEXP R_gtk_list_store_iter_is_valid(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_list_store_iter_is_valid(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23540,7 +23532,7 @@ SEXP R_gtk_list_store_remove(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_list_store_remove(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23627,7 +23619,7 @@ SEXP R_gtk_list_view_get_enable_rubberband(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_view_get_enable_rubberband(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23695,7 +23687,7 @@ SEXP R_gtk_list_view_get_show_separators(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_view_get_show_separators(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23712,7 +23704,7 @@ SEXP R_gtk_list_view_get_single_click_activate(SEXP s1) {
   gboolean _ret = (gboolean)gtk_list_view_get_single_click_activate(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -23898,7 +23890,7 @@ SEXP R_gtk_map_list_model_has_map(SEXP s1) {
   gboolean _ret = (gboolean)gtk_map_list_model_has_map(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24148,7 +24140,7 @@ SEXP R_gtk_media_stream_get_duration(SEXP s1) {
   gint64 _ret = (gint64)gtk_media_stream_get_duration(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint64"));
   }
@@ -24165,7 +24157,7 @@ SEXP R_gtk_media_stream_get_ended(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_get_ended(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24199,7 +24191,7 @@ SEXP R_gtk_media_stream_get_loop(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_get_loop(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24216,7 +24208,7 @@ SEXP R_gtk_media_stream_get_muted(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_get_muted(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24233,7 +24225,7 @@ SEXP R_gtk_media_stream_get_playing(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_get_playing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24250,7 +24242,7 @@ SEXP R_gtk_media_stream_get_timestamp(SEXP s1) {
   gint64 _ret = (gint64)gtk_media_stream_get_timestamp(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint64"));
   }
@@ -24267,7 +24259,7 @@ SEXP R_gtk_media_stream_get_volume(SEXP s1) {
   double _ret = (double)gtk_media_stream_get_volume(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -24284,7 +24276,7 @@ SEXP R_gtk_media_stream_has_audio(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_has_audio(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24301,7 +24293,7 @@ SEXP R_gtk_media_stream_has_video(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_has_video(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24318,7 +24310,7 @@ SEXP R_gtk_media_stream_is_prepared(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_is_prepared(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24335,7 +24327,7 @@ SEXP R_gtk_media_stream_is_seekable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_is_seekable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24352,7 +24344,7 @@ SEXP R_gtk_media_stream_is_seeking(SEXP s1) {
   gboolean _ret = (gboolean)gtk_media_stream_is_seeking(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24518,7 +24510,7 @@ SEXP R_gtk_menu_button_get_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_menu_button_get_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24535,7 +24527,7 @@ SEXP R_gtk_menu_button_get_always_show_arrow(SEXP s1) {
   gboolean _ret = (gboolean)gtk_menu_button_get_always_show_arrow(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24552,7 +24544,7 @@ SEXP R_gtk_menu_button_get_can_shrink(SEXP s1) {
   gboolean _ret = (gboolean)gtk_menu_button_get_can_shrink(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24603,7 +24595,7 @@ SEXP R_gtk_menu_button_get_has_frame(SEXP s1) {
   gboolean _ret = (gboolean)gtk_menu_button_get_has_frame(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24688,7 +24680,7 @@ SEXP R_gtk_menu_button_get_primary(SEXP s1) {
   gboolean _ret = (gboolean)gtk_menu_button_get_primary(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24705,7 +24697,7 @@ SEXP R_gtk_menu_button_get_use_underline(SEXP s1) {
   gboolean _ret = (gboolean)gtk_menu_button_get_use_underline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -24915,7 +24907,7 @@ SEXP R_gtk_mnemonic_trigger_get_keyval(SEXP s1) {
   guint _ret = (guint)gtk_mnemonic_trigger_get_keyval(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -24983,7 +24975,7 @@ SEXP R_gtk_mount_operation_is_showing(SEXP s1) {
   gboolean _ret = (gboolean)gtk_mount_operation_is_showing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -25201,12 +25193,12 @@ SEXP R_gtk_native_get_surface_transform(SEXP s1) {
   gtk_native_get_surface_transform(v1, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -25247,7 +25239,7 @@ SEXP R_gtk_native_dialog_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_native_dialog_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -25298,7 +25290,7 @@ SEXP R_gtk_native_dialog_get_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_native_dialog_get_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -25437,7 +25429,7 @@ SEXP R_gtk_notebook_append_page(SEXP s1, SEXP s2, SEXP s3) {
   int _ret = (int)gtk_notebook_append_page(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -25457,7 +25449,7 @@ SEXP R_gtk_notebook_append_page_menu(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   int _ret = (int)gtk_notebook_append_page_menu(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -25501,7 +25493,7 @@ SEXP R_gtk_notebook_get_current_page(SEXP s1) {
   int _ret = (int)gtk_notebook_get_current_page(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -25571,7 +25563,7 @@ SEXP R_gtk_notebook_get_n_pages(SEXP s1) {
   int _ret = (int)gtk_notebook_get_n_pages(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -25641,7 +25633,7 @@ SEXP R_gtk_notebook_get_scrollable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_notebook_get_scrollable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -25658,7 +25650,7 @@ SEXP R_gtk_notebook_get_show_border(SEXP s1) {
   gboolean _ret = (gboolean)gtk_notebook_get_show_border(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -25675,7 +25667,7 @@ SEXP R_gtk_notebook_get_show_tabs(SEXP s1) {
   gboolean _ret = (gboolean)gtk_notebook_get_show_tabs(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -25693,7 +25685,7 @@ SEXP R_gtk_notebook_get_tab_detachable(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_notebook_get_tab_detachable(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -25764,7 +25756,7 @@ SEXP R_gtk_notebook_get_tab_reorderable(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_notebook_get_tab_reorderable(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -25784,7 +25776,7 @@ SEXP R_gtk_notebook_insert_page(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   int _ret = (int)gtk_notebook_insert_page(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -25805,7 +25797,7 @@ SEXP R_gtk_notebook_insert_page_menu(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
   int _ret = (int)gtk_notebook_insert_page_menu(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -25831,7 +25823,7 @@ SEXP R_gtk_notebook_page_num(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_notebook_page_num(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -25866,7 +25858,7 @@ SEXP R_gtk_notebook_prepend_page(SEXP s1, SEXP s2, SEXP s3) {
   int _ret = (int)gtk_notebook_prepend_page(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -25886,7 +25878,7 @@ SEXP R_gtk_notebook_prepend_page_menu(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   int _ret = (int)gtk_notebook_prepend_page_menu(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -26261,7 +26253,7 @@ SEXP R_gtk_overlay_get_clip_overlay(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_overlay_get_clip_overlay(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26279,7 +26271,7 @@ SEXP R_gtk_overlay_get_measure_overlay(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_overlay_get_measure_overlay(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26351,7 +26343,7 @@ SEXP R_gtk_overlay_layout_child_get_clip_overlay(SEXP s1) {
   gboolean _ret = (gboolean)gtk_overlay_layout_child_get_clip_overlay(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26368,7 +26360,7 @@ SEXP R_gtk_overlay_layout_child_get_measure(SEXP s1) {
   gboolean _ret = (gboolean)gtk_overlay_layout_child_get_measure(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26478,7 +26470,7 @@ SEXP R_gtk_paned_get_position(SEXP s1) {
   int _ret = (int)gtk_paned_get_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -26495,7 +26487,7 @@ SEXP R_gtk_paned_get_resize_end_child(SEXP s1) {
   gboolean _ret = (gboolean)gtk_paned_get_resize_end_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26512,7 +26504,7 @@ SEXP R_gtk_paned_get_resize_start_child(SEXP s1) {
   gboolean _ret = (gboolean)gtk_paned_get_resize_start_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26529,7 +26521,7 @@ SEXP R_gtk_paned_get_shrink_end_child(SEXP s1) {
   gboolean _ret = (gboolean)gtk_paned_get_shrink_end_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26546,7 +26538,7 @@ SEXP R_gtk_paned_get_shrink_start_child(SEXP s1) {
   gboolean _ret = (gboolean)gtk_paned_get_shrink_start_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26580,7 +26572,7 @@ SEXP R_gtk_paned_get_wide_handle(SEXP s1) {
   gboolean _ret = (gboolean)gtk_paned_get_wide_handle(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26808,7 +26800,7 @@ SEXP R_gtk_paper_size_get_default_bottom_margin(SEXP s1, SEXP s2) {
   double _ret = (double)gtk_paper_size_get_default_bottom_margin(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -26826,7 +26818,7 @@ SEXP R_gtk_paper_size_get_default_left_margin(SEXP s1, SEXP s2) {
   double _ret = (double)gtk_paper_size_get_default_left_margin(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -26844,7 +26836,7 @@ SEXP R_gtk_paper_size_get_default_right_margin(SEXP s1, SEXP s2) {
   double _ret = (double)gtk_paper_size_get_default_right_margin(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -26862,7 +26854,7 @@ SEXP R_gtk_paper_size_get_default_top_margin(SEXP s1, SEXP s2) {
   double _ret = (double)gtk_paper_size_get_default_top_margin(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -26897,7 +26889,7 @@ SEXP R_gtk_paper_size_get_height(SEXP s1, SEXP s2) {
   double _ret = (double)gtk_paper_size_get_height(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -26949,7 +26941,7 @@ SEXP R_gtk_paper_size_get_width(SEXP s1, SEXP s2) {
   double _ret = (double)gtk_paper_size_get_width(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -26966,7 +26958,7 @@ SEXP R_gtk_paper_size_is_custom(SEXP s1) {
   gboolean _ret = (gboolean)gtk_paper_size_is_custom(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -26984,7 +26976,7 @@ SEXP R_gtk_paper_size_is_equal(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_paper_size_is_equal(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27001,7 +26993,7 @@ SEXP R_gtk_paper_size_is_ipp(SEXP s1) {
   gboolean _ret = (gboolean)gtk_paper_size_is_ipp(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27071,17 +27063,16 @@ SEXP R_gtk_paper_size_get_paper_sizes(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   gboolean v1 = (gboolean)((gboolean)LOGICAL(s1)[0]); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_paper_size_get_paper_sizes(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -27125,7 +27116,7 @@ SEXP R_gtk_password_entry_get_show_peek_icon(SEXP s1) {
   gboolean _ret = (gboolean)gtk_password_entry_get_show_peek_icon(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27296,7 +27287,7 @@ SEXP R_gtk_picture_get_can_shrink(SEXP s1) {
   gboolean _ret = (gboolean)gtk_picture_get_can_shrink(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27347,7 +27338,7 @@ SEXP R_gtk_picture_get_keep_aspect_ratio(SEXP s1) {
   gboolean _ret = (gboolean)gtk_picture_get_keep_aspect_ratio(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27479,7 +27470,7 @@ SEXP R_gtk_popover_get_autohide(SEXP s1) {
   gboolean _ret = (gboolean)gtk_popover_get_autohide(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27496,7 +27487,7 @@ SEXP R_gtk_popover_get_cascade_popdown(SEXP s1) {
   gboolean _ret = (gboolean)gtk_popover_get_cascade_popdown(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27530,7 +27521,7 @@ SEXP R_gtk_popover_get_has_arrow(SEXP s1) {
   gboolean _ret = (gboolean)gtk_popover_get_has_arrow(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27547,7 +27538,7 @@ SEXP R_gtk_popover_get_mnemonics_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_popover_get_mnemonics_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27566,12 +27557,12 @@ SEXP R_gtk_popover_get_offset(SEXP s1) {
   gtk_popover_get_offset(v1, &_out_x_offset, &_out_y_offset);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_x_offset)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x_offset)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("x_offset"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_y_offset)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y_offset)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -27589,7 +27580,7 @@ SEXP R_gtk_popover_get_pointing_to(SEXP s1) {
   gboolean _ret = (gboolean)gtk_popover_get_pointing_to(v1, &_out_rect);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27771,7 +27762,7 @@ SEXP R_gtk_popover_menu_add_child(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_popover_menu_add_child(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27806,7 +27797,7 @@ SEXP R_gtk_popover_menu_remove_child(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_popover_menu_remove_child(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27851,7 +27842,7 @@ SEXP R_gtk_popover_menu_bar_add_child(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_popover_menu_bar_add_child(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27886,7 +27877,7 @@ SEXP R_gtk_popover_menu_bar_remove_child(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_popover_menu_bar_remove_child(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27946,7 +27937,7 @@ SEXP R_gtk_progress_bar_get_fraction(SEXP s1) {
   double _ret = (double)gtk_progress_bar_get_fraction(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -27963,7 +27954,7 @@ SEXP R_gtk_progress_bar_get_inverted(SEXP s1) {
   gboolean _ret = (gboolean)gtk_progress_bar_get_inverted(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -27980,7 +27971,7 @@ SEXP R_gtk_progress_bar_get_pulse_step(SEXP s1) {
   double _ret = (double)gtk_progress_bar_get_pulse_step(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -27997,7 +27988,7 @@ SEXP R_gtk_progress_bar_get_show_text(SEXP s1) {
   gboolean _ret = (gboolean)gtk_progress_bar_get_show_text(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28181,7 +28172,7 @@ SEXP R_gtk_range_get_fill_level(SEXP s1) {
   double _ret = (double)gtk_range_get_fill_level(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -28198,7 +28189,7 @@ SEXP R_gtk_range_get_flippable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_range_get_flippable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28215,7 +28206,7 @@ SEXP R_gtk_range_get_inverted(SEXP s1) {
   gboolean _ret = (gboolean)gtk_range_get_inverted(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28250,7 +28241,7 @@ SEXP R_gtk_range_get_restrict_to_fill_level(SEXP s1) {
   gboolean _ret = (gboolean)gtk_range_get_restrict_to_fill_level(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28267,7 +28258,7 @@ SEXP R_gtk_range_get_round_digits(SEXP s1) {
   int _ret = (int)gtk_range_get_round_digits(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -28284,7 +28275,7 @@ SEXP R_gtk_range_get_show_fill_level(SEXP s1) {
   gboolean _ret = (gboolean)gtk_range_get_show_fill_level(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28303,12 +28294,12 @@ SEXP R_gtk_range_get_slider_range(SEXP s1) {
   gtk_range_get_slider_range(v1, &_out_slider_start, &_out_slider_end);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_slider_start)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_slider_start)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("slider_start"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_slider_end)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_slider_end)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -28325,7 +28316,7 @@ SEXP R_gtk_range_get_slider_size_fixed(SEXP s1) {
   gboolean _ret = (gboolean)gtk_range_get_slider_size_fixed(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28342,7 +28333,7 @@ SEXP R_gtk_range_get_value(SEXP s1) {
   double _ret = (double)gtk_range_get_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -28479,7 +28470,7 @@ SEXP R_gtk_recent_info_exists(SEXP s1) {
   gboolean _ret = (gboolean)gtk_recent_info_exists(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28513,7 +28504,7 @@ SEXP R_gtk_recent_info_get_age(SEXP s1) {
   int _ret = (int)gtk_recent_info_get_age(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -28534,7 +28525,7 @@ SEXP R_gtk_recent_info_get_application_info(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_recent_info_get_application_info(v1, v2, &_out_app_exec, &_out_count, &_out_stamp);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28544,7 +28535,7 @@ SEXP R_gtk_recent_info_get_application_info(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("app_exec"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_count)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_count)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -28572,7 +28563,7 @@ SEXP R_gtk_recent_info_get_applications(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_length)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_length)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gsize"));
   }
@@ -28646,7 +28637,7 @@ SEXP R_gtk_recent_info_get_groups(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_length)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_length)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gsize"));
   }
@@ -28697,7 +28688,7 @@ SEXP R_gtk_recent_info_get_private_hint(SEXP s1) {
   gboolean _ret = (gboolean)gtk_recent_info_get_private_hint(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28783,7 +28774,7 @@ SEXP R_gtk_recent_info_has_application(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_recent_info_has_application(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28801,7 +28792,7 @@ SEXP R_gtk_recent_info_has_group(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_recent_info_has_group(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28818,7 +28809,7 @@ SEXP R_gtk_recent_info_is_local(SEXP s1) {
   gboolean _ret = (gboolean)gtk_recent_info_is_local(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28853,7 +28844,7 @@ SEXP R_gtk_recent_info_match(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_recent_info_match(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28931,7 +28922,7 @@ SEXP R_gtk_recent_manager_add_full(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_recent_manager_add_full(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28949,7 +28940,7 @@ SEXP R_gtk_recent_manager_add_item(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_recent_manager_add_item(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -28964,17 +28955,16 @@ SEXP R_gtk_recent_manager_get_items(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkRecentManager* v1 = (GtkRecentManager*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_recent_manager_get_items(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -28985,7 +28975,7 @@ SEXP R_gtk_recent_manager_has_item(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_recent_manager_has_item(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29024,7 +29014,7 @@ SEXP R_gtk_recent_manager_move_item(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_recent_manager_move_item(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29042,7 +29032,7 @@ SEXP R_gtk_recent_manager_purge_items(SEXP s1) {
   int _ret = (int)gtk_recent_manager_purge_items(v1, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -29061,7 +29051,7 @@ SEXP R_gtk_recent_manager_remove_item(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_recent_manager_remove_item(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29078,7 +29068,7 @@ SEXP R_gtk_recent_manager_error_quark(void) {
   GQuark _ret = (GQuark)gtk_recent_manager_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -29171,7 +29161,7 @@ SEXP R_gtk_revealer_get_child_revealed(SEXP s1) {
   gboolean _ret = (gboolean)gtk_revealer_get_child_revealed(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29188,7 +29178,7 @@ SEXP R_gtk_revealer_get_reveal_child(SEXP s1) {
   gboolean _ret = (gboolean)gtk_revealer_get_reveal_child(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29205,7 +29195,7 @@ SEXP R_gtk_revealer_get_transition_duration(SEXP s1) {
   guint _ret = (guint)gtk_revealer_get_transition_duration(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -29375,7 +29365,7 @@ SEXP R_gtk_scale_get_digits(SEXP s1) {
   int _ret = (int)gtk_scale_get_digits(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -29392,7 +29382,7 @@ SEXP R_gtk_scale_get_draw_value(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scale_get_draw_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29409,7 +29399,7 @@ SEXP R_gtk_scale_get_has_origin(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scale_get_has_origin(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29445,12 +29435,12 @@ SEXP R_gtk_scale_get_layout_offsets(SEXP s1) {
   gtk_scale_get_layout_offsets(v1, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -29549,7 +29539,7 @@ SEXP R_gtk_scale_button_get_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scale_button_get_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29634,7 +29624,7 @@ SEXP R_gtk_scale_button_get_value(SEXP s1) {
   double _ret = (double)gtk_scale_button_get_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -29695,7 +29685,7 @@ SEXP R_gtk_scroll_info_get_enable_horizontal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scroll_info_get_enable_horizontal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29712,7 +29702,7 @@ SEXP R_gtk_scroll_info_get_enable_vertical(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scroll_info_get_enable_vertical(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29773,7 +29763,7 @@ SEXP R_gtk_scrollable_get_border(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scrollable_get_border(v1, &_out_border);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -29994,7 +29984,7 @@ SEXP R_gtk_scrolled_window_get_has_frame(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scrolled_window_get_has_frame(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30028,7 +30018,7 @@ SEXP R_gtk_scrolled_window_get_kinetic_scrolling(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scrolled_window_get_kinetic_scrolling(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30045,7 +30035,7 @@ SEXP R_gtk_scrolled_window_get_max_content_height(SEXP s1) {
   int _ret = (int)gtk_scrolled_window_get_max_content_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -30062,7 +30052,7 @@ SEXP R_gtk_scrolled_window_get_max_content_width(SEXP s1) {
   int _ret = (int)gtk_scrolled_window_get_max_content_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -30079,7 +30069,7 @@ SEXP R_gtk_scrolled_window_get_min_content_height(SEXP s1) {
   int _ret = (int)gtk_scrolled_window_get_min_content_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -30096,7 +30086,7 @@ SEXP R_gtk_scrolled_window_get_min_content_width(SEXP s1) {
   int _ret = (int)gtk_scrolled_window_get_min_content_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -30113,7 +30103,7 @@ SEXP R_gtk_scrolled_window_get_overlay_scrolling(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scrolled_window_get_overlay_scrolling(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30171,7 +30161,7 @@ SEXP R_gtk_scrolled_window_get_propagate_natural_height(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scrolled_window_get_propagate_natural_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30188,7 +30178,7 @@ SEXP R_gtk_scrolled_window_get_propagate_natural_width(SEXP s1) {
   gboolean _ret = (gboolean)gtk_scrolled_window_get_propagate_natural_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30434,7 +30424,7 @@ SEXP R_gtk_search_bar_get_search_mode(SEXP s1) {
   gboolean _ret = (gboolean)gtk_search_bar_get_search_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30451,7 +30441,7 @@ SEXP R_gtk_search_bar_get_show_close_button(SEXP s1) {
   gboolean _ret = (gboolean)gtk_search_bar_get_show_close_button(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30555,7 +30545,7 @@ SEXP R_gtk_search_entry_get_search_delay(SEXP s1) {
   guint _ret = (guint)gtk_search_entry_get_search_delay(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -30602,12 +30592,12 @@ SEXP R_gtk_section_model_get_section(SEXP s1, SEXP s2) {
   gtk_section_model_get_section(v1, v2, &_out_out_start, &_out_out_end);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_out_start)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_out_start)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("out_start"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_out_end)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_out_end)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -30714,7 +30704,7 @@ SEXP R_gtk_selection_model_is_selected(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_selection_model_is_selected(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30731,7 +30721,7 @@ SEXP R_gtk_selection_model_select_all(SEXP s1) {
   gboolean _ret = (gboolean)gtk_selection_model_select_all(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30750,7 +30740,7 @@ SEXP R_gtk_selection_model_select_item(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_selection_model_select_item(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30770,7 +30760,7 @@ SEXP R_gtk_selection_model_select_range(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_selection_model_select_range(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30799,7 +30789,7 @@ SEXP R_gtk_selection_model_set_selection(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_selection_model_set_selection(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30816,7 +30806,7 @@ SEXP R_gtk_selection_model_unselect_all(SEXP s1) {
   gboolean _ret = (gboolean)gtk_selection_model_unselect_all(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30834,7 +30824,7 @@ SEXP R_gtk_selection_model_unselect_item(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_selection_model_unselect_item(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -30853,7 +30843,7 @@ SEXP R_gtk_selection_model_unselect_range(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_selection_model_unselect_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -31046,7 +31036,7 @@ SEXP R_gtk_shortcut_action_activate(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_shortcut_action_activate(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -31280,7 +31270,7 @@ SEXP R_gtk_shortcut_trigger_compare(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_shortcut_trigger_compare(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -31298,7 +31288,7 @@ SEXP R_gtk_shortcut_trigger_equal(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_shortcut_trigger_equal(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -31315,7 +31305,7 @@ SEXP R_gtk_shortcut_trigger_hash(SEXP s1) {
   guint _ret = (guint)gtk_shortcut_trigger_hash(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -31343,7 +31333,7 @@ SEXP R_gtk_shortcut_trigger_print_label(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_shortcut_trigger_print_label(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -31482,7 +31472,7 @@ SEXP R_gtk_single_selection_get_autoselect(SEXP s1) {
   gboolean _ret = (gboolean)gtk_single_selection_get_autoselect(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -31499,7 +31489,7 @@ SEXP R_gtk_single_selection_get_can_unselect(SEXP s1) {
   gboolean _ret = (gboolean)gtk_single_selection_get_can_unselect(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -31533,7 +31523,7 @@ SEXP R_gtk_single_selection_get_selected(SEXP s1) {
   guint _ret = (guint)gtk_single_selection_get_selected(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -31644,16 +31634,16 @@ SEXP R_gtk_size_group_get_widgets(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkSizeGroup* v1 = (GtkSizeGroup*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_size_group_get_widgets(v1);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -31717,7 +31707,7 @@ SEXP R_gtk_slice_list_model_get_offset(SEXP s1) {
   guint _ret = (guint)gtk_slice_list_model_get_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -31734,7 +31724,7 @@ SEXP R_gtk_slice_list_model_get_size(SEXP s1) {
   guint _ret = (guint)gtk_slice_list_model_get_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -32312,7 +32302,7 @@ SEXP R_gtk_sort_list_model_get_incremental(SEXP s1) {
   gboolean _ret = (gboolean)gtk_sort_list_model_get_incremental(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -32346,7 +32336,7 @@ SEXP R_gtk_sort_list_model_get_pending(SEXP s1) {
   guint _ret = (guint)gtk_sort_list_model_get_pending(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -32544,7 +32534,7 @@ SEXP R_gtk_spin_button_get_climb_rate(SEXP s1) {
   double _ret = (double)gtk_spin_button_get_climb_rate(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -32561,7 +32551,7 @@ SEXP R_gtk_spin_button_get_digits(SEXP s1) {
   guint _ret = (guint)gtk_spin_button_get_digits(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -32580,12 +32570,12 @@ SEXP R_gtk_spin_button_get_increments(SEXP s1) {
   gtk_spin_button_get_increments(v1, &_out_step, &_out_page);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_step)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_step)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("step"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_page)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_page)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -32602,7 +32592,7 @@ SEXP R_gtk_spin_button_get_numeric(SEXP s1) {
   gboolean _ret = (gboolean)gtk_spin_button_get_numeric(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -32621,12 +32611,12 @@ SEXP R_gtk_spin_button_get_range(SEXP s1) {
   gtk_spin_button_get_range(v1, &_out_min, &_out_max);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_min)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_min)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("min"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_max)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_max)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -32643,7 +32633,7 @@ SEXP R_gtk_spin_button_get_snap_to_ticks(SEXP s1) {
   gboolean _ret = (gboolean)gtk_spin_button_get_snap_to_ticks(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -32677,7 +32667,7 @@ SEXP R_gtk_spin_button_get_value(SEXP s1) {
   double _ret = (double)gtk_spin_button_get_value(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -32694,7 +32684,7 @@ SEXP R_gtk_spin_button_get_value_as_int(SEXP s1) {
   int _ret = (int)gtk_spin_button_get_value_as_int(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -32711,7 +32701,7 @@ SEXP R_gtk_spin_button_get_wrap(SEXP s1) {
   gboolean _ret = (gboolean)gtk_spin_button_get_wrap(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -32855,7 +32845,7 @@ SEXP R_gtk_spinner_get_spinning(SEXP s1) {
   gboolean _ret = (gboolean)gtk_spinner_get_spinning(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -32989,7 +32979,7 @@ SEXP R_gtk_stack_get_hhomogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_stack_get_hhomogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -33006,7 +32996,7 @@ SEXP R_gtk_stack_get_interpolate_size(SEXP s1) {
   gboolean _ret = (gboolean)gtk_stack_get_interpolate_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -33058,7 +33048,7 @@ SEXP R_gtk_stack_get_transition_duration(SEXP s1) {
   guint _ret = (guint)gtk_stack_get_transition_duration(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -33075,7 +33065,7 @@ SEXP R_gtk_stack_get_transition_running(SEXP s1) {
   gboolean _ret = (gboolean)gtk_stack_get_transition_running(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -33109,7 +33099,7 @@ SEXP R_gtk_stack_get_vhomogeneous(SEXP s1) {
   gboolean _ret = (gboolean)gtk_stack_get_vhomogeneous(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -33293,7 +33283,7 @@ SEXP R_gtk_stack_page_get_needs_attention(SEXP s1) {
   gboolean _ret = (gboolean)gtk_stack_page_get_needs_attention(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -33327,7 +33317,7 @@ SEXP R_gtk_stack_page_get_use_underline(SEXP s1) {
   gboolean _ret = (gboolean)gtk_stack_page_get_use_underline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -33344,7 +33334,7 @@ SEXP R_gtk_stack_page_get_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_stack_page_get_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -33519,7 +33509,7 @@ SEXP R_gtk_statusbar_get_context_id(SEXP s1, SEXP s2) {
   guint _ret = (guint)gtk_statusbar_get_context_id(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -33547,7 +33537,7 @@ SEXP R_gtk_statusbar_push(SEXP s1, SEXP s2, SEXP s3) {
   guint _ret = (guint)gtk_statusbar_push(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -33617,7 +33607,7 @@ SEXP R_gtk_string_filter_get_ignore_case(SEXP s1) {
   gboolean _ret = (gboolean)gtk_string_filter_get_ignore_case(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -33862,7 +33852,7 @@ SEXP R_gtk_string_sorter_get_ignore_case(SEXP s1) {
   gboolean _ret = (gboolean)gtk_string_sorter_get_ignore_case(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34033,7 +34023,7 @@ SEXP R_gtk_style_context_get_scale(SEXP s1) {
   int _ret = (int)gtk_style_context_get_scale(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -34068,7 +34058,7 @@ SEXP R_gtk_style_context_has_class(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_style_context_has_class(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34087,7 +34077,7 @@ SEXP R_gtk_style_context_lookup_color(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_style_context_lookup_color(v1, v2, &_out_color);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34205,7 +34195,7 @@ SEXP R_gtk_switch_get_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_switch_get_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34222,7 +34212,7 @@ SEXP R_gtk_switch_get_state(SEXP s1) {
   gboolean _ret = (gboolean)gtk_switch_get_state(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34316,7 +34306,7 @@ SEXP R_gtk_text_get_activates_default(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_get_activates_default(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34367,7 +34357,7 @@ SEXP R_gtk_text_get_enable_emoji_completion(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_get_enable_emoji_completion(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34435,7 +34425,7 @@ SEXP R_gtk_text_get_invisible_char(SEXP s1) {
   gunichar _ret = (gunichar)gtk_text_get_invisible_char(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gunichar"));
   }
@@ -34452,7 +34442,7 @@ SEXP R_gtk_text_get_max_length(SEXP s1) {
   int _ret = (int)gtk_text_get_max_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -34469,7 +34459,7 @@ SEXP R_gtk_text_get_overwrite_mode(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_get_overwrite_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34503,7 +34493,7 @@ SEXP R_gtk_text_get_propagate_text_width(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_get_propagate_text_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34554,7 +34544,7 @@ SEXP R_gtk_text_get_truncate_multiline(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_get_truncate_multiline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34571,7 +34561,7 @@ SEXP R_gtk_text_get_visibility(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_get_visibility(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34588,7 +34578,7 @@ SEXP R_gtk_text_grab_focus_without_selecting(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_grab_focus_without_selecting(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34809,7 +34799,7 @@ SEXP R_gtk_text_buffer_backspace(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_text_buffer_backspace(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34912,7 +34902,7 @@ SEXP R_gtk_text_buffer_delete_interactive(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_text_buffer_delete_interactive(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -34949,7 +34939,7 @@ SEXP R_gtk_text_buffer_delete_selection(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_buffer_delete_selection(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35006,7 +34996,7 @@ SEXP R_gtk_text_buffer_get_can_redo(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_can_redo(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35023,7 +35013,7 @@ SEXP R_gtk_text_buffer_get_can_undo(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_can_undo(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35040,7 +35030,7 @@ SEXP R_gtk_text_buffer_get_char_count(SEXP s1) {
   int _ret = (int)gtk_text_buffer_get_char_count(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -35057,7 +35047,7 @@ SEXP R_gtk_text_buffer_get_enable_undo(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_enable_undo(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35092,7 +35082,7 @@ SEXP R_gtk_text_buffer_get_has_selection(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_has_selection(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35147,7 +35137,7 @@ SEXP R_gtk_text_buffer_get_iter_at_line(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_iter_at_line(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35172,7 +35162,7 @@ SEXP R_gtk_text_buffer_get_iter_at_line_index(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_iter_at_line_index(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35197,7 +35187,7 @@ SEXP R_gtk_text_buffer_get_iter_at_line_offset(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_iter_at_line_offset(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35257,7 +35247,7 @@ SEXP R_gtk_text_buffer_get_line_count(SEXP s1) {
   int _ret = (int)gtk_text_buffer_get_line_count(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -35292,7 +35282,7 @@ SEXP R_gtk_text_buffer_get_max_undo_levels(SEXP s1) {
   guint _ret = (guint)gtk_text_buffer_get_max_undo_levels(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -35309,7 +35299,7 @@ SEXP R_gtk_text_buffer_get_modified(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_modified(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35345,7 +35335,7 @@ SEXP R_gtk_text_buffer_get_selection_bounds(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_buffer_get_selection_bounds(v1, &_out_start, &_out_end);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35499,7 +35489,7 @@ SEXP R_gtk_text_buffer_insert_interactive(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
   gboolean _ret = (gboolean)gtk_text_buffer_insert_interactive(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35519,7 +35509,7 @@ SEXP R_gtk_text_buffer_insert_interactive_at_cursor(SEXP s1, SEXP s2, SEXP s3, S
   gboolean _ret = (gboolean)gtk_text_buffer_insert_interactive_at_cursor(v1, v2, v3, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35572,7 +35562,7 @@ SEXP R_gtk_text_buffer_insert_range_interactive(SEXP s1, SEXP s2, SEXP s3, SEXP 
   gboolean _ret = (gboolean)gtk_text_buffer_insert_range_interactive(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35767,7 +35757,7 @@ SEXP R_gtk_text_child_anchor_get_deleted(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_child_anchor_get_deleted(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35790,7 +35780,7 @@ SEXP R_gtk_text_child_anchor_get_widgets(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Widget"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_out_len)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_out_len)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -35816,7 +35806,7 @@ SEXP R_gtk_text_iter_backward_char(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_char(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35834,7 +35824,7 @@ SEXP R_gtk_text_iter_backward_chars(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_chars(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35851,7 +35841,7 @@ SEXP R_gtk_text_iter_backward_cursor_position(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_cursor_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35869,7 +35859,7 @@ SEXP R_gtk_text_iter_backward_cursor_positions(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_cursor_positions(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35888,7 +35878,7 @@ SEXP R_gtk_text_iter_backward_find_char(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_find_char(v1, (GtkTextCharPredicate)(_cb_closure_2 ? _rgtk4_cb_TextCharPredicate : NULL), _cb_closure_2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35905,7 +35895,7 @@ SEXP R_gtk_text_iter_backward_line(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35923,7 +35913,7 @@ SEXP R_gtk_text_iter_backward_lines(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_lines(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35945,7 +35935,7 @@ SEXP R_gtk_text_iter_backward_search(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_search(v1, v2, v3, &_out_match_start, &_out_match_end, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35972,7 +35962,7 @@ SEXP R_gtk_text_iter_backward_sentence_start(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_sentence_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -35990,7 +35980,7 @@ SEXP R_gtk_text_iter_backward_sentence_starts(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_sentence_starts(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36008,7 +35998,7 @@ SEXP R_gtk_text_iter_backward_to_tag_toggle(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_to_tag_toggle(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36025,7 +36015,7 @@ SEXP R_gtk_text_iter_backward_visible_cursor_position(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_cursor_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36043,7 +36033,7 @@ SEXP R_gtk_text_iter_backward_visible_cursor_positions(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_cursor_positions(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36060,7 +36050,7 @@ SEXP R_gtk_text_iter_backward_visible_line(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36078,7 +36068,7 @@ SEXP R_gtk_text_iter_backward_visible_lines(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_lines(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36095,7 +36085,7 @@ SEXP R_gtk_text_iter_backward_visible_word_start(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_word_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36113,7 +36103,7 @@ SEXP R_gtk_text_iter_backward_visible_word_starts(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_visible_word_starts(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36130,7 +36120,7 @@ SEXP R_gtk_text_iter_backward_word_start(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_word_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36148,7 +36138,7 @@ SEXP R_gtk_text_iter_backward_word_starts(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_backward_word_starts(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36166,7 +36156,7 @@ SEXP R_gtk_text_iter_can_insert(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_can_insert(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36184,7 +36174,7 @@ SEXP R_gtk_text_iter_compare(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_text_iter_compare(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -36226,7 +36216,7 @@ SEXP R_gtk_text_iter_editable(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_editable(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36243,7 +36233,7 @@ SEXP R_gtk_text_iter_ends_line(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_ends_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36260,7 +36250,7 @@ SEXP R_gtk_text_iter_ends_sentence(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_ends_sentence(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36278,7 +36268,7 @@ SEXP R_gtk_text_iter_ends_tag(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_ends_tag(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36295,7 +36285,7 @@ SEXP R_gtk_text_iter_ends_word(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_ends_word(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36313,7 +36303,7 @@ SEXP R_gtk_text_iter_equal(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_equal(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36330,7 +36320,7 @@ SEXP R_gtk_text_iter_forward_char(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_char(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36348,7 +36338,7 @@ SEXP R_gtk_text_iter_forward_chars(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_chars(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36365,7 +36355,7 @@ SEXP R_gtk_text_iter_forward_cursor_position(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_cursor_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36383,7 +36373,7 @@ SEXP R_gtk_text_iter_forward_cursor_positions(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_cursor_positions(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36402,7 +36392,7 @@ SEXP R_gtk_text_iter_forward_find_char(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_find_char(v1, (GtkTextCharPredicate)(_cb_closure_2 ? _rgtk4_cb_TextCharPredicate : NULL), _cb_closure_2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36419,7 +36409,7 @@ SEXP R_gtk_text_iter_forward_line(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36437,7 +36427,7 @@ SEXP R_gtk_text_iter_forward_lines(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_lines(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36459,7 +36449,7 @@ SEXP R_gtk_text_iter_forward_search(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_search(v1, v2, v3, &_out_match_start, &_out_match_end, v4);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36486,7 +36476,7 @@ SEXP R_gtk_text_iter_forward_sentence_end(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_sentence_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36504,7 +36494,7 @@ SEXP R_gtk_text_iter_forward_sentence_ends(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_sentence_ends(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36529,7 +36519,7 @@ SEXP R_gtk_text_iter_forward_to_line_end(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_to_line_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36547,7 +36537,7 @@ SEXP R_gtk_text_iter_forward_to_tag_toggle(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_to_tag_toggle(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36564,7 +36554,7 @@ SEXP R_gtk_text_iter_forward_visible_cursor_position(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_cursor_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36582,7 +36572,7 @@ SEXP R_gtk_text_iter_forward_visible_cursor_positions(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_cursor_positions(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36599,7 +36589,7 @@ SEXP R_gtk_text_iter_forward_visible_line(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36617,7 +36607,7 @@ SEXP R_gtk_text_iter_forward_visible_lines(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_lines(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36634,7 +36624,7 @@ SEXP R_gtk_text_iter_forward_visible_word_end(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_word_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36652,7 +36642,7 @@ SEXP R_gtk_text_iter_forward_visible_word_ends(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_visible_word_ends(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36669,7 +36659,7 @@ SEXP R_gtk_text_iter_forward_word_end(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_word_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36687,7 +36677,7 @@ SEXP R_gtk_text_iter_forward_word_ends(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_forward_word_ends(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -36729,7 +36719,7 @@ SEXP R_gtk_text_iter_get_bytes_in_line(SEXP s1) {
   int _ret = (int)gtk_text_iter_get_bytes_in_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -36746,7 +36736,7 @@ SEXP R_gtk_text_iter_get_char(SEXP s1) {
   gunichar _ret = (gunichar)gtk_text_iter_get_char(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gunichar"));
   }
@@ -36763,7 +36753,7 @@ SEXP R_gtk_text_iter_get_chars_in_line(SEXP s1) {
   int _ret = (int)gtk_text_iter_get_chars_in_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -36814,7 +36804,7 @@ SEXP R_gtk_text_iter_get_line(SEXP s1) {
   int _ret = (int)gtk_text_iter_get_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -36831,7 +36821,7 @@ SEXP R_gtk_text_iter_get_line_index(SEXP s1) {
   int _ret = (int)gtk_text_iter_get_line_index(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -36848,7 +36838,7 @@ SEXP R_gtk_text_iter_get_line_offset(SEXP s1) {
   int _ret = (int)gtk_text_iter_get_line_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -36863,17 +36853,16 @@ SEXP R_gtk_text_iter_get_marks(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   const GtkTextIter* v1 = (const GtkTextIter*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_text_iter_get_marks(v1);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_slist_free((GSList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -36883,7 +36872,7 @@ SEXP R_gtk_text_iter_get_offset(SEXP s1) {
   int _ret = (int)gtk_text_iter_get_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -36933,17 +36922,16 @@ SEXP R_gtk_text_iter_get_tags(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   const GtkTextIter* v1 = (const GtkTextIter*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_text_iter_get_tags(v1);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_slist_free((GSList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -36970,17 +36958,16 @@ SEXP R_gtk_text_iter_get_toggled_tags(SEXP s1, SEXP s2) {
   const GtkTextIter* v1 = (const GtkTextIter*)(get_ptr(s1)); (void)v1;
   gboolean v2 = (gboolean)((gboolean)LOGICAL(s2)[0]); (void)v2;
   gconstpointer _ret = (gconstpointer)gtk_text_iter_get_toggled_tags(v1, v2);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_slist_free((GSList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -36990,7 +36977,7 @@ SEXP R_gtk_text_iter_get_visible_line_index(SEXP s1) {
   int _ret = (int)gtk_text_iter_get_visible_line_index(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -37007,7 +36994,7 @@ SEXP R_gtk_text_iter_get_visible_line_offset(SEXP s1) {
   int _ret = (int)gtk_text_iter_get_visible_line_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -37061,7 +37048,7 @@ SEXP R_gtk_text_iter_has_tag(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_has_tag(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37080,7 +37067,7 @@ SEXP R_gtk_text_iter_in_range(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_iter_in_range(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37097,7 +37084,7 @@ SEXP R_gtk_text_iter_inside_sentence(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_inside_sentence(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37114,7 +37101,7 @@ SEXP R_gtk_text_iter_inside_word(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_inside_word(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37131,7 +37118,7 @@ SEXP R_gtk_text_iter_is_cursor_position(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_is_cursor_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37148,7 +37135,7 @@ SEXP R_gtk_text_iter_is_end(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_is_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37165,7 +37152,7 @@ SEXP R_gtk_text_iter_is_start(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_is_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37245,7 +37232,7 @@ SEXP R_gtk_text_iter_starts_line(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_starts_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37262,7 +37249,7 @@ SEXP R_gtk_text_iter_starts_sentence(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_starts_sentence(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37280,7 +37267,7 @@ SEXP R_gtk_text_iter_starts_tag(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_starts_tag(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37297,7 +37284,7 @@ SEXP R_gtk_text_iter_starts_word(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_iter_starts_word(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37315,7 +37302,7 @@ SEXP R_gtk_text_iter_toggles_tag(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_iter_toggles_tag(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37367,7 +37354,7 @@ SEXP R_gtk_text_mark_get_deleted(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_mark_get_deleted(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37384,7 +37371,7 @@ SEXP R_gtk_text_mark_get_left_gravity(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_mark_get_left_gravity(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37418,7 +37405,7 @@ SEXP R_gtk_text_mark_get_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_mark_get_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37470,7 +37457,7 @@ SEXP R_gtk_text_tag_get_priority(SEXP s1) {
   int _ret = (int)gtk_text_tag_get_priority(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -37514,7 +37501,7 @@ SEXP R_gtk_text_tag_table_add(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_tag_table_add(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37540,7 +37527,7 @@ SEXP R_gtk_text_tag_table_get_size(SEXP s1) {
   int _ret = (int)gtk_text_tag_table_get_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -37640,7 +37627,7 @@ SEXP R_gtk_text_view_backward_display_line(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_view_backward_display_line(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37658,7 +37645,7 @@ SEXP R_gtk_text_view_backward_display_line_start(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_view_backward_display_line_start(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37680,12 +37667,12 @@ SEXP R_gtk_text_view_buffer_to_window_coords(SEXP s1, SEXP s2, SEXP s3, SEXP s4)
   gtk_text_view_buffer_to_window_coords(v1, v2, v3, v4, &_out_window_x, &_out_window_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_window_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_window_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("window_x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_window_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_window_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -37703,7 +37690,7 @@ SEXP R_gtk_text_view_forward_display_line(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_view_forward_display_line(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37721,7 +37708,7 @@ SEXP R_gtk_text_view_forward_display_line_end(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_view_forward_display_line_end(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37738,7 +37725,7 @@ SEXP R_gtk_text_view_get_accepts_tab(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_view_get_accepts_tab(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37755,7 +37742,7 @@ SEXP R_gtk_text_view_get_bottom_margin(SEXP s1) {
   int _ret = (int)gtk_text_view_get_bottom_margin(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -37814,7 +37801,7 @@ SEXP R_gtk_text_view_get_cursor_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_view_get_cursor_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37831,7 +37818,7 @@ SEXP R_gtk_text_view_get_editable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_view_get_editable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37883,7 +37870,7 @@ SEXP R_gtk_text_view_get_indent(SEXP s1) {
   int _ret = (int)gtk_text_view_get_indent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -37937,7 +37924,7 @@ SEXP R_gtk_text_view_get_iter_at_location(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_view_get_iter_at_location(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37963,7 +37950,7 @@ SEXP R_gtk_text_view_get_iter_at_position(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_view_get_iter_at_position(v1, &_out_iter, &_out_trailing, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -37973,7 +37960,7 @@ SEXP R_gtk_text_view_get_iter_at_position(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("iter"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_trailing)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_trailing)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38026,7 +38013,7 @@ SEXP R_gtk_text_view_get_left_margin(SEXP s1) {
   int _ret = (int)gtk_text_view_get_left_margin(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38051,7 +38038,7 @@ SEXP R_gtk_text_view_get_line_at_y(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TextIter"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("target_iter"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_line_top)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_line_top)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38071,12 +38058,12 @@ SEXP R_gtk_text_view_get_line_yrange(SEXP s1, SEXP s2) {
   gtk_text_view_get_line_yrange(v1, v2, &_out_y, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("y"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38110,7 +38097,7 @@ SEXP R_gtk_text_view_get_monospace(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_view_get_monospace(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38127,7 +38114,7 @@ SEXP R_gtk_text_view_get_overwrite(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_view_get_overwrite(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38144,7 +38131,7 @@ SEXP R_gtk_text_view_get_pixels_above_lines(SEXP s1) {
   int _ret = (int)gtk_text_view_get_pixels_above_lines(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38161,7 +38148,7 @@ SEXP R_gtk_text_view_get_pixels_below_lines(SEXP s1) {
   int _ret = (int)gtk_text_view_get_pixels_below_lines(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38178,7 +38165,7 @@ SEXP R_gtk_text_view_get_pixels_inside_wrap(SEXP s1) {
   int _ret = (int)gtk_text_view_get_pixels_inside_wrap(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38195,7 +38182,7 @@ SEXP R_gtk_text_view_get_right_margin(SEXP s1) {
   int _ret = (int)gtk_text_view_get_right_margin(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38246,7 +38233,7 @@ SEXP R_gtk_text_view_get_top_margin(SEXP s1) {
   int _ret = (int)gtk_text_view_get_top_margin(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38299,7 +38286,7 @@ SEXP R_gtk_text_view_im_context_filter_keypress(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_view_im_context_filter_keypress(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38317,7 +38304,7 @@ SEXP R_gtk_text_view_move_mark_onscreen(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_view_move_mark_onscreen(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38347,7 +38334,7 @@ SEXP R_gtk_text_view_move_visually(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_text_view_move_visually(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38364,7 +38351,7 @@ SEXP R_gtk_text_view_place_cursor_onscreen(SEXP s1) {
   gboolean _ret = (gboolean)gtk_text_view_place_cursor_onscreen(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38420,7 +38407,7 @@ SEXP R_gtk_text_view_scroll_to_iter(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5,
   gboolean _ret = (gboolean)gtk_text_view_scroll_to_iter(v1, v2, v3, v4, v5, v6);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38641,7 +38628,7 @@ SEXP R_gtk_text_view_starts_display_line(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_text_view_starts_display_line(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38663,12 +38650,12 @@ SEXP R_gtk_text_view_window_to_buffer_coords(SEXP s1, SEXP s2, SEXP s3, SEXP s4)
   gtk_text_view_window_to_buffer_coords(v1, v2, v3, v4, &_out_buffer_x, &_out_buffer_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_buffer_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_buffer_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("buffer_x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_buffer_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_buffer_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -38736,7 +38723,7 @@ SEXP R_gtk_toggle_button_get_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_toggle_button_get_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38844,7 +38831,7 @@ SEXP R_gtk_tree_drag_dest_drag_data_received(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_tree_drag_dest_drag_data_received(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38863,7 +38850,7 @@ SEXP R_gtk_tree_drag_dest_row_drop_possible(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_tree_drag_dest_row_drop_possible(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38881,7 +38868,7 @@ SEXP R_gtk_tree_drag_source_drag_data_delete(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_drag_source_drag_data_delete(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38917,7 +38904,7 @@ SEXP R_gtk_tree_drag_source_row_draggable(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_drag_source_row_draggable(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38968,7 +38955,7 @@ SEXP R_gtk_tree_expander_get_hide_expander(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_expander_get_hide_expander(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -38985,7 +38972,7 @@ SEXP R_gtk_tree_expander_get_indent_for_depth(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_expander_get_indent_for_depth(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39002,7 +38989,7 @@ SEXP R_gtk_tree_expander_get_indent_for_icon(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_expander_get_indent_for_icon(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39143,7 +39130,7 @@ SEXP R_gtk_tree_list_model_get_autoexpand(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_list_model_get_autoexpand(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39195,7 +39182,7 @@ SEXP R_gtk_tree_list_model_get_passthrough(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_list_model_get_passthrough(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39274,7 +39261,7 @@ SEXP R_gtk_tree_list_row_get_depth(SEXP s1) {
   guint _ret = (guint)gtk_tree_list_row_get_depth(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -39291,7 +39278,7 @@ SEXP R_gtk_tree_list_row_get_expanded(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_list_row_get_expanded(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39342,7 +39329,7 @@ SEXP R_gtk_tree_list_row_get_position(SEXP s1) {
   guint _ret = (guint)gtk_tree_list_row_get_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -39359,7 +39346,7 @@ SEXP R_gtk_tree_list_row_is_expandable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_list_row_is_expandable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39456,7 +39443,7 @@ SEXP R_gtk_tree_model_get_column_type(SEXP s1, SEXP s2) {
   GType _ret = (GType)gtk_tree_model_get_column_type(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GType"));
   }
@@ -39492,7 +39479,7 @@ SEXP R_gtk_tree_model_get_iter(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_get_iter(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39515,7 +39502,7 @@ SEXP R_gtk_tree_model_get_iter_first(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_model_get_iter_first(v1, &_out_iter);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39539,7 +39526,7 @@ SEXP R_gtk_tree_model_get_iter_from_string(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_get_iter_from_string(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39561,7 +39548,7 @@ SEXP R_gtk_tree_model_get_n_columns(SEXP s1) {
   int _ret = (int)gtk_tree_model_get_n_columns(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -39636,7 +39623,7 @@ SEXP R_gtk_tree_model_iter_children(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_iter_children(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39659,7 +39646,7 @@ SEXP R_gtk_tree_model_iter_has_child(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_iter_has_child(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39677,7 +39664,7 @@ SEXP R_gtk_tree_model_iter_n_children(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_tree_model_iter_n_children(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -39695,7 +39682,7 @@ SEXP R_gtk_tree_model_iter_next(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_iter_next(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39715,7 +39702,7 @@ SEXP R_gtk_tree_model_iter_nth_child(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_tree_model_iter_nth_child(v1, &_out_iter, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39739,7 +39726,7 @@ SEXP R_gtk_tree_model_iter_parent(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_iter_parent(v1, &_out_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39762,7 +39749,7 @@ SEXP R_gtk_tree_model_iter_previous(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_iter_previous(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -39858,7 +39845,7 @@ SEXP R_gtk_tree_model_filter_convert_child_iter_to_iter(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_filter_convert_child_iter_to_iter(v1, &_out_filter_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40016,7 +40003,7 @@ SEXP R_gtk_tree_model_sort_convert_child_iter_to_iter(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_sort_convert_child_iter_to_iter(v1, &_out_sort_iter, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40111,7 +40098,7 @@ SEXP R_gtk_tree_model_sort_iter_is_valid(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_model_sort_iter_is_valid(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40215,7 +40202,7 @@ SEXP R_gtk_tree_path_compare(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_tree_path_compare(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -40265,7 +40252,7 @@ SEXP R_gtk_tree_path_get_depth(SEXP s1) {
   int _ret = (int)gtk_tree_path_get_depth(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -40288,7 +40275,7 @@ SEXP R_gtk_tree_path_get_indices_with_depth(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_depth)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_depth)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -40306,7 +40293,7 @@ SEXP R_gtk_tree_path_is_ancestor(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_path_is_ancestor(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40324,7 +40311,7 @@ SEXP R_gtk_tree_path_is_descendant(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_path_is_descendant(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40358,7 +40345,7 @@ SEXP R_gtk_tree_path_prev(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_path_prev(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40392,7 +40379,7 @@ SEXP R_gtk_tree_path_up(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_path_up(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40505,7 +40492,7 @@ SEXP R_gtk_tree_row_reference_valid(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_row_reference_valid(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40540,7 +40527,7 @@ SEXP R_gtk_tree_selection_count_selected_rows(SEXP s1) {
   int _ret = (int)gtk_tree_selection_count_selected_rows(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -40576,7 +40563,7 @@ SEXP R_gtk_tree_selection_get_selected(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_selection_get_selected(v1, &_out_model, &_out_iter);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40602,17 +40589,21 @@ SEXP R_gtk_tree_selection_get_selected_rows(SEXP s1) {
   GtkTreeSelection* v1 = (GtkTreeSelection*)(get_ptr(s1)); (void)v1;
   GtkTreeModel* _out_model = 0; (void)_out_model;
   gconstpointer _ret = (gconstpointer)gtk_tree_selection_get_selected_rows(v1, &_out_model);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  SET_VECTOR_ELT(_ans, 1, (_out_model == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_out_model));
+  if (VECTOR_ELT(_ans, 1) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("TreeModel"));
+  }
+  SET_STRING_ELT(_ans_names, 1, Rf_mkChar("model"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -40640,7 +40631,7 @@ SEXP R_gtk_tree_selection_iter_is_selected(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_selection_iter_is_selected(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40658,7 +40649,7 @@ SEXP R_gtk_tree_selection_path_is_selected(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_selection_path_is_selected(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40776,12 +40767,12 @@ SEXP R_gtk_tree_sortable_get_sort_column_id(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_sortable_get_sort_column_id(v1, &_out_sort_column_id, &_out_order);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_sort_column_id)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_sort_column_id)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -40803,7 +40794,7 @@ SEXP R_gtk_tree_sortable_has_default_sort_func(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_sortable_has_default_sort_func(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -40987,7 +40978,7 @@ SEXP R_gtk_tree_store_is_ancestor(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_tree_store_is_ancestor(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41005,7 +40996,7 @@ SEXP R_gtk_tree_store_iter_depth(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_tree_store_iter_depth(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41023,7 +41014,7 @@ SEXP R_gtk_tree_store_iter_is_valid(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_store_iter_is_valid(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41080,7 +41071,7 @@ SEXP R_gtk_tree_store_remove(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_store_remove(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41175,7 +41166,7 @@ SEXP R_gtk_tree_view_append_column(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_tree_view_append_column(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41201,7 +41192,7 @@ SEXP R_gtk_tree_view_collapse_row(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_view_collapse_row(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41230,12 +41221,12 @@ SEXP R_gtk_tree_view_convert_bin_window_to_tree_coords(SEXP s1, SEXP s2, SEXP s3
   gtk_tree_view_convert_bin_window_to_tree_coords(v1, v2, v3, &_out_tx, &_out_ty);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_tx)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_tx)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("tx"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_ty)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_ty)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41256,12 +41247,12 @@ SEXP R_gtk_tree_view_convert_bin_window_to_widget_coords(SEXP s1, SEXP s2, SEXP 
   gtk_tree_view_convert_bin_window_to_widget_coords(v1, v2, v3, &_out_wx, &_out_wy);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_wx)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_wx)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("wx"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_wy)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_wy)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41282,12 +41273,12 @@ SEXP R_gtk_tree_view_convert_tree_to_bin_window_coords(SEXP s1, SEXP s2, SEXP s3
   gtk_tree_view_convert_tree_to_bin_window_coords(v1, v2, v3, &_out_bx, &_out_by);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_bx)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_bx)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("bx"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_by)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_by)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41308,12 +41299,12 @@ SEXP R_gtk_tree_view_convert_tree_to_widget_coords(SEXP s1, SEXP s2, SEXP s3) {
   gtk_tree_view_convert_tree_to_widget_coords(v1, v2, v3, &_out_wx, &_out_wy);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_wx)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_wx)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("wx"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_wy)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_wy)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41334,12 +41325,12 @@ SEXP R_gtk_tree_view_convert_widget_to_bin_window_coords(SEXP s1, SEXP s2, SEXP 
   gtk_tree_view_convert_widget_to_bin_window_coords(v1, v2, v3, &_out_bx, &_out_by);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_bx)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_bx)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("bx"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_by)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_by)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41360,12 +41351,12 @@ SEXP R_gtk_tree_view_convert_widget_to_tree_coords(SEXP s1, SEXP s2, SEXP s3) {
   gtk_tree_view_convert_widget_to_tree_coords(v1, v2, v3, &_out_tx, &_out_ty);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_tx)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_tx)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("tx"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_ty)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_ty)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41431,7 +41422,7 @@ SEXP R_gtk_tree_view_expand_row(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_tree_view_expand_row(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41457,7 +41448,7 @@ SEXP R_gtk_tree_view_get_activate_on_single_click(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_activate_on_single_click(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41530,17 +41521,16 @@ SEXP R_gtk_tree_view_get_columns(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkTreeView* v1 = (GtkTreeView*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_tree_view_get_columns(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -41578,7 +41568,7 @@ SEXP R_gtk_tree_view_get_dest_row_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_tree_view_get_dest_row_at_pos(v1, v2, v3, &_out_path, &_out_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41629,7 +41619,7 @@ SEXP R_gtk_tree_view_get_enable_search(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_enable_search(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41646,7 +41636,7 @@ SEXP R_gtk_tree_view_get_enable_tree_lines(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_enable_tree_lines(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41680,7 +41670,7 @@ SEXP R_gtk_tree_view_get_fixed_height_mode(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_fixed_height_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41714,7 +41704,7 @@ SEXP R_gtk_tree_view_get_headers_clickable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_headers_clickable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41731,7 +41721,7 @@ SEXP R_gtk_tree_view_get_headers_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_headers_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41748,7 +41738,7 @@ SEXP R_gtk_tree_view_get_hover_expand(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_hover_expand(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41765,7 +41755,7 @@ SEXP R_gtk_tree_view_get_hover_selection(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_hover_selection(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41782,7 +41772,7 @@ SEXP R_gtk_tree_view_get_level_indentation(SEXP s1) {
   int _ret = (int)gtk_tree_view_get_level_indentation(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41816,7 +41806,7 @@ SEXP R_gtk_tree_view_get_n_columns(SEXP s1) {
   guint _ret = (guint)gtk_tree_view_get_n_columns(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -41839,7 +41829,7 @@ SEXP R_gtk_tree_view_get_path_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_tree_view_get_path_at_pos(v1, v2, v3, &_out_path, &_out_column, &_out_cell_x, &_out_cell_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 5));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 5));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41854,12 +41844,12 @@ SEXP R_gtk_tree_view_get_path_at_pos(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("TreeViewColumn"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("column"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_cell_x)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_cell_x)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 3, Rf_mkChar("cell_x"));
-  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(size_t)(_out_cell_y)));
+  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(_out_cell_y)));
   if (VECTOR_ELT(_ans, 4) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 4), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41876,7 +41866,7 @@ SEXP R_gtk_tree_view_get_reorderable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_reorderable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41893,7 +41883,7 @@ SEXP R_gtk_tree_view_get_rubber_banding(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_rubber_banding(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41910,7 +41900,7 @@ SEXP R_gtk_tree_view_get_search_column(SEXP s1) {
   int _ret = (int)gtk_tree_view_get_search_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -41961,7 +41951,7 @@ SEXP R_gtk_tree_view_get_show_expanders(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_show_expanders(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -41978,7 +41968,7 @@ SEXP R_gtk_tree_view_get_tooltip_column(SEXP s1) {
   int _ret = (int)gtk_tree_view_get_tooltip_column(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42001,7 +41991,7 @@ SEXP R_gtk_tree_view_get_tooltip_context(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_tree_view_get_tooltip_context(v1, v2, v3, v4, &_out_model, &_out_path, &_out_iter);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42035,7 +42025,7 @@ SEXP R_gtk_tree_view_get_visible_range(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_get_visible_range(v1, &_out_start_path, &_out_end_path);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42082,7 +42072,7 @@ SEXP R_gtk_tree_view_insert_column(SEXP s1, SEXP s2, SEXP s3) {
   int _ret = (int)gtk_tree_view_insert_column(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42103,7 +42093,7 @@ SEXP R_gtk_tree_view_insert_column_with_data_func(SEXP s1, SEXP s2, SEXP s3, SEX
   int _ret = (int)gtk_tree_view_insert_column_with_data_func(v1, v2, v3, v4, (GtkTreeCellDataFunc)(_cb_closure_5 ? _rgtk4_cb_TreeCellDataFunc : NULL), _cb_closure_5, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42126,7 +42116,7 @@ SEXP R_gtk_tree_view_is_blank_at_pos(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_tree_view_is_blank_at_pos(v1, v2, v3, &_out_path, &_out_column, &_out_cell_x, &_out_cell_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 5));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 5));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42141,12 +42131,12 @@ SEXP R_gtk_tree_view_is_blank_at_pos(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("TreeViewColumn"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("column"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_cell_x)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_cell_x)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 3, Rf_mkChar("cell_x"));
-  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(size_t)(_out_cell_y)));
+  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(_out_cell_y)));
   if (VECTOR_ELT(_ans, 4) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 4), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42163,7 +42153,7 @@ SEXP R_gtk_tree_view_is_rubber_banding_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_is_rubber_banding_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42200,7 +42190,7 @@ SEXP R_gtk_tree_view_remove_column(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_tree_view_remove_column(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42228,7 +42218,7 @@ SEXP R_gtk_tree_view_row_expanded(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_view_row_expanded(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42579,17 +42569,17 @@ SEXP R_gtk_tree_view_column_cell_get_position(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_tree_view_column_cell_get_position(v1, v2, &_out_x_offset, &_out_width);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_x_offset)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_x_offset)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("x_offset"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42610,22 +42600,22 @@ SEXP R_gtk_tree_view_column_cell_get_size(SEXP s1) {
   gtk_tree_view_column_cell_get_size(v1, &_out_x_offset, &_out_y_offset, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_x_offset)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x_offset)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("x_offset"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_y_offset)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y_offset)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("y_offset"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42642,7 +42632,7 @@ SEXP R_gtk_tree_view_column_cell_is_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_column_cell_is_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42705,7 +42695,7 @@ SEXP R_gtk_tree_view_column_get_alignment(SEXP s1) {
   float _ret = (float)gtk_tree_view_column_get_alignment(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -42739,7 +42729,7 @@ SEXP R_gtk_tree_view_column_get_clickable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_column_get_clickable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42756,7 +42746,7 @@ SEXP R_gtk_tree_view_column_get_expand(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_column_get_expand(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42773,7 +42763,7 @@ SEXP R_gtk_tree_view_column_get_fixed_width(SEXP s1) {
   int _ret = (int)gtk_tree_view_column_get_fixed_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42790,7 +42780,7 @@ SEXP R_gtk_tree_view_column_get_max_width(SEXP s1) {
   int _ret = (int)gtk_tree_view_column_get_max_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42807,7 +42797,7 @@ SEXP R_gtk_tree_view_column_get_min_width(SEXP s1) {
   int _ret = (int)gtk_tree_view_column_get_min_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42824,7 +42814,7 @@ SEXP R_gtk_tree_view_column_get_reorderable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_column_get_reorderable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42841,7 +42831,7 @@ SEXP R_gtk_tree_view_column_get_resizable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_column_get_resizable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42875,7 +42865,7 @@ SEXP R_gtk_tree_view_column_get_sort_column_id(SEXP s1) {
   int _ret = (int)gtk_tree_view_column_get_sort_column_id(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42892,7 +42882,7 @@ SEXP R_gtk_tree_view_column_get_sort_indicator(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_column_get_sort_indicator(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -42926,7 +42916,7 @@ SEXP R_gtk_tree_view_column_get_spacing(SEXP s1) {
   int _ret = (int)gtk_tree_view_column_get_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -42977,7 +42967,7 @@ SEXP R_gtk_tree_view_column_get_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_view_column_get_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43011,7 +43001,7 @@ SEXP R_gtk_tree_view_column_get_width(SEXP s1) {
   int _ret = (int)gtk_tree_view_column_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -43028,7 +43018,7 @@ SEXP R_gtk_tree_view_column_get_x_offset(SEXP s1) {
   int _ret = (int)gtk_tree_view_column_get_x_offset(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -43274,7 +43264,7 @@ SEXP R_gtk_uri_launcher_launch_finish(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_uri_launcher_launch_finish(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43385,7 +43375,7 @@ SEXP R_gtk_video_get_autoplay(SEXP s1) {
   gboolean _ret = (gboolean)gtk_video_get_autoplay(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43419,7 +43409,7 @@ SEXP R_gtk_video_get_loop(SEXP s1) {
   gboolean _ret = (gboolean)gtk_video_get_loop(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43542,7 +43532,7 @@ SEXP R_gtk_viewport_get_scroll_to_focus(SEXP s1) {
   gboolean _ret = (gboolean)gtk_viewport_get_scroll_to_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43639,7 +43629,7 @@ SEXP R_gtk_widget_activate(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_activate(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43658,7 +43648,7 @@ SEXP R_gtk_widget_activate_action_variant(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_widget_activate_action_variant(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43711,7 +43701,7 @@ SEXP R_gtk_widget_add_tick_callback(SEXP s1, SEXP s2) {
   guint _ret = (guint)gtk_widget_add_tick_callback(v1, (GtkTickCallback)(_cb_closure_2 ? _rgtk4_cb_TickCallback : NULL), _cb_closure_2, rgtk4_closure_free);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -43741,7 +43731,7 @@ SEXP R_gtk_widget_child_focus(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_child_focus(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43760,7 +43750,7 @@ SEXP R_gtk_widget_compute_bounds(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_compute_bounds(v1, v2, &_out_out_bounds);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43783,7 +43773,7 @@ SEXP R_gtk_widget_compute_expand(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_compute_expand(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43803,7 +43793,7 @@ SEXP R_gtk_widget_compute_point(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_widget_compute_point(v1, v2, v3, &_out_out_point);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43827,7 +43817,7 @@ SEXP R_gtk_widget_compute_transform(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_compute_transform(v1, v2, &_out_out_transform);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43851,7 +43841,7 @@ SEXP R_gtk_widget_contains(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)gtk_widget_contains(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43916,7 +43906,7 @@ SEXP R_gtk_drag_check_threshold(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5) {
   gboolean _ret = (gboolean)gtk_drag_check_threshold(v1, v2, v3, v4, v5);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -43941,7 +43931,7 @@ SEXP R_gtk_widget_get_allocated_baseline(SEXP s1) {
   int _ret = (int)gtk_widget_get_allocated_baseline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -43958,7 +43948,7 @@ SEXP R_gtk_widget_get_allocated_height(SEXP s1) {
   int _ret = (int)gtk_widget_get_allocated_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -43975,7 +43965,7 @@ SEXP R_gtk_widget_get_allocated_width(SEXP s1) {
   int _ret = (int)gtk_widget_get_allocated_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44028,7 +44018,7 @@ SEXP R_gtk_widget_get_baseline(SEXP s1) {
   int _ret = (int)gtk_widget_get_baseline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44045,7 +44035,7 @@ SEXP R_gtk_widget_get_can_focus(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_can_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44062,7 +44052,7 @@ SEXP R_gtk_widget_get_can_target(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_can_target(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44079,7 +44069,7 @@ SEXP R_gtk_widget_get_child_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_child_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44250,7 +44240,7 @@ SEXP R_gtk_widget_get_focus_on_click(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_focus_on_click(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44267,7 +44257,7 @@ SEXP R_gtk_widget_get_focusable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_focusable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44352,7 +44342,7 @@ SEXP R_gtk_widget_get_has_tooltip(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_has_tooltip(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44369,7 +44359,7 @@ SEXP R_gtk_widget_get_height(SEXP s1) {
   int _ret = (int)gtk_widget_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44386,7 +44376,7 @@ SEXP R_gtk_widget_get_hexpand(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_hexpand(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44403,7 +44393,7 @@ SEXP R_gtk_widget_get_hexpand_set(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_hexpand_set(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44454,7 +44444,7 @@ SEXP R_gtk_widget_get_mapped(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_mapped(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44471,7 +44461,7 @@ SEXP R_gtk_widget_get_margin_bottom(SEXP s1) {
   int _ret = (int)gtk_widget_get_margin_bottom(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44488,7 +44478,7 @@ SEXP R_gtk_widget_get_margin_end(SEXP s1) {
   int _ret = (int)gtk_widget_get_margin_end(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44505,7 +44495,7 @@ SEXP R_gtk_widget_get_margin_start(SEXP s1) {
   int _ret = (int)gtk_widget_get_margin_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44522,7 +44512,7 @@ SEXP R_gtk_widget_get_margin_top(SEXP s1) {
   int _ret = (int)gtk_widget_get_margin_top(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44590,7 +44580,7 @@ SEXP R_gtk_widget_get_opacity(SEXP s1) {
   double _ret = (double)gtk_widget_get_opacity(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -44716,7 +44706,7 @@ SEXP R_gtk_widget_get_realized(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_realized(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44733,7 +44723,7 @@ SEXP R_gtk_widget_get_receives_default(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_receives_default(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44784,7 +44774,7 @@ SEXP R_gtk_widget_get_scale_factor(SEXP s1) {
   int _ret = (int)gtk_widget_get_scale_factor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44801,7 +44791,7 @@ SEXP R_gtk_widget_get_sensitive(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_sensitive(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44836,7 +44826,7 @@ SEXP R_gtk_widget_get_size(SEXP s1, SEXP s2) {
   int _ret = (int)gtk_widget_get_size(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44855,12 +44845,12 @@ SEXP R_gtk_widget_get_size_request(SEXP s1) {
   gtk_widget_get_size_request(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -44981,7 +44971,7 @@ SEXP R_gtk_widget_get_vexpand(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_vexpand(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -44998,7 +44988,7 @@ SEXP R_gtk_widget_get_vexpand_set(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_vexpand_set(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45015,7 +45005,7 @@ SEXP R_gtk_widget_get_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_get_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45032,7 +45022,7 @@ SEXP R_gtk_widget_get_width(SEXP s1) {
   int _ret = (int)gtk_widget_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -45049,7 +45039,7 @@ SEXP R_gtk_widget_grab_focus(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_grab_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45067,7 +45057,7 @@ SEXP R_gtk_widget_has_css_class(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_has_css_class(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45084,7 +45074,7 @@ SEXP R_gtk_widget_has_default(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_has_default(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45101,7 +45091,7 @@ SEXP R_gtk_widget_has_focus(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_has_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45118,7 +45108,7 @@ SEXP R_gtk_widget_has_visible_focus(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_has_visible_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45143,7 +45133,7 @@ SEXP R_gtk_widget_in_destruction(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_in_destruction(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45199,7 +45189,7 @@ SEXP R_gtk_widget_is_ancestor(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_is_ancestor(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45216,7 +45206,7 @@ SEXP R_gtk_widget_is_drawable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_is_drawable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45233,7 +45223,7 @@ SEXP R_gtk_widget_is_focus(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_is_focus(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45250,7 +45240,7 @@ SEXP R_gtk_widget_is_sensitive(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_is_sensitive(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45267,7 +45257,7 @@ SEXP R_gtk_widget_is_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_is_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45285,7 +45275,7 @@ SEXP R_gtk_widget_keynav_failed(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_keynav_failed(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45300,17 +45290,16 @@ SEXP R_gtk_widget_list_mnemonic_labels(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkWidget* v1 = (GtkWidget*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_widget_list_mnemonic_labels(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -45334,22 +45323,22 @@ SEXP R_gtk_widget_measure(SEXP s1, SEXP s2, SEXP s3) {
   gtk_widget_measure(v1, v2, v3, &_out_minimum, &_out_natural, &_out_minimum_baseline, &_out_natural_baseline);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_minimum)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_minimum)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("minimum"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_natural)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_natural)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("natural"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_minimum_baseline)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_minimum_baseline)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("minimum_baseline"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_natural_baseline)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_natural_baseline)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -45367,7 +45356,7 @@ SEXP R_gtk_widget_mnemonic_activate(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_mnemonic_activate(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45823,7 +45812,7 @@ SEXP R_gtk_widget_should_layout(SEXP s1) {
   gboolean _ret = (gboolean)gtk_widget_should_layout(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -45873,17 +45862,17 @@ SEXP R_gtk_widget_translate_coordinates(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   gboolean _ret = (gboolean)gtk_widget_translate_coordinates(v1, v2, v3, v4, &_out_dest_x, &_out_dest_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_dest_x)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_dest_x)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("dest_x"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_dest_y)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_dest_y)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -45991,7 +45980,7 @@ SEXP R_gtk_widget_class_get_activate_signal(SEXP s1) {
   guint _ret = (guint)gtk_widget_class_get_activate_signal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -46025,7 +46014,7 @@ SEXP R_gtk_widget_class_get_layout_manager_type(SEXP s1) {
   GType _ret = (GType)gtk_widget_class_get_layout_manager_type(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GType"));
   }
@@ -46071,12 +46060,12 @@ SEXP R_gtk_widget_class_query_action(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_widget_class_query_action(v1, v2, &_out_owner, &_out_action_name, &_out_parameter_type, &_out_property_name);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 5));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 5));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_owner)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_owner)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("GType"));
   }
@@ -46272,17 +46261,16 @@ SEXP R_gtk_window_list_toplevels(void) {
   RGTK4_REQUIRE_INIT();
 
   gconstpointer _ret = (gconstpointer)gtk_window_list_toplevels();
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -46383,7 +46371,7 @@ SEXP R_gtk_window_get_decorated(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_decorated(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46402,12 +46390,12 @@ SEXP R_gtk_window_get_default_size(SEXP s1) {
   gtk_window_get_default_size(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -46441,7 +46429,7 @@ SEXP R_gtk_window_get_deletable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_deletable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46458,7 +46446,7 @@ SEXP R_gtk_window_get_destroy_with_parent(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_destroy_with_parent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46492,7 +46480,7 @@ SEXP R_gtk_window_get_focus_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_focus_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46526,7 +46514,7 @@ SEXP R_gtk_window_get_handle_menubar_accel(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_handle_menubar_accel(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46543,7 +46531,7 @@ SEXP R_gtk_window_get_hide_on_close(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_hide_on_close(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46577,7 +46565,7 @@ SEXP R_gtk_window_get_mnemonics_visible(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_mnemonics_visible(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46594,7 +46582,7 @@ SEXP R_gtk_window_get_modal(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_modal(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46611,7 +46599,7 @@ SEXP R_gtk_window_get_resizable(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_get_resizable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46679,7 +46667,7 @@ SEXP R_gtk_window_has_group(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_has_group(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46696,7 +46684,7 @@ SEXP R_gtk_window_is_active(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_is_active(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46713,7 +46701,7 @@ SEXP R_gtk_window_is_fullscreen(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_is_fullscreen(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46730,7 +46718,7 @@ SEXP R_gtk_window_is_maximized(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_is_maximized(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -46747,7 +46735,7 @@ SEXP R_gtk_window_is_suspended(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_is_suspended(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47036,7 +47024,7 @@ SEXP R_gtk_window_controls_get_empty(SEXP s1) {
   gboolean _ret = (gboolean)gtk_window_controls_get_empty(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47112,17 +47100,16 @@ SEXP R_gtk_window_group_list_windows(SEXP s1) {
   RGTK4_REQUIRE_INIT();
   GtkWindowGroup* v1 = (GtkWindowGroup*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)gtk_window_group_list_windows(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -47279,12 +47266,12 @@ SEXP R_gtk_accelerator_parse(SEXP s1) {
   gboolean _ret = (gboolean)gtk_accelerator_parse(v1, &_out_accelerator_key, &_out_accelerator_mods);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_accelerator_key)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_accelerator_key)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -47310,12 +47297,12 @@ SEXP R_gtk_accelerator_parse_with_keycode(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_accelerator_parse_with_keycode(v1, v2, &_out_accelerator_key, &_out_accelerator_codes, &_out_accelerator_mods);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_accelerator_key)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_accelerator_key)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -47343,7 +47330,7 @@ SEXP R_gtk_accelerator_valid(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_accelerator_valid(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47379,7 +47366,7 @@ SEXP R_gtk_css_parser_error_quark(void) {
   GQuark _ret = (GQuark)gtk_css_parser_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -47396,7 +47383,7 @@ SEXP R_gtk_css_parser_warning_quark(void) {
   GQuark _ret = (GQuark)gtk_css_parser_warning_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -47422,7 +47409,7 @@ SEXP R_gtk_distribute_natural_allocation(SEXP s1, SEXP s2, SEXP s3) {
   int _ret = (int)gtk_distribute_natural_allocation(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -47439,7 +47426,7 @@ SEXP R_gtk_get_binary_age(void) {
   guint _ret = (guint)gtk_get_binary_age();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -47490,7 +47477,7 @@ SEXP R_gtk_get_interface_age(void) {
   guint _ret = (guint)gtk_get_interface_age();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -47524,7 +47511,7 @@ SEXP R_gtk_get_major_version(void) {
   guint _ret = (guint)gtk_get_major_version();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -47541,7 +47528,7 @@ SEXP R_gtk_get_micro_version(void) {
   guint _ret = (guint)gtk_get_micro_version();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -47558,7 +47545,7 @@ SEXP R_gtk_get_minor_version(void) {
   guint _ret = (guint)gtk_get_minor_version();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -47580,17 +47567,17 @@ SEXP R_gtk_hsv_to_rgb(SEXP s1, SEXP s2, SEXP s3) {
   gtk_hsv_to_rgb(v1, v2, v3, &_out_r, &_out_g, &_out_b);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_r)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_r)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("r"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_g)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_g)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("g"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_b)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_b)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -47613,7 +47600,7 @@ SEXP R_gtk_init_check(void) {
   gboolean _ret = (gboolean)gtk_init_check();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47629,7 +47616,7 @@ SEXP R_gtk_is_initialized(void) {
   gboolean _ret = (gboolean)gtk_is_initialized();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47825,17 +47812,17 @@ SEXP R_gtk_rgb_to_hsv(SEXP s1, SEXP s2, SEXP s3) {
   gtk_rgb_to_hsv(v1, v2, v3, &_out_h, &_out_s, &_out_v);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_h)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_h)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("h"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_s)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_s)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("s"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_v)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_v)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -47884,7 +47871,7 @@ SEXP R_gtk_show_uri_full_finish(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_show_uri_full_finish(v1, v2, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47917,7 +47904,7 @@ SEXP R_gtk_test_accessible_has_property(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_test_accessible_has_property(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47935,7 +47922,7 @@ SEXP R_gtk_test_accessible_has_relation(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_test_accessible_has_relation(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47953,7 +47940,7 @@ SEXP R_gtk_test_accessible_has_role(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_test_accessible_has_role(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47971,7 +47958,7 @@ SEXP R_gtk_test_accessible_has_state(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)gtk_test_accessible_has_state(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -47993,7 +47980,7 @@ SEXP R_gtk_test_list_all_types(void) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GType"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_types)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_types)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -48046,7 +48033,7 @@ SEXP R_gtk_tree_get_row_drag_data(SEXP s1) {
   gboolean _ret = (gboolean)gtk_tree_get_row_drag_data(v1, &_out_tree_model, &_out_path);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }

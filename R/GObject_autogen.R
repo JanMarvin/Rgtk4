@@ -599,8 +599,8 @@ gObjectBindProperty <- function(source, source_property, target, target_property
 #' @param target Object
 #' @param target_property utf8
 #' @param flags BindingFlags
-#' @param transform_to function — BindingTransformFunc function(binding, from_value, to_value)
-#' @param transform_from function — BindingTransformFunc function(binding, from_value, to_value)
+#' @param transform_to function — BindingTransformFunc callback
+#' @param transform_from function — BindingTransformFunc callback
 #' @return Binding
 #' @export
 gObjectBindPropertyFull <- function(source, source_property, target, target_property, flags, transform_to, transform_from) {
@@ -2227,7 +2227,7 @@ gValueArrayRemove <- function(value_array, index_) {
 #' @title gValueArraySort
 #'
 #' @param value_array ValueArray
-#' @param compare_func function — GLib.CompareFunc function(a, b)
+#' @param compare_func function — GLib.CompareFunc callback
 #' @return ValueArray
 #' @export
 gValueArraySort <- function(value_array, compare_func) {
@@ -2239,7 +2239,7 @@ gValueArraySort <- function(value_array, compare_func) {
 #' @title gValueArraySortWithData
 #'
 #' @param value_array ValueArray
-#' @param compare_func function — GLib.CompareDataFunc function(a, b)
+#' @param compare_func function — GLib.CompareDataFunc callback
 #' @return ValueArray
 #' @export
 gValueArraySortWithData <- function(value_array, compare_func) {
@@ -2275,8 +2275,8 @@ gBoxedFree <- function(boxed_type, boxed) {
 #' @title gBoxedTypeRegisterStatic
 #'
 #' @param name utf8
-#' @param boxed_copy function — BoxedCopyFunc function(boxed)
-#' @param boxed_free function — BoxedFreeFunc function(boxed)
+#' @param boxed_copy function — BoxedCopyFunc callback
+#' @param boxed_free function — BoxedFreeFunc callback
 #' @return GType
 #' @export
 gBoxedTypeRegisterStatic <- function(name, boxed_copy, boxed_free) {
@@ -2894,7 +2894,7 @@ gSignalAccumulatorTrueHandled <- function(ihint, return_accu, handler_return, du
 #'
 #' @param signal_id guint
 #' @param detail GLib.Quark
-#' @param hook_func function — SignalEmissionHook function(ihint, n_param_values, param_values)
+#' @param hook_func function — SignalEmissionHook callback
 #' @return gulong
 #' @export
 gSignalAddEmissionHook <- function(signal_id, detail, hook_func) {
@@ -3160,7 +3160,7 @@ gSignalOverrideClassClosure <- function(signal_id, instance_type, class_closure)
 #'
 #' @param signal_name utf8
 #' @param instance_type GType
-#' @param class_handler function — Callback function()
+#' @param class_handler function — Callback callback
 #' @return Return value from C function
 #' @export
 gSignalOverrideClassHandler <- function(signal_name, instance_type, class_handler) {

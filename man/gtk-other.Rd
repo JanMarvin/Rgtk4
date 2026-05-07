@@ -6217,7 +6217,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{cancellable}{Gio.Cancellable}
 
-\item{callback}{function — Gio.AsyncReadyCallback function(source_object, res)}
+\item{callback}{function — Gio.AsyncReadyCallback callback}
 
 \item{result}{Gio.AsyncResult}
 
@@ -6269,7 +6269,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{position}{guint}
 
-\item{page_func}{function — AssistantPageFunc function(current_page)}
+\item{page_func}{function — AssistantPageFunc callback}
 
 \item{complete}{gboolean}
 
@@ -6355,21 +6355,21 @@ gtkValueTakeExpression(value, expression)
 
 \item{callback_name}{utf8}
 
-\item{callback_symbol}{function — GObject.Callback function()}
+\item{callback_symbol}{function — GObject.Callback callback}
 
 \item{bytes}{GLib.Bytes}
 
 \item{value_type}{GType}
 
-\item{marshal}{function — GObject.ClosureMarshal function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)}
+\item{marshal}{function — GObject.ClosureMarshal callback}
 
 \item{n_params}{guint}
 
 \item{params}{Expression}
 
-\item{callback_func}{function — GObject.Callback function()}
+\item{callback_func}{function — GObject.Callback callback}
 
-\item{user_destroy}{function — GObject.ClosureNotify function(closure)}
+\item{user_destroy}{function — GObject.ClosureNotify callback}
 
 \item{calendar}{Calendar}
 
@@ -6597,15 +6597,15 @@ gtkValueTakeExpression(value, expression)
 
 \item{section}{CssSection}
 
-\item{match_func}{function — CustomFilterFunc function(item)}
+\item{match_func}{function — CustomFilterFunc callback}
 
-\item{request_mode}{function — CustomRequestModeFunc function(widget)}
+\item{request_mode}{function — CustomRequestModeFunc callback}
 
 \item{measure}{gboolean}
 
-\item{allocate}{function — CustomAllocateFunc function(widget, width, height, baseline)}
+\item{allocate}{function — CustomAllocateFunc callback}
 
-\item{sort_func}{function — TreeIterCompareFunc function(model, a, b)}
+\item{sort_func}{function — TreeIterCompareFunc callback}
 
 \item{monitored}{gboolean}
 
@@ -6621,7 +6621,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{content}{Gdk.ContentProvider}
 
-\item{draw_func}{function — DrawingAreaDrawFunc function(drawing_area, cr, width, height)}
+\item{draw_func}{function — DrawingAreaDrawFunc callback}
 
 \item{strings}{utf8}
 
@@ -6685,7 +6685,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{this_}{GObject.Object}
 
-\item{notify}{function — ExpressionNotify function()}
+\item{notify}{function — ExpressionNotify callback}
 
 \item{watch}{ExpressionWatch}
 
@@ -6707,13 +6707,13 @@ gtkValueTakeExpression(value, expression)
 
 \item{transform}{Gsk.Transform}
 
-\item{create_widget_func}{function — ListBoxCreateWidgetFunc function(item)}
+\item{create_widget_func}{function — ListBoxCreateWidgetFunc callback}
 
 \item{idx}{gint}
 
 \item{single}{gboolean}
 
-\item{filter_func}{function — ListBoxFilterFunc function(row)}
+\item{filter_func}{function — ListBoxFilterFunc callback}
 
 \item{homogeneous}{gboolean}
 
@@ -6857,7 +6857,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{row}{ListBoxRow}
 
-\item{update_header}{function — ListBoxUpdateHeaderFunc function(row, before)}
+\item{update_header}{function — ListBoxUpdateHeaderFunc callback}
 
 \item{placeholder}{Widget}
 
@@ -6867,7 +6867,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{permission}{Gio.Permission}
 
-\item{map_func}{function — MapListModelMapFunc function(item)}
+\item{map_func}{function — MapListModelMapFunc callback}
 
 \item{stream}{MediaStream}
 
@@ -7239,7 +7239,7 @@ gtkValueTakeExpression(value, expression)
 
 \item{autoexpand}{gboolean}
 
-\item{create_func}{function — TreeListModelCreateModelFunc function(item)}
+\item{create_func}{function — TreeListModelCreateModelFunc callback}
 
 \item{indices}{gint}
 

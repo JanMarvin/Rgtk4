@@ -1216,7 +1216,7 @@ gskRadialGradientNodeGetVradius <- function(node) {
 #' @title gskRenderNodeDeserialize
 #'
 #' @param bytes GLib.Bytes
-#' @param error_func function — ParseErrorFunc function(start, end, error)
+#' @param error_func function — ParseErrorFunc callback
 #' @return RenderNode
 #' @export
 gskRenderNodeDeserialize <- function(bytes, error_func) {

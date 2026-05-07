@@ -366,49 +366,6 @@ SEXP R_g_object_set_double(SEXP s1, SEXP s2, SEXP s3) {
   return R_NilValue;
 }
 
-SEXP R_g_object_set_enum(SEXP s1, SEXP s2, SEXP s3) {
-  GObject* v1 = (GObject*)get_ptr(s1);
-  if (!v1) Rf_error("Invalid GObject pointer");
-
-  const char* property_name = get_property_name(s2);
-  int value = Rf_asInteger(s3);
-  if (value == NA_INTEGER) Rf_error("value must not be NA");
-
-  GObjectClass* klass = G_OBJECT_GET_CLASS(v1);
-  GParamSpec* pspec = g_object_class_find_property(klass, property_name);
-  if (!pspec)
-    Rf_error("object has no property '%s'", property_name);
-
-  GValue gval = G_VALUE_INIT;
-  GType ptype = G_PARAM_SPEC_VALUE_TYPE(pspec);
-  g_value_init(&gval, ptype);
-
-  GType fundamental = G_TYPE_FUNDAMENTAL(ptype);
-  if (fundamental == G_TYPE_INT)
-    g_value_set_int(&gval, value);
-  else if (fundamental == G_TYPE_UINT)
-    g_value_set_uint(&gval, (guint)value);
-  else if (fundamental == G_TYPE_LONG)
-    g_value_set_long(&gval, (glong)value);
-  else if (fundamental == G_TYPE_ULONG)
-    g_value_set_ulong(&gval, (gulong)value);
-  else if (fundamental == G_TYPE_ENUM)
-    g_value_set_enum(&gval, value);
-  else if (fundamental == G_TYPE_FLAGS)
-    g_value_set_flags(&gval, (guint)value);
-  else if (fundamental == G_TYPE_BOOLEAN)
-    g_value_set_boolean(&gval, (gboolean)(value != 0));
-  else {
-    g_value_unset(&gval);
-    Rf_error("property '%s' has type '%s' which is not an integer/enum type",
-             property_name, g_type_name(ptype));
-  }
-
-  g_object_set_property(v1, property_name, &gval);
-  g_value_unset(&gval);
-  return R_NilValue;
-}
-
 SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type, SEXP buttons, SEXP message) {
   GtkWindow *parent = NULL;
   if (parent_ptr != R_NilValue) {
@@ -431,45 +388,4 @@ SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type, SEXP 
 SEXP R_raw_to_extptr(SEXP s) {
   if (TYPEOF(s) != RAWSXP) Rf_error("expected raw vector");
   return R_MakeExternalPtr(RAW(s), s, R_NilValue);
-}
-
-extern SEXP make_gobject_ptr(gpointer obj);
-
-SEXP R_glist_to_r_list(SEXP s_glist, SEXP s_free_list) {
-  GList *list = (GList *)(s_glist == R_NilValue ? NULL : R_ExternalPtrAddr(s_glist));
-  int free_list = Rf_asLogical(s_free_list);
-
-  int n = 0;
-  for (GList *l = list; l != NULL; l = l->next) n++;
-
-  SEXP result = PROTECT(Rf_allocVector(VECSXP, n));
-  int i = 0;
-  for (GList *l = list; l != NULL; l = l->next, i++) {
-    SET_VECTOR_ELT(result, i, make_gobject_ptr(l->data));
-  }
-
-  if (free_list && list)
-    g_list_free(list);
-
-  UNPROTECT(1);
-  return result;
-}
-
-SEXP R_gtk_list_box_get_selected_rows_unpacked(SEXP s1) {
-  GtkListBox *box = (GtkListBox *)R_ExternalPtrAddr(s1);
-  if (!box) Rf_error("Invalid GtkListBox pointer");
-  GList *list = gtk_list_box_get_selected_rows(box);
-
-  int n = 0;
-  for (GList *l = list; l != NULL; l = l->next) n++;
-
-  SEXP result = PROTECT(Rf_allocVector(VECSXP, n));
-  int i = 0;
-  for (GList *l = list; l != NULL; l = l->next, i++) {
-    SET_VECTOR_ELT(result, i, make_gobject_ptr(l->data));
-  }
-  g_list_free(list);
-
-  UNPROTECT(1);
-  return result;
 }

@@ -78,9 +78,9 @@ gLogWriterSupportsColor(output_fd)
 
 \item{log_levels}{LogLevelFlags}
 
-\item{log_func}{function — LogFunc function(log_domain, log_level, message)}
+\item{log_func}{function — LogFunc callback}
 
-\item{func}{function — LogWriterFunc function(log_level, fields, n_fields)}
+\item{func}{function — LogWriterFunc callback}
 
 \item{fields}{LogField}
 

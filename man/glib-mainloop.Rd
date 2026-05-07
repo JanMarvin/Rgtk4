@@ -238,7 +238,7 @@ gSourceSetDummyCallback(source)
 
 \item{source_id}{guint}
 
-\item{function_}{function — SourceFunc function()}
+\item{function_}{function — SourceFunc callback}
 
 \item{may_block}{gboolean}
 
@@ -260,7 +260,7 @@ gSourceSetDummyCallback(source)
 
 \item{timeval}{TimeVal}
 
-\item{func}{function — SourceFunc function()}
+\item{func}{function — SourceFunc callback}
 
 \item{callback_data}{gpointer}
 

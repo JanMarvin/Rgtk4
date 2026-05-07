@@ -779,7 +779,7 @@ gtkTreeViewColumnSetWidget(tree_column, widget)
 
 \item{model}{TreeModel}
 
-\item{func}{function — TreeCellDataFunc function(tree_column, cell, tree_model, iter)}
+\item{func}{function — TreeCellDataFunc callback}
 
 \item{tree_model}{TreeModel}
 
@@ -905,7 +905,7 @@ gtkTreeViewColumnSetWidget(tree_column, widget)
 
 \item{entry}{Editable}
 
-\item{search_equal_func}{function — TreeViewSearchEqualFunc function(model, column, key, iter, search_data)}
+\item{search_equal_func}{function — TreeViewSearchEqualFunc callback}
 
 \item{tooltip}{Tooltip}
 

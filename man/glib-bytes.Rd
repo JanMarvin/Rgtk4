@@ -105,7 +105,7 @@ gBytesIconGetBytes(icon)
 
 \item{reserved_size}{guint}
 
-\item{compare_func}{function — CompareDataFunc function(a, b)}
+\item{compare_func}{function — CompareDataFunc callback}
 
 \item{size}{gsize}
 

@@ -207,7 +207,7 @@ gdkPixbufGetFileInfo <- function(filename) {
 #'
 #' @param filename filename
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkPixbufGetFileInfoAsync <- function(filename, cancellable, callback) {
@@ -252,7 +252,7 @@ gdkPixbufInitModules <- function(path) {
 #'
 #' @param stream Gio.InputStream
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkPixbufNewFromStreamAsync <- function(stream, cancellable, callback) {
@@ -268,7 +268,7 @@ gdkPixbufNewFromStreamAsync <- function(stream, cancellable, callback) {
 #' @param height gint
 #' @param preserve_aspect_ratio gboolean
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkPixbufNewFromStreamAtScaleAsync <- function(stream, width, height, preserve_aspect_ratio, cancellable, callback) {
@@ -671,7 +671,7 @@ gdkPixbufSaveToBufferv <- function(pixbuf, type, option_keys, option_values) {
 #' @title gdkPixbufSaveToCallbackv
 #'
 #' @param pixbuf Pixbuf
-#' @param save_func function — PixbufSaveFunc function(buf, count, error)
+#' @param save_func function — PixbufSaveFunc callback
 #' @param type utf8
 #' @param option_keys utf8
 #' @param option_values utf8
@@ -707,7 +707,7 @@ gdkPixbufSaveToStreamv <- function(pixbuf, stream, type, option_keys, option_val
 #' @param option_keys utf8
 #' @param option_values utf8
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkPixbufSaveToStreamvAsync <- function(pixbuf, stream, type, option_keys, option_values, cancellable, callback) {
@@ -828,7 +828,7 @@ gdkPixbufAnimationNewFromStreamFinish <- function(async_result) {
 #'
 #' @param stream Gio.InputStream
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
+#' @param callback function — Gio.AsyncReadyCallback callback
 #' @return Return value from C function
 #' @export
 gdkPixbufAnimationNewFromStreamAsync <- function(stream, cancellable, callback) {

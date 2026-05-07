@@ -336,7 +336,7 @@ SEXP R_graphene_box_get_depth(SEXP s1) {
   float _ret = (float)graphene_box_get_depth(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -352,7 +352,7 @@ SEXP R_graphene_box_get_height(SEXP s1) {
   float _ret = (float)graphene_box_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -436,7 +436,7 @@ SEXP R_graphene_box_get_width(SEXP s1) {
   float _ret = (float)graphene_box_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -802,7 +802,7 @@ SEXP R_graphene_euler_get_alpha(SEXP s1) {
   float _ret = (float)graphene_euler_get_alpha(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -818,7 +818,7 @@ SEXP R_graphene_euler_get_beta(SEXP s1) {
   float _ret = (float)graphene_euler_get_beta(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -834,7 +834,7 @@ SEXP R_graphene_euler_get_gamma(SEXP s1) {
   float _ret = (float)graphene_euler_get_gamma(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -866,7 +866,7 @@ SEXP R_graphene_euler_get_x(SEXP s1) {
   float _ret = (float)graphene_euler_get_x(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -882,7 +882,7 @@ SEXP R_graphene_euler_get_y(SEXP s1) {
   float _ret = (float)graphene_euler_get_y(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -898,7 +898,7 @@ SEXP R_graphene_euler_get_z(SEXP s1) {
   float _ret = (float)graphene_euler_get_z(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -1423,7 +1423,7 @@ SEXP R_graphene_matrix_determinant(SEXP s1) {
   float _ret = (float)graphene_matrix_determinant(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -1500,7 +1500,7 @@ SEXP R_graphene_matrix_get_value(SEXP s1, SEXP s2, SEXP s3) {
   float _ret = (float)graphene_matrix_get_value(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -1516,7 +1516,7 @@ SEXP R_graphene_matrix_get_x_scale(SEXP s1) {
   float _ret = (float)graphene_matrix_get_x_scale(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -1532,7 +1532,7 @@ SEXP R_graphene_matrix_get_x_translation(SEXP s1) {
   float _ret = (float)graphene_matrix_get_x_translation(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -1548,7 +1548,7 @@ SEXP R_graphene_matrix_get_y_scale(SEXP s1) {
   float _ret = (float)graphene_matrix_get_y_scale(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -1564,7 +1564,7 @@ SEXP R_graphene_matrix_get_y_translation(SEXP s1) {
   float _ret = (float)graphene_matrix_get_y_translation(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -1580,7 +1580,7 @@ SEXP R_graphene_matrix_get_z_scale(SEXP s1) {
   float _ret = (float)graphene_matrix_get_z_scale(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -1596,7 +1596,7 @@ SEXP R_graphene_matrix_get_z_translation(SEXP s1) {
   float _ret = (float)graphene_matrix_get_z_translation(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -2281,32 +2281,32 @@ SEXP R_graphene_matrix_to_2d(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_xx)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_xx)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("xx"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_yx)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_yx)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("yx"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarReal((double)(size_t)(_out_xy)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_xy)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 3, Rf_mkChar("xy"));
-  SET_VECTOR_ELT(_ans, 4, Rf_ScalarReal((double)(size_t)(_out_yy)));
+  SET_VECTOR_ELT(_ans, 4, Rf_ScalarInteger((int)(_out_yy)));
   if (VECTOR_ELT(_ans, 4) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 4), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 4, Rf_mkChar("yy"));
-  SET_VECTOR_ELT(_ans, 5, Rf_ScalarReal((double)(size_t)(_out_x_0)));
+  SET_VECTOR_ELT(_ans, 5, Rf_ScalarInteger((int)(_out_x_0)));
   if (VECTOR_ELT(_ans, 5) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 5), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 5, Rf_mkChar("x_0"));
-  SET_VECTOR_ELT(_ans, 6, Rf_ScalarReal((double)(size_t)(_out_y_0)));
+  SET_VECTOR_ELT(_ans, 6, Rf_ScalarInteger((int)(_out_y_0)));
   if (VECTOR_ELT(_ans, 6) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 6), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -2323,7 +2323,7 @@ SEXP R_graphene_matrix_to_float(SEXP s1) {
   graphene_matrix_to_float(v1, &_out_v);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_v)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_v)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -2612,7 +2612,7 @@ SEXP R_graphene_plane_distance(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_plane_distance(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -2652,7 +2652,7 @@ SEXP R_graphene_plane_get_constant(SEXP s1) {
   float _ret = (float)graphene_plane_get_constant(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -2888,17 +2888,17 @@ SEXP R_graphene_point_distance(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_point_distance(v1, v2, &_out_d_x, &_out_d_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_d_x)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_d_x)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("d_x"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_d_y)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_d_y)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -3131,7 +3131,7 @@ SEXP R_graphene_point3d_distance(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_point3d_distance(v1, v2, &_out_delta);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -3153,7 +3153,7 @@ SEXP R_graphene_point3d_dot(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_point3d_dot(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -3286,7 +3286,7 @@ SEXP R_graphene_point3d_length(SEXP s1) {
   float _ret = (float)graphene_point3d_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -3592,7 +3592,7 @@ SEXP R_graphene_quaternion_dot(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_quaternion_dot(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -3946,7 +3946,7 @@ SEXP R_graphene_quaternion_to_angle_vec3(SEXP s1) {
   graphene_quaternion_to_angle_vec3(v1, &_out_angle, &_out_axis);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_angle)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_angle)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -3970,17 +3970,17 @@ SEXP R_graphene_quaternion_to_angles(SEXP s1) {
   graphene_quaternion_to_angles(v1, &_out_deg_x, &_out_deg_y, &_out_deg_z);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_deg_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_deg_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("deg_x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_deg_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_deg_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("deg_y"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_deg_z)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_deg_z)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4016,17 +4016,17 @@ SEXP R_graphene_quaternion_to_radians(SEXP s1) {
   graphene_quaternion_to_radians(v1, &_out_rad_x, &_out_rad_y, &_out_rad_z);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_rad_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_rad_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("rad_x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_rad_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_rad_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("rad_y"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarReal((double)(size_t)(_out_rad_z)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_rad_z)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4142,7 +4142,7 @@ SEXP R_graphene_ray_get_distance_to_plane(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_ray_get_distance_to_plane(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4159,7 +4159,7 @@ SEXP R_graphene_ray_get_distance_to_point(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_ray_get_distance_to_point(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4291,7 +4291,7 @@ SEXP R_graphene_ray_intersect_box(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("RayIntersectionKind"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_t_out)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_t_out)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4314,7 +4314,7 @@ SEXP R_graphene_ray_intersect_sphere(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("RayIntersectionKind"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_t_out)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_t_out)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4337,7 +4337,7 @@ SEXP R_graphene_ray_intersect_triangle(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("RayIntersectionKind"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_t_out)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_t_out)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4480,7 +4480,7 @@ SEXP R_graphene_rect_get_area(SEXP s1) {
   float _ret = (float)graphene_rect_get_area(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4547,7 +4547,7 @@ SEXP R_graphene_rect_get_height(SEXP s1) {
   float _ret = (float)graphene_rect_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4614,7 +4614,7 @@ SEXP R_graphene_rect_get_width(SEXP s1) {
   float _ret = (float)graphene_rect_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4630,7 +4630,7 @@ SEXP R_graphene_rect_get_x(SEXP s1) {
   float _ret = (float)graphene_rect_get_x(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -4646,7 +4646,7 @@ SEXP R_graphene_rect_get_y(SEXP s1) {
   float _ret = (float)graphene_rect_get_y(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -5220,7 +5220,7 @@ SEXP R_graphene_sphere_distance(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_sphere_distance(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -5294,7 +5294,7 @@ SEXP R_graphene_sphere_get_radius(SEXP s1) {
   float _ret = (float)graphene_sphere_get_radius(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -5485,7 +5485,7 @@ SEXP R_graphene_triangle_get_area(SEXP s1) {
   float _ret = (float)graphene_triangle_get_area(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -5814,7 +5814,7 @@ SEXP R_graphene_vec2_dot(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_vec2_dot(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -5854,7 +5854,7 @@ SEXP R_graphene_vec2_get_x(SEXP s1) {
   float _ret = (float)graphene_vec2_get_x(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -5870,7 +5870,7 @@ SEXP R_graphene_vec2_get_y(SEXP s1) {
   float _ret = (float)graphene_vec2_get_y(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -5978,7 +5978,7 @@ SEXP R_graphene_vec2_length(SEXP s1) {
   float _ret = (float)graphene_vec2_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6137,7 +6137,7 @@ SEXP R_graphene_vec2_to_float(SEXP s1) {
   graphene_vec2_to_float(v1, &_out_dest);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_dest)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_dest)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6323,7 +6323,7 @@ SEXP R_graphene_vec3_dot(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_vec3_dot(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6363,7 +6363,7 @@ SEXP R_graphene_vec3_get_x(SEXP s1) {
   float _ret = (float)graphene_vec3_get_x(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6465,7 +6465,7 @@ SEXP R_graphene_vec3_get_y(SEXP s1) {
   float _ret = (float)graphene_vec3_get_y(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6481,7 +6481,7 @@ SEXP R_graphene_vec3_get_z(SEXP s1) {
   float _ret = (float)graphene_vec3_get_z(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6590,7 +6590,7 @@ SEXP R_graphene_vec3_length(SEXP s1) {
   float _ret = (float)graphene_vec3_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6749,7 +6749,7 @@ SEXP R_graphene_vec3_to_float(SEXP s1) {
   graphene_vec3_to_float(v1, &_out_dest);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_dest)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_dest)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6940,7 +6940,7 @@ SEXP R_graphene_vec4_dot(SEXP s1, SEXP s2) {
   float _ret = (float)graphene_vec4_dot(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6980,7 +6980,7 @@ SEXP R_graphene_vec4_get_w(SEXP s1) {
   float _ret = (float)graphene_vec4_get_w(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -6996,7 +6996,7 @@ SEXP R_graphene_vec4_get_x(SEXP s1) {
   float _ret = (float)graphene_vec4_get_x(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -7046,7 +7046,7 @@ SEXP R_graphene_vec4_get_y(SEXP s1) {
   float _ret = (float)graphene_vec4_get_y(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -7062,7 +7062,7 @@ SEXP R_graphene_vec4_get_z(SEXP s1) {
   float _ret = (float)graphene_vec4_get_z(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -7223,7 +7223,7 @@ SEXP R_graphene_vec4_length(SEXP s1) {
   float _ret = (float)graphene_vec4_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -7382,7 +7382,7 @@ SEXP R_graphene_vec4_to_float(SEXP s1) {
   graphene_vec4_to_float(v1, &_out_dest);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_dest)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_dest)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }

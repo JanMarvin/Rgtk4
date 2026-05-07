@@ -237,17 +237,16 @@ SEXP R_pango_attr_iterator_get(SEXP s1, SEXP s2) {
 SEXP R_pango_attr_iterator_get_attrs(SEXP s1) {
   PangoAttrIterator* v1 = (PangoAttrIterator*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_iterator_get_attrs(v1);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_slist_free((GSList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -280,7 +279,7 @@ SEXP R_pango_attr_iterator_next(SEXP s1) {
   gboolean _ret = (gboolean)pango_attr_iterator_next(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -298,12 +297,12 @@ SEXP R_pango_attr_iterator_range(SEXP s1) {
   pango_attr_iterator_range(v1, &_out_start, &_out_end);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_start)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_start)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("start"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_end)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_end)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -376,7 +375,7 @@ SEXP R_pango_attr_list_equal(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_attr_list_equal(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -407,17 +406,16 @@ SEXP R_pango_attr_list_filter(SEXP s1, SEXP s2) {
 SEXP R_pango_attr_list_get_attributes(SEXP s1) {
   PangoAttrList* v1 = (PangoAttrList*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_attr_list_get_attributes(v1);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_slist_free((GSList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -801,7 +799,7 @@ SEXP R_pango_attribute_equal(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_attribute_equal(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -865,7 +863,7 @@ SEXP R_pango_color_parse(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_color_parse(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -883,7 +881,7 @@ SEXP R_pango_color_parse_with_alpha(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_color_parse_with_alpha(v1, &_out_alpha, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1089,7 +1087,7 @@ SEXP R_pango_context_get_round_glyph_positions(SEXP s1) {
   gboolean _ret = (gboolean)pango_context_get_round_glyph_positions(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1105,7 +1103,7 @@ SEXP R_pango_context_get_serial(SEXP s1) {
   guint _ret = (guint)pango_context_get_serial(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -1128,7 +1126,7 @@ SEXP R_pango_context_list_families(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("FontFamily"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("families"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_families)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_families)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1349,7 +1347,7 @@ SEXP R_pango_coverage_to_bytes(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint8"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("bytes"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_bytes)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_bytes)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1471,7 +1469,7 @@ SEXP R_pango_font_get_features(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("HarfBuzz.feature_t"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("features"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_num_features)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_num_features)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -1561,7 +1559,7 @@ SEXP R_pango_font_has_char(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_font_has_char(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1611,7 +1609,7 @@ SEXP R_pango_font_description_better_match(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)pango_font_description_better_match(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1660,7 +1658,7 @@ SEXP R_pango_font_description_equal(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_font_description_equal(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1731,7 +1729,7 @@ SEXP R_pango_font_description_get_size(SEXP s1) {
   gint _ret = (gint)pango_font_description_get_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -1747,7 +1745,7 @@ SEXP R_pango_font_description_get_size_is_absolute(SEXP s1) {
   gboolean _ret = (gboolean)pango_font_description_get_size_is_absolute(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -1843,7 +1841,7 @@ SEXP R_pango_font_description_hash(SEXP s1) {
   guint _ret = (guint)pango_font_description_hash(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -2069,7 +2067,7 @@ SEXP R_pango_font_face_is_synthesized(SEXP s1) {
   gboolean _ret = (gboolean)pango_font_face_is_synthesized(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2092,7 +2090,7 @@ SEXP R_pango_font_face_list_sizes(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("sizes"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_sizes)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_sizes)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2141,7 +2139,7 @@ SEXP R_pango_font_family_is_monospace(SEXP s1) {
   gboolean _ret = (gboolean)pango_font_family_is_monospace(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2157,7 +2155,7 @@ SEXP R_pango_font_family_is_variable(SEXP s1) {
   gboolean _ret = (gboolean)pango_font_family_is_variable(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2180,7 +2178,7 @@ SEXP R_pango_font_family_list_faces(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("FontFace"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("faces"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_faces)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_faces)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2236,7 +2234,7 @@ SEXP R_pango_font_map_get_serial(SEXP s1) {
   guint _ret = (guint)pango_font_map_get_serial(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -2259,7 +2257,7 @@ SEXP R_pango_font_map_list_families(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("FontFamily"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("families"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_families)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_families)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2312,7 +2310,7 @@ SEXP R_pango_font_metrics_get_approximate_char_width(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_approximate_char_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2328,7 +2326,7 @@ SEXP R_pango_font_metrics_get_approximate_digit_width(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_approximate_digit_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2344,7 +2342,7 @@ SEXP R_pango_font_metrics_get_ascent(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_ascent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2360,7 +2358,7 @@ SEXP R_pango_font_metrics_get_descent(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_descent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2376,7 +2374,7 @@ SEXP R_pango_font_metrics_get_height(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2392,7 +2390,7 @@ SEXP R_pango_font_metrics_get_strikethrough_position(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_strikethrough_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2408,7 +2406,7 @@ SEXP R_pango_font_metrics_get_strikethrough_thickness(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_strikethrough_thickness(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2424,7 +2422,7 @@ SEXP R_pango_font_metrics_get_underline_position(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_underline_position(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2440,7 +2438,7 @@ SEXP R_pango_font_metrics_get_underline_thickness(SEXP s1) {
   int _ret = (int)pango_font_metrics_get_underline_thickness(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2544,7 +2542,7 @@ SEXP R_pango_fontset_simple_size(SEXP s1) {
   int _ret = (int)pango_fontset_simple_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2560,17 +2558,16 @@ SEXP R_pango_glyph_item_apply_attrs(SEXP s1, SEXP s2, SEXP s3) {
   const char* v2 = (const char*)(CHAR(STRING_ELT(s2,0))); (void)v2;
   PangoAttrList* v3 = (PangoAttrList*)(get_ptr(s3)); (void)v3;
   gconstpointer _ret = (gconstpointer)pango_glyph_item_apply_attrs(v1, v2, v3);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_slist_free((GSList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -2604,7 +2601,7 @@ SEXP R_pango_glyph_item_get_logical_widths(SEXP s1, SEXP s2) {
   pango_glyph_item_get_logical_widths(v1, v2, &_out_logical_widths);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_logical_widths)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_logical_widths)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2673,7 +2670,7 @@ SEXP R_pango_glyph_item_iter_init_end(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)pango_glyph_item_iter_init_end(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2691,7 +2688,7 @@ SEXP R_pango_glyph_item_iter_init_start(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)pango_glyph_item_iter_init_start(v1, v2, v3);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2707,7 +2704,7 @@ SEXP R_pango_glyph_item_iter_next_cluster(SEXP s1) {
   gboolean _ret = (gboolean)pango_glyph_item_iter_next_cluster(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2723,7 +2720,7 @@ SEXP R_pango_glyph_item_iter_prev_cluster(SEXP s1) {
   gboolean _ret = (gboolean)pango_glyph_item_iter_prev_cluster(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -2832,7 +2829,7 @@ SEXP R_pango_glyph_string_get_logical_widths(SEXP s1, SEXP s2, SEXP s3, SEXP s4)
   pango_glyph_string_get_logical_widths(v1, v2, v3, v4, &_out_logical_widths);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_logical_widths)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_logical_widths)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2848,7 +2845,7 @@ SEXP R_pango_glyph_string_get_width(SEXP s1) {
   int _ret = (int)pango_glyph_string_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2870,7 +2867,7 @@ SEXP R_pango_glyph_string_index_to_x(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
   pango_glyph_string_index_to_x(v1, v2, v3, v4, v5, v6, &_out_x_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_x_pos)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x_pos)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2893,7 +2890,7 @@ SEXP R_pango_glyph_string_index_to_x_full(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SE
   pango_glyph_string_index_to_x_full(v1, v2, v3, v4, v5, v6, v7, &_out_x_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_x_pos)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x_pos)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2923,12 +2920,12 @@ SEXP R_pango_glyph_string_x_to_index(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5
   pango_glyph_string_x_to_index(v1, v2, v3, v4, v5, &_out_index_, &_out_trailing);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_index_)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_index_)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("index_"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_trailing)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_trailing)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -2997,7 +2994,7 @@ SEXP R_pango_gravity_to_rotation(SEXP s1) {
   double _ret = (double)pango_gravity_to_rotation(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -3100,7 +3097,7 @@ SEXP R_pango_language_get_scripts(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("Script"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_num_scripts)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_num_scripts)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3117,7 +3114,7 @@ SEXP R_pango_language_includes_script(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_language_includes_script(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3134,7 +3131,7 @@ SEXP R_pango_language_matches(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_language_matches(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3304,7 +3301,7 @@ SEXP R_pango_layout_get_auto_dir(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_get_auto_dir(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3320,7 +3317,7 @@ SEXP R_pango_layout_get_baseline(SEXP s1) {
   int _ret = (int)pango_layout_get_baseline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3360,7 +3357,7 @@ SEXP R_pango_layout_get_character_count(SEXP s1) {
   gint _ret = (gint)pango_layout_get_character_count(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3488,7 +3485,7 @@ SEXP R_pango_layout_get_height(SEXP s1) {
   int _ret = (int)pango_layout_get_height(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3504,7 +3501,7 @@ SEXP R_pango_layout_get_indent(SEXP s1) {
   int _ret = (int)pango_layout_get_indent(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3536,7 +3533,7 @@ SEXP R_pango_layout_get_justify(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_get_justify(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3552,7 +3549,7 @@ SEXP R_pango_layout_get_justify_last_line(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_get_justify_last_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3585,7 +3582,7 @@ SEXP R_pango_layout_get_line_count(SEXP s1) {
   int _ret = (int)pango_layout_get_line_count(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3618,7 +3615,7 @@ SEXP R_pango_layout_get_line_spacing(SEXP s1) {
   float _ret = (float)pango_layout_get_line_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gfloat"));
   }
@@ -3632,32 +3629,32 @@ SEXP R_pango_layout_get_line_spacing(SEXP s1) {
 SEXP R_pango_layout_get_lines(SEXP s1) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_layout_get_lines(v1);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
 SEXP R_pango_layout_get_lines_readonly(SEXP s1) {
   PangoLayout* v1 = (PangoLayout*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_layout_get_lines_readonly(v1);
-  {
-  GSList *_glist = (GSList*)_ret;
-  int _n = 0; for (GSList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GSList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.SList"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -3673,7 +3670,7 @@ SEXP R_pango_layout_get_log_attrs(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("LogAttr"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("attrs"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_attrs)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_attrs)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3695,7 +3692,7 @@ SEXP R_pango_layout_get_log_attrs_readonly(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("LogAttr"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_attrs)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_attrs)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3736,12 +3733,12 @@ SEXP R_pango_layout_get_pixel_size(SEXP s1) {
   pango_layout_get_pixel_size(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3757,7 +3754,7 @@ SEXP R_pango_layout_get_serial(SEXP s1) {
   guint _ret = (guint)pango_layout_get_serial(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("guint"));
   }
@@ -3773,7 +3770,7 @@ SEXP R_pango_layout_get_single_paragraph_mode(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_get_single_paragraph_mode(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3791,12 +3788,12 @@ SEXP R_pango_layout_get_size(SEXP s1) {
   pango_layout_get_size(v1, &_out_width, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_width)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_width)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("width"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3812,7 +3809,7 @@ SEXP R_pango_layout_get_spacing(SEXP s1) {
   int _ret = (int)pango_layout_get_spacing(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3860,7 +3857,7 @@ SEXP R_pango_layout_get_unknown_glyphs_count(SEXP s1) {
   int _ret = (int)pango_layout_get_unknown_glyphs_count(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3876,7 +3873,7 @@ SEXP R_pango_layout_get_width(SEXP s1) {
   int _ret = (int)pango_layout_get_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3912,12 +3909,12 @@ SEXP R_pango_layout_index_to_line_x(SEXP s1, SEXP s2, SEXP s3) {
   pango_layout_index_to_line_x(v1, v2, v3, &_out_line, &_out_x_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_line)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_line)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("line"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_x_pos)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_x_pos)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -3951,7 +3948,7 @@ SEXP R_pango_layout_is_ellipsized(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_is_ellipsized(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3967,7 +3964,7 @@ SEXP R_pango_layout_is_wrapped(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_is_wrapped(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -3989,12 +3986,12 @@ SEXP R_pango_layout_move_cursor_visually(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEX
   pango_layout_move_cursor_visually(v1, v2, v3, v4, v5, &_out_new_index, &_out_new_trailing);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_new_index)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_new_index)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("new_index"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_new_trailing)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_new_trailing)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4120,7 +4117,7 @@ SEXP R_pango_layout_set_markup_with_accel(SEXP s1, SEXP s2, SEXP s3, SEXP s4) {
   pango_layout_set_markup_with_accel(v1, v2, v3, v4, &_out_accel_char);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_accel_char)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_accel_char)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gunichar"));
   }
@@ -4188,7 +4185,7 @@ SEXP R_pango_layout_write_to_file(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)pango_layout_write_to_file(v1, v2, v3, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4208,17 +4205,17 @@ SEXP R_pango_layout_xy_to_index(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)pango_layout_xy_to_index(v1, v2, v3, &_out_index_, &_out_trailing);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_index_)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_index_)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("index_"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_trailing)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_trailing)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4234,7 +4231,7 @@ SEXP R_pango_layout_deserialize_error_quark(void) {
   GQuark _ret = (GQuark)pango_layout_deserialize_error_quark();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, R_MakeExternalPtr((void*)(_ret), R_NilValue, R_NilValue));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.Quark"));
   }
@@ -4250,7 +4247,7 @@ SEXP R_pango_layout_iter_at_last_line(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_iter_at_last_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4289,7 +4286,7 @@ SEXP R_pango_layout_iter_get_baseline(SEXP s1) {
   int _ret = (int)pango_layout_iter_get_baseline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4345,7 +4342,7 @@ SEXP R_pango_layout_iter_get_index(SEXP s1) {
   int _ret = (int)pango_layout_iter_get_index(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4457,12 +4454,12 @@ SEXP R_pango_layout_iter_get_line_yrange(SEXP s1) {
   pango_layout_iter_get_line_yrange(v1, &_out_y0_, &_out_y1_);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_y0_)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_y0_)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("y0_"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_y1_)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y1_)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4494,7 +4491,7 @@ SEXP R_pango_layout_iter_get_run_baseline(SEXP s1) {
   int _ret = (int)pango_layout_iter_get_run_baseline(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4549,7 +4546,7 @@ SEXP R_pango_layout_iter_next_char(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_iter_next_char(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4565,7 +4562,7 @@ SEXP R_pango_layout_iter_next_cluster(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_iter_next_cluster(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4581,7 +4578,7 @@ SEXP R_pango_layout_iter_next_line(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_iter_next_line(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4597,7 +4594,7 @@ SEXP R_pango_layout_iter_next_run(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_iter_next_run(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4637,7 +4634,7 @@ SEXP R_pango_layout_line_get_height(SEXP s1) {
   pango_layout_line_get_height(v1, &_out_height);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_height)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_height)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4653,7 +4650,7 @@ SEXP R_pango_layout_line_get_length(SEXP s1) {
   int _ret = (int)pango_layout_line_get_length(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4708,7 +4705,7 @@ SEXP R_pango_layout_line_get_start_index(SEXP s1) {
   int _ret = (int)pango_layout_line_get_start_index(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4733,7 +4730,7 @@ SEXP R_pango_layout_line_get_x_ranges(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("ranges"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_n_ranges)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_n_ranges)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4752,7 +4749,7 @@ SEXP R_pango_layout_line_index_to_x(SEXP s1, SEXP s2, SEXP s3) {
   pango_layout_line_index_to_x(v1, v2, v3, &_out_x_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_x_pos)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x_pos)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4768,7 +4765,7 @@ SEXP R_pango_layout_line_is_paragraph_start(SEXP s1) {
   gboolean _ret = (gboolean)pango_layout_line_is_paragraph_start(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -4810,17 +4807,17 @@ SEXP R_pango_layout_line_x_to_index(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_layout_line_x_to_index(v1, v2, &_out_index_, &_out_trailing);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_index_)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_index_)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("index_"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_trailing)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_trailing)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -4867,7 +4864,7 @@ SEXP R_pango_matrix_get_font_scale_factor(SEXP s1) {
   double _ret = (double)pango_matrix_get_font_scale_factor(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -4885,12 +4882,12 @@ SEXP R_pango_matrix_get_font_scale_factors(SEXP s1) {
   pango_matrix_get_font_scale_factors(v1, &_out_xscale, &_out_yscale);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_xscale)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_xscale)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("xscale"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_yscale)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_yscale)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -4906,7 +4903,7 @@ SEXP R_pango_matrix_get_slant_ratio(SEXP s1) {
   double _ret = (double)pango_matrix_get_slant_ratio(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -4941,12 +4938,12 @@ SEXP R_pango_matrix_transform_distance(SEXP s1) {
   pango_matrix_transform_distance(v1, &_out_dx, &_out_dy);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_dx)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_dx)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("dx"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_dy)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_dy)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -4981,12 +4978,12 @@ SEXP R_pango_matrix_transform_point(SEXP s1) {
   pango_matrix_transform_point(v1, &_out_x, &_out_y);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_out_x)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_x)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("x"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarReal((double)(size_t)(_out_y)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_y)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -5333,7 +5330,7 @@ SEXP R_pango_script_iter_next(SEXP s1) {
   gboolean _ret = (gboolean)pango_script_iter_next(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -5390,7 +5387,7 @@ SEXP R_pango_tab_array_get_decimal_point(SEXP s1, SEXP s2) {
   gunichar _ret = (gunichar)pango_tab_array_get_decimal_point(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gunichar"));
   }
@@ -5406,7 +5403,7 @@ SEXP R_pango_tab_array_get_positions_in_pixels(SEXP s1) {
   gboolean _ret = (gboolean)pango_tab_array_get_positions_in_pixels(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -5422,7 +5419,7 @@ SEXP R_pango_tab_array_get_size(SEXP s1) {
   gint _ret = (gint)pango_tab_array_get_size(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -5446,7 +5443,7 @@ SEXP R_pango_tab_array_get_tab(SEXP s1, SEXP s2) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("TabAlign"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("alignment"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_location)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_location)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6168,12 +6165,12 @@ SEXP R_pango_find_paragraph_boundary(SEXP s1, SEXP s2) {
   pango_find_paragraph_boundary(v1, v2, &_out_paragraph_delimiter_index, &_out_next_paragraph_start);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_paragraph_delimiter_index)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_paragraph_delimiter_index)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("paragraph_delimiter_index"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_next_paragraph_start)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_next_paragraph_start)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6211,12 +6208,12 @@ SEXP R_pango_get_mirror_char(SEXP s1) {
   gboolean _ret = (gboolean)pango_get_mirror_char(v1, &_out_mirrored_ch);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_mirrored_ch)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_mirrored_ch)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gunichar"));
   }
@@ -6232,7 +6229,7 @@ SEXP R_pango_is_zero_width(SEXP s1) {
   gboolean _ret = (gboolean)pango_is_zero_width(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6251,17 +6248,16 @@ SEXP R_pango_itemize(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, SEXP s6) {
   PangoAttrList* v5 = (PangoAttrList*)(get_ptr(s5)); (void)v5;
   PangoAttrIterator* v6 = (s6 != R_NilValue) ? (PangoAttrIterator*)(get_ptr(s6)) : NULL; (void)v6;
   gconstpointer _ret = (gconstpointer)pango_itemize(v1, v2, v3, v4, v5, v6);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -6274,17 +6270,16 @@ SEXP R_pango_itemize_with_base_dir(SEXP s1, SEXP s2, SEXP s3, SEXP s4, SEXP s5, 
   PangoAttrList* v6 = (PangoAttrList*)(get_ptr(s6)); (void)v6;
   PangoAttrIterator* v7 = (s7 != R_NilValue) ? (PangoAttrIterator*)(get_ptr(s7)) : NULL; (void)v7;
   gconstpointer _ret = (gconstpointer)pango_itemize_with_base_dir(v1, v2, v3, v4, v5, v6, v7);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -6320,7 +6315,7 @@ SEXP R_pango_markup_parser_finish(SEXP s1) {
   gboolean _ret = (gboolean)pango_markup_parser_finish(v1, &_out_attr_list, &_out_text, &_out_accel_char, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6335,7 +6330,7 @@ SEXP R_pango_markup_parser_finish(SEXP s1) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("text"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_accel_char)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_accel_char)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gunichar"));
   }
@@ -6371,12 +6366,12 @@ SEXP R_pango_parse_enum(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)pango_parse_enum(v1, v2, &_out_value, v3, &_out_possible_values);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_value)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_value)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6403,7 +6398,7 @@ SEXP R_pango_parse_markup(SEXP s1, SEXP s2, SEXP s3) {
   gboolean _ret = (gboolean)pango_parse_markup(v1, v2, v3, &_out_attr_list, &_out_text, &_out_accel_char, &_err);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 4));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 4));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6418,7 +6413,7 @@ SEXP R_pango_parse_markup(SEXP s1, SEXP s2, SEXP s3) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 2, Rf_mkChar("text"));
-  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(size_t)(_out_accel_char)));
+  SET_VECTOR_ELT(_ans, 3, Rf_ScalarInteger((int)(_out_accel_char)));
   if (VECTOR_ELT(_ans, 3) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 3), Rf_install("glib_type"), Rf_mkString("gunichar"));
   }
@@ -6436,7 +6431,7 @@ SEXP R_pango_parse_stretch(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_parse_stretch(v1, &_out_stretch, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6459,7 +6454,7 @@ SEXP R_pango_parse_style(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_parse_style(v1, &_out_style, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6482,7 +6477,7 @@ SEXP R_pango_parse_variant(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_parse_variant(v1, &_out_variant, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6505,7 +6500,7 @@ SEXP R_pango_parse_weight(SEXP s1, SEXP s2) {
   gboolean _ret = (gboolean)pango_parse_weight(v1, &_out_weight, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6527,12 +6522,12 @@ SEXP R_pango_quantize_line_geometry(void) {
   pango_quantize_line_geometry(&_out_thickness, &_out_position);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_out_thickness)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_out_thickness)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
   SET_STRING_ELT(_ans_names, 0, Rf_mkChar("thickness"));
-  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(size_t)(_out_position)));
+  SET_VECTOR_ELT(_ans, 1, Rf_ScalarInteger((int)(_out_position)));
   if (VECTOR_ELT(_ans, 1) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6549,7 +6544,7 @@ SEXP R_pango_read_line(SEXP s1, SEXP s2) {
   gint _ret = (gint)pango_read_line(v1, v2);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6563,17 +6558,16 @@ SEXP R_pango_read_line(SEXP s1, SEXP s2) {
 SEXP R_pango_reorder_items(SEXP s1) {
   GList* v1 = (GList*)(get_ptr(s1)); (void)v1;
   gconstpointer _ret = (gconstpointer)pango_reorder_items(v1);
-  {
-  GList *_glist = (GList*)_ret;
-  int _n = 0; for (GList *_l = _glist; _l; _l = _l->next) _n++;
-  SEXP _list_ans = PROTECT(Rf_allocVector(VECSXP, _n));
-  int _i = 0; for (GList *_l = _glist; _l; _l = _l->next, _i++)
-    SET_VECTOR_ELT(_list_ans, _i, make_gobject_ptr(_l->data));
-  g_list_free((GList*)_ret);
-  UNPROTECT(1);
-  return _list_ans;
+  SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
+  SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
+  SET_VECTOR_ELT(_ans, 0, (_ret == NULL) ? R_NilValue : make_gobject_ptr((gpointer)_ret));
+  if (VECTOR_ELT(_ans, 0) != R_NilValue) {
+    Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("GLib.List"));
   }
-
+  SET_STRING_ELT(_ans_names, 0, Rf_mkChar("result"));
+  Rf_setAttrib(_ans, R_NamesSymbol, _ans_names);
+  UNPROTECT(2);
+  return _ans;
 }
 
 
@@ -6583,7 +6577,7 @@ SEXP R_pango_scan_int(void) {
   gboolean _ret = (gboolean)pango_scan_int(&_out_pos, &_out_out);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 3));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 3));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6593,7 +6587,7 @@ SEXP R_pango_scan_int(void) {
     Rf_setAttrib(VECTOR_ELT(_ans, 1), Rf_install("glib_type"), Rf_mkString("utf8"));
   }
   SET_STRING_ELT(_ans_names, 1, Rf_mkChar("pos"));
-  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(size_t)(_out_out)));
+  SET_VECTOR_ELT(_ans, 2, Rf_ScalarInteger((int)(_out_out)));
   if (VECTOR_ELT(_ans, 2) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 2), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6610,7 +6604,7 @@ SEXP R_pango_scan_string(SEXP s1) {
   gboolean _ret = (gboolean)pango_scan_string(&_out_pos, v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6632,7 +6626,7 @@ SEXP R_pango_scan_word(SEXP s1) {
   gboolean _ret = (gboolean)pango_scan_word(&_out_pos, v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6736,7 +6730,7 @@ SEXP R_pango_skip_space(void) {
   gboolean _ret = (gboolean)pango_skip_space(&_out_pos);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 2));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 2));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarLogical((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gboolean"));
   }
@@ -6826,7 +6820,7 @@ SEXP R_pango_units_from_double(SEXP s1) {
   int _ret = (int)pango_units_from_double(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }
@@ -6842,7 +6836,7 @@ SEXP R_pango_units_to_double(SEXP s1) {
   double _ret = (double)pango_units_to_double(v1);
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarReal((double)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gdouble"));
   }
@@ -6858,7 +6852,7 @@ SEXP R_pango_version(void) {
   int _ret = (int)pango_version();
   SEXP _ans = PROTECT(Rf_allocVector(VECSXP, 1));
   SEXP _ans_names = PROTECT(Rf_allocVector(STRSXP, 1));
-  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(size_t)(_ret)));
+  SET_VECTOR_ELT(_ans, 0, Rf_ScalarInteger((int)(_ret)));
   if (VECTOR_ELT(_ans, 0) != R_NilValue) {
     Rf_setAttrib(VECTOR_ELT(_ans, 0), Rf_install("glib_type"), Rf_mkString("gint"));
   }

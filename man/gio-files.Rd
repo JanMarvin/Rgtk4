@@ -871,7 +871,7 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{io_priority}{gint}
 
-\item{callback}{function — AsyncReadyCallback function(source_object, res)}
+\item{callback}{function — AsyncReadyCallback callback}
 
 \item{res}{AsyncResult}
 
@@ -879,7 +879,7 @@ gFileOutputStreamQueryInfoFinish(stream, result)
 
 \item{destination}{File}
 
-\item{progress_callback}{function — FileProgressCallback function(current_num_bytes, total_num_bytes)}
+\item{progress_callback}{function — FileProgressCallback callback}
 
 \item{result}{AsyncResult}
 

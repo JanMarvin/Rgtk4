@@ -146,9 +146,8 @@ SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun) {
     Rf_error("fun must be a function");
   }
 
-  guint signal_id = 0;
-  GQuark detail = 0;
-  if (!g_signal_parse_name(sig, G_OBJECT_TYPE(obj), &signal_id, &detail, TRUE)) {
+  guint signal_id = g_signal_lookup(sig, G_OBJECT_TYPE(obj));
+  if (signal_id == 0) {
     Rf_error("Signal '%s' not found on object", sig);
   }
 

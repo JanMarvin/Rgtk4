@@ -457,7 +457,7 @@ gtkPictureSetResource(self, resource_path)
 
 \item{col_align}{gfloat}
 
-\item{func}{function — IconViewForeachFunc function(icon_view, path)}
+\item{func}{function — IconViewForeachFunc callback}
 
 \item{single}{gboolean}
 
