@@ -6,6 +6,7 @@
 \alias{gObjectSetBoolean}
 \alias{gObjectSetInt}
 \alias{gObjectSetDouble}
+\alias{gObjectSetEnum}
 \title{GObject Property Setters}
 \usage{
 gObjectSetString(object, property, value)
@@ -15,6 +16,8 @@ gObjectSetBoolean(object, property, value)
 gObjectSetInt(object, property, value)
 
 gObjectSetDouble(object, property, value)
+
+gObjectSetEnum(object, property, value)
 }
 \arguments{
 \item{object}{GObject external pointer}

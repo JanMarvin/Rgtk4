@@ -585,7 +585,7 @@ gtkWidgetPaintableSetWidget(self, widget)
 
 \item{label}{Widget}
 
-\item{callback}{function — TickCallback callback}
+\item{callback}{function — TickCallback function(widget, frame_clock)}
 
 \item{width}{gint}
 
@@ -695,7 +695,7 @@ gtkWidgetPaintableSetWidget(self, widget)
 
 \item{callback_name}{utf8}
 
-\item{callback_symbol}{function — GObject.Callback callback}
+\item{callback_symbol}{function — GObject.Callback function()}
 
 \item{internal_child}{gboolean}
 
@@ -703,7 +703,7 @@ gtkWidgetPaintableSetWidget(self, widget)
 
 \item{parameter_type}{utf8}
 
-\item{activate}{function — WidgetActionActivateFunc callback}
+\item{activate}{function — WidgetActionActivateFunc function(widget, action_name, parameter)}
 
 \item{property_name}{utf8}
 

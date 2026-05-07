@@ -793,7 +793,7 @@ gskValueTakeRenderNode(value, node)
 
 \item{bytes}{GLib.Bytes}
 
-\item{error_func}{function — ParseErrorFunc callback}
+\item{error_func}{function — ParseErrorFunc function(start, end, error)}
 
 \item{cr}{cairo.Context}
 

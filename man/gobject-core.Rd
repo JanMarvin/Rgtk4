@@ -295,7 +295,7 @@ gSignalTypeCclosureNew(itype, struct_offset)
 
 \item{detail}{GLib.Quark}
 
-\item{hook_func}{function — SignalEmissionHook callback}
+\item{hook_func}{function — SignalEmissionHook function(ihint, n_param_values, param_values)}
 
 \item{instance_and_params}{Value}
 
@@ -323,7 +323,7 @@ gSignalTypeCclosureNew(itype, struct_offset)
 
 \item{signal_name}{utf8}
 
-\item{class_handler}{function — Callback callback}
+\item{class_handler}{function — Callback function()}
 
 \item{force_detail_quark}{gboolean}
 

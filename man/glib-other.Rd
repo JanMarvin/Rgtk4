@@ -5772,7 +5772,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{may_recurse}{gboolean}
 
-\item{marshaller}{function — HookCheckMarshaller callback}
+\item{marshaller}{function — HookCheckMarshaller function(hook, marshal_data)}
 
 \item{key_file}{KeyFile}
 
@@ -5884,7 +5884,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{replacement}{utf8}
 
-\item{eval}{function — RegexEvalCallback callback}
+\item{eval}{function — RegexEvalCallback function(match_info, result)}
 
 \item{max_tokens}{gint}
 
@@ -5916,9 +5916,9 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{pos}{utf8}
 
-\item{cmp_func}{function — CompareDataFunc callback}
+\item{cmp_func}{function — CompareDataFunc function(a, b)}
 
-\item{iter_cmp}{function — SequenceIterCompareFunc callback}
+\item{iter_cmp}{function — SequenceIterCompareFunc function(a, b)}
 
 \item{iter}{MenuLinkIter}
 
@@ -5966,7 +5966,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{data_p}{gpointer}
 
-\item{key_compare_func}{function — CompareDataFunc callback}
+\item{key_compare_func}{function — CompareDataFunc function(a, b)}
 
 \item{key_destroy_func}{DestroyNotify}
 
@@ -5974,9 +5974,9 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{lookup_key}{gpointer}
 
-\item{search_func}{function — CompareFunc callback}
+\item{search_func}{function — CompareFunc function(a, b)}
 
-\item{traverse_func}{function — TraverseFunc callback}
+\item{traverse_func}{function — TraverseFunc function(key, value)}
 
 \item{traverse_type}{TraverseType}
 
@@ -6072,7 +6072,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{pid}{Pid}
 
-\item{function_}{function — ChildWatchFunc callback}
+\item{function_}{function — ChildWatchFunc function(pid, wait_status)}
 
 \item{to_codeset}{utf8}
 
@@ -6152,7 +6152,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{total_elems}{gint}
 
-\item{compare_func}{function — GLib.CompareDataFunc callback}
+\item{compare_func}{function — GLib.CompareDataFunc function(a, b)}
 
 \item{quark}{GLib.Quark}
 
@@ -6190,7 +6190,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{argv}{filename}
 
-\item{child_setup}{function — SpawnChildSetupFunc callback}
+\item{child_setup}{function — SpawnChildSetupFunc function()}
 
 \item{wait_status}{gint}
 
@@ -6230,7 +6230,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{test_data}{gpointer}
 
-\item{test_func}{function — TestFunc callback}
+\item{test_func}{function — TestFunc function()}
 
 \item{bug_uri_snippet}{utf8}
 
@@ -6414,9 +6414,9 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{boxed}{gpointer}
 
-\item{boxed_copy}{function — BoxedCopyFunc callback}
+\item{boxed_copy}{function — BoxedCopyFunc function(boxed)}
 
-\item{boxed_free}{function — BoxedFreeFunc callback}
+\item{boxed_free}{function — BoxedFreeFunc function(boxed)}
 
 \item{g_enum_type}{GType}
 
@@ -6502,7 +6502,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{cancellable}{Cancellable}
 
-\item{callback}{function — AsyncReadyCallback callback}
+\item{callback}{function — AsyncReadyCallback function(source_object, res)}
 
 \item{initable}{Initable}
 
@@ -6784,7 +6784,7 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{result_destroy}{GLib.DestroyNotify}
 
-\item{task_func}{function — TaskThreadFunc callback}
+\item{task_func}{function — TaskThreadFunc function(task, source_object, task_data, cancellable)}
 
 \item{return_on_cancel}{gboolean}
 
@@ -6808,9 +6808,9 @@ gSimpleAsyncReportGerrorInIdle(object, callback, error)
 
 \item{parse_name}{utf8}
 
-\item{uri_func}{function — VfsFileLookupFunc callback}
+\item{uri_func}{function — VfsFileLookupFunc function(vfs, identifier)}
 
-\item{parse_name_func}{function — VfsFileLookupFunc callback}
+\item{parse_name_func}{function — VfsFileLookupFunc function(vfs, identifier)}
 
 \item{volume}{Volume}
 

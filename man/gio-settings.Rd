@@ -263,7 +263,7 @@ gSettingsSchemaSourceGetDefault()
 
 \item{name}{utf8}
 
-\item{mapping}{function — SettingsGetMapping callback}
+\item{mapping}{function — SettingsGetMapping function(value, result)}
 
 \item{value}{GLib.Variant}
 

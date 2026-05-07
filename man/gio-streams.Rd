@@ -415,7 +415,7 @@ gIoSchedulerPushJob(job_func, io_priority, cancellable)
 
 \item{condition}{IOCondition}
 
-\item{func}{function — GLib.SourceFunc callback}
+\item{func}{function — GLib.SourceFunc function()}
 
 \item{extension}{IOExtension}
 
@@ -437,7 +437,7 @@ gIoSchedulerPushJob(job_func, io_priority, cancellable)
 
 \item{io_priority}{gint}
 
-\item{callback}{function — AsyncReadyCallback callback}
+\item{callback}{function — AsyncReadyCallback function(source_object, res)}
 
 \item{stream1}{IOStream}
 
@@ -453,7 +453,7 @@ gIoSchedulerPushJob(job_func, io_priority, cancellable)
 
 \item{scope}{IOModuleScope}
 
-\item{job_func}{function — IOSchedulerJobFunc callback}
+\item{job_func}{function — IOSchedulerJobFunc function(job, cancellable)}
 }
 \value{
 IOChannel

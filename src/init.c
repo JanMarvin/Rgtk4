@@ -7711,8 +7711,11 @@ extern SEXP R_g_object_set_string(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_object_set_boolean(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_object_set_int(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_g_object_set_double(SEXP s1, SEXP s2, SEXP s3);
+extern SEXP R_g_object_set_enum(SEXP s1, SEXP s2, SEXP s3);
 extern SEXP R_gtk_message_dialog_new_safe(SEXP parent_ptr, SEXP flags, SEXP type, SEXP buttons, SEXP message);
 extern SEXP R_raw_to_extptr(SEXP s);
+extern SEXP R_glist_to_r_list(SEXP s_glist, SEXP s_free_list);
+extern SEXP R_gtk_list_box_get_selected_rows_unpacked(SEXP s1);
 extern SEXP R_g_signal_connect_r(SEXP s_obj, SEXP s_signal, SEXP s_fun);
 extern SEXP R_g_signal_connect_r_boolean(SEXP s_obj, SEXP s_signal, SEXP s_fun);
 
@@ -15425,8 +15428,11 @@ static const R_CallMethodDef CallEntries[] = {
     {"R_g_object_set_boolean", (DL_FUNC) &R_g_object_set_boolean, 3},
     {"R_g_object_set_int", (DL_FUNC) &R_g_object_set_int, 3},
     {"R_g_object_set_double", (DL_FUNC) &R_g_object_set_double, 3},
+    {"R_g_object_set_enum", (DL_FUNC) &R_g_object_set_enum, 3},
     {"R_gtk_message_dialog_new_safe", (DL_FUNC) &R_gtk_message_dialog_new_safe, 5},
     {"R_raw_to_extptr", (DL_FUNC) &R_raw_to_extptr, 1},
+    {"R_glist_to_r_list", (DL_FUNC) &R_glist_to_r_list, 2},
+    {"R_gtk_list_box_get_selected_rows_unpacked", (DL_FUNC) &R_gtk_list_box_get_selected_rows_unpacked, 1},
     {"R_g_signal_connect_r", (DL_FUNC) &R_g_signal_connect_r, 3},
     {"R_g_signal_connect_r_boolean", (DL_FUNC) &R_g_signal_connect_r_boolean, 3},
     {NULL, NULL, 0}

@@ -406,6 +406,22 @@ gObjectSetDouble <- function(object, property, value) {
   invisible(.Call("R_g_object_set_double", object, property, as.numeric(value)))
 }
 
+#' @rdname gObjectSetters
+#' @export
+gObjectSetEnum <- function(object, property, value) {
+  invisible(.Call("R_g_object_set_enum", object, property, as.integer(value)))
+}
+
+#' @export
+gListToRList <- function(glist, free_list = TRUE) {
+  .Call("R_glist_to_r_list", glist, free_list)
+}
+
+#' @export
+gtkListBoxGetSelectedRows <- function(box) {
+  .Call("R_gtk_list_box_get_selected_rows_unpacked", box)
+}
+
 #' Pretty-print method for RGtk4 wrapped pointers.
 #'
 #' All extptrs returned from auto-generated bindings carry a trailing class

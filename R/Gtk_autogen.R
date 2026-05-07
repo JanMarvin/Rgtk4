@@ -1004,7 +1004,7 @@ gtkAdjustmentSetValue <- function(adjustment, value) {
 #' @param self AlertDialog
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkAlertDialogChoose <- function(self, parent, cancellable, callback) {
@@ -2201,7 +2201,7 @@ gtkAssistantSetCurrentPage <- function(assistant, page_num) {
 #' @title gtkAssistantSetForwardPageFunc
 #'
 #' @param assistant Assistant
-#' @param page_func function — AssistantPageFunc callback
+#' @param page_func function — AssistantPageFunc function(current_page)
 #' @return Return value from C function
 #' @export
 gtkAssistantSetForwardPageFunc <- function(assistant, page_func) {
@@ -3523,7 +3523,7 @@ gtkBuilderCscopeNew <- function() {
 #'
 #' @param self BuilderCScope
 #' @param callback_name utf8
-#' @param callback_symbol function — GObject.Callback callback
+#' @param callback_symbol function — GObject.Callback function()
 #' @return Return value from C function
 #' @export
 gtkBuilderCscopeAddCallbackSymbol <- function(self, callback_name, callback_symbol) {
@@ -3783,11 +3783,11 @@ gtkButtonSetUseUnderline <- function(button, use_underline) {
 #' @title gtkCclosureExpressionNew
 #'
 #' @param value_type GType
-#' @param marshal function — GObject.ClosureMarshal callback
+#' @param marshal function — GObject.ClosureMarshal function(closure, return_value, n_param_values, param_values, invocation_hint, marshal_data)
 #' @param n_params guint
 #' @param params Expression
-#' @param callback_func function — GObject.Callback callback
-#' @param user_destroy function — GObject.ClosureNotify callback
+#' @param callback_func function — GObject.Callback function()
+#' @param user_destroy function — GObject.ClosureNotify function(closure)
 #' @return CClosureExpression
 #' @export
 gtkCclosureExpressionNew <- function(value_type, marshal, n_params, params, callback_func, user_destroy) {
@@ -3947,7 +3947,7 @@ gtkCalendarUnmarkDay <- function(calendar, day) {
 #' @rdname gtk-other
 #' @title gtkCallbackActionNew
 #'
-#' @param callback function — ShortcutFunc callback
+#' @param callback function — ShortcutFunc function(widget, args)
 #' @return CallbackAction
 #' @export
 gtkCallbackActionNew <- function(callback) {
@@ -4150,7 +4150,7 @@ gtkCellAreaFocus <- function(area, direction) {
 #' @title gtkCellAreaForeach
 #'
 #' @param area CellArea
-#' @param callback function — CellCallback callback
+#' @param callback function — CellCallback function(renderer)
 #' @return Return value from C function
 #' @export
 gtkCellAreaForeach <- function(area, callback) {
@@ -4166,7 +4166,7 @@ gtkCellAreaForeach <- function(area, callback) {
 #' @param widget Widget
 #' @param cell_area Gdk.Rectangle
 #' @param background_area Gdk.Rectangle
-#' @param callback function — CellAllocCallback callback
+#' @param callback function — CellAllocCallback function(renderer, cell_area, cell_background)
 #' @return Return value from C function
 #' @export
 gtkCellAreaForeachAlloc <- function(area, context, widget, cell_area, background_area, callback) {
@@ -4823,7 +4823,7 @@ gtkCellLayoutReorder <- function(cell_layout, cell, position) {
 #'
 #' @param cell_layout CellLayout
 #' @param cell CellRenderer
-#' @param func function — CellLayoutDataFunc callback
+#' @param func function — CellLayoutDataFunc function(cell_layout, cell, tree_model, iter)
 #' @return Return value from C function
 #' @export
 gtkCellLayoutSetCellDataFunc <- function(cell_layout, cell, func) {
@@ -6089,7 +6089,7 @@ gtkColorDialogNew <- function() {
 #' @param parent Window
 #' @param initial_color Gdk.RGBA
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkColorDialogChooseRgba <- function(self, parent, initial_color, cancellable, callback) {
@@ -7340,7 +7340,7 @@ gtkComboBoxSetPopupFixedWidth <- function(combo_box, fixed) {
 #' @title gtkComboBoxSetRowSeparatorFunc
 #'
 #' @param combo_box ComboBox
-#' @param func function — TreeViewRowSeparatorFunc callback
+#' @param func function — TreeViewRowSeparatorFunc function(model, iter)
 #' @return Return value from C function
 #' @export
 gtkComboBoxSetRowSeparatorFunc <- function(combo_box, func) {
@@ -8112,7 +8112,7 @@ gtkCssSectionUnref <- function(section) {
 #' @rdname gtk-other
 #' @title gtkCustomFilterNew
 #'
-#' @param match_func function — CustomFilterFunc callback
+#' @param match_func function — CustomFilterFunc function(item)
 #' @return CustomFilter
 #' @export
 gtkCustomFilterNew <- function(match_func) {
@@ -8124,7 +8124,7 @@ gtkCustomFilterNew <- function(match_func) {
 #' @title gtkCustomFilterSetFilterFunc
 #'
 #' @param self CustomFilter
-#' @param match_func function — CustomFilterFunc callback
+#' @param match_func function — CustomFilterFunc function(item)
 #' @return Return value from C function
 #' @export
 gtkCustomFilterSetFilterFunc <- function(self, match_func) {
@@ -8135,9 +8135,9 @@ gtkCustomFilterSetFilterFunc <- function(self, match_func) {
 #' @rdname gtk-other
 #' @title gtkCustomLayoutNew
 #'
-#' @param request_mode function — CustomRequestModeFunc callback
-#' @param measure function — CustomMeasureFunc callback
-#' @param allocate function — CustomAllocateFunc callback
+#' @param request_mode function — CustomRequestModeFunc function(widget)
+#' @param measure function — CustomMeasureFunc function(widget, orientation, for_size, minimum, natural, minimum_baseline, natural_baseline)
+#' @param allocate function — CustomAllocateFunc function(widget, width, height, baseline)
 #' @return LayoutManager
 #' @export
 gtkCustomLayoutNew <- function(request_mode, measure, allocate) {
@@ -8148,7 +8148,7 @@ gtkCustomLayoutNew <- function(request_mode, measure, allocate) {
 #' @rdname gtk-other
 #' @title gtkCustomSorterNew
 #'
-#' @param sort_func function — GLib.CompareDataFunc callback
+#' @param sort_func function — GLib.CompareDataFunc function(a, b)
 #' @return CustomSorter
 #' @export
 gtkCustomSorterNew <- function(sort_func) {
@@ -8160,7 +8160,7 @@ gtkCustomSorterNew <- function(sort_func) {
 #' @title gtkCustomSorterSetSortFunc
 #'
 #' @param self CustomSorter
-#' @param sort_func function — GLib.CompareDataFunc callback
+#' @param sort_func function — GLib.CompareDataFunc function(a, b)
 #' @return Return value from C function
 #' @export
 gtkCustomSorterSetSortFunc <- function(self, sort_func) {
@@ -8634,7 +8634,7 @@ gtkDrawingAreaSetContentWidth <- function(self, width) {
 #' @title gtkDrawingAreaSetDrawFunc
 #'
 #' @param self DrawingArea
-#' @param draw_func function — DrawingAreaDrawFunc callback
+#' @param draw_func function — DrawingAreaDrawFunc function(drawing_area, cr, width, height)
 #' @return Return value from C function
 #' @export
 gtkDrawingAreaSetDrawFunc <- function(self, draw_func) {
@@ -10540,7 +10540,7 @@ gtkEntryCompletionSetInlineSelection <- function(completion, inline_selection) {
 #' @title gtkEntryCompletionSetMatchFunc
 #'
 #' @param completion EntryCompletion
-#' @param func function — EntryCompletionMatchFunc callback
+#' @param func function — EntryCompletionMatchFunc function(completion, key, iter)
 #' @return Return value from C function
 #' @export
 gtkEntryCompletionSetMatchFunc <- function(completion, func) {
@@ -11211,7 +11211,7 @@ gtkExpressionUnref <- function(self) {
 #'
 #' @param self Expression
 #' @param this_ GObject.Object
-#' @param notify function — ExpressionNotify callback
+#' @param notify function — ExpressionNotify function()
 #' @return ExpressionWatch
 #' @export
 gtkExpressionWatch <- function(self, this_, notify) {
@@ -11744,7 +11744,7 @@ gtkFileDialogGetTitle <- function(self) {
 #' @param self FileDialog
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFileDialogOpen <- function(self, parent, cancellable, callback) {
@@ -11770,7 +11770,7 @@ gtkFileDialogOpenFinish <- function(self, result) {
 #' @param self FileDialog
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFileDialogOpenMultiple <- function(self, parent, cancellable, callback) {
@@ -11796,7 +11796,7 @@ gtkFileDialogOpenMultipleFinish <- function(self, result) {
 #' @param self FileDialog
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFileDialogSave <- function(self, parent, cancellable, callback) {
@@ -11822,7 +11822,7 @@ gtkFileDialogSaveFinish <- function(self, result) {
 #' @param self FileDialog
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFileDialogSelectFolder <- function(self, parent, cancellable, callback) {
@@ -11848,7 +11848,7 @@ gtkFileDialogSelectFolderFinish <- function(self, result) {
 #' @param self FileDialog
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFileDialogSelectMultipleFolders <- function(self, parent, cancellable, callback) {
@@ -12116,7 +12116,7 @@ gtkFileLauncherGetFile <- function(self) {
 #' @param self FileLauncher
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFileLauncherLaunch <- function(self, parent, cancellable, callback) {
@@ -12142,7 +12142,7 @@ gtkFileLauncherLaunchFinish <- function(self, result) {
 #' @param self FileLauncher
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFileLauncherOpenContainingFolder <- function(self, parent, cancellable, callback) {
@@ -12506,7 +12506,7 @@ gtkFlowBoxAppend <- function(self, child) {
 #'
 #' @param box FlowBox
 #' @param model Gio.ListModel
-#' @param create_widget_func function — FlowBoxCreateWidgetFunc callback
+#' @param create_widget_func function — FlowBoxCreateWidgetFunc function(item)
 #' @return Return value from C function
 #' @export
 gtkFlowBoxBindModel <- function(box, model, create_widget_func) {
@@ -12724,7 +12724,7 @@ gtkFlowBoxSelectChild <- function(box, child) {
 #' @title gtkFlowBoxSelectedForeach
 #'
 #' @param box FlowBox
-#' @param func function — FlowBoxForeachFunc callback
+#' @param func function — FlowBoxForeachFunc function(box, child)
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSelectedForeach <- function(box, func) {
@@ -12760,7 +12760,7 @@ gtkFlowBoxSetColumnSpacing <- function(box, spacing) {
 #' @title gtkFlowBoxSetFilterFunc
 #'
 #' @param box FlowBox
-#' @param filter_func function — FlowBoxFilterFunc callback
+#' @param filter_func function — FlowBoxFilterFunc function(child)
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetFilterFunc <- function(box, filter_func) {
@@ -12844,7 +12844,7 @@ gtkFlowBoxSetSelectionMode <- function(box, mode) {
 #' @title gtkFlowBoxSetSortFunc
 #'
 #' @param box FlowBox
-#' @param sort_func function — FlowBoxSortFunc callback
+#' @param sort_func function — FlowBoxSortFunc function(child1, child2)
 #' @return Return value from C function
 #' @export
 gtkFlowBoxSetSortFunc <- function(box, sort_func) {
@@ -13191,7 +13191,7 @@ gtkFontChooserGetShowPreviewEntry <- function(fontchooser) {
 #' @title gtkFontChooserSetFilterFunc
 #'
 #' @param fontchooser FontChooser
-#' @param filter function — FontFilterFunc callback
+#' @param filter function — FontFilterFunc function(family, face)
 #' @return Return value from C function
 #' @export
 gtkFontChooserSetFilterFunc <- function(fontchooser, filter) {
@@ -13322,7 +13322,7 @@ gtkFontDialogNew <- function() {
 #' @param parent Window
 #' @param initial_value Pango.FontFace
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFontDialogChooseFace <- function(self, parent, initial_value, cancellable, callback) {
@@ -13349,7 +13349,7 @@ gtkFontDialogChooseFaceFinish <- function(self, result) {
 #' @param parent Window
 #' @param initial_value Pango.FontFamily
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFontDialogChooseFamily <- function(self, parent, initial_value, cancellable, callback) {
@@ -13376,7 +13376,7 @@ gtkFontDialogChooseFamilyFinish <- function(self, result) {
 #' @param parent Window
 #' @param initial_value Pango.FontDescription
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFontDialogChooseFont <- function(self, parent, initial_value, cancellable, callback) {
@@ -13391,7 +13391,7 @@ gtkFontDialogChooseFont <- function(self, parent, initial_value, cancellable, ca
 #' @param parent Window
 #' @param initial_value Pango.FontDescription
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkFontDialogChooseFontAndFeatures <- function(self, parent, initial_value, cancellable, callback) {
@@ -16339,7 +16339,7 @@ gtkIconViewSelectPath <- function(icon_view, path) {
 #' @title gtkIconViewSelectedForeach
 #'
 #' @param icon_view IconView
-#' @param func function — IconViewForeachFunc callback
+#' @param func function — IconViewForeachFunc function(icon_view, path)
 #' @return Return value from C function
 #' @export
 gtkIconViewSelectedForeach <- function(icon_view, func) {
@@ -18304,7 +18304,7 @@ gtkListBoxAppend <- function(box, child) {
 #'
 #' @param box ListBox
 #' @param model Gio.ListModel
-#' @param create_widget_func function — ListBoxCreateWidgetFunc callback
+#' @param create_widget_func function — ListBoxCreateWidgetFunc function(item)
 #' @return Return value from C function
 #' @export
 gtkListBoxBindModel <- function(box, model, create_widget_func) {
@@ -18533,7 +18533,7 @@ gtkListBoxSelectRow <- function(box, row) {
 #' @title gtkListBoxSelectedForeach
 #'
 #' @param box ListBox
-#' @param func function — ListBoxForeachFunc callback
+#' @param func function — ListBoxForeachFunc function(box, row)
 #' @return Return value from C function
 #' @export
 gtkListBoxSelectedForeach <- function(box, func) {
@@ -18569,7 +18569,7 @@ gtkListBoxSetAdjustment <- function(box, adjustment) {
 #' @title gtkListBoxSetFilterFunc
 #'
 #' @param box ListBox
-#' @param filter_func function — ListBoxFilterFunc callback
+#' @param filter_func function — ListBoxFilterFunc function(row)
 #' @return Return value from C function
 #' @export
 gtkListBoxSetFilterFunc <- function(box, filter_func) {
@@ -18581,7 +18581,7 @@ gtkListBoxSetFilterFunc <- function(box, filter_func) {
 #' @title gtkListBoxSetHeaderFunc
 #'
 #' @param box ListBox
-#' @param update_header function — ListBoxUpdateHeaderFunc callback
+#' @param update_header function — ListBoxUpdateHeaderFunc function(row, before)
 #' @return Return value from C function
 #' @export
 gtkListBoxSetHeaderFunc <- function(box, update_header) {
@@ -18629,7 +18629,7 @@ gtkListBoxSetShowSeparators <- function(box, show_separators) {
 #' @title gtkListBoxSetSortFunc
 #'
 #' @param box ListBox
-#' @param sort_func function — ListBoxSortFunc callback
+#' @param sort_func function — ListBoxSortFunc function(row1, row2)
 #' @return Return value from C function
 #' @export
 gtkListBoxSetSortFunc <- function(box, sort_func) {
@@ -19471,7 +19471,7 @@ gtkLockButtonSetPermission <- function(button, permission) {
 #' @title gtkMapListModelNew
 #'
 #' @param model Gio.ListModel
-#' @param map_func function — MapListModelMapFunc callback
+#' @param map_func function — MapListModelMapFunc function(item)
 #' @return MapListModel
 #' @export
 gtkMapListModelNew <- function(model, map_func) {
@@ -19505,7 +19505,7 @@ gtkMapListModelHasMap <- function(self) {
 #' @title gtkMapListModelSetMapFunc
 #'
 #' @param self MapListModel
-#' @param map_func function — MapListModelMapFunc callback
+#' @param map_func function — MapListModelMapFunc function(item)
 #' @return Return value from C function
 #' @export
 gtkMapListModelSetMapFunc <- function(self, map_func) {
@@ -20242,7 +20242,7 @@ gtkMenuButtonSetChild <- function(menu_button, child) {
 #' @title gtkMenuButtonSetCreatePopupFunc
 #'
 #' @param menu_button MenuButton
-#' @param func function — MenuButtonCreatePopupFunc callback
+#' @param func function — MenuButtonCreatePopupFunc function(menu_button)
 #' @return Return value from C function
 #' @export
 gtkMenuButtonSetCreatePopupFunc <- function(menu_button, func) {
@@ -24024,7 +24024,7 @@ gtkScaleSetDrawValue <- function(scale, draw_value) {
 #' @title gtkScaleSetFormatValueFunc
 #'
 #' @param scale Scale
-#' @param func function — ScaleFormatValueFunc callback
+#' @param func function — ScaleFormatValueFunc function(scale, value)
 #' @return Return value from C function
 #' @export
 gtkScaleSetFormatValueFunc <- function(scale, func) {
@@ -29501,7 +29501,7 @@ gtkTextIterBackwardCursorPositions <- function(iter, count) {
 #' @title gtkTextIterBackwardFindChar
 #'
 #' @param iter TextIter
-#' @param pred function — TextCharPredicate callback
+#' @param pred function — TextCharPredicate function(ch)
 #' @param limit TextIter
 #' @return gboolean
 #' @export
@@ -29828,7 +29828,7 @@ gtkTextIterForwardCursorPositions <- function(iter, count) {
 #' @title gtkTextIterForwardFindChar
 #'
 #' @param iter TextIter
-#' @param pred function — TextCharPredicate callback
+#' @param pred function — TextCharPredicate function(ch)
 #' @param limit TextIter
 #' @return gboolean
 #' @export
@@ -30631,7 +30631,7 @@ gtkTextTagTableAdd <- function(table, tag) {
 #' @title gtkTextTagTableForeach
 #'
 #' @param table TextTagTable
-#' @param func function — TextTagTableForeach callback
+#' @param func function — TextTagTableForeach function(tag)
 #' @return Return value from C function
 #' @export
 gtkTextTagTableForeach <- function(table, func) {
@@ -31930,7 +31930,7 @@ gtkTreeIterFree <- function(iter) {
 #' @param root Gio.ListModel
 #' @param passthrough gboolean
 #' @param autoexpand gboolean
-#' @param create_func function — TreeListModelCreateModelFunc callback
+#' @param create_func function — TreeListModelCreateModelFunc function(item)
 #' @return TreeListModel
 #' @export
 gtkTreeListModelNew <- function(root, passthrough, autoexpand, create_func) {
@@ -32158,7 +32158,7 @@ gtkTreeModelFilterNew <- function(child_model, root) {
 #' @title gtkTreeModelForeach
 #'
 #' @param model TreeModel
-#' @param func function — TreeModelForeachFunc callback
+#' @param func function — TreeModelForeachFunc function(model, path, iter)
 #' @return Return value from C function
 #' @export
 gtkTreeModelForeach <- function(model, func) {
@@ -32534,7 +32534,7 @@ gtkTreeModelFilterRefilter <- function(filter) {
 #' @param filter TreeModelFilter
 #' @param n_columns gint
 #' @param types GType
-#' @param func function — TreeModelFilterModifyFunc callback
+#' @param func function — TreeModelFilterModifyFunc function(model, iter, value, column)
 #' @return Return value from C function
 #' @export
 gtkTreeModelFilterSetModifyFunc <- function(filter, n_columns, types, func) {
@@ -32558,7 +32558,7 @@ gtkTreeModelFilterSetVisibleColumn <- function(filter, column) {
 #' @title gtkTreeModelFilterSetVisibleFunc
 #'
 #' @param filter TreeModelFilter
-#' @param func function — TreeModelFilterVisibleFunc callback
+#' @param func function — TreeModelFilterVisibleFunc function(model, iter)
 #' @return Return value from C function
 #' @export
 gtkTreeModelFilterSetVisibleFunc <- function(filter, func) {
@@ -33107,7 +33107,7 @@ gtkTreeSelectionSelectRange <- function(selection, start_path, end_path) {
 #' @title gtkTreeSelectionSelectedForeach
 #'
 #' @param selection TreeSelection
-#' @param func function — TreeSelectionForeachFunc callback
+#' @param func function — TreeSelectionForeachFunc function(model, path, iter)
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionSelectedForeach <- function(selection, func) {
@@ -33131,7 +33131,7 @@ gtkTreeSelectionSetMode <- function(selection, type) {
 #' @title gtkTreeSelectionSetSelectFunction
 #'
 #' @param selection TreeSelection
-#' @param func function — TreeSelectionFunc callback
+#' @param func function — TreeSelectionFunc function(selection, model, path, path_currently_selected)
 #' @return Return value from C function
 #' @export
 gtkTreeSelectionSetSelectFunction <- function(selection, func) {
@@ -33213,7 +33213,7 @@ gtkTreeSortableHasDefaultSortFunc <- function(sortable) {
 #' @title gtkTreeSortableSetDefaultSortFunc
 #'
 #' @param sortable TreeSortable
-#' @param sort_func function — TreeIterCompareFunc callback
+#' @param sort_func function — TreeIterCompareFunc function(model, a, b)
 #' @return Return value from C function
 #' @export
 gtkTreeSortableSetDefaultSortFunc <- function(sortable, sort_func) {
@@ -33239,7 +33239,7 @@ gtkTreeSortableSetSortColumnId <- function(sortable, sort_column_id, order) {
 #'
 #' @param sortable TreeSortable
 #' @param sort_column_id gint
-#' @param sort_func function — TreeIterCompareFunc callback
+#' @param sort_func function — TreeIterCompareFunc function(model, a, b)
 #' @return Return value from C function
 #' @export
 gtkTreeSortableSetSortFunc <- function(sortable, sort_column_id, sort_func) {
@@ -34083,7 +34083,7 @@ gtkTreeViewInsertColumn <- function(tree_view, column, position) {
 #' @param position gint
 #' @param title utf8
 #' @param cell CellRenderer
-#' @param func function — TreeCellDataFunc callback
+#' @param func function — TreeCellDataFunc function(tree_column, cell, tree_model, iter)
 #' @return gint
 #' @export
 gtkTreeViewInsertColumnWithDataFunc <- function(tree_view, position, title, cell, func) {
@@ -34119,7 +34119,7 @@ gtkTreeViewIsRubberBandingActive <- function(tree_view) {
 #' @title gtkTreeViewMapExpandedRows
 #'
 #' @param tree_view TreeView
-#' @param func function — TreeViewMappingFunc callback
+#' @param func function — TreeViewMappingFunc function(tree_view, path)
 #' @return Return value from C function
 #' @export
 gtkTreeViewMapExpandedRows <- function(tree_view, func) {
@@ -34222,7 +34222,7 @@ gtkTreeViewSetActivateOnSingleClick <- function(tree_view, single) {
 #' @title gtkTreeViewSetColumnDragFunction
 #'
 #' @param tree_view TreeView
-#' @param func function — TreeViewColumnDropFunc callback
+#' @param func function — TreeViewColumnDropFunc function(tree_view, column, prev_column, next_column)
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetColumnDragFunction <- function(tree_view, func) {
@@ -34420,7 +34420,7 @@ gtkTreeViewSetReorderable <- function(tree_view, reorderable) {
 #' @title gtkTreeViewSetRowSeparatorFunc
 #'
 #' @param tree_view TreeView
-#' @param func function — TreeViewRowSeparatorFunc callback
+#' @param func function — TreeViewRowSeparatorFunc function(model, iter)
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetRowSeparatorFunc <- function(tree_view, func) {
@@ -34468,7 +34468,7 @@ gtkTreeViewSetSearchEntry <- function(tree_view, entry) {
 #' @title gtkTreeViewSetSearchEqualFunc
 #'
 #' @param tree_view TreeView
-#' @param search_equal_func function — TreeViewSearchEqualFunc callback
+#' @param search_equal_func function — TreeViewSearchEqualFunc function(model, column, key, iter, search_data)
 #' @return Return value from C function
 #' @export
 gtkTreeViewSetSearchEqualFunc <- function(tree_view, search_equal_func) {
@@ -34954,7 +34954,7 @@ gtkTreeViewColumnSetAlignment <- function(tree_column, xalign) {
 #'
 #' @param tree_column TreeViewColumn
 #' @param cell_renderer CellRenderer
-#' @param func function — TreeCellDataFunc callback
+#' @param func function — TreeCellDataFunc function(tree_column, cell, tree_model, iter)
 #' @return Return value from C function
 #' @export
 gtkTreeViewColumnSetCellDataFunc <- function(tree_column, cell_renderer, func) {
@@ -35170,7 +35170,7 @@ gtkUriLauncherGetUri <- function(self) {
 #' @param self UriLauncher
 #' @param parent Window
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkUriLauncherLaunch <- function(self, parent, cancellable, callback) {
@@ -35562,7 +35562,7 @@ gtkWidgetAddMnemonicLabel <- function(widget, label) {
 #' @title gtkWidgetAddTickCallback
 #'
 #' @param widget Widget
-#' @param callback function — TickCallback callback
+#' @param callback function — TickCallback function(widget, frame_clock)
 #' @return guint
 #' @export
 gtkWidgetAddTickCallback <- function(widget, callback) {
@@ -37356,7 +37356,7 @@ gtkWidgetClassAddShortcut <- function(widget_class, shortcut) {
 #'
 #' @param widget_class WidgetClass
 #' @param callback_name utf8
-#' @param callback_symbol function — GObject.Callback callback
+#' @param callback_symbol function — GObject.Callback function()
 #' @return Return value from C function
 #' @export
 gtkWidgetClassBindTemplateCallbackFull <- function(widget_class, callback_name, callback_symbol) {
@@ -37428,7 +37428,7 @@ gtkWidgetClassGetLayoutManagerType <- function(widget_class) {
 #' @param widget_class WidgetClass
 #' @param action_name utf8
 #' @param parameter_type utf8
-#' @param activate function — WidgetActionActivateFunc callback
+#' @param activate function — WidgetActionActivateFunc function(widget, action_name, parameter)
 #' @return Return value from C function
 #' @export
 gtkWidgetClassInstallAction <- function(widget_class, action_name, parameter_type, activate) {
@@ -38962,7 +38962,7 @@ gtkShowUri <- function(parent, uri, timestamp) {
 #' @param uri utf8
 #' @param timestamp guint32
 #' @param cancellable Gio.Cancellable
-#' @param callback function — Gio.AsyncReadyCallback callback
+#' @param callback function — Gio.AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gtkShowUriFull <- function(parent, uri, timestamp, cancellable, callback) {

@@ -1053,7 +1053,7 @@ gdkUnicodeToKeyval(wc)
 
 \item{cancellable}{Gio.Cancellable}
 
-\item{callback}{function — Gio.AsyncReadyCallback callback}
+\item{callback}{function — Gio.AsyncReadyCallback function(source_object, res)}
 
 \item{result}{Gio.AsyncResult}
 
@@ -1307,9 +1307,9 @@ gdkUnicodeToKeyval(wc)
 
 \item{pixbuf_y}{gdouble}
 
-\item{deserialize}{function — ContentDeserializeFunc callback}
+\item{deserialize}{function — ContentDeserializeFunc function(deserializer)}
 
-\item{serialize}{function — ContentSerializeFunc callback}
+\item{serialize}{function — ContentSerializeFunc function(serializer)}
 
 \item{symbol}{guint}
 

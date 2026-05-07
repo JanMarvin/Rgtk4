@@ -80,9 +80,9 @@ gHashTableIterSteal(iter)
 
 \item{key}{gpointer}
 
-\item{predicate}{function — HRFunc callback}
+\item{predicate}{function — HRFunc function(key, value)}
 
-\item{func}{function — HRFunc callback}
+\item{func}{function — HRFunc function(key, value)}
 
 \item{value}{gpointer}
 

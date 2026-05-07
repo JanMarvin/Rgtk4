@@ -279,7 +279,7 @@ gApplicationCommandLineSetExitStatus(cmdline, exit_status)
 
 \item{cancellable}{Cancellable}
 
-\item{callback}{function — AsyncReadyCallback callback}
+\item{callback}{function — AsyncReadyCallback function(source_object, res)}
 
 \item{result}{AsyncResult}
 

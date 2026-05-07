@@ -194,7 +194,7 @@ gtkPopoverMenuBarSetMenuModel(bar, model)
 
 \item{child}{Widget}
 
-\item{func}{function — MenuButtonCreatePopupFunc callback}
+\item{func}{function — MenuButtonCreatePopupFunc function(menu_button)}
 
 \item{direction}{ArrowType}
 

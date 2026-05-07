@@ -442,7 +442,7 @@ gAppInfoLaunchDefaultForUri <- function(uri, context) {
 #' @param uri utf8
 #' @param context AppLaunchContext
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gAppInfoLaunchDefaultForUriAsync <- function(uri, context, cancellable, callback) {
@@ -1397,7 +1397,7 @@ gApplicationCommandLineSetExitStatus <- function(cmdline, exit_status) {
 #' @param parameters GObject.Parameter
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gAsyncInitableNewvAsync <- function(object_type, n_parameters, parameters, io_priority, cancellable, callback) {
@@ -1411,7 +1411,7 @@ gAsyncInitableNewvAsync <- function(object_type, n_parameters, parameters, io_pr
 #' @param initable AsyncInitable
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gAsyncInitableInitAsync <- function(initable, io_priority, cancellable, callback) {
@@ -1531,7 +1531,7 @@ gBufferedInputStreamFill <- function(stream, count, cancellable) {
 #' @param count gssize
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gBufferedInputStreamFillAsync <- function(stream, count, io_priority, cancellable, callback) {
@@ -1748,7 +1748,7 @@ gCancellableCancel <- function(cancellable) {
 #' @title gCancellableConnect
 #'
 #' @param cancellable Cancellable
-#' @param callback function — GObject.Callback callback
+#' @param callback function — GObject.Callback function()
 #' @return gulong
 #' @export
 gCancellableConnect <- function(cancellable, callback) {
@@ -2132,7 +2132,7 @@ gDataInputStreamReadLine <- function(stream, cancellable) {
 #' @param stream DataInputStream
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gDataInputStreamReadLineAsync <- function(stream, io_priority, cancellable, callback) {
@@ -2232,7 +2232,7 @@ gDataInputStreamReadUntil <- function(stream, stop_chars, cancellable) {
 #' @param stop_chars utf8
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gDataInputStreamReadUntilAsync <- function(stream, stop_chars, io_priority, cancellable, callback) {
@@ -2274,7 +2274,7 @@ gDataInputStreamReadUpto <- function(stream, stop_chars, stop_chars_len, cancell
 #' @param stop_chars_len gssize
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gDataInputStreamReadUptoAsync <- function(stream, stop_chars, stop_chars_len, io_priority, cancellable, callback) {
@@ -2588,7 +2588,7 @@ gDriveCanStop <- function(drive) {
 #' @param drive Drive
 #' @param flags MountUnmountFlags
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gDriveEject <- function(drive, flags, cancellable, callback) {
@@ -2615,7 +2615,7 @@ gDriveEjectFinish <- function(drive, result) {
 #' @param flags MountUnmountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gDriveEjectWithOperation <- function(drive, flags, mount_operation, cancellable, callback) {
@@ -2784,7 +2784,7 @@ gDriveIsRemovable <- function(drive) {
 #'
 #' @param drive Drive
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gDrivePollForMedia <- function(drive, cancellable, callback) {
@@ -2811,7 +2811,7 @@ gDrivePollForMediaFinish <- function(drive, result) {
 #' @param flags DriveStartFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gDriveStart <- function(drive, flags, mount_operation, cancellable, callback) {
@@ -2838,7 +2838,7 @@ gDriveStartFinish <- function(drive, result) {
 #' @param flags MountUnmountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gDriveStop <- function(drive, flags, mount_operation, cancellable, callback) {
@@ -3047,7 +3047,7 @@ gFileAppendTo <- function(file, flags, cancellable) {
 #' @param flags FileCreateFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileAppendToAsync <- function(file, flags, io_priority, cancellable, callback) {
@@ -3074,7 +3074,7 @@ gFileAppendToFinish <- function(file, res) {
 #' @param destination File
 #' @param flags FileCopyFlags
 #' @param cancellable Cancellable
-#' @param progress_callback function — FileProgressCallback callback
+#' @param progress_callback function — FileProgressCallback function(current_num_bytes, total_num_bytes)
 #' @return gboolean
 #' @export
 gFileCopy <- function(source, destination, flags, cancellable, progress_callback) {
@@ -3090,8 +3090,8 @@ gFileCopy <- function(source, destination, flags, cancellable, progress_callback
 #' @param flags FileCopyFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param progress_callback function — FileProgressCallback callback
-#' @param callback function — AsyncReadyCallback callback
+#' @param progress_callback function — FileProgressCallback function(current_num_bytes, total_num_bytes)
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileCopyAsync <- function(source, destination, flags, io_priority, cancellable, progress_callback, callback) {
@@ -3145,7 +3145,7 @@ gFileCreate <- function(file, flags, cancellable) {
 #' @param flags FileCreateFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileCreateAsync <- function(file, flags, io_priority, cancellable, callback) {
@@ -3185,7 +3185,7 @@ gFileCreateReadwrite <- function(file, flags, cancellable) {
 #' @param flags FileCreateFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileCreateReadwriteAsync <- function(file, flags, io_priority, cancellable, callback) {
@@ -3223,7 +3223,7 @@ gFileDelete <- function(file, cancellable) {
 #' @param file File
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileDeleteAsync <- function(file, io_priority, cancellable, callback) {
@@ -3260,7 +3260,7 @@ gFileDup <- function(file) {
 #' @param file File
 #' @param flags MountUnmountFlags
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileEjectMountable <- function(file, flags, cancellable, callback) {
@@ -3287,7 +3287,7 @@ gFileEjectMountableFinish <- function(file, result) {
 #' @param flags MountUnmountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileEjectMountableWithOperation <- function(file, flags, mount_operation, cancellable, callback) {
@@ -3329,7 +3329,7 @@ gFileEnumerateChildren <- function(file, attributes, flags, cancellable) {
 #' @param flags FileQueryInfoFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileEnumerateChildrenAsync <- function(file, attributes, flags, io_priority, cancellable, callback) {
@@ -3379,7 +3379,7 @@ gFileFindEnclosingMount <- function(file, cancellable) {
 #' @param file File
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileFindEnclosingMountAsync <- function(file, io_priority, cancellable, callback) {
@@ -3576,7 +3576,7 @@ gFileLoadBytes <- function(file, cancellable) {
 #'
 #' @param file File
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileLoadBytesAsync <- function(file, cancellable, callback) {
@@ -3613,7 +3613,7 @@ gFileLoadContents <- function(file, cancellable) {
 #'
 #' @param file File
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileLoadContentsAsync <- function(file, cancellable, callback) {
@@ -3663,7 +3663,7 @@ gFileMakeDirectory <- function(file, cancellable) {
 #' @param file File
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileMakeDirectoryAsync <- function(file, io_priority, cancellable, callback) {
@@ -3714,7 +3714,7 @@ gFileMakeSymbolicLink <- function(file, symlink_value, cancellable) {
 #' @param file File
 #' @param flags FileMeasureFlags
 #' @param cancellable Cancellable
-#' @param progress_callback function — FileMeasureProgressCallback callback
+#' @param progress_callback function — FileMeasureProgressCallback function(reporting, current_size, num_dirs, num_files)
 #' @return gboolean
 #' @export
 gFileMeasureDiskUsage <- function(file, flags, cancellable, progress_callback) {
@@ -3780,7 +3780,7 @@ gFileMonitorFile <- function(file, flags, cancellable) {
 #' @param flags MountMountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileMountEnclosingVolume <- function(location, flags, mount_operation, cancellable, callback) {
@@ -3807,7 +3807,7 @@ gFileMountEnclosingVolumeFinish <- function(location, result) {
 #' @param flags MountMountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileMountMountable <- function(file, flags, mount_operation, cancellable, callback) {
@@ -3834,7 +3834,7 @@ gFileMountMountableFinish <- function(file, result) {
 #' @param destination File
 #' @param flags FileCopyFlags
 #' @param cancellable Cancellable
-#' @param progress_callback function — FileProgressCallback callback
+#' @param progress_callback function — FileProgressCallback function(current_num_bytes, total_num_bytes)
 #' @return gboolean
 #' @export
 gFileMove <- function(source, destination, flags, cancellable, progress_callback) {
@@ -3860,7 +3860,7 @@ gFileOpenReadwrite <- function(file, cancellable) {
 #' @param file File
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileOpenReadwriteAsync <- function(file, io_priority, cancellable, callback) {
@@ -3896,7 +3896,7 @@ gFilePeekPath <- function(file) {
 #'
 #' @param file File
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFilePollMountable <- function(file, cancellable, callback) {
@@ -3973,7 +3973,7 @@ gFileQueryFilesystemInfo <- function(file, attributes, cancellable) {
 #' @param attributes utf8
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileQueryFilesystemInfoAsync <- function(file, attributes, io_priority, cancellable, callback) {
@@ -4015,7 +4015,7 @@ gFileQueryInfo <- function(file, attributes, flags, cancellable) {
 #' @param flags FileQueryInfoFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileQueryInfoAsync <- function(file, attributes, flags, io_priority, cancellable, callback) {
@@ -4077,7 +4077,7 @@ gFileRead <- function(file, cancellable) {
 #' @param file File
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileReadAsync <- function(file, io_priority, cancellable, callback) {
@@ -4121,7 +4121,7 @@ gFileReplace <- function(file, etag, make_backup, flags, cancellable) {
 #' @param flags FileCreateFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileReplaceAsync <- function(file, etag, make_backup, flags, io_priority, cancellable, callback) {
@@ -4156,7 +4156,7 @@ gFileReplaceContents <- function(file, contents, length, etag, make_backup, flag
 #' @param make_backup gboolean
 #' @param flags FileCreateFlags
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileReplaceContentsAsync <- function(file, contents, length, etag, make_backup, flags, cancellable, callback) {
@@ -4173,7 +4173,7 @@ gFileReplaceContentsAsync <- function(file, contents, length, etag, make_backup,
 #' @param make_backup gboolean
 #' @param flags FileCreateFlags
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileReplaceContentsBytesAsync <- function(file, contents, etag, make_backup, flags, cancellable, callback) {
@@ -4229,7 +4229,7 @@ gFileReplaceReadwrite <- function(file, etag, make_backup, flags, cancellable) {
 #' @param flags FileCreateFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileReplaceReadwriteAsync <- function(file, etag, make_backup, flags, io_priority, cancellable, callback) {
@@ -4375,7 +4375,7 @@ gFileSetAttributeUint64 <- function(file, attribute, value, flags, cancellable) 
 #' @param flags FileQueryInfoFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileSetAttributesAsync <- function(file, info, flags, io_priority, cancellable, callback) {
@@ -4429,7 +4429,7 @@ gFileSetDisplayName <- function(file, display_name, cancellable) {
 #' @param display_name utf8
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileSetDisplayNameAsync <- function(file, display_name, io_priority, cancellable, callback) {
@@ -4456,7 +4456,7 @@ gFileSetDisplayNameFinish <- function(file, res) {
 #' @param flags DriveStartFlags
 #' @param start_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileStartMountable <- function(file, flags, start_operation, cancellable, callback) {
@@ -4483,7 +4483,7 @@ gFileStartMountableFinish <- function(file, result) {
 #' @param flags MountUnmountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileStopMountable <- function(file, flags, mount_operation, cancellable, callback) {
@@ -4532,7 +4532,7 @@ gFileTrash <- function(file, cancellable) {
 #' @param file File
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileTrashAsync <- function(file, io_priority, cancellable, callback) {
@@ -4558,7 +4558,7 @@ gFileTrashFinish <- function(file, result) {
 #' @param file File
 #' @param flags MountUnmountFlags
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileUnmountMountable <- function(file, flags, cancellable, callback) {
@@ -4585,7 +4585,7 @@ gFileUnmountMountableFinish <- function(file, result) {
 #' @param flags MountUnmountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileUnmountMountableWithOperation <- function(file, flags, mount_operation, cancellable, callback) {
@@ -4795,7 +4795,7 @@ gFileEnumeratorClose <- function(enumerator, cancellable) {
 #' @param enumerator FileEnumerator
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileEnumeratorCloseAsync <- function(enumerator, io_priority, cancellable, callback) {
@@ -4891,7 +4891,7 @@ gFileEnumeratorNextFile <- function(enumerator, cancellable) {
 #' @param num_files gint
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileEnumeratorNextFilesAsync <- function(enumerator, num_files, io_priority, cancellable, callback) {
@@ -4954,7 +4954,7 @@ gFileIoStreamQueryInfo <- function(stream, attributes, cancellable) {
 #' @param attributes utf8
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileIoStreamQueryInfoAsync <- function(stream, attributes, io_priority, cancellable, callback) {
@@ -5763,7 +5763,7 @@ gFileInputStreamQueryInfo <- function(stream, attributes, cancellable) {
 #' @param attributes utf8
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileInputStreamQueryInfoAsync <- function(stream, attributes, io_priority, cancellable, callback) {
@@ -5862,7 +5862,7 @@ gFileOutputStreamQueryInfo <- function(stream, attributes, cancellable) {
 #' @param attributes utf8
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gFileOutputStreamQueryInfoAsync <- function(stream, attributes, io_priority, cancellable, callback) {
@@ -6115,7 +6115,7 @@ gIoExtensionPointRegister <- function(name) {
 #' @title gIoSchedulerJobSendToMainloop
 #'
 #' @param job IOSchedulerJob
-#' @param func function — GLib.SourceFunc callback
+#' @param func function — GLib.SourceFunc function()
 #' @return gboolean
 #' @export
 gIoSchedulerJobSendToMainloop <- function(job, func) {
@@ -6127,7 +6127,7 @@ gIoSchedulerJobSendToMainloop <- function(job, func) {
 #' @title gIoSchedulerJobSendToMainloopAsync
 #'
 #' @param job IOSchedulerJob
-#' @param func function — GLib.SourceFunc callback
+#' @param func function — GLib.SourceFunc function()
 #' @return Return value from C function
 #' @export
 gIoSchedulerJobSendToMainloopAsync <- function(job, func) {
@@ -6175,7 +6175,7 @@ gIoStreamClose <- function(stream, cancellable) {
 #' @param stream IOStream
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gIoStreamCloseAsync <- function(stream, io_priority, cancellable, callback) {
@@ -6258,7 +6258,7 @@ gIoStreamSetPending <- function(stream) {
 #' @param flags IOStreamSpliceFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gIoStreamSpliceAsync <- function(stream1, stream2, flags, io_priority, cancellable, callback) {
@@ -6747,7 +6747,7 @@ gInputStreamClose <- function(stream, cancellable) {
 #' @param stream InputStream
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gInputStreamCloseAsync <- function(stream, io_priority, cancellable, callback) {
@@ -6822,7 +6822,7 @@ gInputStreamReadAll <- function(stream, count, cancellable) {
 #' @param count gsize
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gInputStreamReadAllAsync <- function(stream, count, io_priority, cancellable, callback) {
@@ -6849,7 +6849,7 @@ gInputStreamReadAllFinish <- function(stream, result) {
 #' @param count gsize
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gInputStreamReadAsync <- function(stream, count, io_priority, cancellable, callback) {
@@ -6877,7 +6877,7 @@ gInputStreamReadBytes <- function(stream, count, cancellable) {
 #' @param count gsize
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gInputStreamReadBytesAsync <- function(stream, count, io_priority, cancellable, callback) {
@@ -6940,7 +6940,7 @@ gInputStreamSkip <- function(stream, count, cancellable) {
 #' @param count gsize
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gInputStreamSkipAsync <- function(stream, count, io_priority, cancellable, callback) {
@@ -7049,7 +7049,7 @@ gListStoreInsert <- function(store, position, item) {
 #'
 #' @param store ListStore
 #' @param item GObject.Object
-#' @param compare_func function — GLib.CompareDataFunc callback
+#' @param compare_func function — GLib.CompareDataFunc function(a, b)
 #' @return guint
 #' @export
 gListStoreInsertSorted <- function(store, item, compare_func) {
@@ -7084,7 +7084,7 @@ gListStoreRemoveAll <- function(store) {
 #' @title gListStoreSort
 #'
 #' @param store ListStore
-#' @param compare_func function — GLib.CompareDataFunc callback
+#' @param compare_func function — GLib.CompareDataFunc function(a, b)
 #' @return Return value from C function
 #' @export
 gListStoreSort <- function(store, compare_func) {
@@ -7126,7 +7126,7 @@ gLoadableIconLoad <- function(icon, size, cancellable) {
 #' @param icon LoadableIcon
 #' @param size gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gLoadableIconLoadAsync <- function(icon, size, cancellable, callback) {
@@ -7847,7 +7847,7 @@ gMountCanUnmount <- function(mount) {
 #' @param mount Mount
 #' @param flags MountUnmountFlags
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gMountEject <- function(mount, flags, cancellable, callback) {
@@ -7874,7 +7874,7 @@ gMountEjectFinish <- function(mount, result) {
 #' @param flags MountUnmountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gMountEjectWithOperation <- function(mount, flags, mount_operation, cancellable, callback) {
@@ -7999,7 +7999,7 @@ gMountGetVolume <- function(mount) {
 #' @param mount Mount
 #' @param force_rescan gboolean
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gMountGuessContentType <- function(mount, force_rescan, cancellable, callback) {
@@ -8050,7 +8050,7 @@ gMountIsShadowed <- function(mount) {
 #' @param flags MountMountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gMountRemount <- function(mount, flags, mount_operation, cancellable, callback) {
@@ -8087,7 +8087,7 @@ gMountShadow <- function(mount) {
 #' @param mount Mount
 #' @param flags MountUnmountFlags
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gMountUnmount <- function(mount, flags, cancellable, callback) {
@@ -8114,7 +8114,7 @@ gMountUnmountFinish <- function(mount, result) {
 #' @param flags MountUnmountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gMountUnmountWithOperation <- function(mount, flags, mount_operation, cancellable, callback) {
@@ -8426,7 +8426,7 @@ gNetworkMonitorCanReach <- function(monitor, connectable, cancellable) {
 #' @param monitor NetworkMonitor
 #' @param connectable SocketConnectable
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gNetworkMonitorCanReachAsync <- function(monitor, connectable, cancellable, callback) {
@@ -8700,7 +8700,7 @@ gOutputStreamClose <- function(stream, cancellable) {
 #' @param stream OutputStream
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gOutputStreamCloseAsync <- function(stream, io_priority, cancellable, callback) {
@@ -8738,7 +8738,7 @@ gOutputStreamFlush <- function(stream, cancellable) {
 #' @param stream OutputStream
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gOutputStreamFlushAsync <- function(stream, io_priority, cancellable, callback) {
@@ -8824,7 +8824,7 @@ gOutputStreamSplice <- function(stream, source, flags, cancellable) {
 #' @param flags OutputStreamSpliceFlags
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gOutputStreamSpliceAsync <- function(stream, source, flags, io_priority, cancellable, callback) {
@@ -8880,7 +8880,7 @@ gOutputStreamWriteAll <- function(stream, buffer, count, cancellable) {
 #' @param count gsize
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gOutputStreamWriteAllAsync <- function(stream, buffer, count, io_priority, cancellable, callback) {
@@ -8908,7 +8908,7 @@ gOutputStreamWriteAllFinish <- function(stream, result) {
 #' @param count gsize
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gOutputStreamWriteAsync <- function(stream, buffer, count, io_priority, cancellable, callback) {
@@ -8936,7 +8936,7 @@ gOutputStreamWriteBytes <- function(stream, bytes, cancellable) {
 #' @param bytes GLib.Bytes
 #' @param io_priority gint
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gOutputStreamWriteBytesAsync <- function(stream, bytes, io_priority, cancellable, callback) {
@@ -8985,7 +8985,7 @@ gPermissionAcquire <- function(permission, cancellable) {
 #'
 #' @param permission Permission
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gPermissionAcquireAsync <- function(permission, cancellable, callback) {
@@ -9069,7 +9069,7 @@ gPermissionRelease <- function(permission, cancellable) {
 #'
 #' @param permission Permission
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gPermissionReleaseAsync <- function(permission, cancellable, callback) {
@@ -9229,7 +9229,7 @@ gProxyConnect <- function(proxy, connection, proxy_address, cancellable) {
 #' @param connection IOStream
 #' @param proxy_address ProxyAddress
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gProxyConnectAsync <- function(proxy, connection, proxy_address, cancellable, callback) {
@@ -9394,7 +9394,7 @@ gProxyResolverLookup <- function(resolver, uri, cancellable) {
 #' @param resolver ProxyResolver
 #' @param uri utf8
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gProxyResolverLookupAsync <- function(resolver, uri, cancellable, callback) {
@@ -9471,7 +9471,7 @@ gResolverLookupByAddress <- function(resolver, address, cancellable) {
 #' @param resolver Resolver
 #' @param address InetAddress
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gResolverLookupByAddressAsync <- function(resolver, address, cancellable, callback) {
@@ -9510,7 +9510,7 @@ gResolverLookupByName <- function(resolver, hostname, cancellable) {
 #' @param resolver Resolver
 #' @param hostname utf8
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gResolverLookupByNameAsync <- function(resolver, hostname, cancellable, callback) {
@@ -9551,7 +9551,7 @@ gResolverLookupRecords <- function(resolver, rrname, record_type, cancellable) {
 #' @param rrname utf8
 #' @param record_type ResolverRecordType
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gResolverLookupRecordsAsync <- function(resolver, rrname, record_type, cancellable, callback) {
@@ -9594,7 +9594,7 @@ gResolverLookupService <- function(resolver, service, protocol, domain, cancella
 #' @param protocol utf8
 #' @param domain utf8
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gResolverLookupServiceAsync <- function(resolver, service, protocol, domain, cancellable, callback) {
@@ -10102,7 +10102,7 @@ gSettingsGetInt64 <- function(settings, key) {
 #'
 #' @param settings Settings
 #' @param key utf8
-#' @param mapping function — SettingsGetMapping callback
+#' @param mapping function — SettingsGetMapping function(value, result)
 #' @return gpointer
 #' @export
 gSettingsGetMapped <- function(settings, key, mapping) {
@@ -10890,7 +10890,7 @@ gSimpleActionGroupRemove <- function(simple, action_name) {
 #' @title gSimpleAsyncResultNew
 #'
 #' @param source_object GObject.Object
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @param source_tag gpointer
 #' @return SimpleAsyncResult
 #' @export
@@ -10903,7 +10903,7 @@ gSimpleAsyncResultNew <- function(source_object, callback, source_tag) {
 #' @title gSimpleAsyncResultNewFromError
 #'
 #' @param source_object GObject.Object
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @param error GLib.Error
 #' @return SimpleAsyncResult
 #' @export
@@ -11868,7 +11868,7 @@ gSocketAddressEnumeratorNext <- function(enumerator, cancellable) {
 #'
 #' @param enumerator SocketAddressEnumerator
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gSocketAddressEnumeratorNextAsync <- function(enumerator, cancellable, callback) {
@@ -11929,7 +11929,7 @@ gSocketClientConnect <- function(client, connectable, cancellable) {
 #' @param client SocketClient
 #' @param connectable SocketConnectable
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gSocketClientConnectAsync <- function(client, connectable, cancellable, callback) {
@@ -11970,7 +11970,7 @@ gSocketClientConnectToHost <- function(client, host_and_port, default_port, canc
 #' @param host_and_port utf8
 #' @param default_port guint16
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gSocketClientConnectToHostAsync <- function(client, host_and_port, default_port, cancellable, callback) {
@@ -12011,7 +12011,7 @@ gSocketClientConnectToService <- function(client, domain, service, cancellable) 
 #' @param domain utf8
 #' @param service utf8
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gSocketClientConnectToServiceAsync <- function(client, domain, service, cancellable, callback) {
@@ -12052,7 +12052,7 @@ gSocketClientConnectToUri <- function(client, uri, default_port, cancellable) {
 #' @param uri utf8
 #' @param default_port guint16
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gSocketClientConnectToUriAsync <- function(client, uri, default_port, cancellable, callback) {
@@ -12358,7 +12358,7 @@ gSocketConnectionConnect <- function(connection, address, cancellable) {
 #' @param connection SocketConnection
 #' @param address SocketAddress
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gSocketConnectionConnectAsync <- function(connection, address, cancellable, callback) {
@@ -12508,7 +12508,7 @@ gSocketListenerAccept <- function(listener, cancellable) {
 #'
 #' @param listener SocketListener
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gSocketListenerAcceptAsync <- function(listener, cancellable, callback) {
@@ -12545,7 +12545,7 @@ gSocketListenerAcceptSocket <- function(listener, cancellable) {
 #'
 #' @param listener SocketListener
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gSocketListenerAcceptSocketAsync <- function(listener, cancellable, callback) {
@@ -12802,7 +12802,7 @@ gStaticResourceInit <- function(static_resource) {
 #'
 #' @param source_object GObject.Object
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Task
 #' @export
 gTaskNew <- function(source_object, cancellable, callback) {
@@ -12826,7 +12826,7 @@ gTaskIsValid <- function(result, source_object) {
 #' @title gTaskReportError
 #'
 #' @param source_object GObject.Object
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @param source_tag gpointer
 #' @param error GLib.Error
 #' @return Return value from C function
@@ -13043,7 +13043,7 @@ gTaskReturnPointer <- function(task, result, result_destroy) {
 #' @title gTaskRunInThread
 #'
 #' @param task Task
-#' @param task_func function — TaskThreadFunc callback
+#' @param task_func function — TaskThreadFunc function(task, source_object, task_data, cancellable)
 #' @return Return value from C function
 #' @export
 gTaskRunInThread <- function(task, task_func) {
@@ -13055,7 +13055,7 @@ gTaskRunInThread <- function(task, task_func) {
 #' @title gTaskRunInThreadSync
 #'
 #' @param task Task
-#' @param task_func function — TaskThreadFunc callback
+#' @param task_func function — TaskThreadFunc function(task, source_object, task_data, cancellable)
 #' @return Return value from C function
 #' @export
 gTaskRunInThreadSync <- function(task, task_func) {
@@ -13421,8 +13421,8 @@ gVfsParseName <- function(vfs, parse_name) {
 #'
 #' @param vfs Vfs
 #' @param scheme utf8
-#' @param uri_func function — VfsFileLookupFunc callback
-#' @param parse_name_func function — VfsFileLookupFunc callback
+#' @param uri_func function — VfsFileLookupFunc function(vfs, identifier)
+#' @param parse_name_func function — VfsFileLookupFunc function(vfs, identifier)
 #' @return gboolean
 #' @export
 gVfsRegisterUriScheme <- function(vfs, scheme, uri_func, parse_name_func) {
@@ -13470,7 +13470,7 @@ gVolumeCanMount <- function(volume) {
 #' @param volume Volume
 #' @param flags MountUnmountFlags
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gVolumeEject <- function(volume, flags, cancellable, callback) {
@@ -13497,7 +13497,7 @@ gVolumeEjectFinish <- function(volume, result) {
 #' @param flags MountUnmountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gVolumeEjectWithOperation <- function(volume, flags, mount_operation, cancellable, callback) {
@@ -13635,7 +13635,7 @@ gVolumeGetUuid <- function(volume) {
 #' @param flags MountMountFlags
 #' @param mount_operation MountOperation
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gVolumeMount <- function(volume, flags, mount_operation, cancellable, callback) {
@@ -13806,7 +13806,7 @@ gZlibDecompressorGetFileInfo <- function(decompressor) {
 #'
 #' @param bus_type BusType
 #' @param cancellable Cancellable
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @return Return value from C function
 #' @export
 gBusGet <- function(bus_type, cancellable, callback) {
@@ -14158,7 +14158,7 @@ gIoSchedulerCancelAllJobs <- function() {
 #' @rdname gio-streams
 #' @title gIoSchedulerPushJob
 #'
-#' @param job_func function — IOSchedulerJobFunc callback
+#' @param job_func function — IOSchedulerJobFunc function(job, cancellable)
 #' @param io_priority gint
 #' @param cancellable Cancellable
 #' @return Return value from C function
@@ -14332,7 +14332,7 @@ gResourcesOpenStream <- function(path, lookup_flags) {
 #' @title gSimpleAsyncReportGerrorInIdle
 #'
 #' @param object GObject.Object
-#' @param callback function — AsyncReadyCallback callback
+#' @param callback function — AsyncReadyCallback function(source_object, res)
 #' @param error GLib.Error
 #' @return Return value from C function
 #' @export

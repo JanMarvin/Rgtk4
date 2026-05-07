@@ -122,7 +122,7 @@ gListStoreSplice(store, position, n_removals, additions, n_additions)
 
 \item{queue}{Queue}
 
-\item{func}{function — CompareDataFunc callback}
+\item{func}{function — CompareDataFunc function(a, b)}
 
 \item{free_func}{DestroyNotify}
 
@@ -130,7 +130,7 @@ gListStoreSplice(store, position, n_removals, additions, n_additions)
 
 \item{n}{gint}
 
-\item{compare_func}{function — GLib.CompareDataFunc callback}
+\item{compare_func}{function — GLib.CompareDataFunc function(a, b)}
 
 \item{list}{ListModel}
 
