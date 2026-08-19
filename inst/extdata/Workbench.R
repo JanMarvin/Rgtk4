@@ -669,10 +669,13 @@
                                    # Auto-close: opening char inserts its matching closer.
                                    if (text %in% names(closers)) {
                                      match <- closers[[text]]
+                                     gSignalStopEmissionByName(buf, "insert-text")
                                      gSignalHandlerBlock(buf, pair_env$id)
-                                     gtkTextBufferInsert(buf, iter, match, 1L)
-                                     gtkTextIterBackwardChars(iter, 1L)
-                                     gtkTextBufferPlaceCursor(buf, iter)
+                                     gtkTextBufferInsertAtCursor(buf, paste0(text, match), -1L)
+                                     mark <- gtkTextBufferGetInsert(buf)
+                                     it <- gtkTextBufferGetIterAtMark(buf, mark)
+                                     gtkTextIterBackwardChars(it, 1L)
+                                     gtkTextBufferPlaceCursor(buf, it)
                                      gSignalHandlerUnblock(buf, pair_env$id)
                                    }
                                    invisible()
