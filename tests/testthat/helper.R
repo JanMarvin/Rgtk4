@@ -15,7 +15,7 @@
 
 skip_if_no_gtk <- function() {
   if (!.gtk_likely_available) {
-    skip("GTK not available (no display server)")
+    testthat::skip("GTK not available (no display server)")
   }
 
   # Additional safety: try to init GTK if not already done
@@ -24,7 +24,7 @@ skip_if_no_gtk <- function() {
       gtkInit()
       assign(".gtk_initialized", TRUE, envir = .GlobalEnv)
     }, error = function(e) {
-      skip(paste("GTK initialization failed:", e$message))
+      testthat::skip(paste("GTK initialization failed:", e$message))
     })
   }
 }

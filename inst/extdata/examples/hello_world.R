@@ -37,7 +37,7 @@ gSignalConnectR(button, "clicked", function(w) {
   click_count <<- click_count + 1
   gtkLabelSetText(label, sprintf("Button clicked %d time%s!",
                                  click_count,
-                                 if(click_count == 1) "" else "s"))
+                                 if (click_count == 1) "" else "s"))
 })
 
 # Show the window

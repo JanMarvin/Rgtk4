@@ -263,7 +263,7 @@ update_plot_zoom <- function() {
   par(mar = c(4,4,3,1))
 
   if (gtkCheckButtonGetActive(r1)) {
-    x <- seq(0, 2*pi, length.out = 100)
+    x <- seq(0, 2 * pi, length.out = 100)
     plot(x, sin(x), type = "l", col = "blue", lwd = 3,
          main = "Sine Wave", xlab = "x", ylab = "sin(x)")
     grid()

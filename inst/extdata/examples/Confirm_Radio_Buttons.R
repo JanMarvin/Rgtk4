@@ -67,7 +67,7 @@ create_colored_button <- function(label_text, color_class) {
   gtkBoxAppend(btn_content, btn_label)
   gtkButtonSetChild(btn, btn_content)
 
-  return(list(button = btn, icon = dot_icon))
+  list(button = btn, icon = dot_icon)
 }
 
 # Submit button with a Forest Green dot

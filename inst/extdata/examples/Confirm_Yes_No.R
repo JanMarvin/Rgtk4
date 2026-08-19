@@ -49,7 +49,7 @@ create_colored_button <- function(label_text) {
   gtkBoxAppend(btn_content, btn_label)
   gtkButtonSetChild(btn, btn_content)
 
-  return(list(button = btn, icon = dot_icon))
+  list(button = btn, icon = dot_icon)
 }
 
 yes_item <- create_colored_button("Yes")

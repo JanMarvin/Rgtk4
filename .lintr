@@ -1,0 +1,9 @@
+linters: linters_with_defaults(
+  commas_linter = NULL,                    # space after comma .. many
+  quotes_linter = NULL,                    # only use double quotes (w/e)
+  line_length_linter = NULL,               # many long lines
+  commented_code_linter = NULL,            # some wb_save() etc
+  object_name_linter = NULL,               # camelCase
+  object_length_linter = NULL,             # obj names longer 30 characters
+  indentation_linter = NULL                # do not care
+  )

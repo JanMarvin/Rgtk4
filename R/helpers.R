@@ -367,7 +367,7 @@ gtkMessageDialogNew <- function(parent, flags, message_type, buttons_type, messa
     class(ptr) <- c("GtkMessageDialog", "GtkDialog", "GtkWidget", "GObject")
   }
 
-  return(ptr)
+  ptr
 }
 
 #' GObject Property Setters

@@ -119,7 +119,7 @@ gSignalConnectR(submit_btn, "clicked", function(w) {
     email_val,
     age_val,
     country_val,
-    if(newsletter_val) "Yes" else "No"
+    if (newsletter_val) "Yes" else "No"
   )
   gtkLabelSetMarkup(results_label, result_text)
 

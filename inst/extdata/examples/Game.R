@@ -8,7 +8,8 @@ frink_orig <- magick::image_read("https://jeroen.github.io/images/frink.png")
 make_pixbuf <- function(size) {
   scaled <- magick::image_scale(frink_orig, sprintf("%dx%d", size, size))
   info <- magick::image_info(scaled)
-  w <- info$width; h <- info$height
+  w <- info$width
+  h <- info$height
   bytes <- as.raw(magick::image_data(scaled, channels = "rgba"))
   data_ptr <- rawToExtptr(bytes)
   gb <- gBytesNew(data_ptr, length(bytes))

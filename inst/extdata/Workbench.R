@@ -346,7 +346,7 @@
     }
     gtkLabelSetText(status, sprintf("Plot %d of %d", state$index, n))
   }
-  show_current <- render_current
+  # show_current <- render_current
 
   gSignalConnectR(prev_btn, "clicked", function(w) {
     if (state$index > 1L) {
@@ -1181,8 +1181,7 @@
                                                              save(list = ls(envir = globalenv()), file = path,
                                                                   envir = globalenv())
                                                              message("Workspace saved: ", path)
-                                                           }, error = function(e) message("Save failed: ",
-                                                                                          conditionMessage(e)))
+                                                           }, error = function(e) message("Save failed: ", conditionMessage(e)))
                                                          }
                                                          gtkNativeDialogDestroy(dialog)
                                                        }))
@@ -1200,8 +1199,7 @@
                                                              load(path, envir = globalenv())
                                                              message("Workspace loaded: ", path)
                                                              if (!is.null(.wb$refreshEnv)) .wb$refreshEnv()
-                                                           }, error = function(e) message("Load failed: ",
-                                                                                          conditionMessage(e)))
+                                                           }, error = function(e) message("Load failed: ", conditionMessage(e)))
                                                          }
                                                          gtkNativeDialogDestroy(dialog)
                                                        }))
@@ -1287,8 +1285,7 @@
       tab$filename <- path
       gtkLabelSetText(tab$label, basename(path))
       message("Saved: ", path)
-    }, error = function(e) message("Error saving file: ",
-                                   conditionMessage(e)))
+    }, error = function(e) message("Error saving file: ", conditionMessage(e)))
   }
 
   gSignalConnectR(open_btn, "clicked", function(w) {
@@ -1308,8 +1305,7 @@
                                                              new_tab <- .wbCreateEditorTab(notebook, path, content)
                                                              tabs_env$tabs <- c(tabs_env$tabs, list(new_tab))
                                                              message("Opened: ", path)
-                                                           }, error = function(e) message("Error opening file: ",
-                                                                                          conditionMessage(e)))
+                                                           }, error = function(e) message("Error opening file: ", conditionMessage(e)))
                                                          }
                                                          gtkNativeDialogDestroy(dialog)
                                                        }))
@@ -1378,34 +1374,37 @@
                       if      (kv == 0x06eL) {                       # N - new tab
                         new_tab <- .wbCreateEditorTab(notebook, "Untitled")
                         tabs_env$tabs <- c(tabs_env$tabs, list(new_tab))
-                      }
-                      else if (kv == 0x06fL) gtkWidgetActivate(open_btn)   # O - open dialog
-                      else if (kv == 0x073L) gtkWidgetActivate(save_btn)   # S - save dialog
-                      else if (kv == 0x066L) {                             # F - find
+                      } else if (kv == 0x06fL) {
+                        gtkWidgetActivate(open_btn)   # O - open dialog
+                      } else if (kv == 0x073L) {
+                        gtkWidgetActivate(save_btn)   # S - save dialog
+                      } else if (kv == 0x066L) {                             # F - find
                         gtkWidgetSetVisible(find_bar, TRUE)
                         gtkWidgetGrabFocus(find_entry)
-                      }
-                      else if (kv == 0x065L) present("Environment")        # E
-                      else if (kv == 0x070L) present("Packages")           # P
-                      else if (kv == 0x06cL) {                             # L - outline
+                      } else if (kv == 0x065L) {
+                        present("Environment")        # E
+                      } else if (kv == 0x070L) {
+                        present("Packages")           # P
+                      } else if (kv == 0x06cL) {                             # L - outline
                         if (!is.null(.wb$refreshOutline)) .wb$refreshOutline()
                         present("Outline")
-                      }
-                      else if (kv == 0x068L) {                             # H - history
+                      } else if (kv == 0x068L) {                             # H - history
                         if (!is.null(.wb$refreshHistory)) .wb$refreshHistory()
                         present("History")
-                      }
-                      else if (kv == 0x072L) {                             # R - run to cursor
+                      } else if (kv == 0x072L) {                             # R - run to cursor
                         tab <- active_tab()
                         if (!is.null(tab)) .wbSendToCursor(tab$buffer)
-                      }
-                      else if (kv == 0x064L) {                             # D - dark toggle
+                      } else if (kv == 0x064L) {                             # D - dark toggle
                         .wb$cfg$dark <- !isTRUE(.wb$cfg$dark)
                         gtkCheckButtonSetActive(dark_check, .wb$cfg$dark)
                         .wbRestyleAllEditors()
+                      } else {
+                        hit <- FALSE
                       }
-                      else hit <- FALSE
-                      if (hit) return(TRUE)
+
+                      if (hit) {
+                        return(TRUE)
+                      }
                     }
                     FALSE
                   })

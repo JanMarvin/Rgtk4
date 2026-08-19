@@ -24,7 +24,7 @@ gtkWindowSetChild(window, table_widget)
 # Handle close
 gSignalConnectR(window, "close-request", function(w) {
   cat("Window closing\n")
-  return(FALSE)  # Allow close
+  FALSE  # Allow close
 })
 
 # Show window

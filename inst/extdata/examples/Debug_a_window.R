@@ -79,7 +79,7 @@ cat("Type 'gtkWindowPresent(window)' to try showing it again.\n\n")
 # Keep processing events manually
 cat("Processing events manually (Ctrl+C to stop)...\n")
 tryCatch({
-  while(TRUE) {
+  while (TRUE) {
     gMainContextIteration(NULL, FALSE)
     Sys.sleep(0.05)
   }
