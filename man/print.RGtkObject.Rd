@@ -6,6 +6,11 @@
 \usage{
 \method{print}{RGtkObject}(x, ...)
 }
+\arguments{
+\item{x}{x}
+
+\item{...}{additional arguments}
+}
 \description{
 All extptrs returned from auto-generated bindings carry a trailing class
 "RGtkObject" plus the GLib type name. This method prints them as

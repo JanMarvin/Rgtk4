@@ -412,6 +412,9 @@ gObjectSetEnum <- function(object, property, value) {
   invisible(.Call("R_g_object_set_enum", object, property, as.integer(value)))
 }
 
+#' gListToRList
+#' @param glist glist
+#' @param free_list free_list
 #' @export
 gListToRList <- function(glist, free_list = TRUE) {
   .Call("R_glist_to_r_list", glist, free_list)
@@ -430,6 +433,8 @@ gtkListBoxGetSelectedRows <- function(box) {
 #' instead of the default base-R "<pointer: 0x...>" with a noisy attribute
 #' dump.
 #'
+#' @param x x
+#' @param ... additional arguments
 #' @export
 print.RGtkObject <- function(x, ...) {
   type <- class(x)[1]
